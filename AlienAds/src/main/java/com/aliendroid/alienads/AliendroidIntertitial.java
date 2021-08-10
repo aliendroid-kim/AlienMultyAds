@@ -53,8 +53,14 @@ public class AliendroidIntertitial {
                         });
                 break;
             case "APPLOVIN":
-                interstitialAd = new MaxInterstitialAd(idIntertitial, activity);
-                interstitialAd.loadAd();
+                if (idIntertitial==null){
+                    interstitialAd = new MaxInterstitialAd("qwerty1234", activity);
+                    interstitialAd.loadAd();
+                } else {
+                    interstitialAd = new MaxInterstitialAd(idIntertitial, activity);
+                    interstitialAd.loadAd();
+                }
+
                 break;
             case "MOPUB":
                 mInterstitial = new MoPubInterstitial(activity, idIntertitial);
