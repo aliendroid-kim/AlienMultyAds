@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         RelativeLayout layAds = findViewById(R.id.layAds);
 
         AliendroidInitialize.SelectAds(MainActivity.this, "ADMOB", "");
-        AliendroidIntertitial.LoadIntertitialAdmob(MainActivity.this,"MOPUB","","");
+        AliendroidIntertitial.LoadIntertitialAdmob(MainActivity.this,"APPLOVIN","","");
 
     }
 
