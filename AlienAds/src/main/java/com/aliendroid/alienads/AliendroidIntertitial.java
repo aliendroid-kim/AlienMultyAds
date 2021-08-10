@@ -95,8 +95,14 @@ public class AliendroidIntertitial {
 
         switch (selectAdsBackup) {
             case "APPLOVIN":
-                interstitialAd = new MaxInterstitialAd(idIntertitialBackup, activity);
-                interstitialAd.loadAd();
+                if (idIntertitialBackup==null){
+                    interstitialAd = new MaxInterstitialAd("qwerty12345", activity);
+                    interstitialAd.loadAd();
+                } else {
+                    interstitialAd = new MaxInterstitialAd(idIntertitialBackup, activity);
+                    interstitialAd.loadAd();
+                }
+
                 break;
             case "MOPUB":
                 mInterstitial = new MoPubInterstitial(activity, idIntertitialBackup);

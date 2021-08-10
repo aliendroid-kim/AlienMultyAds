@@ -9,6 +9,7 @@ import android.os.CountDownTimer;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.aliendroid.alienads.AlienOpenAds;
+import com.aliendroid.alienads.AliendroidInitialize;
 
 
 public class SplashActivity extends AppCompatActivity {
@@ -19,9 +20,13 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.splash_activity);
 
+        AliendroidInitialize.SelectAds(SplashActivity.this,"ADMOB",
+                "");
         AlienOpenAds.LoadOpenAds("ca-app-pub-3940256099942544/3419835294");
 
-            new CountDownTimer(10000, 1000) {
+
+
+        new CountDownTimer(10000, 1000) {
                 @Override
                 public void onFinish() {
 

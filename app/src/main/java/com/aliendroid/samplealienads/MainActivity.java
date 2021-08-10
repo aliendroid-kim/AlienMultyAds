@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
 
     ADMOB_INTER = "ca-app-pub-3940256099942544/1033173712";
     ADMOB_BANNER = "ca-app-pub-3940256099942544/6300978111";
+    ADMOB_OPENAD ="ca-app-pub-3940256099942544/3419835294"
 
     IRON_BANNER="DefaultBanner";
     IRON_INTERTITIAL="Game_Screen";
@@ -31,31 +32,24 @@ public class MainActivity extends AppCompatActivity {
     STARTAPPID="123456789";
      */
 
-    String SELECT_ADS = "APPLOVIN";
-    String BANNER_ID = "db4d5e8718b97d78";
-    String MEDIUM_BANNER_ID = "db4d5e8718b97d78";
-    String INTERTITIAL_ID = "518cd97722c60b52";
-    String IdInitialize = "107355779";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        
         RelativeLayout layAds = findViewById(R.id.layAds);
 
-        AlienGDPR.loadGdpr(MainActivity.this, "ADMOB", false);
-        AliendroidInitialize.SelectAds(MainActivity.this,"ADMOB", "null");
-        AlienOpenAds.ShowOpen(MainActivity.this);
-        AliendroidBanner.SmallBanner(MainActivity.this, layAds, "ADMOB",
-                "ca-app-pub-3940256099942544/6300978111");
-
-        AliendroidIntertitial.LoadIntertitial(MainActivity.this, "ADMOB",
-                "ca-app-pub-3940256099942544/1033173712");
+        AliendroidInitialize.SelectAds(MainActivity.this, "ADMOB", "");
+        AliendroidIntertitial.LoadIntertitialAdmob(MainActivity.this,"MOPUB","","");
 
     }
 
-    public void showInter(View view) {
-        AliendroidIntertitial.ShowIntertitial(MainActivity.this, "ADMOB",
+    public void munculiklan(View view){
+        AliendroidIntertitial.ShowIntertitial(MainActivity.this,"ADMOB",
                 "ca-app-pub-3940256099942544/1033173712", 0);
+
     }
+
+
 }
