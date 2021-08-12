@@ -10,8 +10,10 @@ import android.widget.RelativeLayout;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import com.applovin.adview.AppLovinAdView;
 import com.applovin.mediation.MaxAdFormat;
 import com.applovin.mediation.ads.MaxAdView;
+import com.applovin.sdk.AppLovinAdSize;
 import com.applovin.sdk.AppLovinSdkUtils;
 import com.google.ads.mediation.facebook.FacebookAdapter;
 import com.google.ads.mediation.facebook.FacebookExtras;
@@ -20,6 +22,7 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.LoadAdError;
+import com.ironsource.mediationsdk.A;
 import com.ironsource.mediationsdk.ISBannerSize;
 import com.ironsource.mediationsdk.IronSource;
 import com.ironsource.mediationsdk.IronSourceBannerLayout;
@@ -46,7 +49,7 @@ public class AliendroidBanner {
                 adView.loadAd(request);
                 break;
 
-            case "APPLOVIN":
+            case "APPLOVIN-M":
                 MaxAdView adView2;
                 adView2 = new MaxAdView(idBanner, activity);
                 final boolean isTablet = AppLovinSdkUtils.isTablet(activity);
@@ -79,6 +82,19 @@ public class AliendroidBanner {
                 bannerParameters.addRule(RelativeLayout.CENTER_HORIZONTAL);
                 layAds.addView(startAppBanner, bannerParameters);
                 break;
+            case "APPLOVIN-D":
+                AdRequest.Builder builder = new AdRequest.Builder();
+                Bundle bannerExtras = new Bundle();
+                bannerExtras.putString( "zone_id", idBanner );
+                builder.addCustomEventExtrasBundle( AppLovinCustomEventBanner.class, bannerExtras );
+
+                boolean isTablet3 = AppLovinSdkUtils.isTablet( activity );
+                AppLovinAdSize adSize3 = isTablet3 ? AppLovinAdSize.LEADER : AppLovinAdSize.BANNER;
+                AppLovinAdView adView3 = new AppLovinAdView( adSize3, activity );
+                layAds.addView(adView3);
+                adView3.loadNextAd();
+
+                break;
         }
 
     }
@@ -106,7 +122,7 @@ public class AliendroidBanner {
             @Override
             public void onAdFailedToLoad(LoadAdError adError) {
                 switch (selectAdsBackup) {
-                    case "APPLOVIN":
+                    case "APPLOVIN-M":
                         MaxAdView adView;
                         adView = new MaxAdView(idBannerBackup, activity);
                         final boolean isTablet = AppLovinSdkUtils.isTablet(activity);
@@ -137,6 +153,19 @@ public class AliendroidBanner {
                                         RelativeLayout.LayoutParams.WRAP_CONTENT);
                         bannerParameters.addRule(RelativeLayout.CENTER_HORIZONTAL);
                         layAds.addView(startAppBanner, bannerParameters);
+                        break;
+                    case "APPLOVIN-D":
+                        AdRequest.Builder builder = new AdRequest.Builder();
+                        Bundle bannerExtras = new Bundle();
+                        bannerExtras.putString( "zone_id", idBannerBackup );
+                        builder.addCustomEventExtrasBundle( AppLovinCustomEventBanner.class, bannerExtras );
+
+                        boolean isTablet2 = AppLovinSdkUtils.isTablet( activity );
+                        AppLovinAdSize adSize = isTablet2 ? AppLovinAdSize.LEADER : AppLovinAdSize.BANNER;
+                        AppLovinAdView adView2 = new AppLovinAdView( adSize, activity );
+                        layAds.addView(adView2);
+                        adView2.loadNextAd();
+
                         break;
                 }
             }
@@ -179,11 +208,9 @@ public class AliendroidBanner {
                 adView.loadAd(request);
                 break;
             }
-            case "APPLOVIN": {
+            case "APPLOVIN-M": {
                 MaxAdView adView;
-                //adView = new MaxAdView(APPLOVIN_BANNER, (Activity) MainActivity.this);
                 adView = new MaxAdView(idBanner, MaxAdFormat.MREC, activity);
-                //AppLovinAdView adView = new AppLovinAdView(AppLovinAdSize.BANNER, context);
                 final int widthPx = AppLovinSdkUtils.dpToPx(activity, 300);
                 final int heightPx = AppLovinSdkUtils.dpToPx(activity, 250);
                 adView.setLayoutParams(new ConstraintLayout.LayoutParams(widthPx, heightPx));
@@ -214,6 +241,18 @@ public class AliendroidBanner {
                 bannerParameters.addRule(RelativeLayout.CENTER_HORIZONTAL);
                 layAds.addView(startAppBanner, bannerParameters);
                 break;
+            case "APPLOVIN-D":
+                AdRequest.Builder builder = new AdRequest.Builder();
+                Bundle bannerExtras = new Bundle();
+                bannerExtras.putString( "zone_id", idBanner );
+                builder.addCustomEventExtrasBundle( AppLovinCustomEventBanner.class, bannerExtras );
+
+                boolean isTablet2 = AppLovinSdkUtils.isTablet( activity );
+                AppLovinAdSize adSize = isTablet2 ? AppLovinAdSize.LEADER : AppLovinAdSize.BANNER;
+                AppLovinAdView adView2 = new AppLovinAdView( adSize, activity );
+                layAds.addView(adView2);
+                adView2.loadNextAd();
+                break;
         }
     }
 
@@ -239,7 +278,7 @@ public class AliendroidBanner {
             @Override
             public void onAdFailedToLoad(LoadAdError adError) {
                 switch (selectAdsBackup) {
-                    case "APPLOVIN": {
+                    case "APPLOVIN-M": {
                         MaxAdView adView;
                         //adView = new MaxAdView(APPLOVIN_BANNER, (Activity) MainActivity.this);
                         adView = new MaxAdView(idBannerBackup, MaxAdFormat.MREC, activity);
@@ -273,6 +312,18 @@ public class AliendroidBanner {
                                         RelativeLayout.LayoutParams.WRAP_CONTENT);
                         bannerParameters.addRule(RelativeLayout.CENTER_HORIZONTAL);
                         layAds.addView(startAppBanner, bannerParameters);
+                        break;
+                    case "APPLOVIN-D":
+                        AdRequest.Builder builder = new AdRequest.Builder();
+                        Bundle bannerExtras = new Bundle();
+                        bannerExtras.putString( "zone_id", idBannerBackup );
+                        builder.addCustomEventExtrasBundle( AppLovinCustomEventBanner.class, bannerExtras );
+
+                        boolean isTablet2 = AppLovinSdkUtils.isTablet( activity );
+                        AppLovinAdSize adSize = isTablet2 ? AppLovinAdSize.LEADER : AppLovinAdSize.BANNER;
+                        AppLovinAdView adView2 = new AppLovinAdView( adSize, activity );
+                        layAds.addView(adView2);
+                        adView2.loadNextAd();
                         break;
                 }
             }

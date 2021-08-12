@@ -52,3 +52,9 @@ LineNumberTable, *Annotation*, EnclosingMethod
 -dontwarn com.startapp.**
 
 -dontwarn org.jetbrains.annotations.**
+
+-dontwarn com.facebook.ads.internal.**
+-keeppackagenames com.facebook.*
+-keep public class com.facebook.ads.** {*;}
+-keep public class com.facebook.ads.**
+{ public protected *; }

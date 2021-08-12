@@ -40,14 +40,21 @@ public class MainActivity extends AppCompatActivity {
         
         RelativeLayout layAds = findViewById(R.id.layAds);
 
-        AliendroidInitialize.SelectAds(MainActivity.this, "ADMOB", "");
-        AliendroidIntertitial.LoadIntertitialAdmob(MainActivity.this,"APPLOVIN","","");
+        AliendroidInitialize.SelectAds(MainActivity.this, SettingAds.SELECT_ADS, "");
+        AliendroidBanner.SmallBanner(MainActivity.this, layAds,SettingAds.SELECT_ADS, SettingAds.MAIN_ADS_BANNER);
+        AliendroidIntertitial.LoadIntertitial(MainActivity.this, SettingAds.SELECT_ADS, SettingAds.MAIN_ADS_INTERTITIAL );
 
+        /*
+        AliendroidInitialize.SelectAdsAdmob(MainActivity.this, SettingAds.BACKUP_ADS, SettingAds.INITIALIZE_SDK);
+        AliendroidBanner.SmallBannerAdmob(MainActivity.this,layAds, SettingAds.BACKUP_ADS, SettingAds.MAIN_ADS_BANNER,
+                SettingAds.BACKUP_ADS_BANNER);
+
+         */
     }
 
     public void munculiklan(View view){
-        AliendroidIntertitial.ShowIntertitial(MainActivity.this,"ADMOB",
-                "ca-app-pub-3940256099942544/1033173712", 0);
+        AliendroidIntertitial.ShowIntertitial(MainActivity.this,SettingAds.SELECT_ADS,
+                SettingAds.MAIN_ADS_INTERTITIAL, 0);
 
     }
 

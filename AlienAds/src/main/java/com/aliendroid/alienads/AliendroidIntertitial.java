@@ -8,7 +8,13 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
+import com.applovin.adview.AppLovinInterstitialAd;
+import com.applovin.adview.AppLovinInterstitialAdDialog;
 import com.applovin.mediation.ads.MaxInterstitialAd;
+import com.applovin.sdk.AppLovinAd;
+import com.applovin.sdk.AppLovinAdLoadListener;
+import com.applovin.sdk.AppLovinAdSize;
+import com.applovin.sdk.AppLovinSdk;
 import com.google.ads.mediation.facebook.FacebookAdapter;
 import com.google.ads.mediation.facebook.FacebookExtras;
 import com.google.android.gms.ads.AdRequest;
@@ -24,6 +30,8 @@ public class AliendroidIntertitial {
     public static MaxInterstitialAd interstitialAd;
     public static MoPubInterstitial mInterstitial;
     public static int counter = 0;
+    public static AppLovinInterstitialAdDialog interstitialAdlovin;
+    public static AppLovinAd loadedAd;
 
     public static void LoadIntertitial(Activity activity, String selectAds, String idIntertitial) {
         switch (selectAds) {
@@ -52,7 +60,7 @@ public class AliendroidIntertitial {
                             }
                         });
                 break;
-            case "APPLOVIN":
+            case "APPLOVIN-M":
                 if (idIntertitial==null){
                     interstitialAd = new MaxInterstitialAd("qwerty1234", activity);
                     interstitialAd.loadAd();
@@ -69,6 +77,25 @@ public class AliendroidIntertitial {
             case "IRON":
                 IronSource.isInterstitialPlacementCapped(idIntertitial);
                 IronSource.loadInterstitial();
+                break;
+            case "APPLOVIN-D":
+                AdRequest.Builder builder = new AdRequest.Builder();
+                Bundle interstitialExtras = new Bundle();
+                interstitialExtras.putString( "zone_id", idIntertitial );
+                builder.addCustomEventExtrasBundle( AppLovinCustomEventInterstitial.class, interstitialExtras );
+
+                AppLovinSdk.getInstance(activity).getAdService().loadNextAd(AppLovinAdSize.INTERSTITIAL, new AppLovinAdLoadListener() {
+                    @Override
+                    public void adReceived(AppLovinAd ad) {
+                        loadedAd = ad;
+                    }
+
+                    @Override
+                    public void failedToReceiveAd(int errorCode) {
+                        // Look at AppLovinErrorCodes.java for list of error codes.
+                    }
+                });
+                interstitialAdlovin = AppLovinInterstitialAd.create(AppLovinSdk.getInstance(activity), activity);
                 break;
 
         }
@@ -100,7 +127,7 @@ public class AliendroidIntertitial {
                 });
 
         switch (selectAdsBackup) {
-            case "APPLOVIN":
+            case "APPLOVIN-M":
                 if (idIntertitialBackup.equals("")){
                     interstitialAd = new MaxInterstitialAd("qwerty12345", activity);
                     interstitialAd.loadAd();
@@ -118,6 +145,25 @@ public class AliendroidIntertitial {
                 IronSource.isInterstitialPlacementCapped(idIntertitialBackup);
                 IronSource.loadInterstitial();
                 break;
+            case "APPLOVIN-D":
+                AdRequest.Builder builder = new AdRequest.Builder();
+                Bundle interstitialExtras = new Bundle();
+                interstitialExtras.putString( "zone_id", idIntertitialBackup );
+                builder.addCustomEventExtrasBundle( AppLovinCustomEventInterstitial.class, interstitialExtras );
+
+                AppLovinSdk.getInstance(activity).getAdService().loadNextAd(AppLovinAdSize.INTERSTITIAL, new AppLovinAdLoadListener() {
+                    @Override
+                    public void adReceived(AppLovinAd ad) {
+                        loadedAd = ad;
+                    }
+
+                    @Override
+                    public void failedToReceiveAd(int errorCode) {
+                        // Look at AppLovinErrorCodes.java for list of error codes.
+                    }
+                });
+                interstitialAdlovin = AppLovinInterstitialAd.create(AppLovinSdk.getInstance(activity), activity);
+                break;
 
         }
     }
@@ -133,7 +179,7 @@ public class AliendroidIntertitial {
                         LoadIntertitial(activity, selectAds, idIntertitial);
                     }
                     break;
-                case "APPLOVIN":
+                case "APPLOVIN-M":
                     if (interstitialAd.isReady()) {
                         interstitialAd.showAd();
                         interstitialAd.loadAd();
@@ -155,6 +201,9 @@ public class AliendroidIntertitial {
                 case "STARTAPP":
                     StartAppAd.showAd(activity);
                     break;
+                case "APPLOVIN-D":
+                    interstitialAdlovin.showAndRender( loadedAd );
+                    break;
             }
             counter = 0;
         } else {
@@ -170,7 +219,7 @@ public class AliendroidIntertitial {
                 LoadIntertitial(activity, "ADMOB", idIntertitial);
             } else {
                 switch (selectAdsBackup) {
-                    case "APPLOVIN":
+                    case "APPLOVIN-M":
                         if (interstitialAd.isReady()) {
                             interstitialAd.showAd();
                             interstitialAd.loadAd();
@@ -191,6 +240,9 @@ public class AliendroidIntertitial {
                         break;
                     case "STARTAPP":
                         StartAppAd.showAd(activity);
+                        break;
+                    case "APPLOVIN-D":
+                        interstitialAdlovin.showAndRender( loadedAd );
                         break;
                 }
                 LoadIntertitial(activity, "ADMOB", idIntertitial);

@@ -40,7 +40,7 @@ public class AliendroidInitialize {
                     }
                 });
                 break;
-            case "APPLOVIN":
+            case "APPLOVIN-M":
                 AdSettings.setDataProcessingOptions(new String[]{});
                 AppLovinSdk.getInstance(activity).setMediationProvider(AppLovinMediationProvider.MAX);
                 AppLovinSdk sdk = AppLovinSdk.getInstance(activity);
@@ -57,10 +57,14 @@ public class AliendroidInitialize {
             case "IRON":
                 IronSource.init(activity, idInitialize);
                 IntegrationHelper.validateIntegration(activity);
+                IronSource.setMetaData("Facebook_IS_CacheFlag","IMAGE");
                 break;
             case "STARTAPP":
                 StartAppSDK.init(activity, idInitialize, true);
                 StartAppAd.disableSplash();
+                break;
+            case "APPLOVIN-D":
+                AppLovinSdk.initializeSdk(activity);
                 break;
         }
     }
@@ -79,7 +83,7 @@ public class AliendroidInitialize {
             }
         });
         switch (selectAdsBackup) {
-            case "APPLOVIN":
+            case "APPLOVIN-M":
                 AdSettings.setDataProcessingOptions(new String[]{});
                 AppLovinSdk.getInstance(activity).setMediationProvider(AppLovinMediationProvider.MAX);
                 AppLovinSdk sdk = AppLovinSdk.getInstance(activity);
