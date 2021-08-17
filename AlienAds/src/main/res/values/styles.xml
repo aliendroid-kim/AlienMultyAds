@@ -1,0 +1,57 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">#00a8ff</item>
+        <item name="colorPrimaryDark">#00a8ff</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme2" parent="Theme.AppCompat.Light">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorAccent</item>
+        <item name="colorPrimaryDark">#000000</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="SeekBarColor"
+        parent="Widget.AppCompat.SeekBar">
+        <item name="colorAccent">@color/gnt_blue</item>
+    </style>
+
+
+    <style name="AppTheme.AdAttribution">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">left</item>
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:text">@string/ad_attribution</item>
+        <item name="android:background">#FFCC66</item>
+        <item name="android:width">15dp</item>
+        <item name="android:height">15dp</item>
+    </style>
+
+
+    <style name="AppSaa" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">#2d3436</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="windowActionBar">false</item>
+        <item name="android:statusBarColor">#ffffff</item>
+        <item name="android:windowLightStatusBar">true</item>
+    </style>
+    <string name="ad_attribution">Ads</string>
+</resources>

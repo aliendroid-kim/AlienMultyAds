@@ -1,16 +1,18 @@
 package com.aliendroid.samplealienads;
 
+import static com.aliendroid.samplealienads.SettingAds.MAIN_ADS_NATIVE;
+
 import android.os.Bundle;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.aliendroid.alienads.AlienGDPR;
 import com.aliendroid.alienads.AliendroidBanner;
 import com.aliendroid.alienads.AliendroidInitialize;
 import com.aliendroid.alienads.AliendroidIntertitial;
-import com.aliendroid.alienads.AlienOpenAds;
+import com.aliendroid.alienads.AliendroidNative;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -39,11 +41,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         
         RelativeLayout layAds = findViewById(R.id.layAds);
+        FrameLayout nativeads = findViewById(R.id.laynative);
+
 
         AliendroidInitialize.SelectAds(MainActivity.this, SettingAds.SELECT_ADS, "");
-        AliendroidBanner.SmallBanner(MainActivity.this, layAds,SettingAds.SELECT_ADS, SettingAds.MAIN_ADS_BANNER);
+        AliendroidBanner.MediumBanner(MainActivity.this, layAds,SettingAds.SELECT_ADS, SettingAds.MAIN_ADS_BANNER);
         AliendroidIntertitial.LoadIntertitial(MainActivity.this, SettingAds.SELECT_ADS, SettingAds.MAIN_ADS_INTERTITIAL );
-
+        AliendroidNative.SmallNative(MainActivity.this, SettingAds.SELECT_ADS, nativeads, MAIN_ADS_NATIVE);
         /*
         AliendroidInitialize.SelectAdsAdmob(MainActivity.this, SettingAds.BACKUP_ADS, SettingAds.INITIALIZE_SDK);
         AliendroidBanner.SmallBannerAdmob(MainActivity.this,layAds, SettingAds.BACKUP_ADS, SettingAds.MAIN_ADS_BANNER,
