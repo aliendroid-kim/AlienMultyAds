@@ -27,7 +27,8 @@ public class AliendroidNative {
     private static NativeAd nativeAd;
     public static Bundle extras;
     public static AdRequest request;
-    public static void SmallNative (Activity activity, String selectAds,FrameLayout frameLayout, String nativeId) {
+    public static void SmallNative (Activity activity, String selectAds,FrameLayout frameLayout, String nativeId, String Hpk1,
+                                    String Hpk2, String Hpk3, String Hpk4, String Hpk5) {
         if (selectAds.equals("ADMOB")){
             AdLoader.Builder builder = new AdLoader.Builder(activity, nativeId);
             builder.forNativeAd(new NativeAd.OnNativeAdLoadedListener() {
@@ -60,7 +61,8 @@ public class AliendroidNative {
             extras = new FacebookExtras()
                     .setNativeBanner(true)
                     .build();
-            request = new AdRequest.Builder().addKeyword("kim kasep")
+            request = new AdRequest.Builder().addKeyword(Hpk1).addKeyword(Hpk2)
+                    .addKeyword(Hpk3).addKeyword(Hpk4).addKeyword(Hpk5)
                     .addNetworkExtrasBundle(FacebookAdapter.class, extras)
                     .build();
             AdLoader adLoader =
@@ -77,7 +79,8 @@ public class AliendroidNative {
         }
     }
 
-    public static void MediumNative (Activity activity, String selectAds,FrameLayout frameLayout, String nativeId) {
+    public static void MediumNative (Activity activity, String selectAds,FrameLayout frameLayout, String nativeId,String Hpk1,
+                                     String Hpk2, String Hpk3, String Hpk4, String Hpk5) {
         if (selectAds.equals("ADMOB")){
             AdLoader.Builder builder = new AdLoader.Builder(activity, nativeId);
             builder.forNativeAd(new NativeAd.OnNativeAdLoadedListener() {
@@ -110,7 +113,8 @@ public class AliendroidNative {
             extras = new FacebookExtras()
                     .setNativeBanner(true)
                     .build();
-            request = new AdRequest.Builder().addKeyword("kim kasep")
+            request = new AdRequest.Builder().addKeyword(Hpk1).addKeyword(Hpk2)
+                    .addKeyword(Hpk3).addKeyword(Hpk4).addKeyword(Hpk5)
                     .addNetworkExtrasBundle(FacebookAdapter.class, extras)
                     .build();
             AdLoader adLoader =

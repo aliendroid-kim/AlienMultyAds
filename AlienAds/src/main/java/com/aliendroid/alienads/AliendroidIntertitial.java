@@ -33,13 +33,15 @@ public class AliendroidIntertitial {
     public static AppLovinInterstitialAdDialog interstitialAdlovin;
     public static AppLovinAd loadedAd;
 
-    public static void LoadIntertitial(Activity activity, String selectAds, String idIntertitial) {
+    public static void LoadIntertitial(Activity activity, String selectAds, String idIntertitial, String Hpk1,
+                                       String Hpk2, String Hpk3, String Hpk4, String Hpk5 ) {
         switch (selectAds) {
             case "ADMOB":
                 Bundle extras = new FacebookExtras()
                         .setNativeBanner(true)
                         .build();
-                AdRequest request = new AdRequest.Builder()
+                AdRequest request = new AdRequest.Builder().addKeyword(Hpk1).addKeyword(Hpk2)
+                        .addKeyword(Hpk3).addKeyword(Hpk4).addKeyword(Hpk5)
                         .addNetworkExtrasBundle(FacebookAdapter.class, extras)
                         .build();
                 InterstitialAd.load(activity, idIntertitial, request,
@@ -79,7 +81,8 @@ public class AliendroidIntertitial {
                 IronSource.loadInterstitial();
                 break;
             case "APPLOVIN-D":
-                AdRequest.Builder builder = new AdRequest.Builder();
+                AdRequest.Builder builder = new AdRequest.Builder().addKeyword(Hpk1).addKeyword(Hpk2)
+                        .addKeyword(Hpk3).addKeyword(Hpk4).addKeyword(Hpk5);
                 Bundle interstitialExtras = new Bundle();
                 interstitialExtras.putString( "zone_id", idIntertitial );
                 builder.addCustomEventExtrasBundle( AppLovinCustomEventInterstitial.class, interstitialExtras );
@@ -101,11 +104,13 @@ public class AliendroidIntertitial {
         }
     }
 
-    public static void LoadIntertitialAdmob(Activity activity, String selectAdsBackup, String idIntertitial, String idIntertitialBackup) {
+    public static void LoadIntertitialAdmob(Activity activity, String selectAdsBackup, String idIntertitial, String idIntertitialBackup, String Hpk1,
+                                            String Hpk2, String Hpk3, String Hpk4, String Hpk5 ) {
         Bundle extras = new FacebookExtras()
                 .setNativeBanner(true)
                 .build();
-        AdRequest request = new AdRequest.Builder()
+        AdRequest request = new AdRequest.Builder().addKeyword(Hpk1).addKeyword(Hpk2)
+                .addKeyword(Hpk3).addKeyword(Hpk4).addKeyword(Hpk5)
                 .addNetworkExtrasBundle(FacebookAdapter.class, extras)
                 .build();
         InterstitialAd.load(activity, idIntertitial, request,
@@ -146,7 +151,8 @@ public class AliendroidIntertitial {
                 IronSource.loadInterstitial();
                 break;
             case "APPLOVIN-D":
-                AdRequest.Builder builder = new AdRequest.Builder();
+                AdRequest.Builder builder = new AdRequest.Builder().addKeyword(Hpk1).addKeyword(Hpk2)
+                        .addKeyword(Hpk3).addKeyword(Hpk4).addKeyword(Hpk5);
                 Bundle interstitialExtras = new Bundle();
                 interstitialExtras.putString( "zone_id", idIntertitialBackup );
                 builder.addCustomEventExtrasBundle( AppLovinCustomEventInterstitial.class, interstitialExtras );
@@ -168,15 +174,16 @@ public class AliendroidIntertitial {
         }
     }
 
-    public static void ShowIntertitial(Activity activity, String selectAds, String idIntertitial, int interval) {
+    public static void ShowIntertitial(Activity activity, String selectAds, String idIntertitial, int interval,String Hpk1,
+                                       String Hpk2, String Hpk3, String Hpk4, String Hpk5 ) {
         if (counter >= interval) {
             switch (selectAds) {
                 case "ADMOB":
                     if (mInterstitialAd != null) {
                         mInterstitialAd.show(activity);
-                        LoadIntertitial(activity, selectAds, idIntertitial);
+                        LoadIntertitial(activity, selectAds, idIntertitial, Hpk1, Hpk2, Hpk3, Hpk4, Hpk5);
                     } else {
-                        LoadIntertitial(activity, selectAds, idIntertitial);
+                        LoadIntertitial(activity, selectAds, idIntertitial,Hpk1, Hpk2, Hpk3, Hpk4, Hpk5);
                     }
                     break;
                 case "APPLOVIN-M":
@@ -211,12 +218,14 @@ public class AliendroidIntertitial {
         }
     }
 
-    public static void ShowIntertitialBackup(Activity activity, String selectAdsBackup, String idIntertitial, String idIntertitialBackup, int interval) {
+    public static void ShowIntertitialBackup(Activity activity, String selectAdsBackup, String idIntertitial, String idIntertitialBackup,
+                                             int interval,String Hpk1,
+                                             String Hpk2, String Hpk3, String Hpk4, String Hpk5 ) {
         if (counter >= interval) {
 
             if (mInterstitialAd != null) {
                 mInterstitialAd.show(activity);
-                LoadIntertitial(activity, "ADMOB", idIntertitial);
+                LoadIntertitial(activity, "ADMOB", idIntertitial, Hpk1, Hpk2, Hpk3, Hpk4, Hpk5);
             } else {
                 switch (selectAdsBackup) {
                     case "APPLOVIN-M":
@@ -245,7 +254,7 @@ public class AliendroidIntertitial {
                         interstitialAdlovin.showAndRender( loadedAd );
                         break;
                 }
-                LoadIntertitial(activity, "ADMOB", idIntertitial);
+                LoadIntertitial(activity, "ADMOB", idIntertitial,Hpk1, Hpk2, Hpk3, Hpk4, Hpk5);
             }
 
             counter = 0;

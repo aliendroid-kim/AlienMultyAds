@@ -1,18 +1,29 @@
 package com.aliendroid.samplealienads;
 
-import static com.aliendroid.samplealienads.SettingAds.MAIN_ADS_NATIVE;
+import static com.aliendroid.samplealienads.SettingAds.HIGH_PAYING_KEYWORD1;
+import static com.aliendroid.samplealienads.SettingAds.HIGH_PAYING_KEYWORD2;
+import static com.aliendroid.samplealienads.SettingAds.HIGH_PAYING_KEYWORD3;
+import static com.aliendroid.samplealienads.SettingAds.HIGH_PAYING_KEYWORD4;
+import static com.aliendroid.samplealienads.SettingAds.HIGH_PAYING_KEYWORD5;
+import static com.aliendroid.samplealienads.SettingAds.INITIALIZE_SDK;
+import static com.aliendroid.samplealienads.SettingAds.MAIN_ADS_REWARDS;
+import static com.aliendroid.samplealienads.SettingAds.NATIVE_ADS_ADMOB;
+import static com.aliendroid.samplealienads.SettingAds.SELECT_ADS;
 
 import android.os.Bundle;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.aliendroid.alienads.AlienOpenAds;
 import com.aliendroid.alienads.AliendroidBanner;
 import com.aliendroid.alienads.AliendroidInitialize;
 import com.aliendroid.alienads.AliendroidIntertitial;
 import com.aliendroid.alienads.AliendroidNative;
+import com.aliendroid.alienads.AliendroidReward;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -39,27 +50,44 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        
+
         RelativeLayout layAds = findViewById(R.id.layAds);
         FrameLayout nativeads = findViewById(R.id.laynative);
+        RelativeLayout layAdsmall = findViewById(R.id.laysAdsmall);
 
-
-        AliendroidInitialize.SelectAds(MainActivity.this, SettingAds.SELECT_ADS, "");
-        AliendroidBanner.MediumBanner(MainActivity.this, layAds,SettingAds.SELECT_ADS, SettingAds.MAIN_ADS_BANNER);
-        AliendroidIntertitial.LoadIntertitial(MainActivity.this, SettingAds.SELECT_ADS, SettingAds.MAIN_ADS_INTERTITIAL );
-        AliendroidNative.SmallNative(MainActivity.this, SettingAds.SELECT_ADS, nativeads, MAIN_ADS_NATIVE);
-        /*
-        AliendroidInitialize.SelectAdsAdmob(MainActivity.this, SettingAds.BACKUP_ADS, SettingAds.INITIALIZE_SDK);
-        AliendroidBanner.SmallBannerAdmob(MainActivity.this,layAds, SettingAds.BACKUP_ADS, SettingAds.MAIN_ADS_BANNER,
-                SettingAds.BACKUP_ADS_BANNER);
-
-         */
+        AliendroidInitialize.SelectAds(MainActivity.this, SettingAds.SELECT_ADS, INITIALIZE_SDK);
+        AliendroidBanner.MediumBanner(MainActivity.this, layAds,SettingAds.SELECT_ADS, SettingAds.MAIN_ADS_BANNER,HIGH_PAYING_KEYWORD1
+        ,HIGH_PAYING_KEYWORD2,HIGH_PAYING_KEYWORD3,HIGH_PAYING_KEYWORD4,HIGH_PAYING_KEYWORD5);
+        AliendroidBanner.SmallBanner(MainActivity.this, layAdsmall,SettingAds.SELECT_ADS, SettingAds.MAIN_ADS_BANNER,HIGH_PAYING_KEYWORD1
+                ,HIGH_PAYING_KEYWORD2,HIGH_PAYING_KEYWORD3,HIGH_PAYING_KEYWORD4,HIGH_PAYING_KEYWORD5);
+        AliendroidIntertitial.LoadIntertitial(MainActivity.this, SettingAds.SELECT_ADS, SettingAds.MAIN_ADS_INTERTITIAL,HIGH_PAYING_KEYWORD1
+                ,HIGH_PAYING_KEYWORD2,HIGH_PAYING_KEYWORD3,HIGH_PAYING_KEYWORD4,HIGH_PAYING_KEYWORD5 );
+        AliendroidNative.SmallNative(MainActivity.this, SettingAds.SELECT_ADS, nativeads, NATIVE_ADS_ADMOB,HIGH_PAYING_KEYWORD1
+                ,HIGH_PAYING_KEYWORD2,HIGH_PAYING_KEYWORD3,HIGH_PAYING_KEYWORD4,HIGH_PAYING_KEYWORD5);
+        AlienOpenAds.ShowOpen(MainActivity.this);
+        AliendroidReward.LoadReward(MainActivity.this, SELECT_ADS, MAIN_ADS_REWARDS );
     }
 
     public void munculiklan(View view){
         AliendroidIntertitial.ShowIntertitial(MainActivity.this,SettingAds.SELECT_ADS,
-                SettingAds.MAIN_ADS_INTERTITIAL, 0);
+                SettingAds.MAIN_ADS_INTERTITIAL, 0,HIGH_PAYING_KEYWORD1
+                ,HIGH_PAYING_KEYWORD2,HIGH_PAYING_KEYWORD3,HIGH_PAYING_KEYWORD4,HIGH_PAYING_KEYWORD5);
 
+    }
+
+    public void munculreward(View view){
+        AliendroidReward.ShowReward(MainActivity.this,SELECT_ADS,MAIN_ADS_REWARDS);
+
+    }
+
+    public void onResume(){
+        super.onResume();
+        if (AliendroidReward.unlockreward){
+            Toast.makeText(getApplicationContext(), "OK Berhasil", Toast.LENGTH_LONG).show();
+
+        } else {
+            Toast.makeText(getApplicationContext(), "gagal", Toast.LENGTH_LONG).show();
+        }
     }
 
 

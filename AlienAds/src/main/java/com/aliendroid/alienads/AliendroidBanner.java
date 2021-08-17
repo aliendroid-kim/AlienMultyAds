@@ -31,13 +31,15 @@ import com.startapp.sdk.ads.banner.Banner;
 import com.startapp.sdk.ads.banner.Mrec;
 
 public class AliendroidBanner {
-    public static void SmallBanner(Activity activity, RelativeLayout layAds, String selectAds, String idBanner) {
+    public static void SmallBanner(Activity activity, RelativeLayout layAds, String selectAds, String idBanner, String Hpk1,
+                                   String Hpk2, String Hpk3, String Hpk4, String Hpk5 ) {
         switch (selectAds) {
             case "ADMOB":
                 Bundle extras = new FacebookExtras()
                         .setNativeBanner(true)
                         .build();
-                AdRequest request = new AdRequest.Builder()
+                AdRequest request = new AdRequest.Builder().addKeyword(Hpk1).addKeyword(Hpk2)
+                        .addKeyword(Hpk3).addKeyword(Hpk4).addKeyword(Hpk5)
                         .addNetworkExtrasBundle(FacebookAdapter.class, extras)
                         .build();
                 AdView adView;
@@ -83,7 +85,8 @@ public class AliendroidBanner {
                 layAds.addView(startAppBanner, bannerParameters);
                 break;
             case "APPLOVIN-D":
-                AdRequest.Builder builder = new AdRequest.Builder();
+                AdRequest.Builder builder = new AdRequest.Builder().addKeyword(Hpk1).addKeyword(Hpk2)
+                        .addKeyword(Hpk3).addKeyword(Hpk4).addKeyword(Hpk5);
                 Bundle bannerExtras = new Bundle();
                 bannerExtras.putString( "zone_id", idBanner );
                 builder.addCustomEventExtrasBundle( AppLovinCustomEventBanner.class, bannerExtras );
@@ -99,11 +102,13 @@ public class AliendroidBanner {
 
     }
 
-    public static void SmallBannerAdmob(Activity activity, RelativeLayout layAds, String selectAdsBackup, String idBanner, String idBannerBackup) {
+    public static void SmallBannerAdmob(Activity activity, RelativeLayout layAds, String selectAdsBackup, String idBanner, String idBannerBackup,String Hpk1,
+                                        String Hpk2, String Hpk3, String Hpk4, String Hpk5 ) {
         Bundle extras = new FacebookExtras()
                 .setNativeBanner(true)
                 .build();
-        AdRequest request = new AdRequest.Builder()
+        AdRequest request = new AdRequest.Builder().addKeyword(Hpk1).addKeyword(Hpk2)
+                .addKeyword(Hpk3).addKeyword(Hpk4).addKeyword(Hpk5)
                 .addNetworkExtrasBundle(FacebookAdapter.class, extras)
                 .build();
         AdView adView;
@@ -155,7 +160,8 @@ public class AliendroidBanner {
                         layAds.addView(startAppBanner, bannerParameters);
                         break;
                     case "APPLOVIN-D":
-                        AdRequest.Builder builder = new AdRequest.Builder();
+                        AdRequest.Builder builder = new AdRequest.Builder().addKeyword(Hpk1).addKeyword(Hpk2)
+                                .addKeyword(Hpk3).addKeyword(Hpk4).addKeyword(Hpk5);
                         Bundle bannerExtras = new Bundle();
                         bannerExtras.putString( "zone_id", idBannerBackup );
                         builder.addCustomEventExtrasBundle( AppLovinCustomEventBanner.class, bannerExtras );
@@ -191,13 +197,15 @@ public class AliendroidBanner {
 
     }
 
-    public static void MediumBanner(Activity activity, RelativeLayout layAds, String selectAds, String idBanner) {
+    public static void MediumBanner(Activity activity, RelativeLayout layAds, String selectAds, String idBanner,String Hpk1,
+                                    String Hpk2, String Hpk3, String Hpk4, String Hpk5) {
         switch (selectAds) {
             case "ADMOB": {
                 Bundle extras = new FacebookExtras()
                         .setNativeBanner(true)
                         .build();
-                AdRequest request = new AdRequest.Builder()
+                AdRequest request = new AdRequest.Builder().addKeyword(Hpk1).addKeyword(Hpk2)
+                        .addKeyword(Hpk3).addKeyword(Hpk4).addKeyword(Hpk5)
                         .addNetworkExtrasBundle(FacebookAdapter.class, extras)
                         .build();
                 AdView adView;
@@ -242,7 +250,8 @@ public class AliendroidBanner {
                 layAds.addView(startAppBanner, bannerParameters);
                 break;
             case "APPLOVIN-D":
-                AdRequest.Builder builder = new AdRequest.Builder();
+                AdRequest.Builder builder = new AdRequest.Builder().addKeyword(Hpk1).addKeyword(Hpk2)
+                        .addKeyword(Hpk3).addKeyword(Hpk4).addKeyword(Hpk5);
                 Bundle bannerExtras = new Bundle();
                 bannerExtras.putString( "zone_id", idBanner );
                 builder.addCustomEventExtrasBundle( AppLovinCustomEventBanner.class, bannerExtras );
@@ -256,11 +265,13 @@ public class AliendroidBanner {
         }
     }
 
-    public static void MediumBannerAdmob(Activity activity, RelativeLayout layAds, String selectAdsBackup, String idBanner, String idBannerBackup) {
+    public static void MediumBannerAdmob(Activity activity, RelativeLayout layAds, String selectAdsBackup, String idBanner, String idBannerBackup,String Hpk1,
+                                         String Hpk2, String Hpk3, String Hpk4, String Hpk5) {
         Bundle extras = new FacebookExtras()
                 .setNativeBanner(true)
                 .build();
-        AdRequest request = new AdRequest.Builder()
+        AdRequest request = new AdRequest.Builder().addKeyword(Hpk1).addKeyword(Hpk2)
+                .addKeyword(Hpk3).addKeyword(Hpk4).addKeyword(Hpk5)
                 .addNetworkExtrasBundle(FacebookAdapter.class, extras)
                 .build();
         AdView adView;
@@ -314,7 +325,8 @@ public class AliendroidBanner {
                         layAds.addView(startAppBanner, bannerParameters);
                         break;
                     case "APPLOVIN-D":
-                        AdRequest.Builder builder = new AdRequest.Builder();
+                        AdRequest.Builder builder = new AdRequest.Builder().addKeyword(Hpk1).addKeyword(Hpk2)
+                                .addKeyword(Hpk3).addKeyword(Hpk4).addKeyword(Hpk5);
                         Bundle bannerExtras = new Bundle();
                         bannerExtras.putString( "zone_id", idBannerBackup );
                         builder.addCustomEventExtrasBundle( AppLovinCustomEventBanner.class, bannerExtras );

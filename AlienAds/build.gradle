@@ -46,7 +46,7 @@ dependencies {
         transitive = true
     }
 
-    implementation "com.applovin:applovin-sdk:10.3.1"
+    implementation "com.applovin:applovin-sdk:10.3.2"
     implementation 'com.ironsource.sdk:mediationsdk:7.1.7'
     implementation 'com.startapp:inapp-sdk:4.8.10'
     implementation 'com.facebook.android:audience-network-sdk:6.5.1'
@@ -57,6 +57,7 @@ dependencies {
     implementation 'com.ironsource.adapters:facebookadapter:4.3.28'
     implementation 'com.mopub.mediation:facebookaudiencenetwork:6.5.1.0'
     implementation 'com.google.ads.mediation:applovin:10.3.2.0'
+    implementation 'com.applovin.mediation:google-adapter:20.2.0.4'
 
 
     //GDPR for Admob
