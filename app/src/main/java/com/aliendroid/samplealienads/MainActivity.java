@@ -6,6 +6,7 @@ import static com.aliendroid.samplealienads.SettingAds.HIGH_PAYING_KEYWORD3;
 import static com.aliendroid.samplealienads.SettingAds.HIGH_PAYING_KEYWORD4;
 import static com.aliendroid.samplealienads.SettingAds.HIGH_PAYING_KEYWORD5;
 import static com.aliendroid.samplealienads.SettingAds.INITIALIZE_SDK;
+import static com.aliendroid.samplealienads.SettingAds.MAIN_ADS_BANNER;
 import static com.aliendroid.samplealienads.SettingAds.MAIN_ADS_REWARDS;
 import static com.aliendroid.samplealienads.SettingAds.NATIVE_ADS_ADMOB;
 import static com.aliendroid.samplealienads.SettingAds.SELECT_ADS;
@@ -18,7 +19,6 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.aliendroid.alienads.AlienOpenAds;
 import com.aliendroid.alienads.AliendroidBanner;
 import com.aliendroid.alienads.AliendroidInitialize;
 import com.aliendroid.alienads.AliendroidIntertitial;
@@ -62,9 +62,8 @@ public class MainActivity extends AppCompatActivity {
                 ,HIGH_PAYING_KEYWORD2,HIGH_PAYING_KEYWORD3,HIGH_PAYING_KEYWORD4,HIGH_PAYING_KEYWORD5);
         AliendroidIntertitial.LoadIntertitial(MainActivity.this, SettingAds.SELECT_ADS, SettingAds.MAIN_ADS_INTERTITIAL,HIGH_PAYING_KEYWORD1
                 ,HIGH_PAYING_KEYWORD2,HIGH_PAYING_KEYWORD3,HIGH_PAYING_KEYWORD4,HIGH_PAYING_KEYWORD5 );
-        AliendroidNative.SmallNative(MainActivity.this, SettingAds.SELECT_ADS, nativeads, NATIVE_ADS_ADMOB,HIGH_PAYING_KEYWORD1
+        AliendroidNative.SmallNativeAdmob(MainActivity.this,SELECT_ADS, SettingAds.BACKUP_ADS, nativeads, NATIVE_ADS_ADMOB,MAIN_ADS_BANNER, HIGH_PAYING_KEYWORD1
                 ,HIGH_PAYING_KEYWORD2,HIGH_PAYING_KEYWORD3,HIGH_PAYING_KEYWORD4,HIGH_PAYING_KEYWORD5);
-        AlienOpenAds.ShowOpen(MainActivity.this);
         AliendroidReward.LoadReward(MainActivity.this, SELECT_ADS, MAIN_ADS_REWARDS );
     }
 
