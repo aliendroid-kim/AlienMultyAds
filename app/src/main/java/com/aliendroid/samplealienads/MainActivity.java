@@ -19,6 +19,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.aliendroid.alienads.AlienGDPR;
+import com.aliendroid.alienads.AlienOpenAds;
 import com.aliendroid.alienads.AliendroidBanner;
 import com.aliendroid.alienads.AliendroidInitialize;
 import com.aliendroid.alienads.AliendroidIntertitial;
@@ -54,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
         RelativeLayout layAds = findViewById(R.id.layAds);
         FrameLayout nativeads = findViewById(R.id.laynative);
         RelativeLayout layAdsmall = findViewById(R.id.laysAdsmall);
-
+        AlienGDPR.loadGdpr(MainActivity.this,SELECT_ADS,true);
         AliendroidInitialize.SelectAds(MainActivity.this, SettingAds.SELECT_ADS, INITIALIZE_SDK);
         AliendroidBanner.MediumBanner(MainActivity.this, layAds,SettingAds.SELECT_ADS, SettingAds.MAIN_ADS_BANNER,HIGH_PAYING_KEYWORD1
         ,HIGH_PAYING_KEYWORD2,HIGH_PAYING_KEYWORD3,HIGH_PAYING_KEYWORD4,HIGH_PAYING_KEYWORD5);
@@ -65,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
         AliendroidNative.SmallNativeAdmob(MainActivity.this,SELECT_ADS, SettingAds.BACKUP_ADS, nativeads, NATIVE_ADS_ADMOB,MAIN_ADS_BANNER, HIGH_PAYING_KEYWORD1
                 ,HIGH_PAYING_KEYWORD2,HIGH_PAYING_KEYWORD3,HIGH_PAYING_KEYWORD4,HIGH_PAYING_KEYWORD5);
         AliendroidReward.LoadReward(MainActivity.this, SELECT_ADS, MAIN_ADS_REWARDS );
+        AlienOpenAds.ShowOpen(MainActivity.this);
     }
 
     public void munculiklan(View view){

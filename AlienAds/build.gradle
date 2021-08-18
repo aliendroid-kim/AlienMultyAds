@@ -60,7 +60,4 @@ dependencies {
     implementation 'com.applovin.mediation:google-adapter:20.2.0.4'
 
 
-    //GDPR for Admob
-    implementation 'com.google.android.ump:user-messaging-platform:2.0.0'
-
 }
