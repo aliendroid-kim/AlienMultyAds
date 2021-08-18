@@ -1,7 +1,7 @@
 package com.aliendroid.samplealienads;
 
 public class SettingAds {
-    public static String SELECT_ADS ="ADMOB";
+    public static String SELECT_ADS ="STARTAPP";
     public static String BACKUP_ADS = "APPLOVIN-D";
 
     public static String MAIN_ADS_BANNER ="DefaultBanner";

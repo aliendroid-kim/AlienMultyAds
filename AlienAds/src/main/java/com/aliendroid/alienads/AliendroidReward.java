@@ -1,6 +1,10 @@
 package com.aliendroid.alienads;
 
+import static android.content.ContentValues.TAG;
+
 import android.app.Activity;
+import android.util.Log;
+import android.view.View;
 
 import androidx.annotation.NonNull;
 
@@ -18,6 +22,8 @@ import com.applovin.sdk.AppLovinSdk;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.LoadAdError;
 import com.google.android.gms.ads.OnUserEarnedRewardListener;
+import com.google.android.gms.ads.interstitial.InterstitialAd;
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
 import com.google.android.gms.ads.rewarded.RewardItem;
 import com.google.android.gms.ads.rewarded.RewardedAd;
 import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback;
@@ -29,6 +35,9 @@ import com.mopub.common.MoPubReward;
 import com.mopub.mobileads.MoPubErrorCode;
 import com.mopub.mobileads.MoPubRewardedAdListener;
 import com.mopub.mobileads.MoPubRewardedAds;
+import com.startapp.sdk.adsbase.StartAppAd;
+import com.startapp.sdk.adsbase.adlisteners.AdEventListener;
+import com.startapp.sdk.adsbase.adlisteners.VideoListener;
 
 import java.util.Map;
 import java.util.Set;
@@ -161,9 +170,7 @@ public class AliendroidReward {
                     }
                 });
                 break;
-            case "STARTAPP" :
 
-                break;
         }
     }
 
@@ -284,6 +291,7 @@ public class AliendroidReward {
                     }
                 });
                 break;
+
         }
     }
 
@@ -399,6 +407,28 @@ public class AliendroidReward {
             case "IRON":
                 IronSource.showRewardedVideo(idReward);
                 break;
+            case "STARTAPP" :
+                final StartAppAd rewardedVideo = new StartAppAd(activity);
+                rewardedVideo.setVideoListener(new VideoListener() {
+                    @Override
+                    public void onVideoCompleted() {
+                        unlockreward = true;
+                    }
+                });
+
+                rewardedVideo.loadAd(StartAppAd.AdMode.REWARDED_VIDEO, new AdEventListener() {
+                    @Override
+                    public void onReceiveAd(com.startapp.sdk.adsbase.Ad ad) {
+
+                    }
+
+                    @Override
+                    public void onFailedToReceiveAd(com.startapp.sdk.adsbase.Ad ad) {
+
+                    }
+                });
+                rewardedVideo.showAd();
+                break;
         }
 
     }
@@ -510,6 +540,27 @@ public class AliendroidReward {
                             break;
                         case "IRON":
                             IronSource.showRewardedVideo(idReward);
+                            break;
+                        case "STARTAPP" :
+                            final StartAppAd rewardedVideo = new StartAppAd(activity);
+                            rewardedVideo.setVideoListener(new VideoListener() {
+                                @Override
+                                public void onVideoCompleted() {
+                                    unlockreward = true;
+                                }
+                            });
+
+                            rewardedVideo.loadAd(StartAppAd.AdMode.REWARDED_VIDEO, new AdEventListener() {
+                                @Override
+                                public void onReceiveAd(com.startapp.sdk.adsbase.Ad ad) {
+
+                                }
+
+                                @Override
+                                public void onFailedToReceiveAd(com.startapp.sdk.adsbase.Ad ad) {
+
+                                }
+                            });
                             break;
                     }
                 }
