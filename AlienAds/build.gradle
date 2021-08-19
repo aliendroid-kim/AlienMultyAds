@@ -59,6 +59,6 @@ dependencies {
     implementation 'com.google.ads.mediation:applovin:10.3.2.0'
     implementation 'com.applovin.mediation:google-adapter:20.2.0.4'
 
-    implementation 'com.google.android.ump:user-messaging-platform:2.0.0'
+    implementation 'com.google.android.ump:user-messaging-platform:1.0.0'
 
 }
