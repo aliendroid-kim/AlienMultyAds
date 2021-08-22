@@ -2,6 +2,10 @@ package com.aliendroid.samplealienads;
 
 
 
+import static com.aliendroid.samplealienads.SettingAds.BACKUP_ADS;
+import static com.aliendroid.samplealienads.SettingAds.INITIALIZE_SDK;
+import static com.aliendroid.samplealienads.SettingAds.SELECT_ADS;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -20,8 +24,26 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.splash_activity);
 
-        AliendroidInitialize.SelectAds(SplashActivity.this,"ADMOB",
-                "");
+        switch (SELECT_ADS) {
+            case "ADMOB":
+                AliendroidInitialize.SelectAdsAdmob(SplashActivity.this, BACKUP_ADS, INITIALIZE_SDK);
+                break;
+            case "APPLOVIN-D":
+                AliendroidInitialize.SelectAdsApplovinDis(SplashActivity.this, BACKUP_ADS, INITIALIZE_SDK);
+                break;
+            case "APPLOVIN-M":
+                AliendroidInitialize.SelectAdsApplovinMax(SplashActivity.this, BACKUP_ADS, INITIALIZE_SDK);
+                break;
+            case "MOPUB":
+                AliendroidInitialize.SelectAdsMopub(SplashActivity.this, BACKUP_ADS, INITIALIZE_SDK);
+                break;
+            case "IRON":
+                AliendroidInitialize.SelectAdsIron(SplashActivity.this, BACKUP_ADS, INITIALIZE_SDK);
+                break;
+            case "STARTAPP":
+                AliendroidInitialize.SelectAdsStartApp(SplashActivity.this, BACKUP_ADS, INITIALIZE_SDK);
+                break;
+        }
         AlienOpenAds.LoadOpenAds(SettingAds.OPEN_ADS_ADMOB);
         new CountDownTimer(10000, 1000) {
                 @Override

@@ -1,5 +1,7 @@
 package com.aliendroid.samplealienads;
 
+import static com.aliendroid.samplealienads.SettingAds.BACKUP_ADS;
+import static com.aliendroid.samplealienads.SettingAds.BACKUP_ADS_BANNER;
 import static com.aliendroid.samplealienads.SettingAds.HIGH_PAYING_KEYWORD1;
 import static com.aliendroid.samplealienads.SettingAds.HIGH_PAYING_KEYWORD2;
 import static com.aliendroid.samplealienads.SettingAds.HIGH_PAYING_KEYWORD3;
@@ -29,25 +31,6 @@ import com.aliendroid.alienads.AliendroidReward;
 
 public class MainActivity extends AppCompatActivity {
 
-    /*
-    APPLOVIN_BANNER = "db4d5e8718b97d78";
-    APPLOVIN_INTER = "518cd97722c60b52";
-
-    BANNER_MOPUB = "b195f8dd8ded45fe847ad89ed1d016da";
-    INTER_MOPUB = "24534e1901884e398f1253216226017e";
-
-    ADMOB_INTER = "ca-app-pub-3940256099942544/1033173712";
-    ADMOB_BANNER = "ca-app-pub-3940256099942544/6300978111";
-    ADMOB_OPENAD ="ca-app-pub-3940256099942544/3419835294"
-
-    IRON_BANNER="DefaultBanner";
-    IRON_INTERTITIAL="Game_Screen";
-    IRON_APPID="10301c6e9";
-
-    STARTAPPID="123456789";
-     */
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,8 +40,8 @@ public class MainActivity extends AppCompatActivity {
         FrameLayout nativeads = findViewById(R.id.laynative);
         RelativeLayout layAdsmall = findViewById(R.id.laysAdsmall);
         AlienGDPR.loadGdpr(MainActivity.this,SELECT_ADS,true);
-        AliendroidInitialize.SelectAds(MainActivity.this, SettingAds.SELECT_ADS, INITIALIZE_SDK);
-        AliendroidBanner.MediumBanner(MainActivity.this, layAds,SettingAds.SELECT_ADS, SettingAds.MAIN_ADS_BANNER,HIGH_PAYING_KEYWORD1
+
+        /*AliendroidBanner.MediumBanner(MainActivity.this, layAds,SettingAds.SELECT_ADS, SettingAds.MAIN_ADS_BANNER,HIGH_PAYING_KEYWORD1
         ,HIGH_PAYING_KEYWORD2,HIGH_PAYING_KEYWORD3,HIGH_PAYING_KEYWORD4,HIGH_PAYING_KEYWORD5);
         AliendroidBanner.SmallBanner(MainActivity.this, layAdsmall,SettingAds.SELECT_ADS, SettingAds.MAIN_ADS_BANNER,HIGH_PAYING_KEYWORD1
                 ,HIGH_PAYING_KEYWORD2,HIGH_PAYING_KEYWORD3,HIGH_PAYING_KEYWORD4,HIGH_PAYING_KEYWORD5);
@@ -68,6 +51,25 @@ public class MainActivity extends AppCompatActivity {
                 ,HIGH_PAYING_KEYWORD2,HIGH_PAYING_KEYWORD3,HIGH_PAYING_KEYWORD4,HIGH_PAYING_KEYWORD5);
         AliendroidReward.LoadReward(MainActivity.this, SELECT_ADS, MAIN_ADS_REWARDS );
         AlienOpenAds.ShowOpen(MainActivity.this);
+         */
+
+        switch (SELECT_ADS) {
+            case "ABMOB":
+                AliendroidBanner.SmallBannerAdmob(MainActivity.this, layAds, BACKUP_ADS, MAIN_ADS_BANNER, BACKUP_ADS_BANNER, HIGH_PAYING_KEYWORD1,
+                        HIGH_PAYING_KEYWORD2, HIGH_PAYING_KEYWORD3, HIGH_PAYING_KEYWORD4, HIGH_PAYING_KEYWORD5);
+                break;
+            case "APPLOVIN-M":
+                AliendroidBanner.SmallBannerApplovinMax(MainActivity.this, layAds, BACKUP_ADS, MAIN_ADS_BANNER, BACKUP_ADS_BANNER);
+                break;
+            case "APPLOVIN-D":
+                AliendroidBanner.SmallBannerApplovinDis(MainActivity.this, layAds, BACKUP_ADS, MAIN_ADS_BANNER, BACKUP_ADS_BANNER);
+                break;
+            case "MOPUB" :
+                AliendroidBanner.SmallBannerMopub(MainActivity.this, layAds, BACKUP_ADS, MAIN_ADS_BANNER, BACKUP_ADS_BANNER);
+                break;
+        }
+
+
     }
 
     public void munculiklan(View view){

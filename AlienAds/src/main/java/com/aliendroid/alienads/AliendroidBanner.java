@@ -8,11 +8,18 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 
+import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.applovin.adview.AppLovinAdView;
+import com.applovin.mediation.MaxAd;
 import com.applovin.mediation.MaxAdFormat;
+import com.applovin.mediation.MaxAdListener;
+import com.applovin.mediation.MaxAdViewAdListener;
+import com.applovin.mediation.MaxError;
 import com.applovin.mediation.ads.MaxAdView;
+import com.applovin.sdk.AppLovinAd;
+import com.applovin.sdk.AppLovinAdLoadListener;
 import com.applovin.sdk.AppLovinAdSize;
 import com.applovin.sdk.AppLovinSdkUtils;
 import com.google.ads.mediation.facebook.FacebookAdapter;
@@ -26,6 +33,7 @@ import com.ironsource.mediationsdk.A;
 import com.ironsource.mediationsdk.ISBannerSize;
 import com.ironsource.mediationsdk.IronSource;
 import com.ironsource.mediationsdk.IronSourceBannerLayout;
+import com.mopub.mobileads.MoPubErrorCode;
 import com.mopub.mobileads.MoPubView;
 import com.startapp.sdk.ads.banner.Banner;
 import com.startapp.sdk.ads.banner.Mrec;
@@ -65,6 +73,7 @@ public class AliendroidBanner {
                 MoPubView moPubView;
                 moPubView = new MoPubView(activity);
                 moPubView.setAdUnitId(idBanner);
+                moPubView.setAutorefreshEnabled(false);
                 layAds.addView(moPubView);
                 moPubView.loadAd(MoPubView.MoPubAdSize.HEIGHT_50);
                 break;
@@ -140,6 +149,7 @@ public class AliendroidBanner {
                         MoPubView moPubView;
                         moPubView = new MoPubView(activity);
                         moPubView.setAdUnitId(idBannerBackup);
+                        moPubView.setAutorefreshEnabled(false);
                         layAds.addView(moPubView);
                         moPubView.loadAd(MoPubView.MoPubAdSize.HEIGHT_50);
                         break;
@@ -196,6 +206,279 @@ public class AliendroidBanner {
 
 
     }
+
+    public static void SmallBannerApplovinDis(Activity activity, RelativeLayout layAds, String selectAdsBackup, String idBanner, String idBannerBackup) {
+
+        AdRequest.Builder builder = new AdRequest.Builder();
+        Bundle bannerExtras = new Bundle();
+        bannerExtras.putString( "zone_id", idBannerBackup );
+        builder.addCustomEventExtrasBundle( AppLovinCustomEventBanner.class, bannerExtras );
+        boolean isTablet2 = AppLovinSdkUtils.isTablet( activity );
+        AppLovinAdSize adSize = isTablet2 ? AppLovinAdSize.LEADER : AppLovinAdSize.BANNER;
+        AppLovinAdView adViewApplovin = new AppLovinAdView( adSize, activity );
+        AppLovinAdLoadListener loadListener = new AppLovinAdLoadListener() {
+            @Override
+            public void adReceived(AppLovinAd ad) {
+
+            }
+
+            @Override
+            public void failedToReceiveAd(int errorCode) {
+                switch (selectAdsBackup) {
+                    case "APPLOVIN-M":
+                        MaxAdView adView;
+                        adView = new MaxAdView(idBannerBackup, activity);
+                        final boolean isTablet = AppLovinSdkUtils.isTablet(activity);
+                        final int heightPx = AppLovinSdkUtils.dpToPx(activity, isTablet ? 90 : 50);
+                        adView.setLayoutParams(new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, heightPx));
+                        layAds.addView(adView);
+                        adView.loadAd();
+                        break;
+                    case "MOPUB":
+                        MoPubView moPubView;
+                        moPubView = new MoPubView(activity);
+                        moPubView.setAutorefreshEnabled(false);
+                        moPubView.setAdUnitId(idBannerBackup);
+                        layAds.addView(moPubView);
+                        moPubView.loadAd(MoPubView.MoPubAdSize.HEIGHT_50);
+                        break;
+                    case "IRON":
+                        IronSourceBannerLayout banner = IronSource.createBanner(activity, ISBannerSize.BANNER);
+                        FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT,
+                                FrameLayout.LayoutParams.WRAP_CONTENT);
+                        layAds.addView(banner, 0, layoutParams);
+                        IronSource.loadBanner(banner, idBannerBackup);
+                        break;
+                    case "STARTAPP":
+                        Banner startAppBanner = new Banner(activity);
+                        RelativeLayout.LayoutParams bannerParameters =
+                                new RelativeLayout.LayoutParams(
+                                        RelativeLayout.LayoutParams.WRAP_CONTENT,
+                                        RelativeLayout.LayoutParams.WRAP_CONTENT);
+                        bannerParameters.addRule(RelativeLayout.CENTER_HORIZONTAL);
+                        layAds.addView(startAppBanner, bannerParameters);
+                        break;
+                    case "ADMOB":
+                        Bundle extras = new FacebookExtras()
+                                .setNativeBanner(true)
+                                .build();
+                        AdRequest request = new AdRequest.Builder()
+                                .addNetworkExtrasBundle(FacebookAdapter.class, extras)
+                                .build();
+                        AdView adViewAdmob;
+                        adViewAdmob = new AdView(activity);
+                        adViewAdmob.setAdUnitId(idBannerBackup);
+                        layAds.addView(adViewAdmob);
+                        AdSize adSizeAdmob = getAdSize(activity);
+                        adViewAdmob.setAdSize(adSizeAdmob);
+                        adViewAdmob.loadAd(request);
+                        break;
+                }
+            }
+        };
+        adViewApplovin.setAdLoadListener(loadListener);
+        layAds.addView(adViewApplovin);
+        adViewApplovin.loadNextAd();
+
+    }
+
+    public static void SmallBannerApplovinMax(Activity activity, RelativeLayout layAds, String selectAdsBackup, String idBanner, String idBannerBackup) {
+
+        MaxAdView adViewMax;
+        adViewMax = new MaxAdView(idBannerBackup, activity);
+        adViewMax.stopAutoRefresh();
+        MaxAdViewAdListener listener = new MaxAdViewAdListener() {
+            @Override
+            public void onAdExpanded(MaxAd ad) {
+
+            }
+
+            @Override
+            public void onAdCollapsed(MaxAd ad) {
+
+            }
+
+            @Override
+            public void onAdLoaded(MaxAd ad) {
+
+            }
+
+            @Override
+            public void onAdDisplayed(MaxAd ad) {
+
+            }
+
+            @Override
+            public void onAdHidden(MaxAd ad) {
+
+            }
+
+            @Override
+            public void onAdClicked(MaxAd ad) {
+
+            }
+
+            @Override
+            public void onAdLoadFailed(String adUnitId, MaxError error) {
+                switch (selectAdsBackup) {
+                    case "APPLOVIN-D":
+                        AdRequest.Builder builder = new AdRequest.Builder();
+                        Bundle bannerExtras = new Bundle();
+                        bannerExtras.putString( "zone_id", idBannerBackup );
+                        builder.addCustomEventExtrasBundle( AppLovinCustomEventBanner.class, bannerExtras );
+                        boolean isTablet2 = AppLovinSdkUtils.isTablet( activity );
+                        AppLovinAdSize adSize = isTablet2 ? AppLovinAdSize.LEADER : AppLovinAdSize.BANNER;
+                        AppLovinAdView adViewApplovin = new AppLovinAdView( adSize, activity );
+                        layAds.addView(adViewApplovin);
+                        adViewApplovin.loadNextAd();
+                        break;
+                    case "MOPUB":
+                        MoPubView moPubView;
+                        moPubView = new MoPubView(activity);
+                        moPubView.setAdUnitId(idBannerBackup);
+                        moPubView.setAutorefreshEnabled(false);
+                        layAds.addView(moPubView);
+                        moPubView.loadAd(MoPubView.MoPubAdSize.HEIGHT_50);
+                        break;
+                    case "IRON":
+                        IronSourceBannerLayout banner = IronSource.createBanner(activity, ISBannerSize.BANNER);
+                        FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT,
+                                FrameLayout.LayoutParams.WRAP_CONTENT);
+                        layAds.addView(banner, 0, layoutParams);
+                        IronSource.loadBanner(banner, idBannerBackup);
+                        break;
+                    case "STARTAPP":
+                        Banner startAppBanner = new Banner(activity);
+                        RelativeLayout.LayoutParams bannerParameters =
+                                new RelativeLayout.LayoutParams(
+                                        RelativeLayout.LayoutParams.WRAP_CONTENT,
+                                        RelativeLayout.LayoutParams.WRAP_CONTENT);
+                        bannerParameters.addRule(RelativeLayout.CENTER_HORIZONTAL);
+                        layAds.addView(startAppBanner, bannerParameters);
+                        break;
+                    case "ADMOB":
+                        Bundle extras = new FacebookExtras()
+                                .setNativeBanner(true)
+                                .build();
+                        AdRequest request = new AdRequest.Builder()
+                                .addNetworkExtrasBundle(FacebookAdapter.class, extras)
+                                .build();
+                        AdView adViewAdmob;
+                        adViewAdmob = new AdView(activity);
+                        adViewAdmob.setAdUnitId(idBannerBackup);
+                        layAds.addView(adViewAdmob);
+                        AdSize adSizeAdmob = getAdSize(activity);
+                        adViewAdmob.setAdSize(adSizeAdmob);
+                        adViewAdmob.loadAd(request);
+                        break;
+                }
+
+            }
+
+            @Override
+            public void onAdDisplayFailed(MaxAd ad, MaxError error) {
+
+            }
+        };
+        adViewMax.setListener(listener);
+        final boolean isTablet = AppLovinSdkUtils.isTablet(activity);
+        final int heightPx = AppLovinSdkUtils.dpToPx(activity, isTablet ? 90 : 50);
+        adViewMax.setLayoutParams(new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, heightPx));
+        layAds.addView(adViewMax);
+        adViewMax.loadAd();
+    }
+
+    public static void SmallBannerMopub(Activity activity, RelativeLayout layAds, String selectAdsBackup, String idBanner, String idBannerBackup) {
+        MoPubView moPubView;
+        moPubView = new MoPubView(activity);
+        moPubView.setAdUnitId(idBannerBackup);
+        moPubView.setAutorefreshEnabled(false);
+        MoPubView.BannerAdListener listener = new MoPubView.BannerAdListener() {
+            @Override
+            public void onBannerLoaded(@NonNull MoPubView moPubView) {
+
+            }
+
+            @Override
+            public void onBannerFailed(MoPubView moPubView, MoPubErrorCode moPubErrorCode) {
+                switch (selectAdsBackup) {
+                    case "APPLOVIN-D":
+                        AdRequest.Builder builder = new AdRequest.Builder();
+                        Bundle bannerExtras = new Bundle();
+                        bannerExtras.putString( "zone_id", idBannerBackup );
+                        builder.addCustomEventExtrasBundle( AppLovinCustomEventBanner.class, bannerExtras );
+                        boolean isTablet2 = AppLovinSdkUtils.isTablet( activity );
+                        AppLovinAdSize adSize = isTablet2 ? AppLovinAdSize.LEADER : AppLovinAdSize.BANNER;
+                        AppLovinAdView adViewApplovin = new AppLovinAdView( adSize, activity );
+                        layAds.addView(adViewApplovin);
+                        adViewApplovin.loadNextAd();
+                        break;
+                    case "APPLOVIN-M":
+                        MaxAdView adViewMax;
+                        adViewMax = new MaxAdView(idBannerBackup, activity);
+                        adViewMax.stopAutoRefresh();
+
+                        final boolean isTablet = AppLovinSdkUtils.isTablet(activity);
+                        final int heightPx = AppLovinSdkUtils.dpToPx(activity, isTablet ? 90 : 50);
+                        adViewMax.setLayoutParams(new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, heightPx));
+                        layAds.addView(adViewMax);
+                        adViewMax.loadAd();
+                        break;
+                    case "IRON":
+                        IronSourceBannerLayout banner = IronSource.createBanner(activity, ISBannerSize.BANNER);
+                        FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT,
+                                FrameLayout.LayoutParams.WRAP_CONTENT);
+                        layAds.addView(banner, 0, layoutParams);
+                        IronSource.loadBanner(banner, idBannerBackup);
+                        break;
+                    case "STARTAPP":
+                        Banner startAppBanner = new Banner(activity);
+                        RelativeLayout.LayoutParams bannerParameters =
+                                new RelativeLayout.LayoutParams(
+                                        RelativeLayout.LayoutParams.WRAP_CONTENT,
+                                        RelativeLayout.LayoutParams.WRAP_CONTENT);
+                        bannerParameters.addRule(RelativeLayout.CENTER_HORIZONTAL);
+                        layAds.addView(startAppBanner, bannerParameters);
+                        break;
+                    case "ADMOB":
+                        Bundle extras = new FacebookExtras()
+                                .setNativeBanner(true)
+                                .build();
+                        AdRequest request = new AdRequest.Builder()
+                                .addNetworkExtrasBundle(FacebookAdapter.class, extras)
+                                .build();
+                        AdView adViewAdmob;
+                        adViewAdmob = new AdView(activity);
+                        adViewAdmob.setAdUnitId(idBannerBackup);
+                        layAds.addView(adViewAdmob);
+                        AdSize adSizeAdmob = getAdSize(activity);
+                        adViewAdmob.setAdSize(adSizeAdmob);
+                        adViewAdmob.loadAd(request);
+                        break;
+                }
+            }
+
+            @Override
+            public void onBannerClicked(MoPubView moPubView) {
+
+            }
+
+            @Override
+            public void onBannerExpanded(MoPubView moPubView) {
+
+            }
+
+            @Override
+            public void onBannerCollapsed(MoPubView moPubView) {
+
+            }
+        };
+        moPubView.setBannerAdListener(listener);
+        layAds.addView(moPubView);
+        moPubView.loadAd(MoPubView.MoPubAdSize.HEIGHT_50);
+
+  }
+
 
     public static void MediumBanner(Activity activity, RelativeLayout layAds, String selectAds, String idBanner,String Hpk1,
                                     String Hpk2, String Hpk3, String Hpk4, String Hpk5) {
