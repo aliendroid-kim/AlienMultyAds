@@ -28,7 +28,10 @@ import com.ironsource.mediationsdk.adunit.adapter.utility.ErrorType;
 import com.ironsource.mediationsdk.logger.IronSourceError;
 import com.ironsource.mediationsdk.sdk.InterstitialListener;
 import com.mopub.mobileads.MoPubInterstitial;
+import com.startapp.sdk.adsbase.Ad;
 import com.startapp.sdk.adsbase.StartAppAd;
+import com.startapp.sdk.adsbase.adlisteners.AdDisplayListener;
+import com.startapp.sdk.adsbase.adlisteners.AdEventListener;
 
 public class AliendroidIntertitial {
     public static InterstitialAd mInterstitialAd;
@@ -37,7 +40,8 @@ public class AliendroidIntertitial {
     public static int counter = 0;
     public static AppLovinInterstitialAdDialog interstitialAdlovin;
     public static AppLovinAd loadedAd;
-
+    public static boolean irininter = false;
+    private static StartAppAd startAppAd;
     public static void LoadIntertitial(Activity activity, String selectAds, String idIntertitial, String Hpk1,
                                        String Hpk2, String Hpk3, String Hpk4, String Hpk5) {
         switch (selectAds) {
@@ -226,7 +230,7 @@ public class AliendroidIntertitial {
                 AdRequest request = new AdRequest.Builder()
                         .addNetworkExtrasBundle(FacebookAdapter.class, extras)
                         .build();
-                InterstitialAd.load(activity, idIntertitial, request,
+                InterstitialAd.load(activity, idIntertitialBackup, request,
                         new InterstitialAdLoadCallback() {
                             @Override
                             public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
@@ -288,7 +292,7 @@ public class AliendroidIntertitial {
                 AdRequest request = new AdRequest.Builder()
                         .addNetworkExtrasBundle(FacebookAdapter.class, extras)
                         .build();
-                InterstitialAd.load(activity, idIntertitial, request,
+                InterstitialAd.load(activity, idIntertitialBackup, request,
                         new InterstitialAdLoadCallback() {
                             @Override
                             public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
@@ -314,6 +318,56 @@ public class AliendroidIntertitial {
     {
 
         IronSource.isInterstitialPlacementCapped(idIntertitial);
+        IronSource.setInterstitialListener(new InterstitialListener() {
+            /**
+             * Invoked when Interstitial Ad is ready to be shown after load function was called.
+             */
+            @Override
+            public void onInterstitialAdReady() {
+                irininter =false;
+            }
+
+            /**
+             * invoked when there is no Interstitial Ad available after calling load function.
+             */
+            @Override
+            public void onInterstitialAdLoadFailed(IronSourceError error) {
+                irininter=true;
+            }
+            /**
+             * Invoked when the Interstitial Ad Unit is opened
+             */
+            @Override
+            public void onInterstitialAdOpened() {
+            }
+            /*
+             * Invoked when the ad is closed and the user is about to return to the application.
+             */
+            @Override
+            public void onInterstitialAdClosed() {
+            }
+            /**
+             * Invoked when Interstitial ad failed to show.
+             * @param error - An object which represents the reason of showInterstitial failure.
+             */
+            @Override
+            public void onInterstitialAdShowFailed(IronSourceError error) {
+
+            }
+            /*
+             * Invoked when the end user clicked on the interstitial ad, for supported networks only.
+             */
+            @Override
+            public void onInterstitialAdClicked() {
+            }
+            /** Invoked right before the Interstitial screen is about to open.
+             *  NOTE - This event is available only for some of the networks.
+             *  You should NOT treat this event as an interstitial impression, but rather use InterstitialAdOpenedEvent
+             */
+            @Override
+            public void onInterstitialAdShowSucceeded() {
+            }
+        });
         IronSource.loadInterstitial();
         switch (selectAdsBackup) {
             case "APPLOVIN-D":
@@ -339,7 +393,7 @@ public class AliendroidIntertitial {
                 mInterstitial.load();
                 break;
             case "APPLOVIN-M":
-                interstitialAd = new MaxInterstitialAd(idIntertitial, activity);
+                interstitialAd = new MaxInterstitialAd(idIntertitialBackup, activity);
                 interstitialAd.loadAd();
                 break;
             case "ADMOB":
@@ -349,7 +403,7 @@ public class AliendroidIntertitial {
                 AdRequest request = new AdRequest.Builder()
                         .addNetworkExtrasBundle(FacebookAdapter.class, extras)
                         .build();
-                InterstitialAd.load(activity, idIntertitial, request,
+                InterstitialAd.load(activity, idIntertitialBackup, request,
                         new InterstitialAdLoadCallback() {
                             @Override
                             public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
@@ -366,6 +420,139 @@ public class AliendroidIntertitial {
                                 mInterstitialAd = null;
                             }
                         });
+                break;
+
+        }
+    }
+
+    public static void LoadIntertitialMopub(Activity activity, String selectAdsBackup, String idIntertitial, String idIntertitialBackup)
+    {
+
+        mInterstitial = new MoPubInterstitial(activity, idIntertitial);
+        mInterstitial.load();
+        switch (selectAdsBackup) {
+            case "APPLOVIN-D":
+                AdRequest.Builder builder = new AdRequest.Builder();
+                Bundle interstitialExtras = new Bundle();
+                interstitialExtras.putString("zone_id", idIntertitialBackup);
+                builder.addCustomEventExtrasBundle(AppLovinCustomEventInterstitial.class, interstitialExtras);
+                AppLovinSdk.getInstance(activity).getAdService().loadNextAd(AppLovinAdSize.INTERSTITIAL, new AppLovinAdLoadListener() {
+                    @Override
+                    public void adReceived(AppLovinAd ad) {
+                        loadedAd = ad;
+                    }
+
+                    @Override
+                    public void failedToReceiveAd(int errorCode) {
+                        // Look at AppLovinErrorCodes.java for list of error codes.
+                    }
+                });
+                interstitialAdlovin = AppLovinInterstitialAd.create(AppLovinSdk.getInstance(activity), activity);
+                break;
+            case "IRON":
+                IronSource.isInterstitialPlacementCapped(idIntertitialBackup);
+                IronSource.loadInterstitial();
+                break;
+            case "APPLOVIN-M":
+                interstitialAd = new MaxInterstitialAd(idIntertitialBackup, activity);
+                interstitialAd.loadAd();
+                break;
+            case "ADMOB":
+                Bundle extras = new FacebookExtras()
+                        .setNativeBanner(true)
+                        .build();
+                AdRequest request = new AdRequest.Builder()
+                        .addNetworkExtrasBundle(FacebookAdapter.class, extras)
+                        .build();
+                InterstitialAd.load(activity, idIntertitialBackup, request,
+                        new InterstitialAdLoadCallback() {
+                            @Override
+                            public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
+                                // The mInterstitialAd reference will be null until
+                                // an ad is loaded.
+                                mInterstitialAd = interstitialAd;
+                                Log.i(TAG, "onAdLoaded");
+                            }
+
+                            @Override
+                            public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                                // Handle the error
+                                Log.i(TAG, loadAdError.getMessage());
+                                mInterstitialAd = null;
+                            }
+                        });
+                break;
+
+        }
+    }
+
+    public static void LoadIntertitialStartApp(Activity activity, String selectAdsBackup, String idIntertitial, String idIntertitialBackup)
+    {
+        startAppAd = new StartAppAd(activity);
+        startAppAd.loadAd (new AdEventListener() {
+            @Override
+            public void onReceiveAd(Ad ad) {
+            }
+            @Override
+            public void onFailedToReceiveAd(Ad ad) {
+
+            }
+        });
+        switch (selectAdsBackup) {
+            case "APPLOVIN-D":
+                AdRequest.Builder builder = new AdRequest.Builder();
+                Bundle interstitialExtras = new Bundle();
+                interstitialExtras.putString("zone_id", idIntertitialBackup);
+                builder.addCustomEventExtrasBundle(AppLovinCustomEventInterstitial.class, interstitialExtras);
+                AppLovinSdk.getInstance(activity).getAdService().loadNextAd(AppLovinAdSize.INTERSTITIAL, new AppLovinAdLoadListener() {
+                    @Override
+                    public void adReceived(AppLovinAd ad) {
+                        loadedAd = ad;
+                    }
+
+                    @Override
+                    public void failedToReceiveAd(int errorCode) {
+                        // Look at AppLovinErrorCodes.java for list of error codes.
+                    }
+                });
+                interstitialAdlovin = AppLovinInterstitialAd.create(AppLovinSdk.getInstance(activity), activity);
+                break;
+            case "IRON":
+                IronSource.isInterstitialPlacementCapped(idIntertitialBackup);
+                IronSource.loadInterstitial();
+                break;
+            case "APPLOVIN-M":
+                interstitialAd = new MaxInterstitialAd(idIntertitialBackup, activity);
+                interstitialAd.loadAd();
+                break;
+            case "ADMOB":
+                Bundle extras = new FacebookExtras()
+                        .setNativeBanner(true)
+                        .build();
+                AdRequest request = new AdRequest.Builder()
+                        .addNetworkExtrasBundle(FacebookAdapter.class, extras)
+                        .build();
+                InterstitialAd.load(activity, idIntertitialBackup, request,
+                        new InterstitialAdLoadCallback() {
+                            @Override
+                            public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
+                                // The mInterstitialAd reference will be null until
+                                // an ad is loaded.
+                                mInterstitialAd = interstitialAd;
+                                Log.i(TAG, "onAdLoaded");
+                            }
+
+                            @Override
+                            public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                                // Handle the error
+                                Log.i(TAG, loadAdError.getMessage());
+                                mInterstitialAd = null;
+                            }
+                        });
+                break;
+            case "MOPUB" :
+                mInterstitial = new MoPubInterstitial(activity, idIntertitial);
+                mInterstitial.load();
                 break;
 
         }
@@ -564,59 +751,120 @@ public class AliendroidIntertitial {
     public static void ShowIntertitialIron(Activity activity, String selectAdsBackup, String idIntertitial, String idIntertitialBackup,
                                                   int interval) {
         if (counter >= interval) {
-            IronSource.showInterstitial(idIntertitial);
-            IronSource.setInterstitialListener(new InterstitialListener() {
-                /**
-                 * Invoked when Interstitial Ad is ready to be shown after load function was called.
-                 */
-                @Override
-                public void onInterstitialAdReady() {
+            if (irininter){
+                switch (selectAdsBackup) {
+                    case "APPLOVIN-D":
+                        if (interstitialAdlovin != null) {
+                            interstitialAdlovin.showAndRender(loadedAd);
+                        }
+                        break;
+                    case "MOPUB":
+                        if (mInterstitial.isReady()) {
+                            mInterstitial.show();
+                            mInterstitial.load();
+                        } else {
+                            mInterstitial.load();
+                        }
+                        break;
+                    case "APPLOVIN-M":
+                        if (interstitialAd.isReady()) {
+                            interstitialAd.showAd();
+                        }
+                        break;
+                    case "STARTAPP":
+                        StartAppAd.showAd(activity);
+                        break;
+                    case "ADMOB":
+                        if (mInterstitialAd != null) {
+                            mInterstitialAd.show(activity);
+                        }
+                        break;
                 }
-                /**
-                 * invoked when there is no Interstitial Ad available after calling load function.
-                 */
-                @Override
-                public void onInterstitialAdLoadFailed(IronSourceError error) {
+            } else {
+                IronSource.showInterstitial(idIntertitial);
+            }
+
+            LoadIntertitialIron(activity, selectAdsBackup, idIntertitial, idIntertitialBackup);
+            counter = 0;
+        } else {
+            counter++;
+        }
+
+    }
+
+    public static void ShowIntertitialMopub(Activity activity, String selectAdsBackup, String idIntertitial, String idIntertitialBackup,
+                                           int interval) {
+        if (counter >= interval) {
+            if (mInterstitial.isReady()) {
+                mInterstitial.show();
+            } else {
+                switch (selectAdsBackup) {
+                    case "APPLOVIN-D":
+                        if (interstitialAdlovin != null) {
+                            interstitialAdlovin.showAndRender(loadedAd);
+                        }
+                        break;
+                    case "IRON":
+                        IronSource.showInterstitial(idIntertitial);
+                        break;
+                    case "APPLOVIN-M":
+                        if (interstitialAd.isReady()) {
+                            interstitialAd.showAd();
+                        }
+                        break;
+                    case "STARTAPP":
+                        StartAppAd.showAd(activity);
+                        break;
+                    case "ADMOB":
+                        if (mInterstitialAd != null) {
+                            mInterstitialAd.show(activity);
+                        }
+                        break;
                 }
-                /**
-                 * Invoked when the Interstitial Ad Unit is opened
-                 */
+            }
+            LoadIntertitialMopub(activity, selectAdsBackup, idIntertitial, idIntertitialBackup);
+            counter = 0;
+        } else {
+            counter++;
+        }
+
+    }
+
+
+    public static void ShowIntertitialSartApp(Activity activity, String selectAdsBackup, String idIntertitial, String idIntertitialBackup,
+                                            int interval) {
+        if (counter >= interval) {
+            startAppAd.showAd();
+            startAppAd.showAd(new AdDisplayListener() {
                 @Override
-                public void onInterstitialAdOpened() {
+                public void adHidden(Ad ad) {
                 }
-                /*
-                 * Invoked when the ad is closed and the user is about to return to the application.
-                 */
                 @Override
-                public void onInterstitialAdClosed() {
+                public void adDisplayed(Ad ad) {
                 }
-                /**
-                 * Invoked when Interstitial ad failed to show.
-                 * @param error - An object which represents the reason of showInterstitial failure.
-                 */
                 @Override
-                public void onInterstitialAdShowFailed(IronSourceError error) {
+                public void adClicked(Ad ad) {
+                }
+                @Override
+                public void adNotDisplayed(Ad ad) {
                     switch (selectAdsBackup) {
                         case "APPLOVIN-D":
                             if (interstitialAdlovin != null) {
                                 interstitialAdlovin.showAndRender(loadedAd);
                             }
                             break;
-                        case "MOPUB":
-                            if (mInterstitial.isReady()) {
-                                mInterstitial.show();
-                                mInterstitial.load();
-                            } else {
-                                mInterstitial.load();
-                            }
+                        case "IRON":
+                            IronSource.showInterstitial(idIntertitial);
                             break;
                         case "APPLOVIN-M":
                             if (interstitialAd.isReady()) {
                                 interstitialAd.showAd();
                             }
                             break;
-                        case "STARTAPP":
-                            StartAppAd.showAd(activity);
+                        case "MOPUB":
+                            if (mInterstitial.isReady()) {
+                                mInterstitial.show();
+                            }
                             break;
                         case "ADMOB":
                             if (mInterstitialAd != null) {
@@ -625,21 +873,9 @@ public class AliendroidIntertitial {
                             break;
                     }
                 }
-                /*
-                 * Invoked when the end user clicked on the interstitial ad, for supported networks only.
-                 */
-                @Override
-                public void onInterstitialAdClicked() {
-                }
-                /** Invoked right before the Interstitial screen is about to open.
-                 *  NOTE - This event is available only for some of the networks.
-                 *  You should NOT treat this event as an interstitial impression, but rather use InterstitialAdOpenedEvent
-                 */
-                @Override
-                public void onInterstitialAdShowSucceeded() {
-                }
             });
-            LoadIntertitialIron(activity, selectAdsBackup, idIntertitial, idIntertitialBackup);
+
+            LoadIntertitialStartApp(activity, selectAdsBackup, idIntertitial, idIntertitialBackup);
             counter = 0;
         } else {
             counter++;
