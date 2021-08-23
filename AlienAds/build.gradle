@@ -37,6 +37,7 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
     implementation "androidx.multidex:multidex:2.0.1"
 
+
     //Main Sdk Ads
     implementation 'com.google.android.gms:play-services-ads:20.2.0'
     implementation('com.mopub:mopub-sdk-banner:5.18.0@aar') {

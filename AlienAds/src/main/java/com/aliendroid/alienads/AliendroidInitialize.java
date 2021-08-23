@@ -204,7 +204,7 @@ public class AliendroidInitialize {
         }
     }
 
-    public static void SelectAdsMopub(Activity activity, String selectAdsBackup, String idInitialize) {
+    public static void SelectAdsMopub(Activity activity, String selectAdsBackup, String idInitialize, String idInitializeBackupAds) {
         Map<String, String> facebookBanner = new HashMap<>();
         facebookBanner.put("native_banner", "true");
         SdkConfiguration.Builder configBuilder = new SdkConfiguration.Builder(idInitialize);
@@ -221,11 +221,11 @@ public class AliendroidInitialize {
                 sdk.getSettings().setMuted(!sdk.getSettings().isMuted());
                 break;
             case "IRON":
-                IronSource.init(activity, idInitialize);
+                IronSource.init(activity, idInitializeBackupAds);
                 IntegrationHelper.validateIntegration(activity);
                 break;
             case "STARTAPP":
-                StartAppSDK.init(activity, idInitialize, true);
+                StartAppSDK.init(activity,idInitializeBackupAds, true);
                 StartAppAd.disableSplash();
                 StartAppSDK.setUserConsent(activity,
                         "pas",
@@ -249,7 +249,7 @@ public class AliendroidInitialize {
         }
     }
 
-    public static void SelectAdsStartApp(Activity activity, String selectAdsBackup, String idInitialize) {
+    public static void SelectAdsStartApp(Activity activity, String selectAdsBackup, String idInitialize,String idInitializeBackupAds) {
         StartAppSDK.init(activity, idInitialize, true);
         StartAppAd.disableSplash();
         StartAppSDK.setUserConsent(activity,
@@ -267,13 +267,13 @@ public class AliendroidInitialize {
                 sdk.getSettings().setMuted(!sdk.getSettings().isMuted());
                 break;
             case "IRON":
-                IronSource.init(activity, idInitialize);
+                IronSource.init(activity, idInitializeBackupAds);
                 IntegrationHelper.validateIntegration(activity);
                 break;
             case "MOPUB":
                 Map<String, String> facebookBanner = new HashMap<>();
                 facebookBanner.put("native_banner", "true");
-                SdkConfiguration.Builder configBuilder = new SdkConfiguration.Builder(idInitialize);
+                SdkConfiguration.Builder configBuilder = new SdkConfiguration.Builder(idInitializeBackupAds);
                 configBuilder.withMediatedNetworkConfiguration(FacebookBanner.class.getName(), facebookBanner);
                 MoPub.initializeSdk(activity, configBuilder.build(), initSdkListener());
                 break;

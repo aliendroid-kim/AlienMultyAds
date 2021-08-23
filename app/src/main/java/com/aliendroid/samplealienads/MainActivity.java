@@ -2,13 +2,16 @@ package com.aliendroid.samplealienads;
 
 import static com.aliendroid.samplealienads.SettingAds.BACKUP_ADS;
 import static com.aliendroid.samplealienads.SettingAds.BACKUP_ADS_BANNER;
+import static com.aliendroid.samplealienads.SettingAds.BACKUP_ADS_INTERTITIAL;
 import static com.aliendroid.samplealienads.SettingAds.HIGH_PAYING_KEYWORD1;
 import static com.aliendroid.samplealienads.SettingAds.HIGH_PAYING_KEYWORD2;
 import static com.aliendroid.samplealienads.SettingAds.HIGH_PAYING_KEYWORD3;
 import static com.aliendroid.samplealienads.SettingAds.HIGH_PAYING_KEYWORD4;
 import static com.aliendroid.samplealienads.SettingAds.HIGH_PAYING_KEYWORD5;
 import static com.aliendroid.samplealienads.SettingAds.INITIALIZE_SDK;
+import static com.aliendroid.samplealienads.SettingAds.INTERVAL;
 import static com.aliendroid.samplealienads.SettingAds.MAIN_ADS_BANNER;
+import static com.aliendroid.samplealienads.SettingAds.MAIN_ADS_INTERTITIAL;
 import static com.aliendroid.samplealienads.SettingAds.MAIN_ADS_REWARDS;
 import static com.aliendroid.samplealienads.SettingAds.NATIVE_ADS_ADMOB;
 import static com.aliendroid.samplealienads.SettingAds.SELECT_ADS;
@@ -54,18 +57,29 @@ public class MainActivity extends AppCompatActivity {
          */
 
         switch (SELECT_ADS) {
-            case "ABMOB":
+            case "ADMOB":
                 AliendroidBanner.SmallBannerAdmob(MainActivity.this, layAds, BACKUP_ADS, MAIN_ADS_BANNER, BACKUP_ADS_BANNER, HIGH_PAYING_KEYWORD1,
                         HIGH_PAYING_KEYWORD2, HIGH_PAYING_KEYWORD3, HIGH_PAYING_KEYWORD4, HIGH_PAYING_KEYWORD5);
+                AliendroidIntertitial.LoadIntertitialAdmob(MainActivity.this, BACKUP_ADS, MAIN_ADS_INTERTITIAL, BACKUP_ADS_INTERTITIAL, HIGH_PAYING_KEYWORD1,
+                        HIGH_PAYING_KEYWORD2, HIGH_PAYING_KEYWORD3, HIGH_PAYING_KEYWORD4, HIGH_PAYING_KEYWORD5);
+                AlienOpenAds.ShowOpen(MainActivity.this);
                 break;
             case "APPLOVIN-M":
                 AliendroidBanner.SmallBannerApplovinMax(MainActivity.this, layAds, BACKUP_ADS, MAIN_ADS_BANNER, BACKUP_ADS_BANNER);
+               AliendroidIntertitial.LoadIntertitialApplovinMax(MainActivity.this, BACKUP_ADS,MAIN_ADS_INTERTITIAL,BACKUP_ADS_INTERTITIAL);
                 break;
             case "APPLOVIN-D":
                 AliendroidBanner.SmallBannerApplovinDis(MainActivity.this, layAds, BACKUP_ADS, MAIN_ADS_BANNER, BACKUP_ADS_BANNER);
+                AliendroidIntertitial.LoadIntertitialApplovinDis(MainActivity.this, BACKUP_ADS, MAIN_ADS_INTERTITIAL, BACKUP_ADS_INTERTITIAL);
                 break;
             case "MOPUB" :
                 AliendroidBanner.SmallBannerMopub(MainActivity.this, layAds, BACKUP_ADS, MAIN_ADS_BANNER, BACKUP_ADS_BANNER);
+                break;
+            case "STARTAPP":
+                AliendroidBanner.SmallBannerStartApp(MainActivity.this, layAds, BACKUP_ADS, MAIN_ADS_BANNER, BACKUP_ADS_BANNER);
+                break;
+            case "IRON":
+                AliendroidBanner.SmallBannerIron(MainActivity.this, layAds, BACKUP_ADS, MAIN_ADS_BANNER, BACKUP_ADS_BANNER);
                 break;
         }
 
@@ -73,9 +87,22 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void munculiklan(View view){
-        AliendroidIntertitial.ShowIntertitial(MainActivity.this,SettingAds.SELECT_ADS,
-                SettingAds.MAIN_ADS_INTERTITIAL, 0,HIGH_PAYING_KEYWORD1
-                ,HIGH_PAYING_KEYWORD2,HIGH_PAYING_KEYWORD3,HIGH_PAYING_KEYWORD4,HIGH_PAYING_KEYWORD5);
+        switch (SELECT_ADS) {
+            case "ADMOB":
+                AliendroidIntertitial.ShowIntertitialAdmob(MainActivity.this, BACKUP_ADS, MAIN_ADS_INTERTITIAL, BACKUP_ADS_INTERTITIAL, INTERVAL,
+                        HIGH_PAYING_KEYWORD1, HIGH_PAYING_KEYWORD2, HIGH_PAYING_KEYWORD3, HIGH_PAYING_KEYWORD4, HIGH_PAYING_KEYWORD5);
+                break;
+            case "APPLOVIN-D":
+                AliendroidIntertitial.ShowIntertitialApplovinDis(MainActivity.this, BACKUP_ADS, MAIN_ADS_INTERTITIAL, BACKUP_ADS_INTERTITIAL, INTERVAL);
+                break;
+            case "APPLOVIN-M":
+                AliendroidIntertitial.ShowIntertitialApplovinMax(MainActivity.this, BACKUP_ADS, MAIN_ADS_INTERTITIAL, BACKUP_ADS_INTERTITIAL, INTERVAL);
+                break;
+            case "IRON" :
+                AliendroidIntertitial.ShowIntertitialIron(MainActivity.this, BACKUP_ADS, MAIN_ADS_INTERTITIAL, BACKUP_ADS_INTERTITIAL, INTERVAL);
+                break;
+        }
+
 
     }
 

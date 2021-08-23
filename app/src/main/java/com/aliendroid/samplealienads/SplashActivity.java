@@ -4,6 +4,7 @@ package com.aliendroid.samplealienads;
 
 import static com.aliendroid.samplealienads.SettingAds.BACKUP_ADS;
 import static com.aliendroid.samplealienads.SettingAds.INITIALIZE_SDK;
+import static com.aliendroid.samplealienads.SettingAds.INITIALIZE_SDK_BACKUPADS;
 import static com.aliendroid.samplealienads.SettingAds.SELECT_ADS;
 
 import android.content.Intent;
@@ -35,13 +36,13 @@ public class SplashActivity extends AppCompatActivity {
                 AliendroidInitialize.SelectAdsApplovinMax(SplashActivity.this, BACKUP_ADS, INITIALIZE_SDK);
                 break;
             case "MOPUB":
-                AliendroidInitialize.SelectAdsMopub(SplashActivity.this, BACKUP_ADS, INITIALIZE_SDK);
+                AliendroidInitialize.SelectAdsMopub(SplashActivity.this, BACKUP_ADS, INITIALIZE_SDK, INITIALIZE_SDK_BACKUPADS);
                 break;
             case "IRON":
                 AliendroidInitialize.SelectAdsIron(SplashActivity.this, BACKUP_ADS, INITIALIZE_SDK);
                 break;
             case "STARTAPP":
-                AliendroidInitialize.SelectAdsStartApp(SplashActivity.this, BACKUP_ADS, INITIALIZE_SDK);
+                AliendroidInitialize.SelectAdsStartApp(SplashActivity.this, BACKUP_ADS, INITIALIZE_SDK,INITIALIZE_SDK_BACKUPADS);
                 break;
         }
         AlienOpenAds.LoadOpenAds(SettingAds.OPEN_ADS_ADMOB);
