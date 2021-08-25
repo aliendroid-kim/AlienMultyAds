@@ -45,7 +45,6 @@ public class AliendroidInitialize {
                 AppLovinSdk.getInstance(activity).setMediationProvider(AppLovinMediationProvider.MAX);
                 AppLovinSdk sdk = AppLovinSdk.getInstance(activity);
                 sdk.getSettings().setMuted(!sdk.getSettings().isMuted());
-
                 break;
             case "MOPUB":
                 Map<String, String> facebookBanner = new HashMap<>();

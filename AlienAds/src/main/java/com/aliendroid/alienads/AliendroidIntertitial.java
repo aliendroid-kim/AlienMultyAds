@@ -10,6 +10,9 @@ import androidx.annotation.NonNull;
 
 import com.applovin.adview.AppLovinInterstitialAd;
 import com.applovin.adview.AppLovinInterstitialAdDialog;
+import com.applovin.mediation.MaxAd;
+import com.applovin.mediation.MaxAdListener;
+import com.applovin.mediation.MaxError;
 import com.applovin.mediation.ads.MaxInterstitialAd;
 import com.applovin.sdk.AppLovinAd;
 import com.applovin.sdk.AppLovinAdDisplayListener;
@@ -27,6 +30,7 @@ import com.ironsource.mediationsdk.adunit.adapter.listener.InterstitialAdListene
 import com.ironsource.mediationsdk.adunit.adapter.utility.ErrorType;
 import com.ironsource.mediationsdk.logger.IronSourceError;
 import com.ironsource.mediationsdk.sdk.InterstitialListener;
+import com.mopub.mobileads.MoPubErrorCode;
 import com.mopub.mobileads.MoPubInterstitial;
 import com.startapp.sdk.adsbase.Ad;
 import com.startapp.sdk.adsbase.StartAppAd;
@@ -42,6 +46,7 @@ public class AliendroidIntertitial {
     public static AppLovinAd loadedAd;
     public static boolean irininter = false;
     private static StartAppAd startAppAd;
+
     public static void LoadIntertitial(Activity activity, String selectAds, String idIntertitial, String Hpk1,
                                        String Hpk2, String Hpk3, String Hpk4, String Hpk5) {
         switch (selectAds) {
@@ -60,7 +65,11 @@ public class AliendroidIntertitial {
                                 // The mInterstitialAd reference will be null until
                                 // an ad is loaded.
                                 mInterstitialAd = interstitialAd;
-                                Log.i(TAG, "onAdLoaded");
+
+                                if (Hpk1.equalsIgnoreCase("log")) {
+                                    Log.i("AlienLog", "Admob Interstitial Loaded ");
+                                }
+
                             }
 
                             @Override
@@ -68,6 +77,9 @@ public class AliendroidIntertitial {
                                 // Handle the error
                                 Log.i(TAG, loadAdError.getMessage());
                                 mInterstitialAd = null;
+                                if (Hpk1.equalsIgnoreCase("log")) {
+                                    Log.e("AlienLog", "Admob Interstitial Failed to Load -> " + loadAdError.getMessage());
+                                }
                             }
                         });
                 break;
@@ -75,6 +87,44 @@ public class AliendroidIntertitial {
                 if (idIntertitial == null) {
                     interstitialAd = new MaxInterstitialAd("qwerty1234", activity);
                     interstitialAd.loadAd();
+                    interstitialAd.setListener(new MaxAdListener() {
+                        @Override
+                        public void onAdLoaded(MaxAd ad) {
+                            if (Hpk1.equalsIgnoreCase("log")) {
+                                Log.i("AlienLog", "MAX Interstitial Loaded ");
+                            }
+                        }
+
+                        @Override
+                        public void onAdDisplayed(MaxAd ad) {
+
+                        }
+
+                        @Override
+                        public void onAdHidden(MaxAd ad) {
+
+                        }
+
+                        @Override
+                        public void onAdClicked(MaxAd ad) {
+
+                        }
+
+                        @Override
+                        public void onAdLoadFailed(String adUnitId, MaxError error) {
+                            if (Hpk1.equalsIgnoreCase("log")) {
+                                Log.e("AlienLog", "MAX  Interstitial Failed to Load -> " + error.getMessage());
+                            }
+                        }
+
+                        @Override
+                        public void onAdDisplayFailed(MaxAd ad, MaxError error) {
+                            if (Hpk1.equalsIgnoreCase("log")) {
+                                Log.e("AlienLog", "Admob Interstitial Failed to Display -> " + error.getMessage());
+                            }
+                        }
+                    });
+
                 } else {
                     interstitialAd = new MaxInterstitialAd(idIntertitial, activity);
                     interstitialAd.loadAd();
@@ -84,10 +134,82 @@ public class AliendroidIntertitial {
             case "MOPUB":
                 mInterstitial = new MoPubInterstitial(activity, idIntertitial);
                 mInterstitial.load();
+                mInterstitial.setInterstitialAdListener(new MoPubInterstitial.InterstitialAdListener() {
+                    @Override
+                    public void onInterstitialLoaded(MoPubInterstitial moPubInterstitial) {
+                        if (Hpk1.equalsIgnoreCase("log")) {
+                            Log.i("AlienLog", "Mopub Interstitial Loaded ");
+                        }
+                    }
+
+                    @Override
+                    public void onInterstitialFailed(MoPubInterstitial moPubInterstitial, MoPubErrorCode moPubErrorCode) {
+                        if (Hpk1.equalsIgnoreCase("log")) {
+                            Log.e("AlienLog", "Mopub Interstitial Failed -> " + moPubErrorCode.toString());
+                        }
+                    }
+
+                    @Override
+                    public void onInterstitialShown(MoPubInterstitial moPubInterstitial) {
+
+                    }
+
+                    @Override
+                    public void onInterstitialClicked(MoPubInterstitial moPubInterstitial) {
+
+                    }
+
+                    @Override
+                    public void onInterstitialDismissed(MoPubInterstitial moPubInterstitial) {
+
+                    }
+                });
                 break;
             case "IRON":
                 IronSource.isInterstitialPlacementCapped(idIntertitial);
                 IronSource.loadInterstitial();
+                IronSource.setInterstitialListener(new InterstitialListener() {
+                    @Override
+                    public void onInterstitialAdReady() {
+                        if (Hpk1.equalsIgnoreCase("log")) {
+                            Log.e("AlienLog", "Iron Source Interstitial Loaded ");
+                        }
+                    }
+
+                    @Override
+                    public void onInterstitialAdLoadFailed(IronSourceError ironSourceError) {
+                        if (Hpk1.equalsIgnoreCase("log")) {
+                            Log.e("AlienLog", "Iron Source Interstitial Failed to Load -> " + ironSourceError.getErrorMessage());
+                        }
+                    }
+
+                    @Override
+                    public void onInterstitialAdOpened() {
+
+                    }
+
+                    @Override
+                    public void onInterstitialAdClosed() {
+
+                    }
+
+                    @Override
+                    public void onInterstitialAdShowSucceeded() {
+
+                    }
+
+                    @Override
+                    public void onInterstitialAdShowFailed(IronSourceError ironSourceError) {
+                        if (Hpk1.equalsIgnoreCase("log")) {
+                            Log.e("AlienLog", "Iron Source Interstitial Failed to Show -> " + ironSourceError.getErrorMessage());
+                        }
+                    }
+
+                    @Override
+                    public void onInterstitialAdClicked() {
+
+                    }
+                });
                 break;
             case "APPLOVIN-D":
                 AdRequest.Builder builder = new AdRequest.Builder().addKeyword(Hpk1).addKeyword(Hpk2)
@@ -100,11 +222,17 @@ public class AliendroidIntertitial {
                     @Override
                     public void adReceived(AppLovinAd ad) {
                         loadedAd = ad;
-                    }
+                        if (Hpk1.equalsIgnoreCase("log")) {
+                            Log.i("AlienLog", "Discovery Interstitial received ");
+                        }
+                        }
 
                     @Override
                     public void failedToReceiveAd(int errorCode) {
                         // Look at AppLovinErrorCodes.java for list of error codes.
+                        if (Hpk1.equalsIgnoreCase("log")) {
+                        Log.e("AlienLog", "Discovery Interstitial Failed to received -> " + errorCode);
+                    }
                     }
                 });
                 interstitialAdlovin = AppLovinInterstitialAd.create(AppLovinSdk.getInstance(activity), activity);
@@ -252,8 +380,7 @@ public class AliendroidIntertitial {
         }
     }
 
-    public static void LoadIntertitialApplovinMax(Activity activity, String selectAdsBackup, String idIntertitial, String idIntertitialBackup)
-    {
+    public static void LoadIntertitialApplovinMax(Activity activity, String selectAdsBackup, String idIntertitial, String idIntertitialBackup) {
 
         interstitialAd = new MaxInterstitialAd(idIntertitial, activity);
         interstitialAd.loadAd();
@@ -314,8 +441,7 @@ public class AliendroidIntertitial {
         }
     }
 
-    public static void LoadIntertitialIron(Activity activity, String selectAdsBackup, String idIntertitial, String idIntertitialBackup)
-    {
+    public static void LoadIntertitialIron(Activity activity, String selectAdsBackup, String idIntertitial, String idIntertitialBackup) {
 
         IronSource.isInterstitialPlacementCapped(idIntertitial);
         IronSource.setInterstitialListener(new InterstitialListener() {
@@ -324,7 +450,7 @@ public class AliendroidIntertitial {
              */
             @Override
             public void onInterstitialAdReady() {
-                irininter =false;
+                irininter = false;
             }
 
             /**
@@ -332,20 +458,23 @@ public class AliendroidIntertitial {
              */
             @Override
             public void onInterstitialAdLoadFailed(IronSourceError error) {
-                irininter=true;
+                irininter = true;
             }
+
             /**
              * Invoked when the Interstitial Ad Unit is opened
              */
             @Override
             public void onInterstitialAdOpened() {
             }
+
             /*
              * Invoked when the ad is closed and the user is about to return to the application.
              */
             @Override
             public void onInterstitialAdClosed() {
             }
+
             /**
              * Invoked when Interstitial ad failed to show.
              * @param error - An object which represents the reason of showInterstitial failure.
@@ -354,12 +483,14 @@ public class AliendroidIntertitial {
             public void onInterstitialAdShowFailed(IronSourceError error) {
 
             }
+
             /*
              * Invoked when the end user clicked on the interstitial ad, for supported networks only.
              */
             @Override
             public void onInterstitialAdClicked() {
             }
+
             /** Invoked right before the Interstitial screen is about to open.
              *  NOTE - This event is available only for some of the networks.
              *  You should NOT treat this event as an interstitial impression, but rather use InterstitialAdOpenedEvent
@@ -425,8 +556,7 @@ public class AliendroidIntertitial {
         }
     }
 
-    public static void LoadIntertitialMopub(Activity activity, String selectAdsBackup, String idIntertitial, String idIntertitialBackup)
-    {
+    public static void LoadIntertitialMopub(Activity activity, String selectAdsBackup, String idIntertitial, String idIntertitialBackup) {
 
         mInterstitial = new MoPubInterstitial(activity, idIntertitial);
         mInterstitial.load();
@@ -486,13 +616,13 @@ public class AliendroidIntertitial {
         }
     }
 
-    public static void LoadIntertitialStartApp(Activity activity, String selectAdsBackup, String idIntertitial, String idIntertitialBackup)
-    {
+    public static void LoadIntertitialStartApp(Activity activity, String selectAdsBackup, String idIntertitial, String idIntertitialBackup) {
         startAppAd = new StartAppAd(activity);
-        startAppAd.loadAd (new AdEventListener() {
+        startAppAd.loadAd(new AdEventListener() {
             @Override
             public void onReceiveAd(Ad ad) {
             }
+
             @Override
             public void onFailedToReceiveAd(Ad ad) {
 
@@ -550,7 +680,7 @@ public class AliendroidIntertitial {
                             }
                         });
                 break;
-            case "MOPUB" :
+            case "MOPUB":
                 mInterstitial = new MoPubInterstitial(activity, idIntertitial);
                 mInterstitial.load();
                 break;
@@ -649,7 +779,7 @@ public class AliendroidIntertitial {
     }
 
     public static void ShowIntertitialApplovinDis(Activity activity, String selectAdsBackup, String idIntertitial, String idIntertitialBackup,
-                                                int interval) {
+                                                  int interval) {
         if (counter >= interval) {
             if (interstitialAdlovin != null) {
                 AppLovinAdDisplayListener listener = new AppLovinAdDisplayListener() {
@@ -705,7 +835,7 @@ public class AliendroidIntertitial {
     }
 
     public static void ShowIntertitialApplovinMax(Activity activity, String selectAdsBackup, String idIntertitial, String idIntertitialBackup,
-                                                int interval) {
+                                                  int interval) {
         if (counter >= interval) {
             if (interstitialAd.isReady()) {
                 interstitialAd.showAd();
@@ -749,9 +879,9 @@ public class AliendroidIntertitial {
     }
 
     public static void ShowIntertitialIron(Activity activity, String selectAdsBackup, String idIntertitial, String idIntertitialBackup,
-                                                  int interval) {
+                                           int interval) {
         if (counter >= interval) {
-            if (irininter){
+            if (irininter) {
                 switch (selectAdsBackup) {
                     case "APPLOVIN-D":
                         if (interstitialAdlovin != null) {
@@ -793,7 +923,7 @@ public class AliendroidIntertitial {
     }
 
     public static void ShowIntertitialMopub(Activity activity, String selectAdsBackup, String idIntertitial, String idIntertitialBackup,
-                                           int interval) {
+                                            int interval) {
         if (counter >= interval) {
             if (mInterstitial.isReady()) {
                 mInterstitial.show();
@@ -832,19 +962,22 @@ public class AliendroidIntertitial {
 
 
     public static void ShowIntertitialSartApp(Activity activity, String selectAdsBackup, String idIntertitial, String idIntertitialBackup,
-                                            int interval) {
+                                              int interval) {
         if (counter >= interval) {
             startAppAd.showAd();
             startAppAd.showAd(new AdDisplayListener() {
                 @Override
                 public void adHidden(Ad ad) {
                 }
+
                 @Override
                 public void adDisplayed(Ad ad) {
                 }
+
                 @Override
                 public void adClicked(Ad ad) {
                 }
+
                 @Override
                 public void adNotDisplayed(Ad ad) {
                     switch (selectAdsBackup) {

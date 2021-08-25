@@ -46,7 +46,7 @@ public class SplashActivity extends AppCompatActivity {
                 break;
         }
         AlienOpenAds.LoadOpenAds(SettingAds.OPEN_ADS_ADMOB);
-        new CountDownTimer(10000, 1000) {
+        new CountDownTimer(3000, 1000) {
                 @Override
                 public void onFinish() {
 
