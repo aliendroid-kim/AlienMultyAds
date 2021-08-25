@@ -108,27 +108,27 @@ public class MainActivity extends AppCompatActivity {
 
                 switch (SEL_ADS) {
                     case "ADMOB":
-                        AliendroidIntertitial.LoadIntertitial(MainActivity.this, SEL_ADS, ADMOB_INTER,HIGH_PAYING_KEYWORD1,
+                        AliendroidIntertitial.LoadIntertitial(MainActivity.this, SEL_ADS, ADMOB_INTER, HIGH_PAYING_KEYWORD1,
                                 HIGH_PAYING_KEYWORD2, HIGH_PAYING_KEYWORD3, HIGH_PAYING_KEYWORD4, HIGH_PAYING_KEYWORD5);
                         break;
                     case "APPLOVIN-M":
-                        AliendroidIntertitial.LoadIntertitial(MainActivity.this,SEL_ADS,MAX_INTER,HIGH_PAYING_KEYWORD1,
+                        AliendroidIntertitial.LoadIntertitial(MainActivity.this, SEL_ADS, MAX_INTER, HIGH_PAYING_KEYWORD1,
                                 HIGH_PAYING_KEYWORD2, HIGH_PAYING_KEYWORD3, HIGH_PAYING_KEYWORD4, HIGH_PAYING_KEYWORD5);
                         break;
                     case "MOPUB":
-                        AliendroidIntertitial.LoadIntertitial(MainActivity.this,SEL_ADS,INTER_MOPUB,HIGH_PAYING_KEYWORD1,
+                        AliendroidIntertitial.LoadIntertitial(MainActivity.this, SEL_ADS, INTER_MOPUB, HIGH_PAYING_KEYWORD1,
                                 HIGH_PAYING_KEYWORD2, HIGH_PAYING_KEYWORD3, HIGH_PAYING_KEYWORD4, HIGH_PAYING_KEYWORD5);
                         break;
                     case "IRON":
-                        AliendroidIntertitial.LoadIntertitial(MainActivity.this,SEL_ADS,IRON_APPID,HIGH_PAYING_KEYWORD1,
+                        AliendroidIntertitial.LoadIntertitial(MainActivity.this, SEL_ADS, IRON_APPID, HIGH_PAYING_KEYWORD1,
                                 HIGH_PAYING_KEYWORD2, HIGH_PAYING_KEYWORD3, HIGH_PAYING_KEYWORD4, HIGH_PAYING_KEYWORD5);
                         break;
                     case "STARTAPP":
-                        AliendroidIntertitial.LoadIntertitial(MainActivity.this,SEL_ADS,STARTAPPID,HIGH_PAYING_KEYWORD1,
+                        AliendroidIntertitial.LoadIntertitial(MainActivity.this, SEL_ADS, STARTAPPID, HIGH_PAYING_KEYWORD1,
                                 HIGH_PAYING_KEYWORD2, HIGH_PAYING_KEYWORD3, HIGH_PAYING_KEYWORD4, HIGH_PAYING_KEYWORD5);
                         break;
                     case "APPLOVIN-D":
-                        AliendroidIntertitial.LoadIntertitial(MainActivity.this,SEL_ADS,APPLOVIN_INTERS,HIGH_PAYING_KEYWORD1,
+                        AliendroidIntertitial.LoadIntertitial(MainActivity.this, SEL_ADS, APPLOVIN_INTERS, HIGH_PAYING_KEYWORD1,
                                 HIGH_PAYING_KEYWORD2, HIGH_PAYING_KEYWORD3, HIGH_PAYING_KEYWORD4, HIGH_PAYING_KEYWORD5);
                         break;
                 }
@@ -157,7 +157,19 @@ public class MainActivity extends AppCompatActivity {
                                 HIGH_PAYING_KEYWORD2, HIGH_PAYING_KEYWORD3, HIGH_PAYING_KEYWORD4, HIGH_PAYING_KEYWORD5);
                         break;
                     case "APPLOVIN-M":
-                        AliendroidIntertitial.ShowIntertitial(MainActivity.this,SEL_ADS,MAX_INTER,INTERVAL,HIGH_PAYING_KEYWORD1,
+                        AliendroidIntertitial.ShowIntertitial(MainActivity.this, SEL_ADS, MAX_INTER, INTERVAL, HIGH_PAYING_KEYWORD1,
+                                HIGH_PAYING_KEYWORD2, HIGH_PAYING_KEYWORD3, HIGH_PAYING_KEYWORD4, HIGH_PAYING_KEYWORD5);
+                        break;
+                    case "MOPUB":
+                        AliendroidIntertitial.ShowIntertitial(MainActivity.this, SEL_ADS, INTER_MOPUB, INTERVAL, HIGH_PAYING_KEYWORD1,
+                                HIGH_PAYING_KEYWORD2, HIGH_PAYING_KEYWORD3, HIGH_PAYING_KEYWORD4, HIGH_PAYING_KEYWORD5);
+                        break;
+                    case "STARTAPP":
+                        AliendroidIntertitial.ShowIntertitial(MainActivity.this,SEL_ADS,STARTAPPID,INTERVAL,HIGH_PAYING_KEYWORD1,
+                                HIGH_PAYING_KEYWORD2, HIGH_PAYING_KEYWORD3, HIGH_PAYING_KEYWORD4, HIGH_PAYING_KEYWORD5);
+                        break;
+                    case "APPLOVIN-D":
+                        AliendroidIntertitial.ShowIntertitial(MainActivity.this,SEL_ADS,APPLOVIN_INTERS,INTERVAL,HIGH_PAYING_KEYWORD1,
                                 HIGH_PAYING_KEYWORD2, HIGH_PAYING_KEYWORD3, HIGH_PAYING_KEYWORD4, HIGH_PAYING_KEYWORD5);
                         break;
                 }
