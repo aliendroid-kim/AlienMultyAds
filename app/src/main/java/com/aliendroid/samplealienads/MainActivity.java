@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
         interShow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(MainActivity.this, "Inters " + spinner.getSelectedItem().toString()+ , Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "Inters " + spinner.getSelectedItem().toString()+ "Will Show ", Toast.LENGTH_SHORT).show();
                 String SEL_ADS = spinner.getSelectedItem().toString();
             }
         });
