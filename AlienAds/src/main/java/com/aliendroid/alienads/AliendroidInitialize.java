@@ -294,7 +294,7 @@ public class AliendroidInitialize {
         }
     }
 
-    public static void SelectAdsIron(Activity activity, String selectAdsBackup, String idInitialize) {
+    public static void SelectAdsIron(Activity activity, String selectAdsBackup, String idInitialize,String idInitializeBackupAds) {
         IronSource.init(activity, idInitialize);
         IntegrationHelper.validateIntegration(activity);
         switch (selectAdsBackup) {
@@ -307,8 +307,8 @@ public class AliendroidInitialize {
                 AppLovinSdk sdk = AppLovinSdk.getInstance(activity);
                 sdk.getSettings().setMuted(!sdk.getSettings().isMuted());
                 break;
-            case "IRON":
-                StartAppSDK.init(activity, idInitialize, true);
+            case "STARTAPP":
+                StartAppSDK.init(activity, idInitializeBackupAds, true);
                 StartAppAd.disableSplash();
                 StartAppSDK.setUserConsent(activity,
                         "pas",
@@ -318,7 +318,7 @@ public class AliendroidInitialize {
             case "MOPUB":
                 Map<String, String> facebookBanner = new HashMap<>();
                 facebookBanner.put("native_banner", "true");
-                SdkConfiguration.Builder configBuilder = new SdkConfiguration.Builder(idInitialize);
+                SdkConfiguration.Builder configBuilder = new SdkConfiguration.Builder(idInitializeBackupAds);
                 configBuilder.withMediatedNetworkConfiguration(FacebookBanner.class.getName(), facebookBanner);
                 MoPub.initializeSdk(activity, configBuilder.build(), initSdkListener());
                 break;

@@ -39,7 +39,7 @@ public class SplashActivity extends AppCompatActivity {
                 AliendroidInitialize.SelectAdsMopub(SplashActivity.this, BACKUP_ADS, INITIALIZE_SDK, INITIALIZE_SDK_BACKUPADS);
                 break;
             case "IRON":
-                AliendroidInitialize.SelectAdsIron(SplashActivity.this, BACKUP_ADS, INITIALIZE_SDK);
+                AliendroidInitialize.SelectAdsIron(SplashActivity.this, BACKUP_ADS, INITIALIZE_SDK, INITIALIZE_SDK_BACKUPADS);
                 break;
             case "STARTAPP":
                 AliendroidInitialize.SelectAdsStartApp(SplashActivity.this, BACKUP_ADS, INITIALIZE_SDK,INITIALIZE_SDK_BACKUPADS);
