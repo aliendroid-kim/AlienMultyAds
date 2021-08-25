@@ -18,24 +18,37 @@ public class SettingAds {
     public static String INITIALIZE_SDK = "b195f8dd8ded45fe847ad89ed1d016da";
     public static String INITIALIZE_SDK_BACKUPADS = "107355779";
 
-    public static String HIGH_PAYING_KEYWORD1 = "Finance";
+    // FILL HIGH_PAYING_KEYWORD1 = "LOG" / "TOAST" TO SHOW LOG/TOAST in your Application
+    public static String HIGH_PAYING_KEYWORD1 = "LOG";
     public static String HIGH_PAYING_KEYWORD2 = "";
     public static String HIGH_PAYING_KEYWORD3 = "";
     public static String HIGH_PAYING_KEYWORD4 = "";
     public static String HIGH_PAYING_KEYWORD5 = "";
 
     public static int INTERVAL = 1;
+    public static int COUNTER = 0;
 
     public static String ADMOB_BANNER = "ca-app-pub-3940256099942544/6300978111";
+    public static String ADMOB_INTER = "ca-app-pub-3940256099942544/1033173712";
     public static String APPLOVIN_BANNER = "01180f81f16a1876";
+
     public static String APPLOVIN_INTERS = "23be86543d6d7f2f";
     public static String APPLOVIN_REWARD = "5225bec096f955a3";
-    public static String MAX_BANNER = "";
-    public static String MAX_INTER = "";
+
+    public static String MAX_BANNER = "01180f81f16a1876";
+    public static String MAX_INTER = "23be86543d6d7f2f";
     public static String BANNER_MOPUB = "b195f8dd8ded45fe847ad89ed1d016da";
+
+    public static String IRON_APPID = "1043d1341";
     public static String IRON_BANNER = "DefaultBanner";
+    public static String IRON_INTERTITIAL = "Game_Screen";
+
+    public static String INTER_MOPUB = "24534e1901884e398f1253216226017e";
+
     public static String STARTAPPID = "123456789";
 
+    public static Boolean LOG_ENABLE = true;
+    public static Boolean TOAST_ENABLE = true;
 
 
         /*

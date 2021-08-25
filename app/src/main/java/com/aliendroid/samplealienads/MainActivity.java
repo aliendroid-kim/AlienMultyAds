@@ -1,11 +1,14 @@
 package com.aliendroid.samplealienads;
 
 import static com.aliendroid.samplealienads.SettingAds.ADMOB_BANNER;
+import static com.aliendroid.samplealienads.SettingAds.ADMOB_INTER;
 import static com.aliendroid.samplealienads.SettingAds.APPLOVIN_BANNER;
+import static com.aliendroid.samplealienads.SettingAds.APPLOVIN_INTERS;
 import static com.aliendroid.samplealienads.SettingAds.BACKUP_ADS;
 import static com.aliendroid.samplealienads.SettingAds.BACKUP_ADS_BANNER;
 import static com.aliendroid.samplealienads.SettingAds.BACKUP_ADS_INTERTITIAL;
 import static com.aliendroid.samplealienads.SettingAds.BANNER_MOPUB;
+import static com.aliendroid.samplealienads.SettingAds.COUNTER;
 import static com.aliendroid.samplealienads.SettingAds.HIGH_PAYING_KEYWORD1;
 import static com.aliendroid.samplealienads.SettingAds.HIGH_PAYING_KEYWORD2;
 import static com.aliendroid.samplealienads.SettingAds.HIGH_PAYING_KEYWORD3;
@@ -14,11 +17,15 @@ import static com.aliendroid.samplealienads.SettingAds.HIGH_PAYING_KEYWORD5;
 import static com.aliendroid.samplealienads.SettingAds.INITIALIZE_SDK;
 import static com.aliendroid.samplealienads.SettingAds.INITIALIZE_SDK_BACKUPADS;
 import static com.aliendroid.samplealienads.SettingAds.INTERVAL;
+import static com.aliendroid.samplealienads.SettingAds.INTER_MOPUB;
+import static com.aliendroid.samplealienads.SettingAds.IRON_APPID;
 import static com.aliendroid.samplealienads.SettingAds.IRON_BANNER;
+import static com.aliendroid.samplealienads.SettingAds.IRON_INTERTITIAL;
 import static com.aliendroid.samplealienads.SettingAds.MAIN_ADS_BANNER;
 import static com.aliendroid.samplealienads.SettingAds.MAIN_ADS_INTERTITIAL;
 import static com.aliendroid.samplealienads.SettingAds.MAIN_ADS_REWARDS;
 import static com.aliendroid.samplealienads.SettingAds.MAX_BANNER;
+import static com.aliendroid.samplealienads.SettingAds.MAX_INTER;
 import static com.aliendroid.samplealienads.SettingAds.NATIVE_ADS_ADMOB;
 import static com.aliendroid.samplealienads.SettingAds.SELECT_ADS;
 import static com.aliendroid.samplealienads.SettingAds.STARTAPPID;
@@ -31,6 +38,7 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -64,6 +72,13 @@ public class MainActivity extends AppCompatActivity {
         Button banner = findViewById(R.id.banner);
         Button initial = findViewById(R.id.initilize);
         Button interShow = findViewById(R.id.interstShow);
+        TextView interval = findViewById(R.id.intervalText);
+        Button loadInter = findViewById(R.id.loadInters);
+
+
+        interval.setText(String.valueOf(COUNTER));
+
+
         initial.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -77,14 +92,75 @@ public class MainActivity extends AppCompatActivity {
                         AliendroidInitialize.SelectAds(MainActivity.this, SEL_ADS, STARTAPPID);
                         break;
                 }
+
             }
         });
 
+        loadInter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                COUNTER = 0;
+                interval.setText(String.valueOf(COUNTER));
+
+                Toast.makeText(MainActivity.this, "Inters " + spinner.getSelectedItem().toString() + " Will Load ", Toast.LENGTH_SHORT).show();
+                String SEL_ADS = spinner.getSelectedItem().toString();
+
+
+                switch (SEL_ADS) {
+                    case "ADMOB":
+                        AliendroidIntertitial.LoadIntertitial(MainActivity.this, SEL_ADS, ADMOB_INTER,HIGH_PAYING_KEYWORD1,
+                                HIGH_PAYING_KEYWORD2, HIGH_PAYING_KEYWORD3, HIGH_PAYING_KEYWORD4, HIGH_PAYING_KEYWORD5);
+                        break;
+                    case "APPLOVIN-M":
+                        AliendroidIntertitial.LoadIntertitial(MainActivity.this,SEL_ADS,MAX_INTER,HIGH_PAYING_KEYWORD1,
+                                HIGH_PAYING_KEYWORD2, HIGH_PAYING_KEYWORD3, HIGH_PAYING_KEYWORD4, HIGH_PAYING_KEYWORD5);
+                        break;
+                    case "MOPUB":
+                        AliendroidIntertitial.LoadIntertitial(MainActivity.this,SEL_ADS,INTER_MOPUB,HIGH_PAYING_KEYWORD1,
+                                HIGH_PAYING_KEYWORD2, HIGH_PAYING_KEYWORD3, HIGH_PAYING_KEYWORD4, HIGH_PAYING_KEYWORD5);
+                        break;
+                    case "IRON":
+                        AliendroidIntertitial.LoadIntertitial(MainActivity.this,SEL_ADS,IRON_APPID,HIGH_PAYING_KEYWORD1,
+                                HIGH_PAYING_KEYWORD2, HIGH_PAYING_KEYWORD3, HIGH_PAYING_KEYWORD4, HIGH_PAYING_KEYWORD5);
+                        break;
+                    case "STARTAPP":
+                        AliendroidIntertitial.LoadIntertitial(MainActivity.this,SEL_ADS,STARTAPPID,HIGH_PAYING_KEYWORD1,
+                                HIGH_PAYING_KEYWORD2, HIGH_PAYING_KEYWORD3, HIGH_PAYING_KEYWORD4, HIGH_PAYING_KEYWORD5);
+                        break;
+                    case "APPLOVIN-D":
+                        AliendroidIntertitial.LoadIntertitial(MainActivity.this,SEL_ADS,APPLOVIN_INTERS,HIGH_PAYING_KEYWORD1,
+                                HIGH_PAYING_KEYWORD2, HIGH_PAYING_KEYWORD3, HIGH_PAYING_KEYWORD4, HIGH_PAYING_KEYWORD5);
+                        break;
+                }
+            }
+        });
         interShow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(MainActivity.this, "Inters " + spinner.getSelectedItem().toString()+ "Will Show ", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "Inters " + spinner.getSelectedItem().toString() + " Will Show ", Toast.LENGTH_SHORT).show();
                 String SEL_ADS = spinner.getSelectedItem().toString();
+
+                if (COUNTER <= INTERVAL) {
+                    COUNTER++;
+                } else {
+                    COUNTER = 0;
+                }
+                interval.setText(String.valueOf(COUNTER));
+
+                switch (SEL_ADS) {
+                    case "ADMOB":
+                        AliendroidIntertitial.ShowIntertitial(MainActivity.this, SEL_ADS, ADMOB_INTER, INTERVAL, HIGH_PAYING_KEYWORD1,
+                                HIGH_PAYING_KEYWORD2, HIGH_PAYING_KEYWORD3, HIGH_PAYING_KEYWORD4, HIGH_PAYING_KEYWORD5);
+                        break;
+                    case "IRON":
+                        AliendroidIntertitial.ShowIntertitial(MainActivity.this, SEL_ADS, IRON_INTERTITIAL, INTERVAL, HIGH_PAYING_KEYWORD1,
+                                HIGH_PAYING_KEYWORD2, HIGH_PAYING_KEYWORD3, HIGH_PAYING_KEYWORD4, HIGH_PAYING_KEYWORD5);
+                        break;
+                    case "APPLOVIN-M":
+                        AliendroidIntertitial.ShowIntertitial(MainActivity.this,SEL_ADS,MAX_INTER,INTERVAL,HIGH_PAYING_KEYWORD1,
+                                HIGH_PAYING_KEYWORD2, HIGH_PAYING_KEYWORD3, HIGH_PAYING_KEYWORD4, HIGH_PAYING_KEYWORD5);
+                        break;
+                }
             }
         });
         banner.setOnClickListener(new View.OnClickListener() {

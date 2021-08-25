@@ -3,6 +3,7 @@ package com.aliendroid.alienads;
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Display;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,7 +52,6 @@ public class AliendroidBanner {
                                    String Hpk2, String Hpk3, String Hpk4, String Hpk5) {
         switch (selectAds) {
             case "ADMOB":
-
                 Bundle extras = new FacebookExtras()
                         .setNativeBanner(true)
                         .build();
@@ -64,6 +64,23 @@ public class AliendroidBanner {
                 layAds.addView(adViewAdmob);
                 AdSize adSize = getAdSize(activity);
                 adViewAdmob.setAdSize(adSize);
+                adViewAdmob.setAdListener(new AdListener() {
+                    @Override
+                    public void onAdFailedToLoad(LoadAdError loadAdError) {
+                        super.onAdFailedToLoad(loadAdError);
+                        if(Hpk1.equalsIgnoreCase("log")) {
+                            Log.e("AlienLog", "Admob Banner Failed to Load -> " + loadAdError.getMessage());
+                        }
+                    }
+
+                    @Override
+                    public void onAdLoaded() {
+                        super.onAdLoaded();
+                        if(Hpk1.equalsIgnoreCase("log")) {
+                            Log.i("AlienLog", "Admob Banner Loaded");
+                        }
+                    }
+                });
                 adViewAdmob.loadAd(request);
                 break;
 
@@ -74,6 +91,51 @@ public class AliendroidBanner {
                 final int heightPx = AppLovinSdkUtils.dpToPx(activity, isTablet ? 90 : 50);
                 adViewMax.setLayoutParams(new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, heightPx));
                 layAds.addView(adViewMax);
+                adViewMax.setListener(new MaxAdViewAdListener() {
+                    @Override
+                    public void onAdExpanded(MaxAd ad) {
+
+                    }
+
+                    @Override
+                    public void onAdCollapsed(MaxAd ad) {
+
+                    }
+
+                    @Override
+                    public void onAdLoaded(MaxAd ad) {
+                        if(Hpk1.equalsIgnoreCase("log")) {
+                            Log.i("AlienLog", "Max Banner Loaded ");
+                        }
+                    }
+
+                    @Override
+                    public void onAdDisplayed(MaxAd ad) {
+
+                    }
+
+                    @Override
+                    public void onAdHidden(MaxAd ad) {
+
+                    }
+
+                    @Override
+                    public void onAdClicked(MaxAd ad) {
+
+                    }
+
+                    @Override
+                    public void onAdLoadFailed(String adUnitId, MaxError error) {
+                        if(Hpk1.equalsIgnoreCase("log")) {
+                            Log.e("AlienLog", "Max Banner Failed to Load -> " + error.getMessage());
+                        }
+                    }
+
+                    @Override
+                    public void onAdDisplayFailed(MaxAd ad, MaxError error) {
+                        Log.e("AlienLog", "Max Banner Failed to Display -> "+error.getMessage());
+                    }
+                });
                 adViewMax.loadAd();
                 break;
 
@@ -82,12 +144,77 @@ public class AliendroidBanner {
                 moPubView.setAdUnitId(idBanner);
                 moPubView.setAutorefreshEnabled(false);
                 layAds.addView(moPubView);
+                moPubView.setBannerAdListener(new MoPubView.BannerAdListener() {
+                    @Override
+                    public void onBannerLoaded(MoPubView moPubView) {
+                        if(Hpk1.equalsIgnoreCase("log")) {
+                            Log.i("AlienLog", "MoPub Banner Loaded");
+                        }
+                    }
+
+                    @Override
+                    public void onBannerFailed(MoPubView moPubView, MoPubErrorCode moPubErrorCode) {
+                        if(Hpk1.equalsIgnoreCase("log")) {
+                            Log.e("AlienLog", "Mopub Banner Failed, error code -> " + moPubErrorCode.toString());
+                        }
+                    }
+
+                    @Override
+                    public void onBannerClicked(MoPubView moPubView) {
+
+                    }
+
+                    @Override
+                    public void onBannerExpanded(MoPubView moPubView) {
+
+                    }
+
+                    @Override
+                    public void onBannerCollapsed(MoPubView moPubView) {
+
+                    }
+                });
                 moPubView.loadAd(MoPubView.MoPubAdSize.HEIGHT_50);
                 break;
             case "IRON":
                 adViewIron = IronSource.createBanner(activity, ISBannerSize.BANNER);
                 FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT,
                         FrameLayout.LayoutParams.WRAP_CONTENT);
+                adViewIron.setBannerListener(new com.ironsource.mediationsdk.sdk.BannerListener() {
+                    @Override
+                    public void onBannerAdLoaded() {
+                        if(Hpk1.equalsIgnoreCase("log")) {
+                            Log.i("AlienLog", "Iron Banner Loaded ");
+                        }
+                    }
+
+                    @Override
+                    public void onBannerAdLoadFailed(IronSourceError ironSourceError) {
+                        if(Hpk1.equalsIgnoreCase("log")) {
+                            Log.e("AlienLog", "Iron Banner Failed to Load ->" + ironSourceError.getErrorMessage());
+                        }
+                    }
+
+                    @Override
+                    public void onBannerAdClicked() {
+
+                    }
+
+                    @Override
+                    public void onBannerAdScreenPresented() {
+
+                    }
+
+                    @Override
+                    public void onBannerAdScreenDismissed() {
+
+                    }
+
+                    @Override
+                    public void onBannerAdLeftApplication() {
+
+                    }
+                });
                 layAds.addView(adViewIron, 0, layoutParams);
                 IronSource.loadBanner(adViewIron, idBanner);
                 break;
@@ -98,6 +225,31 @@ public class AliendroidBanner {
                                 RelativeLayout.LayoutParams.WRAP_CONTENT,
                                 RelativeLayout.LayoutParams.WRAP_CONTENT);
                 bannerParameters.addRule(RelativeLayout.CENTER_HORIZONTAL);
+                startAppBanner.setBannerListener(new BannerListener() {
+                    @Override
+                    public void onReceiveAd(View view) {
+                        if(Hpk1.equalsIgnoreCase("log")) {
+                            Log.i("AlienLog", "Startapp Banner Recieved");
+                        }
+                    }
+
+                    @Override
+                    public void onFailedToReceiveAd(View view) {
+                        if(Hpk1.equalsIgnoreCase("log")) {
+                            Log.e("AlienLog", "Startapp Banner Failed to RecievAd ");
+                        }
+                    }
+
+                    @Override
+                    public void onImpression(View view) {
+
+                    }
+
+                    @Override
+                    public void onClick(View view) {
+
+                    }
+                });
                 layAds.addView(startAppBanner, bannerParameters);
                 break;
             case "APPLOVIN-D":
@@ -109,6 +261,21 @@ public class AliendroidBanner {
                 boolean isTablet3 = AppLovinSdkUtils.isTablet(activity);
                 AppLovinAdSize adSize3 = isTablet3 ? AppLovinAdSize.LEADER : AppLovinAdSize.BANNER;
                 adViewDiscovery = new AppLovinAdView(adSize3, activity);
+                adViewDiscovery.setAdLoadListener(new AppLovinAdLoadListener() {
+                    @Override
+                    public void adReceived(AppLovinAd ad) {
+                        if(Hpk1.equalsIgnoreCase("log")) {
+                            Log.i("AlienLog", "Applovin Banner Recieved ");
+                        }
+                    }
+
+                    @Override
+                    public void failedToReceiveAd(int errorCode) {
+                        if(Hpk1.equalsIgnoreCase("log")) {
+                            Log.i("AlienLog", "Applovin Banner Failed to Recieved, error code->" + errorCode);
+                        }
+                    }
+                });
                 layAds.addView(adViewDiscovery);
                 adViewDiscovery.loadNextAd();
                 break;
