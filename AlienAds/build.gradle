@@ -37,7 +37,7 @@ dependencies {
 
 
     //Main Sdk Ads
-    implementation 'com.google.android.gms:play-services-ads:20.2.0'
+    implementation 'com.google.android.gms:play-services-ads:20.3.0'
     implementation('com.mopub:mopub-sdk-banner:5.18.0@aar') {
         transitive = true
     }
@@ -48,13 +48,13 @@ dependencies {
     implementation "com.applovin:applovin-sdk:10.3.2"
     implementation 'com.ironsource.sdk:mediationsdk:7.1.7'
     implementation 'com.startapp:inapp-sdk:4.8.10'
-    implementation 'com.facebook.android:audience-network-sdk:6.5.1'
+    implementation 'com.facebook.android:audience-network-sdk:6.6.0'
 
     //Mediation SDK
     implementation 'com.google.ads.mediation:facebook:6.5.1.0'
-    implementation 'com.applovin.mediation:facebook-adapter:6.5.1.0'
+    implementation 'com.applovin.mediation:facebook-adapter:6.6.0.0'
     implementation 'com.ironsource.adapters:facebookadapter:4.3.28'
-    implementation 'com.mopub.mediation:facebookaudiencenetwork:6.5.1.0'
+    implementation 'com.mopub.mediation:facebookaudiencenetwork:6.6.0.0'
     implementation 'com.google.ads.mediation:applovin:10.3.2.0'
     implementation 'com.applovin.mediation:google-adapter:20.2.0.4'
 
