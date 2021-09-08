@@ -3,12 +3,14 @@ package com.aliendroid.samplealienads;
 import static com.aliendroid.samplealienads.SettingAds.BACKUP_ADS;
 import static com.aliendroid.samplealienads.SettingAds.BACKUP_ADS_BANNER;
 import static com.aliendroid.samplealienads.SettingAds.BACKUP_ADS_INTERTITIAL;
+import static com.aliendroid.samplealienads.SettingAds.BACKUP_ADS_REWARDS;
 import static com.aliendroid.samplealienads.SettingAds.HIGH_PAYING_KEYWORD1;
 import static com.aliendroid.samplealienads.SettingAds.HIGH_PAYING_KEYWORD2;
 import static com.aliendroid.samplealienads.SettingAds.HIGH_PAYING_KEYWORD3;
 import static com.aliendroid.samplealienads.SettingAds.HIGH_PAYING_KEYWORD4;
 import static com.aliendroid.samplealienads.SettingAds.HIGH_PAYING_KEYWORD5;
 import static com.aliendroid.samplealienads.SettingAds.INITIALIZE_SDK;
+import static com.aliendroid.samplealienads.SettingAds.INITIALIZE_SDK_BACKUPADS;
 import static com.aliendroid.samplealienads.SettingAds.INTERVAL;
 import static com.aliendroid.samplealienads.SettingAds.MAIN_ADS_BANNER;
 import static com.aliendroid.samplealienads.SettingAds.MAIN_ADS_INTERTITIAL;
@@ -58,15 +60,19 @@ public class MainActivity extends AppCompatActivity {
 
         switch (SELECT_ADS) {
             case "ADMOB":
+                AliendroidInitialize.SelectAdsAdmob(MainActivity.this,BACKUP_ADS,INITIALIZE_SDK_BACKUPADS);
                 AliendroidBanner.SmallBannerAdmob(MainActivity.this, layAds, BACKUP_ADS, MAIN_ADS_BANNER, BACKUP_ADS_BANNER, HIGH_PAYING_KEYWORD1,
                         HIGH_PAYING_KEYWORD2, HIGH_PAYING_KEYWORD3, HIGH_PAYING_KEYWORD4, HIGH_PAYING_KEYWORD5);
                 AliendroidIntertitial.LoadIntertitialAdmob(MainActivity.this, BACKUP_ADS, MAIN_ADS_INTERTITIAL, BACKUP_ADS_INTERTITIAL, HIGH_PAYING_KEYWORD1,
                         HIGH_PAYING_KEYWORD2, HIGH_PAYING_KEYWORD3, HIGH_PAYING_KEYWORD4, HIGH_PAYING_KEYWORD5);
                 AlienOpenAds.ShowOpen(MainActivity.this);
+                AliendroidReward.LoadRewardAdmob(MainActivity.this,BACKUP_ADS,MAIN_ADS_REWARDS,BACKUP_ADS_REWARDS);
                 break;
             case "APPLOVIN-M":
+                AliendroidInitialize.SelectAdsApplovinMax(MainActivity.this,BACKUP_ADS,INITIALIZE_SDK_BACKUPADS);
                 AliendroidBanner.SmallBannerApplovinMax(MainActivity.this, layAds, BACKUP_ADS, MAIN_ADS_BANNER, BACKUP_ADS_BANNER);
-               AliendroidIntertitial.LoadIntertitialApplovinMax(MainActivity.this, BACKUP_ADS,MAIN_ADS_INTERTITIAL,BACKUP_ADS_INTERTITIAL);
+                AliendroidReward.LoadRewardApplovinMax(MainActivity.this,BACKUP_ADS,MAIN_ADS_REWARDS,BACKUP_ADS_REWARDS);
+                AliendroidIntertitial.LoadIntertitialApplovinMax(MainActivity.this, BACKUP_ADS,MAIN_ADS_INTERTITIAL,BACKUP_ADS_INTERTITIAL);
                 break;
             case "APPLOVIN-D":
                 AliendroidBanner.SmallBannerApplovinDis(MainActivity.this, layAds, BACKUP_ADS, MAIN_ADS_BANNER, BACKUP_ADS_BANNER);
@@ -75,14 +81,23 @@ public class MainActivity extends AppCompatActivity {
             case "MOPUB" :
                 AliendroidBanner.SmallBannerMopub(MainActivity.this, layAds, BACKUP_ADS, MAIN_ADS_BANNER, BACKUP_ADS_BANNER);
                AliendroidIntertitial.LoadIntertitialMopub(MainActivity.this, BACKUP_ADS, MAIN_ADS_INTERTITIAL,BACKUP_ADS_INTERTITIAL);
+               AliendroidInitialize.SelectAdsMopub(MainActivity.this,BACKUP_ADS,INITIALIZE_SDK,INITIALIZE_SDK_BACKUPADS);
+                AliendroidReward.LoadRewardMopub(MainActivity.this,BACKUP_ADS,MAIN_ADS_REWARDS,BACKUP_ADS_REWARDS);
+
                 break;
             case "STARTAPP":
                 AliendroidBanner.SmallBannerStartApp(MainActivity.this, layAds, BACKUP_ADS, MAIN_ADS_BANNER, BACKUP_ADS_BANNER);
                 AliendroidIntertitial.LoadIntertitialStartApp(MainActivity.this, BACKUP_ADS, MAIN_ADS_INTERTITIAL, BACKUP_ADS_INTERTITIAL);
                 break;
             case "IRON":
+
                 AliendroidBanner.SmallBannerIron(MainActivity.this, layAds, BACKUP_ADS, MAIN_ADS_BANNER, BACKUP_ADS_BANNER);
                AliendroidIntertitial.LoadIntertitialIron(MainActivity.this, BACKUP_ADS, MAIN_ADS_INTERTITIAL, BACKUP_ADS_INTERTITIAL);
+                break;
+            case  "FACEBOOK":
+                AliendroidInitialize.SelectAdsFAN(MainActivity.this,SELECT_ADS,INITIALIZE_SDK_BACKUPADS);
+                AliendroidBanner.SmallBannerFAN(MainActivity.this, layAds, BACKUP_ADS, MAIN_ADS_BANNER, BACKUP_ADS_BANNER);
+
                 break;
 
 
@@ -118,8 +133,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void munculreward(View view){
-        AliendroidReward.ShowReward(MainActivity.this,SELECT_ADS,MAIN_ADS_REWARDS);
-
+        if (SELECT_ADS.equals("ADMOB")){
+            AliendroidReward.ShowRewardAdmob(MainActivity.this,BACKUP_ADS,MAIN_ADS_REWARDS,BACKUP_ADS_REWARDS);
+        } else if (SELECT_ADS.equals("APPLOVIN-M")){
+            AliendroidReward.ShowRewardApplovinMax(MainActivity.this,BACKUP_ADS,MAIN_ADS_REWARDS,BACKUP_ADS_REWARDS);
+        }else if (SELECT_ADS.equals("MOPUB")){
+            AliendroidReward.ShowRewardMopub(MainActivity.this,BACKUP_ADS,MAIN_ADS_REWARDS,BACKUP_ADS_REWARDS);
+        }
     }
 
     public void onResume(){

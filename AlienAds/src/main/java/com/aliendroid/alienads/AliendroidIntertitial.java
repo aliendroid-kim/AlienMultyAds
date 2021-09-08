@@ -23,8 +23,6 @@ import com.google.android.gms.ads.LoadAdError;
 import com.google.android.gms.ads.interstitial.InterstitialAd;
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
 import com.ironsource.mediationsdk.IronSource;
-import com.ironsource.mediationsdk.adunit.adapter.listener.InterstitialAdListener;
-import com.ironsource.mediationsdk.adunit.adapter.utility.ErrorType;
 import com.ironsource.mediationsdk.logger.IronSourceError;
 import com.ironsource.mediationsdk.sdk.InterstitialListener;
 import com.mopub.mobileads.MoPubInterstitial;
