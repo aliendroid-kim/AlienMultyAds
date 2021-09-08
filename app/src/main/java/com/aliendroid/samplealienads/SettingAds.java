@@ -1,14 +1,14 @@
 package com.aliendroid.samplealienads;
 
 public class SettingAds {
-    public static String SELECT_ADS ="FACEBOOK";
-    public static String BACKUP_ADS = "ADMOB";
+    public static String SELECT_ADS ="ADMOB";
+    public static String BACKUP_ADS = "FACEBOOK";
 
-    public static String MAIN_ADS_BANNER ="YOUR_PLACEMENT_ID";
-    public static String BACKUP_ADS_BANNER="ca-app-pub-3940256099942544/6300978111";
+    public static String MAIN_ADS_BANNER ="ca-app-pub-3940256099942544/6300978111x";
+    public static String BACKUP_ADS_BANNER="YOUR_PLACEMENT_ID";
 
     public static String MAIN_ADS_INTERTITIAL ="ca-app-pub-3940256099942544/1033173712x";
-    public static String BACKUP_ADS_INTERTITIAL="Game_Screen";
+    public static String BACKUP_ADS_INTERTITIAL="YOUR_PLACEMENT_ID";
 
     public static String MAIN_ADS_REWARDS ="ca-app-pub-3940256099942544/5224354917x";
     public static String BACKUP_ADS_REWARDS="DefaultRewardedVideo";

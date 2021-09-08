@@ -97,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
             case  "FACEBOOK":
                 AliendroidInitialize.SelectAdsFAN(MainActivity.this,SELECT_ADS,INITIALIZE_SDK_BACKUPADS);
                 AliendroidBanner.SmallBannerFAN(MainActivity.this, layAds, BACKUP_ADS, MAIN_ADS_BANNER, BACKUP_ADS_BANNER);
-
+                AliendroidIntertitial.LoadIntertitialFAN(MainActivity.this,BACKUP_ADS,MAIN_ADS_INTERTITIAL,BACKUP_ADS_INTERTITIAL);
                 break;
 
 
@@ -127,18 +127,26 @@ public class MainActivity extends AppCompatActivity {
             case "STARTAPP" :
                 AliendroidIntertitial.ShowIntertitialSartApp(MainActivity.this, BACKUP_ADS, MAIN_ADS_INTERTITIAL, BACKUP_ADS_INTERTITIAL, INTERVAL);
                 break;
+            case "FACEBOOK" :
+                AliendroidIntertitial.ShowIntertitialFAN(MainActivity.this, BACKUP_ADS, MAIN_ADS_INTERTITIAL, BACKUP_ADS_INTERTITIAL, INTERVAL);
+
+                break;
         }
 
 
     }
 
     public void munculreward(View view){
-        if (SELECT_ADS.equals("ADMOB")){
-            AliendroidReward.ShowRewardAdmob(MainActivity.this,BACKUP_ADS,MAIN_ADS_REWARDS,BACKUP_ADS_REWARDS);
-        } else if (SELECT_ADS.equals("APPLOVIN-M")){
-            AliendroidReward.ShowRewardApplovinMax(MainActivity.this,BACKUP_ADS,MAIN_ADS_REWARDS,BACKUP_ADS_REWARDS);
-        }else if (SELECT_ADS.equals("MOPUB")){
-            AliendroidReward.ShowRewardMopub(MainActivity.this,BACKUP_ADS,MAIN_ADS_REWARDS,BACKUP_ADS_REWARDS);
+        switch (SELECT_ADS) {
+            case "ADMOB":
+                AliendroidReward.ShowRewardAdmob(MainActivity.this, BACKUP_ADS, MAIN_ADS_REWARDS, BACKUP_ADS_REWARDS);
+                break;
+            case "APPLOVIN-M":
+                AliendroidReward.ShowRewardApplovinMax(MainActivity.this, BACKUP_ADS, MAIN_ADS_REWARDS, BACKUP_ADS_REWARDS);
+                break;
+            case "MOPUB":
+                AliendroidReward.ShowRewardMopub(MainActivity.this, BACKUP_ADS, MAIN_ADS_REWARDS, BACKUP_ADS_REWARDS);
+                break;
         }
     }
 

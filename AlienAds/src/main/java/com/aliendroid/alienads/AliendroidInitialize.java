@@ -1,7 +1,5 @@
 package com.aliendroid.alienads;
 
-import static com.aliendroid.alienads.BuildConfig.DEBUG;
-
 import android.app.Activity;
 import android.util.Log;
 
@@ -60,7 +58,7 @@ public class AliendroidInitialize {
             case "IRON":
                 IronSource.init(activity, idInitialize);
                 IntegrationHelper.validateIntegration(activity);
-                IronSource.setMetaData("Facebook_IS_CacheFlag","IMAGE");
+                IronSource.setMetaData("Facebook_IS_CacheFlag", "IMAGE");
                 break;
             case "STARTAPP":
                 StartAppSDK.init(activity, idInitialize, true);
@@ -111,8 +109,21 @@ public class AliendroidInitialize {
                         System.currentTimeMillis(),
                         true);
                 break;
-            case "APPLOVIN-D" :
+            case "APPLOVIN-D":
                 AppLovinSdk.initializeSdk(activity);
+                break;
+            case "FACEBOOK":
+                if (!AudienceNetworkAds.isInitialized(activity)) {
+                    if (BuildConfig.DEBUG) {
+                        AdSettings.turnOnSDKDebugger(activity);
+                        AdSettings.setTestMode(true);
+                    }
+
+                    AudienceNetworkAds
+                            .buildInitSettings(activity)
+                            .withInitListener(new AudienceNetworkInitializeHelper())
+                            .initialize();
+                }
                 break;
         }
     }
@@ -145,7 +156,7 @@ public class AliendroidInitialize {
                         System.currentTimeMillis(),
                         true);
                 break;
-            case "ADMOB" :
+            case "ADMOB":
                 MobileAds.initialize(activity, new OnInitializationCompleteListener() {
                     @Override
                     public void onInitializationComplete(InitializationStatus initializationStatus) {
@@ -158,6 +169,19 @@ public class AliendroidInitialize {
                         }
                     }
                 });
+                break;
+            case "FACEBOOK":
+                if (!AudienceNetworkAds.isInitialized(activity)) {
+                    if (BuildConfig.DEBUG) {
+                        AdSettings.turnOnSDKDebugger(activity);
+                        AdSettings.setTestMode(true);
+                    }
+
+                    AudienceNetworkAds
+                            .buildInitSettings(activity)
+                            .withInitListener(new AudienceNetworkInitializeHelper())
+                            .initialize();
+                }
                 break;
         }
     }
@@ -190,7 +214,7 @@ public class AliendroidInitialize {
                         System.currentTimeMillis(),
                         true);
                 break;
-            case "ADMOB" :
+            case "ADMOB":
                 MobileAds.initialize(activity, new OnInitializationCompleteListener() {
                     @Override
                     public void onInitializationComplete(InitializationStatus initializationStatus) {
@@ -203,6 +227,19 @@ public class AliendroidInitialize {
                         }
                     }
                 });
+                break;
+            case "FACEBOOK":
+                if (!AudienceNetworkAds.isInitialized(activity)) {
+                    if (BuildConfig.DEBUG) {
+                        AdSettings.turnOnSDKDebugger(activity);
+                        AdSettings.setTestMode(true);
+                    }
+
+                    AudienceNetworkAds
+                            .buildInitSettings(activity)
+                            .withInitListener(new AudienceNetworkInitializeHelper())
+                            .initialize();
+                }
                 break;
         }
     }
@@ -228,14 +265,14 @@ public class AliendroidInitialize {
                 IntegrationHelper.validateIntegration(activity);
                 break;
             case "STARTAPP":
-                StartAppSDK.init(activity,idInitializeBackupAds, true);
+                StartAppSDK.init(activity, idInitializeBackupAds, true);
                 StartAppAd.disableSplash();
                 StartAppSDK.setUserConsent(activity,
                         "pas",
                         System.currentTimeMillis(),
                         true);
                 break;
-            case "ADMOB" :
+            case "ADMOB":
                 MobileAds.initialize(activity, new OnInitializationCompleteListener() {
                     @Override
                     public void onInitializationComplete(InitializationStatus initializationStatus) {
@@ -249,10 +286,23 @@ public class AliendroidInitialize {
                     }
                 });
                 break;
+            case "FACEBOOK":
+                if (!AudienceNetworkAds.isInitialized(activity)) {
+                    if (BuildConfig.DEBUG) {
+                        AdSettings.turnOnSDKDebugger(activity);
+                        AdSettings.setTestMode(true);
+                    }
+
+                    AudienceNetworkAds
+                            .buildInitSettings(activity)
+                            .withInitListener(new AudienceNetworkInitializeHelper())
+                            .initialize();
+                }
+                break;
         }
     }
 
-    public static void SelectAdsStartApp(Activity activity, String selectAdsBackup, String idInitialize,String idInitializeBackupAds) {
+    public static void SelectAdsStartApp(Activity activity, String selectAdsBackup, String idInitialize, String idInitializeBackupAds) {
         StartAppSDK.init(activity, idInitialize, true);
         StartAppAd.disableSplash();
         StartAppSDK.setUserConsent(activity,
@@ -280,7 +330,7 @@ public class AliendroidInitialize {
                 configBuilder.withMediatedNetworkConfiguration(FacebookBanner.class.getName(), facebookBanner);
                 MoPub.initializeSdk(activity, configBuilder.build(), initSdkListener());
                 break;
-            case "ADMOB" :
+            case "ADMOB":
                 MobileAds.initialize(activity, new OnInitializationCompleteListener() {
                     @Override
                     public void onInitializationComplete(InitializationStatus initializationStatus) {
@@ -294,10 +344,23 @@ public class AliendroidInitialize {
                     }
                 });
                 break;
+            case "FACEBOOK":
+                if (!AudienceNetworkAds.isInitialized(activity)) {
+                    if (BuildConfig.DEBUG) {
+                        AdSettings.turnOnSDKDebugger(activity);
+                        AdSettings.setTestMode(true);
+                    }
+
+                    AudienceNetworkAds
+                            .buildInitSettings(activity)
+                            .withInitListener(new AudienceNetworkInitializeHelper())
+                            .initialize();
+                }
+                break;
         }
     }
 
-    public static void SelectAdsIron(Activity activity, String selectAdsBackup, String idInitialize,String idInitializeBackupAds) {
+    public static void SelectAdsIron(Activity activity, String selectAdsBackup, String idInitialize, String idInitializeBackupAds) {
         IronSource.init(activity, idInitialize);
         IntegrationHelper.validateIntegration(activity);
         switch (selectAdsBackup) {
@@ -325,7 +388,7 @@ public class AliendroidInitialize {
                 configBuilder.withMediatedNetworkConfiguration(FacebookBanner.class.getName(), facebookBanner);
                 MoPub.initializeSdk(activity, configBuilder.build(), initSdkListener());
                 break;
-            case "ADMOB" :
+            case "ADMOB":
                 MobileAds.initialize(activity, new OnInitializationCompleteListener() {
                     @Override
                     public void onInitializationComplete(InitializationStatus initializationStatus) {
@@ -339,12 +402,25 @@ public class AliendroidInitialize {
                     }
                 });
                 break;
+            case "FACEBOOK":
+                if (!AudienceNetworkAds.isInitialized(activity)) {
+                    if (BuildConfig.DEBUG) {
+                        AdSettings.turnOnSDKDebugger(activity);
+                        AdSettings.setTestMode(true);
+                    }
+
+                    AudienceNetworkAds
+                            .buildInitSettings(activity)
+                            .withInitListener(new AudienceNetworkInitializeHelper())
+                            .initialize();
+                }
+                break;
         }
     }
 
-    public static void SelectAdsFAN(Activity activity, String selectAdsBackup,String idInitializeBackupAds) {
+    public static void SelectAdsFAN(Activity activity, String selectAdsBackup, String idInitializeBackupAds) {
         if (!AudienceNetworkAds.isInitialized(activity)) {
-            if (DEBUG) {
+            if (BuildConfig.DEBUG) {
                 AdSettings.turnOnSDKDebugger(activity);
                 AdSettings.setTestMode(true);
             }
@@ -379,7 +455,7 @@ public class AliendroidInitialize {
                 configBuilder.withMediatedNetworkConfiguration(FacebookBanner.class.getName(), facebookBanner);
                 MoPub.initializeSdk(activity, configBuilder.build(), initSdkListener());
                 break;
-            case "ADMOB" :
+            case "ADMOB":
                 MobileAds.initialize(activity, new OnInitializationCompleteListener() {
                     @Override
                     public void onInitializationComplete(InitializationStatus initializationStatus) {

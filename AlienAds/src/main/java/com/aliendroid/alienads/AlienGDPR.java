@@ -2,7 +2,6 @@ package com.aliendroid.alienads;
 
 import android.app.Activity;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.applovin.sdk.AppLovinPrivacySettings;

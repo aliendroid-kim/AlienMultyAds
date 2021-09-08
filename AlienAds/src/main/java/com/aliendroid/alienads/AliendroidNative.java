@@ -24,7 +24,6 @@ import com.google.ads.mediation.facebook.FacebookExtras;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdLoader;
 import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.LoadAdError;
 import com.google.android.gms.ads.VideoOptions;
 import com.google.android.gms.ads.nativead.MediaView;
@@ -39,7 +38,6 @@ import com.startapp.sdk.ads.banner.Banner;
 import com.startapp.sdk.ads.banner.Mrec;
 
 public class AliendroidNative {
-    private static NativeAd nativeAd;
     public static Bundle extras;
     public static AdRequest request;
     public static MaxAdView adViewMax;
@@ -48,8 +46,10 @@ public class AliendroidNative {
     public static IronSourceBannerLayout adViewIron;
     public static Banner startAppBanner;
     public static Mrec startAppMrec;
-    public static void SmallNativeAdmob (Activity activity,String selectAds, String selectAdsBackup,FrameLayout layNative, String nativeId, String idBannerBackup, String Hpk1,
-                                    String Hpk2, String Hpk3, String Hpk4, String Hpk5) {
+    private static NativeAd nativeAd;
+
+    public static void SmallNativeAdmob(Activity activity, String selectAds, String selectAdsBackup, FrameLayout layNative, String nativeId, String idBannerBackup, String Hpk1,
+                                        String Hpk2, String Hpk3, String Hpk4, String Hpk5) {
 
         switch (selectAds) {
             case "ADMOB":
@@ -63,27 +63,27 @@ public class AliendroidNative {
                         }
                         switch (selectAdsBackup) {
                             case "APPLOVIN-M":
-                                if (adViewMax!=null){
+                                if (adViewMax != null) {
                                     adViewMax.destroy();
                                 }
                                 break;
                             case "MOPUB":
-                                if (moPubView!=null){
+                                if (moPubView != null) {
                                     moPubView.destroy();
                                 }
                                 break;
                             case "IRON":
-                                if (adViewIron!=null){
+                                if (adViewIron != null) {
                                     adViewIron.isDestroyed();
                                 }
                                 break;
                             case "STARTAPP":
-                                if (startAppBanner!=null){
+                                if (startAppBanner != null) {
                                     startAppBanner.hideBanner();
                                 }
                                 break;
                             case "APPLOVIN-D":
-                                if (adViewDiscovery!=null){
+                                if (adViewDiscovery != null) {
                                     adViewDiscovery.destroy();
                                 }
                                 break;
@@ -122,7 +122,7 @@ public class AliendroidNative {
                                             public void onAdFailedToLoad(LoadAdError loadAdError) {
                                                 switch (selectAdsBackup) {
                                                     case "APPLOVIN-M":
-                                                       adViewMax = new MaxAdView(idBannerBackup, activity);
+                                                        adViewMax = new MaxAdView(idBannerBackup, activity);
                                                         final boolean isTablet = AppLovinSdkUtils.isTablet(activity);
                                                         final int heightPx = AppLovinSdkUtils.dpToPx(activity, isTablet ? 90 : 50);
                                                         adViewMax.setLayoutParams(new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, heightPx));
@@ -218,8 +218,8 @@ public class AliendroidNative {
 
     }
 
-    public static void MediumNative (Activity activity,String selectAds, String selectAdsBackup,FrameLayout layNative, String nativeId, String idBannerBackup, String Hpk1,
-                                     String Hpk2, String Hpk3, String Hpk4, String Hpk5) {
+    public static void MediumNative(Activity activity, String selectAds, String selectAdsBackup, FrameLayout layNative, String nativeId, String idBannerBackup, String Hpk1,
+                                    String Hpk2, String Hpk3, String Hpk4, String Hpk5) {
 
         switch (selectAds) {
             case "ADMOB":
@@ -233,27 +233,27 @@ public class AliendroidNative {
                         }
                         switch (selectAdsBackup) {
                             case "APPLOVIN-M":
-                                if (adViewMax!=null){
+                                if (adViewMax != null) {
                                     adViewMax.destroy();
                                 }
                                 break;
                             case "MOPUB":
-                                if (moPubView!=null){
+                                if (moPubView != null) {
                                     moPubView.destroy();
                                 }
                                 break;
                             case "IRON":
-                                if (adViewIron!=null){
+                                if (adViewIron != null) {
                                     adViewIron.isDestroyed();
                                 }
                                 break;
                             case "STARTAPP":
-                                if (startAppMrec!=null){
+                                if (startAppMrec != null) {
                                     startAppMrec.hideBanner();
                                 }
                                 break;
                             case "APPLOVIN-D":
-                                if (adViewDiscovery!=null){
+                                if (adViewDiscovery != null) {
                                     adViewDiscovery.destroy();
                                 }
                                 break;
@@ -265,7 +265,6 @@ public class AliendroidNative {
                         layNative.removeAllViews();
                         layNative.addView(adView);
                     }
-
 
 
                 });
@@ -390,6 +389,7 @@ public class AliendroidNative {
 
 
     }
+
     private static void populateNativeAdView(NativeAd nativeAd, NativeAdView adView) {
         adView.setMediaView((MediaView) adView.findViewById(R.id.ad_media));
         adView.setHeadlineView(adView.findViewById(R.id.ad_headline));
