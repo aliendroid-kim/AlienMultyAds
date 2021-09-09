@@ -332,6 +332,81 @@ public class AliendroidIntertitial {
         }
     }
 
+    public static void LoadIntertitialApplovinDisHPK(Activity activity, String selectAdsBackup, String idIntertitial, String idIntertitialBackup,
+                                                     String HPK1,
+                                                     String HPK2, String HPK3, String HPK4, String HPK5
+    ) {
+
+        AdRequest.Builder builder = new AdRequest.Builder().addKeyword(HPK1).addKeyword(HPK2).addKeyword(HPK3).addKeyword(HPK4).addKeyword(HPK5);;
+        Bundle interstitialExtras = new Bundle();
+        interstitialExtras.putString("zone_id", idIntertitial);
+        builder.addCustomEventExtrasBundle(AppLovinCustomEventInterstitial.class, interstitialExtras);
+
+        AppLovinSdk.getInstance(activity).getAdService().loadNextAd(AppLovinAdSize.INTERSTITIAL, new AppLovinAdLoadListener() {
+            @Override
+            public void adReceived(AppLovinAd ad) {
+                loadedAd = ad;
+            }
+
+            @Override
+            public void failedToReceiveAd(int errorCode) {
+                // Look at AppLovinErrorCodes.java for list of error codes.
+            }
+        });
+        interstitialAdlovin = AppLovinInterstitialAd.create(AppLovinSdk.getInstance(activity), activity);
+
+        switch (selectAdsBackup) {
+            case "APPLOVIN-M":
+                if (idIntertitialBackup.equals("")) {
+                    interstitialAd = new MaxInterstitialAd("qwerty12345", activity);
+                    interstitialAd.loadAd();
+                } else {
+                    interstitialAd = new MaxInterstitialAd(idIntertitialBackup, activity);
+                    interstitialAd.loadAd();
+                }
+
+                break;
+            case "MOPUB":
+                mInterstitial = new MoPubInterstitial(activity, idIntertitialBackup);
+                mInterstitial.load();
+                break;
+            case "IRON":
+                IronSource.isInterstitialPlacementCapped(idIntertitialBackup);
+                IronSource.loadInterstitial();
+                break;
+            case "ADMOB":
+                Bundle extras = new FacebookExtras()
+                        .setNativeBanner(true)
+                        .build();
+                AdRequest request = new AdRequest.Builder()
+                        .addNetworkExtrasBundle(FacebookAdapter.class, extras)
+                        .build();
+                InterstitialAd.load(activity, idIntertitialBackup, request,
+                        new InterstitialAdLoadCallback() {
+                            @Override
+                            public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
+                                // The mInterstitialAd reference will be null until
+                                // an ad is loaded.
+                                mInterstitialAd = interstitialAd;
+                                Log.i(TAG, "onAdLoaded");
+                            }
+
+                            @Override
+                            public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                                // Handle the error
+                                Log.i(TAG, loadAdError.getMessage());
+                                mInterstitialAd = null;
+                            }
+                        });
+                break;
+            case "FACEBOOK":
+                FBinterstitialAd = new com.facebook.ads.InterstitialAd(activity, idIntertitialBackup);
+                FBinterstitialAd.loadAd();
+                break;
+
+        }
+    }
+
     public static void LoadIntertitialApplovinMax(Activity activity, String selectAdsBackup, String idIntertitial, String idIntertitialBackup) {
 
         interstitialAd = new MaxInterstitialAd(idIntertitial, activity);
@@ -812,7 +887,69 @@ public class AliendroidIntertitial {
         }
 
     }
+    public static void ShowIntertitialApplovinDisHPK(Activity activity, String selectAdsBackup, String idIntertitial, String idIntertitialBackup,
+                                                  int interval,String HPK1,
+                                                     String HPK2, String HPK3, String HPK4, String HPK5) {
+        if (counter >= interval) {
+            if (interstitialAdlovin != null) {
+                AppLovinAdDisplayListener listener = new AppLovinAdDisplayListener() {
+                    @Override
+                    public void adDisplayed(AppLovinAd ad) {
 
+                    }
+
+                    @Override
+                    public void adHidden(AppLovinAd ad) {
+                        switch (selectAdsBackup) {
+                            case "APPLOVIN-M":
+                                if (interstitialAd.isReady()) {
+                                    interstitialAd.showAd();
+                                    interstitialAd.loadAd();
+                                } else {
+                                    interstitialAd.loadAd();
+                                }
+                                break;
+                            case "MOPUB":
+                                if (mInterstitial.isReady()) {
+                                    mInterstitial.show();
+                                    mInterstitial.load();
+                                } else {
+                                    mInterstitial.load();
+                                }
+                                break;
+                            case "IRON":
+                                IronSource.showInterstitial(idIntertitialBackup);
+                                break;
+                            case "STARTAPP":
+                                StartAppAd.showAd(activity);
+                                break;
+                            case "ADMOB":
+                                if (mInterstitialAd != null) {
+                                    mInterstitialAd.show(activity);
+                                }
+                                break;
+                            case "FACEBOOK":
+                                if (FBinterstitialAd != null || !FBinterstitialAd.isAdLoaded()) {
+                                    FBinterstitialAd.show();
+                                }
+                                break;
+                        }
+                        LoadIntertitialApplovinDisHPK(activity, selectAdsBackup, idIntertitial, idIntertitialBackup,HPK1,
+                                HPK2,HPK3,HPK4,HPK5);
+                    }
+                };
+                interstitialAdlovin.setAdDisplayListener(listener);
+                interstitialAdlovin.showAndRender(loadedAd);
+                LoadIntertitialApplovinDisHPK(activity, selectAdsBackup, idIntertitial, idIntertitialBackup,HPK1,
+                        HPK2,HPK3,HPK4,HPK5);
+            }
+
+            counter = 0;
+        } else {
+            counter++;
+        }
+
+    }
     public static void ShowIntertitialApplovinMax(Activity activity, String selectAdsBackup, String idIntertitial, String idIntertitialBackup,
                                                   int interval) {
         if (counter >= interval) {
