@@ -370,6 +370,117 @@ public class AliendroidBanner {
 
     }
 
+    public static void SmallBannerApplovinDisHPK(Activity activity, RelativeLayout layAds, String selectAdsBackup, String idBanner, String idBannerBackup, String HPK1,
+                                                 String HPK2, String HPK3, String HPK4, String HPK5) {
+
+        AdRequest.Builder builder = new AdRequest.Builder().addKeyword(HPK1).addKeyword(HPK2).addKeyword(HPK3).addKeyword(HPK4).addKeyword(HPK5);
+        Bundle bannerExtras = new Bundle();
+        bannerExtras.putString("zone_id", idBanner);
+        builder.addCustomEventExtrasBundle(AppLovinCustomEventBanner.class, bannerExtras);
+        boolean isTablet2 = AppLovinSdkUtils.isTablet(activity);
+        AppLovinAdSize adSize = isTablet2 ? AppLovinAdSize.LEADER : AppLovinAdSize.BANNER;
+        adViewDiscovery = new AppLovinAdView(adSize, activity);
+        AppLovinAdLoadListener loadListener = new AppLovinAdLoadListener() {
+            @Override
+            public void adReceived(AppLovinAd ad) {
+                switch (selectAdsBackup) {
+                    case "APPLOVIN-M":
+                        if (adViewMax != null) {
+                            adViewMax.destroy();
+                        }
+                        break;
+                    case "MOPUB":
+                        if (moPubView != null) {
+                            moPubView.destroy();
+                        }
+                        break;
+                    case "IRON":
+                        if (adViewIron != null) {
+                            adViewIron.isDestroyed();
+                        }
+                        break;
+                    case "STARTAPP":
+                        if (startAppBanner != null) {
+                            startAppBanner.hideBanner();
+                        }
+                        break;
+                    case "ADMOB":
+                        if (adViewAdmob != null) {
+                            adViewAdmob.destroy();
+                        }
+                        break;
+                    case "FACEBOOK":
+                        if (adViewFAN != null) {
+                            adViewFAN.destroy();
+                        }
+                        break;
+                }
+            }
+
+            @Override
+            public void failedToReceiveAd(int errorCode) {
+                switch (selectAdsBackup) {
+                    case "APPLOVIN-M":
+                        adViewMax = new MaxAdView(idBannerBackup, activity);
+                        adViewMax.stopAutoRefresh();
+                        final boolean isTablet = AppLovinSdkUtils.isTablet(activity);
+                        final int heightPx = AppLovinSdkUtils.dpToPx(activity, isTablet ? 90 : 50);
+                        adViewMax.setLayoutParams(new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, heightPx));
+                        layAds.addView(adViewMax);
+                        adViewMax.loadAd();
+                        break;
+                    case "MOPUB":
+                        moPubView = new MoPubView(activity);
+                        moPubView.setAutorefreshEnabled(false);
+                        moPubView.setAdUnitId(idBannerBackup);
+                        layAds.addView(moPubView);
+                        moPubView.loadAd(MoPubView.MoPubAdSize.HEIGHT_50);
+                        break;
+                    case "IRON":
+                        adViewIron = IronSource.createBanner(activity, ISBannerSize.BANNER);
+                        FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT,
+                                FrameLayout.LayoutParams.WRAP_CONTENT);
+                        layAds.addView(adViewIron, 0, layoutParams);
+                        IronSource.loadBanner(adViewIron, idBannerBackup);
+                        break;
+                    case "STARTAPP":
+                        startAppBanner = new Banner(activity);
+                        RelativeLayout.LayoutParams bannerParameters =
+                                new RelativeLayout.LayoutParams(
+                                        RelativeLayout.LayoutParams.WRAP_CONTENT,
+                                        RelativeLayout.LayoutParams.WRAP_CONTENT);
+                        bannerParameters.addRule(RelativeLayout.CENTER_HORIZONTAL);
+                        layAds.addView(startAppBanner, bannerParameters);
+                        break;
+                    case "ADMOB":
+                        Bundle extras = new FacebookExtras()
+                                .setNativeBanner(true)
+                                .build();
+                        AdRequest request = new AdRequest.Builder()
+                                .addNetworkExtrasBundle(FacebookAdapter.class, extras)
+                                .build();
+                        adViewAdmob = new AdView(activity);
+                        adViewAdmob.setAdUnitId(idBannerBackup);
+                        layAds.addView(adViewAdmob);
+                        AdSize adSizeAdmob = getAdSize(activity);
+                        adViewAdmob.setAdSize(adSizeAdmob);
+                        adViewAdmob.loadAd(request);
+                        break;
+                    case "FACEBOOK":
+                        adViewFAN = new com.facebook.ads.AdView(activity, idBannerBackup,
+                                com.facebook.ads.AdSize.BANNER_HEIGHT_50);
+                        layAds.addView(adViewFAN);
+                        adViewFAN.loadAd();
+                        break;
+                }
+            }
+        };
+        adViewDiscovery.setAdLoadListener(loadListener);
+        layAds.addView(adViewDiscovery);
+        adViewDiscovery.loadNextAd();
+
+    }
+
     public static void SmallBannerApplovinDis(Activity activity, RelativeLayout layAds, String selectAdsBackup, String idBanner, String idBannerBackup) {
 
         AdRequest.Builder builder = new AdRequest.Builder();
