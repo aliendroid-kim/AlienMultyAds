@@ -26,6 +26,7 @@ import com.google.android.gms.ads.AdLoader;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.LoadAdError;
 import com.google.android.gms.ads.VideoOptions;
+import com.google.android.gms.ads.admanager.AdManagerAdRequest;
 import com.google.android.gms.ads.nativead.MediaView;
 import com.google.android.gms.ads.nativead.NativeAd;
 import com.google.android.gms.ads.nativead.NativeAdOptions;
@@ -218,6 +219,167 @@ public class AliendroidNative {
 
     }
 
+    public static void SmallNativeGoogleAds(Activity activity, String selectAds, String selectAdsBackup, FrameLayout layNative, String nativeId, String idBannerBackup) {
+
+        switch (selectAds) {
+            case "GOOGLE-ADS":
+                AdLoader.Builder builder = new AdLoader.Builder(activity, nativeId);
+                builder.forNativeAd(new NativeAd.OnNativeAdLoadedListener() {
+                    @Override
+                    public void onNativeAdLoaded(@NonNull NativeAd nativeAds) {
+
+                        if (nativeAd != null) {
+                            nativeAd.destroy();
+                        }
+                        switch (selectAdsBackup) {
+                            case "APPLOVIN-M":
+                                if (adViewMax != null) {
+                                    adViewMax.destroy();
+                                }
+                                break;
+                            case "MOPUB":
+                                if (moPubView != null) {
+                                    moPubView.destroy();
+                                }
+                                break;
+                            case "IRON":
+                                if (adViewIron != null) {
+                                    adViewIron.isDestroyed();
+                                }
+                                break;
+                            case "STARTAPP":
+                                if (startAppBanner != null) {
+                                    startAppBanner.hideBanner();
+                                }
+                                break;
+                            case "APPLOVIN-D":
+                                if (adViewDiscovery != null) {
+                                    adViewDiscovery.destroy();
+                                }
+                                break;
+                        }
+                        nativeAd = nativeAds;
+                        NativeAdView adView = (NativeAdView) activity.getLayoutInflater()
+                                .inflate(R.layout.admob_small_native, null);
+                        populateNativeAdView(nativeAds, adView);
+                        layNative.removeAllViews();
+                        layNative.addView(adView);
+                    }
+
+                });
+
+                VideoOptions videoOptions = new VideoOptions.Builder()
+                        .build();
+
+                NativeAdOptions adOptions = new NativeAdOptions.Builder()
+                        .setVideoOptions(videoOptions)
+                        .build();
+
+                builder.withNativeAdOptions(adOptions);
+
+                AdManagerAdRequest adRequest = new AdManagerAdRequest.Builder().build();
+                AdLoader adLoader =
+                        builder
+                                .withAdListener(
+                                        new AdListener() {
+                                            @Override
+                                            public void onAdFailedToLoad(LoadAdError loadAdError) {
+                                                switch (selectAdsBackup) {
+                                                    case "APPLOVIN-M":
+                                                        adViewMax = new MaxAdView(idBannerBackup, activity);
+                                                        final boolean isTablet = AppLovinSdkUtils.isTablet(activity);
+                                                        final int heightPx = AppLovinSdkUtils.dpToPx(activity, isTablet ? 90 : 50);
+                                                        adViewMax.setLayoutParams(new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, heightPx));
+                                                        layNative.addView(adViewMax);
+                                                        adViewMax.loadAd();
+                                                        break;
+                                                    case "MOPUB":
+                                                        moPubView = new MoPubView(activity);
+                                                        moPubView.setAdUnitId(idBannerBackup);
+                                                        layNative.addView(moPubView);
+                                                        moPubView.loadAd(MoPubView.MoPubAdSize.HEIGHT_50);
+                                                        break;
+                                                    case "IRON":
+                                                        adViewIron = IronSource.createBanner(activity, ISBannerSize.BANNER);
+                                                        FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT,
+                                                                FrameLayout.LayoutParams.WRAP_CONTENT);
+                                                        layNative.addView(adViewIron, 0, layoutParams);
+                                                        IronSource.loadBanner(adViewIron, idBannerBackup);
+                                                        break;
+                                                    case "STARTAPP":
+                                                        startAppBanner = new Banner(activity);
+                                                        RelativeLayout.LayoutParams bannerParameters =
+                                                                new RelativeLayout.LayoutParams(
+                                                                        RelativeLayout.LayoutParams.WRAP_CONTENT,
+                                                                        RelativeLayout.LayoutParams.WRAP_CONTENT);
+                                                        bannerParameters.addRule(RelativeLayout.CENTER_HORIZONTAL);
+                                                        layNative.addView(startAppBanner, bannerParameters);
+                                                        break;
+                                                    case "APPLOVIN-D":
+                                                        AdRequest.Builder builder = new AdRequest.Builder();
+                                                        Bundle bannerExtras = new Bundle();
+                                                        bannerExtras.putString("zone_id", idBannerBackup);
+                                                        builder.addCustomEventExtrasBundle(AppLovinCustomEventBanner.class, bannerExtras);
+
+                                                        boolean isTablet2 = AppLovinSdkUtils.isTablet(activity);
+                                                        AppLovinAdSize adSize = isTablet2 ? AppLovinAdSize.LEADER : AppLovinAdSize.BANNER;
+                                                        adViewDiscovery = new AppLovinAdView(adSize, activity);
+                                                        layNative.addView(adViewDiscovery);
+                                                        adViewDiscovery.loadNextAd();
+                                                        break;
+                                                }
+                                            }
+                                        })
+                                .build();
+                adLoader.loadAd(adRequest);
+                break;
+            case "APPLOVIN-M":
+                adViewMax = new MaxAdView(nativeId, activity);
+                final boolean isTablet = AppLovinSdkUtils.isTablet(activity);
+                final int heightPx = AppLovinSdkUtils.dpToPx(activity, isTablet ? 90 : 50);
+                adViewMax.setLayoutParams(new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, heightPx));
+                layNative.addView(adViewMax);
+                adViewMax.loadAd();
+                break;
+            case "MOPUB":
+                moPubView = new MoPubView(activity);
+                moPubView.setAdUnitId(nativeId);
+                layNative.addView(moPubView);
+                moPubView.loadAd(MoPubView.MoPubAdSize.HEIGHT_50);
+                break;
+            case "IRON":
+                adViewIron = IronSource.createBanner(activity, ISBannerSize.BANNER);
+                FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT,
+                        FrameLayout.LayoutParams.WRAP_CONTENT);
+                layNative.addView(adViewIron, 0, layoutParams);
+                IronSource.loadBanner(adViewIron, nativeId);
+                break;
+            case "STARTAPP":
+                startAppBanner = new Banner(activity);
+                RelativeLayout.LayoutParams bannerParameters =
+                        new RelativeLayout.LayoutParams(
+                                RelativeLayout.LayoutParams.WRAP_CONTENT,
+                                RelativeLayout.LayoutParams.WRAP_CONTENT);
+                bannerParameters.addRule(RelativeLayout.CENTER_HORIZONTAL);
+                layNative.addView(startAppBanner, bannerParameters);
+                break;
+            case "APPLOVIN-D":
+                AdRequest.Builder builder2 = new AdRequest.Builder();
+                Bundle bannerExtras = new Bundle();
+                bannerExtras.putString("zone_id", nativeId);
+                builder2.addCustomEventExtrasBundle(AppLovinCustomEventBanner.class, bannerExtras);
+
+                boolean isTablet2 = AppLovinSdkUtils.isTablet(activity);
+                AppLovinAdSize adSize = isTablet2 ? AppLovinAdSize.LEADER : AppLovinAdSize.BANNER;
+                adViewDiscovery = new AppLovinAdView(adSize, activity);
+                layNative.addView(adViewDiscovery);
+                adViewDiscovery.loadNextAd();
+                break;
+        }
+
+
+    }
+
     public static void MediumNative(Activity activity, String selectAds, String selectAdsBackup, FrameLayout layNative, String nativeId, String idBannerBackup, String Hpk1,
                                     String Hpk2, String Hpk3, String Hpk4, String Hpk5) {
 
@@ -375,6 +537,171 @@ public class AliendroidNative {
             case "APPLOVIN-D":
                 AdRequest.Builder builder2 = new AdRequest.Builder().addKeyword(Hpk1).addKeyword(Hpk2)
                         .addKeyword(Hpk3).addKeyword(Hpk4).addKeyword(Hpk5);
+                Bundle bannerExtras = new Bundle();
+                bannerExtras.putString("zone_id", nativeId);
+                builder2.addCustomEventExtrasBundle(AppLovinCustomEventBanner.class, bannerExtras);
+
+                boolean isTablet2 = AppLovinSdkUtils.isTablet(activity);
+                AppLovinAdSize adSize = isTablet2 ? AppLovinAdSize.LEADER : AppLovinAdSize.BANNER;
+                adViewDiscovery = new AppLovinAdView(adSize, activity);
+                layNative.addView(adViewDiscovery);
+                adViewDiscovery.loadNextAd();
+                break;
+        }
+
+
+    }
+
+    public static void MediumNativeGoogleAds(Activity activity, String selectAds, String selectAdsBackup, FrameLayout layNative, String nativeId, String idBannerBackup
+                                   ) {
+
+        switch (selectAds) {
+            case "GOOGLE-ADS":
+                AdLoader.Builder builder = new AdLoader.Builder(activity, nativeId);
+                builder.forNativeAd(new NativeAd.OnNativeAdLoadedListener() {
+                    @Override
+                    public void onNativeAdLoaded(@NonNull NativeAd nativeAds) {
+
+                        if (nativeAd != null) {
+                            nativeAd.destroy();
+                        }
+                        switch (selectAdsBackup) {
+                            case "APPLOVIN-M":
+                                if (adViewMax != null) {
+                                    adViewMax.destroy();
+                                }
+                                break;
+                            case "MOPUB":
+                                if (moPubView != null) {
+                                    moPubView.destroy();
+                                }
+                                break;
+                            case "IRON":
+                                if (adViewIron != null) {
+                                    adViewIron.isDestroyed();
+                                }
+                                break;
+                            case "STARTAPP":
+                                if (startAppMrec != null) {
+                                    startAppMrec.hideBanner();
+                                }
+                                break;
+                            case "APPLOVIN-D":
+                                if (adViewDiscovery != null) {
+                                    adViewDiscovery.destroy();
+                                }
+                                break;
+                        }
+                        nativeAd = nativeAds;
+                        NativeAdView adView = (NativeAdView) activity.getLayoutInflater()
+                                .inflate(R.layout.admob_big_native, null);
+                        populateNativeAdView(nativeAds, adView);
+                        layNative.removeAllViews();
+                        layNative.addView(adView);
+                    }
+
+
+                });
+
+                VideoOptions videoOptions = new VideoOptions.Builder()
+                        .build();
+
+                NativeAdOptions adOptions = new NativeAdOptions.Builder()
+                        .setVideoOptions(videoOptions)
+                        .build();
+
+                builder.withNativeAdOptions(adOptions);
+
+
+                AdManagerAdRequest adRequest = new AdManagerAdRequest.Builder().build();
+                AdLoader adLoader =
+                        builder
+                                .withAdListener(
+                                        new AdListener() {
+                                            @Override
+                                            public void onAdFailedToLoad(LoadAdError loadAdError) {
+                                                switch (selectAdsBackup) {
+                                                    case "APPLOVIN-M": {
+                                                        adViewMax = new MaxAdView(idBannerBackup, MaxAdFormat.MREC, activity);
+                                                        final int widthPx = AppLovinSdkUtils.dpToPx(activity, 300);
+                                                        final int heightPx = AppLovinSdkUtils.dpToPx(activity, 250);
+                                                        adViewMax.setLayoutParams(new ConstraintLayout.LayoutParams(widthPx, heightPx));
+                                                        layNative.addView(adViewMax);
+                                                        adViewMax.loadAd();
+                                                        break;
+                                                    }
+                                                    case "MOPUB":
+                                                        moPubView = new MoPubView(activity);
+                                                        moPubView.setAdUnitId(idBannerBackup);
+                                                        layNative.addView(moPubView);
+                                                        moPubView.loadAd(MoPubView.MoPubAdSize.HEIGHT_250);
+                                                        break;
+                                                    case "IRON":
+                                                        adViewIron = IronSource.createBanner(activity, ISBannerSize.RECTANGLE);
+                                                        FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT,
+                                                                FrameLayout.LayoutParams.WRAP_CONTENT);
+                                                        layNative.addView(adViewIron, 0, layoutParams);
+                                                        IronSource.loadBanner(adViewIron, idBannerBackup);
+                                                        break;
+                                                    case "STARTAPP":
+                                                        startAppMrec = new Mrec(activity);
+                                                        RelativeLayout.LayoutParams bannerParameters =
+                                                                new RelativeLayout.LayoutParams(
+                                                                        RelativeLayout.LayoutParams.WRAP_CONTENT,
+                                                                        RelativeLayout.LayoutParams.WRAP_CONTENT);
+                                                        bannerParameters.addRule(RelativeLayout.CENTER_HORIZONTAL);
+                                                        layNative.addView(startAppMrec, bannerParameters);
+                                                        break;
+                                                    case "APPLOVIN-D":
+                                                        AdRequest.Builder builder = new AdRequest.Builder();
+                                                        Bundle bannerExtras = new Bundle();
+                                                        bannerExtras.putString("zone_id", idBannerBackup);
+                                                        builder.addCustomEventExtrasBundle(AppLovinCustomEventBanner.class, bannerExtras);
+
+                                                        boolean isTablet2 = AppLovinSdkUtils.isTablet(activity);
+                                                        AppLovinAdSize adSize = isTablet2 ? AppLovinAdSize.LEADER : AppLovinAdSize.BANNER;
+                                                        adViewDiscovery = new AppLovinAdView(adSize, activity);
+                                                        layNative.addView(adViewDiscovery);
+                                                        adViewDiscovery.loadNextAd();
+                                                        break;
+                                                }
+                                            }
+                                        })
+                                .build();
+                adLoader.loadAd(adRequest);
+                break;
+            case "APPLOVIN-M":
+                adViewMax = new MaxAdView(nativeId, MaxAdFormat.MREC, activity);
+                final int widthPx = AppLovinSdkUtils.dpToPx(activity, 300);
+                final int heightPx = AppLovinSdkUtils.dpToPx(activity, 250);
+                adViewMax.setLayoutParams(new ConstraintLayout.LayoutParams(widthPx, heightPx));
+                layNative.addView(adViewMax);
+                adViewMax.loadAd();
+                break;
+            case "MOPUB":
+                moPubView = new MoPubView(activity);
+                moPubView.setAdUnitId(nativeId);
+                layNative.addView(moPubView);
+                moPubView.loadAd(MoPubView.MoPubAdSize.HEIGHT_250);
+                break;
+            case "IRON":
+                adViewIron = IronSource.createBanner(activity, ISBannerSize.RECTANGLE);
+                FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT,
+                        FrameLayout.LayoutParams.WRAP_CONTENT);
+                layNative.addView(adViewIron, 0, layoutParams);
+                IronSource.loadBanner(adViewIron, nativeId);
+                break;
+            case "STARTAPP":
+                startAppMrec = new Mrec(activity);
+                RelativeLayout.LayoutParams bannerParameters =
+                        new RelativeLayout.LayoutParams(
+                                RelativeLayout.LayoutParams.WRAP_CONTENT,
+                                RelativeLayout.LayoutParams.WRAP_CONTENT);
+                bannerParameters.addRule(RelativeLayout.CENTER_HORIZONTAL);
+                layNative.addView(startAppMrec, bannerParameters);
+                break;
+            case "APPLOVIN-D":
+                AdRequest.Builder builder2 = new AdRequest.Builder();
                 Bundle bannerExtras = new Bundle();
                 bannerExtras.putString("zone_id", nativeId);
                 builder2.addCustomEventExtrasBundle(AppLovinCustomEventBanner.class, bannerExtras);

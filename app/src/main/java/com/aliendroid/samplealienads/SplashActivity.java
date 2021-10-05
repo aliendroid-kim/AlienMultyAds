@@ -29,6 +29,9 @@ public class SplashActivity extends AppCompatActivity {
             case "ADMOB":
                 AliendroidInitialize.SelectAdsAdmob(SplashActivity.this, BACKUP_ADS, INITIALIZE_SDK);
                 break;
+            case "GOOGLE-ADS":
+                AliendroidInitialize.SelectAdsAdmob(SplashActivity.this, BACKUP_ADS, INITIALIZE_SDK);
+                break;
             case "APPLOVIN-D":
                 AliendroidInitialize.SelectAdsApplovinDis(SplashActivity.this, BACKUP_ADS, INITIALIZE_SDK);
                 break;
@@ -46,6 +49,7 @@ public class SplashActivity extends AppCompatActivity {
                 break;
         }
         AlienOpenAds.LoadOpenAds(SettingAds.OPEN_ADS_ADMOB);
+
         new CountDownTimer(10000, 1000) {
                 @Override
                 public void onFinish() {

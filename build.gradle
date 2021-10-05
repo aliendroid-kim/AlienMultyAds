@@ -6,11 +6,12 @@ buildscript {
         maven {
             url 'https://android-sdk.is.com/'
         }
+        maven { url 'https://artifacts.applovin.com/android' }
     }
     dependencies {
         classpath "com.android.tools.build:gradle:4.2.2"
         classpath 'com.github.dcendents:android-maven-gradle-plugin:2.1'
-
+        classpath "com.applovin.quality:AppLovinQualityServiceGradlePlugin:+"
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
@@ -24,6 +25,7 @@ allprojects {
         maven {
             url 'https://android-sdk.is.com/'
         }
+        maven { url 'https://artifacts.applovin.com/android' }
     }
 }
 

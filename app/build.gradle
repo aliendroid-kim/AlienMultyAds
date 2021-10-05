@@ -1,7 +1,10 @@
 plugins {
     id 'com.android.application'
 }
-
+apply plugin: 'applovin-quality-service'
+applovin {
+    apiKey "boIVrHv-1Wvq3hTS1pLXRWH2qJMvN2cQtLvioF5UKy5tIiT_dv5e2TDoh8XZLFKCcZELvPZZumE5nCPqfrNBtb"
+}
 android {
     compileSdkVersion 31
     defaultConfig {
