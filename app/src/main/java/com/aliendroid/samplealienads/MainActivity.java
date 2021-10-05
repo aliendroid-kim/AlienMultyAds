@@ -89,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
                 AliendroidIntertitial.LoadIntertitialStartApp(MainActivity.this, BACKUP_ADS, MAIN_ADS_INTERTITIAL, BACKUP_ADS_INTERTITIAL);
                 break;
             case "IRON":
-
+                AliendroidInitialize.SelectAdsIron(MainActivity.this,BACKUP_ADS,INITIALIZE_SDK,INITIALIZE_SDK_BACKUPADS);
                 AliendroidBanner.SmallBannerIron(MainActivity.this, layAds, BACKUP_ADS, MAIN_ADS_BANNER, BACKUP_ADS_BANNER);
                AliendroidIntertitial.LoadIntertitialIron(MainActivity.this, BACKUP_ADS, MAIN_ADS_INTERTITIAL, BACKUP_ADS_INTERTITIAL);
                 break;
@@ -104,12 +104,15 @@ public class MainActivity extends AppCompatActivity {
                 AliendroidIntertitial.LoadIntertitialGoogleAds(MainActivity.this,BACKUP_ADS,MAIN_ADS_INTERTITIAL,BACKUP_ADS_INTERTITIAL);
                 AliendroidReward.LoadRewardGoogleAds(MainActivity.this,BACKUP_ADS,MAIN_ADS_REWARDS,BACKUP_ADS_REWARDS);
                 AliendroidNative.MediumNativeGoogleAds(MainActivity.this,SELECT_ADS, BACKUP_ADS,nativeads,NATIVE_ADS_ADMOB,BACKUP_ADS_BANNER);
-
+                break;
+            case "UNITY":
+                AliendroidInitialize.SelectAdsUnity(MainActivity.this,BACKUP_ADS,INITIALIZE_SDK,INITIALIZE_SDK_BACKUPADS);
+                AliendroidBanner.SmallBannerUnity(MainActivity.this, layAds, BACKUP_ADS, MAIN_ADS_BANNER, BACKUP_ADS_BANNER);
+                AliendroidIntertitial.LoadIntertitialUnity(MainActivity.this, BACKUP_ADS, MAIN_ADS_INTERTITIAL, BACKUP_ADS_INTERTITIAL);
+                AliendroidReward.LoadRewardUnity(MainActivity.this,BACKUP_ADS,MAIN_ADS_REWARDS,BACKUP_ADS_REWARDS);
                 break;
 
-
         }
-
 
     }
 
@@ -141,6 +144,9 @@ public class MainActivity extends AppCompatActivity {
             case "GOOGLE-ADS" :
                 AliendroidIntertitial.ShowIntertitialGoogleAds(MainActivity.this, BACKUP_ADS, MAIN_ADS_INTERTITIAL, BACKUP_ADS_INTERTITIAL, INTERVAL);
                 break;
+            case "UNITY" :
+                AliendroidIntertitial.ShowIntertitialUnity(MainActivity.this, BACKUP_ADS, MAIN_ADS_INTERTITIAL, BACKUP_ADS_INTERTITIAL, INTERVAL);
+                break;
         }
 
 
@@ -160,6 +166,10 @@ public class MainActivity extends AppCompatActivity {
             case "GOOGLE-ADS":
                 AliendroidReward.ShowRewardGoogleAds(MainActivity.this, BACKUP_ADS, MAIN_ADS_REWARDS, BACKUP_ADS_REWARDS);
                 break;
+            case "UNITY":
+                AliendroidReward.ShowRewardUnity(MainActivity.this, BACKUP_ADS, MAIN_ADS_REWARDS, BACKUP_ADS_REWARDS);
+                break;
+
 
         }
     }

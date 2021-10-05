@@ -33,6 +33,8 @@ import com.mopub.mobileads.MoPubRewardedAds;
 import com.startapp.sdk.adsbase.StartAppAd;
 import com.startapp.sdk.adsbase.adlisteners.AdEventListener;
 import com.startapp.sdk.adsbase.adlisteners.VideoListener;
+import com.unity3d.ads.IUnityAdsListener;
+import com.unity3d.ads.UnityAds;
 
 import java.util.Map;
 import java.util.Set;
@@ -45,27 +47,24 @@ public class AliendroidReward {
     public static StartAppAd rewardedVideo;
     private static RewardedAd mRewardedAd;
 
-    public static void LoadReward(Activity activity, String selectAds, String idReward) {
-        switch (selectAds) {
-            case "ADMOB":
-                AdRequest adRequest = new AdRequest.Builder().build();
-                RewardedAd.load(activity, idReward,
-                        adRequest, new RewardedAdLoadCallback() {
-                            @Override
-                            public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
-                                mRewardedAd = null;
-                            }
+    public static void LoadRewardAdmob(Activity activity, String selectBackupAds, String idReward, String idBackupReward) {
+        AdRequest adRequest = new AdRequest.Builder().build();
+        RewardedAd.load(activity, idReward,
+                adRequest, new RewardedAdLoadCallback() {
+                    @Override
+                    public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                        mRewardedAd = null;
+                    }
 
-                            @Override
-                            public void onAdLoaded(@NonNull RewardedAd rewardedAd) {
-                                mRewardedAd = rewardedAd;
+                    @Override
+                    public void onAdLoaded(@NonNull RewardedAd rewardedAd) {
+                        mRewardedAd = rewardedAd;
 
-                            }
-                        });
-
-                break;
+                    }
+                });
+        switch (selectBackupAds) {
             case "APPLOVIN-M":
-                rewardedAd = MaxRewardedAd.getInstance(idReward, activity);
+                rewardedAd = MaxRewardedAd.getInstance(idBackupReward, activity);
                 rewardedAd.loadAd();
                 MaxRewardedAdListener maxRewardedAdListener = new MaxRewardedAdListener() {
                     @Override
@@ -116,10 +115,10 @@ public class AliendroidReward {
                 rewardedAd.setListener(maxRewardedAdListener);
                 break;
             case "MOPUB":
-                MoPubRewardedAds.loadRewardedAd(idReward);
+                MoPubRewardedAds.loadRewardedAd(idBackupReward);
                 break;
             case "APPLOVIN-D":
-                incentivizedInterstitial = AppLovinIncentivizedInterstitial.create(idReward, AppLovinSdk.getInstance(activity));
+                incentivizedInterstitial = AppLovinIncentivizedInterstitial.create(idBackupReward, AppLovinSdk.getInstance(activity));
                 incentivizedInterstitial.preload(new AppLovinAdLoadListener() {
                     @Override
                     public void adReceived(AppLovinAd appLovinAd) {
@@ -168,26 +167,201 @@ public class AliendroidReward {
                     }
                 });
                 break;
+            case "STARTAPP":
+                rewardedVideo = new StartAppAd(activity);
+                rewardedVideo.setVideoListener(new VideoListener() {
+                    @Override
+                    public void onVideoCompleted() {
+                        unlockreward = true;
+                    }
+                });
+
+                rewardedVideo.loadAd(StartAppAd.AdMode.REWARDED_VIDEO, new AdEventListener() {
+                    @Override
+                    public void onReceiveAd(com.startapp.sdk.adsbase.Ad ad) {
+
+                    }
+
+                    @Override
+                    public void onFailedToReceiveAd(com.startapp.sdk.adsbase.Ad ad) {
+
+                    }
+                });
+                break;
+            case "UNITY":
+                UnityAds.addListener(new IUnityAdsListener() {
+                    @Override
+                    public void onUnityAdsReady(String placementId) {
+
+                    }
+
+                    @Override
+                    public void onUnityAdsStart(String placementId) {
+
+                    }
+
+                    @Override
+                    public void onUnityAdsFinish(String placementId, UnityAds.FinishState result) {
+                    unlockreward=true;
+                    }
+
+                    @Override
+                    public void onUnityAdsError(UnityAds.UnityAdsError error, String message) {
+
+                    }
+                });
+                break;
 
         }
     }
 
-    public static void LoadRewardAdmob(Activity activity, String selectBackupAds, String idReward, String idBackupReward) {
-        AdRequest adRequest = new AdRequest.Builder().build();
-        RewardedAd.load(activity, idReward,
-                adRequest, new RewardedAdLoadCallback() {
-                    @Override
-                    public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
-                        mRewardedAd = null;
-                    }
+    public static void LoadRewardUnity(Activity activity, String selectBackupAds, String idReward, String idBackupReward) {
+        UnityAds.addListener(new IUnityAdsListener() {
+            @Override
+            public void onUnityAdsReady(String placementId) {
 
-                    @Override
-                    public void onAdLoaded(@NonNull RewardedAd rewardedAd) {
-                        mRewardedAd = rewardedAd;
+            }
 
-                    }
-                });
+            @Override
+            public void onUnityAdsStart(String placementId) {
+
+            }
+
+            @Override
+            public void onUnityAdsFinish(String placementId, UnityAds.FinishState result) {
+                unlockreward = true;
+            }
+
+            @Override
+            public void onUnityAdsError(UnityAds.UnityAdsError error, String message) {
+                switch (selectBackupAds) {
+                    case "ADMOB":
+                        if (mRewardedAd != null) {
+                            Activity activityContext = activity;
+                            mRewardedAd.show(activityContext, new OnUserEarnedRewardListener() {
+                                @Override
+                                public void onUserEarnedReward(@NonNull RewardItem rewardItem) {
+                                    unlockreward = true;
+                                }
+                            });
+                        }
+                        break;
+                    case "MOPUB":
+                        MoPubRewardedAds.showRewardedAd(idBackupReward);
+                        rewardedAdListener = new MoPubRewardedAdListener() {
+                            @Override
+                            public void onRewardedAdLoadSuccess(String adUnitId) {
+                                // Called when the ad for the given adUnitId has loaded. At this point you should be able to call MoPubRewardedAds.showRewardedAd() to show the ad.
+                            }
+
+                            @Override
+                            public void onRewardedAdLoadFailure(String adUnitId, MoPubErrorCode errorCode) {
+                            }
+
+                            @Override
+                            public void onRewardedAdStarted(String adUnitId) {
+                                // Called when a rewarded ad starts playing.
+                            }
+
+                            @Override
+                            public void onRewardedAdShowError(String adUnitId, MoPubErrorCode errorCode) {
+                                //  Called when there is an error while attempting to show the ad.
+                            }
+
+                            @Override
+                            public void onRewardedAdClicked(@NonNull String adUnitId) {
+                                //  Called when a rewarded ad is clicked.
+                            }
+
+                            @Override
+                            public void onRewardedAdClosed(String adUnitId) {
+                                // Called when a rewarded ad is closed. At this point your application should resume.
+                            }
+
+                            @Override
+                            public void onRewardedAdCompleted(Set<String> adUnitIds, MoPubReward reward) {
+                                unlockreward = true;
+
+                            }
+                        };
+                        MoPubRewardedAds.setRewardedAdListener(rewardedAdListener);
+                        break;
+                    case "APPLOVIN-M":
+                        if (rewardedAd.isReady()) {
+                            rewardedAd.showAd();
+                        }
+                        break;
+                    case "APPLOVIN-D":
+                        if (incentivizedInterstitial != null) {
+                            // A rewarded video is available.  Call the show method with the listeners you want to use.
+                            // We will use the display listener to preload the next rewarded video when this one finishes.
+                            incentivizedInterstitial.show(activity, new AppLovinAdRewardListener() {
+                                @Override
+                                public void userRewardVerified(AppLovinAd ad, Map<String, String> response) {
+                                    unlockreward = true;
+                                }
+
+                                @Override
+                                public void userOverQuota(AppLovinAd ad, Map<String, String> response) {
+
+                                }
+
+                                @Override
+                                public void userRewardRejected(AppLovinAd ad, Map<String, String> response) {
+
+                                }
+
+                                @Override
+                                public void validationRequestFailed(AppLovinAd ad, int errorCode) {
+
+                                }
+
+                                @Override
+                                public void userDeclinedToViewAd(AppLovinAd ad) {
+
+                                }
+                            }, null, new AppLovinAdDisplayListener() {
+                                @Override
+                                public void adDisplayed(AppLovinAd appLovinAd) {
+                                    // A rewarded video is being displayed.
+                                }
+
+                                @Override
+                                public void adHidden(AppLovinAd appLovinAd) {
+                                    // A rewarded video was closed.  Preload the next video now.  We won't use a load listener.
+                                    incentivizedInterstitial.preload(null);
+                                }
+                            });
+                        }
+                        break;
+                    case "STARTAPP":
+                        rewardedVideo.showAd();
+                        break;
+                    case "IRON":
+                        IronSource.showRewardedVideo(idBackupReward);
+                        break;
+                }
+            }
+        });
+
         switch (selectBackupAds) {
+            case "ADMOB":
+            case "GOOGLE-ADS":
+                AdRequest adRequest = new AdRequest.Builder().build();
+                RewardedAd.load(activity, idBackupReward,
+                        adRequest, new RewardedAdLoadCallback() {
+                            @Override
+                            public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                                mRewardedAd = null;
+                            }
+
+                            @Override
+                            public void onAdLoaded(@NonNull RewardedAd rewardedAd) {
+                                mRewardedAd = rewardedAd;
+
+                            }
+                        });
+                break;
             case "APPLOVIN-M":
                 rewardedAd = MaxRewardedAd.getInstance(idBackupReward, activity);
                 rewardedAd.loadAd();
@@ -458,6 +632,29 @@ public class AliendroidReward {
                     }
                 });
                 break;
+            case "UNITY":
+                UnityAds.addListener(new IUnityAdsListener() {
+                    @Override
+                    public void onUnityAdsReady(String placementId) {
+
+                    }
+
+                    @Override
+                    public void onUnityAdsStart(String placementId) {
+
+                    }
+
+                    @Override
+                    public void onUnityAdsFinish(String placementId, UnityAds.FinishState result) {
+                        unlockreward=true;
+                    }
+
+                    @Override
+                    public void onUnityAdsError(UnityAds.UnityAdsError error, String message) {
+
+                    }
+                });
+                break;
 
         }
     }
@@ -515,6 +712,7 @@ public class AliendroidReward {
         rewardedAd.setListener(maxRewardedAdListener);
         switch (selectBackupAds) {
             case "ADMOB":
+            case "GOOGLE-ADS":
                 AdRequest adRequest = new AdRequest.Builder().build();
                 RewardedAd.load(activity, idBackupReward,
                         adRequest, new RewardedAdLoadCallback() {
@@ -529,7 +727,6 @@ public class AliendroidReward {
 
                             }
                         });
-
                 break;
             case "MOPUB":
                 MoPubRewardedAds.loadRewardedAd(idBackupReward);
@@ -601,6 +798,29 @@ public class AliendroidReward {
 
                     @Override
                     public void onFailedToReceiveAd(com.startapp.sdk.adsbase.Ad ad) {
+
+                    }
+                });
+                break;
+            case "UNITY":
+                UnityAds.addListener(new IUnityAdsListener() {
+                    @Override
+                    public void onUnityAdsReady(String placementId) {
+
+                    }
+
+                    @Override
+                    public void onUnityAdsStart(String placementId) {
+
+                    }
+
+                    @Override
+                    public void onUnityAdsFinish(String placementId, UnityAds.FinishState result) {
+                        unlockreward=true;
+                    }
+
+                    @Override
+                    public void onUnityAdsError(UnityAds.UnityAdsError error, String message) {
 
                     }
                 });
@@ -624,6 +844,7 @@ public class AliendroidReward {
         });
         switch (selectBackupAds) {
             case "ADMOB":
+            case "GOOGLE-ADS":
                 AdRequest adRequest = new AdRequest.Builder().build();
                 RewardedAd.load(activity, idBackupReward,
                         adRequest, new RewardedAdLoadCallback() {
@@ -638,7 +859,6 @@ public class AliendroidReward {
 
                             }
                         });
-
                 break;
             case "MOPUB":
                 MoPubRewardedAds.loadRewardedAd(idBackupReward);
@@ -752,6 +972,29 @@ public class AliendroidReward {
                     }
                 });
                 break;
+            case "UNITY":
+                UnityAds.addListener(new IUnityAdsListener() {
+                    @Override
+                    public void onUnityAdsReady(String placementId) {
+
+                    }
+
+                    @Override
+                    public void onUnityAdsStart(String placementId) {
+
+                    }
+
+                    @Override
+                    public void onUnityAdsFinish(String placementId, UnityAds.FinishState result) {
+                        unlockreward=true;
+                    }
+
+                    @Override
+                    public void onUnityAdsError(UnityAds.UnityAdsError error, String message) {
+
+                    }
+                });
+                break;
 
         }
     }
@@ -760,6 +1003,7 @@ public class AliendroidReward {
         MoPubRewardedAds.loadRewardedAd(idReward);
         switch (selectBackupAds) {
             case "ADMOB":
+            case "GOOGLE-ADS":
                 AdRequest adRequest = new AdRequest.Builder().build();
                 RewardedAd.load(activity, idBackupReward,
                         adRequest, new RewardedAdLoadCallback() {
@@ -774,7 +1018,6 @@ public class AliendroidReward {
 
                             }
                         });
-
                 break;
             case "APPLOVIN-D":
                 incentivizedInterstitial = AppLovinIncentivizedInterstitial.create(idBackupReward, AppLovinSdk.getInstance(activity));
@@ -899,7 +1142,29 @@ public class AliendroidReward {
                     }
                 });
                 break;
+            case "UNITY":
+                UnityAds.addListener(new IUnityAdsListener() {
+                    @Override
+                    public void onUnityAdsReady(String placementId) {
 
+                    }
+
+                    @Override
+                    public void onUnityAdsStart(String placementId) {
+
+                    }
+
+                    @Override
+                    public void onUnityAdsFinish(String placementId, UnityAds.FinishState result) {
+                        unlockreward=true;
+                    }
+
+                    @Override
+                    public void onUnityAdsError(UnityAds.UnityAdsError error, String message) {
+
+                    }
+                });
+                break;
         }
     }
 
@@ -1027,6 +1292,11 @@ public class AliendroidReward {
                     case "STARTAPP":
                         rewardedVideo.showAd();
                         break;
+                    case "UNITY":
+                        if (UnityAds.isReady (idBackupReward)) {
+                            UnityAds.show (activity, idBackupReward);
+                        }
+                        break;
                 }
             }
 
@@ -1044,6 +1314,7 @@ public class AliendroidReward {
         });
         switch (selecBackuptAds) {
             case "ADMOB":
+            case "GOOGLE-ADS":
                 AdRequest adRequest = new AdRequest.Builder().build();
                 RewardedAd.load(activity, idBackupReward,
                         adRequest, new RewardedAdLoadCallback() {
@@ -1058,7 +1329,6 @@ public class AliendroidReward {
 
                             }
                         });
-
                 break;
             case "APPLOVIN-D":
                 incentivizedInterstitial = AppLovinIncentivizedInterstitial.create(idBackupReward, AppLovinSdk.getInstance(activity));
@@ -1150,6 +1420,29 @@ public class AliendroidReward {
                     }
                 });
                 break;
+            case "UNITY":
+                UnityAds.addListener(new IUnityAdsListener() {
+                    @Override
+                    public void onUnityAdsReady(String placementId) {
+
+                    }
+
+                    @Override
+                    public void onUnityAdsStart(String placementId) {
+
+                    }
+
+                    @Override
+                    public void onUnityAdsFinish(String placementId, UnityAds.FinishState result) {
+                        unlockreward=true;
+                    }
+
+                    @Override
+                    public void onUnityAdsError(UnityAds.UnityAdsError error, String message) {
+
+                    }
+                });
+                break;
 
         }
     }
@@ -1176,6 +1469,7 @@ public class AliendroidReward {
         });
         switch (selectBackupAds) {
             case "ADMOB":
+            case "GOOGLE-ADS":
                 AdRequest adRequest = new AdRequest.Builder().build();
                 RewardedAd.load(activity, idBackupReward,
                         adRequest, new RewardedAdLoadCallback() {
@@ -1190,7 +1484,6 @@ public class AliendroidReward {
 
                             }
                         });
-
                 break;
             case "APPLOVIN-D":
                 incentivizedInterstitial = AppLovinIncentivizedInterstitial.create(idBackupReward, AppLovinSdk.getInstance(activity));
@@ -1298,146 +1591,33 @@ public class AliendroidReward {
                 });
                 break;
 
-        }
-    }
-
-    public static void ShowReward(Activity activity, String selectAds, String idReward) {
-        switch (selectAds) {
-            case "ADMOB":
-                if (mRewardedAd != null) {
-                    Activity activityContext = activity;
-                    mRewardedAd.show(activityContext, new OnUserEarnedRewardListener() {
-                        @Override
-                        public void onUserEarnedReward(@NonNull RewardItem rewardItem) {
-                            unlockreward = true;
-                            LoadReward(activity, selectAds, idReward);
-                        }
-                    });
-                } else {
-                    LoadReward(activity, selectAds, idReward);
-                }
-                break;
-            case "APPLOVIN-M":
-                if (rewardedAd.isReady()) {
-                    rewardedAd.showAd();
-                    LoadReward(activity, selectAds, idReward);
-                } else {
-                    LoadReward(activity, selectAds, idReward);
-                }
-                break;
-            case "MOPUB":
-                MoPubRewardedAds.showRewardedAd(idReward);
-                rewardedAdListener = new MoPubRewardedAdListener() {
+            case "UNITY":
+                UnityAds.addListener(new IUnityAdsListener() {
                     @Override
-                    public void onRewardedAdLoadSuccess(String adUnitId) {
-                        // Called when the ad for the given adUnitId has loaded. At this point you should be able to call MoPubRewardedAds.showRewardedAd() to show the ad.
-                    }
-
-                    @Override
-                    public void onRewardedAdLoadFailure(String adUnitId, MoPubErrorCode errorCode) {
-                        LoadReward(activity, selectAds, idReward);
-                    }
-
-                    @Override
-                    public void onRewardedAdStarted(String adUnitId) {
-                        // Called when a rewarded ad starts playing.
-                    }
-
-                    @Override
-                    public void onRewardedAdShowError(String adUnitId, MoPubErrorCode errorCode) {
-                        //  Called when there is an error while attempting to show the ad.
-                    }
-
-                    @Override
-                    public void onRewardedAdClicked(@NonNull String adUnitId) {
-                        //  Called when a rewarded ad is clicked.
-                    }
-
-                    @Override
-                    public void onRewardedAdClosed(String adUnitId) {
-                        // Called when a rewarded ad is closed. At this point your application should resume.
-                    }
-
-                    @Override
-                    public void onRewardedAdCompleted(Set<String> adUnitIds, MoPubReward reward) {
-                        unlockreward = true;
-                        LoadReward(activity, selectAds, idReward);
-                    }
-                };
-                MoPubRewardedAds.setRewardedAdListener(rewardedAdListener);
-                break;
-
-            case "APPLOVIN-D":
-                if (incentivizedInterstitial != null) {
-                    // A rewarded video is available.  Call the show method with the listeners you want to use.
-                    // We will use the display listener to preload the next rewarded video when this one finishes.
-                    incentivizedInterstitial.show(activity, new AppLovinAdRewardListener() {
-                        @Override
-                        public void userRewardVerified(AppLovinAd ad, Map<String, String> response) {
-                            unlockreward = true;
-                        }
-
-                        @Override
-                        public void userOverQuota(AppLovinAd ad, Map<String, String> response) {
-
-                        }
-
-                        @Override
-                        public void userRewardRejected(AppLovinAd ad, Map<String, String> response) {
-
-                        }
-
-                        @Override
-                        public void validationRequestFailed(AppLovinAd ad, int errorCode) {
-
-                        }
-
-                        @Override
-                        public void userDeclinedToViewAd(AppLovinAd ad) {
-
-                        }
-                    }, null, new AppLovinAdDisplayListener() {
-                        @Override
-                        public void adDisplayed(AppLovinAd appLovinAd) {
-                            // A rewarded video is being displayed.
-                        }
-
-                        @Override
-                        public void adHidden(AppLovinAd appLovinAd) {
-                            // A rewarded video was closed.  Preload the next video now.  We won't use a load listener.
-                            incentivizedInterstitial.preload(null);
-                        }
-                    });
-                }
-                break;
-            case "IRON":
-                IronSource.showRewardedVideo(idReward);
-                break;
-            case "STARTAPP":
-                rewardedVideo = new StartAppAd(activity);
-                rewardedVideo.setVideoListener(new VideoListener() {
-                    @Override
-                    public void onVideoCompleted() {
-                        unlockreward = true;
-                    }
-                });
-
-                rewardedVideo.loadAd(StartAppAd.AdMode.REWARDED_VIDEO, new AdEventListener() {
-                    @Override
-                    public void onReceiveAd(com.startapp.sdk.adsbase.Ad ad) {
+                    public void onUnityAdsReady(String placementId) {
 
                     }
 
                     @Override
-                    public void onFailedToReceiveAd(com.startapp.sdk.adsbase.Ad ad) {
+                    public void onUnityAdsStart(String placementId) {
+
+                    }
+
+                    @Override
+                    public void onUnityAdsFinish(String placementId, UnityAds.FinishState result) {
+                        unlockreward=true;
+                    }
+
+                    @Override
+                    public void onUnityAdsError(UnityAds.UnityAdsError error, String message) {
 
                     }
                 });
-                rewardedVideo.showAd();
                 break;
-        }
 
+        }
     }
+
 
     public static void ShowRewardAdmob(Activity activity, String selecBackuptAds, String idReward, String idBackupReward) {
         if (mRewardedAd != null) {
@@ -1547,6 +1727,11 @@ public class AliendroidReward {
 
                     if (rewardedVideo.isReady()) {
                         rewardedVideo.showAd();
+                    }
+                    break;
+                case "UNITY":
+                    if (UnityAds.isReady (idBackupReward)) {
+                        UnityAds.show (activity, idBackupReward);
                     }
                     break;
             }
@@ -1663,6 +1848,11 @@ public class AliendroidReward {
                         rewardedVideo.showAd();
                     }
                     break;
+                case "UNITY":
+                    if (UnityAds.isReady (idBackupReward)) {
+                        UnityAds.show (activity, idBackupReward);
+                    }
+                    break;
             }
         }
     }
@@ -1675,6 +1865,7 @@ public class AliendroidReward {
         } else {
             LoadRewardApplovinMax(activity, selecBackuptAds, idReward, idBackupReward);
             switch (selecBackuptAds) {
+                case "GOOGLE-ADS":
                 case "ADMOB":
                     if (mRewardedAd != null) {
                         Activity activityContext = activity;
@@ -1777,6 +1968,11 @@ public class AliendroidReward {
                         rewardedVideo.showAd();
                     }
                     break;
+                case "UNITY":
+                    if (UnityAds.isReady (idBackupReward)) {
+                        UnityAds.show (activity, idBackupReward);
+                    }
+                    break;
             }
         }
     }
@@ -1826,6 +2022,7 @@ public class AliendroidReward {
         } else {
             LoadRewardApplovinDis(activity, selecBackuptAds, idReward, idBackupReward);
             switch (selecBackuptAds) {
+                case "GOOGLE-ADS":
                 case "ADMOB":
                     if (mRewardedAd != null) {
                         Activity activityContext = activity;
@@ -1890,6 +2087,11 @@ public class AliendroidReward {
                         rewardedVideo.showAd();
                     }
                     break;
+                case "UNITY":
+                    if (UnityAds.isReady (idBackupReward)) {
+                        UnityAds.show (activity, idBackupReward);
+                    }
+                    break;
             }
         }
     }
@@ -1915,6 +2117,7 @@ public class AliendroidReward {
             @Override
             public void onRewardedAdShowError(String adUnitId, MoPubErrorCode errorCode) {
                 switch (selecBackuptAds) {
+                    case "GOOGLE-ADS":
                     case "ADMOB":
                         if (mRewardedAd != null) {
                             Activity activityContext = activity;
@@ -1982,6 +2185,11 @@ public class AliendroidReward {
                             rewardedVideo.showAd();
                         }
                         break;
+                    case "UNITY":
+                        if (UnityAds.isReady (idBackupReward)) {
+                            UnityAds.show (activity, idBackupReward);
+                        }
+                        break;
                 }
             }
 
@@ -2011,6 +2219,12 @@ public class AliendroidReward {
         LoadRewardIron(activity, selecBackuptAds, idReward, idBackupReward);
     }
 
+    public static void ShowRewardUnity(Activity activity, String selecBackuptAds, String idReward, String idBackupReward) {
+        if (UnityAds.isReady (idReward)) {
+            UnityAds.show(activity, idReward);
+            LoadRewardUnity(activity,selecBackuptAds,idReward,idBackupReward);
+        }
+    }
     public static void ShowRewardStartApp(Activity activity, String selecBackuptAds, String idReward, String idBackupReward) {
         if (rewardedVideo.isReady()) {
             rewardedVideo.showAd();
@@ -2109,6 +2323,7 @@ public class AliendroidReward {
                 case "IRON":
                     IronSource.showRewardedVideo(idBackupReward);
                     break;
+                case "GOOGLE-ADS":
                 case "ADMOB":
                     if (mRewardedAd != null) {
                         Activity activityContext = activity;
@@ -2119,6 +2334,11 @@ public class AliendroidReward {
                                 LoadRewardAdmob(activity, selecBackuptAds, idReward, idBackupReward);
                             }
                         });
+                    }
+                    break;
+                case "UNITY":
+                    if (UnityAds.isReady (idBackupReward)) {
+                        UnityAds.show (activity, idBackupReward);
                     }
                     break;
             }

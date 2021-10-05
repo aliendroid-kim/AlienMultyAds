@@ -62,5 +62,7 @@ dependencies {
     implementation 'com.google.android.gms:play-services-ads-identifier:17.1.0'
     implementation 'com.google.android.gms:play-services-basement:17.6.0'
     implementation 'com.google.android.ump:user-messaging-platform:1.0.0'
+    implementation 'com.unity3d.ads:unity-ads:3.7.5'
+
 
 }
