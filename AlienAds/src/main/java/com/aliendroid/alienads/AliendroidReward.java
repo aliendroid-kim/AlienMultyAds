@@ -235,6 +235,7 @@ public class AliendroidReward {
             @Override
             public void onUnityAdsError(UnityAds.UnityAdsError error, String message) {
                 switch (selectBackupAds) {
+                    case "GOOGLE-ADS":
                     case "ADMOB":
                         if (mRewardedAd != null) {
                             Activity activityContext = activity;
@@ -1190,6 +1191,7 @@ public class AliendroidReward {
             @Override
             public void onRewardedVideoAdShowFailed(IronSourceError error) {
                 switch (selecBackuptAds) {
+                    case "GOOGLE-ADS":
                     case "ADMOB":
                         if (mRewardedAd != null) {
                             Activity activityContext = activity;
@@ -1843,7 +1845,6 @@ public class AliendroidReward {
                     IronSource.showRewardedVideo(idBackupReward);
                     break;
                 case "STARTAPP":
-
                     if (rewardedVideo.isReady()) {
                         rewardedVideo.showAd();
                     }
