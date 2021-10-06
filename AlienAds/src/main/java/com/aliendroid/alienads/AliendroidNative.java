@@ -37,6 +37,8 @@ import com.ironsource.mediationsdk.IronSourceBannerLayout;
 import com.mopub.mobileads.MoPubView;
 import com.startapp.sdk.ads.banner.Banner;
 import com.startapp.sdk.ads.banner.Mrec;
+import com.unity3d.services.banners.BannerView;
+import com.unity3d.services.banners.UnityBannerSize;
 
 public class AliendroidNative {
     public static Bundle extras;
@@ -48,6 +50,7 @@ public class AliendroidNative {
     public static Banner startAppBanner;
     public static Mrec startAppMrec;
     private static NativeAd nativeAd;
+    public static BannerView unityBanner;
 
     public static void SmallNativeAdmob(Activity activity, String selectAds, String selectAdsBackup, FrameLayout layNative, String nativeId, String idBannerBackup, String Hpk1,
                                         String Hpk2, String Hpk3, String Hpk4, String Hpk5) {
@@ -86,6 +89,11 @@ public class AliendroidNative {
                             case "APPLOVIN-D":
                                 if (adViewDiscovery != null) {
                                     adViewDiscovery.destroy();
+                                }
+                                break;
+                            case "UNITY":
+                                if (unityBanner!=null){
+                                    unityBanner.destroy();
                                 }
                                 break;
                         }
@@ -164,6 +172,11 @@ public class AliendroidNative {
                                                         adViewDiscovery = new AppLovinAdView(adSize, activity);
                                                         layNative.addView(adViewDiscovery);
                                                         adViewDiscovery.loadNextAd();
+                                                        break;
+                                                    case "UNITY":
+                                                        unityBanner = new BannerView(activity, idBannerBackup, new UnityBannerSize(320, 50));
+                                                        unityBanner.load();
+                                                        layNative.addView(unityBanner);
                                                         break;
                                                 }
                                             }
@@ -257,6 +270,11 @@ public class AliendroidNative {
                                     adViewDiscovery.destroy();
                                 }
                                 break;
+                            case "UNITY":
+                                if (unityBanner!=null){
+                                    unityBanner.destroy();
+                                }
+                                break;
                         }
                         nativeAd = nativeAds;
                         NativeAdView adView = (NativeAdView) activity.getLayoutInflater()
@@ -326,6 +344,11 @@ public class AliendroidNative {
                                                         adViewDiscovery = new AppLovinAdView(adSize, activity);
                                                         layNative.addView(adViewDiscovery);
                                                         adViewDiscovery.loadNextAd();
+                                                        break;
+                                                    case "UNITY":
+                                                        unityBanner = new BannerView(activity, idBannerBackup, new UnityBannerSize(320, 50));
+                                                        unityBanner.load();
+                                                        layNative.addView(unityBanner);
                                                         break;
                                                 }
                                             }

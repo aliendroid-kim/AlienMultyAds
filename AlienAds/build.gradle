@@ -53,7 +53,7 @@ dependencies {
 
     //Mediation SDK
     implementation 'com.google.ads.mediation:facebook:6.7.0.0'
-    implementation 'com.applovin.mediation:facebook-adapter:6.6.0.3'
+    implementation 'com.applovin.mediation:facebook-adapter:6.7.0.0'
     implementation 'com.ironsource.adapters:facebookadapter:4.3.30'
     implementation 'com.facebook.android:audience-network-sdk:6.7.0'
     implementation 'com.mopub.mediation:facebookaudiencenetwork:6.6.0.0'
