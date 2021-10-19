@@ -515,11 +515,14 @@ public class AliendroidNative {
                                                         bannerExtras.putString("zone_id", idBannerBackup);
                                                         builder.addCustomEventExtrasBundle(AppLovinCustomEventBanner.class, bannerExtras);
 
-                                                        boolean isTablet2 = AppLovinSdkUtils.isTablet(activity);
-                                                        AppLovinAdSize adSize = isTablet2 ? AppLovinAdSize.LEADER : AppLovinAdSize.BANNER;
-                                                        adViewDiscovery = new AppLovinAdView(adSize, activity);
+                                                        adViewDiscovery = new AppLovinAdView(AppLovinAdSize.MREC, activity);
                                                         layNative.addView(adViewDiscovery);
                                                         adViewDiscovery.loadNextAd();
+                                                        break;
+                                                    case "UNITY":
+                                                        unityBanner = new BannerView(activity, idBannerBackup, new UnityBannerSize(320, 50));
+                                                        unityBanner.load();
+                                                        layNative.addView(unityBanner);
                                                         break;
                                                 }
                                             }
@@ -564,11 +567,14 @@ public class AliendroidNative {
                 bannerExtras.putString("zone_id", nativeId);
                 builder2.addCustomEventExtrasBundle(AppLovinCustomEventBanner.class, bannerExtras);
 
-                boolean isTablet2 = AppLovinSdkUtils.isTablet(activity);
-                AppLovinAdSize adSize = isTablet2 ? AppLovinAdSize.LEADER : AppLovinAdSize.BANNER;
-                adViewDiscovery = new AppLovinAdView(adSize, activity);
+                adViewDiscovery = new AppLovinAdView(AppLovinAdSize.MREC, activity);
                 layNative.addView(adViewDiscovery);
                 adViewDiscovery.loadNextAd();
+                break;
+            case "UNITY":
+                unityBanner = new BannerView(activity,nativeId, new UnityBannerSize(320, 50));
+                unityBanner.load();
+                layNative.addView(unityBanner);
                 break;
         }
 
@@ -681,11 +687,14 @@ public class AliendroidNative {
                                                         bannerExtras.putString("zone_id", idBannerBackup);
                                                         builder.addCustomEventExtrasBundle(AppLovinCustomEventBanner.class, bannerExtras);
 
-                                                        boolean isTablet2 = AppLovinSdkUtils.isTablet(activity);
-                                                        AppLovinAdSize adSize = isTablet2 ? AppLovinAdSize.LEADER : AppLovinAdSize.BANNER;
-                                                        adViewDiscovery = new AppLovinAdView(adSize, activity);
+                                                        adViewDiscovery = new AppLovinAdView(AppLovinAdSize.MREC, activity);
                                                         layNative.addView(adViewDiscovery);
                                                         adViewDiscovery.loadNextAd();
+                                                        break;
+                                                    case "UNITY":
+                                                        unityBanner = new BannerView(activity, idBannerBackup, new UnityBannerSize(320, 50));
+                                                        unityBanner.load();
+                                                        layNative.addView(unityBanner);
                                                         break;
                                                 }
                                             }
@@ -729,11 +738,14 @@ public class AliendroidNative {
                 bannerExtras.putString("zone_id", nativeId);
                 builder2.addCustomEventExtrasBundle(AppLovinCustomEventBanner.class, bannerExtras);
 
-                boolean isTablet2 = AppLovinSdkUtils.isTablet(activity);
-                AppLovinAdSize adSize = isTablet2 ? AppLovinAdSize.LEADER : AppLovinAdSize.BANNER;
-                adViewDiscovery = new AppLovinAdView(adSize, activity);
+                adViewDiscovery = new AppLovinAdView(AppLovinAdSize.MREC, activity);
                 layNative.addView(adViewDiscovery);
                 adViewDiscovery.loadNextAd();
+                break;
+            case "UNITY":
+                unityBanner = new BannerView(activity,nativeId, new UnityBannerSize(320, 50));
+                unityBanner.load();
+                layNative.addView(unityBanner);
                 break;
         }
 
