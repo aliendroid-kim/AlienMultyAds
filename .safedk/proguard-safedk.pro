@@ -21,5 +21,7 @@
 -keep class com.unity3d.services.** { *; }
 -keep class com.mintegral.msdk.** { *; }
 -keep class com.mbridge.msdk.** { *; }
+-keep class com.adcolony.sdk.** { *; }
+-keep class com.inmobi.** { *; }
 -keep class com.safedk.** { *; }
 -keep class com.applovin.quality.** { *; }
