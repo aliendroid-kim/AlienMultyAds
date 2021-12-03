@@ -34,7 +34,6 @@ import com.google.android.gms.ads.nativead.NativeAdView;
 import com.ironsource.mediationsdk.ISBannerSize;
 import com.ironsource.mediationsdk.IronSource;
 import com.ironsource.mediationsdk.IronSourceBannerLayout;
-import com.mopub.mobileads.MoPubView;
 import com.startapp.sdk.ads.banner.Banner;
 import com.startapp.sdk.ads.banner.Mrec;
 import com.unity3d.services.banners.BannerView;
@@ -44,7 +43,6 @@ public class AliendroidNative {
     public static Bundle extras;
     public static AdRequest request;
     public static MaxAdView adViewMax;
-    public static MoPubView moPubView;
     public static AppLovinAdView adViewDiscovery;
     public static IronSourceBannerLayout adViewIron;
     public static Banner startAppBanner;
@@ -72,9 +70,7 @@ public class AliendroidNative {
                                 }
                                 break;
                             case "MOPUB":
-                                if (moPubView != null) {
-                                    moPubView.destroy();
-                                }
+
                                 break;
                             case "IRON":
                                 if (adViewIron != null) {
@@ -115,6 +111,9 @@ public class AliendroidNative {
                         .build();
 
                 builder.withNativeAdOptions(adOptions);
+                Bundle extras2 = nativeAd.getExtras();
+                if (extras2.containsKey(FacebookAdapter.KEY_SOCIAL_CONTEXT_ASSET)) {
+                }
 
                 extras = new FacebookExtras()
                         .setNativeBanner(true)
@@ -122,6 +121,7 @@ public class AliendroidNative {
                 request = new AdRequest.Builder().addKeyword(Hpk1).addKeyword(Hpk2)
                         .addKeyword(Hpk3).addKeyword(Hpk4).addKeyword(Hpk5)
                         .addNetworkExtrasBundle(FacebookAdapter.class, extras)
+                        .addNetworkExtrasBundle(FacebookAdapter.class, extras2)
                         .build();
                 AdLoader adLoader =
                         builder
@@ -139,10 +139,7 @@ public class AliendroidNative {
                                                         adViewMax.loadAd();
                                                         break;
                                                     case "MOPUB":
-                                                        moPubView = new MoPubView(activity);
-                                                        moPubView.setAdUnitId(idBannerBackup);
-                                                        layNative.addView(moPubView);
-                                                        moPubView.loadAd(MoPubView.MoPubAdSize.HEIGHT_50);
+
                                                         break;
                                                     case "IRON":
                                                         adViewIron = IronSource.createBanner(activity, ISBannerSize.BANNER);
@@ -193,10 +190,7 @@ public class AliendroidNative {
                 adViewMax.loadAd();
                 break;
             case "MOPUB":
-                moPubView = new MoPubView(activity);
-                moPubView.setAdUnitId(nativeId);
-                layNative.addView(moPubView);
-                moPubView.loadAd(MoPubView.MoPubAdSize.HEIGHT_50);
+
                 break;
             case "IRON":
                 adViewIron = IronSource.createBanner(activity, ISBannerSize.BANNER);
@@ -251,9 +245,7 @@ public class AliendroidNative {
                                 }
                                 break;
                             case "MOPUB":
-                                if (moPubView != null) {
-                                    moPubView.destroy();
-                                }
+
                                 break;
                             case "IRON":
                                 if (adViewIron != null) {
@@ -312,10 +304,7 @@ public class AliendroidNative {
                                                         adViewMax.loadAd();
                                                         break;
                                                     case "MOPUB":
-                                                        moPubView = new MoPubView(activity);
-                                                        moPubView.setAdUnitId(idBannerBackup);
-                                                        layNative.addView(moPubView);
-                                                        moPubView.loadAd(MoPubView.MoPubAdSize.HEIGHT_50);
+
                                                         break;
                                                     case "IRON":
                                                         adViewIron = IronSource.createBanner(activity, ISBannerSize.BANNER);
@@ -365,10 +354,7 @@ public class AliendroidNative {
                 adViewMax.loadAd();
                 break;
             case "MOPUB":
-                moPubView = new MoPubView(activity);
-                moPubView.setAdUnitId(nativeId);
-                layNative.addView(moPubView);
-                moPubView.loadAd(MoPubView.MoPubAdSize.HEIGHT_50);
+
                 break;
             case "IRON":
                 adViewIron = IronSource.createBanner(activity, ISBannerSize.BANNER);
@@ -423,9 +409,7 @@ public class AliendroidNative {
                                 }
                                 break;
                             case "MOPUB":
-                                if (moPubView != null) {
-                                    moPubView.destroy();
-                                }
+
                                 break;
                             case "IRON":
                                 if (adViewIron != null) {
@@ -487,10 +471,7 @@ public class AliendroidNative {
                                                         break;
                                                     }
                                                     case "MOPUB":
-                                                        moPubView = new MoPubView(activity);
-                                                        moPubView.setAdUnitId(idBannerBackup);
-                                                        layNative.addView(moPubView);
-                                                        moPubView.loadAd(MoPubView.MoPubAdSize.HEIGHT_250);
+
                                                         break;
                                                     case "IRON":
                                                         adViewIron = IronSource.createBanner(activity, ISBannerSize.RECTANGLE);
@@ -539,10 +520,7 @@ public class AliendroidNative {
                 adViewMax.loadAd();
                 break;
             case "MOPUB":
-                moPubView = new MoPubView(activity);
-                moPubView.setAdUnitId(nativeId);
-                layNative.addView(moPubView);
-                moPubView.loadAd(MoPubView.MoPubAdSize.HEIGHT_250);
+
                 break;
             case "IRON":
                 adViewIron = IronSource.createBanner(activity, ISBannerSize.RECTANGLE);
@@ -601,9 +579,7 @@ public class AliendroidNative {
                                 }
                                 break;
                             case "MOPUB":
-                                if (moPubView != null) {
-                                    moPubView.destroy();
-                                }
+
                                 break;
                             case "IRON":
                                 if (adViewIron != null) {
@@ -660,10 +636,7 @@ public class AliendroidNative {
                                                         break;
                                                     }
                                                     case "MOPUB":
-                                                        moPubView = new MoPubView(activity);
-                                                        moPubView.setAdUnitId(idBannerBackup);
-                                                        layNative.addView(moPubView);
-                                                        moPubView.loadAd(MoPubView.MoPubAdSize.HEIGHT_250);
+
                                                         break;
                                                     case "IRON":
                                                         adViewIron = IronSource.createBanner(activity, ISBannerSize.RECTANGLE);
@@ -711,10 +684,7 @@ public class AliendroidNative {
                 adViewMax.loadAd();
                 break;
             case "MOPUB":
-                moPubView = new MoPubView(activity);
-                moPubView.setAdUnitId(nativeId);
-                layNative.addView(moPubView);
-                moPubView.loadAd(MoPubView.MoPubAdSize.HEIGHT_250);
+
                 break;
             case "IRON":
                 adViewIron = IronSource.createBanner(activity, ISBannerSize.RECTANGLE);

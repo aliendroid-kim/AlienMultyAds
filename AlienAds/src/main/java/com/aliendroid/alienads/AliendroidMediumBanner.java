@@ -2,17 +2,15 @@ package com.aliendroid.alienads;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.util.DisplayMetrics;
-import android.view.Display;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 
-import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.applovin.adview.AppLovinAdView;
+import com.applovin.mediation.AppLovinExtras;
+import com.applovin.mediation.ApplovinAdapter;
 import com.applovin.mediation.MaxAd;
 import com.applovin.mediation.MaxAdFormat;
 import com.applovin.mediation.MaxAdViewAdListener;
@@ -37,8 +35,6 @@ import com.ironsource.mediationsdk.ISBannerSize;
 import com.ironsource.mediationsdk.IronSource;
 import com.ironsource.mediationsdk.IronSourceBannerLayout;
 import com.ironsource.mediationsdk.logger.IronSourceError;
-import com.mopub.mobileads.MoPubErrorCode;
-import com.mopub.mobileads.MoPubView;
 import com.startapp.sdk.ads.banner.Banner;
 import com.startapp.sdk.ads.banner.BannerListener;
 import com.startapp.sdk.ads.banner.Mrec;
@@ -50,22 +46,26 @@ public class AliendroidMediumBanner {
     public static MaxAdView adViewMax;
     public static AdView adViewAdmob;
     public static AdManagerAdView bannerGoogleAds;
-    public static MoPubView moPubView;
     public static AppLovinAdView adViewDiscovery;
     public static IronSourceBannerLayout adViewIron;
     public static Banner startAppBanner;
     public static Mrec startAppMrec;
     public static com.facebook.ads.AdView adViewFAN;
-    public static  BannerView unityBanner;
+    public static BannerView unityBanner;
 
     public static void MediumBannerAdmob(Activity activity, RelativeLayout layAds, String selectAdsBackup, String idBanner, String idBannerBackup, String Hpk1,
-                                        String Hpk2, String Hpk3, String Hpk4, String Hpk5) {
+                                         String Hpk2, String Hpk3, String Hpk4, String Hpk5) {
+        Bundle extrasApplovin = new AppLovinExtras.Builder()
+                .setMuteAudio(true)
+                .build();
+
         Bundle extras = new FacebookExtras()
                 .setNativeBanner(true)
                 .build();
         AdRequest request = new AdRequest.Builder().addKeyword(Hpk1).addKeyword(Hpk2)
                 .addKeyword(Hpk3).addKeyword(Hpk4).addKeyword(Hpk5)
                 .addNetworkExtrasBundle(FacebookAdapter.class, extras)
+                .addNetworkExtrasBundle(ApplovinAdapter.class, extrasApplovin)
                 .build();
         adViewAdmob = new AdView(activity);
         adViewAdmob.setAdUnitId(idBanner);
@@ -82,9 +82,7 @@ public class AliendroidMediumBanner {
                         }
                         break;
                     case "MOPUB":
-                        if (moPubView != null) {
-                            moPubView.destroy();
-                        }
+
                         break;
                     case "IRON":
                         if (adViewIron != null) {
@@ -107,7 +105,7 @@ public class AliendroidMediumBanner {
                         }
                         break;
                     case "UNITY":
-                        if (unityBanner!=null){
+                        if (unityBanner != null) {
                             unityBanner.destroy();
                         }
                         break;
@@ -127,11 +125,7 @@ public class AliendroidMediumBanner {
                         adViewMax.loadAd();
                         break;
                     case "MOPUB":
-                        moPubView = new MoPubView(activity);
-                        moPubView.setAutorefreshEnabled(false);
-                        moPubView.setAdUnitId(idBannerBackup);
-                        layAds.addView(moPubView);
-                        moPubView.loadAd(MoPubView.MoPubAdSize.HEIGHT_250);
+
                         break;
                     case "IRON":
                         adViewIron = IronSource.createBanner(activity, ISBannerSize.RECTANGLE);
@@ -215,9 +209,7 @@ public class AliendroidMediumBanner {
                         }
                         break;
                     case "MOPUB":
-                        if (moPubView != null) {
-                            moPubView.destroy();
-                        }
+
                         break;
                     case "IRON":
                         if (adViewIron != null) {
@@ -240,7 +232,7 @@ public class AliendroidMediumBanner {
                         }
                         break;
                     case "UNITY":
-                        if (unityBanner!=null){
+                        if (unityBanner != null) {
                             unityBanner.destroy();
                         }
                         break;
@@ -260,10 +252,6 @@ public class AliendroidMediumBanner {
                         adViewMax.loadAd();
                         break;
                     case "MOPUB":
-                        moPubView = new MoPubView(activity);
-                        moPubView.setAdUnitId(idBannerBackup);
-                        layAds.addView(moPubView);
-                        moPubView.loadAd(MoPubView.MoPubAdSize.HEIGHT_250);
                         break;
                     case "IRON":
                         adViewIron = IronSource.createBanner(activity, ISBannerSize.RECTANGLE);
@@ -344,11 +332,7 @@ public class AliendroidMediumBanner {
                         adViewMax.loadAd();
                         break;
                     case "MOPUB":
-                        moPubView = new MoPubView(activity);
-                        moPubView.setAutorefreshEnabled(false);
-                        moPubView.setAdUnitId(idBannerBackup);
-                        layAds.addView(moPubView);
-                        moPubView.loadAd(MoPubView.MoPubAdSize.HEIGHT_250);
+
                         break;
                     case "IRON":
                         adViewIron = IronSource.createBanner(activity, ISBannerSize.RECTANGLE);
@@ -367,11 +351,16 @@ public class AliendroidMediumBanner {
                         layAds.addView(startAppMrec, bannerParameters);
                         break;
                     case "ADMOB":
+                        Bundle extrasApplovin = new AppLovinExtras.Builder()
+                                .setMuteAudio(true)
+                                .build();
+
                         Bundle extras = new FacebookExtras()
                                 .setNativeBanner(true)
                                 .build();
                         AdRequest request = new AdRequest.Builder()
                                 .addNetworkExtrasBundle(FacebookAdapter.class, extras)
+                                .addNetworkExtrasBundle(ApplovinAdapter.class, extrasApplovin)
                                 .build();
                         adViewAdmob = new AdView(activity);
                         adViewAdmob.setAdUnitId(idBannerBackup);
@@ -416,9 +405,7 @@ public class AliendroidMediumBanner {
                         }
                         break;
                     case "MOPUB":
-                        if (moPubView != null) {
-                            moPubView.destroy();
-                        }
+
                         break;
                     case "IRON":
                         if (adViewIron != null) {
@@ -446,7 +433,7 @@ public class AliendroidMediumBanner {
                         }
                         break;
                     case "UNITY":
-                        if (unityBanner!=null){
+                        if (unityBanner != null) {
                             unityBanner.destroy();
                         }
                         break;
@@ -468,7 +455,7 @@ public class AliendroidMediumBanner {
     }
 
     public static void MediumBannerApplovinDisHPK(Activity activity, RelativeLayout layAds, String selectAdsBackup, String idBanner, String idBannerBackup, String HPK1,
-                                                 String HPK2, String HPK3, String HPK4, String HPK5) {
+                                                  String HPK2, String HPK3, String HPK4, String HPK5) {
 
         AdRequest.Builder builder = new AdRequest.Builder().addKeyword(HPK1).addKeyword(HPK2).addKeyword(HPK3).addKeyword(HPK4).addKeyword(HPK5);
         Bundle bannerExtras = new Bundle();
@@ -485,9 +472,7 @@ public class AliendroidMediumBanner {
                         }
                         break;
                     case "MOPUB":
-                        if (moPubView != null) {
-                            moPubView.destroy();
-                        }
+
                         break;
                     case "IRON":
                         if (adViewIron != null) {
@@ -516,7 +501,7 @@ public class AliendroidMediumBanner {
                         }
                         break;
                     case "UNITY":
-                        if (unityBanner!=null){
+                        if (unityBanner != null) {
                             unityBanner.destroy();
                         }
                         break;
@@ -536,11 +521,7 @@ public class AliendroidMediumBanner {
                         adViewMax.loadAd();
                         break;
                     case "MOPUB":
-                        moPubView = new MoPubView(activity);
-                        moPubView.setAutorefreshEnabled(false);
-                        moPubView.setAdUnitId(idBannerBackup);
-                        layAds.addView(moPubView);
-                        moPubView.loadAd(MoPubView.MoPubAdSize.HEIGHT_250);
+
                         break;
                     case "IRON":
                         adViewIron = IronSource.createBanner(activity, ISBannerSize.RECTANGLE);
@@ -559,11 +540,16 @@ public class AliendroidMediumBanner {
                         layAds.addView(startAppMrec, bannerParameters);
                         break;
                     case "ADMOB":
+                        Bundle extrasApplovin = new AppLovinExtras.Builder()
+                                .setMuteAudio(true)
+                                .build();
+
                         Bundle extras = new FacebookExtras()
                                 .setNativeBanner(true)
                                 .build();
                         AdRequest request = new AdRequest.Builder()
                                 .addNetworkExtrasBundle(FacebookAdapter.class, extras)
+                                .addNetworkExtrasBundle(ApplovinAdapter.class, extrasApplovin)
                                 .build();
                         adViewAdmob = new AdView(activity);
                         adViewAdmob.setAdUnitId(idBannerBackup);
@@ -619,9 +605,7 @@ public class AliendroidMediumBanner {
                         }
                         break;
                     case "MOPUB":
-                        if (moPubView != null) {
-                            moPubView.destroy();
-                        }
+
                         break;
                     case "IRON":
                         if (adViewIron != null) {
@@ -649,7 +633,7 @@ public class AliendroidMediumBanner {
                         }
                         break;
                     case "UNITY":
-                        if (unityBanner!=null){
+                        if (unityBanner != null) {
                             unityBanner.destroy();
                         }
                         break;
@@ -669,11 +653,7 @@ public class AliendroidMediumBanner {
                         adViewMax.loadAd();
                         break;
                     case "MOPUB":
-                        moPubView = new MoPubView(activity);
-                        moPubView.setAutorefreshEnabled(false);
-                        moPubView.setAdUnitId(idBannerBackup);
-                        layAds.addView(moPubView);
-                        moPubView.loadAd(MoPubView.MoPubAdSize.HEIGHT_250);
+
                         break;
                     case "IRON":
                         adViewIron = IronSource.createBanner(activity, ISBannerSize.RECTANGLE);
@@ -692,11 +672,16 @@ public class AliendroidMediumBanner {
                         layAds.addView(startAppMrec, bannerParameters);
                         break;
                     case "ADMOB":
+                        Bundle extrasApplovin = new AppLovinExtras.Builder()
+                                .setMuteAudio(true)
+                                .build();
+
                         Bundle extras = new FacebookExtras()
                                 .setNativeBanner(true)
                                 .build();
                         AdRequest request = new AdRequest.Builder()
                                 .addNetworkExtrasBundle(FacebookAdapter.class, extras)
+                                .addNetworkExtrasBundle(ApplovinAdapter.class, extrasApplovin)
                                 .build();
                         adViewAdmob = new AdView(activity);
                         adViewAdmob.setAdUnitId(idBannerBackup);
@@ -759,9 +744,7 @@ public class AliendroidMediumBanner {
                         }
                         break;
                     case "MOPUB":
-                        if (moPubView != null) {
-                            moPubView.destroy();
-                        }
+
                         break;
                     case "IRON":
                         if (adViewIron != null) {
@@ -789,7 +772,7 @@ public class AliendroidMediumBanner {
                         }
                         break;
                     case "UNITY":
-                        if (unityBanner!=null){
+                        if (unityBanner != null) {
                             unityBanner.destroy();
                         }
                         break;
@@ -824,11 +807,7 @@ public class AliendroidMediumBanner {
                         adViewDiscovery.loadNextAd();
                         break;
                     case "MOPUB":
-                        moPubView = new MoPubView(activity);
-                        moPubView.setAutorefreshEnabled(false);
-                        moPubView.setAdUnitId(idBannerBackup);
-                        layAds.addView(moPubView);
-                        moPubView.loadAd(MoPubView.MoPubAdSize.HEIGHT_250);
+
                         break;
                     case "IRON":
                         adViewIron = IronSource.createBanner(activity, ISBannerSize.RECTANGLE);
@@ -847,11 +826,16 @@ public class AliendroidMediumBanner {
                         layAds.addView(startAppMrec, bannerParameters);
                         break;
                     case "ADMOB":
+                        Bundle extrasApplovin = new AppLovinExtras.Builder()
+                                .setMuteAudio(true)
+                                .build();
+
                         Bundle extras = new FacebookExtras()
                                 .setNativeBanner(true)
                                 .build();
                         AdRequest request = new AdRequest.Builder()
                                 .addNetworkExtrasBundle(FacebookAdapter.class, extras)
+                                .addNetworkExtrasBundle(ApplovinAdapter.class, extrasApplovin)
                                 .build();
                         adViewAdmob = new AdView(activity);
                         adViewAdmob.setAdUnitId(idBannerBackup);
@@ -900,154 +884,12 @@ public class AliendroidMediumBanner {
     }
 
     public static void MediumBannerMopub(Activity activity, RelativeLayout layAds, String selectAdsBackup, String idBanner, String idBannerBackup) {
-        moPubView = new MoPubView(activity);
-        moPubView.setAdUnitId(idBanner);
-        moPubView.setAutorefreshEnabled(false);
-        MoPubView.BannerAdListener listener = new MoPubView.BannerAdListener() {
-            @Override
-            public void onBannerLoaded(@NonNull MoPubView moPubView) {
-                switch (selectAdsBackup) {
-                    case "APPLOVIN-D":
-                        if (adViewDiscovery != null) {
-                            adViewDiscovery.destroy();
-                        }
-                        break;
-                    case "APPLOVIN-M":
-                        if (adViewMax != null) {
-                            adViewMax.destroy();
-                        }
-                        break;
-                    case "IRON":
-                        if (adViewIron != null) {
-                            adViewIron.isDestroyed();
-                        }
-                        break;
-                    case "STARTAPP":
-                        if (startAppBanner != null) {
-                            startAppBanner.hideBanner();
-                        }
-                        break;
-                    case "ADMOB":
-                        if (adViewAdmob != null) {
-                            adViewAdmob.destroy();
-                        }
-                        break;
-                    case "GOOGLE-ADS":
-                        if (bannerGoogleAds != null) {
-                            bannerGoogleAds.destroy();
-                        }
-                        break;
-                    case "FACEBOOK":
-                        if (adViewFAN != null) {
-                            adViewFAN.destroy();
-                        }
-                        break;
-                    case "UNITY":
-                        if (unityBanner!=null){
-                            unityBanner.destroy();
-                        }
-                        break;
-                }
-            }
 
-            @Override
-            public void onBannerFailed(MoPubView moPubView, MoPubErrorCode moPubErrorCode) {
-                switch (selectAdsBackup) {
-                    case "APPLOVIN-D":
-                        AdRequest.Builder builder = new AdRequest.Builder();
-                        Bundle bannerExtras = new Bundle();
-                        bannerExtras.putString("zone_id", idBannerBackup);
-                        builder.addCustomEventExtrasBundle(AppLovinCustomEventBanner.class, bannerExtras);
-                        adViewDiscovery = new AppLovinAdView(AppLovinAdSize.MREC, activity);
-                        layAds.addView(adViewDiscovery);
-                        adViewDiscovery.loadNextAd();
-                        break;
-                    case "APPLOVIN-M":
-                        adViewMax = new MaxAdView(idBannerBackup, MaxAdFormat.MREC, activity);
-                        adViewMax.stopAutoRefresh();
-                        final int widthPx = AppLovinSdkUtils.dpToPx(activity, 300);
-                        final int heightPx = AppLovinSdkUtils.dpToPx(activity, 250);
-                        adViewMax.setLayoutParams(new ConstraintLayout.LayoutParams(widthPx, heightPx));
-                        layAds.addView(adViewMax);
-                        adViewMax.loadAd();
-                        break;
-                    case "IRON":
-                        adViewIron = IronSource.createBanner(activity, ISBannerSize.RECTANGLE);
-                        FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT,
-                                FrameLayout.LayoutParams.WRAP_CONTENT);
-                        layAds.addView(adViewIron, 0, layoutParams);
-                        IronSource.loadBanner(adViewIron, idBannerBackup);
-                        break;
-                    case "STARTAPP":
-                        startAppMrec = new Mrec(activity);
-                        RelativeLayout.LayoutParams bannerParameters =
-                                new RelativeLayout.LayoutParams(
-                                        RelativeLayout.LayoutParams.WRAP_CONTENT,
-                                        RelativeLayout.LayoutParams.WRAP_CONTENT);
-                        bannerParameters.addRule(RelativeLayout.CENTER_HORIZONTAL);
-                        layAds.addView(startAppMrec, bannerParameters);
-                        break;
-                    case "ADMOB":
-                        Bundle extras = new FacebookExtras()
-                                .setNativeBanner(true)
-                                .build();
-                        AdRequest request = new AdRequest.Builder()
-                                .addNetworkExtrasBundle(FacebookAdapter.class, extras)
-                                .build();
-                        adViewAdmob = new AdView(activity);
-                        adViewAdmob.setAdUnitId(idBannerBackup);
-                        layAds.addView(adViewAdmob);
-                        adViewAdmob.setAdSize(AdSize.MEDIUM_RECTANGLE);
-                        adViewAdmob.loadAd(request);
-                        break;
-                    case "GOOGLE-ADS":
-                        AdManagerAdRequest adRequest =
-                                new AdManagerAdRequest.Builder()
-                                        .build();
-
-                        bannerGoogleAds = new AdManagerAdView(activity);
-                        bannerGoogleAds.setAdUnitId(idBannerBackup);
-                        layAds.addView(bannerGoogleAds);
-                        bannerGoogleAds.setAdSize(AdSize.MEDIUM_RECTANGLE);
-                        bannerGoogleAds.loadAd(adRequest);
-                        break;
-                    case "FACEBOOK":
-                        adViewFAN = new com.facebook.ads.AdView(activity, idBannerBackup,
-                                com.facebook.ads.AdSize.RECTANGLE_HEIGHT_250);
-                        layAds.addView(adViewFAN);
-                        adViewFAN.loadAd();
-                        break;
-                    case "UNITY":
-                        unityBanner = new BannerView(activity, idBannerBackup, new UnityBannerSize(320, 50));
-                        unityBanner.load();
-                        layAds.addView(unityBanner);
-                        break;
-                }
-            }
-
-            @Override
-            public void onBannerClicked(MoPubView moPubView) {
-
-            }
-
-            @Override
-            public void onBannerExpanded(MoPubView moPubView) {
-
-            }
-
-            @Override
-            public void onBannerCollapsed(MoPubView moPubView) {
-
-            }
-        };
-        moPubView.setBannerAdListener(listener);
-        layAds.addView(moPubView);
-        moPubView.loadAd(MoPubView.MoPubAdSize.HEIGHT_250);
 
     }
 
     public static void MediumBannerStartApp(Activity activity, RelativeLayout layAds, String selectAdsBackup, String idBanner, String idBannerBackup) {
-         startAppMrec = new Mrec(activity, new BannerListener() {
+        startAppMrec = new Mrec(activity, new BannerListener() {
             @Override
             public void onReceiveAd(View view) {
                 switch (selectAdsBackup) {
@@ -1067,9 +909,7 @@ public class AliendroidMediumBanner {
                         }
                         break;
                     case "MOPUB":
-                        if (moPubView != null) {
-                            moPubView.destroy();
-                        }
+
                         break;
                     case "ADMOB":
                         if (adViewAdmob != null) {
@@ -1087,7 +927,7 @@ public class AliendroidMediumBanner {
                         }
                         break;
                     case "UNITY":
-                        if (unityBanner!=null){
+                        if (unityBanner != null) {
                             unityBanner.destroy();
                         }
                         break;
@@ -1123,18 +963,19 @@ public class AliendroidMediumBanner {
                         IronSource.loadBanner(adViewIron, idBannerBackup);
                         break;
                     case "MOPUB":
-                        moPubView = new MoPubView(activity);
-                        moPubView.setAutorefreshEnabled(false);
-                        moPubView.setAdUnitId(idBannerBackup);
-                        layAds.addView(moPubView);
-                        moPubView.loadAd(MoPubView.MoPubAdSize.HEIGHT_250);
+
                         break;
                     case "ADMOB":
+                        Bundle extrasApplovin = new AppLovinExtras.Builder()
+                                .setMuteAudio(true)
+                                .build();
+
                         Bundle extras = new FacebookExtras()
                                 .setNativeBanner(true)
                                 .build();
                         AdRequest request = new AdRequest.Builder()
                                 .addNetworkExtrasBundle(FacebookAdapter.class, extras)
+                                .addNetworkExtrasBundle(ApplovinAdapter.class, extrasApplovin)
                                 .build();
                         adViewAdmob = new AdView(activity);
                         adViewAdmob.setAdUnitId(idBannerBackup);
@@ -1208,9 +1049,7 @@ public class AliendroidMediumBanner {
                         startAppBanner.hideBanner();
                         break;
                     case "MOPUB":
-                        if (moPubView != null) {
-                            moPubView.destroy();
-                        }
+
                         break;
                     case "ADMOB":
                         if (adViewAdmob != null) {
@@ -1228,7 +1067,7 @@ public class AliendroidMediumBanner {
                         }
                         break;
                     case "UNITY":
-                        if (unityBanner!=null){
+                        if (unityBanner != null) {
                             unityBanner.destroy();
                         }
                         break;
@@ -1266,18 +1105,19 @@ public class AliendroidMediumBanner {
                         layAds.addView(startAppMrec, bannerParameters);
                         break;
                     case "MOPUB":
-                        moPubView = new MoPubView(activity);
-                        moPubView.setAdUnitId(idBannerBackup);
-                        moPubView.setAutorefreshEnabled(false);
-                        layAds.addView(moPubView);
-                        moPubView.loadAd(MoPubView.MoPubAdSize.HEIGHT_50);
+
                         break;
                     case "ADMOB":
+                        Bundle extrasApplovin = new AppLovinExtras.Builder()
+                                .setMuteAudio(true)
+                                .build();
+
                         Bundle extras = new FacebookExtras()
                                 .setNativeBanner(true)
                                 .build();
                         AdRequest request = new AdRequest.Builder()
                                 .addNetworkExtrasBundle(FacebookAdapter.class, extras)
+                                .addNetworkExtrasBundle(ApplovinAdapter.class, extrasApplovin)
                                 .build();
                         adViewAdmob = new AdView(activity);
                         adViewAdmob.setAdUnitId(idBannerBackup);
@@ -1355,9 +1195,7 @@ public class AliendroidMediumBanner {
                         startAppBanner.hideBanner();
                         break;
                     case "MOPUB":
-                        if (moPubView != null) {
-                            moPubView.destroy();
-                        }
+
                         break;
                     case "ADMOB":
                         if (adViewAdmob != null) {
@@ -1413,18 +1251,19 @@ public class AliendroidMediumBanner {
                         layAds.addView(startAppMrec, bannerParameters);
                         break;
                     case "MOPUB":
-                        moPubView = new MoPubView(activity);
-                        moPubView.setAutorefreshEnabled(false);
-                        moPubView.setAdUnitId(idBannerBackup);
-                        layAds.addView(moPubView);
-                        moPubView.loadAd(MoPubView.MoPubAdSize.HEIGHT_250);
+
                         break;
                     case "ADMOB":
+                        Bundle extrasApplovin = new AppLovinExtras.Builder()
+                                .setMuteAudio(true)
+                                .build();
+
                         Bundle extras = new FacebookExtras()
                                 .setNativeBanner(true)
                                 .build();
                         AdRequest request = new AdRequest.Builder()
                                 .addNetworkExtrasBundle(FacebookAdapter.class, extras)
+                                .addNetworkExtrasBundle(ApplovinAdapter.class, extrasApplovin)
                                 .build();
                         adViewAdmob = new AdView(activity);
                         adViewAdmob.setAdUnitId(idBannerBackup);

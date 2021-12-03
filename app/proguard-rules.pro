@@ -58,3 +58,4 @@ LineNumberTable, *Annotation*, EnclosingMethod
 -keep public class com.facebook.ads.** {*;}
 -keep public class com.facebook.ads.**
 { public protected *; }
+

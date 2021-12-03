@@ -7,6 +7,9 @@ buildscript {
             url 'https://android-sdk.is.com/'
         }
         maven { url 'https://artifacts.applovin.com/android' }
+        maven {
+            url 'https://swisscodemonkeys.github.io/appbrain-sdk/maven'
+        }
     }
     dependencies {
         classpath "com.android.tools.build:gradle:4.2.2"
@@ -26,6 +29,9 @@ allprojects {
             url 'https://android-sdk.is.com/'
         }
         maven { url 'https://artifacts.applovin.com/android' }
+        maven {
+            url 'https://swisscodemonkeys.github.io/appbrain-sdk/maven'
+        }
     }
 }
 

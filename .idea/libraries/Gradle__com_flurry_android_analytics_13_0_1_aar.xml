@@ -1,0 +1,15 @@
+<component name="libraryTable">
+  <library name="Gradle: com.flurry.android:analytics:13.0.1@aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/c56bfeeff0ffc6abf5008440ae1e5540/analytics-13.0.1/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/c56bfeeff0ffc6abf5008440ae1e5540/analytics-13.0.1/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/c56bfeeff0ffc6abf5008440ae1e5540/analytics-13.0.1/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/7c967316c5ed9b54285f9aad0d3bb1b4/analytics-13.0.1/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/419ae49f33e41cc75b19bb536ef8b132/analytics-13.0.1/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/419ae49f33e41cc75b19bb536ef8b132/analytics-13.0.1/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/419ae49f33e41cc75b19bb536ef8b132/analytics-13.0.1/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

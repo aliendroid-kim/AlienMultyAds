@@ -1,0 +1,17 @@
+<component name="libraryTable">
+  <library name="Gradle: com.applovin.mediation:google-adapter:20.3.0.0@aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/9b89b8d3e11d8eff618581fc5ada16c9/google-adapter-20.3.0.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/9b89b8d3e11d8eff618581fc5ada16c9/google-adapter-20.3.0.0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/9b89b8d3e11d8eff618581fc5ada16c9/google-adapter-20.3.0.0/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/45b6d21d421828bd073e5a60cccbef95/google-adapter-20.3.0.0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/f8dbe0c51154847114441b53368ecd9b/google-adapter-20.3.0.0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/f8dbe0c51154847114441b53368ecd9b/google-adapter-20.3.0.0/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/f8dbe0c51154847114441b53368ecd9b/google-adapter-20.3.0.0/jars/classes.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.applovin.mediation/google-adapter/20.3.0.0/48ec7876e598bf8a4542278f43437f4031124401/google-adapter-20.3.0.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
