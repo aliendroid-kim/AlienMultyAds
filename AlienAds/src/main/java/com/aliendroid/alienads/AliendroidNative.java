@@ -15,6 +15,8 @@ import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.applovin.adview.AppLovinAdView;
+import com.applovin.mediation.AppLovinExtras;
+import com.applovin.mediation.ApplovinAdapter;
 import com.applovin.mediation.MaxAdFormat;
 import com.applovin.mediation.ads.MaxAdView;
 import com.applovin.sdk.AppLovinAdSize;
@@ -26,7 +28,6 @@ import com.google.android.gms.ads.AdLoader;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.LoadAdError;
 import com.google.android.gms.ads.VideoOptions;
-import com.google.android.gms.ads.admanager.AdManagerAdRequest;
 import com.google.android.gms.ads.nativead.MediaView;
 import com.google.android.gms.ads.nativead.NativeAd;
 import com.google.android.gms.ads.nativead.NativeAdOptions;
@@ -40,8 +41,7 @@ import com.unity3d.services.banners.BannerView;
 import com.unity3d.services.banners.UnityBannerSize;
 
 public class AliendroidNative {
-    public static Bundle extras;
-    public static AdRequest request;
+
     public static MaxAdView adViewMax;
     public static AppLovinAdView adViewDiscovery;
     public static IronSourceBannerLayout adViewIron;
@@ -88,7 +88,7 @@ public class AliendroidNative {
                                 }
                                 break;
                             case "UNITY":
-                                if (unityBanner!=null){
+                                if (unityBanner != null) {
                                     unityBanner.destroy();
                                 }
                                 break;
@@ -111,17 +111,18 @@ public class AliendroidNative {
                         .build();
 
                 builder.withNativeAdOptions(adOptions);
-                Bundle extras2 = nativeAd.getExtras();
-                if (extras2.containsKey(FacebookAdapter.KEY_SOCIAL_CONTEXT_ASSET)) {
-                }
 
-                extras = new FacebookExtras()
+                Bundle extrasApplovin = new AppLovinExtras.Builder()
+                        .setMuteAudio(true)
+                        .build();
+
+                Bundle extras = new FacebookExtras()
                         .setNativeBanner(true)
                         .build();
-                request = new AdRequest.Builder().addKeyword(Hpk1).addKeyword(Hpk2)
+                AdRequest request = new AdRequest.Builder().addKeyword(Hpk1).addKeyword(Hpk2)
                         .addKeyword(Hpk3).addKeyword(Hpk4).addKeyword(Hpk5)
                         .addNetworkExtrasBundle(FacebookAdapter.class, extras)
-                        .addNetworkExtrasBundle(FacebookAdapter.class, extras2)
+                        .addNetworkExtrasBundle(ApplovinAdapter.class, extrasApplovin)
                         .build();
                 AdLoader adLoader =
                         builder
@@ -263,7 +264,7 @@ public class AliendroidNative {
                                 }
                                 break;
                             case "UNITY":
-                                if (unityBanner!=null){
+                                if (unityBanner != null) {
                                     unityBanner.destroy();
                                 }
                                 break;
@@ -286,8 +287,17 @@ public class AliendroidNative {
                         .build();
 
                 builder.withNativeAdOptions(adOptions);
+                Bundle extrasApplovin = new AppLovinExtras.Builder()
+                        .setMuteAudio(true)
+                        .build();
 
-                AdManagerAdRequest adRequest = new AdManagerAdRequest.Builder().build();
+                Bundle extras = new FacebookExtras()
+                        .setNativeBanner(true)
+                        .build();
+                AdRequest adRequest = new AdRequest.Builder()
+                        .addNetworkExtrasBundle(FacebookAdapter.class, extras)
+                        .addNetworkExtrasBundle(ApplovinAdapter.class, extrasApplovin)
+                        .build();
                 AdLoader adLoader =
                         builder
                                 .withAdListener(
@@ -447,12 +457,17 @@ public class AliendroidNative {
 
                 builder.withNativeAdOptions(adOptions);
 
-                extras = new FacebookExtras()
+                Bundle extrasApplovin = new AppLovinExtras.Builder()
+                        .setMuteAudio(true)
+                        .build();
+
+                Bundle extras = new FacebookExtras()
                         .setNativeBanner(true)
                         .build();
-                request = new AdRequest.Builder().addKeyword(Hpk1).addKeyword(Hpk2)
+                AdRequest request = new AdRequest.Builder().addKeyword(Hpk1).addKeyword(Hpk2)
                         .addKeyword(Hpk3).addKeyword(Hpk4).addKeyword(Hpk5)
                         .addNetworkExtrasBundle(FacebookAdapter.class, extras)
+                        .addNetworkExtrasBundle(ApplovinAdapter.class, extrasApplovin)
                         .build();
                 AdLoader adLoader =
                         builder
@@ -550,7 +565,7 @@ public class AliendroidNative {
                 adViewDiscovery.loadNextAd();
                 break;
             case "UNITY":
-                unityBanner = new BannerView(activity,nativeId, new UnityBannerSize(320, 50));
+                unityBanner = new BannerView(activity, nativeId, new UnityBannerSize(320, 50));
                 unityBanner.load();
                 layNative.addView(unityBanner);
                 break;
@@ -560,7 +575,7 @@ public class AliendroidNative {
     }
 
     public static void MediumNativeGoogleAds(Activity activity, String selectAds, String selectAdsBackup, FrameLayout layNative, String nativeId, String idBannerBackup
-                                   ) {
+    ) {
 
         switch (selectAds) {
             case "GOOGLE-ADS":
@@ -616,9 +631,17 @@ public class AliendroidNative {
                         .build();
 
                 builder.withNativeAdOptions(adOptions);
+                Bundle extrasApplovin = new AppLovinExtras.Builder()
+                        .setMuteAudio(true)
+                        .build();
 
-
-                AdManagerAdRequest adRequest = new AdManagerAdRequest.Builder().build();
+                Bundle extras = new FacebookExtras()
+                        .setNativeBanner(true)
+                        .build();
+                AdRequest adRequest = new AdRequest.Builder()
+                        .addNetworkExtrasBundle(FacebookAdapter.class, extras)
+                        .addNetworkExtrasBundle(ApplovinAdapter.class, extrasApplovin)
+                        .build();
                 AdLoader adLoader =
                         builder
                                 .withAdListener(
@@ -713,7 +736,7 @@ public class AliendroidNative {
                 adViewDiscovery.loadNextAd();
                 break;
             case "UNITY":
-                unityBanner = new BannerView(activity,nativeId, new UnityBannerSize(320, 50));
+                unityBanner = new BannerView(activity, nativeId, new UnityBannerSize(320, 50));
                 unityBanner.load();
                 layNative.addView(unityBanner);
                 break;
