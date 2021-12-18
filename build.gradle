@@ -8,7 +8,7 @@ buildscript {
         }
         maven { url 'https://artifacts.applovin.com/android' }
         maven {
-            url 'https://swisscodemonkeys.github.io/appbrain-sdk/maven'
+            url 'https://unity3ddist.jfrog.io/artifactory/unity-mediation-mvn-prod-local/'
         }
     }
     dependencies {
@@ -30,7 +30,7 @@ allprojects {
         }
         maven { url 'https://artifacts.applovin.com/android' }
         maven {
-            url 'https://swisscodemonkeys.github.io/appbrain-sdk/maven'
+            url 'https://unity3ddist.jfrog.io/artifactory/unity-mediation-mvn-prod-local/'
         }
     }
 }

@@ -1,21 +1,21 @@
 package com.aliendroid.samplealienads;
 
 public class SettingAds {
-    public static String SELECT_ADS ="ADMOB";
-    public static String BACKUP_ADS = "IRON";
+    public static String SELECT_ADS ="UNITY";
+    public static String BACKUP_ADS = "STARTAPP";
 
-    public static String MAIN_ADS_BANNER ="ca-app-pub-3940256099942544/6300978111";
+    public static String MAIN_ADS_BANNER ="ca-app-pub-3940256099942544/6300978111x";
     public static String BACKUP_ADS_BANNER="DefaultBanner";
 
-    public static String MAIN_ADS_INTERTITIAL ="ca-app-pub-3940256099942544/1033173712";
+    public static String MAIN_ADS_INTERTITIAL ="ca-app-pub-3940256099942544/1033173712x";
     public static String BACKUP_ADS_INTERTITIAL="Game_Screen";
 
-    public static String MAIN_ADS_REWARDS ="ca-app-pub-3940256099942544/5224354917";
+    public static String MAIN_ADS_REWARDS ="ca-app-pub-3940256099942544/5224354917x";
     public static String BACKUP_ADS_REWARDS="DefaultRewardedVideo";
 
-    public static String OPEN_ADS_ADMOB ="ca-app-pub-3940256099942544/3419835294";
+    public static String OPEN_ADS_ADMOB ="ca-app-pub-3940256099942544/3419835294x";
     public static String NATIVE_ADS_ADMOB ="/6499/example/native";
-    public static String INITIALIZE_SDK = "3963931";
+    public static String INITIALIZE_SDK = "1234567";
     public static String INITIALIZE_SDK_BACKUPADS = "107355779";
 
     public static String HIGH_PAYING_KEYWORD1="Finance";
