@@ -3,6 +3,9 @@ package com.aliendroid.alienads;
 import android.app.Activity;
 import android.util.Log;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 import com.applovin.sdk.AppLovinMediationProvider;
 import com.applovin.sdk.AppLovinPrivacySettings;
 import com.applovin.sdk.AppLovinSdk;
@@ -16,18 +19,25 @@ import com.ironsource.mediationsdk.IronSource;
 import com.ironsource.mediationsdk.integration.IntegrationHelper;
 import com.startapp.sdk.adsbase.StartAppAd;
 import com.startapp.sdk.adsbase.StartAppSDK;
+import com.unity3d.ads.IUnityAdsInitializationListener;
 import com.unity3d.ads.UnityAds;
+import com.unity3d.mediation.IImpressionListener;
 import com.unity3d.mediation.IInitializationListener;
+import com.unity3d.mediation.ImpressionData;
+import com.unity3d.mediation.ImpressionEventPublisher;
 import com.unity3d.mediation.InitializationConfiguration;
 import com.unity3d.mediation.UnityMediation;
 import com.unity3d.mediation.errors.SdkInitializationError;
+import com.unity3d.mediation.logger.Logger;
+
+import org.json.JSONException;
 
 import java.util.HashMap;
 import java.util.Map;
 
 
 public class AliendroidInitialize {
-
+    private static IImpressionListener impressionListener;
     public static void SelectAdsAdmob(Activity activity, String selectAdsBackup, String idInitialize) {
         MobileAds.initialize(activity, new OnInitializationCompleteListener() {
             @Override
@@ -96,6 +106,39 @@ public class AliendroidInitialize {
                         }).build();
 
                 UnityMediation.initialize(configuration);
+                IUnityAdsInitializationListener unityInitilyze = new IUnityAdsInitializationListener() {
+                    @Override
+                    public void onInitializationComplete() {
+
+                    }
+
+                    @Override
+                    public void onInitializationFailed(UnityAds.UnityAdsInitializationError error, String message) {
+
+                    }
+                };
+
+                if (BuildConfig.DEBUG) {
+                    UnityAds.initialize(activity, idInitialize, true, unityInitilyze );
+                }
+
+
+                impressionListener = new IImpressionListener() {
+                    @Override
+                    public void onImpression(@NonNull String adUnitId, @Nullable ImpressionData impressionData) {
+                        if (impressionData == null) {
+                            Logger.info("Data does not exist due to not enabling User-Level Reporting");
+                        } else {
+                            try {
+                                Logger.info(impressionData.getJsonRepresentation().toString(2));
+                            } catch (JSONException e) {
+                                Logger.info("JSON could not be formatted with double indent.");
+                            }
+                        }
+                    }
+                };
+                ImpressionEventPublisher.subscribe(impressionListener);
+
                 break;
         }
     }
@@ -167,6 +210,22 @@ public class AliendroidInitialize {
                         }).build();
 
                 UnityMediation.initialize(configuration);
+
+                IUnityAdsInitializationListener unityInitilyze = new IUnityAdsInitializationListener() {
+                    @Override
+                    public void onInitializationComplete() {
+
+                    }
+
+                    @Override
+                    public void onInitializationFailed(UnityAds.UnityAdsInitializationError error, String message) {
+
+                    }
+                };
+
+                if (BuildConfig.DEBUG) {
+                    UnityAds.initialize(activity, idInitialize, true, unityInitilyze );
+                }
                 break;
         }
     }
@@ -238,6 +297,22 @@ public class AliendroidInitialize {
                         }).build();
 
                 UnityMediation.initialize(configuration);
+
+                IUnityAdsInitializationListener unityInitilyze = new IUnityAdsInitializationListener() {
+                    @Override
+                    public void onInitializationComplete() {
+
+                    }
+
+                    @Override
+                    public void onInitializationFailed(UnityAds.UnityAdsInitializationError error, String message) {
+
+                    }
+                };
+
+                if (BuildConfig.DEBUG) {
+                    UnityAds.initialize(activity, idInitialize, true, unityInitilyze );
+                }
                 break;
         }
     }
@@ -309,6 +384,22 @@ public class AliendroidInitialize {
                         }).build();
 
                 UnityMediation.initialize(configuration);
+
+                IUnityAdsInitializationListener unityInitilyze = new IUnityAdsInitializationListener() {
+                    @Override
+                    public void onInitializationComplete() {
+
+                    }
+
+                    @Override
+                    public void onInitializationFailed(UnityAds.UnityAdsInitializationError error, String message) {
+
+                    }
+                };
+
+                if (BuildConfig.DEBUG) {
+                    UnityAds.initialize(activity, idInitialize, true, unityInitilyze );
+                }
                 break;
         }
     }
@@ -384,6 +475,22 @@ public class AliendroidInitialize {
                         }).build();
 
                 UnityMediation.initialize(configuration);
+
+                IUnityAdsInitializationListener unityInitilyze = new IUnityAdsInitializationListener() {
+                    @Override
+                    public void onInitializationComplete() {
+
+                    }
+
+                    @Override
+                    public void onInitializationFailed(UnityAds.UnityAdsInitializationError error, String message) {
+
+                    }
+                };
+
+                if (BuildConfig.DEBUG) {
+                    UnityAds.initialize(activity, idInitializeBackupAds, true, unityInitilyze );
+                }
                 break;
         }
     }
@@ -455,6 +562,21 @@ public class AliendroidInitialize {
                         }).build();
 
                 UnityMediation.initialize(configuration);
+                IUnityAdsInitializationListener unityInitilyze = new IUnityAdsInitializationListener() {
+                    @Override
+                    public void onInitializationComplete() {
+
+                    }
+
+                    @Override
+                    public void onInitializationFailed(UnityAds.UnityAdsInitializationError error, String message) {
+
+                    }
+                };
+
+                if (BuildConfig.DEBUG) {
+                    UnityAds.initialize(activity, idInitializeBackupAds, true, unityInitilyze );
+                }
                 break;
         }
     }
@@ -528,6 +650,22 @@ public class AliendroidInitialize {
                 IntegrationHelper.validateIntegration(activity);
                 break;
         }
+
+        IUnityAdsInitializationListener unityInitilyze = new IUnityAdsInitializationListener() {
+            @Override
+            public void onInitializationComplete() {
+
+            }
+
+            @Override
+            public void onInitializationFailed(UnityAds.UnityAdsInitializationError error, String message) {
+
+            }
+        };
+
+        if (BuildConfig.DEBUG) {
+            UnityAds.initialize(activity, idInitialize, true, unityInitilyze );
+        }
     }
 
 
@@ -599,6 +737,10 @@ public class AliendroidInitialize {
                         }).build();
 
                 UnityMediation.initialize(configuration);
+                if (BuildConfig.DEBUG) {
+                    UnityAds.initialize(activity, idInitializeBackupAds, true, null);
+                }
+
                 break;
         }
     }
