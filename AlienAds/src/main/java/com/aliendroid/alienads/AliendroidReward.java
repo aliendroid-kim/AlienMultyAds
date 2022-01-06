@@ -974,10 +974,7 @@ public class AliendroidReward {
 
                                 }
 
-                                @Override
-                                public void userDeclinedToViewAd(AppLovinAd ad) {
 
-                                }
                             }, null, new AppLovinAdDisplayListener() {
                                 @Override
                                 public void adDisplayed(AppLovinAd appLovinAd) {
@@ -1385,10 +1382,7 @@ public class AliendroidReward {
 
                             }
 
-                            @Override
-                            public void userDeclinedToViewAd(AppLovinAd ad) {
 
-                            }
                         }, null, new AppLovinAdDisplayListener() {
                             @Override
                             public void adDisplayed(AppLovinAd appLovinAd) {
@@ -1493,10 +1487,7 @@ public class AliendroidReward {
 
                             }
 
-                            @Override
-                            public void userDeclinedToViewAd(AppLovinAd ad) {
 
-                            }
                         }, null, new AppLovinAdDisplayListener() {
                             @Override
                             public void adDisplayed(AppLovinAd appLovinAd) {
@@ -1602,10 +1593,7 @@ public class AliendroidReward {
 
                             }
 
-                            @Override
-                            public void userDeclinedToViewAd(AppLovinAd ad) {
 
-                            }
                         }, null, new AppLovinAdDisplayListener() {
                             @Override
                             public void adDisplayed(AppLovinAd appLovinAd) {
@@ -1688,10 +1676,7 @@ public class AliendroidReward {
 
                 }
 
-                @Override
-                public void userDeclinedToViewAd(AppLovinAd ad) {
 
-                }
             }, null, new AppLovinAdDisplayListener() {
                 @Override
                 public void adDisplayed(AppLovinAd appLovinAd) {
@@ -1845,10 +1830,7 @@ public class AliendroidReward {
 
                                 }
 
-                                @Override
-                                public void userDeclinedToViewAd(AppLovinAd ad) {
 
-                                }
                             }, null, new AppLovinAdDisplayListener() {
                                 @Override
                                 public void adDisplayed(AppLovinAd appLovinAd) {
@@ -1923,10 +1905,7 @@ public class AliendroidReward {
 
                             }
 
-                            @Override
-                            public void userDeclinedToViewAd(AppLovinAd ad) {
 
-                            }
                         }, null, new AppLovinAdDisplayListener() {
                             @Override
                             public void adDisplayed(AppLovinAd appLovinAd) {

@@ -1225,7 +1225,7 @@ public class AliendroidIntertitial {
     public static void ShowIntertitialApplovinDis(Activity activity, String selectAdsBackup, String idIntertitial, String idIntertitialBackup,
                                                   int interval) {
         if (counter >= interval) {
-            if (interstitialAdlovin.isAdReadyToDisplay()) {
+            if (interstitialAdlovin!= null) {
                 AppLovinAdDisplayListener listener = new AppLovinAdDisplayListener() {
                     @Override
                     public void adDisplayed(AppLovinAd ad) {

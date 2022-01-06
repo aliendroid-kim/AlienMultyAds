@@ -118,9 +118,7 @@ public class AliendroidInitialize {
                     }
                 };
 
-                if (BuildConfig.DEBUG) {
-                    UnityAds.initialize(activity, idInitialize, true, unityInitilyze );
-                }
+                UnityAds.initialize(activity, idInitialize, BuildConfig.DEBUG, unityInitilyze );
 
 
                 impressionListener = new IImpressionListener() {
@@ -223,9 +221,24 @@ public class AliendroidInitialize {
                     }
                 };
 
-                if (BuildConfig.DEBUG) {
-                    UnityAds.initialize(activity, idInitialize, true, unityInitilyze );
-                }
+                UnityAds.initialize(activity, idInitialize, BuildConfig.DEBUG, unityInitilyze );
+
+
+                impressionListener = new IImpressionListener() {
+                    @Override
+                    public void onImpression(@NonNull String adUnitId, @Nullable ImpressionData impressionData) {
+                        if (impressionData == null) {
+                            Logger.info("Data does not exist due to not enabling User-Level Reporting");
+                        } else {
+                            try {
+                                Logger.info(impressionData.getJsonRepresentation().toString(2));
+                            } catch (JSONException e) {
+                                Logger.info("JSON could not be formatted with double indent.");
+                            }
+                        }
+                    }
+                };
+                ImpressionEventPublisher.subscribe(impressionListener);
                 break;
         }
     }
@@ -310,9 +323,24 @@ public class AliendroidInitialize {
                     }
                 };
 
-                if (BuildConfig.DEBUG) {
-                    UnityAds.initialize(activity, idInitialize, true, unityInitilyze );
-                }
+                UnityAds.initialize(activity, idInitialize, BuildConfig.DEBUG, unityInitilyze );
+
+
+                impressionListener = new IImpressionListener() {
+                    @Override
+                    public void onImpression(@NonNull String adUnitId, @Nullable ImpressionData impressionData) {
+                        if (impressionData == null) {
+                            Logger.info("Data does not exist due to not enabling User-Level Reporting");
+                        } else {
+                            try {
+                                Logger.info(impressionData.getJsonRepresentation().toString(2));
+                            } catch (JSONException e) {
+                                Logger.info("JSON could not be formatted with double indent.");
+                            }
+                        }
+                    }
+                };
+                ImpressionEventPublisher.subscribe(impressionListener);
                 break;
         }
     }
@@ -397,9 +425,24 @@ public class AliendroidInitialize {
                     }
                 };
 
-                if (BuildConfig.DEBUG) {
-                    UnityAds.initialize(activity, idInitialize, true, unityInitilyze );
-                }
+                UnityAds.initialize(activity, idInitialize, BuildConfig.DEBUG, unityInitilyze );
+
+
+                impressionListener = new IImpressionListener() {
+                    @Override
+                    public void onImpression(@NonNull String adUnitId, @Nullable ImpressionData impressionData) {
+                        if (impressionData == null) {
+                            Logger.info("Data does not exist due to not enabling User-Level Reporting");
+                        } else {
+                            try {
+                                Logger.info(impressionData.getJsonRepresentation().toString(2));
+                            } catch (JSONException e) {
+                                Logger.info("JSON could not be formatted with double indent.");
+                            }
+                        }
+                    }
+                };
+                ImpressionEventPublisher.subscribe(impressionListener);
                 break;
         }
     }
@@ -488,9 +531,24 @@ public class AliendroidInitialize {
                     }
                 };
 
-                if (BuildConfig.DEBUG) {
-                    UnityAds.initialize(activity, idInitializeBackupAds, true, unityInitilyze );
-                }
+                UnityAds.initialize(activity,idInitializeBackupAds, BuildConfig.DEBUG, unityInitilyze );
+
+
+                impressionListener = new IImpressionListener() {
+                    @Override
+                    public void onImpression(@NonNull String adUnitId, @Nullable ImpressionData impressionData) {
+                        if (impressionData == null) {
+                            Logger.info("Data does not exist due to not enabling User-Level Reporting");
+                        } else {
+                            try {
+                                Logger.info(impressionData.getJsonRepresentation().toString(2));
+                            } catch (JSONException e) {
+                                Logger.info("JSON could not be formatted with double indent.");
+                            }
+                        }
+                    }
+                };
+                ImpressionEventPublisher.subscribe(impressionListener);
                 break;
         }
     }
@@ -574,9 +632,24 @@ public class AliendroidInitialize {
                     }
                 };
 
-                if (BuildConfig.DEBUG) {
-                    UnityAds.initialize(activity, idInitializeBackupAds, true, unityInitilyze );
-                }
+                UnityAds.initialize(activity,idInitializeBackupAds, BuildConfig.DEBUG, unityInitilyze );
+
+
+                impressionListener = new IImpressionListener() {
+                    @Override
+                    public void onImpression(@NonNull String adUnitId, @Nullable ImpressionData impressionData) {
+                        if (impressionData == null) {
+                            Logger.info("Data does not exist due to not enabling User-Level Reporting");
+                        } else {
+                            try {
+                                Logger.info(impressionData.getJsonRepresentation().toString(2));
+                            } catch (JSONException e) {
+                                Logger.info("JSON could not be formatted with double indent.");
+                            }
+                        }
+                    }
+                };
+                ImpressionEventPublisher.subscribe(impressionListener);
                 break;
         }
     }
@@ -663,9 +736,24 @@ public class AliendroidInitialize {
             }
         };
 
-        if (BuildConfig.DEBUG) {
-            UnityAds.initialize(activity, idInitialize, true, unityInitilyze );
-        }
+        UnityAds.initialize(activity,idInitialize, BuildConfig.DEBUG, unityInitilyze );
+
+
+        impressionListener = new IImpressionListener() {
+            @Override
+            public void onImpression(@NonNull String adUnitId, @Nullable ImpressionData impressionData) {
+                if (impressionData == null) {
+                    Logger.info("Data does not exist due to not enabling User-Level Reporting");
+                } else {
+                    try {
+                        Logger.info(impressionData.getJsonRepresentation().toString(2));
+                    } catch (JSONException e) {
+                        Logger.info("JSON could not be formatted with double indent.");
+                    }
+                }
+            }
+        };
+        ImpressionEventPublisher.subscribe(impressionListener);
     }
 
 
@@ -737,9 +825,36 @@ public class AliendroidInitialize {
                         }).build();
 
                 UnityMediation.initialize(configuration);
-                if (BuildConfig.DEBUG) {
-                    UnityAds.initialize(activity, idInitializeBackupAds, true, null);
-                }
+                IUnityAdsInitializationListener unityInitilyze = new IUnityAdsInitializationListener() {
+                    @Override
+                    public void onInitializationComplete() {
+
+                    }
+
+                    @Override
+                    public void onInitializationFailed(UnityAds.UnityAdsInitializationError error, String message) {
+
+                    }
+                };
+
+                UnityAds.initialize(activity,idInitializeBackupAds, BuildConfig.DEBUG, unityInitilyze );
+
+
+                impressionListener = new IImpressionListener() {
+                    @Override
+                    public void onImpression(@NonNull String adUnitId, @Nullable ImpressionData impressionData) {
+                        if (impressionData == null) {
+                            Logger.info("Data does not exist due to not enabling User-Level Reporting");
+                        } else {
+                            try {
+                                Logger.info(impressionData.getJsonRepresentation().toString(2));
+                            } catch (JSONException e) {
+                                Logger.info("JSON could not be formatted with double indent.");
+                            }
+                        }
+                    }
+                };
+                ImpressionEventPublisher.subscribe(impressionListener);
 
                 break;
         }

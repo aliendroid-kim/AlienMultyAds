@@ -2,7 +2,7 @@ package com.aliendroid.samplealienads;
 
 public class SettingAds {
     public static String SELECT_ADS ="UNITY";
-    public static String BACKUP_ADS = "UNITY";
+    public static String BACKUP_ADS = "IRON";
 
     public static String MAIN_ADS_BANNER ="topBanner";
     public static String BACKUP_ADS_BANNER="topBanner";
@@ -15,7 +15,7 @@ public class SettingAds {
 
     public static String OPEN_ADS_ADMOB ="ca-app-pub-3940256099942544/3419835294x";
     public static String NATIVE_ADS_ADMOB ="/6499/example/native";
-    public static String INITIALIZE_SDK = "123456";
+    public static String INITIALIZE_SDK = "4532643";
     public static String INITIALIZE_SDK_BACKUPADS = "123456";
 
     public static String HIGH_PAYING_KEYWORD1="Finance";
