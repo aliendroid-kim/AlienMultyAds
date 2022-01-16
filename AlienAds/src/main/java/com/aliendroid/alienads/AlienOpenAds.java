@@ -104,7 +104,12 @@ public class AlienOpenAds implements LifecycleObserver, Application.ActivityLife
                     }
 
                 };
-        LoadOpenAds(IDOPEN);
+        try {
+            LoadOpenAds(IDOPEN);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
     /**

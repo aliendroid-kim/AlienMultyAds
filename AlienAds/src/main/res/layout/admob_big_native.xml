@@ -10,6 +10,20 @@
 
         <LinearLayout
             android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/AppTheme.AdAttribution"
+                android:layout_width="35dp"
+                android:layout_marginTop="1dp"
+                android:gravity="center"
+                android:textColor="#ffffff" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
@@ -26,17 +40,12 @@
                         android:id="@+id/ad_app_icon"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_margin="5dp"
 
+                        android:layout_marginStart="5dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginBottom="5dp"
                         android:adjustViewBounds="true" />
-
-                    <TextView
-                        style="@style/AppTheme.AdAttribution"
-                        android:layout_width="35dp"
-                        android:layout_marginLeft="1dp"
-                        android:layout_marginTop="1dp"
-                        android:gravity="center"
-                        android:textColor="#ffffff" />
 
                 </RelativeLayout>
 
@@ -73,10 +82,9 @@
 
                         <TextView
                             android:id="@+id/ad_body"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginEnd="20dp"
-                            android:layout_marginRight="20dp"
+                            android:layout_marginRight="5dp"
                             android:layout_marginBottom="5dp"
                             android:textColor="#222f3e"
                             android:textSize="12sp" />
@@ -98,7 +106,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="35dp"
                         android:layout_gravity="center"
-                        android:layout_marginRight="1dp"
+                        android:layout_marginRight="5dp"
                         android:background="#636e72"
                         android:gravity="center"
                         android:textColor="@color/cardview_light_background"
