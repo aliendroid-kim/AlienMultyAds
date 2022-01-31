@@ -28,7 +28,6 @@
             android:authorities="${applicationId}.IronsourceLifecycleProvider"
             android:name="com.ironsource.lifecycle.IronsourceLifecycleProvider" />
 
-        <activity android:name="com.mopub.common.privacy.ConsentDialogActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize"/>
+
     </application>
 </manifest>

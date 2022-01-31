@@ -53,19 +53,19 @@ dependencies {
     implementation 'com.google.android.gms:play-services-basement:18.0.0'
     implementation 'com.google.android.ump:user-messaging-platform:1.0.0'
     implementation 'com.google.ads.mediation:applovin:10.3.5.0'
-    implementation 'com.google.ads.mediation:ironsource:7.1.13.0'
+    implementation 'com.google.ads.mediation:ironsource:7.1.14.0'
     implementation 'com.google.ads.mediation:unity:4.0.0.0'
     implementation 'com.google.ads.mediation:facebook:6.8.0.0'
 
-    implementation "com.unity3d.mediation:mediation-sdk:+"
-    implementation "com.unity3d.mediation:unityads-adapter:+"
-    implementation "com.unity3d.mediation:admob-adapter:+"
-    implementation "com.unity3d.mediation:applovin-adapter:+"
-    implementation "com.unity3d.mediation:facebook-adapter:+"
-    implementation "com.unity3d.mediation:ironsource-adapter:+"
+    implementation "com.unity3d.mediation:mediation-sdk:0.3.0"
+    implementation "com.unity3d.mediation:unityads-adapter:0.3.0"
+    implementation "com.unity3d.mediation:admob-adapter:0.3.0"
+    implementation "com.unity3d.mediation:applovin-adapter:0.3.0"
+    implementation "com.unity3d.mediation:facebook-adapter:0.3.0"
+    implementation "com.unity3d.mediation:ironsource-adapter:0.3.0"
 
-    implementation 'com.applovin.mediation:ironsource-adapter:+'
-    implementation 'com.applovin.mediation:unityads-adapter:+'
+    implementation 'com.applovin.mediation:ironsource-adapter:7.1.14.0.1'
+    implementation 'com.applovin.mediation:unityads-adapter:4.0.0.0'
 
     implementation 'com.flurry.android:analytics:13.0.1'
 
