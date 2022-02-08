@@ -15,5 +15,13 @@
     <color name="gnt_gray">#808080</color>
     <color name="gnt_outline">#E0E0E0</color>
 
+
+    <color name="native_title">#000000</color>
+    <color name="native_description">#000000</color>
+    <color name="native_text_button">#ffffff</color>
+    <color name="native_button">#22a6b3</color>
+    <color name="native_background">#ffffff</color>
+    <color name="native_stroke_background">#808080</color>
+
     <color name="native_back">#f7f1e3</color>
 </resources>

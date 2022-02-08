@@ -20,7 +20,7 @@
                 android:layout_marginTop="2dp"
                 android:background="@drawable/round_black"
                 android:gravity="center"
-                android:textColor="#ffffff" />
+                android:textColor="@color/native_text_button" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -62,7 +62,7 @@
                             android:layout_marginTop="5dp"
                             android:lines="1"
                             android:text="Reskin Aliendroid"
-                            android:textColor="#222f3e"
+                            android:textColor="@color/native_title"
                             android:textSize="12sp"
                             android:textStyle="bold" />
 
@@ -71,7 +71,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="bottom"
-                            android:textColor="#222f3e"
+                            android:textColor="@color/native_title"
                             android:textSize="12sp"
                             android:textStyle="bold"
                             android:visibility="gone" />
@@ -84,7 +84,7 @@
                             android:layout_marginRight="5dp"
                             android:layout_marginBottom="5dp"
                             android:text="1st - The Big Marketplace Source Code for Monetize Mobile Application on Indonesia"
-                            android:textColor="#222f3e"
+                            android:textColor="@color/native_description"
                             android:textSize="12sp" />
 
                         <RatingBar
@@ -108,7 +108,7 @@
                         android:background="@drawable/round_black"
                         android:gravity="center"
                         android:text="Install"
-                        android:textColor="@color/cardview_light_background"
+                        android:textColor="@color/native_text_button"
                         android:textSize="10sp" />
                 </LinearLayout>
 
@@ -144,7 +144,7 @@
                         android:paddingLeft="5dp"
                         android:paddingEnd="5dp"
                         android:paddingRight="5dp"
-                        android:textColor="#222f3e"
+                        android:textColor="@color/native_title"
                         android:textSize="12sp" />
 
                     <TextView
@@ -155,7 +155,7 @@
                         android:paddingLeft="5dp"
                         android:paddingEnd="5dp"
                         android:paddingRight="5dp"
-                        android:textColor="#222f3e"
+                        android:textColor="@color/native_title"
                         android:textSize="12sp" />
 
                 </LinearLayout>

@@ -23,11 +23,12 @@
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="2dp"
                 android:background="@drawable/round_black"
+                android:gravity="center"
                 android:padding="2dp"
                 android:text="Ad"
                 android:textAlignment="center"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-                android:textColor="@android:color/white"
+                android:textColor="@color/native_text_button"
                 android:textSize="10sp" />
 
             <RelativeLayout
@@ -81,6 +82,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                    android:textColor="@color/native_title"
                     android:textSize="10sp"
                     tools:text="Title" />
 
@@ -90,6 +92,7 @@
                     android:layout_height="wrap_content"
                     android:lines="2"
                     android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                    android:textColor="@color/native_description"
                     android:textSize="10sp"
                     tools:text="Body" />
 
@@ -102,10 +105,8 @@
                 android:layout_gravity="center"
                 android:layout_marginRight="5dp"
                 android:background="@drawable/round_black"
-                android:backgroundTint="#ffffff"
-                android:textColor="@android:color/white"
+                android:textColor="@color/native_text_button"
                 android:textSize="8sp"
-                app:backgroundTint="@color/colorPrimary"
                 tools:text="Install" />
 
         </LinearLayout>
