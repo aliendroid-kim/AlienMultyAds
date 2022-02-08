@@ -44,14 +44,16 @@
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
             android:onClick="munculiklan"
-            android:text="Show Intertitial" />
+            android:text="Show Intertitial"
+            android:textColor="@color/gnt_white" />
 
         <Button
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:onClick="munculreward"
-            android:text="Show Reward" />
+            android:text="Show Reward"
+            android:textColor="@color/gnt_white" />
 
         <RelativeLayout
             android:id="@+id/laysAdsmall"

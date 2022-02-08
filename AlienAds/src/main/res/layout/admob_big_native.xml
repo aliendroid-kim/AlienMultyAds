@@ -10,22 +10,17 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
             <TextView
                 style="@style/AppTheme.AdAttribution"
                 android:layout_width="35dp"
-                android:layout_marginTop="1dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="2dp"
+                android:background="@drawable/round_black"
                 android:gravity="center"
                 android:textColor="#ffffff" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -52,7 +47,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginLeft="10dp">
+                    android:layout_marginLeft="5dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -66,6 +61,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
                             android:lines="1"
+                            android:text="Reskin Aliendroid"
                             android:textColor="#222f3e"
                             android:textSize="12sp"
                             android:textStyle="bold" />
@@ -82,10 +78,12 @@
 
                         <TextView
                             android:id="@+id/ad_body"
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginEnd="20dp"
                             android:layout_marginRight="5dp"
                             android:layout_marginBottom="5dp"
+                            android:text="1st - The Big Marketplace Source Code for Monetize Mobile Application on Indonesia"
                             android:textColor="#222f3e"
                             android:textSize="12sp" />
 
@@ -107,10 +105,11 @@
                         android:layout_height="35dp"
                         android:layout_gravity="center"
                         android:layout_marginRight="5dp"
-                        android:background="#636e72"
+                        android:background="@drawable/round_black"
                         android:gravity="center"
+                        android:text="Install"
                         android:textColor="@color/cardview_light_background"
-                        android:textSize="12sp" />
+                        android:textSize="10sp" />
                 </LinearLayout>
 
             </LinearLayout>
@@ -124,7 +123,7 @@
                 <com.google.android.gms.ads.nativead.MediaView
                     android:id="@+id/ad_media"
                     android:layout_width="match_parent"
-                    android:layout_height="175dp"
+                    android:layout_height="200dp"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="5dp"
                     android:visibility="visible" />
