@@ -446,7 +446,7 @@ public class AliendroidNative {
 
     }
 
-    public static void SmallNativeMax(Activity activity, String selectAds, String selectAdsBackup, FrameLayout layNative, String nativeId, String idBannerBackup) {
+    public static void SmallNativeMax(Activity activity, String selectAds, String selectAdsBackup, RelativeLayout layNative, String nativeId, String idBannerBackup) {
 
         switch (selectAds) {
             case "ADMOB":
@@ -1375,7 +1375,7 @@ public class AliendroidNative {
 
     }
 
-    public static void MediumNativeMax(Activity activity, String selectAds, String selectAdsBackup, FrameLayout layNative, String nativeId, String idBannerBackup) {
+    public static void MediumNativeMax(Activity activity, String selectAds, String selectAdsBackup, RelativeLayout layNative, String nativeId, String idBannerBackup) {
 
         switch (selectAds) {
             case "ADMOB":
