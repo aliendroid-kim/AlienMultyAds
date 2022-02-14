@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case "APPLOVIN-M":
                 AliendroidInitialize.SelectAdsApplovinMax(MainActivity.this,BACKUP_ADS,INITIALIZE_SDK_BACKUPADS);
-                AliendroidNative.SmallNativeMax(MainActivity.this, layAds, BACKUP_ADS, MAIN_ADS_BANNER, BACKUP_ADS_BANNER);
+                AliendroidNative.MediumNativeMax(MainActivity.this, layAds, BACKUP_ADS, MAIN_ADS_BANNER, BACKUP_ADS_BANNER);
                 AliendroidReward.LoadRewardApplovinMax(MainActivity.this,BACKUP_ADS,MAIN_ADS_REWARDS,BACKUP_ADS_REWARDS);
                 AliendroidIntertitial.LoadIntertitialApplovinMax(MainActivity.this, BACKUP_ADS,MAIN_ADS_INTERTITIAL,BACKUP_ADS_INTERTITIAL);
                 break;

@@ -8,6 +8,7 @@ import com.applovin.sdk.AppLovinPrivacySettings;
 import com.applovin.sdk.AppLovinSdk;
 import com.facebook.ads.AdSettings;
 import com.facebook.ads.AudienceNetworkAds;
+import com.google.ads.mediation.applovin.AppLovinMediationAdapter;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.initialization.AdapterStatus;
 import com.google.android.gms.ads.initialization.InitializationStatus;
@@ -34,6 +35,8 @@ public class AliendroidInitialize {
                             "Adapter name: %s, Description: %s, Latency: %d",
                             adapterClass, status.getDescription(), status.getLatency()));
                     AppLovinPrivacySettings.setHasUserConsent(true, activity);
+                    AppLovinPrivacySettings.setIsAgeRestrictedUser(true, activity);
+                    AppLovinSdk.getInstance("sdkKey", AppLovinMediationAdapter.getSdkSettings(activity), activity).initializeSdk();
 
                 }
             }
