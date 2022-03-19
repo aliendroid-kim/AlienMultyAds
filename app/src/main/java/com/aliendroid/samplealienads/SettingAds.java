@@ -1,20 +1,20 @@
 package com.aliendroid.samplealienads;
 
 public class SettingAds {
-    public static String SELECT_ADS ="APPLOVIN-M";
+    public static String SELECT_ADS ="ADMOB";
     public static String BACKUP_ADS = "IRON";
 
-    public static String MAIN_ADS_BANNER ="topBanner";
+    public static String MAIN_ADS_BANNER ="ca-app-pub-3940256099942544/6300978111";
     public static String BACKUP_ADS_BANNER="topBanner";
 
-    public static String MAIN_ADS_INTERTITIAL ="Android_Interstitial";
+    public static String MAIN_ADS_INTERTITIAL ="ca-app-pub-3940256099942544/1033173712";
     public static String BACKUP_ADS_INTERTITIAL="Android_Interstitial";
 
     public static String MAIN_ADS_REWARDS ="Rewarded_Android";
     public static String BACKUP_ADS_REWARDS="Rewarded_Android";
 
-    public static String OPEN_ADS_ADMOB ="ca-app-pub-3940256099942544/3419835294x";
-    public static String NATIVE_ADS_ADMOB ="ca-app-pub-3940256099942544/2247696110";
+    public static String OPEN_ADS_ADMOB ="ca-app-pub-3940256099942544/3419835294";
+    public static String NATIVE_ADS_ADMOB ="ca-app-pub-3940256099942544/2247696110x";
     public static String INITIALIZE_SDK = "4532643";
     public static String INITIALIZE_SDK_BACKUPADS = "123456";
 

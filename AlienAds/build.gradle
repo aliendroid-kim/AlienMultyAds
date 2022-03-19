@@ -23,6 +23,7 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
 }
 
 dependencies {
@@ -37,27 +38,26 @@ dependencies {
 
 
     //Main Sdk Ads
-    implementation 'com.google.android.gms:play-services-ads:20.5.0'
+    implementation 'com.google.android.gms:play-services-ads:20.6.0'
     implementation 'com.facebook.android:audience-network-sdk:6.8.0'
-    implementation "com.applovin:applovin-sdk:11.1.0"
-    implementation 'com.ironsource.sdk:mediationsdk:7.1.14'
-    implementation 'com.startapp:inapp-sdk:4.9.1'
+    implementation "com.applovin:applovin-sdk:11.2.2"
+    implementation 'com.ironsource.sdk:mediationsdk:7.2.1'
+    implementation 'com.startapp:inapp-sdk:4.9.2'
 
 
     //Mediation SDK
     implementation 'com.applovin.mediation:facebook-adapter:6.8.0.0'
     implementation 'com.ironsource.adapters:facebookadapter:4.3.30'
-    implementation 'com.google.ads.mediation:applovin:11.1.0.0'
+    implementation 'com.google.ads.mediation:applovin:11.2.2.0'
     implementation 'com.applovin.mediation:google-adapter:20.5.0.3'
     implementation 'com.google.android.gms:play-services-ads-identifier:18.0.1'
     implementation 'com.google.android.gms:play-services-basement:18.0.0'
     implementation 'com.google.android.ump:user-messaging-platform:2.0.0'
     implementation 'com.unity3d.ads:unity-ads:3.7.5'
-    implementation 'com.google.ads.mediation:applovin:11.1.0.0'
-    implementation 'com.google.ads.mediation:ironsource:7.1.14.0'
-    implementation 'com.google.ads.mediation:unity:3.7.5.0'
+    implementation 'com.google.ads.mediation:applovin:11.2.2.0'
+    implementation 'com.google.ads.mediation:ironsource:7.2.1.0'
+    implementation 'com.google.ads.mediation:unity:4.0.1.0'
     implementation 'com.google.ads.mediation:facebook:6.8.0.0'
-
     implementation 'com.flurry.android:analytics:13.0.1'
 
 }
