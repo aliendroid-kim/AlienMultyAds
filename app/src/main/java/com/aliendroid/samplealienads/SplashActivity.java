@@ -25,33 +25,7 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.splash_activity);
 
-        switch (SELECT_ADS) {
-            case "ADMOB":
-                AliendroidInitialize.SelectAdsAdmob(SplashActivity.this, BACKUP_ADS, INITIALIZE_SDK);
-                break;
-            case "GOOGLE-ADS":
-                AliendroidInitialize.SelectAdsAdmob(SplashActivity.this, BACKUP_ADS, INITIALIZE_SDK);
-                break;
-            case "APPLOVIN-D":
-                AliendroidInitialize.SelectAdsApplovinDis(SplashActivity.this, BACKUP_ADS, INITIALIZE_SDK);
-                break;
-            case "APPLOVIN-M":
-                AliendroidInitialize.SelectAdsApplovinMax(SplashActivity.this, BACKUP_ADS, INITIALIZE_SDK);
-                break;
-            case "MOPUB":
-                AliendroidInitialize.SelectAdsMopub(SplashActivity.this, BACKUP_ADS, INITIALIZE_SDK, INITIALIZE_SDK_BACKUPADS);
-                break;
-            case "IRON":
-                AliendroidInitialize.SelectAdsIron(SplashActivity.this, BACKUP_ADS, INITIALIZE_SDK, INITIALIZE_SDK_BACKUPADS);
-                break;
-            case "STARTAPP":
-                AliendroidInitialize.SelectAdsStartApp(SplashActivity.this, BACKUP_ADS, INITIALIZE_SDK,INITIALIZE_SDK_BACKUPADS);
-                break;
-            case "UNITY":
-                AliendroidInitialize.SelectAdsUnity(SplashActivity.this,BACKUP_ADS,INITIALIZE_SDK,INITIALIZE_SDK_BACKUPADS);
 
-                break;
-        }
         AlienOpenAds.LoadOpenAds(SettingAds.OPEN_ADS_ADMOB);
 
         new CountDownTimer(10000, 1000) {
