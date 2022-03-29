@@ -42,7 +42,7 @@ import com.startapp.sdk.ads.banner.Banner;
 import com.startapp.sdk.ads.banner.Mrec;
 import com.unity3d.services.banners.BannerView;
 import com.unity3d.services.banners.UnityBannerSize;
-
+//Uranus
 public class AliendroidNative {
 
 

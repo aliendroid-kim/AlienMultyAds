@@ -6,7 +6,6 @@ import android.provider.Settings;
 import androidx.annotation.Nullable;
 
 import com.applovin.sdk.AppLovinPrivacySettings;
-import com.facebook.ads.AdSettings;
 import com.google.android.ump.ConsentDebugSettings;
 import com.google.android.ump.ConsentForm;
 import com.google.android.ump.ConsentInformation;
@@ -115,7 +114,7 @@ public class AlienGDPR {
     public static final String md5(final String s) {
         try {
             // Create MD5 Hash
-            MessageDigest digest = java.security.MessageDigest
+            MessageDigest digest = MessageDigest
                     .getInstance("MD5");
             digest.update(s.getBytes());
             byte messageDigest[] = digest.digest();

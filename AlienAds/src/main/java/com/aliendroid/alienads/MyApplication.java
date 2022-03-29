@@ -13,7 +13,7 @@ import com.google.android.gms.ads.initialization.OnInitializationCompleteListene
 
 public class MyApplication extends Application {
     private static AlienOpenAds alienOpenAds;
-
+    //Uranus
     @Override
     public void onCreate() {
         super.onCreate();

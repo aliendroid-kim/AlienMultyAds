@@ -35,7 +35,7 @@ import com.startapp.sdk.adsbase.StartAppAd;
 import com.startapp.sdk.adsbase.adlisteners.AdDisplayListener;
 import com.startapp.sdk.adsbase.adlisteners.AdEventListener;
 import com.unity3d.ads.UnityAds;
-
+//Uranus
 public class AliendroidIntertitial {
     public static InterstitialAd mInterstitialAd;
     public static AdManagerInterstitialAd mAdManagerInterstitialAd;

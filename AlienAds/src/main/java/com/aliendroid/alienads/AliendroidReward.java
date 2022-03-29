@@ -45,7 +45,7 @@ public class AliendroidReward {
     public static AppLovinIncentivizedInterstitial incentivizedInterstitial;
     public static StartAppAd rewardedVideo;
     private static RewardedAd mRewardedAd;
-
+    //Uranus
     public static void LoadRewardAdmob(Activity activity, String selectBackupAds, String idReward, String idBackupReward) {
         Bundle extrasApplovin = new AppLovinExtras.Builder()
                 .setMuteAudio(true)

@@ -1,7 +1,5 @@
 package com.aliendroid.alienads;
 
-import static com.unity3d.services.core.properties.ClientProperties.getApplicationContext;
-
 import android.app.Activity;
 import android.util.Log;
 
@@ -210,13 +208,10 @@ public class AliendroidInitialize {
     }
 
     public static void SelectAdsApplovinMax(Activity activity, String selectAdsBackup, String idInitialize) {
-        AdSettings.setDataProcessingOptions(new String[]{});
-        AppLovinSdk.getInstance(activity).setMediationProvider(AppLovinMediationProvider.MAX);
-        AppLovinSdk.getInstance( activity).initializeSdk( config -> {
 
-        } );
-        AppLovinSdk sdk = AppLovinSdk.getInstance(activity);
-        sdk.getSettings().setMuted(!sdk.getSettings().isMuted());
+        AppLovinSdk.getInstance(activity).setMediationProvider(AppLovinMediationProvider.MAX);
+        AppLovinSdk.getInstance(activity).initializeSdk(config -> {
+        });
         switch (selectAdsBackup) {
             case "APPLOVIN-D":
                 AppLovinSdk.initializeSdk(activity);

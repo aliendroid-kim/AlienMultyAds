@@ -3,14 +3,15 @@ plugins {
 }
 
 android {
-    compileSdkVersion 31
+    compileSdk 31
+
     defaultConfig {
-        applicationId "xxx.xxx.xxxxx"
-        minSdkVersion 21
-        targetSdkVersion 31
+        applicationId "com.kimganteng.myapplication"
+        minSdk 21
+        targetSdk 31
         versionCode 1
         versionName "1.0"
-        multiDexEnabled true
+
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -27,13 +28,12 @@ android {
 }
 
 dependencies {
-    implementation project(":AlienAds")
+    implementation project(':AlienAds')
     implementation 'androidx.appcompat:appcompat:1.4.1'
     implementation 'com.google.android.material:material:1.5.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
-    implementation "androidx.multidex:multidex:2.0.1"
-    implementation 'androidx.work:work-runtime:+'
+
 }
