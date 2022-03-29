@@ -641,9 +641,7 @@ public class AliendroidNative {
                         break;
                 }
                 // Cleanup any pre-existing native ad to prevent memory leaks.
-                if (nativeAdMax != null) {
-                    nativeAdLoader.destroy(nativeAdMax);
-                }
+
 
                 // Save ad for cleanup.
                 nativeAdMax = ad;
@@ -811,6 +809,8 @@ public class AliendroidNative {
                         }
                         break;
                 }
+                // Cleanup any pre-existing native ad to prevent memory leaks.
+
 
                 // Save ad for cleanup.
                 nativeAdMax = ad;
@@ -979,9 +979,7 @@ public class AliendroidNative {
                         break;
                 }
                 // Cleanup any pre-existing native ad to prevent memory leaks.
-                if (nativeAdMax != null) {
-                    nativeAdLoader.destroy(nativeAdMax);
-                }
+
 
                 // Save ad for cleanup.
                 nativeAdMax = ad;
@@ -1826,9 +1824,7 @@ public class AliendroidNative {
                         break;
                 }
                 // Cleanup any pre-existing native ad to prevent memory leaks.
-                if (nativeAdMax != null) {
-                    nativeAdLoader.destroy(nativeAdMax);
-                }
+
 
                 // Save ad for cleanup.
                 nativeAdMax = ad;
@@ -1989,9 +1985,7 @@ public class AliendroidNative {
                         break;
                 }
                 // Cleanup any pre-existing native ad to prevent memory leaks.
-                if (nativeAdMax != null) {
-                    nativeAdLoader.destroy(nativeAdMax);
-                }
+
 
                 // Save ad for cleanup.
                 nativeAdMax = ad;
@@ -2383,9 +2377,7 @@ public class AliendroidNative {
                         break;
                 }
                 // Cleanup any pre-existing native ad to prevent memory leaks.
-                if (nativeAdMax != null) {
-                    nativeAdLoader.destroy(nativeAdMax);
-                }
+
 
                 // Save ad for cleanup.
                 nativeAdMax = ad;
