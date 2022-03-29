@@ -121,7 +121,7 @@ public class AliendroidBanner {
                 switch (selectAdsBackup) {
                     case "APPLOVIN-M":
                         adViewMax = new MaxAdView(idBannerBackup, activity);
-                        adViewMax.stopAutoRefresh();
+
                         final boolean isTablet = AppLovinSdkUtils.isTablet(activity);
                         final int heightPx = AppLovinSdkUtils.dpToPx(activity, isTablet ? 90 : 50);
                         adViewMax.setLayoutParams(new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, heightPx));
@@ -252,7 +252,7 @@ public class AliendroidBanner {
                 switch (selectAdsBackup) {
                     case "APPLOVIN-M":
                         adViewMax = new MaxAdView(idBannerBackup, activity);
-                        adViewMax.stopAutoRefresh();
+
                         final boolean isTablet = AppLovinSdkUtils.isTablet(activity);
                         final int heightPx = AppLovinSdkUtils.dpToPx(activity, isTablet ? 90 : 50);
                         adViewMax.setLayoutParams(new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, heightPx));
@@ -336,7 +336,7 @@ public class AliendroidBanner {
                 switch (selectAdsBackup) {
                     case "APPLOVIN-M":
                         adViewMax = new MaxAdView(idBannerBackup, activity);
-                        adViewMax.stopAutoRefresh();
+
                         final boolean isTablet = AppLovinSdkUtils.isTablet(activity);
                         final int heightPx = AppLovinSdkUtils.dpToPx(activity, isTablet ? 90 : 50);
                         adViewMax.setLayoutParams(new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, heightPx));
@@ -531,7 +531,7 @@ public class AliendroidBanner {
                 switch (selectAdsBackup) {
                     case "APPLOVIN-M":
                         adViewMax = new MaxAdView(idBannerBackup, activity);
-                        adViewMax.stopAutoRefresh();
+
                         final boolean isTablet = AppLovinSdkUtils.isTablet(activity);
                         final int heightPx = AppLovinSdkUtils.dpToPx(activity, isTablet ? 90 : 50);
                         adViewMax.setLayoutParams(new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, heightPx));
@@ -667,7 +667,7 @@ public class AliendroidBanner {
                 switch (selectAdsBackup) {
                     case "APPLOVIN-M":
                         adViewMax = new MaxAdView(idBannerBackup, activity);
-                        adViewMax.stopAutoRefresh();
+
                         final boolean isTablet = AppLovinSdkUtils.isTablet(activity);
                         final int heightPx = AppLovinSdkUtils.dpToPx(activity, isTablet ? 90 : 50);
                         adViewMax.setLayoutParams(new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, heightPx));
@@ -747,7 +747,7 @@ public class AliendroidBanner {
     public static void SmallBannerApplovinMax(Activity activity, RelativeLayout layAds, String selectAdsBackup, String idBanner, String idBannerBackup) {
 
         adViewMax = new MaxAdView(idBanner, activity);
-        adViewMax.stopAutoRefresh();
+
         MaxAdViewAdListener listener = new MaxAdViewAdListener() {
             @Override
             public void onAdExpanded(MaxAd ad) {
@@ -976,7 +976,7 @@ public class AliendroidBanner {
                         break;
                     case "APPLOVIN-M":
                         adViewMax = new MaxAdView(idBannerBackup, activity);
-                        adViewMax.stopAutoRefresh();
+
 
                         final boolean isTablet = AppLovinSdkUtils.isTablet(activity);
                         final int heightPx = AppLovinSdkUtils.dpToPx(activity, isTablet ? 90 : 50);
@@ -1121,7 +1121,7 @@ public class AliendroidBanner {
                         break;
                     case "APPLOVIN-M":
                         adViewMax = new MaxAdView(idBannerBackup, activity);
-                        adViewMax.stopAutoRefresh();
+
                         final boolean isTablet = AppLovinSdkUtils.isTablet(activity);
                         final int heightPx = AppLovinSdkUtils.dpToPx(activity, isTablet ? 90 : 50);
                         adViewMax.setLayoutParams(new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, heightPx));
@@ -1271,7 +1271,7 @@ public class AliendroidBanner {
                         break;
                     case "APPLOVIN-M":
                         adViewMax = new MaxAdView(idBannerBackup, activity);
-                        adViewMax.stopAutoRefresh();
+
                         final boolean isTablet = AppLovinSdkUtils.isTablet(activity);
                         final int heightPx = AppLovinSdkUtils.dpToPx(activity, isTablet ? 90 : 50);
                         adViewMax.setLayoutParams(new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, heightPx));
