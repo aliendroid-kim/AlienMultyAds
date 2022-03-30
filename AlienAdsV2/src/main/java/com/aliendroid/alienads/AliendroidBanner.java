@@ -10,8 +10,6 @@ import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 
 import com.applovin.adview.AppLovinAdView;
-import com.applovin.mediation.AppLovinExtras;
-import com.applovin.mediation.ApplovinAdapter;
 import com.applovin.mediation.MaxAd;
 import com.applovin.mediation.MaxAdViewAdListener;
 import com.applovin.mediation.MaxError;
@@ -57,9 +55,6 @@ public class AliendroidBanner {
                                         String Hpk2, String Hpk3, String Hpk4, String Hpk5) {
 
 
-        Bundle extrasApplovin = new AppLovinExtras.Builder()
-                .setMuteAudio(true)
-                .build();
 
         Bundle extras = new FacebookExtras()
                 .setNativeBanner(true)
@@ -67,7 +62,7 @@ public class AliendroidBanner {
         AdRequest request = new AdRequest.Builder().addKeyword(Hpk1).addKeyword(Hpk2)
                 .addKeyword(Hpk3).addKeyword(Hpk4).addKeyword(Hpk5)
                 .addNetworkExtrasBundle(FacebookAdapter.class, extras)
-                .addNetworkExtrasBundle(ApplovinAdapter.class, extrasApplovin)
+
                 .build();
 
         adViewAdmob = new AdView(activity);
@@ -363,16 +358,14 @@ public class AliendroidBanner {
                         layAds.addView(startAppBanner, bannerParameters);
                         break;
                     case "ADMOB":
-                        Bundle extrasApplovin = new AppLovinExtras.Builder()
-                                .setMuteAudio(true)
-                                .build();
+
 
                         Bundle extras = new FacebookExtras()
                                 .setNativeBanner(true)
                                 .build();
                         AdRequest request = new AdRequest.Builder()
                                 .addNetworkExtrasBundle(FacebookAdapter.class, extras)
-                                .addNetworkExtrasBundle(ApplovinAdapter.class, extrasApplovin)
+
                                 .build();
                         adViewAdmob = new AdView(activity);
                         adViewAdmob.setAdUnitId(idBannerBackup);
@@ -558,16 +551,14 @@ public class AliendroidBanner {
                         layAds.addView(startAppBanner, bannerParameters);
                         break;
                     case "ADMOB":
-                         Bundle extrasApplovin = new AppLovinExtras.Builder()
-                                .setMuteAudio(true)
-                                .build();
+
 
                         Bundle extras = new FacebookExtras()
                                 .setNativeBanner(true)
                                 .build();
                         AdRequest request = new AdRequest.Builder()
                                 .addNetworkExtrasBundle(FacebookAdapter.class, extras)
-                                .addNetworkExtrasBundle(ApplovinAdapter.class, extrasApplovin)
+
                                 .build();
                         adViewAdmob = new AdView(activity);
                         adViewAdmob.setAdUnitId(idBannerBackup);
@@ -694,16 +685,14 @@ public class AliendroidBanner {
                         layAds.addView(startAppBanner, bannerParameters);
                         break;
                     case "ADMOB":
-                         Bundle extrasApplovin = new AppLovinExtras.Builder()
-                                .setMuteAudio(true)
-                                .build();
+
 
                         Bundle extras = new FacebookExtras()
                                 .setNativeBanner(true)
                                 .build();
                         AdRequest request = new AdRequest.Builder()
                                 .addNetworkExtrasBundle(FacebookAdapter.class, extras)
-                                .addNetworkExtrasBundle(ApplovinAdapter.class, extrasApplovin)
+
                                 .build();
                         adViewAdmob = new AdView(activity);
                         adViewAdmob.setAdUnitId(idBannerBackup);
@@ -852,16 +841,14 @@ public class AliendroidBanner {
                         layAds.addView(startAppBanner, bannerParameters);
                         break;
                     case "ADMOB":
-                         Bundle extrasApplovin = new AppLovinExtras.Builder()
-                                .setMuteAudio(true)
-                                .build();
+
 
                         Bundle extras = new FacebookExtras()
                                 .setNativeBanner(true)
                                 .build();
                         AdRequest request = new AdRequest.Builder()
                                 .addNetworkExtrasBundle(FacebookAdapter.class, extras)
-                                .addNetworkExtrasBundle(ApplovinAdapter.class, extrasApplovin)
+
                                 .build();
                         adViewAdmob = new AdView(activity);
                         adViewAdmob.setAdUnitId(idBannerBackup);
@@ -995,16 +982,14 @@ public class AliendroidBanner {
 
                         break;
                     case "ADMOB":
-                         Bundle extrasApplovin = new AppLovinExtras.Builder()
-                                .setMuteAudio(true)
-                                .build();
+
 
                         Bundle extras = new FacebookExtras()
                                 .setNativeBanner(true)
                                 .build();
                         AdRequest request = new AdRequest.Builder()
                                 .addNetworkExtrasBundle(FacebookAdapter.class, extras)
-                                .addNetworkExtrasBundle(ApplovinAdapter.class, extrasApplovin)
+
                                 .build();
                         adViewAdmob = new AdView(activity);
                         adViewAdmob.setAdUnitId(idBannerBackup);
@@ -1141,16 +1126,14 @@ public class AliendroidBanner {
 
                         break;
                     case "ADMOB":
-                         Bundle extrasApplovin = new AppLovinExtras.Builder()
-                                .setMuteAudio(true)
-                                .build();
+
 
                         Bundle extras = new FacebookExtras()
                                 .setNativeBanner(true)
                                 .build();
                         AdRequest request = new AdRequest.Builder()
                                 .addNetworkExtrasBundle(FacebookAdapter.class, extras)
-                                .addNetworkExtrasBundle(ApplovinAdapter.class, extrasApplovin)
+
                                 .build();
                         adViewAdmob = new AdView(activity);
                         adViewAdmob.setAdUnitId(idBannerBackup);
@@ -1291,16 +1274,12 @@ public class AliendroidBanner {
 
                         break;
                     case "ADMOB":
-                         Bundle extrasApplovin = new AppLovinExtras.Builder()
-                                .setMuteAudio(true)
-                                .build();
-
                         Bundle extras = new FacebookExtras()
                                 .setNativeBanner(true)
                                 .build();
                         AdRequest request = new AdRequest.Builder()
                                 .addNetworkExtrasBundle(FacebookAdapter.class, extras)
-                                .addNetworkExtrasBundle(ApplovinAdapter.class, extrasApplovin)
+
                                 .build();
                         adViewAdmob = new AdView(activity);
                         adViewAdmob.setAdUnitId(idBannerBackup);

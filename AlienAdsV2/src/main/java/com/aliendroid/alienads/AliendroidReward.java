@@ -6,8 +6,6 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 
 import com.applovin.adview.AppLovinIncentivizedInterstitial;
-import com.applovin.mediation.AppLovinExtras;
-import com.applovin.mediation.ApplovinAdapter;
 import com.applovin.mediation.MaxAd;
 import com.applovin.mediation.MaxError;
 import com.applovin.mediation.MaxReward;
@@ -47,16 +45,11 @@ public class AliendroidReward {
     private static RewardedAd mRewardedAd;
     //Uranus
     public static void LoadRewardAdmob(Activity activity, String selectBackupAds, String idReward, String idBackupReward) {
-        Bundle extrasApplovin = new AppLovinExtras.Builder()
-                .setMuteAudio(true)
-                .build();
-
         Bundle extras = new FacebookExtras()
                 .setNativeBanner(true)
                 .build();
         AdRequest adRequest = new AdRequest.Builder()
                 .addNetworkExtrasBundle(FacebookAdapter.class, extras)
-                .addNetworkExtrasBundle(ApplovinAdapter.class, extrasApplovin)
                 .build();
         RewardedAd.load(activity, idReward,
                 adRequest, new RewardedAdLoadCallback() {
@@ -316,16 +309,12 @@ public class AliendroidReward {
         switch (selectBackupAds) {
             case "ADMOB":
             case "GOOGLE-ADS":
-                 Bundle extrasApplovin = new AppLovinExtras.Builder()
-                .setMuteAudio(true)
-                .build();
 
         Bundle extras = new FacebookExtras()
                 .setNativeBanner(true)
                 .build();
         AdRequest adRequest = new AdRequest.Builder()
                 .addNetworkExtrasBundle(FacebookAdapter.class, extras)
-                .addNetworkExtrasBundle(ApplovinAdapter.class, extrasApplovin)
                 .build();
                 RewardedAd.load(activity, idBackupReward,
                         adRequest, new RewardedAdLoadCallback() {
@@ -692,16 +681,12 @@ public class AliendroidReward {
         switch (selectBackupAds) {
             case "ADMOB":
             case "GOOGLE-ADS":
-                 Bundle extrasApplovin = new AppLovinExtras.Builder()
-                .setMuteAudio(true)
-                .build();
 
         Bundle extras = new FacebookExtras()
                 .setNativeBanner(true)
                 .build();
         AdRequest adRequest = new AdRequest.Builder()
                 .addNetworkExtrasBundle(FacebookAdapter.class, extras)
-                .addNetworkExtrasBundle(ApplovinAdapter.class, extrasApplovin)
                 .build();
                 RewardedAd.load(activity, idBackupReward,
                         adRequest, new RewardedAdLoadCallback() {
@@ -834,16 +819,11 @@ public class AliendroidReward {
         switch (selectBackupAds) {
             case "ADMOB":
             case "GOOGLE-ADS":
-                 Bundle extrasApplovin = new AppLovinExtras.Builder()
-                .setMuteAudio(true)
-                .build();
-
         Bundle extras = new FacebookExtras()
                 .setNativeBanner(true)
                 .build();
         AdRequest adRequest = new AdRequest.Builder()
                 .addNetworkExtrasBundle(FacebookAdapter.class, extras)
-                .addNetworkExtrasBundle(ApplovinAdapter.class, extrasApplovin)
                 .build();
                 RewardedAd.load(activity, idBackupReward,
                         adRequest, new RewardedAdLoadCallback() {
@@ -1110,16 +1090,11 @@ public class AliendroidReward {
         switch (selecBackuptAds) {
             case "ADMOB":
             case "GOOGLE-ADS":
-                 Bundle extrasApplovin = new AppLovinExtras.Builder()
-                .setMuteAudio(true)
-                .build();
-
         Bundle extras = new FacebookExtras()
                 .setNativeBanner(true)
                 .build();
         AdRequest adRequest = new AdRequest.Builder()
                 .addNetworkExtrasBundle(FacebookAdapter.class, extras)
-                .addNetworkExtrasBundle(ApplovinAdapter.class, extrasApplovin)
                 .build();
                 RewardedAd.load(activity, idBackupReward,
                         adRequest, new RewardedAdLoadCallback() {
@@ -1275,16 +1250,11 @@ public class AliendroidReward {
         switch (selectBackupAds) {
             case "ADMOB":
             case "GOOGLE-ADS":
-                 Bundle extrasApplovin = new AppLovinExtras.Builder()
-                .setMuteAudio(true)
-                .build();
-
         Bundle extras = new FacebookExtras()
                 .setNativeBanner(true)
                 .build();
         AdRequest adRequest = new AdRequest.Builder()
                 .addNetworkExtrasBundle(FacebookAdapter.class, extras)
-                .addNetworkExtrasBundle(ApplovinAdapter.class, extrasApplovin)
                 .build();
                 RewardedAd.load(activity, idBackupReward,
                         adRequest, new RewardedAdLoadCallback() {

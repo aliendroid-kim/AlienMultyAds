@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+
+    <!-- For AdColony and Smaato, this permits all cleartext traffic: -->
+    <base-config cleartextTrafficPermitted="true">
+        <trust-anchors>
+            <certificates src="system"/>
+        </trust-anchors>
+    </base-config>
+    <!-- End AdColony / Smaato section -->
+
+    <domain-config cleartextTrafficPermitted="true">
+
+        <!-- For Facebook, this permits cleartext traffic to localhost: -->
+        <domain includeSubdomains="true">127.0.0.1</domain>
+        <!-- End Facebook section -->
+
+    </domain-config>
+</network-security-config>

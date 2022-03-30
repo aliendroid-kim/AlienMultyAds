@@ -13,8 +13,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 
 import com.applovin.adview.AppLovinAdView;
-import com.applovin.mediation.AppLovinExtras;
-import com.applovin.mediation.ApplovinAdapter;
 import com.applovin.mediation.MaxAd;
 import com.applovin.mediation.MaxAdRevenueListener;
 import com.applovin.mediation.MaxError;
@@ -44,8 +42,6 @@ import com.unity3d.services.banners.BannerView;
 import com.unity3d.services.banners.UnityBannerSize;
 //Uranus
 public class AliendroidNative {
-
-
     public static AppLovinAdView adViewDiscovery;
     public static IronSourceBannerLayout adViewIron;
     public static Banner startAppBanner;
@@ -116,9 +112,6 @@ public class AliendroidNative {
 
         builder.withNativeAdOptions(adOptions);
 
-        Bundle extrasApplovin = new AppLovinExtras.Builder()
-                .setMuteAudio(true)
-                .build();
 
         Bundle extras = new FacebookExtras()
                 .setNativeBanner(true)
@@ -126,7 +119,6 @@ public class AliendroidNative {
         AdRequest request = new AdRequest.Builder().addKeyword(Hpk1).addKeyword(Hpk2)
                 .addKeyword(Hpk3).addKeyword(Hpk4).addKeyword(Hpk5)
                 .addNetworkExtrasBundle(FacebookAdapter.class, extras)
-                .addNetworkExtrasBundle(ApplovinAdapter.class, extrasApplovin)
                 .build();
         AdLoader adLoader =
                 builder
@@ -292,9 +284,6 @@ public class AliendroidNative {
 
         builder.withNativeAdOptions(adOptions);
 
-        Bundle extrasApplovin = new AppLovinExtras.Builder()
-                .setMuteAudio(true)
-                .build();
 
         Bundle extras = new FacebookExtras()
                 .setNativeBanner(true)
@@ -302,7 +291,6 @@ public class AliendroidNative {
         AdRequest request = new AdRequest.Builder().addKeyword(Hpk1).addKeyword(Hpk2)
                 .addKeyword(Hpk3).addKeyword(Hpk4).addKeyword(Hpk5)
                 .addNetworkExtrasBundle(FacebookAdapter.class, extras)
-                .addNetworkExtrasBundle(ApplovinAdapter.class, extrasApplovin)
                 .build();
         AdLoader adLoader =
                 builder
@@ -469,9 +457,6 @@ public class AliendroidNative {
 
         builder.withNativeAdOptions(adOptions);
 
-        Bundle extrasApplovin = new AppLovinExtras.Builder()
-                .setMuteAudio(true)
-                .build();
 
         Bundle extras = new FacebookExtras()
                 .setNativeBanner(true)
@@ -479,7 +464,6 @@ public class AliendroidNative {
         AdRequest request = new AdRequest.Builder().addKeyword(Hpk1).addKeyword(Hpk2)
                 .addKeyword(Hpk3).addKeyword(Hpk4).addKeyword(Hpk5)
                 .addNetworkExtrasBundle(FacebookAdapter.class, extras)
-                .addNetworkExtrasBundle(ApplovinAdapter.class, extrasApplovin)
                 .build();
         AdLoader adLoader =
                 builder
@@ -685,16 +669,13 @@ public class AliendroidNative {
 
                         builder2.withNativeAdOptions(adOptions);
 
-                        Bundle extrasApplovin = new AppLovinExtras.Builder()
-                                .setMuteAudio(true)
-                                .build();
+
 
                         Bundle extras = new FacebookExtras()
                                 .setNativeBanner(true)
                                 .build();
                         AdRequest request = new AdRequest.Builder()
                                 .addNetworkExtrasBundle(FacebookAdapter.class, extras)
-                                .addNetworkExtrasBundle(ApplovinAdapter.class, extrasApplovin)
                                 .build();
                         AdLoader adLoader =
                                 builder2
@@ -856,16 +837,13 @@ public class AliendroidNative {
 
                         builder2.withNativeAdOptions(adOptions);
 
-                        Bundle extrasApplovin = new AppLovinExtras.Builder()
-                                .setMuteAudio(true)
-                                .build();
+
 
                         Bundle extras = new FacebookExtras()
                                 .setNativeBanner(true)
                                 .build();
                         AdRequest request = new AdRequest.Builder()
                                 .addNetworkExtrasBundle(FacebookAdapter.class, extras)
-                                .addNetworkExtrasBundle(ApplovinAdapter.class, extrasApplovin)
                                 .build();
                         AdLoader adLoader =
                                 builder2
@@ -1027,16 +1005,13 @@ public class AliendroidNative {
 
                         builder2.withNativeAdOptions(adOptions);
 
-                        Bundle extrasApplovin = new AppLovinExtras.Builder()
-                                .setMuteAudio(true)
-                                .build();
+
 
                         Bundle extras = new FacebookExtras()
                                 .setNativeBanner(true)
                                 .build();
                         AdRequest request = new AdRequest.Builder()
                                 .addNetworkExtrasBundle(FacebookAdapter.class, extras)
-                                .addNetworkExtrasBundle(ApplovinAdapter.class, extrasApplovin)
                                 .build();
                         AdLoader adLoader =
                                 builder2
@@ -1155,16 +1130,12 @@ public class AliendroidNative {
                 .build();
 
         builder.withNativeAdOptions(adOptions);
-        Bundle extrasApplovin = new AppLovinExtras.Builder()
-                .setMuteAudio(true)
-                .build();
 
         Bundle extras = new FacebookExtras()
                 .setNativeBanner(true)
                 .build();
         AdRequest adRequest = new AdRequest.Builder()
                 .addNetworkExtrasBundle(FacebookAdapter.class, extras)
-                .addNetworkExtrasBundle(ApplovinAdapter.class, extrasApplovin)
                 .build();
         AdLoader adLoader =
                 builder
@@ -1325,9 +1296,6 @@ public class AliendroidNative {
 
         builder.withNativeAdOptions(adOptions);
 
-        Bundle extrasApplovin = new AppLovinExtras.Builder()
-                .setMuteAudio(true)
-                .build();
 
         Bundle extras = new FacebookExtras()
                 .setNativeBanner(true)
@@ -1335,7 +1303,6 @@ public class AliendroidNative {
         AdRequest request = new AdRequest.Builder().addKeyword(Hpk1).addKeyword(Hpk2)
                 .addKeyword(Hpk3).addKeyword(Hpk4).addKeyword(Hpk5)
                 .addNetworkExtrasBundle(FacebookAdapter.class, extras)
-                .addNetworkExtrasBundle(ApplovinAdapter.class, extrasApplovin)
                 .build();
         AdLoader adLoader =
                 builder
@@ -1495,9 +1462,6 @@ public class AliendroidNative {
 
         builder.withNativeAdOptions(adOptions);
 
-        Bundle extrasApplovin = new AppLovinExtras.Builder()
-                .setMuteAudio(true)
-                .build();
 
         Bundle extras = new FacebookExtras()
                 .setNativeBanner(true)
@@ -1505,7 +1469,6 @@ public class AliendroidNative {
         AdRequest request = new AdRequest.Builder().addKeyword(Hpk1).addKeyword(Hpk2)
                 .addKeyword(Hpk3).addKeyword(Hpk4).addKeyword(Hpk5)
                 .addNetworkExtrasBundle(FacebookAdapter.class, extras)
-                .addNetworkExtrasBundle(ApplovinAdapter.class, extrasApplovin)
                 .build();
         AdLoader adLoader =
                 builder
@@ -1666,9 +1629,6 @@ public class AliendroidNative {
 
         builder.withNativeAdOptions(adOptions);
 
-        Bundle extrasApplovin = new AppLovinExtras.Builder()
-                .setMuteAudio(true)
-                .build();
 
         Bundle extras = new FacebookExtras()
                 .setNativeBanner(true)
@@ -1676,7 +1636,6 @@ public class AliendroidNative {
         AdRequest request = new AdRequest.Builder().addKeyword(Hpk1).addKeyword(Hpk2)
                 .addKeyword(Hpk3).addKeyword(Hpk4).addKeyword(Hpk5)
                 .addNetworkExtrasBundle(FacebookAdapter.class, extras)
-                .addNetworkExtrasBundle(ApplovinAdapter.class, extrasApplovin)
                 .build();
         AdLoader adLoader =
                 builder
@@ -1873,16 +1832,13 @@ public class AliendroidNative {
 
                         builder.withNativeAdOptions(adOptions);
 
-                        Bundle extrasApplovin = new AppLovinExtras.Builder()
-                                .setMuteAudio(true)
-                                .build();
+
 
                         Bundle extras = new FacebookExtras()
                                 .setNativeBanner(true)
                                 .build();
                         AdRequest request = new AdRequest.Builder()
                                 .addNetworkExtrasBundle(FacebookAdapter.class, extras)
-                                .addNetworkExtrasBundle(ApplovinAdapter.class, extrasApplovin)
                                 .build();
                         AdLoader adLoader =
                                 builder
@@ -2036,16 +1992,13 @@ public class AliendroidNative {
 
                         builder.withNativeAdOptions(adOptions);
 
-                        Bundle extrasApplovin = new AppLovinExtras.Builder()
-                                .setMuteAudio(true)
-                                .build();
+
 
                         Bundle extras = new FacebookExtras()
                                 .setNativeBanner(true)
                                 .build();
                         AdRequest request = new AdRequest.Builder()
                                 .addNetworkExtrasBundle(FacebookAdapter.class, extras)
-                                .addNetworkExtrasBundle(ApplovinAdapter.class, extrasApplovin)
                                 .build();
                         AdLoader adLoader =
                                 builder
@@ -2160,16 +2113,12 @@ public class AliendroidNative {
                         .build();
 
                 builder.withNativeAdOptions(adOptions);
-                Bundle extrasApplovin = new AppLovinExtras.Builder()
-                        .setMuteAudio(true)
-                        .build();
 
                 Bundle extras = new FacebookExtras()
                         .setNativeBanner(true)
                         .build();
                 AdRequest adRequest = new AdRequest.Builder()
                         .addNetworkExtrasBundle(FacebookAdapter.class, extras)
-                        .addNetworkExtrasBundle(ApplovinAdapter.class, extrasApplovin)
                         .build();
                 AdLoader adLoader =
                         builder
@@ -2430,16 +2379,11 @@ public class AliendroidNative {
 
                         builder.withNativeAdOptions(adOptions);
 
-                        Bundle extrasApplovin = new AppLovinExtras.Builder()
-                                .setMuteAudio(true)
-                                .build();
-
                         Bundle extras = new FacebookExtras()
                                 .setNativeBanner(true)
                                 .build();
                         AdRequest request = new AdRequest.Builder()
                                 .addNetworkExtrasBundle(FacebookAdapter.class, extras)
-                                .addNetworkExtrasBundle(ApplovinAdapter.class, extrasApplovin)
                                 .build();
                         AdLoader adLoader =
                                 builder
