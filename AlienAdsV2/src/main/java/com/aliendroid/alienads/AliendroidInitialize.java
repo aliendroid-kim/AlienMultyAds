@@ -33,8 +33,6 @@ public class AliendroidInitialize {
                     Log.d("MyApp", String.format(
                             "Adapter name: %s, Description: %s, Latency: %d",
                             adapterClass, status.getDescription(), status.getLatency()));
-                    AppLovinPrivacySettings.setHasUserConsent(true, activity);
-                    AppLovinPrivacySettings.setIsAgeRestrictedUser(true, activity);
 
                 }
             }
