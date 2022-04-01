@@ -134,7 +134,7 @@ public class AliendroidNative {
                                                         .setAdvertiserTextViewId(R.id.advertiser_textView)
                                                         .setIconImageViewId(R.id.icon_image_view)
                                                         .setMediaContentViewGroupId(R.id.media_view_container)
-                                                        .setOptionsContentViewGroupId(R.id.options_view)
+                                                        .setOptionsContentViewGroupId(R.id.ad_options_view)
                                                         .setCallToActionButtonId(R.id.cta_button)
                                                         .build();
                                                 nativeAdView = new MaxNativeAdView(binder, activity);
@@ -306,7 +306,7 @@ public class AliendroidNative {
                                                         .setAdvertiserTextViewId(R.id.advertiser_textView)
                                                         .setIconImageViewId(R.id.icon_image_view)
                                                         .setMediaContentViewGroupId(R.id.media_view_container)
-                                                        .setOptionsContentViewGroupId(R.id.options_view)
+                                                        .setOptionsContentViewGroupId(R.id.ad_options_view)
                                                         .setCallToActionButtonId(R.id.cta_button)
                                                         .build();
                                                 nativeAdView = new MaxNativeAdView(binder, activity);
@@ -479,7 +479,7 @@ public class AliendroidNative {
                                                         .setAdvertiserTextViewId(R.id.advertiser_textView)
                                                         .setIconImageViewId(R.id.icon_image_view)
                                                         .setMediaContentViewGroupId(R.id.media_view_container)
-                                                        .setOptionsContentViewGroupId(R.id.options_view)
+                                                        .setOptionsContentViewGroupId(R.id.ad_options_view)
                                                         .setCallToActionButtonId(R.id.cta_button)
                                                         .build();
                                                 nativeAdView = new MaxNativeAdView(binder, activity);
@@ -577,7 +577,7 @@ public class AliendroidNative {
                 .setAdvertiserTextViewId(R.id.advertiser_textView)
                 .setIconImageViewId(R.id.icon_image_view)
                 .setMediaContentViewGroupId(R.id.media_view_container)
-                .setOptionsContentViewGroupId(R.id.options_view)
+                .setOptionsContentViewGroupId(R.id.ad_options_view)
                 .setCallToActionButtonId(R.id.cta_button)
                 .build();
         nativeAdView = new MaxNativeAdView(binder, activity);
@@ -745,7 +745,7 @@ public class AliendroidNative {
                 .setAdvertiserTextViewId(R.id.advertiser_textView)
                 .setIconImageViewId(R.id.icon_image_view)
                 .setMediaContentViewGroupId(R.id.media_view_container)
-                .setOptionsContentViewGroupId(R.id.options_view)
+                .setOptionsContentViewGroupId(R.id.ad_options_view)
                 .setCallToActionButtonId(R.id.cta_button)
                 .build();
         nativeAdView = new MaxNativeAdView(binder, activity);
@@ -913,7 +913,7 @@ public class AliendroidNative {
                 .setAdvertiserTextViewId(R.id.advertiser_textView)
                 .setIconImageViewId(R.id.icon_image_view)
                 .setMediaContentViewGroupId(R.id.media_view_container)
-                .setOptionsContentViewGroupId(R.id.options_view)
+                .setOptionsContentViewGroupId(R.id.ad_options_view)
                 .setCallToActionButtonId(R.id.cta_button)
                 .build();
         nativeAdView = new MaxNativeAdView(binder, activity);
@@ -1151,7 +1151,7 @@ public class AliendroidNative {
                                                         .setAdvertiserTextViewId(R.id.advertiser_textView)
                                                         .setIconImageViewId(R.id.icon_image_view)
                                                         .setMediaContentViewGroupId(R.id.media_view_container)
-                                                        .setOptionsContentViewGroupId(R.id.options_view)
+                                                        .setOptionsContentViewGroupId(R.id.ad_options_view)
                                                         .setCallToActionButtonId(R.id.cta_button)
                                                         .build();
                                                 nativeAdView = new MaxNativeAdView(binder, activity);
@@ -1318,7 +1318,7 @@ public class AliendroidNative {
                                                         .setAdvertiserTextViewId(R.id.advertiser_textView)
                                                         .setIconImageViewId(R.id.icon_image_view)
                                                         .setMediaContentViewGroupId(R.id.media_view_container)
-                                                        .setOptionsContentViewGroupId(R.id.options_view)
+                                                        .setOptionsContentViewGroupId(R.id.ad_options_view)
                                                         .setCallToActionButtonId(R.id.cta_button)
                                                         .build();
                                                 nativeAdView = new MaxNativeAdView(binder, activity);
@@ -1484,7 +1484,7 @@ public class AliendroidNative {
                                                         .setAdvertiserTextViewId(R.id.advertiser_textView)
                                                         .setIconImageViewId(R.id.icon_image_view)
                                                         .setMediaContentViewGroupId(R.id.media_view_container)
-                                                        .setOptionsContentViewGroupId(R.id.options_view)
+                                                        .setOptionsContentViewGroupId(R.id.ad_options_view)
                                                         .setCallToActionButtonId(R.id.cta_button)
                                                         .build();
                                                 nativeAdView = new MaxNativeAdView(binder, activity);
@@ -1651,7 +1651,7 @@ public class AliendroidNative {
                                                         .setAdvertiserTextViewId(R.id.advertiser_textView)
                                                         .setIconImageViewId(R.id.icon_image_view)
                                                         .setMediaContentViewGroupId(R.id.media_view_container)
-                                                        .setOptionsContentViewGroupId(R.id.options_view)
+                                                        .setOptionsContentViewGroupId(R.id.ad_options_view)
                                                         .setCallToActionButtonId(R.id.cta_button)
                                                         .build();
                                                 nativeAdView = new MaxNativeAdView(binder, activity);
@@ -1747,12 +1747,12 @@ public class AliendroidNative {
                 .setAdvertiserTextViewId(R.id.advertiser_textView)
                 .setIconImageViewId(R.id.icon_image_view)
                 .setMediaContentViewGroupId(R.id.media_view_container)
-                .setOptionsContentViewGroupId(R.id.options_view)
+                .setOptionsContentViewGroupId(R.id.ad_options_view)
                 .setCallToActionButtonId(R.id.cta_button)
                 .build();
         nativeAdView = new MaxNativeAdView(binder, activity);
 
-        nativeAdLoader = new MaxNativeAdLoader(idNativeBackup, activity);
+        nativeAdLoader = new MaxNativeAdLoader(nativeId, activity);
         nativeAdLoader.setRevenueListener(new MaxAdRevenueListener() {
             @Override
             public void onAdRevenuePaid(MaxAd ad) {
@@ -1907,12 +1907,12 @@ public class AliendroidNative {
                 .setAdvertiserTextViewId(R.id.advertiser_textView)
                 .setIconImageViewId(R.id.icon_image_view)
                 .setMediaContentViewGroupId(R.id.media_view_container)
-                .setOptionsContentViewGroupId(R.id.options_view)
+                .setOptionsContentViewGroupId(R.id.ad_options_view)
                 .setCallToActionButtonId(R.id.cta_button)
                 .build();
         nativeAdView = new MaxNativeAdView(binder, activity);
 
-        nativeAdLoader = new MaxNativeAdLoader(idNativeBackup, activity);
+        nativeAdLoader = new MaxNativeAdLoader(nativeId, activity);
         nativeAdLoader.setRevenueListener(new MaxAdRevenueListener() {
             @Override
             public void onAdRevenuePaid(MaxAd ad) {
@@ -2134,7 +2134,7 @@ public class AliendroidNative {
                                                                 .setAdvertiserTextViewId(R.id.advertiser_textView)
                                                                 .setIconImageViewId(R.id.icon_image_view)
                                                                 .setMediaContentViewGroupId(R.id.media_view_container)
-                                                                .setOptionsContentViewGroupId(R.id.options_view)
+                                                                .setOptionsContentViewGroupId(R.id.ad_options_view)
                                                                 .setCallToActionButtonId(R.id.cta_button)
                                                                 .build();
                                                         nativeAdView = new MaxNativeAdView(binder, activity);
@@ -2294,12 +2294,12 @@ public class AliendroidNative {
                 .setAdvertiserTextViewId(R.id.advertiser_textView)
                 .setIconImageViewId(R.id.icon_image_view)
                 .setMediaContentViewGroupId(R.id.media_view_container)
-                .setOptionsContentViewGroupId(R.id.options_view)
+                .setOptionsContentViewGroupId(R.id.ad_options_view)
                 .setCallToActionButtonId(R.id.cta_button)
                 .build();
         nativeAdView = new MaxNativeAdView(binder, activity);
 
-        nativeAdLoader = new MaxNativeAdLoader(idNativeBackup, activity);
+        nativeAdLoader = new MaxNativeAdLoader(nativeId, activity);
         nativeAdLoader.setRevenueListener(new MaxAdRevenueListener() {
             @Override
             public void onAdRevenuePaid(MaxAd ad) {
