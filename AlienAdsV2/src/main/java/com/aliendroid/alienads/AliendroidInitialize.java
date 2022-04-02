@@ -204,7 +204,7 @@ public class AliendroidInitialize {
     }
 
     public static void SelectAdsApplovinMax(Activity activity, String selectAdsBackup, String idInitialize) {
-
+        AdSettings.setDataProcessingOptions(new String[]{});
         AppLovinSdk.getInstance(activity).setMediationProvider(AppLovinMediationProvider.MAX);
         AppLovinSdk.getInstance(activity).initializeSdk(config -> {
         });
