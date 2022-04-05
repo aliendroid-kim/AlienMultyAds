@@ -7,7 +7,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="300dp"
         android:orientation="vertical">
 
         <LinearLayout
@@ -49,12 +49,12 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="75dp"
             android:orientation="horizontal">
 
             <RelativeLayout
-                android:layout_width="50dp"
-                android:layout_height="50dp">
+                android:layout_width="75dp"
+                android:layout_height="75dp">
 
                 <ImageView
                     android:id="@+id/icon_image_view"
@@ -68,7 +68,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
@@ -81,8 +81,8 @@
                     android:layout_height="wrap_content"
                     android:textAppearance="@style/TextAppearance.AppCompat.Title"
                     android:textColor="@color/gnt_white"
-                    android:textSize="10sp"
-                    tools:text="Title" />
+                    android:textSize="12sp"
+                    tools:text="Reskin Aliendroid" />
 
                 <TextView
                     android:id="@+id/body_text_view"
@@ -91,8 +91,8 @@
                     android:lines="2"
                     android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                     android:textColor="@color/gnt_white"
-                    android:textSize="10sp"
-                    tools:text="Body" />
+                    android:textSize="12sp"
+                    tools:text="1st - The Big Marketplace Source Code for Monetize Mobile Application on Indonesia" />
 
             </LinearLayout>
 
@@ -112,8 +112,9 @@
         <FrameLayout
             android:id="@+id/media_view_container"
             android:layout_width="match_parent"
-            android:layout_height="150dp"
+            android:layout_height="match_parent"
             android:layout_marginTop="4dp"
+            android:layout_weight="1"
             android:maxHeight="150dp"
             android:visibility="visible"
             app:layout_constraintDimensionRatio="W,16:9"
@@ -127,6 +128,8 @@
             android:layout_gravity="right"
             android:layout_marginRight="8dp"
 
+            android:gravity="center"
+            android:lines="2"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:textColor="@color/gnt_white"
             android:visibility="visible"

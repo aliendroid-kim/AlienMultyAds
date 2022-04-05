@@ -21,6 +21,6 @@ public class MainActivity extends AppCompatActivity {
         RelativeLayout layNative = findViewById(R.id.layNative);
         AliendroidInitialize.SelectAdsApplovinMax(this,"","");
         AliendroidBanner.SmallBannerApplovinMax(this,layAds,"","123456789","");
-        AliendroidNative.MediumNativeMax(this,layNative,"","efa8cbec67684704","");
+        AliendroidNative.MediumNative(this,layNative,"","ca-app-pub-3940256099942544/2247696110","","","","","","");
     }
 }
