@@ -2,6 +2,7 @@ package com.aliendroid.alienads;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 
@@ -32,8 +33,10 @@ import com.ironsource.mediationsdk.sdk.RewardedVideoListener;
 import com.startapp.sdk.adsbase.StartAppAd;
 import com.startapp.sdk.adsbase.adlisteners.AdEventListener;
 import com.startapp.sdk.adsbase.adlisteners.VideoListener;
-import com.unity3d.ads.IUnityAdsListener;
+import com.unity3d.ads.IUnityAdsLoadListener;
+import com.unity3d.ads.IUnityAdsShowListener;
 import com.unity3d.ads.UnityAds;
+import com.unity3d.ads.UnityAdsShowOptions;
 
 import java.util.Map;
 
@@ -43,6 +46,7 @@ public class AliendroidReward {
     public static AppLovinIncentivizedInterstitial incentivizedInterstitial;
     public static StartAppAd rewardedVideo;
     private static RewardedAd mRewardedAd;
+
     //Uranus
     public static void LoadRewardAdmob(Activity activity, String selectBackupAds, String idReward, String idBackupReward) {
         Bundle extras = new FacebookExtras()
@@ -190,132 +194,47 @@ public class AliendroidReward {
                 });
                 break;
             case "UNITY":
-                UnityAds.addListener(new IUnityAdsListener() {
+                IUnityAdsLoadListener loadListener = new IUnityAdsLoadListener() {
                     @Override
-                    public void onUnityAdsReady(String placementId) {
+                    public void onUnityAdsAdLoaded(String placementId) {
 
                     }
 
                     @Override
-                    public void onUnityAdsStart(String placementId) {
-
+                    public void onUnityAdsFailedToLoad(String placementId, UnityAds.UnityAdsLoadError error, String message) {
+                        Log.e("UnityAdsExample", "Unity Ads failed to load ad for " + placementId + " with error: [" + error + "] " + message);
                     }
+                };
+                UnityAds.load(idBackupReward, loadListener);
 
-                    @Override
-                    public void onUnityAdsFinish(String placementId, UnityAds.FinishState result) {
-                    unlockreward=true;
-                    }
-
-                    @Override
-                    public void onUnityAdsError(UnityAds.UnityAdsError error, String message) {
-
-                    }
-                });
                 break;
 
         }
     }
 
     public static void LoadRewardUnity(Activity activity, String selectBackupAds, String idReward, String idBackupReward) {
-        UnityAds.addListener(new IUnityAdsListener() {
+        IUnityAdsLoadListener loadListener = new IUnityAdsLoadListener() {
             @Override
-            public void onUnityAdsReady(String placementId) {
+            public void onUnityAdsAdLoaded(String placementId) {
 
             }
 
             @Override
-            public void onUnityAdsStart(String placementId) {
-
+            public void onUnityAdsFailedToLoad(String placementId, UnityAds.UnityAdsLoadError error, String message) {
+                Log.e("UnityAdsExample", "Unity Ads failed to load ad for " + placementId + " with error: [" + error + "] " + message);
             }
-
-            @Override
-            public void onUnityAdsFinish(String placementId, UnityAds.FinishState result) {
-                unlockreward = true;
-            }
-
-            @Override
-            public void onUnityAdsError(UnityAds.UnityAdsError error, String message) {
-                switch (selectBackupAds) {
-                    case "GOOGLE-ADS":
-                    case "ADMOB":
-                        if (mRewardedAd != null) {
-                            Activity activityContext = activity;
-                            mRewardedAd.show(activityContext, new OnUserEarnedRewardListener() {
-                                @Override
-                                public void onUserEarnedReward(@NonNull RewardItem rewardItem) {
-                                    unlockreward = true;
-                                }
-                            });
-                        }
-                        break;
-                    case "MOPUB":
-
-                        break;
-                    case "APPLOVIN-M":
-                        if (rewardedAd.isReady()) {
-                            rewardedAd.showAd();
-                        }
-                        break;
-                    case "APPLOVIN-D":
-                        if (incentivizedInterstitial != null) {
-                            // A rewarded video is available.  Call the show method with the listeners you want to use.
-                            // We will use the display listener to preload the next rewarded video when this one finishes.
-                            incentivizedInterstitial.show(activity, new AppLovinAdRewardListener() {
-                                @Override
-                                public void userRewardVerified(AppLovinAd ad, Map<String, String> response) {
-                                    unlockreward = true;
-                                }
-
-                                @Override
-                                public void userOverQuota(AppLovinAd ad, Map<String, String> response) {
-
-                                }
-
-                                @Override
-                                public void userRewardRejected(AppLovinAd ad, Map<String, String> response) {
-
-                                }
-
-                                @Override
-                                public void validationRequestFailed(AppLovinAd ad, int errorCode) {
-
-                                }
-
-
-                            }, null, new AppLovinAdDisplayListener() {
-                                @Override
-                                public void adDisplayed(AppLovinAd appLovinAd) {
-                                    // A rewarded video is being displayed.
-                                }
-
-                                @Override
-                                public void adHidden(AppLovinAd appLovinAd) {
-                                    // A rewarded video was closed.  Preload the next video now.  We won't use a load listener.
-                                    incentivizedInterstitial.preload(null);
-                                }
-                            });
-                        }
-                        break;
-                    case "STARTAPP":
-                        rewardedVideo.showAd();
-                        break;
-                    case "IRON":
-                        IronSource.showRewardedVideo(idBackupReward);
-                        break;
-                }
-            }
-        });
+        };
+        UnityAds.load(idReward, loadListener);
 
         switch (selectBackupAds) {
             case "ADMOB":
             case "GOOGLE-ADS":
-
-        Bundle extras = new FacebookExtras()
-                .setNativeBanner(true)
-                .build();
-        AdRequest adRequest = new AdRequest.Builder()
-                .addNetworkExtrasBundle(FacebookAdapter.class, extras)
-                .build();
+                Bundle extras = new FacebookExtras()
+                        .setNativeBanner(true)
+                        .build();
+                AdRequest adRequest = new AdRequest.Builder()
+                        .addNetworkExtrasBundle(FacebookAdapter.class, extras)
+                        .build();
                 RewardedAd.load(activity, idBackupReward,
                         adRequest, new RewardedAdLoadCallback() {
                             @Override
@@ -601,27 +520,18 @@ public class AliendroidReward {
                 });
                 break;
             case "UNITY":
-                UnityAds.addListener(new IUnityAdsListener() {
+                IUnityAdsLoadListener loadListener = new IUnityAdsLoadListener() {
                     @Override
-                    public void onUnityAdsReady(String placementId) {
+                    public void onUnityAdsAdLoaded(String placementId) {
 
                     }
 
                     @Override
-                    public void onUnityAdsStart(String placementId) {
-
+                    public void onUnityAdsFailedToLoad(String placementId, UnityAds.UnityAdsLoadError error, String message) {
+                        Log.e("UnityAdsExample", "Unity Ads failed to load ad for " + placementId + " with error: [" + error + "] " + message);
                     }
-
-                    @Override
-                    public void onUnityAdsFinish(String placementId, UnityAds.FinishState result) {
-                        unlockreward=true;
-                    }
-
-                    @Override
-                    public void onUnityAdsError(UnityAds.UnityAdsError error, String message) {
-
-                    }
-                });
+                };
+                UnityAds.load(idBackupReward, loadListener);
                 break;
 
         }
@@ -682,12 +592,12 @@ public class AliendroidReward {
             case "ADMOB":
             case "GOOGLE-ADS":
 
-        Bundle extras = new FacebookExtras()
-                .setNativeBanner(true)
-                .build();
-        AdRequest adRequest = new AdRequest.Builder()
-                .addNetworkExtrasBundle(FacebookAdapter.class, extras)
-                .build();
+                Bundle extras = new FacebookExtras()
+                        .setNativeBanner(true)
+                        .build();
+                AdRequest adRequest = new AdRequest.Builder()
+                        .addNetworkExtrasBundle(FacebookAdapter.class, extras)
+                        .build();
                 RewardedAd.load(activity, idBackupReward,
                         adRequest, new RewardedAdLoadCallback() {
                             @Override
@@ -777,27 +687,18 @@ public class AliendroidReward {
                 });
                 break;
             case "UNITY":
-                UnityAds.addListener(new IUnityAdsListener() {
+                IUnityAdsLoadListener loadListener = new IUnityAdsLoadListener() {
                     @Override
-                    public void onUnityAdsReady(String placementId) {
+                    public void onUnityAdsAdLoaded(String placementId) {
 
                     }
 
                     @Override
-                    public void onUnityAdsStart(String placementId) {
-
+                    public void onUnityAdsFailedToLoad(String placementId, UnityAds.UnityAdsLoadError error, String message) {
+                        Log.e("UnityAdsExample", "Unity Ads failed to load ad for " + placementId + " with error: [" + error + "] " + message);
                     }
-
-                    @Override
-                    public void onUnityAdsFinish(String placementId, UnityAds.FinishState result) {
-                        unlockreward=true;
-                    }
-
-                    @Override
-                    public void onUnityAdsError(UnityAds.UnityAdsError error, String message) {
-
-                    }
-                });
+                };
+                UnityAds.load(idBackupReward, loadListener);
                 break;
 
         }
@@ -819,12 +720,12 @@ public class AliendroidReward {
         switch (selectBackupAds) {
             case "ADMOB":
             case "GOOGLE-ADS":
-        Bundle extras = new FacebookExtras()
-                .setNativeBanner(true)
-                .build();
-        AdRequest adRequest = new AdRequest.Builder()
-                .addNetworkExtrasBundle(FacebookAdapter.class, extras)
-                .build();
+                Bundle extras = new FacebookExtras()
+                        .setNativeBanner(true)
+                        .build();
+                AdRequest adRequest = new AdRequest.Builder()
+                        .addNetworkExtrasBundle(FacebookAdapter.class, extras)
+                        .build();
                 RewardedAd.load(activity, idBackupReward,
                         adRequest, new RewardedAdLoadCallback() {
                             @Override
@@ -952,27 +853,18 @@ public class AliendroidReward {
                 });
                 break;
             case "UNITY":
-                UnityAds.addListener(new IUnityAdsListener() {
+                IUnityAdsLoadListener loadListener = new IUnityAdsLoadListener() {
                     @Override
-                    public void onUnityAdsReady(String placementId) {
+                    public void onUnityAdsAdLoaded(String placementId) {
 
                     }
 
                     @Override
-                    public void onUnityAdsStart(String placementId) {
-
+                    public void onUnityAdsFailedToLoad(String placementId, UnityAds.UnityAdsLoadError error, String message) {
+                        Log.e("UnityAdsExample", "Unity Ads failed to load ad for " + placementId + " with error: [" + error + "] " + message);
                     }
-
-                    @Override
-                    public void onUnityAdsFinish(String placementId, UnityAds.FinishState result) {
-                        unlockreward=true;
-                    }
-
-                    @Override
-                    public void onUnityAdsError(UnityAds.UnityAdsError error, String message) {
-
-                    }
-                });
+                };
+                UnityAds.load(idBackupReward, loadListener);
                 break;
 
         }
@@ -1068,9 +960,32 @@ public class AliendroidReward {
                         rewardedVideo.showAd();
                         break;
                     case "UNITY":
-                        if (UnityAds.isReady (idBackupReward)) {
-                            UnityAds.show (activity, idBackupReward);
-                        }
+                        IUnityAdsShowListener showListener = new IUnityAdsShowListener() {
+                            @Override
+                            public void onUnityAdsShowFailure(String placementId, UnityAds.UnityAdsShowError error, String message) {
+                            }
+
+                            @Override
+                            public void onUnityAdsShowStart(String placementId) {
+                                Log.v("UnityAdsExample", "onUnityAdsShowStart: " + placementId);
+                            }
+
+                            @Override
+                            public void onUnityAdsShowClick(String placementId) {
+                                Log.v("UnityAdsExample", "onUnityAdsShowClick: " + placementId);
+                            }
+
+                            @Override
+                            public void onUnityAdsShowComplete(String placementId, UnityAds.UnityAdsShowCompletionState state) {
+                                Log.v("UnityAdsExample", "onUnityAdsShowComplete: " + placementId);
+                                if (state.equals(UnityAds.UnityAdsShowCompletionState.COMPLETED)) {
+                                    unlockreward = true;
+                                } else {
+                                    // Do not reward the user for skipping the ad
+                                }
+                            }
+                        };
+                        UnityAds.show(activity, idBackupReward, new UnityAdsShowOptions(), showListener);
                         break;
                 }
             }
@@ -1090,12 +1005,12 @@ public class AliendroidReward {
         switch (selecBackuptAds) {
             case "ADMOB":
             case "GOOGLE-ADS":
-        Bundle extras = new FacebookExtras()
-                .setNativeBanner(true)
-                .build();
-        AdRequest adRequest = new AdRequest.Builder()
-                .addNetworkExtrasBundle(FacebookAdapter.class, extras)
-                .build();
+                Bundle extras = new FacebookExtras()
+                        .setNativeBanner(true)
+                        .build();
+                AdRequest adRequest = new AdRequest.Builder()
+                        .addNetworkExtrasBundle(FacebookAdapter.class, extras)
+                        .build();
                 RewardedAd.load(activity, idBackupReward,
                         adRequest, new RewardedAdLoadCallback() {
                             @Override
@@ -1201,27 +1116,18 @@ public class AliendroidReward {
                 });
                 break;
             case "UNITY":
-                UnityAds.addListener(new IUnityAdsListener() {
+                IUnityAdsLoadListener loadListener = new IUnityAdsLoadListener() {
                     @Override
-                    public void onUnityAdsReady(String placementId) {
+                    public void onUnityAdsAdLoaded(String placementId) {
 
                     }
 
                     @Override
-                    public void onUnityAdsStart(String placementId) {
-
+                    public void onUnityAdsFailedToLoad(String placementId, UnityAds.UnityAdsLoadError error, String message) {
+                        Log.e("UnityAdsExample", "Unity Ads failed to load ad for " + placementId + " with error: [" + error + "] " + message);
                     }
-
-                    @Override
-                    public void onUnityAdsFinish(String placementId, UnityAds.FinishState result) {
-                        unlockreward=true;
-                    }
-
-                    @Override
-                    public void onUnityAdsError(UnityAds.UnityAdsError error, String message) {
-
-                    }
-                });
+                };
+                UnityAds.load(idBackupReward, loadListener);
                 break;
 
         }
@@ -1250,12 +1156,12 @@ public class AliendroidReward {
         switch (selectBackupAds) {
             case "ADMOB":
             case "GOOGLE-ADS":
-        Bundle extras = new FacebookExtras()
-                .setNativeBanner(true)
-                .build();
-        AdRequest adRequest = new AdRequest.Builder()
-                .addNetworkExtrasBundle(FacebookAdapter.class, extras)
-                .build();
+                Bundle extras = new FacebookExtras()
+                        .setNativeBanner(true)
+                        .build();
+                AdRequest adRequest = new AdRequest.Builder()
+                        .addNetworkExtrasBundle(FacebookAdapter.class, extras)
+                        .build();
                 RewardedAd.load(activity, idBackupReward,
                         adRequest, new RewardedAdLoadCallback() {
                             @Override
@@ -1377,27 +1283,18 @@ public class AliendroidReward {
                 break;
 
             case "UNITY":
-                UnityAds.addListener(new IUnityAdsListener() {
+                IUnityAdsLoadListener loadListener = new IUnityAdsLoadListener() {
                     @Override
-                    public void onUnityAdsReady(String placementId) {
+                    public void onUnityAdsAdLoaded(String placementId) {
 
                     }
 
                     @Override
-                    public void onUnityAdsStart(String placementId) {
-
+                    public void onUnityAdsFailedToLoad(String placementId, UnityAds.UnityAdsLoadError error, String message) {
+                        Log.e("UnityAdsExample", "Unity Ads failed to load ad for " + placementId + " with error: [" + error + "] " + message);
                     }
-
-                    @Override
-                    public void onUnityAdsFinish(String placementId, UnityAds.FinishState result) {
-                        unlockreward=true;
-                    }
-
-                    @Override
-                    public void onUnityAdsError(UnityAds.UnityAdsError error, String message) {
-
-                    }
-                });
+                };
+                UnityAds.load(idBackupReward, loadListener);
                 break;
 
         }
@@ -1475,9 +1372,32 @@ public class AliendroidReward {
                     }
                     break;
                 case "UNITY":
-                    if (UnityAds.isReady (idBackupReward)) {
-                        UnityAds.show (activity, idBackupReward);
-                    }
+                    IUnityAdsShowListener showListener = new IUnityAdsShowListener() {
+                        @Override
+                        public void onUnityAdsShowFailure(String placementId, UnityAds.UnityAdsShowError error, String message) {
+                        }
+
+                        @Override
+                        public void onUnityAdsShowStart(String placementId) {
+                            Log.v("UnityAdsExample", "onUnityAdsShowStart: " + placementId);
+                        }
+
+                        @Override
+                        public void onUnityAdsShowClick(String placementId) {
+                            Log.v("UnityAdsExample", "onUnityAdsShowClick: " + placementId);
+                        }
+
+                        @Override
+                        public void onUnityAdsShowComplete(String placementId, UnityAds.UnityAdsShowCompletionState state) {
+                            Log.v("UnityAdsExample", "onUnityAdsShowComplete: " + placementId);
+                            if (state.equals(UnityAds.UnityAdsShowCompletionState.COMPLETED)) {
+                                unlockreward = true;
+                            } else {
+                                // Do not reward the user for skipping the ad
+                            }
+                        }
+                    };
+                    UnityAds.show(activity, idBackupReward, new UnityAdsShowOptions(), showListener);
                     break;
             }
         }
@@ -1553,9 +1473,32 @@ public class AliendroidReward {
                     }
                     break;
                 case "UNITY":
-                    if (UnityAds.isReady (idBackupReward)) {
-                        UnityAds.show (activity, idBackupReward);
-                    }
+                    IUnityAdsShowListener showListener = new IUnityAdsShowListener() {
+                        @Override
+                        public void onUnityAdsShowFailure(String placementId, UnityAds.UnityAdsShowError error, String message) {
+                        }
+
+                        @Override
+                        public void onUnityAdsShowStart(String placementId) {
+                            Log.v("UnityAdsExample", "onUnityAdsShowStart: " + placementId);
+                        }
+
+                        @Override
+                        public void onUnityAdsShowClick(String placementId) {
+                            Log.v("UnityAdsExample", "onUnityAdsShowClick: " + placementId);
+                        }
+
+                        @Override
+                        public void onUnityAdsShowComplete(String placementId, UnityAds.UnityAdsShowCompletionState state) {
+                            Log.v("UnityAdsExample", "onUnityAdsShowComplete: " + placementId);
+                            if (state.equals(UnityAds.UnityAdsShowCompletionState.COMPLETED)) {
+                                unlockreward = true;
+                            } else {
+                                // Do not reward the user for skipping the ad
+                            }
+                        }
+                    };
+                    UnityAds.show(activity, idBackupReward, new UnityAdsShowOptions(), showListener);
                     break;
             }
         }
@@ -1633,9 +1576,32 @@ public class AliendroidReward {
                     }
                     break;
                 case "UNITY":
-                    if (UnityAds.isReady (idBackupReward)) {
-                        UnityAds.show (activity, idBackupReward);
-                    }
+                    IUnityAdsShowListener showListener = new IUnityAdsShowListener() {
+                        @Override
+                        public void onUnityAdsShowFailure(String placementId, UnityAds.UnityAdsShowError error, String message) {
+                        }
+
+                        @Override
+                        public void onUnityAdsShowStart(String placementId) {
+                            Log.v("UnityAdsExample", "onUnityAdsShowStart: " + placementId);
+                        }
+
+                        @Override
+                        public void onUnityAdsShowClick(String placementId) {
+                            Log.v("UnityAdsExample", "onUnityAdsShowClick: " + placementId);
+                        }
+
+                        @Override
+                        public void onUnityAdsShowComplete(String placementId, UnityAds.UnityAdsShowCompletionState state) {
+                            Log.v("UnityAdsExample", "onUnityAdsShowComplete: " + placementId);
+                            if (state.equals(UnityAds.UnityAdsShowCompletionState.COMPLETED)) {
+                                unlockreward = true;
+                            } else {
+                                // Do not reward the user for skipping the ad
+                            }
+                        }
+                    };
+                    UnityAds.show(activity, idBackupReward, new UnityAdsShowOptions(), showListener);
                     break;
             }
         }
@@ -1712,9 +1678,32 @@ public class AliendroidReward {
                     }
                     break;
                 case "UNITY":
-                    if (UnityAds.isReady (idBackupReward)) {
-                        UnityAds.show (activity, idBackupReward);
-                    }
+                    IUnityAdsShowListener showListener = new IUnityAdsShowListener() {
+                        @Override
+                        public void onUnityAdsShowFailure(String placementId, UnityAds.UnityAdsShowError error, String message) {
+                        }
+
+                        @Override
+                        public void onUnityAdsShowStart(String placementId) {
+                            Log.v("UnityAdsExample", "onUnityAdsShowStart: " + placementId);
+                        }
+
+                        @Override
+                        public void onUnityAdsShowClick(String placementId) {
+                            Log.v("UnityAdsExample", "onUnityAdsShowClick: " + placementId);
+                        }
+
+                        @Override
+                        public void onUnityAdsShowComplete(String placementId, UnityAds.UnityAdsShowCompletionState state) {
+                            Log.v("UnityAdsExample", "onUnityAdsShowComplete: " + placementId);
+                            if (state.equals(UnityAds.UnityAdsShowCompletionState.COMPLETED)) {
+                                unlockreward = true;
+                            } else {
+                                // Do not reward the user for skipping the ad
+                            }
+                        }
+                    };
+                    UnityAds.show(activity, idBackupReward, new UnityAdsShowOptions(), showListener);
                     break;
             }
         }
@@ -1730,11 +1719,104 @@ public class AliendroidReward {
     }
 
     public static void ShowRewardUnity(Activity activity, String selecBackuptAds, String idReward, String idBackupReward) {
-        if (UnityAds.isReady (idReward)) {
-            UnityAds.show(activity, idReward);
-            LoadRewardUnity(activity,selecBackuptAds,idReward,idBackupReward);
-        }
+        IUnityAdsShowListener showListener = new IUnityAdsShowListener() {
+            @Override
+            public void onUnityAdsShowFailure(String placementId, UnityAds.UnityAdsShowError error, String message) {
+                switch (selecBackuptAds) {
+                    case "GOOGLE-ADS":
+                    case "ADMOB":
+                        if (mRewardedAd != null) {
+                            Activity activityContext = activity;
+                            mRewardedAd.show(activityContext, new OnUserEarnedRewardListener() {
+                                @Override
+                                public void onUserEarnedReward(@NonNull RewardItem rewardItem) {
+                                    unlockreward = true;
+                                }
+                            });
+                        }
+                        break;
+                    case "MOPUB":
+
+                        break;
+                    case "APPLOVIN-M":
+                        if (rewardedAd.isReady()) {
+                            rewardedAd.showAd();
+                        }
+                        break;
+                    case "APPLOVIN-D":
+                        if (incentivizedInterstitial != null) {
+                            // A rewarded video is available.  Call the show method with the listeners you want to use.
+                            // We will use the display listener to preload the next rewarded video when this one finishes.
+                            incentivizedInterstitial.show(activity, new AppLovinAdRewardListener() {
+                                @Override
+                                public void userRewardVerified(AppLovinAd ad, Map<String, String> response) {
+                                    unlockreward = true;
+                                }
+
+                                @Override
+                                public void userOverQuota(AppLovinAd ad, Map<String, String> response) {
+
+                                }
+
+                                @Override
+                                public void userRewardRejected(AppLovinAd ad, Map<String, String> response) {
+
+                                }
+
+                                @Override
+                                public void validationRequestFailed(AppLovinAd ad, int errorCode) {
+
+                                }
+
+
+                            }, null, new AppLovinAdDisplayListener() {
+                                @Override
+                                public void adDisplayed(AppLovinAd appLovinAd) {
+                                    // A rewarded video is being displayed.
+                                }
+
+                                @Override
+                                public void adHidden(AppLovinAd appLovinAd) {
+                                    // A rewarded video was closed.  Preload the next video now.  We won't use a load listener.
+                                    incentivizedInterstitial.preload(null);
+                                }
+                            });
+                        }
+                        break;
+                    case "STARTAPP":
+                        rewardedVideo.showAd();
+                        break;
+                    case "IRON":
+                        IronSource.showRewardedVideo(idBackupReward);
+                        break;
+                }
+            }
+
+            @Override
+            public void onUnityAdsShowStart(String placementId) {
+                Log.v("UnityAdsExample", "onUnityAdsShowStart: " + placementId);
+            }
+
+            @Override
+            public void onUnityAdsShowClick(String placementId) {
+                Log.v("UnityAdsExample", "onUnityAdsShowClick: " + placementId);
+            }
+
+            @Override
+            public void onUnityAdsShowComplete(String placementId, UnityAds.UnityAdsShowCompletionState state) {
+                Log.v("UnityAdsExample", "onUnityAdsShowComplete: " + placementId);
+                if (state.equals(UnityAds.UnityAdsShowCompletionState.COMPLETED)) {
+                    unlockreward = true;
+                } else {
+                    // Do not reward the user for skipping the ad
+                }
+            }
+        };
+        UnityAds.show(activity, idReward, new UnityAdsShowOptions(), showListener);
+        LoadRewardUnity(activity, selecBackuptAds, idReward, idBackupReward);
+
     }
+
     public static void ShowRewardStartApp(Activity activity, String selecBackuptAds, String idReward, String idBackupReward) {
         if (rewardedVideo.isReady()) {
             rewardedVideo.showAd();
@@ -1807,9 +1889,32 @@ public class AliendroidReward {
                     }
                     break;
                 case "UNITY":
-                    if (UnityAds.isReady (idBackupReward)) {
-                        UnityAds.show (activity, idBackupReward);
-                    }
+                    IUnityAdsShowListener showListener = new IUnityAdsShowListener() {
+                        @Override
+                        public void onUnityAdsShowFailure(String placementId, UnityAds.UnityAdsShowError error, String message) {
+                        }
+
+                        @Override
+                        public void onUnityAdsShowStart(String placementId) {
+                            Log.v("UnityAdsExample", "onUnityAdsShowStart: " + placementId);
+                        }
+
+                        @Override
+                        public void onUnityAdsShowClick(String placementId) {
+                            Log.v("UnityAdsExample", "onUnityAdsShowClick: " + placementId);
+                        }
+
+                        @Override
+                        public void onUnityAdsShowComplete(String placementId, UnityAds.UnityAdsShowCompletionState state) {
+                            Log.v("UnityAdsExample", "onUnityAdsShowComplete: " + placementId);
+                            if (state.equals(UnityAds.UnityAdsShowCompletionState.COMPLETED)) {
+                                unlockreward = true;
+                            } else {
+                                // Do not reward the user for skipping the ad
+                            }
+                        }
+                    };
+                    UnityAds.show(activity, idBackupReward, new UnityAdsShowOptions(), showListener);
                     break;
             }
         }

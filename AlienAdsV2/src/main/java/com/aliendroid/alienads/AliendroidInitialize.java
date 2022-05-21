@@ -78,7 +78,12 @@ public class AliendroidInitialize {
                 }
                 break;
             case "UNITY":
-                UnityAds.initialize (activity, idInitialize, BuildConfig.DEBUG);
+                if (BuildConfig.DEBUG) {
+                    UnityAds.initialize(activity, idInitialize, true);
+                }else {
+                    UnityAds.initialize(activity, idInitialize, false);
+                }
+
                 break;
         }
     }
