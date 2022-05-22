@@ -39,10 +39,13 @@ dependencies {
     implementation 'com.ironsource.sdk:mediationsdk:7.2.1'
     implementation 'com.startapp:inapp-sdk:4.9.2'
 
-    //Mediation SDK
+    //Applovin
     implementation 'com.applovin.mediation:facebook-adapter:6.11.0.2'
     implementation 'com.applovin.mediation:google-adapter:20.6.0.4'
     implementation 'com.applovin.mediation:adcolony-adapter:4.7.0.0'
+    implementation 'com.applovin.mediation:unityads-adapter:4.2.1.0'
+
+
     implementation 'com.ironsource.adapters:facebookadapter:4.3.30'
     implementation 'com.google.android.ump:user-messaging-platform:2.0.0'
     implementation 'com.google.ads.mediation:facebook:6.10.0.0'
