@@ -5,7 +5,6 @@ import android.provider.Settings;
 
 import androidx.annotation.Nullable;
 
-import com.applovin.sdk.AppLovinPrivacySettings;
 import com.google.android.ump.ConsentDebugSettings;
 import com.google.android.ump.ConsentForm;
 import com.google.android.ump.ConsentInformation;
@@ -22,6 +21,7 @@ public class AlienGDPR {
     public static ConsentInformation consentInformation;
     public static ConsentDebugSettings debugSettings;
     public static ConsentRequestParameters params;
+
     public static void loadGdpr(Activity activity, String selectAds, boolean childDirected) {
         switch (selectAds) {
             case "ADMOB":
@@ -40,7 +40,7 @@ public class AlienGDPR {
                             .setTagForUnderAgeOfConsent(childDirected)
                             .build();
                 } else {
-                   params = new ConsentRequestParameters
+                    params = new ConsentRequestParameters
                             .Builder()
                             .setTagForUnderAgeOfConsent(childDirected)
                             .build();
@@ -64,7 +64,6 @@ public class AlienGDPR {
                                 // Handle the error.
                             }
                         });
-
 
 
                 break;
@@ -115,7 +114,7 @@ public class AlienGDPR {
             MessageDigest digest = MessageDigest
                     .getInstance("MD5");
             digest.update(s.getBytes());
-            byte messageDigest[] = digest.digest();
+            byte[] messageDigest = digest.digest();
 
             // Create Hex String
             StringBuffer hexString = new StringBuffer();

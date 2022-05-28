@@ -13,14 +13,15 @@ import com.google.android.gms.ads.initialization.OnInitializationCompleteListene
 
 public class MyApplication extends Application {
     private static AlienOpenAds alienOpenAds;
+
     //Uranus
     @Override
     public void onCreate() {
         super.onCreate();
-        AppLovinSdk.getInstance( MyApplication.this ).setMediationProvider( AppLovinMediationProvider.MAX );
-        AppLovinSdk.getInstance( MyApplication.this ).initializeSdk( config -> {
+        AppLovinSdk.getInstance(MyApplication.this).setMediationProvider(AppLovinMediationProvider.MAX);
+        AppLovinSdk.getInstance(MyApplication.this).initializeSdk(config -> {
 
-        } );
+        });
         MobileAds.initialize(
                 this,
                 new OnInitializationCompleteListener() {

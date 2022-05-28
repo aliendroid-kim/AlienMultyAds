@@ -22,16 +22,17 @@ public class MainActivity extends AppCompatActivity {
         AlienOpenAds.LoadOpenAds("");
         RelativeLayout layAds = findViewById(R.id.layAds);
         RelativeLayout layNative = findViewById(R.id.layNative);
-        AliendroidInitialize.SelectAdsApplovinMax(this,"","3932965");
-        AliendroidBanner.SmallBannerApplovinMax(this,layAds,"","bannerpintar","");
-        AliendroidNative.MediumNativeMax(this,layNative,"","ca-app-pub-3940256099942544/2247696110","");
-        AliendroidReward.LoadRewardApplovinMax(this,"","rewardedVideo","");
-        AliendroidIntertitial.LoadIntertitialApplovinMax(this,"","video","");
+        AliendroidInitialize.SelectAdsAdmob(this,"","3932965");
+        AliendroidBanner.SmallBannerAdmob(this,layAds,"","ca-app-pub-3940256099942544/6300978111","","","","","","");
+        AliendroidNative.SmallNativeMax(this,layNative,"","ca-app-pub-3940256099942544/2247696110","");
+
+        AliendroidReward.LoadRewardAdmob(this,"","ca-app-pub-3940256099942544/5224354917","");
+        AliendroidIntertitial.LoadIntertitialAdmob(this,"","ca-app-pub-3940256099942544/1033173712","","","","","","");
 
     }
 
     public void showreward(View view){
-        //AliendroidIntertitial.ShowIntertitialApplovinMax(MainActivity.this,"","video","",0);
-        AliendroidReward.ShowRewardApplovinMax(MainActivity.this,"","video","");
+        //AliendroidIntertitial.ShowIntertitialAdmob(MainActivity.this,"","ca-app-pub-3940256099942544/1033173712","",0,"","","","","");
+        AliendroidReward.ShowRewardAdmob(MainActivity.this,"","ca-app-pub-3940256099942544/5224354917","");
     }
 }

@@ -39,6 +39,7 @@ import com.startapp.sdk.ads.banner.Mrec;
 import com.unity3d.services.banners.BannerErrorInfo;
 import com.unity3d.services.banners.BannerView;
 import com.unity3d.services.banners.UnityBannerSize;
+
 //Uranus
 public class AliendroidMediumBanner {
     public static MaxAdView adViewMax;

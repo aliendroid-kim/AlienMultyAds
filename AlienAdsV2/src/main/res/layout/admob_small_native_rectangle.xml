@@ -10,14 +10,22 @@
         android:layout_gravity="center"
         android:orientation="vertical">
 
-        <TextView
-            android:layout_width="24dp"
+        <RelativeLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="#e74c3c"
-            android:gravity="center"
-            android:text="Ads"
-            android:textColor="#ffffff"
-            android:textSize="10sp" />
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="3dp"
+            android:background="@drawable/round_black">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="2dp"
+                android:gravity="center"
+                android:text="Ads"
+                android:textColor="@color/native_text_button"
+                android:textSize="10sp" />
+        </RelativeLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -114,9 +122,8 @@
                     android:layout_marginBottom="5dp"
                     android:background="@drawable/round_black"
                     android:gravity="center"
-                    android:textColor="#ffffff"
+                    android:textColor="@color/native_text_button"
                     android:textSize="8sp"
-                    app:backgroundTint="#e74c3c"
                     tools:text="Install" />
             </LinearLayout>
         </RelativeLayout>

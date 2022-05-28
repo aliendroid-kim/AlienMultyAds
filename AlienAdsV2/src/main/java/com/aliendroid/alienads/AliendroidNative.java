@@ -40,14 +40,15 @@ import com.startapp.sdk.ads.banner.Banner;
 import com.startapp.sdk.ads.banner.Mrec;
 import com.unity3d.services.banners.BannerView;
 import com.unity3d.services.banners.UnityBannerSize;
+
 //Uranus
 public class AliendroidNative {
     public static AppLovinAdView adViewDiscovery;
     public static IronSourceBannerLayout adViewIron;
     public static Banner startAppBanner;
     public static Mrec startAppMrec;
-    private static NativeAd nativeAd;
     public static BannerView unityBanner;
+    private static NativeAd nativeAd;
     private static MaxNativeAdLoader nativeAdLoader;
     private static MaxNativeAdView nativeAdView;
     private static MaxAd nativeAdMax;
@@ -225,7 +226,7 @@ public class AliendroidNative {
     }
 
     public static void SmallNativeAdmobRectangle(Activity activity, RelativeLayout layNative, String selectAdsBackup, String nativeId, String idNativeBackup, String Hpk1,
-                                        String Hpk2, String Hpk3, String Hpk4, String Hpk5) {
+                                                 String Hpk2, String Hpk3, String Hpk4, String Hpk5) {
 
         AdLoader.Builder builder = new AdLoader.Builder(activity, nativeId);
         builder.forNativeAd(new NativeAd.OnNativeAdLoadedListener() {
@@ -333,7 +334,7 @@ public class AliendroidNative {
     }
 
     public static void SmallNativeAdmobWhite(Activity activity, RelativeLayout layNative, String selectAdsBackup, String nativeId, String idNativeBackup, String Hpk1,
-                                        String Hpk2, String Hpk3, String Hpk4, String Hpk5) {
+                                             String Hpk2, String Hpk3, String Hpk4, String Hpk5) {
 
         AdLoader.Builder builder = new AdLoader.Builder(activity, nativeId);
         builder.forNativeAd(new NativeAd.OnNativeAdLoadedListener() {
@@ -506,7 +507,7 @@ public class AliendroidNative {
 
 
     public static void SmallNativeAdmobNonStroke(Activity activity, RelativeLayout layNative, String selectAdsBackup, String nativeId, String idNativeBackup, String Hpk1,
-                                        String Hpk2, String Hpk3, String Hpk4, String Hpk5) {
+                                                 String Hpk2, String Hpk3, String Hpk4, String Hpk5) {
 
         AdLoader.Builder builder = new AdLoader.Builder(activity, nativeId);
         builder.forNativeAd(new NativeAd.OnNativeAdLoadedListener() {
@@ -776,7 +777,6 @@ public class AliendroidNative {
                                 .build();
 
                         builder2.withNativeAdOptions(adOptions);
-
 
 
                         Bundle extras = new FacebookExtras()
@@ -1050,7 +1050,6 @@ public class AliendroidNative {
                         builder2.withNativeAdOptions(adOptions);
 
 
-
                         Bundle extras = new FacebookExtras()
                                 .setNativeBanner(true)
                                 .build();
@@ -1216,7 +1215,6 @@ public class AliendroidNative {
                                 .build();
 
                         builder2.withNativeAdOptions(adOptions);
-
 
 
                         Bundle extras = new FacebookExtras()
@@ -1619,7 +1617,7 @@ public class AliendroidNative {
     }
 
     public static void MediumNativeWhite(Activity activity, RelativeLayout layNative, String selectAdsBackup, String nativeId, String idNativeBackup, String Hpk1,
-                                    String Hpk2, String Hpk3, String Hpk4, String Hpk5) {
+                                         String Hpk2, String Hpk3, String Hpk4, String Hpk5) {
 
         AdLoader.Builder builder = new AdLoader.Builder(activity, nativeId);
         builder.forNativeAd(new NativeAd.OnNativeAdLoadedListener() {
@@ -1786,7 +1784,7 @@ public class AliendroidNative {
 
 
     public static void MediumNativeNonStroke(Activity activity, RelativeLayout layNative, String selectAdsBackup, String nativeId, String idNativeBackup, String Hpk1,
-                                    String Hpk2, String Hpk3, String Hpk4, String Hpk5) {
+                                             String Hpk2, String Hpk3, String Hpk4, String Hpk5) {
 
         AdLoader.Builder builder = new AdLoader.Builder(activity, nativeId);
         builder.forNativeAd(new NativeAd.OnNativeAdLoadedListener() {
@@ -2045,7 +2043,6 @@ public class AliendroidNative {
                         builder.withNativeAdOptions(adOptions);
 
 
-
                         Bundle extras = new FacebookExtras()
                                 .setNativeBanner(true)
                                 .build();
@@ -2205,7 +2202,6 @@ public class AliendroidNative {
                         builder.withNativeAdOptions(adOptions);
 
 
-
                         Bundle extras = new FacebookExtras()
                                 .setNativeBanner(true)
                                 .build();
@@ -2273,164 +2269,164 @@ public class AliendroidNative {
 
     public static void MediumNativeGoogleAds(Activity activity, RelativeLayout layNative, String selectAdsBackup, String nativeId, String idNativeBackup
     ) {
-                AdLoader.Builder builder = new AdLoader.Builder(activity, nativeId);
-                builder.forNativeAd(new NativeAd.OnNativeAdLoadedListener() {
-                    @Override
-                    public void onNativeAdLoaded(@NonNull NativeAd nativeAds) {
+        AdLoader.Builder builder = new AdLoader.Builder(activity, nativeId);
+        builder.forNativeAd(new NativeAd.OnNativeAdLoadedListener() {
+            @Override
+            public void onNativeAdLoaded(@NonNull NativeAd nativeAds) {
 
-                        if (nativeAd != null) {
-                            nativeAd.destroy();
+                if (nativeAd != null) {
+                    nativeAd.destroy();
+                }
+                switch (selectAdsBackup) {
+                    case "APPLOVIN-M":
+                        if (nativeAdMax != null) {
+                            nativeAdLoader.destroy(nativeAdMax);
                         }
-                        switch (selectAdsBackup) {
-                            case "APPLOVIN-M":
-                                if (nativeAdMax != null) {
-                                    nativeAdLoader.destroy(nativeAdMax);
-                                }
-                                break;
-                            case "MOPUB":
+                        break;
+                    case "MOPUB":
 
-                                break;
-                            case "IRON":
-                                if (adViewIron != null) {
-                                    adViewIron.isDestroyed();
-                                }
-                                break;
-                            case "STARTAPP":
-                                if (startAppMrec != null) {
-                                    startAppMrec.hideBanner();
-                                }
-                                break;
-                            case "APPLOVIN-D":
-                                if (adViewDiscovery != null) {
-                                    adViewDiscovery.destroy();
-                                }
-                                break;
+                        break;
+                    case "IRON":
+                        if (adViewIron != null) {
+                            adViewIron.isDestroyed();
                         }
-                        nativeAd = nativeAds;
-                        NativeAdView adView = (NativeAdView) activity.getLayoutInflater()
-                                .inflate(R.layout.admob_big_native, null);
-                        populateNativeAdView(nativeAds, adView);
-                        layNative.removeAllViews();
-                        layNative.addView(adView);
-                    }
+                        break;
+                    case "STARTAPP":
+                        if (startAppMrec != null) {
+                            startAppMrec.hideBanner();
+                        }
+                        break;
+                    case "APPLOVIN-D":
+                        if (adViewDiscovery != null) {
+                            adViewDiscovery.destroy();
+                        }
+                        break;
+                }
+                nativeAd = nativeAds;
+                NativeAdView adView = (NativeAdView) activity.getLayoutInflater()
+                        .inflate(R.layout.admob_big_native, null);
+                populateNativeAdView(nativeAds, adView);
+                layNative.removeAllViews();
+                layNative.addView(adView);
+            }
 
 
-                });
+        });
 
-                VideoOptions videoOptions = new VideoOptions.Builder()
-                        .build();
+        VideoOptions videoOptions = new VideoOptions.Builder()
+                .build();
 
-                NativeAdOptions adOptions = new NativeAdOptions.Builder()
-                        .setVideoOptions(videoOptions)
-                        .build();
+        NativeAdOptions adOptions = new NativeAdOptions.Builder()
+                .setVideoOptions(videoOptions)
+                .build();
 
-                builder.withNativeAdOptions(adOptions);
+        builder.withNativeAdOptions(adOptions);
 
-                Bundle extras = new FacebookExtras()
-                        .setNativeBanner(true)
-                        .build();
-                AdRequest adRequest = new AdRequest.Builder()
-                        .addNetworkExtrasBundle(FacebookAdapter.class, extras)
-                        .build();
-                AdLoader adLoader =
-                        builder
-                                .withAdListener(
-                                        new AdListener() {
-                                            @Override
-                                            public void onAdFailedToLoad(LoadAdError loadAdError) {
-                                                switch (selectAdsBackup) {
-                                                    case "APPLOVIN-M": {
-                                                        MaxNativeAdViewBinder binder = new MaxNativeAdViewBinder.Builder(R.layout.max_big_native)
-                                                                .setTitleTextViewId(R.id.title_text_view)
-                                                                .setBodyTextViewId(R.id.body_text_view)
-                                                                .setAdvertiserTextViewId(R.id.advertiser_textView)
-                                                                .setIconImageViewId(R.id.icon_image_view)
-                                                                .setMediaContentViewGroupId(R.id.media_view_container)
-                                                                .setOptionsContentViewGroupId(R.id.ad_options_view)
-                                                                .setCallToActionButtonId(R.id.cta_button)
-                                                                .build();
-                                                        nativeAdView = new MaxNativeAdView(binder, activity);
+        Bundle extras = new FacebookExtras()
+                .setNativeBanner(true)
+                .build();
+        AdRequest adRequest = new AdRequest.Builder()
+                .addNetworkExtrasBundle(FacebookAdapter.class, extras)
+                .build();
+        AdLoader adLoader =
+                builder
+                        .withAdListener(
+                                new AdListener() {
+                                    @Override
+                                    public void onAdFailedToLoad(LoadAdError loadAdError) {
+                                        switch (selectAdsBackup) {
+                                            case "APPLOVIN-M": {
+                                                MaxNativeAdViewBinder binder = new MaxNativeAdViewBinder.Builder(R.layout.max_big_native)
+                                                        .setTitleTextViewId(R.id.title_text_view)
+                                                        .setBodyTextViewId(R.id.body_text_view)
+                                                        .setAdvertiserTextViewId(R.id.advertiser_textView)
+                                                        .setIconImageViewId(R.id.icon_image_view)
+                                                        .setMediaContentViewGroupId(R.id.media_view_container)
+                                                        .setOptionsContentViewGroupId(R.id.ad_options_view)
+                                                        .setCallToActionButtonId(R.id.cta_button)
+                                                        .build();
+                                                nativeAdView = new MaxNativeAdView(binder, activity);
 
-                                                        nativeAdLoader = new MaxNativeAdLoader(idNativeBackup, activity);
-                                                        nativeAdLoader.setRevenueListener(new MaxAdRevenueListener() {
-                                                            @Override
-                                                            public void onAdRevenuePaid(MaxAd ad) {
+                                                nativeAdLoader = new MaxNativeAdLoader(idNativeBackup, activity);
+                                                nativeAdLoader.setRevenueListener(new MaxAdRevenueListener() {
+                                                    @Override
+                                                    public void onAdRevenuePaid(MaxAd ad) {
 
-                                                            }
-                                                        });
-                                                        nativeAdLoader.setNativeAdListener(new MaxNativeAdListener() {
-                                                            @Override
-                                                            public void onNativeAdLoaded(final MaxNativeAdView nativeAdView, final MaxAd ad) {
-
-                                                                if (nativeAd != null) {
-                                                                    nativeAd.destroy();
-                                                                }
-                                                                // Cleanup any pre-existing native ad to prevent memory leaks.
-                                                                if (nativeAdMax != null) {
-                                                                    nativeAdLoader.destroy(nativeAdMax);
-                                                                }
-
-                                                                // Save ad for cleanup.
-                                                                nativeAdMax = ad;
-
-                                                                // Add ad view to view.
-                                                                layNative.removeAllViews();
-                                                                layNative.addView(nativeAdView);
-                                                            }
-
-                                                            @Override
-                                                            public void onNativeAdLoadFailed(final String adUnitId, final MaxError error) {
-
-                                                            }
-
-                                                            @Override
-                                                            public void onNativeAdClicked(final MaxAd ad) {
-
-                                                            }
-                                                        });
-
-                                                        nativeAdLoader.loadAd(nativeAdView);
-                                                        break;
                                                     }
-                                                    case "MOPUB":
+                                                });
+                                                nativeAdLoader.setNativeAdListener(new MaxNativeAdListener() {
+                                                    @Override
+                                                    public void onNativeAdLoaded(final MaxNativeAdView nativeAdView, final MaxAd ad) {
 
-                                                        break;
-                                                    case "IRON":
-                                                        adViewIron = IronSource.createBanner(activity, ISBannerSize.RECTANGLE);
-                                                        FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT,
-                                                                FrameLayout.LayoutParams.WRAP_CONTENT);
-                                                        layNative.addView(adViewIron, 0, layoutParams);
-                                                        IronSource.loadBanner(adViewIron, idNativeBackup);
-                                                        break;
-                                                    case "STARTAPP":
-                                                        startAppMrec = new Mrec(activity);
-                                                        RelativeLayout.LayoutParams bannerParameters =
-                                                                new RelativeLayout.LayoutParams(
-                                                                        RelativeLayout.LayoutParams.WRAP_CONTENT,
-                                                                        RelativeLayout.LayoutParams.WRAP_CONTENT);
-                                                        bannerParameters.addRule(RelativeLayout.CENTER_HORIZONTAL);
-                                                        layNative.addView(startAppMrec, bannerParameters);
-                                                        break;
-                                                    case "APPLOVIN-D":
-                                                        AdRequest.Builder builder = new AdRequest.Builder();
-                                                        Bundle bannerExtras = new Bundle();
-                                                        bannerExtras.putString("zone_id", idNativeBackup);
-                                                        builder.addCustomEventExtrasBundle(AppLovinCustomEventBanner.class, bannerExtras);
+                                                        if (nativeAd != null) {
+                                                            nativeAd.destroy();
+                                                        }
+                                                        // Cleanup any pre-existing native ad to prevent memory leaks.
+                                                        if (nativeAdMax != null) {
+                                                            nativeAdLoader.destroy(nativeAdMax);
+                                                        }
 
-                                                        adViewDiscovery = new AppLovinAdView(AppLovinAdSize.MREC, activity);
-                                                        layNative.addView(adViewDiscovery);
-                                                        adViewDiscovery.loadNextAd();
-                                                        break;
-                                                    case "UNITY":
-                                                        unityBanner = new BannerView(activity, idNativeBackup, new UnityBannerSize(320, 50));
-                                                        unityBanner.load();
-                                                        layNative.addView(unityBanner);
-                                                        break;
-                                                }
+                                                        // Save ad for cleanup.
+                                                        nativeAdMax = ad;
+
+                                                        // Add ad view to view.
+                                                        layNative.removeAllViews();
+                                                        layNative.addView(nativeAdView);
+                                                    }
+
+                                                    @Override
+                                                    public void onNativeAdLoadFailed(final String adUnitId, final MaxError error) {
+
+                                                    }
+
+                                                    @Override
+                                                    public void onNativeAdClicked(final MaxAd ad) {
+
+                                                    }
+                                                });
+
+                                                nativeAdLoader.loadAd(nativeAdView);
+                                                break;
                                             }
-                                        })
-                                .build();
-                adLoader.loadAd(adRequest);
+                                            case "MOPUB":
+
+                                                break;
+                                            case "IRON":
+                                                adViewIron = IronSource.createBanner(activity, ISBannerSize.RECTANGLE);
+                                                FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT,
+                                                        FrameLayout.LayoutParams.WRAP_CONTENT);
+                                                layNative.addView(adViewIron, 0, layoutParams);
+                                                IronSource.loadBanner(adViewIron, idNativeBackup);
+                                                break;
+                                            case "STARTAPP":
+                                                startAppMrec = new Mrec(activity);
+                                                RelativeLayout.LayoutParams bannerParameters =
+                                                        new RelativeLayout.LayoutParams(
+                                                                RelativeLayout.LayoutParams.WRAP_CONTENT,
+                                                                RelativeLayout.LayoutParams.WRAP_CONTENT);
+                                                bannerParameters.addRule(RelativeLayout.CENTER_HORIZONTAL);
+                                                layNative.addView(startAppMrec, bannerParameters);
+                                                break;
+                                            case "APPLOVIN-D":
+                                                AdRequest.Builder builder = new AdRequest.Builder();
+                                                Bundle bannerExtras = new Bundle();
+                                                bannerExtras.putString("zone_id", idNativeBackup);
+                                                builder.addCustomEventExtrasBundle(AppLovinCustomEventBanner.class, bannerExtras);
+
+                                                adViewDiscovery = new AppLovinAdView(AppLovinAdSize.MREC, activity);
+                                                layNative.addView(adViewDiscovery);
+                                                adViewDiscovery.loadNextAd();
+                                                break;
+                                            case "UNITY":
+                                                unityBanner = new BannerView(activity, idNativeBackup, new UnityBannerSize(320, 50));
+                                                unityBanner.load();
+                                                layNative.addView(unityBanner);
+                                                break;
+                                        }
+                                    }
+                                })
+                        .build();
+        adLoader.loadAd(adRequest);
     }
 
     private static void populateNativeAdView(NativeAd nativeAd, NativeAdView adView) {
@@ -2655,7 +2651,6 @@ public class AliendroidNative {
         nativeAdLoader.loadAd(nativeAdView);
 
     }
-
 
 
 }

@@ -35,10 +35,10 @@ import com.ironsource.mediationsdk.IronSourceBannerLayout;
 import com.ironsource.mediationsdk.logger.IronSourceError;
 import com.startapp.sdk.ads.banner.Banner;
 import com.startapp.sdk.ads.banner.BannerListener;
-import com.startapp.sdk.ads.banner.Mrec;
 import com.unity3d.services.banners.BannerErrorInfo;
 import com.unity3d.services.banners.BannerView;
 import com.unity3d.services.banners.UnityBannerSize;
+
 //Uranus
 public class AliendroidBanner {
     public static MaxAdView adViewMax;
@@ -47,15 +47,11 @@ public class AliendroidBanner {
     public static AppLovinAdView adViewDiscovery;
     public static IronSourceBannerLayout adViewIron;
     public static Banner startAppBanner;
-    public static Mrec startAppMrec;
     public static com.facebook.ads.AdView adViewFAN;
-    public static  BannerView unityBanner;
+    public static BannerView unityBanner;
 
     public static void SmallBannerAdmob(Activity activity, RelativeLayout layAds, String selectAdsBackup, String idBanner, String idBannerBackup, String Hpk1,
                                         String Hpk2, String Hpk3, String Hpk4, String Hpk5) {
-
-
-
         Bundle extras = new FacebookExtras()
                 .setNativeBanner(true)
                 .build();
@@ -104,7 +100,7 @@ public class AliendroidBanner {
                         }
                         break;
                     case "UNITY":
-                        if (unityBanner!=null){
+                        if (unityBanner != null) {
                             unityBanner.destroy();
                         }
                         break;
@@ -235,7 +231,7 @@ public class AliendroidBanner {
                         }
                         break;
                     case "UNITY":
-                        if (unityBanner!=null){
+                        if (unityBanner != null) {
                             unityBanner.destroy();
                         }
                         break;
@@ -442,7 +438,7 @@ public class AliendroidBanner {
                         }
                         break;
                     case "UNITY":
-                        if (unityBanner!=null){
+                        if (unityBanner != null) {
                             unityBanner.destroy();
                         }
                         break;
@@ -512,7 +508,7 @@ public class AliendroidBanner {
                         }
                         break;
                     case "UNITY":
-                        if (unityBanner!=null){
+                        if (unityBanner != null) {
                             unityBanner.destroy();
                         }
                         break;
@@ -646,7 +642,7 @@ public class AliendroidBanner {
                         }
                         break;
                     case "UNITY":
-                        if (unityBanner!=null){
+                        if (unityBanner != null) {
                             unityBanner.destroy();
                         }
                         break;
@@ -785,7 +781,7 @@ public class AliendroidBanner {
                         }
                         break;
                     case "UNITY":
-                        if (unityBanner!=null){
+                        if (unityBanner != null) {
                             unityBanner.destroy();
                         }
                         break;
@@ -940,7 +936,7 @@ public class AliendroidBanner {
                         }
                         break;
                     case "UNITY":
-                        if (unityBanner!=null){
+                        if (unityBanner != null) {
                             unityBanner.destroy();
                         }
                         break;
@@ -1083,7 +1079,7 @@ public class AliendroidBanner {
                         }
                         break;
                     case "UNITY":
-                        if (unityBanner!=null){
+                        if (unityBanner != null) {
                             unityBanner.destroy();
                         }
                         break;

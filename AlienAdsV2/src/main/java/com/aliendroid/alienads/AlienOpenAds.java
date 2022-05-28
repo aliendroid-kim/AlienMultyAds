@@ -53,6 +53,7 @@ public class AlienOpenAds implements LifecycleObserver, Application.ActivityLife
             AlienOpenAds.appOpenAd.show(activity);
         }
     }
+
     //Uranus
     public static void LoadOpenAds(String idOpenAds) {
         IDOPEN = idOpenAds;

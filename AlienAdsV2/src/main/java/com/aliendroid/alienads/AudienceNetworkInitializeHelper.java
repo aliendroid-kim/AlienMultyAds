@@ -8,6 +8,7 @@ import android.util.Log;
 import com.facebook.ads.AdSettings;
 import com.facebook.ads.AudienceNetworkAds;
 //Uranus
+
 /**
  * Sample class that shows how to call initialize() method of Audience Network SDK.
  */
