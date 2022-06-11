@@ -6,6 +6,7 @@ import android.util.Log;
 import com.applovin.sdk.AppLovinMediationProvider;
 import com.applovin.sdk.AppLovinSdk;
 import com.flurry.android.FlurryAgent;
+import com.flurry.android.FlurryAgentListener;
 import com.flurry.android.FlurryPerformance;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.initialization.InitializationStatus;
@@ -30,13 +31,16 @@ public class MyApplication extends Application {
                     }
                 });
 
+
         new FlurryAgent.Builder()
                 .withDataSaleOptOut(false)
                 .withCaptureUncaughtExceptions(true)
                 .withIncludeBackgroundSessionsInMetrics(true)
                 .withLogLevel(Log.VERBOSE)
                 .withPerformanceMetrics(FlurryPerformance.ALL)
-                .build(this, "9CFC3HDGJYSFTRKJG98N");
+                .build(this, "Q3YT4P4Y9VNY4SZ69RMY");
+
+        
         alienOpenAds = new AlienOpenAds(this);
 
 

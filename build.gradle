@@ -10,6 +10,7 @@ buildscript {
         maven {
             url 'https://unity3ddist.jfrog.io/artifactory/unity-mediation-mvn-prod-local/'
         }
+       
     }
     dependencies {
         classpath "com.android.tools.build:gradle:4.2.2"
@@ -29,6 +30,7 @@ allprojects {
         maven {
             url 'https://unity3ddist.jfrog.io/artifactory/unity-mediation-mvn-prod-local/'
         }
+
     }
 }
 

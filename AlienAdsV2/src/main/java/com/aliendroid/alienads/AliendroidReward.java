@@ -1324,7 +1324,6 @@ public class AliendroidReward {
                 }
             });
         } else {
-            LoadRewardAdmob(activity, selecBackuptAds, idReward, idBackupReward);
             switch (selecBackuptAds) {
                 case "APPLOVIN-M":
                     if (rewardedAd.isReady()) {
@@ -1414,6 +1413,7 @@ public class AliendroidReward {
                     rewardedAdUnity.show(showListener);
                     break;
             }
+            LoadRewardAdmob(activity, selecBackuptAds, idReward, idBackupReward);
         }
     }
 
@@ -1428,7 +1428,6 @@ public class AliendroidReward {
                 }
             });
         } else {
-            LoadRewardGoogleAds(activity, selecBackuptAds, idReward, idBackupReward);
             switch (selecBackuptAds) {
                 case "APPLOVIN-M":
                     if (rewardedAd.isReady()) {
@@ -1517,6 +1516,7 @@ public class AliendroidReward {
                     rewardedAdUnity.show(showListener);
                     break;
             }
+            LoadRewardGoogleAds(activity, selecBackuptAds, idReward, idBackupReward);
         }
     }
 
@@ -1526,7 +1526,6 @@ public class AliendroidReward {
             rewardedAd.showAd();
             LoadRewardApplovinMax(activity, selecBackuptAds, idReward, idBackupReward);
         } else {
-            LoadRewardApplovinMax(activity, selecBackuptAds, idReward, idBackupReward);
             switch (selecBackuptAds) {
                 case "GOOGLE-ADS":
                 case "ADMOB":
@@ -1622,6 +1621,7 @@ public class AliendroidReward {
                     rewardedAdUnity.show(showListener);
                     break;
             }
+            LoadRewardApplovinMax(activity, selecBackuptAds, idReward, idBackupReward);
         }
     }
 
@@ -1665,7 +1665,6 @@ public class AliendroidReward {
             });
             LoadRewardApplovinDis(activity, selecBackuptAds, idReward, idBackupReward);
         } else {
-            LoadRewardApplovinDis(activity, selecBackuptAds, idReward, idBackupReward);
             switch (selecBackuptAds) {
                 case "GOOGLE-ADS":
                 case "ADMOB":
@@ -1726,6 +1725,7 @@ public class AliendroidReward {
                     rewardedAdUnity.show(showListener);
                     break;
             }
+            LoadRewardApplovinDis(activity, selecBackuptAds, idReward, idBackupReward);
         }
     }
 
@@ -1843,7 +1843,6 @@ public class AliendroidReward {
             rewardedVideo.showAd();
             LoadRewardStartApp(activity, selecBackuptAds, idReward, idBackupReward);
         } else {
-            LoadRewardStartApp(activity, selecBackuptAds, idReward, idBackupReward);
             switch (selecBackuptAds) {
                 case "APPLOVIN-M":
                     if (rewardedAd.isReady()) {
@@ -1940,6 +1939,7 @@ public class AliendroidReward {
                     rewardedAdUnity.show(showListener);
                     break;
             }
+            LoadRewardStartApp(activity, selecBackuptAds, idReward, idBackupReward);
         }
     }
 }

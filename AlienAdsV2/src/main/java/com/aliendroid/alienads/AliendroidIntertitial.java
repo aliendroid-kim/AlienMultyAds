@@ -1415,10 +1415,9 @@ public class AliendroidIntertitial {
 
                         break;
                 }
-                LoadIntertitialApplovinMax(activity, selectAdsBackup, idIntertitial, idIntertitialBackup);
                 interstitialAd.loadAd();
             }
-
+            LoadIntertitialApplovinMax(activity, selectAdsBackup, idIntertitial, idIntertitialBackup);
             counter = 0;
         } else {
             counter++;
