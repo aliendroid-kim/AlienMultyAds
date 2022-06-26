@@ -53,7 +53,8 @@ public class AliendroidInitialize {
             case "MOPUB":
                 break;
             case "IRON":
-                IronSource.init(activity, idInitialize);
+                IronSource.init(activity, idInitialize, IronSource.AD_UNIT.OFFERWALL, IronSource.AD_UNIT.INTERSTITIAL, IronSource.AD_UNIT.REWARDED_VIDEO, IronSource.AD_UNIT.BANNER);
+
                 IntegrationHelper.validateIntegration(activity);
                 break;
             case "STARTAPP":
@@ -129,7 +130,8 @@ public class AliendroidInitialize {
 
                 break;
             case "IRON":
-                IronSource.init(activity, idInitialize);
+                IronSource.init(activity, idInitialize, IronSource.AD_UNIT.OFFERWALL, IronSource.AD_UNIT.INTERSTITIAL, IronSource.AD_UNIT.REWARDED_VIDEO, IronSource.AD_UNIT.BANNER);
+
                 IntegrationHelper.validateIntegration(activity);
                 break;
             case "STARTAPP":
@@ -192,7 +194,8 @@ public class AliendroidInitialize {
             case "MOPUB":
                 break;
             case "IRON":
-                IronSource.init(activity, idInitialize);
+                IronSource.init(activity, idInitialize, IronSource.AD_UNIT.OFFERWALL, IronSource.AD_UNIT.INTERSTITIAL, IronSource.AD_UNIT.REWARDED_VIDEO, IronSource.AD_UNIT.BANNER);
+
                 IntegrationHelper.validateIntegration(activity);
                 break;
             case "STARTAPP":
@@ -264,7 +267,8 @@ public class AliendroidInitialize {
             case "MOPUB":
                 break;
             case "IRON":
-                IronSource.init(activity, idInitialize);
+
+                IronSource.init(activity, idInitialize, IronSource.AD_UNIT.OFFERWALL, IronSource.AD_UNIT.INTERSTITIAL, IronSource.AD_UNIT.REWARDED_VIDEO, IronSource.AD_UNIT.BANNER);
                 IntegrationHelper.validateIntegration(activity);
                 break;
             case "STARTAPP":
@@ -349,7 +353,7 @@ public class AliendroidInitialize {
                 sdk.getSettings().setMuted(!sdk.getSettings().isMuted());
                 break;
             case "IRON":
-                IronSource.init(activity, idInitializeBackupAds);
+                IronSource.init(activity, idInitializeBackupAds, IronSource.AD_UNIT.OFFERWALL, IronSource.AD_UNIT.INTERSTITIAL, IronSource.AD_UNIT.REWARDED_VIDEO, IronSource.AD_UNIT.BANNER);
                 IntegrationHelper.validateIntegration(activity);
                 break;
             case "MOPUB":
@@ -404,7 +408,7 @@ public class AliendroidInitialize {
     }
 
     public static void SelectAdsIron(Activity activity, String selectAdsBackup, String idInitialize, String idInitializeBackupAds) {
-        IronSource.init(activity, idInitialize);
+        IronSource.init(activity, idInitialize, IronSource.AD_UNIT.OFFERWALL, IronSource.AD_UNIT.INTERSTITIAL, IronSource.AD_UNIT.REWARDED_VIDEO, IronSource.AD_UNIT.BANNER);
         IntegrationHelper.validateIntegration(activity);
         switch (selectAdsBackup) {
             case "APPLOVIN-D":
@@ -547,7 +551,7 @@ public class AliendroidInitialize {
                 }
                 break;
             case "IRON":
-                IronSource.init(activity, idInitializeBackupAds);
+                IronSource.init(activity, idInitializeBackupAds, IronSource.AD_UNIT.OFFERWALL, IronSource.AD_UNIT.INTERSTITIAL, IronSource.AD_UNIT.REWARDED_VIDEO, IronSource.AD_UNIT.BANNER);
                 IntegrationHelper.validateIntegration(activity);
                 break;
         }
@@ -606,7 +610,7 @@ public class AliendroidInitialize {
                 });
                 break;
             case "IRON":
-                IronSource.init(activity, idInitializeBackupAds);
+                IronSource.init(activity, idInitializeBackupAds, IronSource.AD_UNIT.OFFERWALL, IronSource.AD_UNIT.INTERSTITIAL, IronSource.AD_UNIT.REWARDED_VIDEO, IronSource.AD_UNIT.BANNER);
                 IntegrationHelper.validateIntegration(activity);
                 break;
             case "UNITY":

@@ -7,6 +7,10 @@ import android.view.View;
 import android.widget.RelativeLayout;
 
 import com.aliendroid.alienads.AlienOpenAds;
+import com.aliendroid.alienads.AliendroidBanner;
+import com.aliendroid.alienads.AliendroidInitialize;
+import com.aliendroid.alienads.AliendroidIntertitial;
+import com.aliendroid.alienads.AliendroidMediumBanner;
 import com.aliendroid.alienads.AliendroidReward;
 
 public class MainActivity extends AppCompatActivity {
@@ -19,18 +23,18 @@ public class MainActivity extends AppCompatActivity {
         AlienOpenAds.LoadOpenAds("");
         RelativeLayout layAds = findViewById(R.id.layAds);
         RelativeLayout layNative = findViewById(R.id.layNative);
-        //AliendroidInitialize.SelectAdsAdmob(this,"","3932965");
-        //AliendroidBanner.SmallBannerAdmob(this,layAds,"","ca-app-pub-3940256099942544/6300978111","","","","","","");
-        //AliendroidNative.SmallNativeMax(this,layNative,"","ca-app-pub-3940256099942544/2247696110","");
+        AliendroidInitialize.SelectAdsIron(this,"","126f87665","");
+        AliendroidMediumBanner.MediumBannerIron(this,layAds,"","Home_Screen","");
+        //AliendroidNativeTemplate.SmallNativeMax(this,layNative,"","c7dcbfbef6cef971","");
 
-        AliendroidReward.LoadRewardAdmob(this,"APPLOVIN-D","ca-app-pub-3940256099942544/5224354917","");
-        //AliendroidIntertitial.LoadIntertitialAdmob(this,"","ca-app-pub-3940256099942544/1033173712","","","","","","");
+        //AliendroidReward.LoadRewardAdmob(this,"APPLOVIN-D","ca-app-pub-3940256099942544/5224354917","");
+        AliendroidIntertitial.LoadIntertitialIron(this,"","DefaultInterstitial","");
 
     }
 
     public void showreward(View view){
 
-        //AliendroidIntertitial.ShowIntertitialAdmob(MainActivity.this,"","ca-app-pub-3940256099942544/1033173712","",0,"","","","","");
-        AliendroidReward.ShowRewardAdmob(MainActivity.this,"APPLOVIN-D","ca-app-pub-3940256099942544/5224354917","");
+        AliendroidIntertitial.ShowIntertitialIron(MainActivity.this,"","DefaultInterstitial","",0);
+        //AliendroidReward.ShowRewardAdmob(MainActivity.this,"APPLOVIN-D","ca-app-pub-3940256099942544/5224354917","");
     }
 }
