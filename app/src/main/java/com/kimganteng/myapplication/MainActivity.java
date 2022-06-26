@@ -23,9 +23,9 @@ public class MainActivity extends AppCompatActivity {
         AlienOpenAds.LoadOpenAds("");
         RelativeLayout layAds = findViewById(R.id.layAds);
         RelativeLayout layNative = findViewById(R.id.layNative);
-        AliendroidInitialize.SelectAdsIron(this,"","126f87665","");
-        AliendroidMediumBanner.MediumBannerIron(this,layAds,"","Home_Screen","");
-        //AliendroidNativeTemplate.SmallNativeMax(this,layNative,"","c7dcbfbef6cef971","");
+        AliendroidInitialize.SelectAdsIron(this,"","85460dcd","");
+        AliendroidBanner.SmallBannerIron(this,layAds,"","DefaultBanner","");
+        //AliendroidMediumBanner.MediumBannerIron(this,layNative,"","Home_Screen","");
 
         //AliendroidReward.LoadRewardAdmob(this,"APPLOVIN-D","ca-app-pub-3940256099942544/5224354917","");
         AliendroidIntertitial.LoadIntertitialIron(this,"","DefaultInterstitial","");
