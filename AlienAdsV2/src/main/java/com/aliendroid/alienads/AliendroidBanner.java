@@ -1184,7 +1184,7 @@ public class AliendroidBanner {
 
             }
         };
-        //adViewIron.setBannerListener(listener);
+        adViewIron.setBannerListener(listener);
         IronSource.loadBanner(adViewIron, idBanner);
     }
 

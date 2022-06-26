@@ -409,7 +409,7 @@ public class AliendroidInitialize {
 
     public static void SelectAdsIron(Activity activity, String selectAdsBackup, String idInitialize, String idInitializeBackupAds) {
         IronSource.init(activity, idInitialize, IronSource.AD_UNIT.OFFERWALL, IronSource.AD_UNIT.INTERSTITIAL, IronSource.AD_UNIT.REWARDED_VIDEO, IronSource.AD_UNIT.BANNER);
-        //IntegrationHelper.validateIntegration(activity);
+        IntegrationHelper.validateIntegration(activity);
         switch (selectAdsBackup) {
             case "APPLOVIN-D":
                 AppLovinSdk.initializeSdk(activity);
