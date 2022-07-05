@@ -7,9 +7,7 @@ buildscript {
             url 'https://android-sdk.is.com/'
         }
         maven { url 'https://jitpack.io' }
-        maven {
-            url 'https://unity3ddist.jfrog.io/artifactory/unity-mediation-mvn-prod-local/'
-        }
+
        
     }
     dependencies {
@@ -27,9 +25,7 @@ allprojects {
         }
         maven { url 'https://jitpack.io' }
       
-        maven {
-            url 'https://unity3ddist.jfrog.io/artifactory/unity-mediation-mvn-prod-local/'
-        }
+     
 
     }
 }
