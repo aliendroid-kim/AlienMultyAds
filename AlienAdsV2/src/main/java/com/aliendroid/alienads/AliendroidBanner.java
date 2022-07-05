@@ -35,9 +35,7 @@ import com.ironsource.mediationsdk.IronSourceBannerLayout;
 import com.ironsource.mediationsdk.logger.IronSourceError;
 import com.startapp.sdk.ads.banner.Banner;
 import com.startapp.sdk.ads.banner.BannerListener;
-import com.unity3d.services.banners.BannerErrorInfo;
-import com.unity3d.services.banners.BannerView;
-import com.unity3d.services.banners.UnityBannerSize;
+
 
 //Uranus
 public class AliendroidBanner {
@@ -48,7 +46,7 @@ public class AliendroidBanner {
     public static IronSourceBannerLayout adViewIron;
     public static Banner startAppBanner;
     public static com.facebook.ads.AdView adViewFAN;
-    public static BannerView unityBanner;
+
 
     public static void SmallBannerAdmob(Activity activity, RelativeLayout layAds, String selectAdsBackup, String idBanner, String idBannerBackup, String Hpk1,
                                         String Hpk2, String Hpk3, String Hpk4, String Hpk5) {
@@ -100,9 +98,7 @@ public class AliendroidBanner {
                         }
                         break;
                     case "UNITY":
-                        if (unityBanner != null) {
-                            unityBanner.destroy();
-                        }
+
                         break;
                 }
             }
@@ -158,9 +154,7 @@ public class AliendroidBanner {
                         adViewFAN.loadAd();
                         break;
                     case "UNITY":
-                        unityBanner = new BannerView(activity, idBannerBackup, new UnityBannerSize(320, 50));
-                        layAds.addView(unityBanner);
-                        unityBanner.load();
+
                         break;
                 }
             }
@@ -231,9 +225,7 @@ public class AliendroidBanner {
                         }
                         break;
                     case "UNITY":
-                        if (unityBanner != null) {
-                            unityBanner.destroy();
-                        }
+
                         break;
                 }
             }
@@ -288,9 +280,7 @@ public class AliendroidBanner {
                         adViewFAN.loadAd();
                         break;
                     case "UNITY":
-                        unityBanner = new BannerView(activity, idBannerBackup, new UnityBannerSize(320, 50));
-                        layAds.addView(unityBanner);
-                        unityBanner.load();
+
                         break;
                 }
             }
@@ -394,9 +384,7 @@ public class AliendroidBanner {
                         adViewDiscovery.loadNextAd();
                         break;
                     case "UNITY":
-                        unityBanner = new BannerView(activity, idBannerBackup, new UnityBannerSize(320, 50));
-                        layAds.addView(unityBanner);
-                        unityBanner.load();
+
                         break;
                 }
             }
@@ -438,9 +426,7 @@ public class AliendroidBanner {
                         }
                         break;
                     case "UNITY":
-                        if (unityBanner != null) {
-                            unityBanner.destroy();
-                        }
+
                         break;
                 }
             }
@@ -508,9 +494,7 @@ public class AliendroidBanner {
                         }
                         break;
                     case "UNITY":
-                        if (unityBanner != null) {
-                            unityBanner.destroy();
-                        }
+
                         break;
                 }
             }
@@ -582,9 +566,7 @@ public class AliendroidBanner {
                         adViewFAN.loadAd();
                         break;
                     case "UNITY":
-                        unityBanner = new BannerView(activity, idBannerBackup, new UnityBannerSize(320, 50));
-                        unityBanner.load();
-                        layAds.addView(unityBanner);
+
                         break;
                 }
             }
@@ -642,9 +624,7 @@ public class AliendroidBanner {
                         }
                         break;
                     case "UNITY":
-                        if (unityBanner != null) {
-                            unityBanner.destroy();
-                        }
+
                         break;
                 }
             }
@@ -716,9 +696,7 @@ public class AliendroidBanner {
                         adViewFAN.loadAd();
                         break;
                     case "UNITY":
-                        unityBanner = new BannerView(activity, idBannerBackup, new UnityBannerSize(320, 50));
-                        unityBanner.load();
-                        layAds.addView(unityBanner);
+
                         break;
                 }
             }
@@ -781,9 +759,7 @@ public class AliendroidBanner {
                         }
                         break;
                     case "UNITY":
-                        if (unityBanner != null) {
-                            unityBanner.destroy();
-                        }
+
                         break;
                 }
             }
@@ -872,9 +848,7 @@ public class AliendroidBanner {
                         adViewFAN.loadAd();
                         break;
                     case "UNITY":
-                        unityBanner = new BannerView(activity, idBannerBackup, new UnityBannerSize(320, 50));
-                        unityBanner.load();
-                        layAds.addView(unityBanner);
+
                         break;
                 }
 
@@ -936,9 +910,7 @@ public class AliendroidBanner {
                         }
                         break;
                     case "UNITY":
-                        if (unityBanner != null) {
-                            unityBanner.destroy();
-                        }
+
                         break;
                 }
             }
@@ -1013,9 +985,7 @@ public class AliendroidBanner {
                         adViewFAN.loadAd();
                         break;
                     case "UNITY":
-                        unityBanner = new BannerView(activity, idBannerBackup, new UnityBannerSize(320, 50));
-                        unityBanner.load();
-                        layAds.addView(unityBanner);
+
                         break;
                 }
             }
@@ -1079,9 +1049,7 @@ public class AliendroidBanner {
                         }
                         break;
                     case "UNITY":
-                        if (unityBanner != null) {
-                            unityBanner.destroy();
-                        }
+
                         break;
                 }
             }
@@ -1157,9 +1125,7 @@ public class AliendroidBanner {
                         adViewFAN.loadAd();
                         break;
                     case "UNITY":
-                        unityBanner = new BannerView(activity, idBannerBackup, new UnityBannerSize(320, 50));
-                        unityBanner.load();
-                        layAds.addView(unityBanner);
+
                         break;
                 }
             }
@@ -1189,136 +1155,6 @@ public class AliendroidBanner {
     }
 
     public static void SmallBannerUnity(Activity activity, RelativeLayout layAds, String selectAdsBackup, String idBanner, String idBannerBackup) {
-        unityBanner = new BannerView(activity, idBanner, new UnityBannerSize(320, 50));
-        unityBanner.setListener(new BannerView.IListener() {
-            @Override
-            public void onBannerLoaded(BannerView bannerView) {
-                layAds.addView(bannerView);
-                switch (selectAdsBackup) {
-                    case "APPLOVIN-D":
-                        if (adViewDiscovery != null) {
-                            adViewDiscovery.destroy();
-                        }
-                        break;
-                    case "APPLOVIN-M":
-                        if (adViewMax != null) {
-                            adViewMax.destroy();
-                        }
-                        break;
-                    case "STARTAPP":
-                        startAppBanner.hideBanner();
-                        break;
-                    case "MOPUB":
-
-                        break;
-                    case "ADMOB":
-                        if (adViewAdmob != null) {
-                            adViewAdmob.destroy();
-                        }
-                        break;
-                    case "GOOGLE-ADS":
-                        if (bannerGoogleAds != null) {
-                            bannerGoogleAds.destroy();
-                        }
-                        break;
-                    case "FACEBOOK":
-                        if (adViewFAN != null) {
-                            adViewFAN.destroy();
-                        }
-                        break;
-                }
-            }
-
-            @Override
-            public void onBannerClick(BannerView bannerView) {
-
-            }
-
-            @Override
-            public void onBannerFailedToLoad(BannerView bannerView, BannerErrorInfo bannerErrorInfo) {
-                switch (selectAdsBackup) {
-                    case "APPLOVIN-D":
-                        AdRequest.Builder builder = new AdRequest.Builder();
-                        Bundle bannerExtras = new Bundle();
-                        bannerExtras.putString("zone_id", idBannerBackup);
-                        builder.addCustomEventExtrasBundle(AppLovinCustomEventBanner.class, bannerExtras);
-                        boolean isTablet2 = AppLovinSdkUtils.isTablet(activity);
-                        AppLovinAdSize adSize = isTablet2 ? AppLovinAdSize.LEADER : AppLovinAdSize.BANNER;
-                        adViewDiscovery = new AppLovinAdView(adSize, activity);
-                        layAds.addView(adViewDiscovery);
-                        adViewDiscovery.loadNextAd();
-                        break;
-                    case "APPLOVIN-M":
-                        adViewMax = new MaxAdView(idBannerBackup, activity);
-
-                        final boolean isTablet = AppLovinSdkUtils.isTablet(activity);
-                        final int heightPx = AppLovinSdkUtils.dpToPx(activity, isTablet ? 90 : 50);
-                        adViewMax.setLayoutParams(new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, heightPx));
-                        layAds.addView(adViewMax);
-                        adViewMax.loadAd();
-                        break;
-                    case "STARTAPP":
-                        startAppBanner = new Banner(activity);
-                        RelativeLayout.LayoutParams bannerParameters =
-                                new RelativeLayout.LayoutParams(
-                                        RelativeLayout.LayoutParams.WRAP_CONTENT,
-                                        RelativeLayout.LayoutParams.WRAP_CONTENT);
-                        bannerParameters.addRule(RelativeLayout.CENTER_HORIZONTAL);
-                        layAds.addView(startAppBanner, bannerParameters);
-                        break;
-                    case "MOPUB":
-
-                        break;
-                    case "ADMOB":
-                        Bundle extras = new FacebookExtras()
-                                .setNativeBanner(true)
-                                .build();
-                        AdRequest request = new AdRequest.Builder()
-                                .addNetworkExtrasBundle(FacebookAdapter.class, extras)
-
-                                .build();
-                        adViewAdmob = new AdView(activity);
-                        adViewAdmob.setAdUnitId(idBannerBackup);
-                        layAds.addView(adViewAdmob);
-                        AdSize adSizeAdmob = getAdSize(activity);
-                        adViewAdmob.setAdSize(adSizeAdmob);
-                        adViewAdmob.loadAd(request);
-                        break;
-                    case "GOOGLE-ADS":
-                        AdManagerAdRequest adRequest =
-                                new AdManagerAdRequest.Builder()
-                                        .build();
-
-                        bannerGoogleAds = new AdManagerAdView(activity);
-                        bannerGoogleAds.setAdUnitId(idBannerBackup);
-                        layAds.addView(bannerGoogleAds);
-                        AdSize adaptiveSize = getAdSize(activity);
-                        bannerGoogleAds.setAdSize(adaptiveSize);
-                        bannerGoogleAds.loadAd(adRequest);
-                        break;
-                    case "FACEBOOK":
-                        adViewFAN = new com.facebook.ads.AdView(activity, idBannerBackup,
-                                com.facebook.ads.AdSize.BANNER_HEIGHT_50);
-                        layAds.addView(adViewFAN);
-                        adViewFAN.loadAd();
-                        break;
-                    case "IRON":
-                        adViewIron = IronSource.createBanner(activity, ISBannerSize.BANNER);
-                        FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT,
-                                FrameLayout.LayoutParams.WRAP_CONTENT);
-                        layAds.addView(adViewIron, 0, layoutParams);
-                        IronSource.loadBanner(adViewIron, idBannerBackup);
-                        break;
-
-                }
-            }
-
-            @Override
-            public void onBannerLeftApplication(BannerView bannerView) {
-
-            }
-        });
-        unityBanner.load();
 
     }
 

@@ -38,8 +38,7 @@ import com.ironsource.mediationsdk.IronSource;
 import com.ironsource.mediationsdk.IronSourceBannerLayout;
 import com.startapp.sdk.ads.banner.Banner;
 import com.startapp.sdk.ads.banner.Mrec;
-import com.unity3d.services.banners.BannerView;
-import com.unity3d.services.banners.UnityBannerSize;
+
 
 //Uranus
 public class AliendroidNative {
@@ -47,7 +46,6 @@ public class AliendroidNative {
     public static IronSourceBannerLayout adViewIron;
     public static Banner startAppBanner;
     public static Mrec startAppMrec;
-    public static BannerView unityBanner;
     private static NativeAd nativeAd;
     private static MaxNativeAdLoader nativeAdLoader;
     private static MaxNativeAdView nativeAdView;
@@ -89,9 +87,7 @@ public class AliendroidNative {
                         }
                         break;
                     case "UNITY":
-                        if (unityBanner != null) {
-                            unityBanner.destroy();
-                        }
+
                         break;
                 }
                 nativeAd = nativeAds;
@@ -213,9 +209,7 @@ public class AliendroidNative {
                                                 adViewDiscovery.loadNextAd();
                                                 break;
                                             case "UNITY":
-                                                unityBanner = new BannerView(activity, idNativeBackup, new UnityBannerSize(320, 50));
-                                                unityBanner.load();
-                                                layNative.addView(unityBanner);
+
                                                 break;
                                         }
                                     }
@@ -369,9 +363,7 @@ public class AliendroidNative {
                         }
                         break;
                     case "UNITY":
-                        if (unityBanner != null) {
-                            unityBanner.destroy();
-                        }
+
                         break;
                 }
                 nativeAd = nativeAds;
@@ -493,9 +485,7 @@ public class AliendroidNative {
                                                 adViewDiscovery.loadNextAd();
                                                 break;
                                             case "UNITY":
-                                                unityBanner = new BannerView(activity, idNativeBackup, new UnityBannerSize(320, 50));
-                                                unityBanner.load();
-                                                layNative.addView(unityBanner);
+
                                                 break;
                                         }
                                     }
@@ -542,9 +532,7 @@ public class AliendroidNative {
                         }
                         break;
                     case "UNITY":
-                        if (unityBanner != null) {
-                            unityBanner.destroy();
-                        }
+
                         break;
                 }
                 nativeAd = nativeAds;
@@ -666,9 +654,7 @@ public class AliendroidNative {
                                                 adViewDiscovery.loadNextAd();
                                                 break;
                                             case "UNITY":
-                                                unityBanner = new BannerView(activity, idNativeBackup, new UnityBannerSize(320, 50));
-                                                unityBanner.load();
-                                                layNative.addView(unityBanner);
+
                                                 break;
                                         }
                                     }
@@ -728,9 +714,7 @@ public class AliendroidNative {
                         }
                         break;
                     case "UNITY":
-                        if (unityBanner != null) {
-                            unityBanner.destroy();
-                        }
+
                         break;
                 }
                 // Cleanup any pre-existing native ad to prevent memory leaks.
@@ -829,9 +813,7 @@ public class AliendroidNative {
                         adViewDiscovery.loadNextAd();
                         break;
                     case "UNITY":
-                        unityBanner = new BannerView(activity, idNativeBackup, new UnityBannerSize(320, 50));
-                        unityBanner.load();
-                        layNative.addView(unityBanner);
+
                         break;
                 }
             }
@@ -999,9 +981,7 @@ public class AliendroidNative {
                         }
                         break;
                     case "UNITY":
-                        if (unityBanner != null) {
-                            unityBanner.destroy();
-                        }
+
                         break;
                 }
                 // Cleanup any pre-existing native ad to prevent memory leaks.
@@ -1100,9 +1080,7 @@ public class AliendroidNative {
                         adViewDiscovery.loadNextAd();
                         break;
                     case "UNITY":
-                        unityBanner = new BannerView(activity, idNativeBackup, new UnityBannerSize(320, 50));
-                        unityBanner.load();
-                        layNative.addView(unityBanner);
+
                         break;
                 }
             }
@@ -1166,9 +1144,7 @@ public class AliendroidNative {
                         }
                         break;
                     case "UNITY":
-                        if (unityBanner != null) {
-                            unityBanner.destroy();
-                        }
+
                         break;
                 }
                 // Cleanup any pre-existing native ad to prevent memory leaks.
@@ -1267,9 +1243,7 @@ public class AliendroidNative {
                         adViewDiscovery.loadNextAd();
                         break;
                     case "UNITY":
-                        unityBanner = new BannerView(activity, idNativeBackup, new UnityBannerSize(320, 50));
-                        unityBanner.load();
-                        layNative.addView(unityBanner);
+
                         break;
                 }
             }
@@ -1317,9 +1291,7 @@ public class AliendroidNative {
                         }
                         break;
                     case "UNITY":
-                        if (unityBanner != null) {
-                            unityBanner.destroy();
-                        }
+
                         break;
                 }
                 nativeAd = nativeAds;
@@ -1438,9 +1410,7 @@ public class AliendroidNative {
                                                 adViewDiscovery.loadNextAd();
                                                 break;
                                             case "UNITY":
-                                                unityBanner = new BannerView(activity, idNativeBackup, new UnityBannerSize(320, 50));
-                                                unityBanner.load();
-                                                layNative.addView(unityBanner);
+
                                                 break;
                                         }
                                     }
@@ -1605,9 +1575,7 @@ public class AliendroidNative {
                                                 adViewDiscovery.loadNextAd();
                                                 break;
                                             case "UNITY":
-                                                unityBanner = new BannerView(activity, idNativeBackup, new UnityBannerSize(320, 50));
-                                                unityBanner.load();
-                                                layNative.addView(unityBanner);
+
                                                 break;
                                         }
                                     }
@@ -1771,9 +1739,7 @@ public class AliendroidNative {
                                                 adViewDiscovery.loadNextAd();
                                                 break;
                                             case "UNITY":
-                                                unityBanner = new BannerView(activity, idNativeBackup, new UnityBannerSize(320, 50));
-                                                unityBanner.load();
-                                                layNative.addView(unityBanner);
+
                                                 break;
                                         }
                                     }
@@ -1938,9 +1904,7 @@ public class AliendroidNative {
                                                 adViewDiscovery.loadNextAd();
                                                 break;
                                             case "UNITY":
-                                                unityBanner = new BannerView(activity, idNativeBackup, new UnityBannerSize(320, 50));
-                                                unityBanner.load();
-                                                layNative.addView(unityBanner);
+
                                                 break;
                                         }
                                     }
@@ -2092,9 +2056,7 @@ public class AliendroidNative {
                         adViewDiscovery.loadNextAd();
                         break;
                     case "UNITY":
-                        unityBanner = new BannerView(activity, idNativeBackup, new UnityBannerSize(320, 50));
-                        unityBanner.load();
-                        layNative.addView(unityBanner);
+
                         break;
                 }
             }
@@ -2251,9 +2213,7 @@ public class AliendroidNative {
                         adViewDiscovery.loadNextAd();
                         break;
                     case "UNITY":
-                        unityBanner = new BannerView(activity, idNativeBackup, new UnityBannerSize(320, 50));
-                        unityBanner.load();
-                        layNative.addView(unityBanner);
+
                         break;
                 }
             }
@@ -2418,9 +2378,7 @@ public class AliendroidNative {
                                                 adViewDiscovery.loadNextAd();
                                                 break;
                                             case "UNITY":
-                                                unityBanner = new BannerView(activity, idNativeBackup, new UnityBannerSize(320, 50));
-                                                unityBanner.load();
-                                                layNative.addView(unityBanner);
+
                                                 break;
                                         }
                                     }
@@ -2636,9 +2594,7 @@ public class AliendroidNative {
                         adViewDiscovery.loadNextAd();
                         break;
                     case "UNITY":
-                        unityBanner = new BannerView(activity, idNativeBackup, new UnityBannerSize(320, 50));
-                        unityBanner.load();
-                        layNative.addView(unityBanner);
+
                         break;
                 }
             }
