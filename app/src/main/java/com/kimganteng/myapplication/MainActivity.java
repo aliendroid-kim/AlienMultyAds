@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.RelativeLayout;
 
+import com.aliendroid.alienads.AlienGDPR;
 import com.aliendroid.alienads.AlienOpenAds;
 import com.aliendroid.alienads.AliendroidBanner;
 import com.aliendroid.alienads.AliendroidInitialize;
@@ -24,20 +25,21 @@ public class MainActivity extends AppCompatActivity {
         AlienOpenAds.LoadOpenAds("");
         RelativeLayout layAds = findViewById(R.id.layAds);
         RelativeLayout layNative = findViewById(R.id.layNative);
-        AliendroidInitialize.SelectAdsIron(this,"","85460dcd","");
+        AlienGDPR.loadGdpr(this,"APPLOVIN-M",false);
+        AliendroidInitialize.SelectAdsApplovinMax(this,"","85460dcd");
         //AliendroidNative.SmallNativeAdmob(this,layAds,"","ca-app-pub-3940256099942544/2247696110","",
                 //"","","","","");
-        AliendroidMediumBanner.MediumBannerIron(this,layNative,"","DefaultBanner","");
-        AliendroidBanner.SmallBannerIron(this,layAds,"","Home_Screen","");
+        AliendroidNative.MediumNativeMax(this,layNative,"","DefaultBanner","");
+        AliendroidBanner.SmallBannerApplovinMax(this,layAds,"","Home_Screen","");
 
-        //AliendroidReward.LoadRewardAdmob(this,"APPLOVIN-D","ca-app-pub-3940256099942544/5224354917","");
-        AliendroidIntertitial.LoadIntertitialIron(this,"","DefaultInterstitial","");
+        AliendroidReward.LoadRewardApplovinMax(this,"APPLOVIN-D","ca-app-pub-3940256099942544/5224354917","");
+       // AliendroidIntertitial.LoadIntertitialApplovinMax(this,"","DefaultInterstitial","");
 
     }
 
     public void showreward(View view){
 
-        AliendroidIntertitial.ShowIntertitialIron(MainActivity.this,"","DefaultInterstitial","",0);
-        //AliendroidReward.ShowRewardAdmob(MainActivity.this,"APPLOVIN-D","ca-app-pub-3940256099942544/5224354917","");
+        //AliendroidIntertitial.ShowIntertitialApplovinMax(MainActivity.this,"","DefaultInterstitial","",0);
+        AliendroidReward.ShowRewardApplovinMax(MainActivity.this,"APPLOVIN-D","ca-app-pub-3940256099942544/5224354917","");
     }
 }
