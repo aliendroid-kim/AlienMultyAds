@@ -9,6 +9,14 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 
+import com.aliendroid.alienads.config.AppLovinCustomEventBanner;
+import com.aliendroid.alienads.interfaces.banner.OnLoadBannerAdmob;
+import com.aliendroid.alienads.interfaces.banner.OnLoadBannerApplovinDiscovery;
+import com.aliendroid.alienads.interfaces.banner.OnLoadBannerApplovinMax;
+import com.aliendroid.alienads.interfaces.banner.OnLoadBannerFacebook;
+import com.aliendroid.alienads.interfaces.banner.OnLoadBannerGoogle;
+import com.aliendroid.alienads.interfaces.banner.OnLoadBannerIronSource;
+import com.aliendroid.alienads.interfaces.banner.OnLoadBannerStartApp;
 import com.applovin.adview.AppLovinAdView;
 import com.applovin.mediation.MaxAd;
 import com.applovin.mediation.MaxAdViewAdListener;
@@ -36,8 +44,6 @@ import com.ironsource.mediationsdk.logger.IronSourceError;
 import com.startapp.sdk.ads.banner.Banner;
 import com.startapp.sdk.ads.banner.BannerListener;
 
-
-//Uranus
 public class AliendroidBanner {
     public static MaxAdView adViewMax;
     public static AdView adViewAdmob;
@@ -47,6 +53,13 @@ public class AliendroidBanner {
     public static Banner startAppBanner;
     public static com.facebook.ads.AdView adViewFAN;
 
+    public static OnLoadBannerAdmob onLoadBannerAdmob;
+    public static OnLoadBannerGoogle onLoadBannerGoogle;
+    public static OnLoadBannerFacebook onLoadBannerFacebook;
+    public static OnLoadBannerApplovinDiscovery onLoadBannerApplovinDiscovery;
+    public static OnLoadBannerApplovinMax onLoadBannerApplovinMax;
+    public static OnLoadBannerStartApp onLoadBannerStartApp;
+    public static OnLoadBannerIronSource onLoadBannerIronSource;
 
     public static void SmallBannerAdmob(Activity activity, RelativeLayout layAds, String selectAdsBackup, String idBanner, String idBannerBackup, String Hpk1,
                                         String Hpk2, String Hpk3, String Hpk4, String Hpk5) {
@@ -56,9 +69,7 @@ public class AliendroidBanner {
         AdRequest request = new AdRequest.Builder().addKeyword(Hpk1).addKeyword(Hpk2)
                 .addKeyword(Hpk3).addKeyword(Hpk4).addKeyword(Hpk5)
                 .addNetworkExtrasBundle(FacebookAdapter.class, extras)
-
                 .build();
-
         adViewAdmob = new AdView(activity);
         adViewAdmob.setAdUnitId(idBanner);
         layAds.addView(adViewAdmob);
@@ -68,6 +79,9 @@ public class AliendroidBanner {
         adViewAdmob.setAdListener(new AdListener() {
             @Override
             public void onAdLoaded() {
+                if (onLoadBannerAdmob!=null){
+                    onLoadBannerAdmob.onAdLoaded();
+                }
                 switch (selectAdsBackup) {
                     case "APPLOVIN-M":
                         if (adViewMax != null) {
@@ -105,6 +119,9 @@ public class AliendroidBanner {
 
             @Override
             public void onAdFailedToLoad(LoadAdError adError) {
+                if (onLoadBannerAdmob!=null){
+                    onLoadBannerAdmob.onAdFailedToLoad("");
+                }
                 switch (selectAdsBackup) {
                     case "APPLOVIN-M":
                         adViewMax = new MaxAdView(idBannerBackup, activity);
@@ -161,19 +178,23 @@ public class AliendroidBanner {
 
             @Override
             public void onAdOpened() {
-                // Code to be executed when an ad opens an overlay that
-                // covers the screen.
+                if (onLoadBannerAdmob!=null){
+                    onLoadBannerAdmob.onAdOpened();
+                }
             }
 
             @Override
             public void onAdClicked() {
-                // Code to be executed when the user clicks on an ad.
+                if (onLoadBannerAdmob!=null){
+                    onLoadBannerAdmob.onAdClicked();
+                }
             }
 
             @Override
             public void onAdClosed() {
-                // Code to be executed when the user is about to return
-                // to the app after tapping on an ad.
+                if (onLoadBannerAdmob!=null){
+                    onLoadBannerAdmob.onAdClosed();
+                }
             }
         });
 
@@ -195,6 +216,9 @@ public class AliendroidBanner {
         bannerGoogleAds.setAdListener(new AdListener() {
             @Override
             public void onAdLoaded() {
+                if (onLoadBannerGoogle!=null){
+                    onLoadBannerGoogle.onAdLoaded();
+                }
                 switch (selectAdsBackup) {
                     case "APPLOVIN-M":
                         if (adViewMax != null) {
@@ -232,6 +256,9 @@ public class AliendroidBanner {
 
             @Override
             public void onAdFailedToLoad(LoadAdError adError) {
+                if (onLoadBannerGoogle!=null){
+                    onLoadBannerGoogle.onAdFailedToLoad("");
+                }
                 switch (selectAdsBackup) {
                     case "APPLOVIN-M":
                         adViewMax = new MaxAdView(idBannerBackup, activity);
@@ -287,25 +314,28 @@ public class AliendroidBanner {
 
             @Override
             public void onAdOpened() {
-                // Code to be executed when an ad opens an overlay that
-                // covers the screen.
+                if (onLoadBannerGoogle!=null){
+                    onLoadBannerGoogle.onAdOpened();
+                }
             }
 
             @Override
             public void onAdClicked() {
-                // Code to be executed when the user clicks on an ad.
+                if (onLoadBannerGoogle!=null){
+                    onLoadBannerGoogle.onAdClicked();
+                }
             }
 
             @Override
             public void onAdClosed() {
-                // Code to be executed when the user is about to return
-                // to the app after tapping on an ad.
+                if (onLoadBannerGoogle!=null){
+                    onLoadBannerGoogle.onAdClosed();
+                }
             }
         });
 
 
     }
-
 
     public static void SmallBannerFAN(Activity activity, RelativeLayout layAds, String selectAdsBackup, String idBanner, String idBannerBackup) {
         adViewFAN = new com.facebook.ads.AdView(activity, idBanner,
@@ -314,6 +344,9 @@ public class AliendroidBanner {
         com.facebook.ads.AdListener adListener = new com.facebook.ads.AdListener() {
             @Override
             public void onError(Ad ad, AdError adError) {
+                if (onLoadBannerFacebook!=null){
+                    onLoadBannerFacebook.onError();
+                }
                 switch (selectAdsBackup) {
                     case "APPLOVIN-M":
                         adViewMax = new MaxAdView(idBannerBackup, activity);
@@ -344,8 +377,6 @@ public class AliendroidBanner {
                         layAds.addView(startAppBanner, bannerParameters);
                         break;
                     case "ADMOB":
-
-
                         Bundle extras = new FacebookExtras()
                                 .setNativeBanner(true)
                                 .build();
@@ -391,6 +422,9 @@ public class AliendroidBanner {
 
             @Override
             public void onAdLoaded(Ad ad) {
+                if (onLoadBannerFacebook!=null){
+                    onLoadBannerFacebook.onAdLoaded();
+                }
                 switch (selectAdsBackup) {
                     case "APPLOVIN-M":
                         if (adViewMax != null) {
@@ -433,12 +467,16 @@ public class AliendroidBanner {
 
             @Override
             public void onAdClicked(Ad ad) {
-
+                if (onLoadBannerFacebook!=null){
+                    onLoadBannerFacebook.onAdClicked();
+                }
             }
 
             @Override
             public void onLoggingImpression(Ad ad) {
-
+                if (onLoadBannerFacebook!=null){
+                    onLoadBannerFacebook.onLoggingImpression();
+                }
             }
         };
         adViewFAN.loadAd(adViewFAN.buildLoadAdConfig().withAdListener(adListener).build());
@@ -458,6 +496,9 @@ public class AliendroidBanner {
         AppLovinAdLoadListener loadListener = new AppLovinAdLoadListener() {
             @Override
             public void adReceived(AppLovinAd ad) {
+                if (onLoadBannerApplovinDiscovery!=null){
+                    onLoadBannerApplovinDiscovery.adReceived();
+                }
                 switch (selectAdsBackup) {
                     case "APPLOVIN-M":
                         if (adViewMax != null) {
@@ -501,6 +542,9 @@ public class AliendroidBanner {
 
             @Override
             public void failedToReceiveAd(int errorCode) {
+                if (onLoadBannerApplovinDiscovery!=null){
+                    onLoadBannerApplovinDiscovery.failedToReceiveAd();
+                }
                 switch (selectAdsBackup) {
                     case "APPLOVIN-M":
                         adViewMax = new MaxAdView(idBannerBackup, activity);
@@ -578,7 +622,6 @@ public class AliendroidBanner {
     }
 
     public static void SmallBannerApplovinDis(Activity activity, RelativeLayout layAds, String selectAdsBackup, String idBanner, String idBannerBackup) {
-
         AdRequest.Builder builder = new AdRequest.Builder();
         Bundle bannerExtras = new Bundle();
         bannerExtras.putString("zone_id", idBanner);
@@ -589,6 +632,9 @@ public class AliendroidBanner {
         AppLovinAdLoadListener loadListener = new AppLovinAdLoadListener() {
             @Override
             public void adReceived(AppLovinAd ad) {
+                if (onLoadBannerApplovinDiscovery!=null){
+                    onLoadBannerApplovinDiscovery.adReceived();
+                }
                 switch (selectAdsBackup) {
                     case "APPLOVIN-M":
                         if (adViewMax != null) {
@@ -631,6 +677,9 @@ public class AliendroidBanner {
 
             @Override
             public void failedToReceiveAd(int errorCode) {
+                if (onLoadBannerApplovinDiscovery!=null){
+                    onLoadBannerApplovinDiscovery.failedToReceiveAd();
+                }
                 switch (selectAdsBackup) {
                     case "APPLOVIN-M":
                         adViewMax = new MaxAdView(idBannerBackup, activity);
@@ -714,16 +763,23 @@ public class AliendroidBanner {
         MaxAdViewAdListener listener = new MaxAdViewAdListener() {
             @Override
             public void onAdExpanded(MaxAd ad) {
-
+            if (onLoadBannerApplovinMax!=null){
+                onLoadBannerApplovinMax.onAdExpanded();
+            }
             }
 
             @Override
             public void onAdCollapsed(MaxAd ad) {
-
+                if (onLoadBannerApplovinMax!=null){
+                    onLoadBannerApplovinMax.onAdCollapsed();
+                }
             }
 
             @Override
             public void onAdLoaded(MaxAd ad) {
+                if (onLoadBannerApplovinMax!=null){
+                    onLoadBannerApplovinMax.onAdLoaded();
+                }
                 switch (selectAdsBackup) {
                     case "APPLOVIN-D":
                         if (adViewDiscovery != null) {
@@ -766,21 +822,30 @@ public class AliendroidBanner {
 
             @Override
             public void onAdDisplayed(MaxAd ad) {
-
+                if (onLoadBannerApplovinMax!=null){
+                    onLoadBannerApplovinMax.onAdDisplayed();
+                }
             }
 
             @Override
             public void onAdHidden(MaxAd ad) {
-
+                if (onLoadBannerApplovinMax!=null){
+                    onLoadBannerApplovinMax.onAdHidden();
+                }
             }
 
             @Override
             public void onAdClicked(MaxAd ad) {
-
+                if (onLoadBannerApplovinMax!=null){
+                    onLoadBannerApplovinMax.onAdClicked();
+                }
             }
 
             @Override
             public void onAdLoadFailed(String adUnitId, MaxError error) {
+                if (onLoadBannerApplovinMax!=null){
+                    onLoadBannerApplovinMax.onAdLoadFailed();
+                }
                 switch (selectAdsBackup) {
                     case "APPLOVIN-D":
                         AdRequest.Builder builder = new AdRequest.Builder();
@@ -856,7 +921,9 @@ public class AliendroidBanner {
 
             @Override
             public void onAdDisplayFailed(MaxAd ad, MaxError error) {
-
+                if (onLoadBannerApplovinMax!=null){
+                    onLoadBannerApplovinMax.onAdDisplayFailed();
+                }
             }
         };
         adViewMax.setListener(listener);
@@ -875,6 +942,9 @@ public class AliendroidBanner {
         Banner startAppBanner = new Banner(activity, new BannerListener() {
             @Override
             public void onReceiveAd(View view) {
+                if (onLoadBannerStartApp!=null){
+                    onLoadBannerStartApp.onReceiveAd();
+                }
                 switch (selectAdsBackup) {
                     case "APPLOVIN-D":
                         if (adViewDiscovery != null) {
@@ -917,6 +987,9 @@ public class AliendroidBanner {
 
             @Override
             public void onFailedToReceiveAd(View view) {
+                if (onLoadBannerStartApp!=null){
+                    onLoadBannerStartApp.onFailedToReceiveAd("");
+                }
                 switch (selectAdsBackup) {
                     case "APPLOVIN-D":
                         AdRequest.Builder builder = new AdRequest.Builder();
@@ -992,12 +1065,16 @@ public class AliendroidBanner {
 
             @Override
             public void onImpression(View view) {
-
+                if (onLoadBannerStartApp!=null){
+                    onLoadBannerStartApp.onImpression();
+                }
             }
 
             @Override
             public void onClick(View view) {
-
+                if (onLoadBannerStartApp!=null){
+                    onLoadBannerStartApp.onClick();
+                }
             }
         });
         RelativeLayout.LayoutParams bannerParameters =
@@ -1016,6 +1093,9 @@ public class AliendroidBanner {
         com.ironsource.mediationsdk.sdk.BannerListener listener = new com.ironsource.mediationsdk.sdk.BannerListener() {
             @Override
             public void onBannerAdLoaded() {
+                if (onLoadBannerIronSource!=null){
+                    onLoadBannerIronSource.onBannerAdLoaded();
+                }
                 switch (selectAdsBackup) {
                     case "APPLOVIN-D":
                         if (adViewDiscovery != null) {
@@ -1056,6 +1136,9 @@ public class AliendroidBanner {
 
             @Override
             public void onBannerAdLoadFailed(IronSourceError ironSourceError) {
+                if (onLoadBannerIronSource!=null){
+                    onLoadBannerIronSource.onBannerAdLoadFailed();
+                }
                 switch (selectAdsBackup) {
                     case "APPLOVIN-D":
                         AdRequest.Builder builder = new AdRequest.Builder();
@@ -1132,22 +1215,30 @@ public class AliendroidBanner {
 
             @Override
             public void onBannerAdClicked() {
-
+                if (onLoadBannerIronSource!=null){
+                    onLoadBannerIronSource.onBannerAdClicked();
+                }
             }
 
             @Override
             public void onBannerAdScreenPresented() {
-
+                if (onLoadBannerIronSource!=null){
+                    onLoadBannerIronSource.onBannerAdScreenPresented();
+                }
             }
 
             @Override
             public void onBannerAdScreenDismissed() {
-
+                if (onLoadBannerIronSource!=null){
+                    onLoadBannerIronSource.onBannerAdScreenDismissed();
+                }
             }
 
             @Override
             public void onBannerAdLeftApplication() {
-
+                if (onLoadBannerIronSource!=null){
+                    onLoadBannerIronSource.onBannerAdLeftApplication();
+                }
             }
         };
         adViewIron.setBannerListener(listener);

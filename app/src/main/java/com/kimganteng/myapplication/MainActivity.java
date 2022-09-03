@@ -1,7 +1,14 @@
 package com.kimganteng.myapplication;
 
+import static com.kimganteng.myapplication.SettingsAlien.BackupIntertitial;
+import static com.kimganteng.myapplication.SettingsAlien.Backup_Initialize;
+import static com.kimganteng.myapplication.SettingsAlien.MainIntertitial;
+import static com.kimganteng.myapplication.SettingsAlien.Select_Backup_Ads;
+import static com.kimganteng.myapplication.SettingsAlien.Select_Main_Ads;
+
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.RelativeLayout;
@@ -12,8 +19,9 @@ import com.aliendroid.alienads.AliendroidBanner;
 import com.aliendroid.alienads.AliendroidInitialize;
 import com.aliendroid.alienads.AliendroidIntertitial;
 import com.aliendroid.alienads.AliendroidMediumBanner;
-import com.aliendroid.alienads.AliendroidNative;
-import com.aliendroid.alienads.AliendroidReward;
+import com.aliendroid.alienads.interfaces.banner.OnLoadBannerAdmob;
+import com.aliendroid.alienads.interfaces.interstitial.OnShowInterstitialAdmob;
+import com.aliendroid.alienads.interfaces.interstitial.OnLoadInterstitialAdmob;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -23,23 +31,46 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         AlienOpenAds.LoadOpenAds("");
-        RelativeLayout layAds = findViewById(R.id.layAds);
-        RelativeLayout layNative = findViewById(R.id.layNative);
-        AlienGDPR.loadGdpr(this,"APPLOVIN-M",false);
-        AliendroidInitialize.SelectAdsApplovinMax(this,"","85460dcd");
-        //AliendroidNative.SmallNativeAdmob(this,layAds,"","ca-app-pub-3940256099942544/2247696110","",
-                //"","","","","");
-        AliendroidNative.MediumNativeMax(this,layNative,"","DefaultBanner","");
-        AliendroidBanner.SmallBannerApplovinMax(this,layAds,"","Home_Screen","");
+        AlienGDPR.loadGdpr(this,Select_Main_Ads,false);
+        AliendroidInitialize.SelectAdsAdmob(this,Select_Backup_Ads,Backup_Initialize);
 
-        AliendroidReward.LoadRewardApplovinMax(this,"APPLOVIN-D","ca-app-pub-3940256099942544/5224354917","");
-       // AliendroidIntertitial.LoadIntertitialApplovinMax(this,"","DefaultInterstitial","");
+        AliendroidIntertitial.LoadIntertitialAdmob(this,"",MainIntertitial,BackupIntertitial,
+                "","","","","");
+        AliendroidIntertitial.onLoadInterstitialAdmob = new OnLoadInterstitialAdmob() {
+            @Override
+            public void onInterstitialAdLoaded() {
+
+            }
+
+            @Override
+            public void onInterstitialAdFailedToLoad(String error) {
+
+            }
+        };
 
     }
 
-    public void showreward(View view){
+    public void BANNER(View view){
+        Intent open = new Intent(MainActivity.this,BannerActivity.class);
+        startActivity(open);
 
-        //AliendroidIntertitial.ShowIntertitialApplovinMax(MainActivity.this,"","DefaultInterstitial","",0);
-        AliendroidReward.ShowRewardApplovinMax(MainActivity.this,"APPLOVIN-D","ca-app-pub-3940256099942544/5224354917","");
+    }
+
+    public void INTERSTITIAL(View view){
+
+        AliendroidIntertitial.ShowIntertitialAdmob(MainActivity.this,"",MainIntertitial,BackupIntertitial,0,"",
+        "","","","");
+        AliendroidIntertitial.onShowInterstitialAdmob = new OnShowInterstitialAdmob() {
+            @Override
+            public void onAdSuccess() {
+
+            }
+
+            @Override
+            public void onAdFailedShow() {
+
+            }
+        };
+
     }
 }

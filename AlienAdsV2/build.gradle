@@ -37,7 +37,7 @@ dependencies {
     implementation 'com.facebook.android:audience-network-sdk:6.11.0'
     implementation 'com.applovin:applovin-sdk:11.4.4'
     implementation 'com.ironsource.sdk:mediationsdk:7.2.3'
-    implementation 'com.startapp:inapp-sdk:4.10.0'
+    implementation 'com.startapp:inapp-sdk:4.10.2'
 
     //Applovin
     implementation 'com.applovin.mediation:facebook-adapter:6.11.0.2'

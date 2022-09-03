@@ -1,4 +1,4 @@
-package com.aliendroid.alienads;
+package com.aliendroid.alienads.config;
 
 import static com.aliendroid.alienads.BuildConfig.DEBUG;
 

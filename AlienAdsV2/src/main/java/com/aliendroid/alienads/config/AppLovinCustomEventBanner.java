@@ -1,4 +1,4 @@
-package com.aliendroid.alienads;
+package com.aliendroid.alienads.config;
 
 import static android.util.Log.DEBUG;
 import static android.util.Log.ERROR;

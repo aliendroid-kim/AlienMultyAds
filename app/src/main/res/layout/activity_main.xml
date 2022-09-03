@@ -8,49 +8,54 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_margin="20dp"
         android:orientation="vertical">
 
-        <RelativeLayout
+        <ImageView
+            android:id="@+id/imageView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="200dp"
+            android:layout_marginBottom="30dp"
+            app:srcCompat="@drawable/alien2" />
 
-            <RelativeLayout
-                android:id="@+id/layNative"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="30dp"
-                android:layout_marginRight="10dp">
-
-            </RelativeLayout>
-        </RelativeLayout>
-
-        <RelativeLayout
+        <Button
+            android:id="@+id/button4"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1">
+            android:layout_height="wrap_content"
+            android:background="#00a8ff"
+            android:onClick="BANNER"
+            android:text="Banner"
+            android:textColor="@color/white" />
 
-            <RelativeLayout
-                android:id="@+id/layAds"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true">
+        <Button
+            android:id="@+id/button3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="#e84118"
+            android:text="Natives"
+            android:textColor="@color/white" />
 
-            </RelativeLayout>
-        </RelativeLayout>
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="#fbc531"
+            android:onClick="INTERSTITIAL"
+            android:text="Show Interstitial"
+            android:textColor="@color/white" />
 
+        <Button
+            android:id="@+id/button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="#4cd137"
+            android:text="Show Reward"
+            android:textColor="@color/white" />
     </LinearLayout>
-
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerInParent="true"
-        android:layout_marginBottom="80dp"
-        android:onClick="showreward"
-        android:text="Button" />
 
 </RelativeLayout>
