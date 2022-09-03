@@ -1,0 +1,43 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:layout_centerInParent="false"
+    android:layout_gravity="center|top"
+    android:background="@color/white"
+    android:backgroundTint="@color/white">
+
+    <RelativeLayout
+        android:id="@+id/banner_body"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:background="@color/white"
+        tools:ignore="UselessParent">
+
+
+        <ImageView
+            android:id="@+id/icons"
+            android:layout_width="320dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentStart="false"
+            android:layout_centerInParent="true"
+            android:scaleType="centerCrop"
+            tools:ignore="ContentDescription" />
+
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/ad"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/color_youtube_grayb"
+        android:padding="2dp"
+        android:text="AD"
+        android:textColor="@color/white"
+        android:textSize="7dp"
+        tools:ignore="HardcodedText" />
+
+
+</FrameLayout>

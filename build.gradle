@@ -8,7 +8,10 @@ buildscript {
         }
         maven { url 'https://jitpack.io' }
 
-       
+        maven {
+            url "https://aliendro.id/sdk-releases/"
+        }
+        jcenter()
     }
     dependencies {
         classpath "com.android.tools.build:gradle:4.2.2"
@@ -24,6 +27,9 @@ allprojects {
             url 'https://android-sdk.is.com/'
         }
         maven { url 'https://jitpack.io' }
+        maven {
+            url "https://aliendro.id/sdk-releases/"
+        }
     }
 }
 

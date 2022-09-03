@@ -16,7 +16,7 @@
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="150dp"
             android:layout_marginBottom="30dp"
             app:srcCompat="@drawable/alien2" />
 
@@ -55,6 +55,24 @@
             android:layout_marginTop="10dp"
             android:background="#4cd137"
             android:text="Show Reward"
+            android:textColor="@color/white" />
+
+        <Button
+            android:id="@+id/button5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="#487eb0"
+            android:text="Alien View Ads"
+            android:textColor="@color/white" />
+
+        <Button
+            android:id="@+id/button6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="#353b48"
+            android:text="Alien Mediation Ads"
             android:textColor="@color/white" />
     </LinearLayout>
 

@@ -3,6 +3,7 @@ package com.aliendroid.alienads;
 import android.app.Application;
 import android.util.Log;
 
+import com.aliendroid.sdkads.config.InitializeAlienAds;
 import com.applovin.sdk.AppLovinMediationProvider;
 import com.applovin.sdk.AppLovinSdk;
 import com.flurry.android.FlurryAgent;
@@ -14,7 +15,7 @@ import com.google.android.gms.ads.initialization.OnInitializationCompleteListene
 
 public class MyApplication extends Application {
     private static AlienOpenAds alienOpenAds;
-
+    private static InitializeAlienAds sdkads;
     //Uranus
     @Override
     public void onCreate() {
@@ -40,7 +41,7 @@ public class MyApplication extends Application {
                 .withPerformanceMetrics(FlurryPerformance.ALL)
                 .build(this, "Q3YT4P4Y9VNY4SZ69RMY");
 
-        
+        sdkads = new InitializeAlienAds(this);
         alienOpenAds = new AlienOpenAds(this);
 
 

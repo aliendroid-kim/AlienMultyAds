@@ -56,11 +56,16 @@ public class AlienOpenAds implements LifecycleObserver, Application.ActivityLife
 
     //Uranus
     public static void LoadOpenAds(String idOpenAds) {
-        IDOPEN = idOpenAds;
-        AdRequest request = getAdRequest();
-        AppOpenAd.load(
-                myApplication, idOpenAds, request,
-                AppOpenAd.APP_OPEN_AD_ORIENTATION_PORTRAIT, loadCallback);
+        try {
+            IDOPEN = idOpenAds;
+            AdRequest request = getAdRequest();
+            AppOpenAd.load(
+                    myApplication, idOpenAds, request,
+                    AppOpenAd.APP_OPEN_AD_ORIENTATION_PORTRAIT, loadCallback);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
     /**

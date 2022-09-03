@@ -22,6 +22,22 @@
     <color name="native_button">#22a6b3</color>
     <color name="native_background">#ffffff</color>
     <color name="native_stroke_background">#808080</color>
-
     <color name="native_back">#f7f1e3</color>
+
+    <color name="white">@android:color/white</color>
+    <color name="gray_dark">#454545</color>
+
+
+    <color name="button_install">#2196F3</color>
+    <color name="color_banner_text_title">#1B76BD</color>
+
+    <color name="color_rating_light">#9F9F9F</color>
+    <color name="color_rating_dark">#606060</color>
+
+    <color name="color_youtube_red_light">#E30511</color>
+    <color name="color_youtube_red_dark">#A1030C</color>
+    <color name="color_youtube_gray">#F1F1F1</color>
+
+    <color name="color_youtube_grayb">#FF9800</color>
+
 </resources>
