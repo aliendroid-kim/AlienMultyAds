@@ -13,10 +13,13 @@ public class SettingsAlien {
     public static  String MainBanner="ca-app-pub-3940256099942544/6300978111x";
     public static  String BackupBanner="YOUR_PLACEMENT_ID";
 
-    public static String MainNatives ="ca-app-pub-3940256099942544/2247696110";
+    public static String MainNatives ="ca-app-pub-3940256099942544/2247696110x";
     public static String BackupNatives="YOUR_PLACEMENT_ID";
 
-    public static  String Main_Initialize="";
+    public static String MainRewards ="ca-app-pub-3940256099942544/5224354917x";
+    public static String BackupReward="YOUR_PLACEMENT_ID";
+
+    public static  String Main_Initialize="1234567890";
     public static  String Backup_Initialize="PL610825165122";
 
 

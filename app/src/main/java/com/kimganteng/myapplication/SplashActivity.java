@@ -2,6 +2,7 @@ package com.kimganteng.myapplication;
 
 import static com.kimganteng.myapplication.SettingsAlien.AppIDMediationAds;
 import static com.kimganteng.myapplication.SettingsAlien.Backup_Initialize;
+import static com.kimganteng.myapplication.SettingsAlien.Main_Initialize;
 import static com.kimganteng.myapplication.SettingsAlien.Select_Backup_Ads;
 
 import android.annotation.SuppressLint;
@@ -33,8 +34,8 @@ public class SplashActivity extends AppCompatActivity {
         /*
         Initilize for Alien Mediation Ads
          */
-
-        AliendroidInitialize.SelectAdsAdmob(this,Select_Backup_Ads,Backup_Initialize);
+        AppPromote.initializeAppPromote(this);
+        AliendroidInitialize.SelectAdsStartApp(this,Select_Backup_Ads,Main_Initialize,Backup_Initialize);
 
         startActivity(true);
 

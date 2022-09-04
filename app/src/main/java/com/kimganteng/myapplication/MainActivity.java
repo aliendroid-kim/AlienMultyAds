@@ -3,8 +3,10 @@ package com.kimganteng.myapplication;
 import static com.kimganteng.myapplication.SettingsAlien.AppIDMediationAds;
 import static com.kimganteng.myapplication.SettingsAlien.AppIDViewAds;
 import static com.kimganteng.myapplication.SettingsAlien.BackupIntertitial;
+import static com.kimganteng.myapplication.SettingsAlien.BackupReward;
 import static com.kimganteng.myapplication.SettingsAlien.Backup_Initialize;
 import static com.kimganteng.myapplication.SettingsAlien.MainIntertitial;
+import static com.kimganteng.myapplication.SettingsAlien.MainRewards;
 import static com.kimganteng.myapplication.SettingsAlien.Select_Backup_Ads;
 import static com.kimganteng.myapplication.SettingsAlien.Select_Main_Ads;
 
@@ -21,6 +23,7 @@ import com.aliendroid.alienads.AliendroidBanner;
 import com.aliendroid.alienads.AliendroidInitialize;
 import com.aliendroid.alienads.AliendroidIntertitial;
 import com.aliendroid.alienads.AliendroidMediumBanner;
+import com.aliendroid.alienads.AliendroidReward;
 import com.aliendroid.alienads.interfaces.banner.OnLoadBannerAdmob;
 import com.aliendroid.alienads.interfaces.interstitial.OnShowInterstitialAdmob;
 import com.aliendroid.alienads.interfaces.interstitial.OnLoadInterstitialAdmob;
@@ -49,6 +52,8 @@ public class MainActivity extends AppCompatActivity {
 
             }
         };
+
+        AliendroidReward.LoadRewardAdmob(this,Select_Backup_Ads,MainRewards,BackupReward);
 
     }
 
@@ -84,6 +89,12 @@ public class MainActivity extends AppCompatActivity {
 
             }
         };
+
+    }
+
+    public void REWARD(View view){
+        AliendroidReward.ShowRewardAdmob(MainActivity.this,Select_Backup_Ads,MainRewards,BackupReward);
+
 
     }
 }
