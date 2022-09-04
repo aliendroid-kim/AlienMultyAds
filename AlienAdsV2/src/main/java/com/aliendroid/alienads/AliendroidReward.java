@@ -5,6 +5,15 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 
+import com.aliendroid.alienads.interfaces.rewards.load.OnLoadRewardsAdmob;
+import com.aliendroid.alienads.interfaces.rewards.load.OnLoadRewardsApplovinDiscovery;
+import com.aliendroid.alienads.interfaces.rewards.load.OnLoadRewardsApplovinMax;
+import com.aliendroid.alienads.interfaces.rewards.load.OnLoadRewardsGoogle;
+import com.aliendroid.alienads.interfaces.rewards.load.OnLoadRewardsIronSource;
+import com.aliendroid.alienads.interfaces.rewards.load.OnLoadRewardsStartApp;
+import com.aliendroid.alienads.interfaces.rewards.show.OnShowRewardsAdmob;
+import com.aliendroid.alienads.interfaces.rewards.show.OnShowRewardsApplovinDiscovery;
+import com.aliendroid.alienads.interfaces.rewards.show.OnShowRewardsGoogle;
 import com.applovin.adview.AppLovinIncentivizedInterstitial;
 import com.applovin.mediation.MaxAd;
 import com.applovin.mediation.MaxError;
@@ -42,7 +51,17 @@ public class AliendroidReward {
     public static StartAppAd rewardedVideo;
     private static RewardedAd mRewardedAd;
 
-    //Uranus
+    public static OnLoadRewardsAdmob onLoadRewardsAdmob;
+    public static OnLoadRewardsStartApp onLoadRewardsStartApp;
+    public static OnLoadRewardsGoogle onLoadRewardsGoogle;
+    public static OnLoadRewardsApplovinDiscovery onLoadRewardsApplovinDiscovery;
+    public static OnLoadRewardsApplovinMax onLoadRewardsApplovinMax;
+    public static OnLoadRewardsIronSource onLoadRewardsIronSource;
+
+    public static OnShowRewardsAdmob onShowRewardsAdmob;
+    public static OnShowRewardsGoogle onShowRewardsGoogle;
+    public static OnShowRewardsApplovinDiscovery onShowRewardsApplovinDiscovery;
+
     public static void LoadRewardAdmob(Activity activity, String selectBackupAds, String idReward, String idBackupReward) {
         try {
             Bundle extras = new FacebookExtras()
@@ -55,11 +74,17 @@ public class AliendroidReward {
                     adRequest, new RewardedAdLoadCallback() {
                         @Override
                         public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                            if (onLoadRewardsAdmob!=null){
+                                onLoadRewardsAdmob.onAdFailedToLoad();
+                            }
                             mRewardedAd = null;
                         }
 
                         @Override
                         public void onAdLoaded(@NonNull RewardedAd rewardedAd) {
+                            if (onLoadRewardsAdmob!=null){
+                                onLoadRewardsAdmob.onAdLoaded("");
+                            }
                             mRewardedAd = rewardedAd;
 
                         }
@@ -210,11 +235,17 @@ public class AliendroidReward {
                     adRequest, new RewardedAdLoadCallback() {
                         @Override
                         public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                            if (onLoadRewardsGoogle!=null){
+                                onLoadRewardsGoogle.onAdFailedToLoad();
+                            }
                             mRewardedAd = null;
                         }
 
                         @Override
                         public void onAdLoaded(@NonNull RewardedAd rewardedAd) {
+                            if (onLoadRewardsGoogle!=null){
+                                onLoadRewardsGoogle.onAdFailedToLoad();
+                            }
                             mRewardedAd = rewardedAd;
 
                         }
@@ -364,47 +395,66 @@ public class AliendroidReward {
             MaxRewardedAdListener maxRewardedAdListener = new MaxRewardedAdListener() {
                 @Override
                 public void onRewardedVideoStarted(MaxAd ad) {
-
+                    if (onLoadRewardsApplovinMax!=null){
+                        onLoadRewardsApplovinMax.onRewardedVideoStarted();
+                    }
                 }
 
                 @Override
                 public void onRewardedVideoCompleted(MaxAd ad) {
+                    if (onLoadRewardsApplovinMax!=null){
+                        onLoadRewardsApplovinMax.onRewardedVideoCompleted();
+                    }
                     unlockreward = true;
                 }
 
                 @Override
                 public void onUserRewarded(MaxAd ad, MaxReward reward) {
-
+                    if (onLoadRewardsApplovinMax!=null){
+                        onLoadRewardsApplovinMax.onUserRewarded();
+                    }
                 }
 
                 @Override
                 public void onAdLoaded(MaxAd ad) {
-
+                    if (onLoadRewardsApplovinMax!=null){
+                        onLoadRewardsApplovinMax.onAdLoaded();
+                    }
                 }
 
                 @Override
                 public void onAdDisplayed(MaxAd ad) {
-
+                    if (onLoadRewardsApplovinMax!=null){
+                        onLoadRewardsApplovinMax.onAdDisplayed();
+                    }
                 }
 
                 @Override
                 public void onAdHidden(MaxAd ad) {
-
+                    if (onLoadRewardsApplovinMax!=null){
+                        onLoadRewardsApplovinMax.onAdHidden();
+                    }
                 }
 
                 @Override
                 public void onAdClicked(MaxAd ad) {
-
+                    if (onLoadRewardsApplovinMax!=null){
+                        onLoadRewardsApplovinMax.onAdClicked();
+                    }
                 }
 
                 @Override
                 public void onAdLoadFailed(String adUnitId, MaxError error) {
-
+                    if (onLoadRewardsApplovinMax!=null){
+                        onLoadRewardsApplovinMax.onAdLoadFailed();
+                    }
                 }
 
                 @Override
                 public void onAdDisplayFailed(MaxAd ad, MaxError error) {
-
+                    if (onLoadRewardsApplovinMax!=null){
+                        onLoadRewardsApplovinMax.onAdDisplayFailed();
+                    }
                 }
             };
             rewardedAd.setListener(maxRewardedAdListener);
@@ -523,12 +573,16 @@ public class AliendroidReward {
             incentivizedInterstitial.preload(new AppLovinAdLoadListener() {
                 @Override
                 public void adReceived(AppLovinAd appLovinAd) {
-                    // A rewarded video was successfully received.
+                    if (onLoadRewardsApplovinDiscovery!=null){
+                        onLoadRewardsApplovinDiscovery.adReceived();
+                    }
                 }
 
                 @Override
                 public void failedToReceiveAd(int errorCode) {
-                    // A rewarded video failed to load.
+                    if (onLoadRewardsApplovinDiscovery!=null){
+                        onLoadRewardsApplovinDiscovery.failedToReceiveAd("");
+                    }
                 }
             });
             switch (selectBackupAds) {
@@ -686,23 +740,38 @@ public class AliendroidReward {
             IronSource.setRewardedVideoListener(new RewardedVideoListener() {
                 @Override
                 public void onRewardedVideoAdOpened() {
+                    if (onLoadRewardsIronSource!=null){
+                        onLoadRewardsIronSource.onRewardedVideoAdOpened();
+                    }
                 }
 
                 @Override
                 public void onRewardedVideoAdClosed() {
+                    if (onLoadRewardsIronSource!=null){
+                        onLoadRewardsIronSource.onRewardedVideoAdClosed();
+                    }
                 }
 
                 @Override
                 public void onRewardedVideoAvailabilityChanged(boolean available) {
+                    if (onLoadRewardsIronSource!=null){
+                        onLoadRewardsIronSource.onRewardedVideoAvailabilityChanged();
+                    }
                 }
 
                 @Override
                 public void onRewardedVideoAdRewarded(Placement placement) {
+                    if (onLoadRewardsIronSource!=null){
+                        onLoadRewardsIronSource.onRewardedVideoAdRewarded();
+                    }
                     unlockreward = true;
                 }
 
                 @Override
                 public void onRewardedVideoAdShowFailed(IronSourceError error) {
+                    if (onLoadRewardsIronSource!=null){
+                        onLoadRewardsIronSource.onRewardedVideoAdShowFailed();
+                    }
                     switch (selecBackuptAds) {
                         case "GOOGLE-ADS":
                         case "ADMOB":
@@ -775,14 +844,23 @@ public class AliendroidReward {
 
                 @Override
                 public void onRewardedVideoAdClicked(Placement placement) {
+                    if (onLoadRewardsIronSource!=null){
+                        onLoadRewardsIronSource.onRewardedVideoAdClicked();
+                    }
                 }
 
                 @Override
                 public void onRewardedVideoAdStarted() {
+                    if (onLoadRewardsIronSource!=null){
+                        onLoadRewardsIronSource.onRewardedVideoAdStarted();
+                    }
                 }
 
                 @Override
                 public void onRewardedVideoAdEnded() {
+                    if (onLoadRewardsIronSource!=null){
+                        onLoadRewardsIronSource.onRewardedVideoAdEnded();
+                    }
                 }
             });
             switch (selecBackuptAds) {
@@ -915,6 +993,9 @@ public class AliendroidReward {
             rewardedVideo.setVideoListener(new VideoListener() {
                 @Override
                 public void onVideoCompleted() {
+                    if (onLoadRewardsStartApp!=null){
+                        onLoadRewardsStartApp.onVideoCompleted();
+                    }
                     unlockreward = true;
                 }
             });
@@ -922,12 +1003,17 @@ public class AliendroidReward {
             rewardedVideo.loadAd(StartAppAd.AdMode.REWARDED_VIDEO, new AdEventListener() {
                 @Override
                 public void onReceiveAd(com.startapp.sdk.adsbase.Ad ad) {
+                    if (onLoadRewardsStartApp!=null){
+                        onLoadRewardsStartApp.onReceiveAd();
+                    }
 
                 }
 
                 @Override
                 public void onFailedToReceiveAd(com.startapp.sdk.adsbase.Ad ad) {
-
+                    if (onLoadRewardsStartApp!=null){
+                        onLoadRewardsStartApp.onFailedToReceiveAd();
+                    }
                 }
             });
             switch (selectBackupAds) {
@@ -1078,6 +1164,9 @@ public class AliendroidReward {
                 mRewardedAd.show(activityContext, new OnUserEarnedRewardListener() {
                     @Override
                     public void onUserEarnedReward(@NonNull RewardItem rewardItem) {
+                        if (onShowRewardsAdmob!=null){
+                            onShowRewardsAdmob.onUserEarnedReward();
+                        }
                         unlockreward = true;
                         LoadRewardAdmob(activity, selecBackuptAds, idReward, idBackupReward);
                     }
@@ -1160,6 +1249,9 @@ public class AliendroidReward {
                 mRewardedAd.show(activityContext, new OnUserEarnedRewardListener() {
                     @Override
                     public void onUserEarnedReward(@NonNull RewardItem rewardItem) {
+                        if (onShowRewardsGoogle!=null){
+                            onShowRewardsGoogle.onUserEarnedReward();
+                        }
                         unlockreward = true;
                         LoadRewardGoogleAds(activity, selecBackuptAds, idReward, idBackupReward);
                     }
@@ -1319,27 +1411,34 @@ public class AliendroidReward {
     public static void ShowRewardApplovinDis(Activity activity, String selecBackuptAds, String idReward, String idBackupReward) {
         try {
             if (incentivizedInterstitial != null) {
-                // A rewarded video is available.  Call the show method with the listeners you want to use.
-                // We will use the display listener to preload the next rewarded video when this one finishes.
                 incentivizedInterstitial.show(activity, new AppLovinAdRewardListener() {
                     @Override
                     public void userRewardVerified(AppLovinAd ad, Map<String, String> response) {
+                        if (onShowRewardsApplovinDiscovery!=null){
+                            onShowRewardsApplovinDiscovery.userRewardVerified();
+                        }
                         unlockreward = true;
                     }
 
                     @Override
                     public void userOverQuota(AppLovinAd ad, Map<String, String> response) {
-
+                        if (onShowRewardsApplovinDiscovery!=null){
+                            onShowRewardsApplovinDiscovery.userOverQuota();
+                        }
                     }
 
                     @Override
                     public void userRewardRejected(AppLovinAd ad, Map<String, String> response) {
-
+                        if (onShowRewardsApplovinDiscovery!=null){
+                            onShowRewardsApplovinDiscovery.userRewardRejected();
+                        }
                     }
 
                     @Override
                     public void validationRequestFailed(AppLovinAd ad, int errorCode) {
-
+                        if (onShowRewardsApplovinDiscovery!=null){
+                            onShowRewardsApplovinDiscovery.validationRequestFailed();
+                        }
                     }
 
 

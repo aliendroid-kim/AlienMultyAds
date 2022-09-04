@@ -35,7 +35,7 @@ public class SplashActivity extends AppCompatActivity {
         Initilize for Alien Mediation Ads
          */
         AppPromote.initializeAppPromote(this);
-        AliendroidInitialize.SelectAdsStartApp(this,Select_Backup_Ads,Main_Initialize,Backup_Initialize);
+        AliendroidInitialize.SelectAdsAdmob(this,Select_Backup_Ads,Backup_Initialize);
 
         startActivity(true);
 

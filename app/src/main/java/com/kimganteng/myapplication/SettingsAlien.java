@@ -7,16 +7,16 @@ public class SettingsAlien {
     public static  String Select_Main_Ads ="ADMOB";
     public static  String Select_Backup_Ads ="FACEBOOK";
 
-    public static String  MainIntertitial ="ca-app-pub-3940256099942544/1033173712x";
+    public static String  MainIntertitial ="ca-app-pub-3940256099942544/1033173712";
     public static  String BackupIntertitial ="YOUR_PLACEMENT_ID";
 
-    public static  String MainBanner="ca-app-pub-3940256099942544/6300978111x";
+    public static  String MainBanner="ca-app-pub-3940256099942544/6300978111";
     public static  String BackupBanner="YOUR_PLACEMENT_ID";
 
-    public static String MainNatives ="ca-app-pub-3940256099942544/2247696110x";
+    public static String MainNatives ="ca-app-pub-3940256099942544/2247696110";
     public static String BackupNatives="YOUR_PLACEMENT_ID";
 
-    public static String MainRewards ="ca-app-pub-3940256099942544/5224354917x";
+    public static String MainRewards ="ca-app-pub-3940256099942544/5224354917";
     public static String BackupReward="YOUR_PLACEMENT_ID";
 
     public static  String Main_Initialize="1234567890";

@@ -1,4 +1,4 @@
-package com.aliendroid.alienads.interfaces.interstitial;
+package com.aliendroid.alienads.interfaces.interstitial.load;
 
 public interface OnLoadInterstitialAdmob {
     void onInterstitialAdLoaded();
