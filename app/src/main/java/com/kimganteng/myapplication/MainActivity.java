@@ -35,39 +35,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-
-        /*
-        Implementation for Alien View Ads
-         */
-        AlienViewAds.OpenApp(MainActivity.this,AppIDViewAds);
-        AlienViewAds.onOpenViewAdListener = new OnOpenViewAdListener() {
-            @Override
-            public void onInterstitialAdLoaded() {
-
-            }
-
-            @Override
-            public void onInterstitialAdClosed() {
-
-            }
-
-            @Override
-            public void onInterstitialAdClicked() {
-
-            }
-
-            @Override
-            public void onInterstitialAdFailedToLoad(String error) {
-
-            }
-        };
-
-
-        AlienGDPR.loadGdpr(this,Select_Main_Ads,false);
-
-
-        AliendroidIntertitial.LoadIntertitialAdmob(this,"",MainIntertitial,BackupIntertitial,
+        AlienGDPR.loadGdpr(this,Select_Main_Ads,true);
+        AliendroidIntertitial.LoadIntertitialAdmob(this,Select_Backup_Ads,MainIntertitial,BackupIntertitial,
                 "","","","","");
         AliendroidIntertitial.onLoadInterstitialAdmob = new OnLoadInterstitialAdmob() {
             @Override
@@ -89,9 +58,20 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void INTERSTITIAL(View view){
+    public void VIEWADS(View view){
+        Intent open = new Intent(MainActivity.this,ViewAdsActivity.class);
+        startActivity(open);
 
-        AliendroidIntertitial.ShowIntertitialAdmob(MainActivity.this,"",MainIntertitial,BackupIntertitial,0,"",
+    }
+
+    public void NATIVES(View view){
+        Intent open = new Intent(MainActivity.this,NativeActivity.class);
+        startActivity(open);
+
+    }
+
+    public void INTERSTITIAL(View view){
+        AliendroidIntertitial.ShowIntertitialAdmob(MainActivity.this,Select_Backup_Ads,MainIntertitial,BackupIntertitial,0,"",
         "","","","");
         AliendroidIntertitial.onShowInterstitialAdmob = new OnShowInterstitialAdmob() {
             @Override

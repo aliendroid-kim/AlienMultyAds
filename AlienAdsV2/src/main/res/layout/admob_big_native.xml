@@ -1,7 +1,7 @@
 <com.google.android.gms.ads.nativead.NativeAdView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/stroke">
+    android:background="@color/native_background">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -16,12 +16,10 @@
             <TextView
                 android:layout_width="24dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_marginTop="2dp"
-                android:background="@drawable/round_black"
+                android:background="@color/color_youtube_grayb"
                 android:gravity="center"
                 android:text="Ads"
-                android:textColor="#ffffff"
+                android:textColor="@color/native_text_button"
                 android:textSize="10sp" />
 
             <TextView
@@ -79,8 +77,7 @@
                         android:lines="1"
                         android:text="Reskin Aliendroid"
                         android:textColor="@color/native_title"
-                        android:textSize="12sp"
-                        android:textStyle="bold" />
+                        android:textSize="12sp" />
 
                     <TextView
                         android:id="@+id/ad_body"

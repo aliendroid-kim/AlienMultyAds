@@ -1,6 +1,6 @@
 package com.aliendroid.sdkads.interfaces;
 
-public interface OnShowOpenApp {
+public interface OnShowInterstitialView {
     void onAdSuccess();
     void onAdFailedShow();
 }

@@ -7,7 +7,7 @@ import com.aliendroid.sdkads.interfaces.OnClosed;
 import com.aliendroid.sdkads.interfaces.OnLoadBannerView;
 import com.aliendroid.sdkads.interfaces.OnLoadInterstitialView;
 import com.aliendroid.sdkads.interfaces.OnOpenViewAdListener;
-import com.aliendroid.sdkads.interfaces.OnShowOpenApp;
+import com.aliendroid.sdkads.interfaces.OnShowInterstitialView;
 import com.aliendroid.sdkads.layout.BannerView;
 import com.aliendroid.sdkads.layout.InterstitialView;
 import com.aliendroid.sdkads.layout.OpenView;
@@ -19,7 +19,7 @@ public class AlienViewAds {
     public static InterstitialView interstitial;
     public static OpenView openView;
     public static BannerView banner;;
-    public static OnShowOpenApp onShowOpenApp;
+    public static OnShowInterstitialView onShowInterstitialView;
     public static void Banner (Activity activity, RelativeLayout layAds, String AppID) {
         banner = new BannerView(activity, AppID);
         banner.setOnBannerListener(new OnLoadBannerView() {
@@ -132,12 +132,12 @@ public class AlienViewAds {
     public static void ShowIntertitial (){
         if (interstitial.isAdLoaded()) {
             interstitial.show();
-            if (onShowOpenApp !=null){
-                onShowOpenApp.onAdSuccess();
+            if (onShowInterstitialView !=null){
+                onShowInterstitialView.onAdSuccess();
             }
         } else {
-            if (onShowOpenApp !=null){
-                onShowOpenApp.onAdFailedShow();
+            if (onShowInterstitialView !=null){
+                onShowInterstitialView.onAdFailedShow();
             }
         }
     }

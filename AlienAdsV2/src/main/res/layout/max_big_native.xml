@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/stroke">
+    android:background="@color/native_background">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -19,17 +19,14 @@
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_marginTop="3dp"
                 android:background="@drawable/round_black">
 
                 <TextView
                     android:id="@+id/textView"
                     android:layout_width="24dp"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/round_black"
+                    android:background="@color/color_youtube_grayb"
                     android:gravity="center"
-                    android:padding="2dp"
                     android:text="Ad"
                     android:textAlignment="center"
                     android:textColor="@color/native_text_button"

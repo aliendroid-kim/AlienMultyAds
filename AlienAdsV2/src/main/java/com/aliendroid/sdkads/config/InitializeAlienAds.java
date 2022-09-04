@@ -11,11 +11,16 @@ public class InitializeAlienAds {
         application = myApplication;
     }
     public static void LoadSDK (String AppID){
-        Config config = Config.builder()
-                .setLogLevel(LogLevel.ERROR)
-                .setHttpsOnly(true)
-                .build();
-        SmaatoSdk.init(application,config,AppID);
-        SmaatoSdk.setGPSEnabled(true);
+        try {
+            Config config = Config.builder()
+                    .setLogLevel(LogLevel.ERROR)
+                    .setHttpsOnly(true)
+                    .build();
+            SmaatoSdk.init(application,config,AppID);
+            SmaatoSdk.setGPSEnabled(true);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
    }
 }

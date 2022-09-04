@@ -22,8 +22,8 @@ public class BannerActivity extends AppCompatActivity {
         /*
         Load Relativelayout from acitivty_banner.xml
          */
-        RelativeLayout laySmallAds = findViewById(R.id.lay300x250);
-        RelativeLayout layMediumAds = findViewById(R.id.lay320x50);
+        RelativeLayout laySmallAds = findViewById(R.id.lay320x50);
+        RelativeLayout layMediumAds = findViewById(R.id.lay300x250);
 
         /*
         Small Banner 320x50
@@ -88,5 +88,6 @@ public class BannerActivity extends AppCompatActivity {
 
             }
         };
+
     }
 }

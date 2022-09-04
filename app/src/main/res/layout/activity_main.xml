@@ -35,6 +35,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:background="#e84118"
+            android:onClick="NATIVES"
             android:text="Natives"
             android:textColor="@color/white" />
 
@@ -63,6 +64,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:background="#487eb0"
+            android:onClick="VIEWADS"
             android:text="Alien View Ads"
             android:textColor="@color/white" />
 
