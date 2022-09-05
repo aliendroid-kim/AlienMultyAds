@@ -1,5 +1,6 @@
 package com.kimganteng.myapplication;
 
+import static com.kimganteng.myapplication.SettingsAlien.AppIDViewAds;
 import static com.kimganteng.myapplication.SettingsAlien.BackupIntertitial;
 import static com.kimganteng.myapplication.SettingsAlien.BackupReward;
 import static com.kimganteng.myapplication.SettingsAlien.MainIntertitial;
@@ -18,6 +19,8 @@ import com.aliendroid.alienads.AliendroidIntertitial;
 import com.aliendroid.alienads.AliendroidReward;
 import com.aliendroid.alienads.interfaces.interstitial.show.OnShowInterstitialAdmob;
 import com.aliendroid.alienads.interfaces.interstitial.load.OnLoadInterstitialAdmob;
+import com.aliendroid.sdkads.interfaces.OnOpenViewAdListener;
+import com.aliendroid.sdkads.type.view.AlienViewAds;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -25,7 +28,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        if (SettingsAlien.Select_Open_Ads.equals("2")) {
+            AlienViewAds.OpenApp(MainActivity.this,AppIDViewAds);
+        }
         AlienGDPR.loadGdpr(this,Select_Main_Ads,true);
         AliendroidIntertitial.LoadIntertitialAdmob(this,Select_Backup_Ads,MainIntertitial,BackupIntertitial,
                 "","","","","");

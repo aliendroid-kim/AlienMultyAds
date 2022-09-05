@@ -5,10 +5,10 @@ import java.security.PublicKey;
 public class SettingsAlien {
 
     public static  String Select_Main_Ads ="ADMOB";
-    public static  String Select_Backup_Ads ="FACEBOOK";
+    public static  String Select_Backup_Ads ="ALIEN-V";
 
     public static String  MainIntertitial ="ca-app-pub-3940256099942544/1033173712x";
-    public static  String BackupIntertitial ="YOUR_PLACEMENT_ID";
+    public static  String BackupIntertitial ="133149992";
 
     public static  String MainBanner="ca-app-pub-3940256099942544/6300978111x";
     public static  String BackupBanner="130635694";
@@ -21,6 +21,8 @@ public class SettingsAlien {
 
     public static  String Main_Initialize="1234567890";
     public static  String Backup_Initialize="PL610825165122";
+
+    public static String Select_Open_Ads ="2";
 
 
     /*

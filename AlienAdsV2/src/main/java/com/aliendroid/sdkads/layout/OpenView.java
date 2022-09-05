@@ -320,9 +320,6 @@ public class OpenView extends Dialog {
 
     }
 
-
-
-
     private void generateInstallButton() {
 
         GradientDrawable gradientDrawable = new GradientDrawable();

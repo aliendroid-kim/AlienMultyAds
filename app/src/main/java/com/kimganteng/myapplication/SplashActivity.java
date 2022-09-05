@@ -1,6 +1,7 @@
 package com.kimganteng.myapplication;
 
 import static com.kimganteng.myapplication.SettingsAlien.AppIDMediationAds;
+import static com.kimganteng.myapplication.SettingsAlien.AppIDViewAds;
 import static com.kimganteng.myapplication.SettingsAlien.Backup_Initialize;
 import static com.kimganteng.myapplication.SettingsAlien.Main_Initialize;
 import static com.kimganteng.myapplication.SettingsAlien.Select_Backup_Ads;
@@ -14,8 +15,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.aliendroid.alienads.AlienOpenAds;
 import com.aliendroid.alienads.AliendroidInitialize;
+import com.aliendroid.alienads.interfaces.open.OnLoadOpenAppAdmob;
+import com.aliendroid.alienads.interfaces.open.OnShowOpenAppAdmob;
 import com.aliendroid.sdkads.config.AppPromote;
 import com.aliendroid.sdkads.config.InitializeAlienAds;
+import com.aliendroid.sdkads.interfaces.OnOpenViewAdListener;
+import com.aliendroid.sdkads.type.view.AlienViewAds;
 
 
 @SuppressLint("CustomSplashScreen")
@@ -35,9 +40,40 @@ public class SplashActivity extends AppCompatActivity {
         Initilize for Alien Mediation Ads
          */
         AppPromote.initializeAppPromote(this);
-        AliendroidInitialize.SelectAdsAdmob(this,Select_Backup_Ads,Backup_Initialize);
+        if (SettingsAlien.Select_Open_Ads.equals("1")){
+            AliendroidInitialize.SelectAdsAdmob(this,Select_Backup_Ads,Backup_Initialize);
+            AlienOpenAds.LoadOpenAds("ca-app-pub-3940256099942544/3419835294");
+            AlienOpenAds.onLoadOpenAppAdmob = new OnLoadOpenAppAdmob() {
+                @Override
+                public void onAdLoaded() {
+                    AlienOpenAds.onShowOpenAppAdmob = new OnShowOpenAppAdmob() {
+                        @Override
+                        public void onAdDismissedFullScreenContent() {
+                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                            finish();
+                        }
 
-        startActivity(true);
+                        @Override
+                        public void onAdFailedToShowFullScreenContent() {
+
+                        }
+
+                        @Override
+                        public void onAdShowedFullScreenContent() {
+
+                        }
+                    };
+                }
+
+                @Override
+                public void onAdFailedToLoad() {
+                    startActivity(true);
+                }
+            };
+        } else {
+            startActivity(true);
+        }
+
 
     }
 
@@ -46,8 +82,8 @@ public class SplashActivity extends AppCompatActivity {
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                    finish();
+                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                            finish();
                 }
             },1000*3);
         }else {
