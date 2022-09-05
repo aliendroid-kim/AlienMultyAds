@@ -75,6 +75,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:background="#353b48"
+            android:onClick="MEDIATION"
             android:text="Alien Mediation Ads"
             android:textColor="@color/white" />
     </LinearLayout>

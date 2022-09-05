@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        Log.e("KEY SMAATO", AESHelper.encrypt("1100053319"));
         if (SettingsAlien.Select_Open_Ads.equals("2")) {
             AlienViewAds.OpenApp(MainActivity.this,AppIDViewAds);
         }
@@ -68,6 +68,13 @@ public class MainActivity extends AppCompatActivity {
 
     public void NATIVES(View view){
         Intent open = new Intent(MainActivity.this,NativeActivity.class);
+        startActivity(open);
+
+    }
+
+
+    public void MEDIATION(View view){
+        Intent open = new Intent(MainActivity.this,MediationAdsActivity.class);
         startActivity(open);
 
     }

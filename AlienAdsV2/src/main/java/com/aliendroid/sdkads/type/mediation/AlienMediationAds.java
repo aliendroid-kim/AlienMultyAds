@@ -375,12 +375,60 @@ public class AlienMediationAds {
 
     }
 
-    public static void Natives( Activity activity, RelativeLayout content, String PlacementID) {
+    public static void SmallNatives( Activity activity, RelativeLayout content, String PlacementID) {
         NativeAd.Listener listener = new NativeAd.Listener() {
             @Override
             public void onAdLoaded(@NonNull NativeAd nativeAd, @NonNull NativeAdRenderer nativeAdRenderer) {
                 View adView = (View) activity.getLayoutInflater()
-                        .inflate(R.layout.native_item, null);
+                        .inflate(R.layout.alien_small_native, null);
+                NativeAdView nativeAdView = new NativeMediation(adView) ;
+                nativeAdRenderer.renderInView(nativeAdView);
+                nativeAdRenderer.registerForImpression(adView);
+                nativeAdRenderer.registerForClicks(nativeAdView.ctaView());
+                content.addView(adView);
+
+                if (onLoadNative !=null){
+                    onLoadNative.onNativeAdLoaded();
+                }
+
+            }
+
+            @Override
+            public void onAdFailedToLoad(@NonNull NativeAd nativeAd, @NonNull NativeAdError nativeAdError) {
+                if (onLoadNative !=null){
+                    onLoadNative.onNativeAdFailedToLoad("");
+                }
+            }
+
+            @Override
+            public void onAdImpressed(@NonNull NativeAd nativeAd) {
+
+            }
+
+            @Override
+            public void onAdClicked(@NonNull NativeAd nativeAd) {
+                if (onLoadNative !=null){
+                    onLoadNative.onNativeAdClicked();
+                }
+            }
+
+            @Override
+            public void onTtlExpired(@NonNull NativeAd nativeAd) {
+
+            }
+        };
+
+        NativeAd.loadAd(Lifecycling.of(activity), NativeAdRequest.builder().adSpaceId(PlacementID).build(), listener);
+
+
+    }
+
+    public static void MediumNatives( Activity activity, RelativeLayout content, String PlacementID) {
+        NativeAd.Listener listener = new NativeAd.Listener() {
+            @Override
+            public void onAdLoaded(@NonNull NativeAd nativeAd, @NonNull NativeAdRenderer nativeAdRenderer) {
+                View adView = (View) activity.getLayoutInflater()
+                        .inflate(R.layout.alien_big_native, null);
                 NativeAdView nativeAdView = new NativeMediation(adView) ;
                 nativeAdRenderer.renderInView(nativeAdView);
                 nativeAdRenderer.registerForImpression(adView);
