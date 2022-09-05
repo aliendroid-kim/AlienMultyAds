@@ -6,6 +6,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.DownloadManager;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -325,6 +326,7 @@ public class InterstitialView extends Dialog {
             }
         });
 
+
         mWebView.loadUrl("https://ad.clickmobile.id/v1/do?ad_id=" + data_packageName + "&placement_id=" + APPID);
         mWebView.setOnKeyListener(new View.OnKeyListener() {
             public boolean onKey(View v, int keyCode, KeyEvent event) {
@@ -337,6 +339,7 @@ public class InterstitialView extends Dialog {
                 return false;
             }
         });
+
 
     }
 

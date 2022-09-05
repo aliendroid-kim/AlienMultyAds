@@ -12,13 +12,16 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 
 import com.aliendroid.alienads.AlienGDPR;
 import com.aliendroid.alienads.AliendroidIntertitial;
 import com.aliendroid.alienads.AliendroidReward;
 import com.aliendroid.alienads.interfaces.interstitial.show.OnShowInterstitialAdmob;
 import com.aliendroid.alienads.interfaces.interstitial.load.OnLoadInterstitialAdmob;
+import com.aliendroid.sdkads.config.AESHelper;
 import com.aliendroid.sdkads.interfaces.OnOpenViewAdListener;
 import com.aliendroid.sdkads.type.view.AlienViewAds;
 
@@ -28,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         if (SettingsAlien.Select_Open_Ads.equals("2")) {
             AlienViewAds.OpenApp(MainActivity.this,AppIDViewAds);
         }

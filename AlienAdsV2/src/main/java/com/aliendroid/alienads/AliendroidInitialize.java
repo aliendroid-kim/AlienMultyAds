@@ -4,7 +4,9 @@ import android.app.Activity;
 import android.util.Log;
 
 import com.aliendroid.alienads.config.AudienceNetworkInitializeHelper;
+import com.aliendroid.sdkads.config.AESHelper;
 import com.aliendroid.sdkads.config.AppPromote;
+import com.aliendroid.sdkads.config.AppsConfig;
 import com.aliendroid.sdkads.config.InitializeAlienAds;
 import com.applovin.sdk.AppLovinMediationProvider;
 import com.applovin.sdk.AppLovinSdk;
@@ -87,7 +89,8 @@ public class AliendroidInitialize {
                 AppPromote.initializeAppPromote(activity);
                 break;
             case "ALIEN-M":
-                InitializeAlienAds.LoadSDK(idInitialize);
+                InitializeAlienAds.LoadSDK();
+
                 break;
 
 
@@ -156,7 +159,7 @@ public class AliendroidInitialize {
                 AppPromote.initializeAppPromote(activity);
                 break;
             case "ALIEN-M":
-                InitializeAlienAds.LoadSDK(idInitialize);
+                InitializeAlienAds.LoadSDK();
                 break;
         }
     }
@@ -223,7 +226,7 @@ public class AliendroidInitialize {
                 AppPromote.initializeAppPromote(activity);
                 break;
             case "ALIEN-M":
-                InitializeAlienAds.LoadSDK(idInitialize);
+                InitializeAlienAds.LoadSDK();
                 break;
         }
     }
@@ -287,7 +290,7 @@ public class AliendroidInitialize {
                 AppPromote.initializeAppPromote(activity);
                 break;
             case "ALIEN-M":
-                InitializeAlienAds.LoadSDK(idInitialize);
+                InitializeAlienAds.LoadSDK();
                 break;
         }
     }
@@ -357,7 +360,7 @@ public class AliendroidInitialize {
                 AppPromote.initializeAppPromote(activity);
                 break;
             case "ALIEN-M":
-                InitializeAlienAds.LoadSDK(idInitializeBackupAds);
+               InitializeAlienAds.LoadSDK();
                 break;
         }
     }
@@ -423,7 +426,7 @@ public class AliendroidInitialize {
                 AppPromote.initializeAppPromote(activity);
                 break;
             case "ALIEN-M":
-                InitializeAlienAds.LoadSDK(idInitializeBackupAds);
+               InitializeAlienAds.LoadSDK();
                 break;
         }
     }
@@ -495,7 +498,7 @@ public class AliendroidInitialize {
                 AppPromote.initializeAppPromote(activity);
                 break;
             case "ALIEN-M":
-                InitializeAlienAds.LoadSDK(idInitializeBackupAds);
+               InitializeAlienAds.LoadSDK();
                 break;
         }
     }
@@ -562,13 +565,13 @@ public class AliendroidInitialize {
                 }
                 break;
             case "ALIEN-M":
-                InitializeAlienAds.LoadSDK(idInitializeBackupAds);
+               InitializeAlienAds.LoadSDK();
                 break;
         }
     }
 
     public static void SelectAdsAlienMediation(Activity activity, String selectAdsBackup,String idInitialize, String idInitializeBackupAds) {
-        InitializeAlienAds.LoadSDK(idInitialize);
+        InitializeAlienAds.LoadSDK();
         switch (selectAdsBackup) {
             case "APPLOVIN-D":
                 AppLovinSdk.initializeSdk(activity);

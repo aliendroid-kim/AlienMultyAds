@@ -3,6 +3,7 @@ package com.aliendroid.alienads;
 import android.app.Application;
 import android.util.Log;
 
+import com.aliendroid.sdkads.config.AESHelper;
 import com.aliendroid.sdkads.config.InitializeAlienAds;
 import com.applovin.sdk.AppLovinMediationProvider;
 import com.applovin.sdk.AppLovinSdk;

@@ -51,14 +51,17 @@ public class AlienMediationAds {
             banner.setEventListener(new BannerView.EventListener() {
                 @Override
                 public void onAdLoaded(@NonNull BannerView bannerView) {
-                    onLoadBannerMediation.onBannerAdLoaded();
-
-
+                    if (onLoadBannerMediation!=null){
+                        onLoadBannerMediation.onBannerAdLoaded();
+                    }
                 }
 
                 @Override
                 public void onAdFailedToLoad(@NonNull BannerView bannerView, @NonNull BannerError bannerError) {
-                    onLoadBannerMediation.onBannerAdFailedToLoad("");
+
+                    if (onLoadBannerMediation!=null){
+                        onLoadBannerMediation.onBannerAdFailedToLoad("");
+                    }
                     SmallBanner(activity,layAds,PlacementID);
                 }
 
@@ -69,7 +72,9 @@ public class AlienMediationAds {
 
                 @Override
                 public void onAdClicked(@NonNull BannerView bannerView) {
-                    onLoadBannerMediation.onBannerAdClicked();
+                    if (onLoadBannerMediation!=null){
+                        onLoadBannerMediation.onBannerAdClicked();
+                    }
                 }
 
                 @Override
@@ -91,14 +96,17 @@ public class AlienMediationAds {
             banner.setEventListener(new BannerView.EventListener() {
                 @Override
                 public void onAdLoaded(@NonNull BannerView bannerView) {
-                    onLoadBannerMediation.onBannerAdLoaded();
-
-
+                    if (onLoadBannerMediation!=null){
+                        onLoadBannerMediation.onBannerAdLoaded();
+                    }
                 }
 
                 @Override
                 public void onAdFailedToLoad(@NonNull BannerView bannerView, @NonNull BannerError bannerError) {
-                    onLoadBannerMediation.onBannerAdFailedToLoad("");
+
+                    if (onLoadBannerMediation!=null){
+                        onLoadBannerMediation.onBannerAdFailedToLoad("");
+                    }
                     SmallBanner(activity,layAds,PlacementID);
                 }
 
@@ -109,7 +117,9 @@ public class AlienMediationAds {
 
                 @Override
                 public void onAdClicked(@NonNull BannerView bannerView) {
-                    onLoadBannerMediation.onBannerAdClicked();
+                    if (onLoadBannerMediation!=null){
+                        onLoadBannerMediation.onBannerAdClicked();
+                    }
                 }
 
                 @Override
@@ -131,14 +141,17 @@ public class AlienMediationAds {
             banner.setEventListener(new BannerView.EventListener() {
                 @Override
                 public void onAdLoaded(@NonNull BannerView bannerView) {
-                    onLoadBannerMediation.onBannerAdLoaded();
-
-
+                    if (onLoadBannerMediation!=null){
+                        onLoadBannerMediation.onBannerAdLoaded();
+                    }
                 }
 
                 @Override
                 public void onAdFailedToLoad(@NonNull BannerView bannerView, @NonNull BannerError bannerError) {
-                    onLoadBannerMediation.onBannerAdFailedToLoad("");
+
+                    if (onLoadBannerMediation!=null){
+                        onLoadBannerMediation.onBannerAdFailedToLoad("");
+                    }
                     SmallBanner(activity,layAds,PlacementID);
                 }
 
@@ -149,7 +162,9 @@ public class AlienMediationAds {
 
                 @Override
                 public void onAdClicked(@NonNull BannerView bannerView) {
-                    onLoadBannerMediation.onBannerAdClicked();
+                    if (onLoadBannerMediation!=null){
+                        onLoadBannerMediation.onBannerAdClicked();
+                    }
                 }
 
                 @Override
@@ -171,14 +186,17 @@ public class AlienMediationAds {
             banner.setEventListener(new BannerView.EventListener() {
                 @Override
                 public void onAdLoaded(@NonNull BannerView bannerView) {
-                    onLoadBannerMediation.onBannerAdLoaded();
-
-
+                    if (onLoadBannerMediation!=null){
+                        onLoadBannerMediation.onBannerAdLoaded();
+                    }
                 }
 
                 @Override
                 public void onAdFailedToLoad(@NonNull BannerView bannerView, @NonNull BannerError bannerError) {
-                    onLoadBannerMediation.onBannerAdFailedToLoad("");
+
+                    if (onLoadBannerMediation!=null){
+                        onLoadBannerMediation.onBannerAdFailedToLoad("");
+                    }
                     SmallBanner(activity,layAds,PlacementID);
                 }
 
@@ -189,7 +207,9 @@ public class AlienMediationAds {
 
                 @Override
                 public void onAdClicked(@NonNull BannerView bannerView) {
-                    onLoadBannerMediation.onBannerAdClicked();
+                    if (onLoadBannerMediation!=null){
+                        onLoadBannerMediation.onBannerAdClicked();
+                    }
                 }
 
                 @Override
@@ -209,13 +229,18 @@ public class AlienMediationAds {
                 @Override
                 public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
                     interstitialAds = interstitialAd;
-                    onLoadInterstitialMediation.onInterstitialAdLoaded();
+                    if (onLoadInterstitialMediation!=null){
+                        onLoadInterstitialMediation.onInterstitialAdLoaded();
+                    }
+
                 }
 
                 @Override
                 public void onAdFailedToLoad(@NonNull InterstitialRequestError interstitialRequestError) {
-                    onLoadInterstitialMediation.onInterstitialAdFailedToLoad("");
 
+                    if (onLoadInterstitialMediation!=null){
+                        onLoadInterstitialMediation.onInterstitialAdFailedToLoad("");
+                    }
                 }
 
                 @Override
@@ -230,13 +255,16 @@ public class AlienMediationAds {
 
                 @Override
                 public void onAdClosed(@NonNull InterstitialAd interstitialAd) {
-                    onLoadInterstitialMediation.onInterstitialAdClosed();
-
+                    if (onLoadInterstitialMediation!=null){
+                        onLoadInterstitialMediation.onInterstitialAdClosed();
+                    }
                 }
 
                 @Override
                 public void onAdClicked(@NonNull InterstitialAd interstitialAd) {
-                    onLoadInterstitialMediation.onInterstitialAdClicked();
+                    if (onLoadInterstitialMediation!=null){
+                        onLoadInterstitialMediation.onInterstitialAdClicked();
+                    }
 
                 }
 
@@ -278,13 +306,17 @@ public class AlienMediationAds {
             @Override
             public void onAdLoaded(@NonNull RewardedInterstitialAd rewardedInterstitialAd) {
                 rewardedInterstitialAds = rewardedInterstitialAd;
-                onLoadRewardsMediation.onRewardsAdLoaded();
+                if (onLoadRewardsMediation!=null){
+                    onLoadRewardsMediation.onRewardsAdLoaded();
+                }
+
             }
 
             @Override
             public void onAdFailedToLoad(@NonNull RewardedRequestError rewardedRequestError) {
-                onLoadRewardsMediation.onRewardsAdFailedToLoad("");
-
+                if (onLoadRewardsMediation!=null){
+                    onLoadRewardsMediation.onRewardsAdFailedToLoad("");
+                }
             }
 
             @Override
@@ -294,13 +326,16 @@ public class AlienMediationAds {
 
             @Override
             public void onAdClosed(@NonNull RewardedInterstitialAd rewardedInterstitialAd) {
-                onLoadRewardsMediation.onRewardsAdClosed();
-
+                if (onLoadRewardsMediation!=null){
+                    onLoadRewardsMediation.onRewardsAdClosed();
+                }
             }
 
             @Override
             public void onAdClicked(@NonNull RewardedInterstitialAd rewardedInterstitialAd) {
-                onLoadRewardsMediation.onRewardsAdClicked();
+                if (onLoadRewardsMediation!=null){
+                    onLoadRewardsMediation.onRewardsAdClicked();
+                }
 
             }
 
@@ -311,8 +346,9 @@ public class AlienMediationAds {
 
             @Override
             public void onAdReward(@NonNull RewardedInterstitialAd rewardedInterstitialAd) {
-                onLoadRewardsMediation.onRewardsAdReward();
-
+                if (onLoadRewardsMediation!=null){
+                    onLoadRewardsMediation.onRewardsAdReward();
+                }
             }
 
             @Override
