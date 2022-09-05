@@ -9,7 +9,7 @@ buildscript {
         maven { url 'https://jitpack.io' }
 
         maven {
-            url "https://aliendro.id/sdk-releases/"
+            url "https://s3.amazonaws.com/smaato-sdk-releases/"
         }
         jcenter()
     }
@@ -28,7 +28,7 @@ allprojects {
         }
         maven { url 'https://jitpack.io' }
         maven {
-            url "https://aliendro.id/sdk-releases/"
+            url "https://s3.amazonaws.com/smaato-sdk-releases/"
         }
     }
 }
