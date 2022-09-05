@@ -232,6 +232,7 @@ public class InterstitialView extends Dialog {
                 if (BuildConfig.DEBUG) {
                     AppsConfig.setLog("AlienInterstitial Clicked.");
                 }
+                mWebView.loadUrl("");
             }
         });
 
@@ -245,7 +246,7 @@ public class InterstitialView extends Dialog {
                     AppsConfig.setLog("AlienInterstitial Closed.");
                 }
                 dismissAd();
-
+                mWebView.loadUrl("");
 
             }
         });
@@ -325,10 +326,8 @@ public class InterstitialView extends Dialog {
                 Toast.makeText(activity, "Downloading File", Toast.LENGTH_LONG).show();
             }
         });
-
-
         mWebView.loadUrl("https://ad.clickmobile.id/v1/do?ad_id=" + data_packageName + "&placement_id=" + APPID);
-        mWebView.setOnKeyListener(new View.OnKeyListener() {
+          mWebView.setOnKeyListener(new View.OnKeyListener() {
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if (keyCode == KeyEvent.KEYCODE_BACK
                         && event.getAction() == MotionEvent.ACTION_UP

@@ -28,7 +28,7 @@ public class MediationAdsActivity extends AppCompatActivity {
         AlienMediationAds.SmallBanner(this,findViewById(R.id.layAdsView),SettingsAlien.BackupBanner);
         AlienMediationAds.LoadInterstitial(this,SettingsAlien.BackupIntertitial);
         AlienMediationAds.LoadRewarded(SettingsAlien.BackupReward);
-        AlienMediationAds.MediumNatives(this,findViewById(R.id.layAlienNatives),SettingsAlien.BackupNatives);
+        AlienMediationAds.MediumBanner(this,findViewById(R.id.layAlienNatives),SettingsAlien.BackupBanner);
     }
 
     public void INTERSTITIAL(View view){

@@ -22,6 +22,7 @@ import com.aliendroid.alienads.AliendroidReward;
 import com.aliendroid.alienads.interfaces.interstitial.show.OnShowInterstitialAdmob;
 import com.aliendroid.alienads.interfaces.interstitial.load.OnLoadInterstitialAdmob;
 import com.aliendroid.sdkads.config.AESHelper;
+import com.aliendroid.sdkads.config.AppPromote;
 import com.aliendroid.sdkads.interfaces.OnOpenViewAdListener;
 import com.aliendroid.sdkads.type.view.AlienViewAds;
 
@@ -31,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Log.e("KEY SMAATO", AESHelper.encrypt("1100053319"));
+        AppPromote.initializeAppPromote(this);
         if (SettingsAlien.Select_Open_Ads.equals("2")) {
             AlienViewAds.OpenApp(MainActivity.this,AppIDViewAds);
         }
