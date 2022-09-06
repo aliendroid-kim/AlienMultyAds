@@ -19,7 +19,7 @@ public class AppsConfig {
     public static String appName = "title";
     public static String appPackage = "ad_id";
     public static String appPreview = "preview";
-
+    public static String ANALYSKEY = AESHelper.decrypt("T+jldPZgLshPb1sJGIme1tnT0tiG1I85x0V64nM5GGM=");
     public static String APPKEY = AESHelper.decrypt("2f8dUHXOScKGuDEEdG6mxA==");
 
     public static void openAdLink(Context context, String link) {

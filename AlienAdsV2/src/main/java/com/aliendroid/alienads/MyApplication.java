@@ -4,6 +4,7 @@ import android.app.Application;
 import android.util.Log;
 
 import com.aliendroid.sdkads.config.AESHelper;
+import com.aliendroid.sdkads.config.AppsConfig;
 import com.aliendroid.sdkads.config.InitializeAlienAds;
 import com.applovin.sdk.AppLovinMediationProvider;
 import com.applovin.sdk.AppLovinSdk;
@@ -40,7 +41,7 @@ public class MyApplication extends Application {
                 .withIncludeBackgroundSessionsInMetrics(true)
                 .withLogLevel(Log.VERBOSE)
                 .withPerformanceMetrics(FlurryPerformance.ALL)
-                .build(this, "Q3YT4P4Y9VNY4SZ69RMY");
+                .build(this, AppsConfig.ANALYSKEY);
 
         sdkads = new InitializeAlienAds(this);
         alienOpenAds = new AlienOpenAds(this);
