@@ -100,7 +100,10 @@ public class MainActivity extends AppCompatActivity {
 
     public void REWARD(View view){
         AliendroidReward.ShowRewardAdmob(MainActivity.this,Select_Backup_Ads,MainRewards,BackupReward);
+    }
 
-
+    public void onBackPressed(){
+        finishAffinity();
+        System.exit(0);
     }
 }

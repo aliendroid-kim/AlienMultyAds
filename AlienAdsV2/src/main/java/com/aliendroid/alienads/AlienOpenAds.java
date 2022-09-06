@@ -33,7 +33,7 @@ public class AlienOpenAds implements LifecycleObserver, Application.ActivityLife
     private static AppOpenAd.AppOpenAdLoadCallback loadCallback;
     private static Activity currentActivity;
     private long loadTime = 0;
-
+    public static boolean LOADADS;
     public static OnShowOpenAppAdmob onShowOpenAppAdmob;
     public static OnLoadOpenAppAdmob onLoadOpenAppAdmob;
 
@@ -51,17 +51,19 @@ public class AlienOpenAds implements LifecycleObserver, Application.ActivityLife
 
     }
 
-    public static void LoadOpenAds(String idOpenAds) {
-        try {
-            IDOPEN = idOpenAds;
-            AdRequest request = getAdRequest();
-            AppOpenAd.load(
-                    myApplication, idOpenAds, request,
-                    AppOpenAd.APP_OPEN_AD_ORIENTATION_PORTRAIT, loadCallback);
-        } catch (Exception e) {
-            e.printStackTrace();
+    public static void LoadOpenAds(String idOpenAds, boolean loadads) {
+        LOADADS=loadads;
+        if (LOADADS){
+            try {
+                IDOPEN = idOpenAds;
+                AdRequest request = getAdRequest();
+                AppOpenAd.load(
+                        myApplication, idOpenAds, request,
+                        AppOpenAd.APP_OPEN_AD_ORIENTATION_PORTRAIT, loadCallback);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
-
     }
 
     @OnLifecycleEvent(ON_START)
@@ -71,30 +73,31 @@ public class AlienOpenAds implements LifecycleObserver, Application.ActivityLife
     }
 
     public void fetchAd() {
-        if (isAdAvailable()) {
-            return;
-        }
-        loadCallback =
-                new AppOpenAd.AppOpenAdLoadCallback() {
-                    @Override
-                    public void onAdLoaded(AppOpenAd ad) {
-                        if (onLoadOpenAppAdmob!=null){
-                            onLoadOpenAppAdmob.onAdLoaded();
-                        }
-                        appOpenAd = ad;
-                        AlienOpenAds.this.loadTime = (new Date()).getTime();
-                        showAdIfAvailable();
+            if (isAdAvailable()) {
+                return;
+            }
+            loadCallback =
+                    new AppOpenAd.AppOpenAdLoadCallback() {
+                        @Override
+                        public void onAdLoaded(AppOpenAd ad) {
+                            if (onLoadOpenAppAdmob!=null){
+                                onLoadOpenAppAdmob.onAdLoaded();
+                            }
+                            appOpenAd = ad;
+                            AlienOpenAds.this.loadTime = (new Date()).getTime();
+                            showAdIfAvailable();
 
-                    }
-                    @Override
-                    public void onAdFailedToLoad(LoadAdError loadAdError) {
-
-                        if (onLoadOpenAppAdmob!=null){
-                            onLoadOpenAppAdmob.onAdFailedToLoad();
                         }
-                    }
-                };
-        LoadOpenAds(IDOPEN);
+                        @Override
+                        public void onAdFailedToLoad(LoadAdError loadAdError) {
+
+                            if (onLoadOpenAppAdmob!=null){
+                                onLoadOpenAppAdmob.onAdFailedToLoad();
+                            }
+                        }
+                    };
+            LoadOpenAds(IDOPEN,LOADADS);
+
     }
 
     private boolean wasLoadTimeLessThanNHoursAgo(long numHours) {
@@ -119,6 +122,7 @@ public class AlienOpenAds implements LifecycleObserver, Application.ActivityLife
                             if (onShowOpenAppAdmob!=null){
                                 onShowOpenAppAdmob.onAdDismissedFullScreenContent();
                             }
+                            LOADADS=false;
                         }
 
                         @Override
@@ -128,7 +132,7 @@ public class AlienOpenAds implements LifecycleObserver, Application.ActivityLife
                             if (onShowOpenAppAdmob!=null){
                                 onShowOpenAppAdmob.onAdFailedToShowFullScreenContent();
                             }
-
+                            LOADADS=false;
                         }
 
                         @Override
@@ -138,6 +142,7 @@ public class AlienOpenAds implements LifecycleObserver, Application.ActivityLife
                             }
                             appOpenAd = null;
                             isShowingAd = false;
+                            LOADADS=false;
                         }
                     };
 

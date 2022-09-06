@@ -22,7 +22,7 @@ public class SettingsAlien {
     public static  String Main_Initialize="1100042525";
     public static  String Backup_Initialize="PL610825165122";
 
-    public static String Select_Open_Ads ="2";
+    public static String Select_Open_Ads ="1";
 
 
     /*
