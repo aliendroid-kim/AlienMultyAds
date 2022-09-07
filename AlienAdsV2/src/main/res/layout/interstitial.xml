@@ -121,7 +121,7 @@
                     android:layout_height="35dp"
                     android:layout_gravity="center"
                     android:layout_marginRight="16dp"
-                    app:srcCompat="@drawable/ic_baseline_navigate_next_24" />
+                    app:srcCompat="@drawable/open" />
 
             </LinearLayout>
         </RelativeLayout>
