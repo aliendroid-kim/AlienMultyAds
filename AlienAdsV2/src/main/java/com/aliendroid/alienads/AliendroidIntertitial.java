@@ -102,6 +102,7 @@ public class AliendroidIntertitial {
 
     }
 
+
     public static void LoadIntertitialAdmob(Activity activity, String selectAdsBackup, String idIntertitial, String idIntertitialBackup, String Hpk1,
                                             String Hpk2, String Hpk3, String Hpk4, String Hpk5) {
         Bundle extras = new FacebookExtras()
