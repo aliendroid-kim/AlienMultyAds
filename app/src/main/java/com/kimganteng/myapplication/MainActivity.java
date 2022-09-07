@@ -85,20 +85,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void INTERSTITIAL(View view){
+        Intent open = new Intent(MainActivity.this,MediationAdsActivity.class);
+        startActivity(open);
+
         AliendroidIntertitial.ShowIntertitialAdmob(MainActivity.this,Select_Backup_Ads,MainIntertitial,BackupIntertitial,0,"",
         "","","","");
-        AliendroidIntertitial.onShowInterstitialAdmob = new OnShowInterstitialAdmob() {
-            @Override
-            public void onAdSuccess() {
-
-            }
-
-            @Override
-            public void onAdFailedShow() {
-
-            }
-        };
-
     }
 
     public void REWARD(View view){

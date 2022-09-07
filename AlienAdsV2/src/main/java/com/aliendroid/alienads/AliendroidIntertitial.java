@@ -70,7 +70,7 @@ public class AliendroidIntertitial {
     public static AppLovinAd loadedAd;
     public static boolean irininter = false;
     private static StartAppAd startAppAd;
-
+    public static boolean SHOW_ALIEN_VIEW=false;
     public static OnLoadInterstitialAdmob onLoadInterstitialAdmob;
     public static OnShowInterstitialAdmob onShowInterstitialAdmob;
 
@@ -1542,7 +1542,7 @@ public class AliendroidIntertitial {
                         }
                         break;
                     case "ALIEN-V":
-                        AlienViewAds.ShowIntertitial();
+                        SHOW_ALIEN_VIEW = true;
                         break;
                     case "ALIEN-M":
                         AlienMediationAds.ShowInterstitial(activity);
@@ -1601,7 +1601,7 @@ public class AliendroidIntertitial {
                         }
                         break;
                     case "ALIEN-V":
-                        AlienViewAds.ShowIntertitial();
+                        SHOW_ALIEN_VIEW = true;
                         break;
                     case "ALIEN-M":
                         AlienMediationAds.ShowInterstitial(activity);
@@ -1668,7 +1668,7 @@ public class AliendroidIntertitial {
                                 }
                                 break;
                             case "ALIEN-V":
-                                AlienViewAds.ShowIntertitial();
+                                SHOW_ALIEN_VIEW = true;
                                 break;
                             case "ALIEN-M":
                                 AlienMediationAds.ShowInterstitial(activity);
@@ -1741,7 +1741,7 @@ public class AliendroidIntertitial {
                                 }
                                 break;
                             case "ALIEN-V":
-                                AlienViewAds.ShowIntertitial();
+                                SHOW_ALIEN_VIEW = true;
                                 break;
                             case "ALIEN-M":
                                 AlienMediationAds.ShowInterstitial(activity);
@@ -1811,7 +1811,7 @@ public class AliendroidIntertitial {
                         }
                         break;
                     case "ALIEN-V":
-                        AlienViewAds.ShowIntertitial();
+                        SHOW_ALIEN_VIEW = true;
                         break;
                     case "ALIEN-M":
                         AlienMediationAds.ShowInterstitial(activity);
@@ -1870,7 +1870,7 @@ public class AliendroidIntertitial {
                         }
                         break;
                     case "ALIEN-V":
-                        AlienViewAds.ShowIntertitial();
+                        SHOW_ALIEN_VIEW = true;
                         break;
                     case "ALIEN-M":
                         AlienMediationAds.ShowInterstitial(activity);
@@ -1964,7 +1964,7 @@ public class AliendroidIntertitial {
                             }
                             break;
                         case "ALIEN-V":
-                            AlienViewAds.ShowIntertitial();
+                            SHOW_ALIEN_VIEW = true;
                             break;
                         case "ALIEN-M":
                             AlienMediationAds.ShowInterstitial(activity);
@@ -2022,7 +2022,7 @@ public class AliendroidIntertitial {
                         }
                         break;
                     case "ALIEN-V":
-                        AlienViewAds.ShowIntertitial();
+                        SHOW_ALIEN_VIEW = true;
                         break;
                     case "ALIEN-M":
                         AlienMediationAds.ShowInterstitial(activity);
@@ -2053,7 +2053,7 @@ public class AliendroidIntertitial {
     public static void ShowIntertitialAlienView(Activity activity, String selectAdsBackup, String idIntertitial, String idIntertitialBackup,
                                                 int interval) {
         if (counter >= interval) {
-            AlienViewAds.ShowIntertitial();
+            SHOW_ALIEN_VIEW = true;
             AlienViewAds.onShowInterstitialView = new OnShowInterstitialView() {
                 @Override
                 public void onAdSuccess() {
@@ -2176,7 +2176,7 @@ public class AliendroidIntertitial {
                             }
                             break;
                         case "ALIEN-V":
-                            AlienViewAds.ShowIntertitial();
+                            SHOW_ALIEN_VIEW = true;
                             break;
                     }
                 }

@@ -1,7 +1,7 @@
 <resources>
 
 
-    <style name="InterstitialStyle" parent="android:Theme.Dialog">
+    <style name="InterstitialStyle" parent="Theme.AppCompat.Dialog.Alert">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:windowBackground">#00000000</item>
