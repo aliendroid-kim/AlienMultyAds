@@ -20,6 +20,9 @@
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
 
+-keep public class com.smaato.sdk.** { *; }
+	-keep public interface com.smaato.sdk.** { *; }
+
 -keepclassmembers class com.ironsource.sdk.controller.IronSourceWebView$JSInterface {
     public *;
 }
@@ -37,3 +40,18 @@
 -keepclassmembers class * {
     @android.webkit.JavascriptInterface <methods>;
 }
+
+-keep class com.startapp.** {
+      *;
+}
+
+-keep class com.truenet.** {
+      *;
+}
+
+-keepattributes Exceptions, InnerClasses, Signature, Deprecated, SourceFile,
+LineNumberTable, *Annotation*, EnclosingMethod
+-dontwarn android.webkit.JavascriptInterface
+-dontwarn com.startapp.**
+
+-dontwarn org.jetbrains.annotations.**
