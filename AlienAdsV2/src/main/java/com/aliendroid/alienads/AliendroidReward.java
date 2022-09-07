@@ -230,9 +230,46 @@ public class AliendroidReward {
 
                 case "ALIEN-M" :
                     AlienMediationAds.LoadRewarded(idBackupReward);
+                    AlienMediationAds.onLoadRewardsMediation = new OnLoadRewardsMediation() {
+                        @Override
+                        public void onRewardsAdLoaded() {
+
+                        }
+
+                        @Override
+                        public void onRewardsAdClosed() {
+
+                        }
+
+                        @Override
+                        public void onRewardsAdReward() {
+                            unlockreward = true;
+                        }
+
+                        @Override
+                        public void onRewardsAdClicked() {
+
+                        }
+
+                        @Override
+                        public void onRewardsAdFailedToLoad(String error) {
+
+                        }
+                    };
                     break;
                 case "ALIEN-V":
                     AlienViewAds.Interstitial(activity,idBackupReward);
+                    AlienViewAds.onShowInterstitialView = new OnShowInterstitialView() {
+                        @Override
+                        public void onAdSuccess() {
+                            unlockreward = true;
+                        }
+
+                        @Override
+                        public void onAdFailedShow() {
+
+                        }
+                    };
                     break;
 
 
@@ -266,6 +303,7 @@ public class AliendroidReward {
                     if (onLoadRewardsMediation!=null){
                         onLoadRewardsMediation.onRewardsAdReward();
                     }
+                    unlockreward= true;
                 }
 
                 @Override
@@ -631,10 +669,35 @@ public class AliendroidReward {
                                 }
                             });
                     break;
-                case "ALIEN-M":
-                   AlienMediationAds.LoadRewarded(idBackupReward);
-                    break;
+                case "ALIEN-M" :
+                    AlienMediationAds.LoadRewarded(idBackupReward);
+                    AlienMediationAds.onLoadRewardsMediation = new OnLoadRewardsMediation() {
+                        @Override
+                        public void onRewardsAdLoaded() {
 
+                        }
+
+                        @Override
+                        public void onRewardsAdClosed() {
+
+                        }
+
+                        @Override
+                        public void onRewardsAdReward() {
+                            unlockreward = true;
+                        }
+
+                        @Override
+                        public void onRewardsAdClicked() {
+
+                        }
+
+                        @Override
+                        public void onRewardsAdFailedToLoad(String error) {
+
+                        }
+                    };
+                    break;
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -797,6 +860,32 @@ public class AliendroidReward {
                     break;
                 case "ALIEN-M" :
                     AlienMediationAds.LoadRewarded(idBackupReward);
+                    AlienMediationAds.onLoadRewardsMediation = new OnLoadRewardsMediation() {
+                        @Override
+                        public void onRewardsAdLoaded() {
+
+                        }
+
+                        @Override
+                        public void onRewardsAdClosed() {
+
+                        }
+
+                        @Override
+                        public void onRewardsAdReward() {
+                            unlockreward = true;
+                        }
+
+                        @Override
+                        public void onRewardsAdClicked() {
+
+                        }
+
+                        @Override
+                        public void onRewardsAdFailedToLoad(String error) {
+
+                        }
+                    };
                     break;
                 case "ALIEN-V":
                     AlienViewAds.Interstitial(activity,idBackupReward);
@@ -981,6 +1070,32 @@ public class AliendroidReward {
                     break;
                 case "ALIEN-M" :
                     AlienMediationAds.LoadRewarded(idBackupReward);
+                    AlienMediationAds.onLoadRewardsMediation = new OnLoadRewardsMediation() {
+                        @Override
+                        public void onRewardsAdLoaded() {
+
+                        }
+
+                        @Override
+                        public void onRewardsAdClosed() {
+
+                        }
+
+                        @Override
+                        public void onRewardsAdReward() {
+                            unlockreward = true;
+                        }
+
+                        @Override
+                        public void onRewardsAdClicked() {
+
+                        }
+
+                        @Override
+                        public void onRewardsAdFailedToLoad(String error) {
+
+                        }
+                    };
                     break;
                 case "ALIEN-V":
                     AlienViewAds.Interstitial(activity,idBackupReward);
@@ -1149,9 +1264,46 @@ public class AliendroidReward {
                     break;
                 case "ALIEN-M" :
                     AlienMediationAds.LoadRewarded(idBackupReward);
+                    AlienMediationAds.onLoadRewardsMediation = new OnLoadRewardsMediation() {
+                        @Override
+                        public void onRewardsAdLoaded() {
+
+                        }
+
+                        @Override
+                        public void onRewardsAdClosed() {
+
+                        }
+
+                        @Override
+                        public void onRewardsAdReward() {
+                            unlockreward = true;
+                        }
+
+                        @Override
+                        public void onRewardsAdClicked() {
+
+                        }
+
+                        @Override
+                        public void onRewardsAdFailedToLoad(String error) {
+
+                        }
+                    };
                     break;
                 case "ALIEN-V":
                     AlienViewAds.Interstitial(activity,idBackupReward);
+                    AlienViewAds.onShowInterstitialView = new OnShowInterstitialView() {
+                        @Override
+                        public void onAdSuccess() {
+                            unlockreward = true;
+                        }
+
+                        @Override
+                        public void onAdFailedShow() {
+
+                        }
+                    };
                     break;
 
             }
@@ -1266,6 +1418,7 @@ public class AliendroidReward {
                             break;
                         case "ALIEN-V":
                             AlienViewAds.ShowIntertitial();
+                            unlockreward = true;
                             break;
                         case "ALIEN-M":
                             AlienMediationAds.ShowReward();
@@ -1411,6 +1564,32 @@ public class AliendroidReward {
                     break;
                 case "ALIEN-M" :
                     AlienMediationAds.LoadRewarded(idBackupReward);
+                    AlienMediationAds.onLoadRewardsMediation = new OnLoadRewardsMediation() {
+                        @Override
+                        public void onRewardsAdLoaded() {
+
+                        }
+
+                        @Override
+                        public void onRewardsAdClosed() {
+
+                        }
+
+                        @Override
+                        public void onRewardsAdReward() {
+                            unlockreward = true;
+                        }
+
+                        @Override
+                        public void onRewardsAdClicked() {
+
+                        }
+
+                        @Override
+                        public void onRewardsAdFailedToLoad(String error) {
+
+                        }
+                    };
                     break;
                 case "ALIEN-V":
                     AlienViewAds.Interstitial(activity,idBackupReward);
@@ -1584,6 +1763,32 @@ public class AliendroidReward {
                     break;
                 case "ALIEN-M" :
                     AlienMediationAds.LoadRewarded(idBackupReward);
+                    AlienMediationAds.onLoadRewardsMediation = new OnLoadRewardsMediation() {
+                        @Override
+                        public void onRewardsAdLoaded() {
+
+                        }
+
+                        @Override
+                        public void onRewardsAdClosed() {
+
+                        }
+
+                        @Override
+                        public void onRewardsAdReward() {
+                            unlockreward = true;
+                        }
+
+                        @Override
+                        public void onRewardsAdClicked() {
+
+                        }
+
+                        @Override
+                        public void onRewardsAdFailedToLoad(String error) {
+
+                        }
+                    };
                     break;
                 case "ALIEN-V":
                     AlienViewAds.Interstitial(activity,idBackupReward);
@@ -1669,6 +1874,7 @@ public class AliendroidReward {
                         break;
                     case "ALIEN-V":
                         AlienViewAds.ShowIntertitial();
+                        unlockreward=true;
                         break;
                     case "ALIEN-M":
                         AlienMediationAds.ShowReward();
@@ -1754,6 +1960,7 @@ public class AliendroidReward {
                         break;
                     case "ALIEN-V":
                         AlienViewAds.ShowIntertitial();
+                        unlockreward=true;
                         break;
                     case "ALIEN-M":
                         AlienMediationAds.ShowReward();
@@ -1837,6 +2044,7 @@ public class AliendroidReward {
                         break;
                     case "ALIEN-V":
                         AlienViewAds.ShowIntertitial();
+                        unlockreward=true;
                         break;
                     case "ALIEN-M":
                         AlienMediationAds.ShowReward();
@@ -1929,6 +2137,7 @@ public class AliendroidReward {
                         break;
                     case "ALIEN-V":
                         AlienViewAds.ShowIntertitial();
+                        unlockreward=true;
                         break;
                     case "ALIEN-M":
                         AlienMediationAds.ShowReward();
