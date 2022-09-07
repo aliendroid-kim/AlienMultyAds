@@ -232,7 +232,7 @@ public class InterstitialView extends Dialog {
                 if (BuildConfig.DEBUG) {
                     AppsConfig.setLog("AlienInterstitial Clicked.");
                 }
-                mWebView.loadUrl("");
+
             }
         });
 
@@ -246,7 +246,7 @@ public class InterstitialView extends Dialog {
                     AppsConfig.setLog("AlienInterstitial Closed.");
                 }
                 dismissAd();
-                mWebView.loadUrl("");
+
 
             }
         });

@@ -211,7 +211,6 @@ public class OpenView extends Dialog {
                 if (BuildConfig.DEBUG) {
                     AppsConfig.setLog("AlienInterstitial Clicked.");
                 }
-                mWebView.loadUrl("");
             }
         });
 
@@ -225,7 +224,6 @@ public class OpenView extends Dialog {
                     AppsConfig.setLog("AlienInterstitial Closed.");
                 }
                 dismissAd();
-                mWebView.loadUrl("");
 
             }
         });

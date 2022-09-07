@@ -7,6 +7,7 @@ import static com.kimganteng.myapplication.SettingsAlien.Select_Backup_Ads;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -20,6 +21,7 @@ import com.aliendroid.alienads.interfaces.rewards.load.OnLoadRewardsAlienView;
 import com.aliendroid.alienads.interfaces.rewards.show.OnShowRewardsAlienView;
 import com.aliendroid.sdkads.config.AppPromote;
 import com.aliendroid.sdkads.interfaces.OnLoadBannerView;
+import com.aliendroid.sdkads.interfaces.OnLoadInterstitialView;
 import com.aliendroid.sdkads.interfaces.OnOpenViewAdListener;
 import com.aliendroid.sdkads.interfaces.OnShowInterstitialView;
 import com.aliendroid.sdkads.type.view.AlienViewAds;
@@ -67,6 +69,29 @@ public class ViewAdsActivity extends AppCompatActivity {
 
     public void INTERSTITIAL(View view){
      AlienViewAds.ShowIntertitial();
+     AlienViewAds.onLoadInterstitialView = new OnLoadInterstitialView() {
+         @Override
+         public void onInterstitialAdLoaded() {
+
+         }
+
+         @Override
+         public void onInterstitialAdClosed() {
+             Intent open = new Intent(ViewAdsActivity.this,MediationAdsActivity.class);
+             startActivity(open);
+         }
+
+         @Override
+         public void onInterstitialAdClicked() {
+             Intent open = new Intent(ViewAdsActivity.this,MediationAdsActivity.class);
+             startActivity(open);
+         }
+
+         @Override
+         public void onInterstitialAdFailedToLoad(String error) {
+
+         }
+     };
     }
 
     public void REWARDS(View view){

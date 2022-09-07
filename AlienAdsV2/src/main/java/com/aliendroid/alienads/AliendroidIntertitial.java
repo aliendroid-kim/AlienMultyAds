@@ -177,6 +177,35 @@ public class AliendroidIntertitial {
                 break;
             case "ALIEN-V":
                 AlienViewAds.Interstitial(activity, idIntertitialBackup);
+                AlienViewAds.onLoadInterstitialView = new OnLoadInterstitialView() {
+                    @Override
+                    public void onInterstitialAdLoaded() {
+                        if (onLoadInterstitialAlienView!=null){
+                            onLoadInterstitialAlienView.onInterstitialAdLoaded();
+                        }
+                    }
+
+                    @Override
+                    public void onInterstitialAdClosed() {
+                        if (onLoadInterstitialAlienView!=null){
+                            onLoadInterstitialAlienView.onInterstitialAdClosed();
+                        }
+                    }
+
+                    @Override
+                    public void onInterstitialAdClicked() {
+                        if (onLoadInterstitialAlienView!=null){
+                            onLoadInterstitialAlienView.onInterstitialAdClicked();
+                        }
+                    }
+
+                    @Override
+                    public void onInterstitialAdFailedToLoad(String error) {
+                        if (onLoadInterstitialAlienView!=null){
+                            onLoadInterstitialAlienView.onInterstitialAdFailedToLoad();
+                        }
+                    }
+                };
                 break;
             case "ALIEN-M":
                 AlienMediationAds.LoadInterstitial(activity, idIntertitialBackup);
@@ -256,6 +285,35 @@ public class AliendroidIntertitial {
                 break;
             case "ALIEN-V":
                 AlienViewAds.Interstitial(activity, idIntertitialBackup);
+                AlienViewAds.onLoadInterstitialView = new OnLoadInterstitialView() {
+                    @Override
+                    public void onInterstitialAdLoaded() {
+                        if (onLoadInterstitialAlienView!=null){
+                            onLoadInterstitialAlienView.onInterstitialAdLoaded();
+                        }
+                    }
+
+                    @Override
+                    public void onInterstitialAdClosed() {
+                        if (onLoadInterstitialAlienView!=null){
+                            onLoadInterstitialAlienView.onInterstitialAdClosed();
+                        }
+                    }
+
+                    @Override
+                    public void onInterstitialAdClicked() {
+                        if (onLoadInterstitialAlienView!=null){
+                            onLoadInterstitialAlienView.onInterstitialAdClicked();
+                        }
+                    }
+
+                    @Override
+                    public void onInterstitialAdFailedToLoad(String error) {
+                        if (onLoadInterstitialAlienView!=null){
+                            onLoadInterstitialAlienView.onInterstitialAdFailedToLoad();
+                        }
+                    }
+                };
                 break;
             case "ALIEN-M":
                 AlienMediationAds.LoadInterstitial(activity, idIntertitialBackup);
@@ -397,6 +455,35 @@ public class AliendroidIntertitial {
                 break;
             case "ALIEN-V":
                 AlienViewAds.Interstitial(activity, idIntertitialBackup);
+                AlienViewAds.onLoadInterstitialView = new OnLoadInterstitialView() {
+                    @Override
+                    public void onInterstitialAdLoaded() {
+                        if (onLoadInterstitialAlienView!=null){
+                            onLoadInterstitialAlienView.onInterstitialAdLoaded();
+                        }
+                    }
+
+                    @Override
+                    public void onInterstitialAdClosed() {
+                        if (onLoadInterstitialAlienView!=null){
+                            onLoadInterstitialAlienView.onInterstitialAdClosed();
+                        }
+                    }
+
+                    @Override
+                    public void onInterstitialAdClicked() {
+                        if (onLoadInterstitialAlienView!=null){
+                            onLoadInterstitialAlienView.onInterstitialAdClicked();
+                        }
+                    }
+
+                    @Override
+                    public void onInterstitialAdFailedToLoad(String error) {
+                        if (onLoadInterstitialAlienView!=null){
+                            onLoadInterstitialAlienView.onInterstitialAdFailedToLoad();
+                        }
+                    }
+                };
                 break;
             case "ALIEN-M":
                 AlienMediationAds.LoadInterstitial(activity, idIntertitialBackup);
@@ -494,6 +581,35 @@ public class AliendroidIntertitial {
                 break;
             case "ALIEN-V":
                 AlienViewAds.Interstitial(activity, idIntertitialBackup);
+                AlienViewAds.onLoadInterstitialView = new OnLoadInterstitialView() {
+                    @Override
+                    public void onInterstitialAdLoaded() {
+                        if (onLoadInterstitialAlienView!=null){
+                            onLoadInterstitialAlienView.onInterstitialAdLoaded();
+                        }
+                    }
+
+                    @Override
+                    public void onInterstitialAdClosed() {
+                        if (onLoadInterstitialAlienView!=null){
+                            onLoadInterstitialAlienView.onInterstitialAdClosed();
+                        }
+                    }
+
+                    @Override
+                    public void onInterstitialAdClicked() {
+                        if (onLoadInterstitialAlienView!=null){
+                            onLoadInterstitialAlienView.onInterstitialAdClicked();
+                        }
+                    }
+
+                    @Override
+                    public void onInterstitialAdFailedToLoad(String error) {
+                        if (onLoadInterstitialAlienView!=null){
+                            onLoadInterstitialAlienView.onInterstitialAdFailedToLoad();
+                        }
+                    }
+                };
                 break;
             case "ALIEN-M":
                 AlienMediationAds.LoadInterstitial(activity, idIntertitialBackup);
@@ -598,6 +714,35 @@ public class AliendroidIntertitial {
                 break;
             case "ALIEN-V":
                 AlienViewAds.Interstitial(activity, idIntertitialBackup);
+                AlienViewAds.onLoadInterstitialView = new OnLoadInterstitialView() {
+                    @Override
+                    public void onInterstitialAdLoaded() {
+                        if (onLoadInterstitialAlienView!=null){
+                            onLoadInterstitialAlienView.onInterstitialAdLoaded();
+                        }
+                    }
+
+                    @Override
+                    public void onInterstitialAdClosed() {
+                        if (onLoadInterstitialAlienView!=null){
+                            onLoadInterstitialAlienView.onInterstitialAdClosed();
+                        }
+                    }
+
+                    @Override
+                    public void onInterstitialAdClicked() {
+                        if (onLoadInterstitialAlienView!=null){
+                            onLoadInterstitialAlienView.onInterstitialAdClicked();
+                        }
+                    }
+
+                    @Override
+                    public void onInterstitialAdFailedToLoad(String error) {
+                        if (onLoadInterstitialAlienView!=null){
+                            onLoadInterstitialAlienView.onInterstitialAdFailedToLoad();
+                        }
+                    }
+                };
                 break;
             case "ALIEN-M":
                 AlienMediationAds.LoadInterstitial(activity, idIntertitialBackup);
@@ -700,6 +845,35 @@ public class AliendroidIntertitial {
                 break;
             case "ALIEN-V":
                 AlienViewAds.Interstitial(activity, idIntertitialBackup);
+                AlienViewAds.onLoadInterstitialView = new OnLoadInterstitialView() {
+                    @Override
+                    public void onInterstitialAdLoaded() {
+                        if (onLoadInterstitialAlienView!=null){
+                            onLoadInterstitialAlienView.onInterstitialAdLoaded();
+                        }
+                    }
+
+                    @Override
+                    public void onInterstitialAdClosed() {
+                        if (onLoadInterstitialAlienView!=null){
+                            onLoadInterstitialAlienView.onInterstitialAdClosed();
+                        }
+                    }
+
+                    @Override
+                    public void onInterstitialAdClicked() {
+                        if (onLoadInterstitialAlienView!=null){
+                            onLoadInterstitialAlienView.onInterstitialAdClicked();
+                        }
+                    }
+
+                    @Override
+                    public void onInterstitialAdFailedToLoad(String error) {
+                        if (onLoadInterstitialAlienView!=null){
+                            onLoadInterstitialAlienView.onInterstitialAdFailedToLoad();
+                        }
+                    }
+                };
                 break;
             case "ALIEN-M":
                 AlienMediationAds.LoadInterstitial(activity, idIntertitialBackup);
@@ -847,6 +1021,35 @@ public class AliendroidIntertitial {
                 break;
             case "ALIEN-V":
                 AlienViewAds.Interstitial(activity, idIntertitialBackup);
+                AlienViewAds.onLoadInterstitialView = new OnLoadInterstitialView() {
+                    @Override
+                    public void onInterstitialAdLoaded() {
+                        if (onLoadInterstitialAlienView!=null){
+                            onLoadInterstitialAlienView.onInterstitialAdLoaded();
+                        }
+                    }
+
+                    @Override
+                    public void onInterstitialAdClosed() {
+                        if (onLoadInterstitialAlienView!=null){
+                            onLoadInterstitialAlienView.onInterstitialAdClosed();
+                        }
+                    }
+
+                    @Override
+                    public void onInterstitialAdClicked() {
+                        if (onLoadInterstitialAlienView!=null){
+                            onLoadInterstitialAlienView.onInterstitialAdClicked();
+                        }
+                    }
+
+                    @Override
+                    public void onInterstitialAdFailedToLoad(String error) {
+                        if (onLoadInterstitialAlienView!=null){
+                            onLoadInterstitialAlienView.onInterstitialAdFailedToLoad();
+                        }
+                    }
+                };
                 break;
             case "ALIEN-M":
                 AlienMediationAds.LoadInterstitial(activity, idIntertitialBackup);
@@ -957,6 +1160,35 @@ public class AliendroidIntertitial {
                 break;
             case "ALIEN-V":
                 AlienViewAds.Interstitial(activity, idIntertitialBackup);
+                AlienViewAds.onLoadInterstitialView = new OnLoadInterstitialView() {
+                    @Override
+                    public void onInterstitialAdLoaded() {
+                        if (onLoadInterstitialAlienView!=null){
+                            onLoadInterstitialAlienView.onInterstitialAdLoaded();
+                        }
+                    }
+
+                    @Override
+                    public void onInterstitialAdClosed() {
+                        if (onLoadInterstitialAlienView!=null){
+                            onLoadInterstitialAlienView.onInterstitialAdClosed();
+                        }
+                    }
+
+                    @Override
+                    public void onInterstitialAdClicked() {
+                        if (onLoadInterstitialAlienView!=null){
+                            onLoadInterstitialAlienView.onInterstitialAdClicked();
+                        }
+                    }
+
+                    @Override
+                    public void onInterstitialAdFailedToLoad(String error) {
+                        if (onLoadInterstitialAlienView!=null){
+                            onLoadInterstitialAlienView.onInterstitialAdFailedToLoad();
+                        }
+                    }
+                };
                 break;
             case "ALIEN-M":
                 AlienMediationAds.LoadInterstitial(activity, idIntertitialBackup);
@@ -1232,6 +1464,35 @@ public class AliendroidIntertitial {
                 break;
             case "ALIEN-V":
                 AlienViewAds.Interstitial(activity, idIntertitialBackup);
+                AlienViewAds.onLoadInterstitialView = new OnLoadInterstitialView() {
+                    @Override
+                    public void onInterstitialAdLoaded() {
+                        if (onLoadInterstitialAlienView!=null){
+                            onLoadInterstitialAlienView.onInterstitialAdLoaded();
+                        }
+                    }
+
+                    @Override
+                    public void onInterstitialAdClosed() {
+                        if (onLoadInterstitialAlienView!=null){
+                            onLoadInterstitialAlienView.onInterstitialAdClosed();
+                        }
+                    }
+
+                    @Override
+                    public void onInterstitialAdClicked() {
+                        if (onLoadInterstitialAlienView!=null){
+                            onLoadInterstitialAlienView.onInterstitialAdClicked();
+                        }
+                    }
+
+                    @Override
+                    public void onInterstitialAdFailedToLoad(String error) {
+                        if (onLoadInterstitialAlienView!=null){
+                            onLoadInterstitialAlienView.onInterstitialAdFailedToLoad();
+                        }
+                    }
+                };
                 break;
         }
     }
