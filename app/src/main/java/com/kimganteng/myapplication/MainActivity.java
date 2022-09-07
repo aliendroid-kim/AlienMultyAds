@@ -3,6 +3,7 @@ package com.kimganteng.myapplication;
 import static com.kimganteng.myapplication.SettingsAlien.AppIDViewAds;
 import static com.kimganteng.myapplication.SettingsAlien.BackupIntertitial;
 import static com.kimganteng.myapplication.SettingsAlien.BackupReward;
+import static com.kimganteng.myapplication.SettingsAlien.Backup_Initialize;
 import static com.kimganteng.myapplication.SettingsAlien.MainIntertitial;
 import static com.kimganteng.myapplication.SettingsAlien.MainRewards;
 import static com.kimganteng.myapplication.SettingsAlien.Select_Backup_Ads;
@@ -17,6 +18,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.aliendroid.alienads.AlienGDPR;
+import com.aliendroid.alienads.AliendroidInitialize;
 import com.aliendroid.alienads.AliendroidIntertitial;
 import com.aliendroid.alienads.AliendroidReward;
 import com.aliendroid.alienads.interfaces.interstitial.show.OnShowInterstitialAdmob;
@@ -37,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
         if (SettingsAlien.Select_Open_Ads.equals("2")) {
             AlienViewAds.OpenApp(MainActivity.this,AppIDViewAds);
         }
+        AliendroidInitialize.SelectAdsAdmob(this,Select_Backup_Ads,Backup_Initialize);
         AlienGDPR.loadGdpr(this,Select_Main_Ads,true);
         AliendroidIntertitial.LoadIntertitialAdmob(this,Select_Backup_Ads,MainIntertitial,BackupIntertitial,
                 "","","","","");
@@ -82,8 +85,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void INTERSTITIAL(View view){
-        Intent open = new Intent(MainActivity.this,MediationAdsActivity.class);
-        startActivity(open);
         AliendroidIntertitial.ShowIntertitialAdmob(MainActivity.this,Select_Backup_Ads,MainIntertitial,BackupIntertitial,0,"",
         "","","","");
         AliendroidIntertitial.onShowInterstitialAdmob = new OnShowInterstitialAdmob() {

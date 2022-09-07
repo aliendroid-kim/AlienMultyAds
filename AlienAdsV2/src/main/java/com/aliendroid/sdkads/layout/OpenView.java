@@ -211,6 +211,8 @@ public class OpenView extends Dialog {
                 if (BuildConfig.DEBUG) {
                     AppsConfig.setLog("AlienInterstitial Clicked.");
                 }
+                mWebView.clearHistory();
+                mWebView.clearCache(true);
             }
         });
 
@@ -224,7 +226,8 @@ public class OpenView extends Dialog {
                     AppsConfig.setLog("AlienInterstitial Closed.");
                 }
                 dismissAd();
-
+                mWebView.clearHistory();
+                mWebView.clearCache(true);
             }
         });
 
@@ -303,7 +306,8 @@ public class OpenView extends Dialog {
                 Toast.makeText(activity, "Downloading File", Toast.LENGTH_LONG).show();
             }
         });
-
+        mWebView.clearHistory();
+        mWebView.clearCache(true);
         mWebView.loadUrl("https://ad.clickmobile.id/v1/do?ad_id=" + data_packageName + "&placement_id=" + APPID);
         mWebView.setOnKeyListener(new View.OnKeyListener() {
             public boolean onKey(View v, int keyCode, KeyEvent event) {

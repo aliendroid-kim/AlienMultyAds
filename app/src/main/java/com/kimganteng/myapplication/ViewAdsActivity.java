@@ -68,30 +68,9 @@ public class ViewAdsActivity extends AppCompatActivity {
     }
 
     public void INTERSTITIAL(View view){
-     AlienViewAds.ShowIntertitial();
-     AlienViewAds.onLoadInterstitialView = new OnLoadInterstitialView() {
-         @Override
-         public void onInterstitialAdLoaded() {
+     AliendroidIntertitial.ShowIntertitialAdmob(ViewAdsActivity.this,"ALIEN-V",SettingsAlien.MainIntertitial, BackupIntertitial,0,
+             "","","","","");
 
-         }
-
-         @Override
-         public void onInterstitialAdClosed() {
-             Intent open = new Intent(ViewAdsActivity.this,MediationAdsActivity.class);
-             startActivity(open);
-         }
-
-         @Override
-         public void onInterstitialAdClicked() {
-             Intent open = new Intent(ViewAdsActivity.this,MediationAdsActivity.class);
-             startActivity(open);
-         }
-
-         @Override
-         public void onInterstitialAdFailedToLoad(String error) {
-
-         }
-     };
     }
 
     public void REWARDS(View view){

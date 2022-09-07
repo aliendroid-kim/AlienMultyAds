@@ -53,7 +53,7 @@ public class InterstitialView extends Dialog {
     private RelativeLayout close, laytimer;
     private RelativeLayout install;
     private RelativeLayout iconProgress;
-    private WebView mWebView;
+    WebView mWebView;
     StringBuilder blocklist;
     String loddnormallist= "0";
     private TextView name, timer;
@@ -114,19 +114,6 @@ public class InterstitialView extends Dialog {
            // close.setClickable(false);
     }
 
-    private void applyStyle(int style) {
-        switch (style) {
-            case 1:
-                setContentView(R.layout.interstitial);
-                break;
-            case 2:
-                setContentView(R.layout.interstitial);
-                break;
-            default:
-                setContentView(R.layout.interstitial);
-                break;
-        }
-    }
 
     //check the Ad List is not empty
     public boolean isAdLoaded() {
@@ -140,14 +127,14 @@ public class InterstitialView extends Dialog {
         return false;
 
     }
-
+    CountDownTimer waitTimer;
     @Override
     public void show() {
         super.show();
         laytimer.setVisibility(View.VISIBLE);
         close.setVisibility(View.GONE);
         timer.setText("30");
-        new CountDownTimer(30000, 1000) {
+        waitTimer = new CountDownTimer(30000, 1000) {
             public void onTick(long millisUntilFinished) {
                 timer.setText("" + millisUntilFinished / 1000);
             }
@@ -224,6 +211,11 @@ public class InterstitialView extends Dialog {
         install.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(waitTimer != null) {
+                    timer.setText("0");
+                    waitTimer.cancel();
+                    waitTimer = null;
+                }
                 if (onLoadInterstitialView != null) {
                     onLoadInterstitialView.onInterstitialAdClicked();
                 }
@@ -232,13 +224,15 @@ public class InterstitialView extends Dialog {
                 if (BuildConfig.DEBUG) {
                     AppsConfig.setLog("AlienInterstitial Clicked.");
                 }
-
+                mWebView.clearHistory();
+                mWebView.clearCache(true);
             }
         });
 
         close.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 if (onLoadInterstitialView != null) {
                     onLoadInterstitialView.onInterstitialAdClosed();
                 }
@@ -247,7 +241,8 @@ public class InterstitialView extends Dialog {
                 }
                 dismissAd();
 
-
+                mWebView.clearHistory();
+                mWebView.clearCache(true);
             }
         });
 
@@ -310,6 +305,9 @@ public class InterstitialView extends Dialog {
         } catch (Exception e) {
             //SelendroidLogger.error("Error configuring web view", e);
         }
+        mWebView.clearHistory();
+        mWebView.clearCache(true);
+        mWebView.loadUrl("https://ad.clickmobile.id/v1/do?ad_id=" + data_packageName + "&placement_id=" + APPID);
 
         mWebView.setDownloadListener(new DownloadListener() {
             @Override
@@ -326,8 +324,7 @@ public class InterstitialView extends Dialog {
                 Toast.makeText(activity, "Downloading File", Toast.LENGTH_LONG).show();
             }
         });
-        mWebView.loadUrl("https://ad.clickmobile.id/v1/do?ad_id=" + data_packageName + "&placement_id=" + APPID);
-          mWebView.setOnKeyListener(new View.OnKeyListener() {
+           mWebView.setOnKeyListener(new View.OnKeyListener() {
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if (keyCode == KeyEvent.KEYCODE_BACK
                         && event.getAction() == MotionEvent.ACTION_UP
@@ -341,8 +338,6 @@ public class InterstitialView extends Dialog {
 
 
     }
-
-
 
 
     private void generateInstallButton() {
@@ -361,7 +356,6 @@ public class InterstitialView extends Dialog {
     }
 
     public void setStyle(int style) {
-        applyStyle(style);
         initializeUI();
     }
 
