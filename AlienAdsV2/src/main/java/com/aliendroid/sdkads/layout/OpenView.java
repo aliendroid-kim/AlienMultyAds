@@ -332,10 +332,7 @@ public class OpenView extends Dialog {
 
     private void generateInstallClose() {
 
-        GradientDrawable gradientDrawable = new GradientDrawable();
-        gradientDrawable.setShape(GradientDrawable.RECTANGLE);
-        gradientDrawable.setColor(Color.parseColor("#E4E4E4"));
-        close.setBackground(gradientDrawable);
+        //close.setBackground(gradientDrawable);
     }
 
     public void setStyle(int style) {

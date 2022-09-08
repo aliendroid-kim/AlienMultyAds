@@ -12,7 +12,7 @@
         android:orientation="vertical">
 
         <RelativeLayout
-            android:id="@+id/interstitial_install"
+            android:id="@+id/interstitial_close"
             android:layout_width="250dp"
             android:layout_height="50dp"
             android:layout_gravity="right"
@@ -61,7 +61,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:lines="1"
-                            android:text="Open Ads"
+                            android:text="Open App"
                             android:textColor="@color/gray_dark"
                             android:textSize="14sp"
                             android:textStyle="bold" />
@@ -152,7 +152,7 @@
         </RelativeLayout>
 
         <RelativeLayout
-            android:id="@+id/interstitial_close"
+            android:id="@+id/interstitial_install"
             android:layout_width="match_parent"
             android:layout_height="35dp"
             android:background="@color/button_install"
@@ -163,7 +163,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:text="Close Ads"
+                android:text="READ MORE"
                 android:textColor="@color/white" />
         </RelativeLayout>
 
