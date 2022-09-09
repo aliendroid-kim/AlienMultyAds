@@ -316,7 +316,7 @@ public class AliendroidNative {
                                                 AlienMediationAds.SmallNatives(activity,layNative,idNativeBackup);
                                                 break;
                                             case "ALIEN-V":
-                                                AlienMediationAds.SmallBanner(activity,layNative,idNativeBackup);
+                                                AlienViewAds.Banner(activity,layNative,idNativeBackup);
                                                 break;
                                         }
                                     }
@@ -541,7 +541,7 @@ public class AliendroidNative {
                         AlienMediationAds.SmallNatives(activity,layNative,idNativeBackup);
                         break;
                     case "ALIEN-V":
-                        AlienMediationAds.SmallBanner(activity,layNative,idNativeBackup);
+                       AlienViewAds.Banner(activity,layNative,idNativeBackup);
                         break;
                 }
             }
@@ -725,7 +725,7 @@ public class AliendroidNative {
                         AlienMediationAds.SmallNatives(activity,layNative,idNativeBackup);
                         break;
                     case "ALIEN-V":
-                        AlienMediationAds.SmallBanner(activity,layNative,idNativeBackup);
+                       AlienViewAds.Banner(activity,layNative,idNativeBackup);
                         break;
                 }
             }
@@ -972,7 +972,7 @@ public class AliendroidNative {
                         AlienMediationAds.SmallNatives(activity,layNative,idNativeBackup);
                         break;
                     case "ALIEN-V":
-                        AlienMediationAds.SmallBanner(activity,layNative,idNativeBackup);
+                       AlienViewAds.Banner(activity,layNative,idNativeBackup);
                         break;
                 }
             }
