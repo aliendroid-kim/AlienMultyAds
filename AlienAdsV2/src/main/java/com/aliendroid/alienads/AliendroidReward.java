@@ -17,7 +17,6 @@ import com.aliendroid.alienads.interfaces.rewards.show.OnShowRewardsAlienMeditio
 import com.aliendroid.alienads.interfaces.rewards.show.OnShowRewardsAlienView;
 import com.aliendroid.alienads.interfaces.rewards.show.OnShowRewardsApplovinDiscovery;
 import com.aliendroid.alienads.interfaces.rewards.show.OnShowRewardsGoogle;
-import com.aliendroid.sdkads.interfaces.OnLoadInterstitialView;
 import com.aliendroid.sdkads.interfaces.OnLoadRewardsMediation;
 import com.aliendroid.sdkads.interfaces.OnLoadRewardsView;
 import com.aliendroid.sdkads.interfaces.OnShowInterstitialView;
@@ -536,31 +535,31 @@ public class AliendroidReward {
 
     public static void LoadRewardAlienView(Activity activity, String selectBackupAds, String idReward, String idBackupReward) {
         try {
-            AlienViewAds.Interstitial(activity,idReward);
-            AlienViewAds.onLoadInterstitialView = new OnLoadInterstitialView() {
+            AlienViewAds.RewardsAds(activity,idReward);
+            AlienViewAds.onLoadRewardsView = new OnLoadRewardsView() {
                 @Override
-                public void onInterstitialAdLoaded() {
+                public void onRewardsAdLoaded() {
                if (onLoadRewardsAlienView!=null){
                    onLoadRewardsAlienView.onRewardsAdLoaded();
                }
                 }
 
                 @Override
-                public void onInterstitialAdClosed() {
+                public void onRewardsAdClosed() {
                     if (onLoadRewardsAlienView!=null){
                         onLoadRewardsAlienView.onRewardsAdClosed();
                     }
                 }
 
                 @Override
-                public void onInterstitialAdClicked() {
+                public void onRewardsAdClicked() {
                     if (onLoadRewardsAlienView!=null){
                         onLoadRewardsAlienView.onRewardsAdClicked();
                     }
                 }
 
                 @Override
-                public void onInterstitialAdFailedToLoad(String error) {
+                public void onRewardsAdFailedToLoad(String error) {
                     if (onLoadRewardsAlienView!=null){
                         onLoadRewardsAlienView.onRewardsAdFailedToLoad("");
                     }
@@ -2090,12 +2089,12 @@ public class AliendroidReward {
                         AlienMediationAds.ShowReward();
                         break;
                 }
-                LoadRewardAdmob(activity, selecBackuptAds, idReward, idBackupReward);
+
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-
+        LoadRewardAdmob(activity, selecBackuptAds, idReward, idBackupReward);
     }
 
     public static void ShowRewardGoogleAds(Activity activity, String selecBackuptAds, String idReward, String idBackupReward) {
@@ -2191,12 +2190,12 @@ public class AliendroidReward {
                         AlienMediationAds.ShowReward();
                         break;
                 }
-                LoadRewardGoogleAds(activity, selecBackuptAds, idReward, idBackupReward);
+
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-
+        LoadRewardGoogleAds(activity, selecBackuptAds, idReward, idBackupReward);
     }
 
     public static void ShowRewardApplovinMax(Activity activity, String selecBackuptAds, String idReward, String idBackupReward) {
@@ -2291,12 +2290,12 @@ public class AliendroidReward {
                         AlienMediationAds.ShowReward();
                         break;
                 }
-                LoadRewardApplovinMax(activity, selecBackuptAds, idReward, idBackupReward);
+
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-
+        LoadRewardApplovinMax(activity, selecBackuptAds, idReward, idBackupReward);
     }
 
     public static void ShowRewardApplovinDis(Activity activity, String selecBackuptAds, String idReward, String idBackupReward) {
@@ -2400,12 +2399,12 @@ public class AliendroidReward {
                         AlienMediationAds.ShowReward();
                         break;
                 }
-                LoadRewardApplovinDis(activity, selecBackuptAds, idReward, idBackupReward);
+
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-
+        LoadRewardApplovinDis(activity, selecBackuptAds, idReward, idBackupReward);
     }
 
     public static void ShowRewardMopub(Activity activity, String selecBackuptAds, String idReward, String idBackupReward) {
@@ -2516,11 +2515,12 @@ public class AliendroidReward {
                         AlienMediationAds.ShowReward();
                         break;
                 }
-                LoadRewardStartApp(activity, selecBackuptAds, idReward, idBackupReward);
+
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
+        LoadRewardStartApp(activity, selecBackuptAds, idReward, idBackupReward);
     }
 
     public static void ShowRewardAlienView(Activity activity, String selecBackuptAds, String idReward, String idBackupReward) {
@@ -2613,10 +2613,11 @@ public class AliendroidReward {
                     }
                 }
             };
-            LoadRewardAlienView(activity, selecBackuptAds, idReward, idBackupReward);
+
         } catch (Exception e) {
             e.printStackTrace();
         }
+        LoadRewardAlienView(activity, selecBackuptAds, idReward, idBackupReward);
     }
 
     public static void ShowRewardAlienMediation(Activity activity, String selecBackuptAds, String idReward, String idBackupReward) {
@@ -2725,9 +2726,10 @@ public class AliendroidReward {
                     }
                 }
             };
-            LoadRewardAlienMediation(activity, selecBackuptAds, idReward, idBackupReward);
+
         } catch (Exception e) {
             e.printStackTrace();
         }
+        LoadRewardAlienMediation(activity, selecBackuptAds, idReward, idBackupReward);
     }
 }
