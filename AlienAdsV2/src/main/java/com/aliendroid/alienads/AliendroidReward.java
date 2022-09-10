@@ -19,6 +19,7 @@ import com.aliendroid.alienads.interfaces.rewards.show.OnShowRewardsApplovinDisc
 import com.aliendroid.alienads.interfaces.rewards.show.OnShowRewardsGoogle;
 import com.aliendroid.sdkads.interfaces.OnLoadInterstitialView;
 import com.aliendroid.sdkads.interfaces.OnLoadRewardsMediation;
+import com.aliendroid.sdkads.interfaces.OnLoadRewardsView;
 import com.aliendroid.sdkads.interfaces.OnShowInterstitialView;
 import com.aliendroid.sdkads.interfaces.OnShowRewards;
 import com.aliendroid.sdkads.interfaces.OnShowRewardsView;
@@ -261,30 +262,30 @@ public class AliendroidReward {
                     break;
                 case "ALIEN-V":
                     AlienViewAds.RewardsAds(activity,idBackupReward);
-                    AlienViewAds.onLoadInterstitialView = new OnLoadInterstitialView() {
+                    AlienViewAds.onLoadRewardsView = new OnLoadRewardsView() {
                         @Override
-                        public void onInterstitialAdLoaded() {
+                        public void onRewardsAdLoaded() {
                             if (onLoadRewardsAlienView!=null){
                                 onLoadRewardsAlienView.onRewardsAdLoaded();
                             }
                         }
 
                         @Override
-                        public void onInterstitialAdClosed() {
+                        public void onRewardsAdClosed() {
                             if (onLoadRewardsAlienView!=null){
                                 onLoadRewardsAlienView.onRewardsAdClosed();
                             }
                         }
 
                         @Override
-                        public void onInterstitialAdClicked() {
+                        public void onRewardsAdClicked() {
                             if (onLoadRewardsAlienView!=null){
                                 onLoadRewardsAlienView.onRewardsAdClicked();
                             }
                         }
 
                         @Override
-                        public void onInterstitialAdFailedToLoad(String error) {
+                        public void onRewardsAdFailedToLoad(String error) {
                             if (onLoadRewardsAlienView!=null){
                                 onLoadRewardsAlienView.onRewardsAdFailedToLoad("");
                             }
@@ -495,30 +496,30 @@ public class AliendroidReward {
                     break;
                 case "ALIEN-V":
                     AlienViewAds.RewardsAds(activity,idBackupReward);
-                    AlienViewAds.onLoadInterstitialView = new OnLoadInterstitialView() {
+                    AlienViewAds.onLoadRewardsView = new OnLoadRewardsView() {
                         @Override
-                        public void onInterstitialAdLoaded() {
+                        public void onRewardsAdLoaded() {
                             if (onLoadRewardsAlienView!=null){
                                 onLoadRewardsAlienView.onRewardsAdLoaded();
                             }
                         }
 
                         @Override
-                        public void onInterstitialAdClosed() {
+                        public void onRewardsAdClosed() {
                             if (onLoadRewardsAlienView!=null){
                                 onLoadRewardsAlienView.onRewardsAdClosed();
                             }
                         }
 
                         @Override
-                        public void onInterstitialAdClicked() {
+                        public void onRewardsAdClicked() {
                             if (onLoadRewardsAlienView!=null){
                                 onLoadRewardsAlienView.onRewardsAdClicked();
                             }
                         }
 
                         @Override
-                        public void onInterstitialAdFailedToLoad(String error) {
+                        public void onRewardsAdFailedToLoad(String error) {
                             if (onLoadRewardsAlienView!=null){
                                 onLoadRewardsAlienView.onRewardsAdFailedToLoad("");
                             }
@@ -938,30 +939,30 @@ public class AliendroidReward {
                     break;
                 case "ALIEN-V":
                     AlienViewAds.RewardsAds(activity,idBackupReward);
-                    AlienViewAds.onLoadInterstitialView = new OnLoadInterstitialView() {
+                    AlienViewAds.onLoadRewardsView = new OnLoadRewardsView() {
                         @Override
-                        public void onInterstitialAdLoaded() {
+                        public void onRewardsAdLoaded() {
                             if (onLoadRewardsAlienView!=null){
                                 onLoadRewardsAlienView.onRewardsAdLoaded();
                             }
                         }
 
                         @Override
-                        public void onInterstitialAdClosed() {
+                        public void onRewardsAdClosed() {
                             if (onLoadRewardsAlienView!=null){
                                 onLoadRewardsAlienView.onRewardsAdClosed();
                             }
                         }
 
                         @Override
-                        public void onInterstitialAdClicked() {
+                        public void onRewardsAdClicked() {
                             if (onLoadRewardsAlienView!=null){
                                 onLoadRewardsAlienView.onRewardsAdClicked();
                             }
                         }
 
                         @Override
-                        public void onInterstitialAdFailedToLoad(String error) {
+                        public void onRewardsAdFailedToLoad(String error) {
                             if (onLoadRewardsAlienView!=null){
                                 onLoadRewardsAlienView.onRewardsAdFailedToLoad("");
                             }
@@ -1177,30 +1178,30 @@ public class AliendroidReward {
                     break;
                 case "ALIEN-V":
                     AlienViewAds.RewardsAds(activity,idBackupReward);
-                    AlienViewAds.onLoadInterstitialView = new OnLoadInterstitialView() {
+                    AlienViewAds.onLoadRewardsView = new OnLoadRewardsView() {
                         @Override
-                        public void onInterstitialAdLoaded() {
+                        public void onRewardsAdLoaded() {
                             if (onLoadRewardsAlienView!=null){
                                 onLoadRewardsAlienView.onRewardsAdLoaded();
                             }
                         }
 
                         @Override
-                        public void onInterstitialAdClosed() {
+                        public void onRewardsAdClosed() {
                             if (onLoadRewardsAlienView!=null){
                                 onLoadRewardsAlienView.onRewardsAdClosed();
                             }
                         }
 
                         @Override
-                        public void onInterstitialAdClicked() {
+                        public void onRewardsAdClicked() {
                             if (onLoadRewardsAlienView!=null){
                                 onLoadRewardsAlienView.onRewardsAdClicked();
                             }
                         }
 
                         @Override
-                        public void onInterstitialAdFailedToLoad(String error) {
+                        public void onRewardsAdFailedToLoad(String error) {
                             if (onLoadRewardsAlienView!=null){
                                 onLoadRewardsAlienView.onRewardsAdFailedToLoad("");
                             }
@@ -1400,30 +1401,30 @@ public class AliendroidReward {
                     break;
                 case "ALIEN-V":
                     AlienViewAds.RewardsAds(activity,idBackupReward);
-                    AlienViewAds.onLoadInterstitialView = new OnLoadInterstitialView() {
+                    AlienViewAds.onLoadRewardsView = new OnLoadRewardsView() {
                         @Override
-                        public void onInterstitialAdLoaded() {
+                        public void onRewardsAdLoaded() {
                             if (onLoadRewardsAlienView!=null){
                                 onLoadRewardsAlienView.onRewardsAdLoaded();
                             }
                         }
 
                         @Override
-                        public void onInterstitialAdClosed() {
+                        public void onRewardsAdClosed() {
                             if (onLoadRewardsAlienView!=null){
                                 onLoadRewardsAlienView.onRewardsAdClosed();
                             }
                         }
 
                         @Override
-                        public void onInterstitialAdClicked() {
+                        public void onRewardsAdClicked() {
                             if (onLoadRewardsAlienView!=null){
                                 onLoadRewardsAlienView.onRewardsAdClicked();
                             }
                         }
 
                         @Override
-                        public void onInterstitialAdFailedToLoad(String error) {
+                        public void onRewardsAdFailedToLoad(String error) {
                             if (onLoadRewardsAlienView!=null){
                                 onLoadRewardsAlienView.onRewardsAdFailedToLoad("");
                             }
@@ -1729,30 +1730,30 @@ public class AliendroidReward {
                     break;
                 case "ALIEN-V":
                     AlienViewAds.RewardsAds(activity,idBackupReward);
-                    AlienViewAds.onLoadInterstitialView = new OnLoadInterstitialView() {
+                    AlienViewAds.onLoadRewardsView = new OnLoadRewardsView() {
                         @Override
-                        public void onInterstitialAdLoaded() {
+                        public void onRewardsAdLoaded() {
                             if (onLoadRewardsAlienView!=null){
                                 onLoadRewardsAlienView.onRewardsAdLoaded();
                             }
                         }
 
                         @Override
-                        public void onInterstitialAdClosed() {
+                        public void onRewardsAdClosed() {
                             if (onLoadRewardsAlienView!=null){
                                 onLoadRewardsAlienView.onRewardsAdClosed();
                             }
                         }
 
                         @Override
-                        public void onInterstitialAdClicked() {
+                        public void onRewardsAdClicked() {
                             if (onLoadRewardsAlienView!=null){
                                 onLoadRewardsAlienView.onRewardsAdClicked();
                             }
                         }
 
                         @Override
-                        public void onInterstitialAdFailedToLoad(String error) {
+                        public void onRewardsAdFailedToLoad(String error) {
                             if (onLoadRewardsAlienView!=null){
                                 onLoadRewardsAlienView.onRewardsAdFailedToLoad("");
                             }
@@ -1957,30 +1958,30 @@ public class AliendroidReward {
                     break;
                 case "ALIEN-V":
                     AlienViewAds.RewardsAds(activity,idBackupReward);
-                    AlienViewAds.onLoadInterstitialView = new OnLoadInterstitialView() {
+                    AlienViewAds.onLoadRewardsView = new OnLoadRewardsView() {
                         @Override
-                        public void onInterstitialAdLoaded() {
+                        public void onRewardsAdLoaded() {
                             if (onLoadRewardsAlienView!=null){
                                 onLoadRewardsAlienView.onRewardsAdLoaded();
                             }
                         }
 
                         @Override
-                        public void onInterstitialAdClosed() {
+                        public void onRewardsAdClosed() {
                             if (onLoadRewardsAlienView!=null){
                                 onLoadRewardsAlienView.onRewardsAdClosed();
                             }
                         }
 
                         @Override
-                        public void onInterstitialAdClicked() {
+                        public void onRewardsAdClicked() {
                             if (onLoadRewardsAlienView!=null){
                                 onLoadRewardsAlienView.onRewardsAdClicked();
                             }
                         }
 
                         @Override
-                        public void onInterstitialAdFailedToLoad(String error) {
+                        public void onRewardsAdFailedToLoad(String error) {
                             if (onLoadRewardsAlienView!=null){
                                 onLoadRewardsAlienView.onRewardsAdFailedToLoad("");
                             }

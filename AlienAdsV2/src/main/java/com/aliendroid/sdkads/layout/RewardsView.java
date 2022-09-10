@@ -83,11 +83,11 @@ public class RewardsView extends Dialog {
                 if (ConnectionPromote.adList != null && !ConnectionPromote.adList.isEmpty()) {
 
                     if (onLoadRewardsView != null) {
-                        onLoadRewardsView.onInterstitialAdLoaded();
+                        onLoadRewardsView.onRewardsAdLoaded();
                     }
                 } else {
                     if (onLoadRewardsView != null) {
-                        onLoadRewardsView.onInterstitialAdFailedToLoad("Ad Loaded, but data base of ad wrong ! please check your file.");
+                        onLoadRewardsView.onRewardsAdFailedToLoad("Ad Loaded, but data base of ad wrong ! please check your file.");
                     }
                 }
             }
@@ -127,7 +127,7 @@ public class RewardsView extends Dialog {
         }
         //the ad list is empty.
         if (onLoadRewardsView != null) {
-            onLoadRewardsView.onInterstitialAdFailedToLoad("Failed to show : No Ad");
+            onLoadRewardsView.onRewardsAdFailedToLoad("Failed to show : No Ad");
         }
         return false;
 
@@ -192,7 +192,7 @@ public class RewardsView extends Dialog {
             } else {
                 //the ad list is empty.
                 if (onLoadRewardsView != null) {
-                    onLoadRewardsView.onInterstitialAdFailedToLoad("The Ad list is empty ! please check your json file.");
+                    onLoadRewardsView.onRewardsAdFailedToLoad("The Ad list is empty ! please check your json file.");
                 }
                 if (BuildConfig.DEBUG) {
                     AppsConfig.setLog("Failed to build AlienInterstitial cause : the List of ad is empty, please check your connection first, than check your file json.");
@@ -225,7 +225,7 @@ public class RewardsView extends Dialog {
                     waitTimer = null;
                 }
                 if (onLoadRewardsView != null) {
-                    onLoadRewardsView.onInterstitialAdClicked();
+                    onLoadRewardsView.onRewardsAdClicked();
                 }
                 dismiss();
                 AppsConfig.openAdLink(activity.getApplicationContext(), "https://ad.clickmobile.id/v1/do?ad_id=" + data_packageName + "&placement_id=" + APPID);
@@ -242,7 +242,7 @@ public class RewardsView extends Dialog {
             public void onClick(View v) {
 
                 if (onLoadRewardsView != null) {
-                    onLoadRewardsView.onInterstitialAdClosed();
+                    onLoadRewardsView.onRewardsAdClosed();
                 }
                 if (BuildConfig.DEBUG) {
                     AppsConfig.setLog("AlienInterstitial Closed.");

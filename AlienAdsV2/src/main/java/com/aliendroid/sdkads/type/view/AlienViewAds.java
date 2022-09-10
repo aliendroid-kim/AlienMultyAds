@@ -143,32 +143,32 @@ public class AlienViewAds {
          rewardsView.setStyle(1);
          rewardsView.setOnRewardsAdListener(new OnLoadRewardsView() {
             @Override
-            public void onInterstitialAdLoaded() {
+            public void onRewardsAdLoaded() {
                 if (onLoadRewardsView !=null){
-                    onLoadRewardsView.onInterstitialAdLoaded();
+                    onLoadRewardsView.onRewardsAdLoaded();
                 }
             }
 
             @Override
-            public void onInterstitialAdClosed() {
+            public void onRewardsAdClosed() {
                 if (onLoadRewardsView !=null){
-                    onLoadRewardsView.onInterstitialAdClosed();
-                }
-
-            }
-
-            @Override
-            public void onInterstitialAdClicked() {
-                if (onLoadRewardsView !=null){
-                    onLoadRewardsView.onInterstitialAdClicked();
+                    onLoadRewardsView.onRewardsAdClosed();
                 }
 
             }
 
             @Override
-            public void onInterstitialAdFailedToLoad(String error) {
+            public void onRewardsAdClicked() {
                 if (onLoadRewardsView !=null){
-                    onLoadRewardsView.onInterstitialAdFailedToLoad("");
+                    onLoadRewardsView.onRewardsAdClicked();
+                }
+
+            }
+
+            @Override
+            public void onRewardsAdFailedToLoad(String error) {
+                if (onLoadRewardsView !=null){
+                    onLoadRewardsView.onRewardsAdFailedToLoad("");
                 }
 
             }
