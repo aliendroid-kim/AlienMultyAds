@@ -24,6 +24,7 @@ import com.aliendroid.sdkads.interfaces.OnLoadBannerView;
 import com.aliendroid.sdkads.interfaces.OnLoadInterstitialView;
 import com.aliendroid.sdkads.interfaces.OnOpenViewAdListener;
 import com.aliendroid.sdkads.interfaces.OnShowInterstitialView;
+import com.aliendroid.sdkads.interfaces.OnShowRewardsView;
 import com.aliendroid.sdkads.type.view.AlienViewAds;
 
 public class ViewAdsActivity extends AppCompatActivity {
@@ -38,6 +39,7 @@ public class ViewAdsActivity extends AppCompatActivity {
         AppPromote.initializeAppPromote(this);
         AlienViewAds.Banner(ViewAdsActivity.this,findViewById(R.id.layAdsView),AppIDViewAds);
         AlienViewAds.Interstitial(this,AppIDViewAds);
+        AlienViewAds.RewardsAds(this,AppIDViewAds);
 
     }
 
@@ -68,13 +70,23 @@ public class ViewAdsActivity extends AppCompatActivity {
     }
 
     public void INTERSTITIAL(View view){
-     AliendroidIntertitial.ShowIntertitialAdmob(ViewAdsActivity.this,"ALIEN-V",SettingsAlien.MainIntertitial, BackupIntertitial,0,
-             "","","","","");
+        AlienViewAds.ShowIntertitial();
 
     }
 
     public void REWARDS(View view){
-        AlienViewAds.ShowIntertitial();
+        AlienViewAds.ShowRewards();
+        AlienViewAds.onShowRewardsView = new OnShowRewardsView() {
+            @Override
+            public void onAdSuccess() {
+
+            }
+
+            @Override
+            public void onAdFailedShow() {
+
+            }
+        };
 
     }
 }

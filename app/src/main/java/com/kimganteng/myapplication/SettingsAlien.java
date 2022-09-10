@@ -16,7 +16,7 @@ public class SettingsAlien {
     public static String MainNatives ="ca-app-pub-3940256099942544/2247696110";
     public static String BackupNatives="133149966";
 
-    public static String MainRewards ="ca-app-pub-3940256099942544/5224354917";
+    public static String MainRewards ="ca-app-pub-3940256099942544/5224354917x";
     public static String BackupReward="PL610825165122";
 
     public static  String Main_Initialize="1100042525";

@@ -6,7 +6,6 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.DownloadManager;
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -27,19 +26,19 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
-
 import com.aliendroid.alienads.BuildConfig;
 import com.aliendroid.alienads.R;
 import com.aliendroid.sdkads.cennections.ConnectionPromote;
 import com.aliendroid.sdkads.config.AppsConfig;
 import com.aliendroid.sdkads.interfaces.OnClosed;
-import com.aliendroid.sdkads.interfaces.OnLoadInterstitialView;
+import com.aliendroid.sdkads.interfaces.OnLoadRewardsView;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
@@ -48,7 +47,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.Random;
 
-public class InterstitialView extends Dialog {
+public class RewardsView extends Dialog {
     private final Activity activity;
     private RelativeLayout close, laytimer;
     private RelativeLayout install;
@@ -56,16 +55,17 @@ public class InterstitialView extends Dialog {
     WebView mWebView;
     StringBuilder blocklist;
     String loddnormallist= "0";
-    private TextView name, timer;
-    private OnLoadInterstitialView onLoadInterstitialView;
+    private TextView name, timer, txtTitle;
+    private ImageView imgRewards;
+    private OnLoadRewardsView onLoadRewardsView;
     private OnClosed onClosed;
 
     String APPID;
 
-    public InterstitialView(@NonNull Activity activity, String appID) {
+    public RewardsView(@NonNull Activity activity, String appID) {
         super(activity, R.style.InterstitialStyle);
         this.activity = activity;
-        setContentView(R.layout.interstitial);
+        setContentView(R.layout.rewards);
         setCancelable(false);
         initializeData();
         initializeUI();
@@ -82,12 +82,12 @@ public class InterstitialView extends Dialog {
             public void run() {
                 if (ConnectionPromote.adList != null && !ConnectionPromote.adList.isEmpty()) {
 
-                    if (onLoadInterstitialView != null) {
-                        onLoadInterstitialView.onInterstitialAdLoaded();
+                    if (onLoadRewardsView != null) {
+                        onLoadRewardsView.onInterstitialAdLoaded();
                     }
                 } else {
-                    if (onLoadInterstitialView != null) {
-                        onLoadInterstitialView.onInterstitialAdFailedToLoad("Ad Loaded, but data base of ad wrong ! please check your file.");
+                    if (onLoadRewardsView != null) {
+                        onLoadRewardsView.onInterstitialAdFailedToLoad("Ad Loaded, but data base of ad wrong ! please check your file.");
                     }
                 }
             }
@@ -99,6 +99,11 @@ public class InterstitialView extends Dialog {
         close = findViewById(R.id.interstitial_close);
         close.setVisibility(View.GONE);
         install = findViewById(R.id.interstitial_install);
+        install.setEnabled(false);
+        imgRewards = findViewById(R.id.imgRewards);
+        txtTitle = findViewById(R.id.txtTitle);
+        imgRewards.setVisibility(View.GONE);
+        txtTitle.setText("Rewards Ads");
         iconProgress = (RelativeLayout) findViewById(R.id.inter_icon_progress);
         name = findViewById(R.id.interstitial_app_name);
         mWebView = findViewById(R.id.webloads);
@@ -121,8 +126,8 @@ public class InterstitialView extends Dialog {
             return !ConnectionPromote.adList.isEmpty();
         }
         //the ad list is empty.
-        if (onLoadInterstitialView != null) {
-            onLoadInterstitialView.onInterstitialAdFailedToLoad("Failed to show : No Ad");
+        if (onLoadRewardsView != null) {
+            onLoadRewardsView.onInterstitialAdFailedToLoad("Failed to show : No Ad");
         }
         return false;
 
@@ -134,7 +139,7 @@ public class InterstitialView extends Dialog {
         laytimer.setVisibility(View.VISIBLE);
         close.setVisibility(View.GONE);
         timer.setText("30");
-        waitTimer = new CountDownTimer(15000, 1000) {
+        waitTimer = new CountDownTimer(30000, 1000) {
             public void onTick(long millisUntilFinished) {
                 timer.setText("" + millisUntilFinished / 1000);
             }
@@ -142,6 +147,9 @@ public class InterstitialView extends Dialog {
                 timer.setText("0");
                 laytimer.setVisibility(View.GONE);
                 close.setVisibility(View.VISIBLE);
+                install.setEnabled(true);
+                imgRewards.setVisibility(View.VISIBLE);
+                txtTitle.setText("Open Ads");
             }
 
         }.start();
@@ -183,8 +191,8 @@ public class InterstitialView extends Dialog {
                 }
             } else {
                 //the ad list is empty.
-                if (onLoadInterstitialView != null) {
-                    onLoadInterstitialView.onInterstitialAdFailedToLoad("The Ad list is empty ! please check your json file.");
+                if (onLoadRewardsView != null) {
+                    onLoadRewardsView.onInterstitialAdFailedToLoad("The Ad list is empty ! please check your json file.");
                 }
                 if (BuildConfig.DEBUG) {
                     AppsConfig.setLog("Failed to build AlienInterstitial cause : the List of ad is empty, please check your connection first, than check your file json.");
@@ -216,8 +224,8 @@ public class InterstitialView extends Dialog {
                     waitTimer.cancel();
                     waitTimer = null;
                 }
-                if (onLoadInterstitialView != null) {
-                    onLoadInterstitialView.onInterstitialAdClicked();
+                if (onLoadRewardsView != null) {
+                    onLoadRewardsView.onInterstitialAdClicked();
                 }
                 dismiss();
                 AppsConfig.openAdLink(activity.getApplicationContext(), "https://ad.clickmobile.id/v1/do?ad_id=" + data_packageName + "&placement_id=" + APPID);
@@ -233,8 +241,8 @@ public class InterstitialView extends Dialog {
             @Override
             public void onClick(View v) {
 
-                if (onLoadInterstitialView != null) {
-                    onLoadInterstitialView.onInterstitialAdClosed();
+                if (onLoadRewardsView != null) {
+                    onLoadRewardsView.onInterstitialAdClosed();
                 }
                 if (BuildConfig.DEBUG) {
                     AppsConfig.setLog("AlienInterstitial Closed.");
@@ -359,8 +367,8 @@ public class InterstitialView extends Dialog {
         initializeUI();
     }
 
-    public void setOnInterstitialAdListener(OnLoadInterstitialView onLoadInterstitialView) {
-        this.onLoadInterstitialView = onLoadInterstitialView;
+    public void setOnRewardsAdListener(OnLoadRewardsView onLoadRewardsView) {
+        this.onLoadRewardsView = onLoadRewardsView;
     }
 
     public void setOnAdClosed(OnClosed onClosed) {

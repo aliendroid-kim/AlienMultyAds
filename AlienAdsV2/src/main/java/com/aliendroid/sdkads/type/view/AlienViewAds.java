@@ -6,20 +6,29 @@ import android.widget.RelativeLayout;
 import com.aliendroid.sdkads.interfaces.OnClosed;
 import com.aliendroid.sdkads.interfaces.OnLoadBannerView;
 import com.aliendroid.sdkads.interfaces.OnLoadInterstitialView;
+import com.aliendroid.sdkads.interfaces.OnLoadRewardsView;
 import com.aliendroid.sdkads.interfaces.OnOpenViewAdListener;
 import com.aliendroid.sdkads.interfaces.OnShowInterstitialView;
+import com.aliendroid.sdkads.interfaces.OnShowRewardsView;
 import com.aliendroid.sdkads.layout.BannerView;
 import com.aliendroid.sdkads.layout.InterstitialView;
 import com.aliendroid.sdkads.layout.OpenView;
+import com.aliendroid.sdkads.layout.RewardsView;
 
 public class AlienViewAds {
     public static OnLoadBannerView onLoadBannerView;
     public static OnOpenViewAdListener onOpenViewAdListener;
     public static OnLoadInterstitialView onLoadInterstitialView;
+    public static OnLoadRewardsView onLoadRewardsView;
+    public static OnShowInterstitialView onShowInterstitialView;
+    public static OnShowRewardsView onShowRewardsView;
+
+
     public static InterstitialView interstitial;
+    public static RewardsView rewardsView;
     public static OpenView openView;
     public static BannerView banner;;
-    public static OnShowInterstitialView onShowInterstitialView;
+
     public static void Banner (Activity activity, RelativeLayout layAds, String AppID) {
         banner = new BannerView(activity, AppID);
         banner.setOnBannerListener(new OnLoadBannerView() {
@@ -129,6 +138,44 @@ public class AlienViewAds {
 
     }
 
+    public static void RewardsAds (Activity activity, String AppID) {
+         rewardsView = new RewardsView(activity,AppID);
+         rewardsView.setStyle(1);
+         rewardsView.setOnRewardsAdListener(new OnLoadRewardsView() {
+            @Override
+            public void onInterstitialAdLoaded() {
+                if (onLoadRewardsView !=null){
+                    onLoadRewardsView.onInterstitialAdLoaded();
+                }
+            }
+
+            @Override
+            public void onInterstitialAdClosed() {
+                if (onLoadRewardsView !=null){
+                    onLoadRewardsView.onInterstitialAdClosed();
+                }
+
+            }
+
+            @Override
+            public void onInterstitialAdClicked() {
+                if (onLoadRewardsView !=null){
+                    onLoadRewardsView.onInterstitialAdClicked();
+                }
+
+            }
+
+            @Override
+            public void onInterstitialAdFailedToLoad(String error) {
+                if (onLoadRewardsView !=null){
+                    onLoadRewardsView.onInterstitialAdFailedToLoad("");
+                }
+
+            }
+        });
+
+    }
+
     public static void ShowIntertitial (){
         if (interstitial.isAdLoaded()) {
             interstitial.show();
@@ -138,6 +185,19 @@ public class AlienViewAds {
         } else {
             if (onShowInterstitialView !=null){
                 onShowInterstitialView.onAdFailedShow();
+            }
+        }
+    }
+
+    public static void ShowRewards (){
+        if (rewardsView.isAdLoaded()) {
+            rewardsView.show();
+            if (onShowRewardsView !=null){
+                onShowRewardsView.onAdSuccess();
+            }
+        } else {
+            if (onShowRewardsView !=null){
+                onShowRewardsView.onAdFailedShow();
             }
         }
     }
