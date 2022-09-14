@@ -32,26 +32,24 @@ dependencies {
     implementation "androidx.multidex:multidex:2.0.1"
 
     //Main Sdk Ads
-    implementation 'com.google.android.gms:play-services-ads:21.1.0'
+    implementation 'com.google.android.gms:play-services-ads:21.2.0'
     implementation 'com.facebook.android:audience-network-sdk:6.11.0'
-    implementation 'com.applovin:applovin-sdk:11.4.4'
-    implementation 'com.ironsource.sdk:mediationsdk:7.2.3'
+    implementation 'com.applovin:applovin-sdk:11.4.6'
+    implementation 'com.ironsource.sdk:mediationsdk:7.2.4.1'
     implementation 'com.startapp:inapp-sdk:4.10.2'
 
     //Applovin
-    implementation 'com.applovin.mediation:facebook-adapter:6.11.0.2'
-    implementation 'com.applovin.mediation:google-adapter:21.0.0.0'
-
-    implementation 'com.applovin.mediation:ironsource-adapter:7.2.2.0.0'
+    implementation 'com.applovin.mediation:facebook-adapter:6.11.0.5'
+    implementation 'com.applovin.mediation:google-adapter:21.2.0.0'
+    implementation 'com.applovin.mediation:ironsource-adapter:7.2.4.1.0'
 
     //Iron Source
-    implementation 'com.ironsource.adapters:facebookadapter:4.3.36'
-    implementation 'com.ironsource.adapters:admobadapter:4.3.28'
-    implementation 'com.ironsource.adapters:applovinadapter:4.3.31'
-
+    implementation 'com.ironsource.adapters:admobadapter:4.3.30'
+    implementation 'com.ironsource.adapters:applovinadapter:4.3.33'
+    implementation 'com.ironsource.adapters:facebookadapter:4.3.37'
 
     //Admob
-    implementation 'com.google.ads.mediation:facebook:6.11.0.0'
+    implementation 'com.google.ads.mediation:facebook:6.11.0.1'
     implementation 'com.google.ads.mediation:applovin:11.4.4.0'
     implementation 'com.google.ads.mediation:ironsource:7.2.3.0'
 

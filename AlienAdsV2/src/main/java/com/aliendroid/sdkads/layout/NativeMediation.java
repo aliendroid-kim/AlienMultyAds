@@ -48,14 +48,15 @@ public class NativeMediation implements NativeAdView {
     @Nullable
     @Override
     public View mediaView() {
-        return null;
+        return binding.findViewById(R.id.media);
     }
 
     @Nullable
     @Override
     public View richMediaView() {
-        return binding.findViewById(R.id.media);
+        return null;
     }
+
 
     @Nullable
     @Override
