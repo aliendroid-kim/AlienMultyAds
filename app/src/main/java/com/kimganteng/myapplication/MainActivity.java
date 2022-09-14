@@ -25,6 +25,7 @@ import com.aliendroid.alienads.interfaces.interstitial.show.OnShowInterstitialAd
 import com.aliendroid.alienads.interfaces.interstitial.load.OnLoadInterstitialAdmob;
 import com.aliendroid.sdkads.config.AESHelper;
 import com.aliendroid.sdkads.config.AppPromote;
+import com.aliendroid.sdkads.config.InitializeAlienAds;
 import com.aliendroid.sdkads.interfaces.OnOpenViewAdListener;
 import com.aliendroid.sdkads.type.view.AlienViewAds;
 
@@ -35,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         AppPromote.initializeAppPromote(this);
-
+        InitializeAlienAds.LoadSDK();
         if (SettingsAlien.Select_Open_Ads.equals("2")) {
             AlienViewAds.OpenApp(MainActivity.this,AppIDViewAds);
         }
