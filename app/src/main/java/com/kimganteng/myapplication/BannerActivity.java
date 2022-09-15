@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.aliendroid.alienads.AliendroidBanner;
 import com.aliendroid.alienads.AliendroidMediumBanner;
@@ -33,12 +34,14 @@ public class BannerActivity extends AppCompatActivity {
         AliendroidBanner.onLoadBannerAdmob = new OnLoadBannerAdmob() {
             @Override
             public void onAdLoaded() {
-
+                Toast.makeText(BannerActivity.this,"Iklan Terload",
+                        Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onAdFailedToLoad(String error) {
-
+                Toast.makeText(BannerActivity.this,"Tidak Ada Iklan",
+                        Toast.LENGTH_SHORT).show();
             }
 
             @Override

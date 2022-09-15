@@ -17,21 +17,27 @@
         android:usesCleartextTraffic="true">
         <activity
             android:name=".MediationAdsActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".ViewAdsActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".NativeActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".BannerActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".SplashActivity"
+            android:screenOrientation="portrait"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

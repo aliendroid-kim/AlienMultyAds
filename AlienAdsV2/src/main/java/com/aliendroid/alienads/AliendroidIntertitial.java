@@ -3,12 +3,15 @@ package com.aliendroid.alienads;
 import static androidx.constraintlayout.motion.utils.Oscillator.TAG;
 
 import android.app.Activity;
+import android.content.ContentValues;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
 
 import com.aliendroid.alienads.config.AppLovinCustomEventInterstitial;
+import com.aliendroid.alienads.interfaces.interstitial.admob.OnFullScreenContentCallbackAdmob;
 import com.aliendroid.alienads.interfaces.interstitial.load.OnLoadInterstitialAdmob;
 import com.aliendroid.alienads.interfaces.interstitial.load.OnLoadInterstitialAlienMediation;
 import com.aliendroid.alienads.interfaces.interstitial.load.OnLoadInterstitialAlienView;
@@ -46,6 +49,7 @@ import com.facebook.ads.InterstitialAdListener;
 import com.google.ads.mediation.facebook.FacebookAdapter;
 import com.google.ads.mediation.facebook.FacebookExtras;
 import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.FullScreenContentCallback;
 import com.google.android.gms.ads.LoadAdError;
 import com.google.android.gms.ads.admanager.AdManagerAdRequest;
 import com.google.android.gms.ads.admanager.AdManagerInterstitialAd;
@@ -98,6 +102,8 @@ public class AliendroidIntertitial {
     public static OnShowInterstitialAlienMediation onShowInterstitialAlienMediation;
     public static OnShowInterstitialAlienView onShowInterstitialAlienView;
 
+    public static OnFullScreenContentCallbackAdmob onFullScreenContentCallbackAdmob;
+
     public static void LoadIntertitialUnity(Activity activity, String selectAds, String idIntertitial, String idBackupIntertitial) {
 
     }
@@ -112,37 +118,32 @@ public class AliendroidIntertitial {
                 .addKeyword(Hpk3).addKeyword(Hpk4).addKeyword(Hpk5)
                 .addNetworkExtrasBundle(FacebookAdapter.class, extras)
                 .build();
-        InterstitialAd.load(activity, idIntertitial, request,
+
+        InterstitialAd.load(activity,idIntertitial, request,
                 new InterstitialAdLoadCallback() {
                     @Override
                     public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
-                        mInterstitialAd = interstitialAd;
-                        Log.i(TAG, "onAdLoaded");
-                        if (onLoadInterstitialAdmob != null) {
+                        if (onLoadInterstitialAdmob!=null) {
                             onLoadInterstitialAdmob.onInterstitialAdLoaded();
                         }
-                    }
+                        mInterstitialAd = interstitialAd;
+                        Log.i(TAG, "onAdLoaded");
 
+                    }
                     @Override
                     public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
-                        Log.i(TAG, loadAdError.getMessage());
-                        mInterstitialAd = null;
-                        if (onLoadInterstitialAdmob != null) {
+                        if (onLoadInterstitialAdmob!=null) {
                             onLoadInterstitialAdmob.onInterstitialAdFailedToLoad("");
                         }
+                        Log.d(TAG, loadAdError.toString());
+                        mInterstitialAd = null;
+
                     }
                 });
-
         switch (selectAdsBackup) {
             case "APPLOVIN-M":
-                if (idIntertitialBackup.equals("")) {
-                    interstitialAd = new MaxInterstitialAd("qwerty12345", activity);
-                    interstitialAd.loadAd();
-                } else {
-                    interstitialAd = new MaxInterstitialAd(idIntertitialBackup, activity);
-                    interstitialAd.loadAd();
-                }
-
+                interstitialAd = new MaxInterstitialAd(idIntertitialBackup, activity);
+                interstitialAd.loadAd();
                 break;
             case "MOPUB":
             case "UNITY":
@@ -225,6 +226,28 @@ public class AliendroidIntertitial {
                     @Override
                     public void onAdLoaded(@NonNull AdManagerInterstitialAd interstitialAd) {
                         mAdManagerInterstitialAd = interstitialAd;
+                        mAdManagerInterstitialAd.setFullScreenContentCallback(new FullScreenContentCallback(){
+                            @Override
+                            public void onAdClicked() {
+                                Log.d(TAG, "Ad was clicked.");
+                            }
+
+                            @Override
+                            public void onAdDismissedFullScreenContent() {
+                                Log.d(TAG, "Ad dismissed fullscreen content.");
+                                mAdManagerInterstitialAd = null;
+                            }
+
+                            @Override
+                            public void onAdImpression() {
+                                Log.d(TAG, "Ad recorded an impression.");
+                            }
+
+                            @Override
+                            public void onAdShowedFullScreenContent() {
+                                Log.d(TAG, "Ad showed fullscreen content.");
+                            }
+                        });
                         Log.i(TAG, "onAdLoaded");
                         if (onLoadInterstitialGoogle != null) {
                             onLoadInterstitialGoogle.onInterstitialAdLoaded();
@@ -1503,11 +1526,54 @@ public class AliendroidIntertitial {
                                             String Hpk2, String Hpk3, String Hpk4, String Hpk5) {
         if (counter >= interval) {
             if (mInterstitialAd != null) {
+                mInterstitialAd.setFullScreenContentCallback(new FullScreenContentCallback(){
+                    @Override
+                    public void onAdClicked() {
+                        if (onFullScreenContentCallbackAdmob!=null){
+                            onFullScreenContentCallbackAdmob.onAdClicked();
+                        }
+
+                    }
+
+                    @Override
+                    public void onAdDismissedFullScreenContent() {
+                        if (onFullScreenContentCallbackAdmob!=null){
+                            onFullScreenContentCallbackAdmob.onAdDismissedFullScreenContent();
+                        }
+                        mInterstitialAd = null;
+                    }
+
+                    @Override
+                    public void onAdFailedToShowFullScreenContent(com.google.android.gms.ads.AdError adError) {
+                        if (onFullScreenContentCallbackAdmob!=null){
+                            onFullScreenContentCallbackAdmob.onAdFailedToShowFullScreenContent();
+                        }
+                        mInterstitialAd = null;
+                    }
+
+                    @Override
+                    public void onAdImpression() {
+                        // Called when an impression is recorded for an ad.
+                        if (onFullScreenContentCallbackAdmob!=null){
+                            onFullScreenContentCallbackAdmob.onAdImpression();
+                        }
+                        Log.d(ContentValues.TAG, "Ad recorded an impression.");
+                    }
+
+                    @Override
+                    public void onAdShowedFullScreenContent() {
+                        // Called when ad is shown.
+                        Log.d(ContentValues.TAG, "Ad showed fullscreen content.");
+                        if (onFullScreenContentCallbackAdmob!=null){
+                            onFullScreenContentCallbackAdmob.onAdShowedFullScreenContent();
+                        }
+                    }
+                });
                 mInterstitialAd.show(activity);
                 if (onShowInterstitialAdmob != null) {
                     onShowInterstitialAdmob.onAdSuccess();
                 }
-                LoadIntertitialAdmob(activity, selectAdsBackup, idIntertitial, idIntertitialBackup, Hpk1, Hpk2, Hpk3, Hpk4, Hpk5);
+               // LoadIntertitialAdmob(activity, selectAdsBackup, idIntertitial, idIntertitialBackup, Hpk1, Hpk2, Hpk3, Hpk4, Hpk5);
             } else {
                 if (onShowInterstitialAdmob != null) {
                     onShowInterstitialAdmob.onAdFailedShow();

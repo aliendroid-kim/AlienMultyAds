@@ -24,7 +24,7 @@ public class MediationAdsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mediation_ads);
-        InitializeAlienAds.LoadSDK();
+
         AlienMediationAds.SmallBanner(this,findViewById(R.id.layAdsView),SettingsAlien.BackupBanner);
         AlienMediationAds.LoadInterstitial(this,SettingsAlien.BackupIntertitial);
         AlienMediationAds.LoadRewarded(SettingsAlien.BackupReward);

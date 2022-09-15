@@ -39,7 +39,7 @@ public class SplashActivity extends AppCompatActivity {
         /*
         Initilize for Alien Mediation Ads
          */
-        //InitializeAlienAds.LoadSDK();
+        InitializeAlienAds.LoadSDK();
         AliendroidInitialize.SelectAdsAdmob(this,Select_Backup_Ads,Backup_Initialize);
         if (SettingsAlien.Select_Open_Ads.equals("1")){
             AlienOpenAds.LoadOpenAds("ca-app-pub-3940256099942544/3419835294",true);
