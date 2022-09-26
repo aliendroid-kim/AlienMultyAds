@@ -46,55 +46,40 @@ public class MainActivity extends AppCompatActivity {
             AlienViewAds.OpenApp(MainActivity.this,AppIDViewAds);
         }
          */
-        AliendroidInitialize.SelectAdsAdmob(this,Select_Backup_Ads,Backup_Initialize);
+        AliendroidInitialize.SelectAdsApplovinMax(this,Select_Backup_Ads,Backup_Initialize);
         AlienGDPR.loadGdpr(this,Select_Main_Ads,true);
-        AliendroidIntertitial.LoadIntertitialAdmob(MainActivity.this,Select_Backup_Ads,MainIntertitial,BackupIntertitial,
-                "","","","","");
-        AliendroidIntertitial.onLoadInterstitialAdmob = new OnLoadInterstitialAdmob() {
-            @Override
-            public void onInterstitialAdLoaded() {
-                Toast.makeText(MainActivity.this,"Iklan Terload",
-                        Toast.LENGTH_SHORT).show();
+        AliendroidIntertitial.LoadIntertitialApplovinMax(MainActivity.this,Select_Backup_Ads,MainIntertitial,BackupIntertitial);
 
-            }
-
-            @Override
-            public void onInterstitialAdFailedToLoad(String error) {
-                Toast.makeText(MainActivity.this,"Iklan Gagal Terload",
-                        Toast.LENGTH_SHORT).show();
-            }
-        };
-        AliendroidIntertitial.onFullScreenContentCallbackAdmob = new OnFullScreenContentCallbackAdmob() {
-            @Override
-            public void onAdClicked() {
-
-            }
-
-            @Override
-            public void onAdDismissedFullScreenContent() {
-                Intent open = new Intent(MainActivity.this,BannerActivity.class);
-                startActivity(open);
-            }
-
-            @Override
-            public void onAdImpression() {
-
-            }
-
-            @Override
-            public void onAdShowedFullScreenContent() {
-
-            }
-
-            @Override
-            public void onAdFailedToShowFullScreenContent() {
-
-            }
-        };
         AliendroidIntertitial.onShowInterstitialAdmob = new OnShowInterstitialAdmob() {
             @Override
             public void onAdSuccess() {
+                AliendroidIntertitial.onFullScreenContentCallbackAdmob = new OnFullScreenContentCallbackAdmob() {
+                    @Override
+                    public void onAdClicked() {
 
+                    }
+
+                    @Override
+                    public void onAdDismissedFullScreenContent() {
+                        Intent open = new Intent(MainActivity.this,BannerActivity.class);
+                        startActivity(open);
+                    }
+
+                    @Override
+                    public void onAdImpression() {
+
+                    }
+
+                    @Override
+                    public void onAdShowedFullScreenContent() {
+
+                    }
+
+                    @Override
+                    public void onAdFailedToShowFullScreenContent() {
+
+                    }
+                };
             }
 
             @Override
@@ -104,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
             }
         };
 
-        AliendroidReward.LoadRewardAdmob(this,Select_Backup_Ads,MainRewards,BackupReward);
+        AliendroidReward.LoadRewardApplovinMax(this,Select_Backup_Ads,MainRewards,BackupReward);
         AliendroidReward.onLoadRewardsAdmob = new OnLoadRewardsAdmob() {
             @Override
             public void onAdFailedToLoad() {

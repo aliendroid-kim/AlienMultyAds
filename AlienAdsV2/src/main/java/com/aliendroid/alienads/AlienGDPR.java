@@ -15,6 +15,8 @@ import com.google.android.ump.ConsentRequestParameters;
 import com.google.android.ump.FormError;
 import com.google.android.ump.UserMessagingPlatform;
 import com.ironsource.mediationsdk.IronSource;
+import com.smaato.sdk.core.Gender;
+import com.smaato.sdk.core.SmaatoSdk;
 import com.startapp.sdk.adsbase.StartAppSDK;
 
 import java.security.MessageDigest;
@@ -108,6 +110,10 @@ public class AlienGDPR {
                 AppLovinPrivacySettings.setIsAgeRestrictedUser( childDirected, activity );
                 AppLovinPrivacySettings.setHasUserConsent( true, activity );
                 break;
+            case "ALIEN-M":
+                SmaatoSdk.setCoppa(childDirected);
+                break;
+
         }
     }
 

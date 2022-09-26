@@ -349,7 +349,6 @@ public class AliendroidIntertitial {
 
     public static void LoadIntertitialFAN(Activity activity, String selectAdsBackup, String idIntertitial, String idIntertitialBackup) {
         FBinterstitialAd = new com.facebook.ads.InterstitialAd(activity, idIntertitial);
-        FBinterstitialAd.loadAd();
         InterstitialAdListener interstitialAdListener = new InterstitialAdListener() {
             @Override
             public void onInterstitialDisplayed(com.facebook.ads.Ad ad) {
@@ -393,6 +392,10 @@ public class AliendroidIntertitial {
                 }
             }
         };
+        FBinterstitialAd.loadAd(
+                FBinterstitialAd.buildLoadAdConfig()
+                        .withAdListener(interstitialAdListener)
+                        .build());
 
         switch (selectAdsBackup) {
             case "APPLOVIN-M":
