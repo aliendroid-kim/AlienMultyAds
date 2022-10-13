@@ -84,6 +84,7 @@ public class AlienGDPR {
                 IronSource.setMetaData("is_child_directed", String.valueOf(childDirected));
                 break;
             case "APPLOVIN-M":
+                /*
                 AppLovinSdk.initializeSdk( activity, new AppLovinSdk.SdkInitializationListener() {
                     @Override
                     public void onSdkInitialized(final AppLovinSdkConfiguration configuration)
@@ -104,11 +105,13 @@ public class AlienGDPR {
                     }
                 } );
                 AppLovinPrivacySettings.setHasUserConsent( true, activity );
+
+                 */
                 AppLovinPrivacySettings.setIsAgeRestrictedUser( childDirected, activity );
                 break;
             case "APPLOVIN-D":
                 AppLovinPrivacySettings.setIsAgeRestrictedUser( childDirected, activity );
-                AppLovinPrivacySettings.setHasUserConsent( true, activity );
+                //AppLovinPrivacySettings.setHasUserConsent( true, activity );
                 break;
             case "ALIEN-M":
                 SmaatoSdk.setCoppa(childDirected);
