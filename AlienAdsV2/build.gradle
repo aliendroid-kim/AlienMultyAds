@@ -34,7 +34,7 @@ dependencies {
     implementation "androidx.multidex:multidex:2.0.1"
 
     //Main Sdk Ads
-    implementation 'com.google.android.gms:play-services-ads:21.2.0'
+    implementation 'com.google.android.gms:play-services-ads:21.3.0'
     implementation 'com.facebook.android:audience-network-sdk:6.12.0'
     implementation 'com.applovin:applovin-sdk:11.5.2'
     implementation 'com.ironsource.sdk:mediationsdk:7.2.4.1'
@@ -56,7 +56,7 @@ dependencies {
     implementation 'com.google.ads.mediation:ironsource:7.2.3.0'
 
     implementation 'com.google.android.ump:user-messaging-platform:2.0.0'
-    implementation 'com.flurry.android:analytics:13.0.1'
+    implementation 'com.flurry.android:analytics:13.3.0'
     implementation 'com.google.android.gms:play-services-appset:16.0.2'
     implementation 'com.google.android.gms:play-services-ads-identifier:18.0.1'
     implementation 'com.google.android.gms:play-services-basement:18.1.0'
