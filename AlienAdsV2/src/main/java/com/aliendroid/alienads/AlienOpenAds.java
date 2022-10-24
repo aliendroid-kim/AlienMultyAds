@@ -25,12 +25,12 @@ import java.util.Date;
 
 public class AlienOpenAds implements LifecycleObserver, Application.ActivityLifecycleCallbacks {
     private static final String LOG_TAG = "AlienOpenAds";
-
-    public static AppOpenAd appOpenAd = null;
     public static String IDOPEN;
     public static MyApplication myApplication;
     private static boolean isShowingAd = false;
     private static AppOpenAd.AppOpenAdLoadCallback loadCallback;
+    public static AppOpenAd appOpenAd = null;
+
     private static Activity currentActivity;
     private long loadTime = 0;
     public static boolean LOADADS;
@@ -64,6 +64,7 @@ public class AlienOpenAds implements LifecycleObserver, Application.ActivityLife
                 e.printStackTrace();
             }
         }
+
     }
 
     @OnLifecycleEvent(ON_START)
@@ -119,9 +120,9 @@ public class AlienOpenAds implements LifecycleObserver, Application.ActivityLife
                         public void onAdDismissedFullScreenContent() {
                             appOpenAd = null;
                             isShowingAd = false;
-                            if (onShowOpenAppAdmob!=null){
-                                onShowOpenAppAdmob.onAdDismissedFullScreenContent();
-                            }
+                                if (onShowOpenAppAdmob!=null){
+                                    onShowOpenAppAdmob.onAdDismissedFullScreenContent();
+                                }
                             LOADADS=false;
                         }
 

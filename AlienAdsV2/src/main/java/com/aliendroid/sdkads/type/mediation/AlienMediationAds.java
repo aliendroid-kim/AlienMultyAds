@@ -484,4 +484,57 @@ public class AlienMediationAds {
 
     }
 
+    public static void RectangleNatives( Activity activity, RelativeLayout content, String PlacementID) {
+        NativeAd.Listener listener = new NativeAd.Listener() {
+            @Override
+            public void onAdLoaded(@NonNull NativeAd nativeAd, @NonNull NativeAdRenderer nativeAdRenderer) {
+                try {
+                    View adView = (View) activity.getLayoutInflater()
+                            .inflate(R.layout.alien_small_rectangle_native, null);
+                    NativeAdView nativeAdView = new NativeMediation(adView) ;
+                    nativeAdRenderer.renderInView(nativeAdView);
+                    nativeAdRenderer.registerForImpression(adView);
+                    nativeAdRenderer.registerForClicks(nativeAdView.ctaView());
+                    content.addView(adView);
+
+                    if (onLoadNative !=null){
+                        onLoadNative.onNativeAdLoaded();
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+
+            }
+
+            @Override
+            public void onAdFailedToLoad(@NonNull NativeAd nativeAd, @NonNull NativeAdError nativeAdError) {
+                if (onLoadNative !=null){
+                    onLoadNative.onNativeAdFailedToLoad("");
+                }
+            }
+
+            @Override
+            public void onAdImpressed(@NonNull NativeAd nativeAd) {
+
+            }
+
+            @Override
+            public void onAdClicked(@NonNull NativeAd nativeAd) {
+                if (onLoadNative !=null){
+                    onLoadNative.onNativeAdClicked();
+                }
+            }
+
+            @Override
+            public void onTtlExpired(@NonNull NativeAd nativeAd) {
+
+            }
+        };
+
+        NativeAd.loadAd(Lifecycling.of(activity), NativeAdRequest.builder().adSpaceId(PlacementID).build(), listener);
+
+
+    }
+
 }

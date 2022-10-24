@@ -4,6 +4,7 @@ import static com.kimganteng.myapplication.SettingsAlien.AppIDMediationAds;
 import static com.kimganteng.myapplication.SettingsAlien.AppIDViewAds;
 import static com.kimganteng.myapplication.SettingsAlien.Backup_Initialize;
 import static com.kimganteng.myapplication.SettingsAlien.Main_Initialize;
+import static com.kimganteng.myapplication.SettingsAlien.ONLOADOPEN;
 import static com.kimganteng.myapplication.SettingsAlien.Select_Backup_Ads;
 
 import android.annotation.SuppressLint;
@@ -42,34 +43,35 @@ public class SplashActivity extends AppCompatActivity {
         InitializeAlienAds.LoadSDK();
         AliendroidInitialize.SelectAdsApplovinMax(this,Select_Backup_Ads,Backup_Initialize);
         if (SettingsAlien.Select_Open_Ads.equals("1")){
-            AlienOpenAds.LoadOpenAds("ca-app-pub-3940256099942544/3419835294",true);
-            AlienOpenAds.onLoadOpenAppAdmob = new OnLoadOpenAppAdmob() {
-                @Override
-                public void onAdLoaded() {
-                    AlienOpenAds.onShowOpenAppAdmob = new OnShowOpenAppAdmob() {
-                        @Override
-                        public void onAdDismissedFullScreenContent() {
-                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                            finish();
-                        }
+            AlienOpenAds.LoadOpenAds("ca-app-pub-3940256099942544/3419835294",ONLOADOPEN);
+                AlienOpenAds.onLoadOpenAppAdmob = new OnLoadOpenAppAdmob() {
+                    @Override
+                    public void onAdLoaded() {
+                        AlienOpenAds.onShowOpenAppAdmob = new OnShowOpenAppAdmob() {
+                            @Override
+                            public void onAdDismissedFullScreenContent() {
+                                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                                finish();
+                            }
 
-                        @Override
-                        public void onAdFailedToShowFullScreenContent() {
+                            @Override
+                            public void onAdFailedToShowFullScreenContent() {
 
-                        }
+                            }
 
-                        @Override
-                        public void onAdShowedFullScreenContent() {
+                            @Override
+                            public void onAdShowedFullScreenContent() {
 
-                        }
-                    };
-                }
+                            }
+                        };
+                    }
 
-                @Override
-                public void onAdFailedToLoad() {
-                    startActivity(true);
-                }
-            };
+                    @Override
+                    public void onAdFailedToLoad() {
+                        startActivity(true);
+                    }
+                };
+
         } else {
             startActivity(true);
         }
