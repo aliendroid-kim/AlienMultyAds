@@ -30,7 +30,8 @@
                     android:text="Ad"
                     android:textAlignment="center"
                     android:textColor="@color/native_text_button"
-                    android:textSize="10sp" />
+                    android:textSize="10sp"
+                    tools:ignore="TextContrastCheck" />
 
             </RelativeLayout>
 
@@ -107,6 +108,7 @@
                 android:background="@drawable/round_black"
                 android:textColor="@color/native_text_button"
                 android:textSize="8sp"
+                tools:ignore="TouchTargetSizeCheck"
                 tools:text="Install" />
 
         </LinearLayout>

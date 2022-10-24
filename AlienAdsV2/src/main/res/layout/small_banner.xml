@@ -37,7 +37,7 @@
         android:text="AD"
         android:textColor="@color/white"
         android:textSize="7dp"
-        tools:ignore="HardcodedText" />
+        tools:ignore="HardcodedText,TextContrastCheck" />
 
 
 </FrameLayout>

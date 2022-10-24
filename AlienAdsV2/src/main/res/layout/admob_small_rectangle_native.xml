@@ -23,7 +23,8 @@
                 android:gravity="center"
                 android:text="Ads"
                 android:textColor="#ffffff"
-                android:textSize="10sp" />
+                android:textSize="10sp"
+                tools:ignore="TextContrastCheck" />
 
             <TextView
                 android:id="@+id/ad_advertiser"
@@ -160,6 +161,7 @@
             android:gravity="center"
             android:textColor="@color/native_text_button"
             android:textSize="8sp"
+            tools:ignore="TextContrastCheck,TouchTargetSizeCheck"
             tools:text="Install" />
     </LinearLayout>
 </com.google.android.gms.ads.nativead.NativeAdView>

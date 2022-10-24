@@ -38,7 +38,7 @@
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="7dp"
-            tools:ignore="HardcodedText" />
+            tools:ignore="HardcodedText,TextContrastCheck" />
 
         <ImageView
             android:id="@+id/icon"
@@ -108,7 +108,8 @@
             android:background="@drawable/round_black"
             android:text="TextView"
             android:textColor="@color/native_text_button"
-            android:textSize="10sp" />
+            android:textSize="10sp"
+            tools:ignore="TouchTargetSizeCheck" />
 
     </LinearLayout>
 

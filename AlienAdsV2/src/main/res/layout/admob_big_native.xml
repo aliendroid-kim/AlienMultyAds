@@ -1,4 +1,5 @@
 <com.google.android.gms.ads.nativead.NativeAdView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/native_background">
@@ -20,7 +21,8 @@
                 android:gravity="center"
                 android:text="Ads"
                 android:textColor="@color/native_text_button"
-                android:textSize="10sp" />
+                android:textSize="10sp"
+                tools:ignore="TextContrastCheck" />
 
             <TextView
                 android:id="@+id/ad_advertiser"
@@ -112,7 +114,8 @@
                     android:gravity="center"
                     android:text="Install"
                     android:textColor="@color/native_text_button"
-                    android:textSize="10sp" />
+                    android:textSize="10sp"
+                    tools:ignore="TouchTargetSizeCheck" />
             </LinearLayout>
 
         </LinearLayout>

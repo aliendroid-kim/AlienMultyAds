@@ -90,6 +90,7 @@
             android:gravity="center"
             android:textColor="@color/native_text_button"
             android:textSize="8sp"
+            tools:ignore="TextContrastCheck,TouchTargetSizeCheck"
             tools:text="Install" />
 
     </LinearLayout>
