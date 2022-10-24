@@ -25,16 +25,10 @@
             android:textSize="10sp" />
 
         <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1">
-
-        </RelativeLayout>
-
-        <RelativeLayout
             android:id="@+id/ad_choices_container"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
             android:padding="2dp" />
 
     </LinearLayout>
@@ -71,8 +65,8 @@
                 android:id="@+id/native_ad_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
                 android:ellipsize="end"
                 android:gravity="center"
                 android:lines="1"
@@ -81,17 +75,28 @@
                 android:textSize="12sp"
                 android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/native_ad_social_context"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:ellipsize="end"
-                android:gravity="center"
-                android:text="1st - The Big Marketplace Source Code for Monetize Mobile Application on Indonesia"
-                android:textColor="@color/native_description"
-                android:textSize="10sp" />
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_weight="1"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/native_ad_social_context"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:text="1st - The Big Marketplace Source Code for Monetize Mobile Application on Indonesia"
+                    android:textColor="@color/native_description"
+                    android:textSize="10sp" />
+            </RelativeLayout>
+
         </LinearLayout>
 
     </RelativeLayout>

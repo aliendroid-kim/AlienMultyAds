@@ -49,24 +49,35 @@
                 android:id="@+id/ad_headline"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
                 android:layout_marginTop="5dp"
+                android:layout_marginRight="10dp"
                 android:gravity="center"
                 android:lines="1"
                 android:text="Reskin Aliendroid"
                 android:textColor="@color/native_title"
                 android:textSize="12sp" />
 
-            <TextView
-                android:id="@+id/ad_body"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="20dp"
-                android:layout_marginRight="5dp"
-                android:layout_marginBottom="5dp"
-                android:gravity="center"
-                android:text="1st - The Big Marketplace Source Code for Monetize Mobile Application on Indonesia"
-                android:textColor="@color/native_description"
-                android:textSize="10sp" />
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/ad_body"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:gravity="center"
+                    android:text="1st - The Big Marketplace Source Code for Monetize Mobile Application on Indonesia"
+                    android:textColor="@color/native_description"
+                    android:textSize="10sp" />
+            </RelativeLayout>
 
         </LinearLayout>
 

@@ -81,14 +81,21 @@
                 android:textStyle="bold"
                 tools:text="Title" />
 
-            <TextView
-                android:id="@+id/body_text_view"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:textColor="@color/native_description"
-                android:textSize="10sp"
-                tools:text="Body" />
+                android:layout_height="match_parent"
+                android:layout_marginBottom="10dp"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/body_text_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textColor="@color/native_description"
+                    android:textSize="10sp"
+                    tools:text="Body" />
+            </RelativeLayout>
 
         </LinearLayout>
 
