@@ -7,7 +7,7 @@ public class SettingsAlien {
     public static  String Select_Main_Ads ="ADMOB";
     public static  String Select_Backup_Ads ="APPLOVIN-M";
 
-    public static String  MainIntertitial ="ca-app-pub-3940256099942544/1033173712x";
+    public static String  MainIntertitial ="ca-app-pub-3940256099942544/1033173712";
     public static  String BackupIntertitial ="133149992";
 
     public static  String MainBanner="ca-app-pub-3940256099942544/6300978111";

@@ -4,9 +4,7 @@ import android.app.Activity;
 import android.util.Log;
 
 import com.aliendroid.alienads.config.AudienceNetworkInitializeHelper;
-import com.aliendroid.sdkads.config.AESHelper;
 import com.aliendroid.sdkads.config.AppPromote;
-import com.aliendroid.sdkads.config.AppsConfig;
 import com.aliendroid.sdkads.config.InitializeAlienAds;
 import com.applovin.sdk.AppLovinMediationProvider;
 import com.applovin.sdk.AppLovinSdk;

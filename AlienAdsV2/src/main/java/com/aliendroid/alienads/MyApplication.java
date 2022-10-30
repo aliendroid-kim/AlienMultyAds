@@ -3,13 +3,11 @@ package com.aliendroid.alienads;
 import android.app.Application;
 import android.util.Log;
 
-import com.aliendroid.sdkads.config.AESHelper;
 import com.aliendroid.sdkads.config.AppsConfig;
 import com.aliendroid.sdkads.config.InitializeAlienAds;
 import com.applovin.sdk.AppLovinMediationProvider;
 import com.applovin.sdk.AppLovinSdk;
 import com.flurry.android.FlurryAgent;
-import com.flurry.android.FlurryAgentListener;
 import com.flurry.android.FlurryPerformance;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.initialization.InitializationStatus;

@@ -7,11 +7,11 @@ import javax.crypto.Cipher;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
-public class AESHelper {
+public class QWERTY {
     public static String SECRET_KEY = "aesEncryptionKey";
     public static  String INIT_VECTOR = "encryptionIntVec";
 
-    public static String encrypt(String value) {
+    public static String ABC(String value) {
         try {
             IvParameterSpec iv = new IvParameterSpec(INIT_VECTOR.getBytes("UTF-8"));
             SecretKeySpec skeySpec = new SecretKeySpec(SECRET_KEY.getBytes("UTF-8"), "AES");
@@ -27,7 +27,7 @@ public class AESHelper {
         return null;
     }
 
-    public static String decrypt(String value) {
+    public static String ZXC(String value) {
         try {
             IvParameterSpec iv = new IvParameterSpec(INIT_VECTOR.getBytes("UTF-8"));
             SecretKeySpec skeySpec = new SecretKeySpec(SECRET_KEY.getBytes("UTF-8"), "AES");
