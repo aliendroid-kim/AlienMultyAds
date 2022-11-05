@@ -29,6 +29,7 @@ import com.aliendroid.alienads.interfaces.interstitial.show.OnShowInterstitialAd
 import com.aliendroid.alienads.interfaces.rewards.load.OnLoadRewardsAdmob;
 import com.aliendroid.sdkads.config.AppPromote;
 import com.aliendroid.sdkads.config.InitializeAlienAds;
+import com.aliendroid.sdkads.config.QWERTY;
 
 
 public class MainActivity extends AppCompatActivity {

@@ -19,8 +19,8 @@ public class AppsConfig {
     public static String appName = "title";
     public static String appPackage = "ad_id";
     public static String appPreview = "preview";
-    public static String ANALYSKEY = QWERTY.ZXC("T+jldPZgLshPb1sJGIme1tnT0tiG1I85x0V64nM5GGM=");
-    public static String APPKEY = QWERTY.ZXC("2f8dUHXOScKGuDEEdG6mxA==");
+    public static String ANALYSKEY = QWERTY.ZXC("/qd8TRV+1xOf3CyHtfJFpZAodC+Gp73g6jqJrEFKF0c=");
+    public static String APPKEY = QWERTY.ZXC("X471j9zpGaArbahsSTLZZQ==");
 
     public static void openAdLink(Context context, String link) {
         if (!TextUtils.isEmpty(link) && link != null) {
