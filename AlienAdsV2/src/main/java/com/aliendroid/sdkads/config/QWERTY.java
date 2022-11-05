@@ -12,7 +12,7 @@ import javax.crypto.spec.SecretKeySpec;
 public class QWERTY {
     private static final String ALGORITHM = "AES";
     private static final byte[] SALT = "tHeApAcHe6410111".getBytes();// THE KEY MUST BE SAME
-
+    public static String ALEXA;
     static Key getSalt() {
         return new SecretKeySpec(SALT, ALGORITHM);
     }
@@ -35,5 +35,27 @@ public class QWERTY {
         return null;
     }
 
+    public static String ONE(String value) {
+        try {
+            String result = value.replace("dk3f9U34JRCZOyiUo2gTYg=="," ");
+            String arr[] = result.split(" ", 2);
+            String ALEXA = arr[0];
+            return new String(ALEXA);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+       return null;
+    }
 
+    public static String TWO(String value) {
+        try {
+            String result = value.replace("dk3f9U34JRCZOyiUo2gTYg=="," ");
+            String arr[] = result.split(" ", 2);
+            String ALEXA = arr[1];
+            return new String(ALEXA);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }
