@@ -14,8 +14,10 @@ import android.os.Handler;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.aliendroid.alienads.AlienNotif;
 import com.aliendroid.alienads.AlienOpenAds;
 import com.aliendroid.alienads.AliendroidInitialize;
+import com.aliendroid.alienads.MyApplication;
 import com.aliendroid.alienads.interfaces.open.OnLoadOpenAppAdmob;
 import com.aliendroid.alienads.interfaces.open.OnShowOpenAppAdmob;
 import com.aliendroid.sdkads.config.AppPromote;
@@ -43,34 +45,14 @@ public class SplashActivity extends AppCompatActivity {
         InitializeAlienAds.LoadSDK();
         AliendroidInitialize.SelectAdsApplovinMax(this,Select_Backup_Ads,Backup_Initialize);
         if (SettingsAlien.Select_Open_Ads.equals("1")){
-            AlienOpenAds.LoadOpenAds("ca-app-pub-3940256099942544/3419835294",ONLOADOPEN);
-                AlienOpenAds.onLoadOpenAppAdmob = new OnLoadOpenAppAdmob() {
-                    @Override
-                    public void onAdLoaded() {
-                        AlienOpenAds.onShowOpenAppAdmob = new OnShowOpenAppAdmob() {
-                            @Override
-                            public void onAdDismissedFullScreenContent() {
-                                startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                                finish();
-                            }
-
-                            @Override
-                            public void onAdFailedToShowFullScreenContent() {
-
-                            }
-
-                            @Override
-                            public void onAdShowedFullScreenContent() {
-
-                            }
-                        };
-                    }
-
-                    @Override
-                    public void onAdFailedToLoad() {
-                        startActivity(true);
-                    }
-                };
+            AlienNotif.LoadOneSignal("535dc774-9fe3-44ae-839e-09e4133aebe9");
+         AlienOpenAds.LoadOpenAds("ca-app-pub-3940256099942544/3419835294",false);
+         AlienOpenAds.AppOpenAdManager.showAdIfAvailable(SplashActivity.this, new AlienOpenAds.OnShowAdCompleteListener() {
+             @Override
+             public void onShowAdComplete() {
+                 startActivity(true);
+             }
+         });
 
         } else {
             startActivity(true);

@@ -66,4 +66,5 @@ dependencies {
     implementation 'com.smaato.android.sdk:smaato-sdk:21.8.4'
     implementation 'com.smaato.android.sdk:smaato-sdk-native:21.8.4'
     //implementation 'com.squareup.picasso:picasso:2.71828'
+    implementation 'com.onesignal:OneSignal:[4.0.0, 4.99.99]'
 }

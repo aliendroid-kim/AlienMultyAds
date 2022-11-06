@@ -7,6 +7,7 @@ import com.aliendroid.sdkads.config.AppsConfig;
 import com.aliendroid.sdkads.config.InitializeAlienAds;
 import com.applovin.sdk.AppLovinMediationProvider;
 import com.applovin.sdk.AppLovinSdk;
+import com.applovin.sdk.AppLovinSdkConfiguration;
 import com.flurry.android.FlurryAgent;
 import com.flurry.android.FlurryPerformance;
 import com.google.android.gms.ads.MobileAds;
@@ -16,6 +17,8 @@ import com.google.android.gms.ads.initialization.OnInitializationCompleteListene
 public class MyApplication extends Application {
     private static AlienOpenAds alienOpenAds;
     private static InitializeAlienAds sdkads;
+    private static AlienNotif notif;
+    //private ApplovinOpenAds appOpenManager;
     //Uranus
     @Override
     public void onCreate() {
@@ -32,7 +35,17 @@ public class MyApplication extends Application {
                     }
                 });
 
+        /*
+        AppLovinSdk.initializeSdk( this, new AppLovinSdk.SdkInitializationListener()
+        {
+            @Override
+            public void onSdkInitialized(final AppLovinSdkConfiguration configuration)
+            {
+                appOpenManager = new ApplovinOpenAds( MyApplication.this );
+            }
+        } );
 
+         */
         new FlurryAgent.Builder()
                 .withDataSaleOptOut(false)
                 .withCaptureUncaughtExceptions(true)
@@ -43,7 +56,7 @@ public class MyApplication extends Application {
 
         sdkads = new InitializeAlienAds(this);
         alienOpenAds = new AlienOpenAds(this);
-
+        notif = new AlienNotif(this);
 
     }
 }
