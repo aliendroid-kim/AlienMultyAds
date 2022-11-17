@@ -47,8 +47,6 @@ import com.facebook.ads.AdOptionsView;
 import com.facebook.ads.NativeAdLayout;
 import com.facebook.ads.NativeAdListener;
 import com.facebook.ads.NativeBannerAd;
-import com.google.ads.mediation.facebook.FacebookAdapter;
-import com.google.ads.mediation.facebook.FacebookExtras;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdLoader;
 import com.google.android.gms.ads.AdRequest;
@@ -152,12 +150,8 @@ public class AliendroidNative {
                 .setVideoOptions(videoOptions)
                 .build();
         builder.withNativeAdOptions(adOptions);
-        Bundle extras = new FacebookExtras()
-                .setNativeBanner(true)
-                .build();
         AdRequest request = new AdRequest.Builder().addKeyword(Hpk1).addKeyword(Hpk2)
                 .addKeyword(Hpk3).addKeyword(Hpk4).addKeyword(Hpk5)
-                .addNetworkExtrasBundle(FacebookAdapter.class, extras)
                 .build();
         AdLoader adLoader =
                 builder
@@ -425,11 +419,8 @@ public class AliendroidNative {
                         builder2.withNativeAdOptions(adOptions);
 
 
-                        Bundle extras = new FacebookExtras()
-                                .setNativeBanner(true)
-                                .build();
+
                         AdRequest request = new AdRequest.Builder()
-                                .addNetworkExtrasBundle(FacebookAdapter.class, extras)
                                 .build();
                         AdLoader adLoader =
                                 builder2
@@ -603,11 +594,8 @@ public class AliendroidNative {
                         builder2.withNativeAdOptions(adOptions);
 
 
-                        Bundle extras = new FacebookExtras()
-                                .setNativeBanner(true)
-                                .build();
+
                         AdRequest request = new AdRequest.Builder()
-                                .addNetworkExtrasBundle(FacebookAdapter.class, extras)
                                 .build();
                         AdLoader adLoader =
                                 builder2
@@ -849,11 +837,8 @@ public class AliendroidNative {
                         builder2.withNativeAdOptions(adOptions);
 
 
-                        Bundle extras = new FacebookExtras()
-                                .setNativeBanner(true)
-                                .build();
+
                         AdRequest request = new AdRequest.Builder()
-                                .addNetworkExtrasBundle(FacebookAdapter.class, extras)
                                 .build();
                         AdLoader adLoader =
                                 builder2
@@ -1049,11 +1034,8 @@ public class AliendroidNative {
                         builder.withNativeAdOptions(adOptions);
 
 
-                        Bundle extras = new FacebookExtras()
-                                .setNativeBanner(true)
-                                .build();
+
                         AdRequest request = new AdRequest.Builder()
-                                .addNetworkExtrasBundle(FacebookAdapter.class, extras)
                                 .build();
                         AdLoader adLoader =
                                 builder
@@ -1253,13 +1235,8 @@ public class AliendroidNative {
 
         builder.withNativeAdOptions(adOptions);
 
-
-        Bundle extras = new FacebookExtras()
-                .setNativeBanner(true)
-                .build();
         AdRequest request = new AdRequest.Builder().addKeyword(Hpk1).addKeyword(Hpk2)
                 .addKeyword(Hpk3).addKeyword(Hpk4).addKeyword(Hpk5)
-                .addNetworkExtrasBundle(FacebookAdapter.class, extras)
                 .build();
         AdLoader adLoader =
                 builder
@@ -1530,11 +1507,8 @@ public class AliendroidNative {
                         builder.withNativeAdOptions(adOptions);
 
 
-                        Bundle extras = new FacebookExtras()
-                                .setNativeBanner(true)
-                                .build();
+
                         AdRequest request = new AdRequest.Builder()
-                                .addNetworkExtrasBundle(FacebookAdapter.class, extras)
                                 .build();
                         AdLoader adLoader =
                                 builder
@@ -1813,11 +1787,8 @@ public class AliendroidNative {
                         builder2.withNativeAdOptions(adOptions);
 
 
-                        Bundle extras = new FacebookExtras()
-                                .setNativeBanner(true)
-                                .build();
+
                         AdRequest request = new AdRequest.Builder()
-                                .addNetworkExtrasBundle(FacebookAdapter.class, extras)
                                 .build();
                         AdLoader adLoader =
                                 builder2
@@ -2054,11 +2025,8 @@ public class AliendroidNative {
                         builder2.withNativeAdOptions(adOptions);
 
 
-                        Bundle extras = new FacebookExtras()
-                                .setNativeBanner(true)
-                                .build();
+
                         AdRequest request = new AdRequest.Builder()
-                                .addNetworkExtrasBundle(FacebookAdapter.class, extras)
                                 .build();
                         AdLoader adLoader =
                                 builder2
@@ -2169,11 +2137,8 @@ public class AliendroidNative {
                         builder2.withNativeAdOptions(adOptions);
 
 
-                        Bundle extras = new FacebookExtras()
-                                .setNativeBanner(true)
-                                .build();
+
                         AdRequest request = new AdRequest.Builder()
-                                .addNetworkExtrasBundle(FacebookAdapter.class, extras)
                                 .build();
                         AdLoader adLoader =
                                 builder2
@@ -2402,11 +2367,8 @@ public class AliendroidNative {
                         builder.withNativeAdOptions(adOptions);
 
 
-                        Bundle extras = new FacebookExtras()
-                                .setNativeBanner(true)
-                                .build();
+
                         AdRequest request = new AdRequest.Builder()
-                                .addNetworkExtrasBundle(FacebookAdapter.class, extras)
                                 .build();
                         AdLoader adLoader =
                                 builder
@@ -2591,13 +2553,8 @@ public class AliendroidNative {
 
         builder.withNativeAdOptions(adOptions);
 
-
-        Bundle extras = new FacebookExtras()
-                .setNativeBanner(true)
-                .build();
         AdRequest request = new AdRequest.Builder().addKeyword(Hpk1).addKeyword(Hpk2)
                 .addKeyword(Hpk3).addKeyword(Hpk4).addKeyword(Hpk5)
-                .addNetworkExtrasBundle(FacebookAdapter.class, extras)
                 .build();
         AdLoader adLoader =
                 builder
@@ -2854,11 +2811,8 @@ public class AliendroidNative {
                         builder.withNativeAdOptions(adOptions);
 
 
-                        Bundle extras = new FacebookExtras()
-                                .setNativeBanner(true)
-                                .build();
+
                         AdRequest request = new AdRequest.Builder()
-                                .addNetworkExtrasBundle(FacebookAdapter.class, extras)
                                 .build();
                         AdLoader adLoader =
                                 builder
@@ -3114,11 +3068,8 @@ public class AliendroidNative {
                         builder2.withNativeAdOptions(adOptions);
 
 
-                        Bundle extras = new FacebookExtras()
-                                .setNativeBanner(true)
-                                .build();
+
                         AdRequest request = new AdRequest.Builder()
-                                .addNetworkExtrasBundle(FacebookAdapter.class, extras)
                                 .build();
                         AdLoader adLoader =
                                 builder2
@@ -3343,11 +3294,8 @@ public class AliendroidNative {
                         builder2.withNativeAdOptions(adOptions);
 
 
-                        Bundle extras = new FacebookExtras()
-                                .setNativeBanner(true)
-                                .build();
+
                         AdRequest request = new AdRequest.Builder()
-                                .addNetworkExtrasBundle(FacebookAdapter.class, extras)
                                 .build();
                         AdLoader adLoader =
                                 builder2

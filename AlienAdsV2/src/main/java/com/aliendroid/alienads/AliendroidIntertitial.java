@@ -46,8 +46,6 @@ import com.applovin.sdk.AppLovinAdSize;
 import com.applovin.sdk.AppLovinSdk;
 import com.facebook.ads.AdError;
 import com.facebook.ads.InterstitialAdListener;
-import com.google.ads.mediation.facebook.FacebookAdapter;
-import com.google.ads.mediation.facebook.FacebookExtras;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.FullScreenContentCallback;
 import com.google.android.gms.ads.LoadAdError;
@@ -111,12 +109,8 @@ public class AliendroidIntertitial {
 
     public static void LoadIntertitialAdmob(Activity activity, String selectAdsBackup, String idIntertitial, String idIntertitialBackup, String Hpk1,
                                             String Hpk2, String Hpk3, String Hpk4, String Hpk5) {
-        Bundle extras = new FacebookExtras()
-                .setNativeBanner(true)
-                .build();
         AdRequest request = new AdRequest.Builder().addKeyword(Hpk1).addKeyword(Hpk2)
                 .addKeyword(Hpk3).addKeyword(Hpk4).addKeyword(Hpk5)
-                .addNetworkExtrasBundle(FacebookAdapter.class, extras)
                 .build();
 
         InterstitialAd.load(activity,idIntertitial, request,
@@ -435,11 +429,7 @@ public class AliendroidIntertitial {
                 interstitialAdlovin = AppLovinInterstitialAd.create(AppLovinSdk.getInstance(activity), activity);
                 break;
             case "ADMOB":
-                Bundle extras = new FacebookExtras()
-                        .setNativeBanner(true)
-                        .build();
                 AdRequest request = new AdRequest.Builder()
-                        .addNetworkExtrasBundle(FacebookAdapter.class, extras)
                         .build();
                 InterstitialAd.load(activity, idIntertitialBackup, request,
                         new InterstitialAdLoadCallback() {
@@ -559,11 +549,7 @@ public class AliendroidIntertitial {
                 IronSource.loadInterstitial();
                 break;
             case "ADMOB":
-                Bundle extras = new FacebookExtras()
-                        .setNativeBanner(true)
-                        .build();
                 AdRequest request = new AdRequest.Builder()
-                        .addNetworkExtrasBundle(FacebookAdapter.class, extras)
                         .build();
                 InterstitialAd.load(activity, idIntertitialBackup, request,
                         new InterstitialAdLoadCallback() {
@@ -687,11 +673,7 @@ public class AliendroidIntertitial {
                 IronSource.loadInterstitial();
                 break;
             case "ADMOB":
-                Bundle extras = new FacebookExtras()
-                        .setNativeBanner(true)
-                        .build();
                 AdRequest request = new AdRequest.Builder()
-                        .addNetworkExtrasBundle(FacebookAdapter.class, extras)
                         .build();
                 InterstitialAd.load(activity, idIntertitialBackup, request,
                         new InterstitialAdLoadCallback() {
@@ -818,11 +800,7 @@ public class AliendroidIntertitial {
             case "ADMOB":
 
 
-                Bundle extras = new FacebookExtras()
-                        .setNativeBanner(true)
-                        .build();
                 AdRequest request = new AdRequest.Builder()
-                        .addNetworkExtrasBundle(FacebookAdapter.class, extras)
                         .build();
                 InterstitialAd.load(activity, idIntertitialBackup, request,
                         new InterstitialAdLoadCallback() {
@@ -994,11 +972,7 @@ public class AliendroidIntertitial {
                 interstitialAd.loadAd();
                 break;
             case "ADMOB":
-                Bundle extras = new FacebookExtras()
-                        .setNativeBanner(true)
-                        .build();
                 AdRequest request = new AdRequest.Builder()
-                        .addNetworkExtrasBundle(FacebookAdapter.class, extras)
                         .build();
                 InterstitialAd.load(activity, idIntertitialBackup, request,
                         new InterstitialAdLoadCallback() {
@@ -1136,11 +1110,7 @@ public class AliendroidIntertitial {
             case "ADMOB":
 
 
-                Bundle extras = new FacebookExtras()
-                        .setNativeBanner(true)
-                        .build();
                 AdRequest request = new AdRequest.Builder()
-                        .addNetworkExtrasBundle(FacebookAdapter.class, extras)
                         .build();
                 InterstitialAd.load(activity, idIntertitialBackup, request,
                         new InterstitialAdLoadCallback() {
@@ -1283,11 +1253,7 @@ public class AliendroidIntertitial {
                 interstitialAd.loadAd();
                 break;
             case "ADMOB":
-                Bundle extras = new FacebookExtras()
-                        .setNativeBanner(true)
-                        .build();
                 AdRequest request = new AdRequest.Builder()
-                        .addNetworkExtrasBundle(FacebookAdapter.class, extras)
                         .build();
                 InterstitialAd.load(activity, idIntertitialBackup, request,
                         new InterstitialAdLoadCallback() {
@@ -1420,11 +1386,7 @@ public class AliendroidIntertitial {
             case "ADMOB":
 
 
-                Bundle extras = new FacebookExtras()
-                        .setNativeBanner(true)
-                        .build();
                 AdRequest request = new AdRequest.Builder()
-                        .addNetworkExtrasBundle(FacebookAdapter.class, extras)
                         .build();
                 InterstitialAd.load(activity, idIntertitialBackup, request,
                         new InterstitialAdLoadCallback() {

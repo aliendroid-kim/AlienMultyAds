@@ -29,7 +29,8 @@ public class BannerActivity extends AppCompatActivity {
         /*
         Small Banner 320x50
          */
-        AliendroidBanner.SmallBannerApplovinMax(this, laySmallAds,Select_Backup_Ads,MainBanner,BackupBanner);
+        AliendroidBanner.SmallBannerAdmob(this, laySmallAds,Select_Backup_Ads,MainBanner,BackupBanner,
+        "","","","","");
         AliendroidBanner.onLoadBannerAdmob = new OnLoadBannerAdmob() {
             @Override
             public void onAdLoaded() {
