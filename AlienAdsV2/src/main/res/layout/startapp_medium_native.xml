@@ -71,7 +71,6 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
                             android:lines="1"
-                            android:text="Reskin Aliendroid"
                             android:textColor="@color/native_title"
                             android:textSize="10sp" />
 
@@ -82,7 +81,6 @@
                             android:layout_marginEnd="20dp"
                             android:layout_marginRight="5dp"
                             android:layout_marginBottom="5dp"
-                            android:text="1st - The Big Marketplace Source Code for Monetize Mobile Application on Indonesia"
                             android:textColor="@color/native_description"
                             android:textSize="10sp" />
 

@@ -33,7 +33,7 @@ public class ApplovinOpenAds
     public void AppOpenManager(Context context)
     {
         this.context = context;
-        appOpenAd = new MaxAppOpenAd( "344b15a154e06223", context);
+        appOpenAd = new MaxAppOpenAd( "ca-app-pub-3940256099942544/3419835294", context);
         appOpenAd.setListener( this );
         appOpenAd.loadAd();
     }
@@ -44,7 +44,7 @@ public class ApplovinOpenAds
 
         if ( appOpenAd.isReady() )
         {
-            appOpenAd.showAd( "344b15a154e06223" );
+            appOpenAd.showAd( "ca-app-pub-3940256099942544/3419835294" );
         }
         else
         {

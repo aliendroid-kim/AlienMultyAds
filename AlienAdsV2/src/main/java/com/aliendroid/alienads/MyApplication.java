@@ -18,8 +18,8 @@ public class MyApplication extends Application {
     private static AlienOpenAds alienOpenAds;
     private static InitializeAlienAds sdkads;
     private static AlienNotif notif;
-    //private ApplovinOpenAds appOpenManager;
-    //Uranus
+    private ApplovinOpenAds appOpenManager;
+    //Neptunus
     @Override
     public void onCreate() {
         super.onCreate();
@@ -35,7 +35,7 @@ public class MyApplication extends Application {
                     }
                 });
 
-        /*
+
         AppLovinSdk.initializeSdk( this, new AppLovinSdk.SdkInitializationListener()
         {
             @Override
@@ -45,7 +45,7 @@ public class MyApplication extends Application {
             }
         } );
 
-         */
+
         new FlurryAgent.Builder()
                 .withDataSaleOptOut(false)
                 .withCaptureUncaughtExceptions(true)

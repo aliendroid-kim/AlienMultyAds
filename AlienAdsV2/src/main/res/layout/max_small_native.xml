@@ -86,8 +86,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/native_description"
-                    android:textSize="10sp"
-                    tools:text="Title" />
+                    android:textSize="10sp" />
 
                 <TextView
                     android:id="@+id/body_text_view"
@@ -95,8 +94,7 @@
                     android:layout_height="wrap_content"
                     android:lines="2"
                     android:textColor="@color/native_description"
-                    android:textSize="10sp"
-                    tools:text="Body" />
+                    android:textSize="10sp" />
 
             </LinearLayout>
 

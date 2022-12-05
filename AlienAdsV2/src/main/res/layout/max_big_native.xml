@@ -85,8 +85,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/native_title"
-                    android:textSize="12sp"
-                    tools:text="Reskin Aliendroid" />
+                    android:textSize="12sp" />
 
                 <TextView
                     android:id="@+id/body_text_view"
@@ -94,8 +93,7 @@
                     android:layout_height="wrap_content"
                     android:lines="2"
                     android:textColor="@color/native_description"
-                    android:textSize="12sp"
-                    tools:text="1st - The Big Marketplace Source Code for Monetize Mobile Application on Indonesia" />
+                    android:textSize="12sp" />
 
             </LinearLayout>
 

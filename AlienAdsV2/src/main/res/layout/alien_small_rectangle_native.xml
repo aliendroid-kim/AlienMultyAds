@@ -46,7 +46,6 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:gravity="center"
-                android:text="TextView"
                 android:textColor="@color/native_title" />
 
             <RelativeLayout
@@ -64,7 +63,6 @@
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
                     android:gravity="center"
-                    android:text="TextView"
                     android:textColor="@color/native_description" />
             </RelativeLayout>
 

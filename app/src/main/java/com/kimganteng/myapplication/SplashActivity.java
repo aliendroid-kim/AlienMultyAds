@@ -46,7 +46,7 @@ public class SplashActivity extends AppCompatActivity {
         AliendroidInitialize.SelectAdsApplovinMax(this,Select_Backup_Ads,Backup_Initialize);
         if (SettingsAlien.Select_Open_Ads.equals("1")){
             AlienNotif.LoadOneSignal("535dc774-9fe3-44ae-839e-09e4133aebe9");
-         AlienOpenAds.LoadOpenAds("ca-app-pub-3940256099942544/3419835294x",true);
+         AlienOpenAds.LoadOpenAds("ca-app-pub-3940256099942544/3419835294",true);
          AlienOpenAds.AppOpenAdManager.showAdIfAvailable(SplashActivity.this, new AlienOpenAds.OnShowAdCompleteListener() {
              @Override
              public void onShowAdComplete() {
