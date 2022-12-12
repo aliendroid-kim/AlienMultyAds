@@ -35,19 +35,6 @@ public class MyApplication extends Application {
                     }
                 });
 
-
-        /*AppLovinSdk.initializeSdk( this, new AppLovinSdk.SdkInitializationListener()
-        {
-            @Override
-            public void onSdkInitialized(final AppLovinSdkConfiguration configuration)
-            {
-                appOpenManager = new ApplovinOpenAds( MyApplication.this );
-            }
-        } );
-
-         */
-
-
         new FlurryAgent.Builder()
                 .withDataSaleOptOut(false)
                 .withCaptureUncaughtExceptions(true)
