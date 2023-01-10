@@ -107,7 +107,7 @@ public class AlienGDPR {
                 AppLovinPrivacySettings.setHasUserConsent( true, activity );
 
                  */
-                AppLovinPrivacySettings.setIsAgeRestrictedUser( childDirected, activity );
+                //AppLovinPrivacySettings.setIsAgeRestrictedUser( childDirected, activity );
                 break;
             case "APPLOVIN-D":
                 AppLovinPrivacySettings.setIsAgeRestrictedUser( childDirected, activity );

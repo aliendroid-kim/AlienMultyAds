@@ -14,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -27,9 +28,15 @@ import com.aliendroid.alienads.interfaces.interstitial.admob.OnFullScreenContent
 import com.aliendroid.alienads.interfaces.interstitial.load.OnLoadInterstitialAdmob;
 import com.aliendroid.alienads.interfaces.interstitial.show.OnShowInterstitialAdmob;
 import com.aliendroid.alienads.interfaces.rewards.load.OnLoadRewardsAdmob;
+import com.aliendroid.alienads.interfaces.rewards.load.OnLoadRewardsApplovinMax;
 import com.aliendroid.sdkads.config.AppPromote;
 import com.aliendroid.sdkads.config.InitializeAlienAds;
 import com.aliendroid.sdkads.config.QWERTY;
+import com.google.android.gms.ads.identifier.AdvertisingIdClient;
+import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
+import com.google.android.gms.common.GooglePlayServicesRepairableException;
+
+import java.io.IOException;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -40,54 +47,56 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         AppPromote.initializeAppPromote(this);
         InitializeAlienAds.LoadSDK();
-        /*
-        if (SettingsAlien.Select_Open_Ads.equals("2")) {
-
-            AlienViewAds.OpenApp(MainActivity.this,AppIDViewAds);
-        }
-         */
-        AliendroidInitialize.SelectAdsApplovinMax(this,Select_Backup_Ads,Backup_Initialize);
-        AlienGDPR.loadGdpr(this,Select_Main_Ads,true);
-        AliendroidIntertitial.LoadIntertitialApplovinMax(MainActivity.this,Select_Backup_Ads,MainIntertitial,BackupIntertitial);
-
-        AliendroidIntertitial.onShowInterstitialAdmob = new OnShowInterstitialAdmob() {
+        AsyncTask<Void, Void, String> task = new AsyncTask<Void, Void, String>() {
             @Override
-            public void onAdSuccess() {
-                AliendroidIntertitial.onFullScreenContentCallbackAdmob = new OnFullScreenContentCallbackAdmob() {
-                    @Override
-                    public void onAdClicked() {
+            protected String doInBackground(Void... params) {
+                AdvertisingIdClient.Info idInfo = null;
+                try {
+                    idInfo = AdvertisingIdClient.getAdvertisingIdInfo(MainActivity.this);
+                } catch (GooglePlayServicesNotAvailableException e) {
+                    e.printStackTrace();
+                } catch (GooglePlayServicesRepairableException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                String advertId = null;
+                try{
+                    advertId = idInfo.getId();
+                }catch (NullPointerException e){
+                    e.printStackTrace();
+                }
 
-                    }
-
-                    @Override
-                    public void onAdDismissedFullScreenContent() {
-                        Intent open = new Intent(MainActivity.this,BannerActivity.class);
-                        startActivity(open);
-                    }
-
-                    @Override
-                    public void onAdImpression() {
-
-                    }
-
-                    @Override
-                    public void onAdShowedFullScreenContent() {
-
-                    }
-
-                    @Override
-                    public void onAdFailedToShowFullScreenContent() {
-
-                    }
-                };
+                return advertId;
             }
 
             @Override
-            public void onAdFailedShow() {
-                Intent open = new Intent(MainActivity.this,BannerActivity.class);
-                startActivity(open);
+            protected void onPostExecute(String advertId) {
+                Log.e("ID IKLAN",advertId);
             }
+
         };
+        task.execute();
+        AlienGDPR.loadGdpr(this,Select_Main_Ads,true);
+
+        if (Select_Main_Ads.equals("ADMOB")){
+            AliendroidInitialize.SelectAdsAdmob(this,Select_Backup_Ads,Backup_Initialize);
+        } else if (Select_Main_Ads.equals("APPLOVIN-M")){
+            AliendroidInitialize.SelectAdsApplovinMax(this,Select_Backup_Ads,Backup_Initialize);
+        }else if (Select_Main_Ads.equals("APPLOVIN-D")){
+            AliendroidInitialize.SelectAdsApplovinDis(this,Select_Backup_Ads,Backup_Initialize);
+        }
+
+        if (Select_Main_Ads.equals("ADMOB")) {
+            AliendroidIntertitial.LoadIntertitialAdmob(MainActivity.this,Select_Backup_Ads,MainIntertitial,BackupIntertitial,""
+            ,"","","","");
+
+        } else if (Select_Main_Ads.equals("APPLOVIN-M")){
+            AliendroidIntertitial.LoadIntertitialApplovinMax(MainActivity.this,Select_Backup_Ads,MainIntertitial,BackupIntertitial);
+        }else if (Select_Main_Ads.equals("APPLOVIN-D")){
+            AliendroidIntertitial.LoadIntertitialApplovinDis(MainActivity.this,Select_Backup_Ads,MainIntertitial,BackupIntertitial);
+        }
+
 
         AliendroidReward.LoadRewardApplovinMax(this,Select_Backup_Ads,MainRewards,BackupReward);
         AliendroidReward.onLoadRewardsAdmob = new OnLoadRewardsAdmob() {
@@ -130,12 +139,23 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void INTERSTITIAL(View view){
-        AliendroidIntertitial.ShowIntertitialAdmob(MainActivity.this,Select_Backup_Ads,MainIntertitial,BackupIntertitial,0,"",
-        "","","","");
+        if (Select_Main_Ads.equals("ADMOB")){
+            AliendroidIntertitial.ShowIntertitialAdmob(MainActivity.this,Select_Backup_Ads,MainIntertitial,BackupIntertitial,0,"",
+                    "","","","");
+        } else if (Select_Main_Ads.equals("APPLOVIN-M")){
+            AliendroidIntertitial.ShowIntertitialApplovinMax(MainActivity.this,Select_Backup_Ads,MainIntertitial,BackupIntertitial,0
+                  );
+        }else if (Select_Main_Ads.equals("APPLOVIN-D")){
+            AliendroidIntertitial.ShowIntertitialApplovinDis(MainActivity.this,Select_Backup_Ads,MainIntertitial,BackupIntertitial,0
+            );
+        }
+
     }
 
     public void REWARD(View view){
         AliendroidReward.ShowRewardAdmob(MainActivity.this,Select_Backup_Ads,MainRewards,BackupReward);
+
+
     }
 
     public void onBackPressed(){

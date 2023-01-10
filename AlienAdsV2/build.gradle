@@ -36,23 +36,23 @@ dependencies {
     //Main Sdk Ads
     implementation 'com.google.android.gms:play-services-ads:21.4.0'
     implementation 'com.facebook.android:audience-network-sdk:6.12.0'
-    implementation 'com.applovin:applovin-sdk:11.6.0'
+    implementation 'com.applovin:applovin-sdk:11.6.1'
     implementation 'com.ironsource.sdk:mediationsdk:7.2.6'
     implementation 'com.startapp:inapp-sdk:4.10.2'
 
     //Applovin
-    implementation 'com.applovin.mediation:facebook-adapter:6.12.0.0'
-    implementation 'com.applovin.mediation:google-adapter:21.2.0.0'
-    implementation 'com.applovin.mediation:ironsource-adapter:7.2.4.1.0'
+    implementation 'com.applovin.mediation:facebook-adapter:6.12.0.2'
+    implementation 'com.applovin.mediation:google-adapter:21.4.0.1'
+    implementation 'com.applovin.mediation:ironsource-adapter:7.2.6.0.1'
 
     //Iron Source
-    implementation 'com.ironsource.adapters:admobadapter:4.3.30'
+    implementation 'com.ironsource.adapters:admobadapter:4.3.32'
     implementation 'com.ironsource.adapters:applovinadapter:4.3.33'
     implementation 'com.ironsource.adapters:facebookadapter:4.3.37'
 
     //Admob
     implementation 'com.google.ads.mediation:facebook:6.12.0.0'
-    implementation 'com.google.ads.mediation:applovin:11.5.5.0'
+    implementation 'com.google.ads.mediation:applovin:11.6.1.0'
     implementation 'com.google.ads.mediation:ironsource:7.2.6.0'
 
     implementation 'com.google.android.ump:user-messaging-platform:2.0.0'

@@ -8,6 +8,7 @@ import com.aliendroid.sdkads.config.AppPromote;
 import com.aliendroid.sdkads.config.InitializeAlienAds;
 import com.applovin.sdk.AppLovinMediationProvider;
 import com.applovin.sdk.AppLovinSdk;
+import com.applovin.sdk.AppLovinSdkConfiguration;
 import com.facebook.ads.AdSettings;
 import com.facebook.ads.AudienceNetworkAds;
 import com.google.android.gms.ads.MobileAds;
@@ -41,13 +42,14 @@ public class AliendroidInitialize {
         });
         switch (selectAdsBackup) {
             case "APPLOVIN-M":
-                AdSettings.setDataProcessingOptions(new String[]{});
-                AppLovinSdk.getInstance(activity).setMediationProvider(AppLovinMediationProvider.MAX);
-                AppLovinSdk.getInstance(activity).initializeSdk(config -> {
-
-                });
-                AppLovinSdk sdk = AppLovinSdk.getInstance(activity);
-                sdk.getSettings().setMuted(!sdk.getSettings().isMuted());
+                AppLovinSdk.getInstance( activity ).setMediationProvider( "max" );
+                AppLovinSdk.initializeSdk( activity, new AppLovinSdk.SdkInitializationListener() {
+                    @Override
+                    public void onSdkInitialized(final AppLovinSdkConfiguration configuration)
+                    {
+                        // AppLovin SDK is initialized, start loading ads
+                    }
+                } );
                 break;
             case "MOPUB":
                 break;
@@ -110,13 +112,14 @@ public class AliendroidInitialize {
         });
         switch (selectAdsBackup) {
             case "APPLOVIN-M":
-                AdSettings.setDataProcessingOptions(new String[]{});
-                AppLovinSdk.getInstance(activity).setMediationProvider(AppLovinMediationProvider.MAX);
-                AppLovinSdk.getInstance(activity).initializeSdk(config -> {
-
-                });
-                AppLovinSdk sdk = AppLovinSdk.getInstance(activity);
-                sdk.getSettings().setMuted(!sdk.getSettings().isMuted());
+                AppLovinSdk.getInstance( activity ).setMediationProvider( "max" );
+                AppLovinSdk.initializeSdk( activity, new AppLovinSdk.SdkInitializationListener() {
+                    @Override
+                    public void onSdkInitialized(final AppLovinSdkConfiguration configuration)
+                    {
+                        // AppLovin SDK is initialized, start loading ads
+                    }
+                } );
                 break;
             case "MOPUB":
 
@@ -166,13 +169,14 @@ public class AliendroidInitialize {
         AppLovinSdk.initializeSdk(activity);
         switch (selectAdsBackup) {
             case "APPLOVIN-M":
-                AdSettings.setDataProcessingOptions(new String[]{});
-                AppLovinSdk.getInstance(activity).setMediationProvider(AppLovinMediationProvider.MAX);
-                AppLovinSdk.getInstance(activity).initializeSdk(config -> {
-
-                });
-                AppLovinSdk sdk = AppLovinSdk.getInstance(activity);
-                sdk.getSettings().setMuted(!sdk.getSettings().isMuted());
+                AppLovinSdk.getInstance( activity ).setMediationProvider( "max" );
+                AppLovinSdk.initializeSdk( activity, new AppLovinSdk.SdkInitializationListener() {
+                    @Override
+                    public void onSdkInitialized(final AppLovinSdkConfiguration configuration)
+                    {
+                        // AppLovin SDK is initialized, start loading ads
+                    }
+                } );
                 break;
             case "MOPUB":
                 break;
@@ -230,10 +234,14 @@ public class AliendroidInitialize {
     }
 
     public static void SelectAdsApplovinMax(Activity activity, String selectAdsBackup, String idInitialize) {
-        AdSettings.setDataProcessingOptions(new String[]{});
-        AppLovinSdk.getInstance(activity).setMediationProvider(AppLovinMediationProvider.MAX);
-        AppLovinSdk.getInstance(activity).initializeSdk(config -> {
-        });
+        AppLovinSdk.getInstance( activity ).setMediationProvider( "max" );
+        AppLovinSdk.initializeSdk( activity, new AppLovinSdk.SdkInitializationListener() {
+            @Override
+            public void onSdkInitialized(final AppLovinSdkConfiguration configuration)
+            {
+                // AppLovin SDK is initialized, start loading ads
+            }
+        } );
         switch (selectAdsBackup) {
             case "APPLOVIN-D":
                 AppLovinSdk.initializeSdk(activity);
@@ -309,13 +317,14 @@ public class AliendroidInitialize {
                 AppLovinSdk.initializeSdk(activity);
                 break;
             case "APPLOVIN-M":
-                AdSettings.setDataProcessingOptions(new String[]{});
-                AppLovinSdk.getInstance(activity).setMediationProvider(AppLovinMediationProvider.MAX);
-                AppLovinSdk.getInstance(activity).initializeSdk(config -> {
-
-                });
-                AppLovinSdk sdk = AppLovinSdk.getInstance(activity);
-                sdk.getSettings().setMuted(!sdk.getSettings().isMuted());
+                AppLovinSdk.getInstance( activity ).setMediationProvider( "max" );
+                AppLovinSdk.initializeSdk( activity, new AppLovinSdk.SdkInitializationListener() {
+                    @Override
+                    public void onSdkInitialized(final AppLovinSdkConfiguration configuration)
+                    {
+                        // AppLovin SDK is initialized, start loading ads
+                    }
+                } );
                 break;
             case "IRON":
                 IronSource.init(activity, idInitializeBackupAds, IronSource.AD_UNIT.OFFERWALL, IronSource.AD_UNIT.INTERSTITIAL, IronSource.AD_UNIT.REWARDED_VIDEO, IronSource.AD_UNIT.BANNER);
@@ -371,13 +380,14 @@ public class AliendroidInitialize {
                 AppLovinSdk.initializeSdk(activity);
                 break;
             case "APPLOVIN-M":
-                AdSettings.setDataProcessingOptions(new String[]{});
-                AppLovinSdk.getInstance(activity).setMediationProvider(AppLovinMediationProvider.MAX);
-                AppLovinSdk.getInstance(activity).initializeSdk(config -> {
-
-                });
-                AppLovinSdk sdk = AppLovinSdk.getInstance(activity);
-                sdk.getSettings().setMuted(!sdk.getSettings().isMuted());
+                AppLovinSdk.getInstance( activity ).setMediationProvider( "max" );
+                AppLovinSdk.initializeSdk( activity, new AppLovinSdk.SdkInitializationListener() {
+                    @Override
+                    public void onSdkInitialized(final AppLovinSdkConfiguration configuration)
+                    {
+                        // AppLovin SDK is initialized, start loading ads
+                    }
+                } );
                 break;
             case "STARTAPP":
                 StartAppSDK.init(activity, idInitializeBackupAds, true);
@@ -451,13 +461,14 @@ public class AliendroidInitialize {
                 AppLovinSdk.initializeSdk(activity);
                 break;
             case "APPLOVIN-M":
-                AdSettings.setDataProcessingOptions(new String[]{});
-                AppLovinSdk.getInstance(activity).setMediationProvider(AppLovinMediationProvider.MAX);
-                AppLovinSdk.getInstance(activity).initializeSdk(config -> {
-
-                });
-                AppLovinSdk sdk = AppLovinSdk.getInstance(activity);
-                sdk.getSettings().setMuted(!sdk.getSettings().isMuted());
+                AppLovinSdk.getInstance( activity ).setMediationProvider( "max" );
+                AppLovinSdk.initializeSdk( activity, new AppLovinSdk.SdkInitializationListener() {
+                    @Override
+                    public void onSdkInitialized(final AppLovinSdkConfiguration configuration)
+                    {
+                        // AppLovin SDK is initialized, start loading ads
+                    }
+                } );
                 break;
             case "STARTAPP":
                 StartAppSDK.init(activity, idInitializeBackupAds, true);
@@ -508,13 +519,14 @@ public class AliendroidInitialize {
                 AppLovinSdk.initializeSdk(activity);
                 break;
             case "APPLOVIN-M":
-                AdSettings.setDataProcessingOptions(new String[]{});
-                AppLovinSdk.getInstance(activity).setMediationProvider(AppLovinMediationProvider.MAX);
-                AppLovinSdk.getInstance(activity).initializeSdk(config -> {
-
-                });
-                AppLovinSdk sdk = AppLovinSdk.getInstance(activity);
-                sdk.getSettings().setMuted(!sdk.getSettings().isMuted());
+                AppLovinSdk.getInstance( activity ).setMediationProvider( "max" );
+                AppLovinSdk.initializeSdk( activity, new AppLovinSdk.SdkInitializationListener() {
+                    @Override
+                    public void onSdkInitialized(final AppLovinSdkConfiguration configuration)
+                    {
+                        // AppLovin SDK is initialized, start loading ads
+                    }
+                } );
                 break;
             case "STARTAPP":
                 StartAppSDK.init(activity, idInitializeBackupAds, true);
@@ -575,13 +587,14 @@ public class AliendroidInitialize {
                 AppLovinSdk.initializeSdk(activity);
                 break;
             case "APPLOVIN-M":
-                AdSettings.setDataProcessingOptions(new String[]{});
-                AppLovinSdk.getInstance(activity).setMediationProvider(AppLovinMediationProvider.MAX);
-                AppLovinSdk.getInstance(activity).initializeSdk(config -> {
-
-                });
-                AppLovinSdk sdk = AppLovinSdk.getInstance(activity);
-                sdk.getSettings().setMuted(!sdk.getSettings().isMuted());
+                AppLovinSdk.getInstance( activity ).setMediationProvider( "max" );
+                AppLovinSdk.initializeSdk( activity, new AppLovinSdk.SdkInitializationListener() {
+                    @Override
+                    public void onSdkInitialized(final AppLovinSdkConfiguration configuration)
+                    {
+                        // AppLovin SDK is initialized, start loading ads
+                    }
+                } );
                 break;
             case "STARTAPP":
                 StartAppSDK.init(activity, idInitializeBackupAds, true);

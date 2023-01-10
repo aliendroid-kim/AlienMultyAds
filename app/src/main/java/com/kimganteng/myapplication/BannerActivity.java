@@ -26,70 +26,24 @@ public class BannerActivity extends AppCompatActivity {
         RelativeLayout laySmallAds = findViewById(R.id.lay320x50);
         RelativeLayout layMediumAds = findViewById(R.id.lay300x250);
 
-        /*
-        Small Banner 320x50
-         */
-        AliendroidBanner.SmallBannerAdmob(this, laySmallAds,Select_Backup_Ads,MainBanner,BackupBanner,
-        "","","","","");
-        AliendroidBanner.onLoadBannerAdmob = new OnLoadBannerAdmob() {
-            @Override
-            public void onAdLoaded() {
-                Toast.makeText(BannerActivity.this,"Iklan Terload",
-                        Toast.LENGTH_SHORT).show();
-            }
+        switch (SettingsAlien.Select_Main_Ads) {
+            case "ADMOB":
+                AliendroidBanner.SmallBannerAdmob(this, laySmallAds, Select_Backup_Ads, MainBanner, BackupBanner,
+                        "", "", "", "", "");
+                AliendroidMediumBanner.MediumBannerAdmob(this, layMediumAds, Select_Backup_Ads, MainBanner, BackupBanner,
+                        "", "", "", "", "");
+                break;
+            case "APPLOVIN-M":
+                AliendroidBanner.SmallBannerApplovinMax(this, laySmallAds, Select_Backup_Ads, MainBanner, BackupBanner);
+                AliendroidMediumBanner.MediumBannerApplovinMax(this, layMediumAds, Select_Backup_Ads, MainBanner, BackupBanner);
+                break;
+            case "APPLOVIN-D":
+                AliendroidBanner.SmallBannerApplovinDis(this, laySmallAds, Select_Backup_Ads, MainBanner, BackupBanner);
+                AliendroidMediumBanner.MediumBannerApplovinDis(this, layMediumAds, Select_Backup_Ads, MainBanner, BackupBanner);
+                break;
+        }
 
-            @Override
-            public void onAdFailedToLoad(String error) {
-                Toast.makeText(BannerActivity.this,"Tidak Ada Iklan",
-                        Toast.LENGTH_SHORT).show();
-            }
 
-            @Override
-            public void onAdOpened() {
-
-            }
-
-            @Override
-            public void onAdClicked() {
-
-            }
-
-            @Override
-            public void onAdClosed() {
-
-            }
-        };
-
-        /*
-        Medium Banner 300x250
-         */
-        AliendroidMediumBanner.MediumBannerApplovinMax(this, layMediumAds,Select_Backup_Ads,MainBanner,BackupBanner);
-        AliendroidMediumBanner.onLoadBannerAdmob = new OnLoadBannerAdmob() {
-            @Override
-            public void onAdLoaded() {
-
-            }
-
-            @Override
-            public void onAdFailedToLoad(String error) {
-
-            }
-
-            @Override
-            public void onAdOpened() {
-
-            }
-
-            @Override
-            public void onAdClicked() {
-
-            }
-
-            @Override
-            public void onAdClosed() {
-
-            }
-        };
 
     }
 }
