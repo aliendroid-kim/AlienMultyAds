@@ -18,7 +18,9 @@ public class MyApplication extends Application {
     private static AlienOpenAds alienOpenAds;
     private static InitializeAlienAds sdkads;
     private static AlienNotif notif;
-    private ApplovinOpenAds appOpenManager;
+
+
+
     //Neptunus
     @Override
     public void onCreate() {
@@ -31,7 +33,6 @@ public class MyApplication extends Application {
                     public void onInitializationComplete(InitializationStatus initializationStatus) {
                     }
                 });
-
         new FlurryAgent.Builder()
                 .withDataSaleOptOut(false)
                 .withCaptureUncaughtExceptions(true)
