@@ -19,8 +19,6 @@ public class MyApplication extends Application {
     private static InitializeAlienAds sdkads;
     private static AlienNotif notif;
 
-
-
     //Neptunus
     @Override
     public void onCreate() {
