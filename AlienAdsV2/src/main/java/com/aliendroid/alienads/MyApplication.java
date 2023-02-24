@@ -42,7 +42,7 @@ public class MyApplication extends Application {
 
         sdkads = new InitializeAlienAds(this);
         alienOpenAds = new AlienOpenAds(this);
-        applovinOpenAds = new ApplovinOpenAds(this);
+        //applovinOpenAds = new ApplovinOpenAds(this);
         notif = new AlienNotif(this);
 
     }

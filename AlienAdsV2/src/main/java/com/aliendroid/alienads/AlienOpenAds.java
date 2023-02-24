@@ -17,6 +17,10 @@ import androidx.lifecycle.ProcessLifecycleOwner;
 
 import com.aliendroid.alienads.interfaces.open.OnLoadOpenAppAdmob;
 import com.aliendroid.alienads.interfaces.open.OnShowOpenAppAdmob;
+import com.applovin.mediation.MaxAd;
+import com.applovin.mediation.MaxAdListener;
+import com.applovin.mediation.MaxError;
+import com.applovin.mediation.ads.MaxAppOpenAd;
 import com.google.android.gms.ads.AdError;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.FullScreenContentCallback;
@@ -26,11 +30,12 @@ import com.google.android.gms.ads.appopen.AppOpenAd;
 import java.util.Date;
 
 public class AlienOpenAds implements LifecycleObserver, Application.ActivityLifecycleCallbacks {
-    public static String IDOPEN ="";
+    public static String IDOPEN = "";
     public static MyApplication myApplication;
     public static AppOpenAdManager appOpenAdManager;
     public static Activity currentActivity;
     public static boolean LOADADS;
+    public static String SELECT_ADS = "";
 
     public AlienOpenAds(MyApplication myApplication) {
         AlienOpenAds.myApplication = myApplication;
@@ -38,14 +43,12 @@ public class AlienOpenAds implements LifecycleObserver, Application.ActivityLife
         ProcessLifecycleOwner.get().getLifecycle().addObserver(this);
     }
 
-    private static AdRequest getAdRequest() {
-        return new AdRequest.Builder().build();
-    }
 
-    public static void LoadOpenAds(String idOpenAds, boolean loadads) {
-        LOADADS=loadads;
+    public static void LoadOpenAds(String idOpenAds, boolean loadads, String selectADS) {
+        LOADADS = loadads;
+        SELECT_ADS = selectADS;
         try {
-            if (LOADADS){
+            if (LOADADS) {
                 IDOPEN = idOpenAds;
             } else {
                 IDOPEN = "";
@@ -56,207 +59,291 @@ public class AlienOpenAds implements LifecycleObserver, Application.ActivityLife
         }
 
     }
-    /** LifecycleObserver method that shows the app open ad when the app moves to foreground. */
+
     @OnLifecycleEvent(Lifecycle.Event.ON_START)
     protected void onMoveToForeground() {
         // Show the ad (if available) when the app moves to foreground.
         appOpenAdManager.showAdIfAvailable(currentActivity);
     }
 
-    /** ActivityLifecycleCallback methods. */
     @Override
-    public void onActivityCreated(@NonNull Activity activity, @Nullable Bundle savedInstanceState) {}
+    public void onActivityCreated(@NonNull Activity activity, @Nullable Bundle savedInstanceState) {
+    }
 
     @Override
     public void onActivityStarted(@NonNull Activity activity) {
-        // An ad activity is started when an ad is showing, which could be AdActivity class from Google
-        // SDK or another activity class implemented by a third party mediation partner. Updating the
-        // currentActivity only when an ad is not showing will ensure it is not an ad activity, but the
-        // one that shows the ad.
         if (!appOpenAdManager.isShowingAd) {
             currentActivity = activity;
         }
     }
 
     @Override
-    public void onActivityResumed(@NonNull Activity activity) {}
+    public void onActivityResumed(@NonNull Activity activity) {
+    }
 
     @Override
-    public void onActivityPaused(@NonNull Activity activity) {}
+    public void onActivityPaused(@NonNull Activity activity) {
+    }
 
     @Override
-    public void onActivityStopped(@NonNull Activity activity) {}
+    public void onActivityStopped(@NonNull Activity activity) {
+    }
 
     @Override
-    public void onActivitySaveInstanceState(@NonNull Activity activity, @NonNull Bundle outState) {}
+    public void onActivitySaveInstanceState(@NonNull Activity activity, @NonNull Bundle outState) {
+    }
 
     @Override
-    public void onActivityDestroyed(@NonNull Activity activity) {}
+    public void onActivityDestroyed(@NonNull Activity activity) {
+    }
 
 
-    /**
-     * Interface definition for a callback to be invoked when an app open ad is complete
-     * (i.e. dismissed or fails to show).
-     */
     public interface OnShowAdCompleteListener {
         void onShowAdComplete();
     }
 
-    /** Inner class that loads and shows app open ads. */
     public static class AppOpenAdManager {
         private static final String LOG_TAG = "AppOpenAdManager";
         public static AppOpenAd appOpenAd = null;
+        public static MaxAppOpenAd appOpenAdApplovin = null;
         private static boolean isLoadingAd = false;
         static boolean isShowingAd = false;
-
-        /** Keep track of the time an app open ad is loaded to ensure you don't show an expired ad. */
         private static long loadTime = 0;
 
-        /** Constructor. */
-        public AppOpenAdManager() {}
-
-        /**
-         * Load an ad.
-         *
-         * @param context the context of the activity that loads the ad
-         */
-        public static void loadAd(Context context) {
-            // Do not load ad if there is an unused ad or one is already loading.
-            if (isLoadingAd || isAdAvailable()) {
-                return;
-            }
-
-            isLoadingAd = true;
-            AdRequest request = new AdRequest.Builder().build();
-            AppOpenAd.load(
-                    context,
-                    IDOPEN,
-                    request,
-                    AppOpenAd.APP_OPEN_AD_ORIENTATION_PORTRAIT,
-                    new AppOpenAd.AppOpenAdLoadCallback() {
-                        /**
-                         * Called when an app open ad has loaded.
-                         *
-                         * @param ad the loaded app open ad.
-                         */
-                        @Override
-                        public void onAdLoaded(AppOpenAd ad) {
-                            appOpenAd = ad;
-                            isLoadingAd = false;
-                            loadTime = (new Date()).getTime();
-
-                            Log.d(LOG_TAG, "onAdLoaded.");
-
-                        }
-                        /**
-                         * Called when an app open ad has failed to load.
-                         *
-                         * @param loadAdError the error.
-                         */
-                        @Override
-                        public void onAdFailedToLoad(LoadAdError loadAdError) {
-                            isLoadingAd = false;
-                            Log.d(LOG_TAG, "onAdFailedToLoad: " + loadAdError.getMessage());
-
-                        }
-                    });
+        public AppOpenAdManager() {
         }
 
-        /** Check if ad was loaded more than n hours ago. */
+        public static void loadAd(Context context) {
+            if (SELECT_ADS.equals("ADMOB")) {
+                if (isLoadingAd || isAdAvailable()) {
+                    return;
+                }
+                isLoadingAd = true;
+                AdRequest request = new AdRequest.Builder().build();
+                AppOpenAd.load(context, IDOPEN, request,
+                        AppOpenAd.APP_OPEN_AD_ORIENTATION_PORTRAIT,
+                        new AppOpenAd.AppOpenAdLoadCallback() {
+                            @Override
+                            public void onAdLoaded(AppOpenAd ad) {
+                                appOpenAd = ad;
+                                isLoadingAd = false;
+                                loadTime = (new Date()).getTime();
+                                Log.d(LOG_TAG, "onAdLoaded.");
+
+                            }
+
+                            @Override
+                            public void onAdFailedToLoad(LoadAdError loadAdError) {
+                                isLoadingAd = false;
+                                Log.d(LOG_TAG, "onAdFailedToLoad: " + loadAdError.getMessage());
+
+                            }
+                        });
+            } else if (SELECT_ADS.equals("APPLOVIN-M")){
+                // Do not load ad if there is an unused ad or one is already loading.
+                if (isLoadingAd || isAdAvailable()) {
+                    return;
+                }
+
+                isLoadingAd = true;
+                appOpenAdApplovin = new MaxAppOpenAd(IDOPEN, context);
+                appOpenAdApplovin.loadAd();
+
+            } else {
+                if (isLoadingAd || isAdAvailable()) {
+                    return;
+                }
+                isLoadingAd = true;
+                AdRequest request = new AdRequest.Builder().build();
+                AppOpenAd.load(context, IDOPEN, request,
+                        AppOpenAd.APP_OPEN_AD_ORIENTATION_PORTRAIT,
+                        new AppOpenAd.AppOpenAdLoadCallback() {
+                            @Override
+                            public void onAdLoaded(AppOpenAd ad) {
+                                appOpenAd = ad;
+                                isLoadingAd = false;
+                                loadTime = (new Date()).getTime();
+                                Log.d(LOG_TAG, "onAdLoaded.");
+
+                            }
+
+                            @Override
+                            public void onAdFailedToLoad(LoadAdError loadAdError) {
+                                isLoadingAd = false;
+                                Log.d(LOG_TAG, "onAdFailedToLoad: " + loadAdError.getMessage());
+
+                            }
+                        });
+            }
+
+        }
+
         private static boolean wasLoadTimeLessThanNHoursAgo(long numHours) {
             long dateDifference = (new Date()).getTime() - loadTime;
             long numMilliSecondsPerHour = 3600000;
             return (dateDifference < (numMilliSecondsPerHour * numHours));
         }
 
-        /** Check if ad exists and can be shown. */
         private static boolean isAdAvailable() {
-            // Ad references in the app open beta will time out after four hours, but this time limit
-            // may change in future beta versions. For details, see:
-            // https://support.google.com/admob/answer/9341964?hl=en
-            return appOpenAd != null && wasLoadTimeLessThanNHoursAgo(4);
+            if (SELECT_ADS.equals("ADMOB")) {
+                return appOpenAd != null && wasLoadTimeLessThanNHoursAgo(4);
+            } else if (SELECT_ADS.equals("APPLOVIN-M")) {
+                return appOpenAdApplovin != null ;
+            }else {
+                return appOpenAd != null && wasLoadTimeLessThanNHoursAgo(4);
+            }
+
         }
 
-        /**
-         * Show the ad if one isn't already showing.
-         *
-         * @param activity the activity that shows the app open ad
-         */
-       public static void showAdIfAvailable(@NonNull final Activity activity) {
-            showAdIfAvailable(
-                    activity,
-                    new OnShowAdCompleteListener() {
-                        @Override
-                        public void onShowAdComplete() {
+        public static void showAdIfAvailable(@NonNull final Activity activity) {
+            showAdIfAvailable(activity, new OnShowAdCompleteListener() {
+                @Override
+                public void onShowAdComplete() {
 
-                        }
-                    });
+                }
+            });
         }
 
-        /**
-         * Show the ad if one isn't already showing.
-         *
-         * @param activity the activity that shows the app open ad
-         * @param onShowAdCompleteListener the listener to be notified when an app open ad is complete
-         */
         public static void showAdIfAvailable(
                 @NonNull final Activity activity,
                 @NonNull OnShowAdCompleteListener onShowAdCompleteListener) {
-            // If the app open ad is already showing, do not show the ad again.
-            if (isShowingAd) {
-                Log.d(LOG_TAG, "The app open ad is already showing.");
-                return;
+            if (SELECT_ADS.equals("ADMOB")){
+                if (isShowingAd) {
+                    return;
+                }
+
+                if (!isAdAvailable()) {
+                    onShowAdCompleteListener.onShowAdComplete();
+                    loadAd(activity);
+                    return;
+                }
+
+                appOpenAd.setFullScreenContentCallback(
+                        new FullScreenContentCallback() {
+                            @Override
+                            public void onAdDismissedFullScreenContent() {
+                                appOpenAd = null;
+                                isShowingAd = false;
+                                onShowAdCompleteListener.onShowAdComplete();
+                                loadAd(activity);
+                            }
+
+                            @Override
+                            public void onAdFailedToShowFullScreenContent(AdError adError) {
+                                appOpenAd = null;
+                                isShowingAd = false;
+                                onShowAdCompleteListener.onShowAdComplete();
+                                loadAd(activity);
+                            }
+                            @Override
+                            public void onAdShowedFullScreenContent() {
+                            }
+                        });
+
+                isShowingAd = true;
+                appOpenAd.show(activity);
+            } else if (SELECT_ADS.equals("APPLOVIN-M")){
+                if (isShowingAd) {
+                    return;
+                }
+
+                if (!isAdAvailable()) {
+                    Log.d(LOG_TAG, "The app open ad is not ready yet.");
+                    onShowAdCompleteListener.onShowAdComplete();
+                    loadAd(activity);
+                    return;
+                }
+
+                Log.d(LOG_TAG, "Will show ad.");
+                appOpenAdApplovin.setListener(new MaxAdListener() {
+                    @Override
+                    public void onAdLoaded(MaxAd ad) {
+                        isLoadingAd = true;
+                        Log.d(LOG_TAG, "onAdLoaded.");
+                    }
+
+                    @Override
+                    public void onAdDisplayed(MaxAd ad) {
+                        isLoadingAd = false;
+                        appOpenAdApplovin = null;
+                        isShowingAd = false;
+                        loadAd(activity);
+                    }
+
+                    @Override
+                    public void onAdHidden(MaxAd ad) {
+                        isShowingAd = false;
+                        onShowAdCompleteListener.onShowAdComplete();
+                        loadAd(activity);
+                        Log.d(LOG_TAG, "onAdDismissedFullScreenContent.");
+                    }
+
+                    @Override
+                    public void onAdClicked(MaxAd ad) {
+                        isLoadingAd = false;
+                        appOpenAdApplovin = null;
+                        isShowingAd = false;
+                        loadAd(activity);
+                    }
+
+                    @Override
+                    public void onAdLoadFailed(String adUnitId, MaxError error) {
+                        isLoadingAd = false;
+                        appOpenAdApplovin = null;
+                        isShowingAd = false;
+                        onShowAdCompleteListener.onShowAdComplete();
+                        loadAd(activity);
+                    }
+
+                    @Override
+                    public void onAdDisplayFailed(MaxAd ad, MaxError error) {
+                        isLoadingAd = false;
+                        appOpenAdApplovin = null;
+                        isShowingAd = false;
+                        onShowAdCompleteListener.onShowAdComplete();
+                        loadAd(activity);
+                    }
+                });
+
+                isShowingAd = true;
+                appOpenAdApplovin.showAd();
+            } else {
+                if (isShowingAd) {
+                    return;
+                }
+
+                if (!isAdAvailable()) {
+                    onShowAdCompleteListener.onShowAdComplete();
+                    loadAd(activity);
+                    return;
+                }
+
+                appOpenAd.setFullScreenContentCallback(
+                        new FullScreenContentCallback() {
+                            @Override
+                            public void onAdDismissedFullScreenContent() {
+                                appOpenAd = null;
+                                isShowingAd = false;
+                                onShowAdCompleteListener.onShowAdComplete();
+                                loadAd(activity);
+                            }
+
+                            @Override
+                            public void onAdFailedToShowFullScreenContent(AdError adError) {
+                                appOpenAd = null;
+                                isShowingAd = false;
+                                onShowAdCompleteListener.onShowAdComplete();
+                                loadAd(activity);
+                            }
+                            @Override
+                            public void onAdShowedFullScreenContent() {
+                            }
+                        });
+
+                isShowingAd = true;
+                appOpenAd.show(activity);
             }
 
-            // If the app open ad is not available yet, invoke the callback then load the ad.
-            if (!isAdAvailable()) {
-                Log.d(LOG_TAG, "The app open ad is not ready yet.");
-                onShowAdCompleteListener.onShowAdComplete();
-                loadAd(activity);
-                return;
-            }
-
-            Log.d(LOG_TAG, "Will show ad.");
-
-            appOpenAd.setFullScreenContentCallback(
-                    new FullScreenContentCallback() {
-                        /** Called when full screen content is dismissed. */
-                        @Override
-                        public void onAdDismissedFullScreenContent() {
-                            // Set the reference to null so isAdAvailable() returns false.
-                            appOpenAd = null;
-                            isShowingAd = false;
-
-                            Log.d(LOG_TAG, "onAdDismissedFullScreenContent.");
-
-
-                            onShowAdCompleteListener.onShowAdComplete();
-                            loadAd(activity);
-                        }
-
-                        /** Called when fullscreen content failed to show. */
-                        @Override
-                        public void onAdFailedToShowFullScreenContent(AdError adError) {
-                            appOpenAd = null;
-                            isShowingAd = false;
-
-                            Log.d(LOG_TAG, "onAdFailedToShowFullScreenContent: " + adError.getMessage());
-
-
-                            onShowAdCompleteListener.onShowAdComplete();
-                            loadAd(activity);
-                        }
-
-                        /** Called when fullscreen content is shown. */
-                        @Override
-                        public void onAdShowedFullScreenContent() {
-                            Log.d(LOG_TAG, "onAdShowedFullScreenContent.");
-
-                        }
-                    });
-
-            isShowingAd = true;
-            appOpenAd.show(activity);
         }
     }
 }

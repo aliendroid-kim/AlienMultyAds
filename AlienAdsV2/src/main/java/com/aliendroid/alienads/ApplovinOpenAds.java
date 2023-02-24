@@ -24,7 +24,6 @@ import java.util.Date;
 
 public class ApplovinOpenAds implements LifecycleObserver, Application.ActivityLifecycleCallbacks {
     public static MyApplication myApplication;
-    public static AppOpenAdManager appOpenAdManager;
     public static Activity currentActivity;
     public ApplovinOpenAds(MyApplication myApplication) {
         ApplovinOpenAds.myApplication = myApplication;
@@ -50,7 +49,7 @@ public class ApplovinOpenAds implements LifecycleObserver, Application.ActivityL
 
     public static class AppOpenAdManager {
         private static final String LOG_TAG = "AppOpenAdManager";
-        public static MaxAppOpenAd appOpenAd = null;
+        public static MaxAppOpenAd appOpenAdApplovin = null;
         private static boolean isLoadingAd = false;
         private static boolean isShowingAd = false;
 
@@ -69,14 +68,14 @@ public class ApplovinOpenAds implements LifecycleObserver, Application.ActivityL
             }
 
             isLoadingAd = true;
-            appOpenAd = new MaxAppOpenAd(IDOPEN, context);
-            appOpenAd.loadAd();
+            appOpenAdApplovin = new MaxAppOpenAd(IDOPEN, context);
+            appOpenAdApplovin.loadAd();
 
 
         }
 
         public static boolean isAdAvailable() {
-            return appOpenAd != null ;
+            return appOpenAdApplovin != null ;
         }
 
 
@@ -105,7 +104,7 @@ public class ApplovinOpenAds implements LifecycleObserver, Application.ActivityL
             }
 
             Log.d(LOG_TAG, "Will show ad.");
-            appOpenAd.setListener(new MaxAdListener() {
+            appOpenAdApplovin.setListener(new MaxAdListener() {
                 @Override
                 public void onAdLoaded(MaxAd ad) {
                     isLoadingAd = true;
@@ -115,7 +114,7 @@ public class ApplovinOpenAds implements LifecycleObserver, Application.ActivityL
                 @Override
                 public void onAdDisplayed(MaxAd ad) {
                     isLoadingAd = false;
-                    appOpenAd = null;
+                    appOpenAdApplovin = null;
                     isShowingAd = false;
                     loadAd(activity);
                 }
@@ -131,7 +130,7 @@ public class ApplovinOpenAds implements LifecycleObserver, Application.ActivityL
                 @Override
                 public void onAdClicked(MaxAd ad) {
                     isLoadingAd = false;
-                    appOpenAd = null;
+                    appOpenAdApplovin = null;
                     isShowingAd = false;
                     loadAd(activity);
                 }
@@ -139,7 +138,7 @@ public class ApplovinOpenAds implements LifecycleObserver, Application.ActivityL
                 @Override
                 public void onAdLoadFailed(String adUnitId, MaxError error) {
                     isLoadingAd = false;
-                    appOpenAd = null;
+                    appOpenAdApplovin = null;
                     isShowingAd = false;
                     onShowAdCompleteListener.onShowAdComplete();
                     loadAd(activity);
@@ -148,7 +147,7 @@ public class ApplovinOpenAds implements LifecycleObserver, Application.ActivityL
                 @Override
                 public void onAdDisplayFailed(MaxAd ad, MaxError error) {
                     isLoadingAd = false;
-                    appOpenAd = null;
+                    appOpenAdApplovin = null;
                     isShowingAd = false;
                     onShowAdCompleteListener.onShowAdComplete();
                     loadAd(activity);
@@ -156,7 +155,7 @@ public class ApplovinOpenAds implements LifecycleObserver, Application.ActivityL
             });
 
             isShowingAd = true;
-            appOpenAd.showAd();
+            appOpenAdApplovin.showAd();
 
         }
 
@@ -166,7 +165,7 @@ public class ApplovinOpenAds implements LifecycleObserver, Application.ActivityL
     @OnLifecycleEvent(Lifecycle.Event.ON_START)
     protected void onMoveToForeground() {
         // Show the ad (if available) when the app moves to foreground.
-        appOpenAdManager.showAdIfAvailable(currentActivity);
+        AppOpenAdManager.showAdIfAvailable(currentActivity);
     }
 
 
@@ -177,7 +176,7 @@ public class ApplovinOpenAds implements LifecycleObserver, Application.ActivityL
 
     @Override
     public void onActivityStarted(@NonNull Activity activity) {
-        if (!appOpenAdManager.isShowingAd) {
+        if (!AppOpenAdManager.isShowingAd) {
             currentActivity = activity;
 
         }

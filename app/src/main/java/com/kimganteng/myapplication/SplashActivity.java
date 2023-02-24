@@ -57,32 +57,15 @@ public class SplashActivity extends AppCompatActivity {
                 break;
         }
 
-        if (SettingsAlien.Select_Open_Ads.equals("1")){
-            AlienNotif.LoadOneSignal("535dc774-9fe3-44ae-839e-09e4133aebe9");
-         AlienOpenAds.LoadOpenAds("ca-app-pub-3940256099942544/3419835294",true);
+
+        AlienNotif.LoadOneSignal("535dc774-9fe3-44ae-839e-09e4133aebe9");
+         AlienOpenAds.LoadOpenAds("ca-app-pub-3940256099942544/3419835294",true, "APPLOVIN-D");
          AlienOpenAds.AppOpenAdManager.showAdIfAvailable(SplashActivity.this, new AlienOpenAds.OnShowAdCompleteListener() {
              @Override
              public void onShowAdComplete() {
                  startActivity(true);
              }
          });
-
-        } else  if (SettingsAlien.Select_Open_Ads.equals("2")){
-            ApplovinOpenAds.LoadOpenAds("aacbe3de49876c61",true);
-            ApplovinOpenAds.AppOpenAdManager.showAdIfAvailable(this, new OnShowAdCompleteListener() {
-                @Override
-                public void onShowAdComplete() {
-                    startActivity(true);
-                }
-            });
-
-
-
-
-        } else {
-            startActivity(true);
-        }
-
 
     }
 
