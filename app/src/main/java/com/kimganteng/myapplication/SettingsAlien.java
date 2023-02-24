@@ -14,7 +14,7 @@ public class SettingsAlien {
     Native Advanced 	ca-app-pub-3940256099942544/2247696110
     Native Advanced Video 	ca-app-pub-3940256099942544/1044960115
      */
-    public static  String Select_Main_Ads ="ADMOB";
+    public static  String Select_Main_Ads ="APPLOVIN-M";
     public static  String Select_Backup_Ads ="FACEBOOK";
 
     public static String  MainIntertitial ="ca-app-pub-3940256099942544/1033173712";
@@ -32,7 +32,7 @@ public class SettingsAlien {
     public static  String Main_Initialize="1100042525";
     public static  String Backup_Initialize="PL610825165122";
 
-    public static String Select_Open_Ads ="1";
+    public static String Select_Open_Ads ="2";
 
     public static boolean ONLOADOPEN = true ;
 

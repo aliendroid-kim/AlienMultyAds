@@ -17,12 +17,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.aliendroid.alienads.AlienNotif;
 import com.aliendroid.alienads.AlienOpenAds;
 import com.aliendroid.alienads.AliendroidInitialize;
+import com.aliendroid.alienads.ApplovinOpenAds;
 import com.aliendroid.alienads.MyApplication;
 import com.aliendroid.alienads.interfaces.open.OnLoadOpenAppAdmob;
 import com.aliendroid.alienads.interfaces.open.OnShowOpenAppAdmob;
 import com.aliendroid.sdkads.config.AppPromote;
 import com.aliendroid.sdkads.config.InitializeAlienAds;
 import com.aliendroid.sdkads.interfaces.OnOpenViewAdListener;
+import com.aliendroid.sdkads.interfaces.OnShowAdCompleteListener;
 import com.aliendroid.sdkads.type.view.AlienViewAds;
 
 
@@ -43,12 +45,16 @@ public class SplashActivity extends AppCompatActivity {
         Initilize for Alien Mediation Ads
          */
         InitializeAlienAds.LoadSDK();
-        if (SettingsAlien.Select_Main_Ads.equals("ADMOB")){
-            AliendroidInitialize.SelectAdsAdmob(this,Select_Backup_Ads,Backup_Initialize);
-        } else if (SettingsAlien.Select_Main_Ads.equals("APPLOVIN-M")){
-            AliendroidInitialize.SelectAdsApplovinMax(this,Select_Backup_Ads,Backup_Initialize);
-        } else if (SettingsAlien.Select_Main_Ads.equals("APPLOVIN-D")){
-            AliendroidInitialize.SelectAdsApplovinDis(this,Select_Backup_Ads,Backup_Initialize);
+        switch (SettingsAlien.Select_Main_Ads) {
+            case "ADMOB":
+                AliendroidInitialize.SelectAdsAdmob(this, Select_Backup_Ads, Backup_Initialize);
+                break;
+            case "APPLOVIN-M":
+                AliendroidInitialize.SelectAdsApplovinMax(this, Select_Backup_Ads, Backup_Initialize);
+                break;
+            case "APPLOVIN-D":
+                AliendroidInitialize.SelectAdsApplovinDis(this, Select_Backup_Ads, Backup_Initialize);
+                break;
         }
 
         if (SettingsAlien.Select_Open_Ads.equals("1")){
@@ -60,6 +66,18 @@ public class SplashActivity extends AppCompatActivity {
                  startActivity(true);
              }
          });
+
+        } else  if (SettingsAlien.Select_Open_Ads.equals("2")){
+            ApplovinOpenAds.LoadOpenAds("aacbe3de49876c61",true);
+            ApplovinOpenAds.AppOpenAdManager.showAdIfAvailable(this, new OnShowAdCompleteListener() {
+                @Override
+                public void onShowAdComplete() {
+                    startActivity(true);
+                }
+            });
+
+
+
 
         } else {
             startActivity(true);

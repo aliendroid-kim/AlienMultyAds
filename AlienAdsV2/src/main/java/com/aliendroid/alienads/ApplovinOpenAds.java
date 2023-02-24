@@ -1,9 +1,9 @@
 package com.aliendroid.alienads;
-
 import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -12,72 +12,163 @@ import androidx.lifecycle.LifecycleObserver;
 import androidx.lifecycle.OnLifecycleEvent;
 import androidx.lifecycle.ProcessLifecycleOwner;
 
+import com.aliendroid.sdkads.interfaces.OnShowAdCompleteListener;
 import com.applovin.mediation.MaxAd;
 import com.applovin.mediation.MaxAdListener;
 import com.applovin.mediation.MaxError;
 import com.applovin.mediation.ads.MaxAppOpenAd;
-import com.applovin.sdk.AppLovinSdk;
 
-public class ApplovinOpenAds
-        implements LifecycleObserver, MaxAdListener, Application.ActivityLifecycleCallbacks
-{
-    private  MaxAppOpenAd appOpenAd;
-    private  Context context;
+
+
+import java.util.Date;
+
+public class ApplovinOpenAds implements LifecycleObserver, Application.ActivityLifecycleCallbacks {
     public static MyApplication myApplication;
+    public static AppOpenAdManager appOpenAdManager;
+    public static Activity currentActivity;
     public ApplovinOpenAds(MyApplication myApplication) {
         ApplovinOpenAds.myApplication = myApplication;
+        ApplovinOpenAds.myApplication.registerActivityLifecycleCallbacks(this);
         ProcessLifecycleOwner.get().getLifecycle().addObserver(this);
-        AppOpenManager(context);
     }
+    public static boolean LOADADS;
+    public static String IDOPEN ="";
+    public static void LoadOpenAds(String idOpenAds, boolean loadads) {
+        LOADADS=loadads;
+        try {
+            if (LOADADS){
+                IDOPEN = idOpenAds;
+            } else {
+                IDOPEN = "";
+            }
 
-    public void AppOpenManager(Context context)
-    {
-        this.context = context;
-        appOpenAd = new MaxAppOpenAd( "7ac937086e3ff3ac", context);
-        appOpenAd.setListener( this );
-        appOpenAd.loadAd();
-    }
-
-    private void showAdIfReady()
-    {
-        if ( appOpenAd == null || !AppLovinSdk.getInstance( context ).isInitialized() ) return;
-
-        if ( appOpenAd.isReady() )
-        {
-            appOpenAd.showAd( "7ac937086e3ff3ac" );
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        else
-        {
+
+    }
+
+    public static class AppOpenAdManager {
+        private static final String LOG_TAG = "AppOpenAdManager";
+        public static MaxAppOpenAd appOpenAd = null;
+        private static boolean isLoadingAd = false;
+        private static boolean isShowingAd = false;
+
+        /** Constructor. */
+        public AppOpenAdManager() {}
+
+        /**
+         * Load an ad.
+         *
+         * @param context the context of the activity that loads the ad
+         */
+        public static void loadAd(Context context) {
+            // Do not load ad if there is an unused ad or one is already loading.
+            if (isLoadingAd || isAdAvailable()) {
+                return;
+            }
+
+            isLoadingAd = true;
+            appOpenAd = new MaxAppOpenAd(IDOPEN, context);
             appOpenAd.loadAd();
+
+
         }
-    }
 
+        public static boolean isAdAvailable() {
+            return appOpenAd != null ;
+        }
+
+
+        public static void showAdIfAvailable(@NonNull final Activity activity) {
+            showAdIfAvailable(activity,()  -> {
+            });
+        }
+
+
+        /**
+         * Show the ad if one isn't already showing.
+         *
+         * @param activity the activity that shows the app open ad
+         * @param onShowAdCompleteListener the listener to be notified when an app open ad is complete
+         */
+        public static void showAdIfAvailable(@NonNull final Activity activity, @NonNull OnShowAdCompleteListener onShowAdCompleteListener) {
+            if (isShowingAd) {
+                return;
+            }
+
+            if (!isAdAvailable()) {
+                Log.d(LOG_TAG, "The app open ad is not ready yet.");
+                onShowAdCompleteListener.onShowAdComplete();
+                loadAd(activity);
+                return;
+            }
+
+            Log.d(LOG_TAG, "Will show ad.");
+            appOpenAd.setListener(new MaxAdListener() {
+                @Override
+                public void onAdLoaded(MaxAd ad) {
+                    isLoadingAd = true;
+                    Log.d(LOG_TAG, "onAdLoaded.");
+                }
+
+                @Override
+                public void onAdDisplayed(MaxAd ad) {
+                    isLoadingAd = false;
+                    appOpenAd = null;
+                    isShowingAd = false;
+                    loadAd(activity);
+                }
+
+                @Override
+                public void onAdHidden(MaxAd ad) {
+                    isShowingAd = false;
+                    onShowAdCompleteListener.onShowAdComplete();
+                    loadAd(activity);
+                    Log.d(LOG_TAG, "onAdDismissedFullScreenContent.");
+                }
+
+                @Override
+                public void onAdClicked(MaxAd ad) {
+                    isLoadingAd = false;
+                    appOpenAd = null;
+                    isShowingAd = false;
+                    loadAd(activity);
+                }
+
+                @Override
+                public void onAdLoadFailed(String adUnitId, MaxError error) {
+                    isLoadingAd = false;
+                    appOpenAd = null;
+                    isShowingAd = false;
+                    onShowAdCompleteListener.onShowAdComplete();
+                    loadAd(activity);
+                }
+
+                @Override
+                public void onAdDisplayFailed(MaxAd ad, MaxError error) {
+                    isLoadingAd = false;
+                    appOpenAd = null;
+                    isShowingAd = false;
+                    onShowAdCompleteListener.onShowAdComplete();
+                    loadAd(activity);
+                }
+            });
+
+            isShowingAd = true;
+            appOpenAd.showAd();
+
+        }
+
+
+    }
+    /** LifecycleObserver method that shows the app open ad when the app moves to foreground. */
     @OnLifecycleEvent(Lifecycle.Event.ON_START)
-    public void onStart()
-    {
-        showAdIfReady();
+    protected void onMoveToForeground() {
+        // Show the ad (if available) when the app moves to foreground.
+        appOpenAdManager.showAdIfAvailable(currentActivity);
     }
 
-    @Override
-    public void onAdLoaded(final MaxAd ad) {}
-    @Override
-    public void onAdLoadFailed(final String adUnitId, final MaxError error) {}
-    @Override
-    public void onAdDisplayed(final MaxAd ad) {}
-    @Override
-    public void onAdClicked(final MaxAd ad) {}
-
-    @Override
-    public void onAdHidden(final MaxAd ad)
-    {
-        appOpenAd.loadAd();
-    }
-
-    @Override
-    public void onAdDisplayFailed(final MaxAd ad, final MaxError error)
-    {
-        appOpenAd.loadAd();
-    }
 
     @Override
     public void onActivityCreated(@NonNull Activity activity, @Nullable Bundle savedInstanceState) {
@@ -86,11 +177,15 @@ public class ApplovinOpenAds
 
     @Override
     public void onActivityStarted(@NonNull Activity activity) {
+        if (!appOpenAdManager.isShowingAd) {
+            currentActivity = activity;
 
+        }
     }
 
     @Override
     public void onActivityResumed(@NonNull Activity activity) {
+
 
     }
 

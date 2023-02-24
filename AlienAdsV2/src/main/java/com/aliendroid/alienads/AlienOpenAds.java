@@ -107,7 +107,7 @@ public class AlienOpenAds implements LifecycleObserver, Application.ActivityLife
         private static final String LOG_TAG = "AppOpenAdManager";
         public static AppOpenAd appOpenAd = null;
         private static boolean isLoadingAd = false;
-        private static boolean isShowingAd = false;
+        static boolean isShowingAd = false;
 
         /** Keep track of the time an app open ad is loaded to ensure you don't show an expired ad. */
         private static long loadTime = 0;
