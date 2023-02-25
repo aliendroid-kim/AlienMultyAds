@@ -58,8 +58,8 @@ public class SplashActivity extends AppCompatActivity {
         }
 
 
-        AlienNotif.LoadOneSignal("535dc774-9fe3-44ae-839e-09e4133aebe9");
-         AlienOpenAds.LoadOpenAds("ca-app-pub-3940256099942544/3419835294",true, "APPLOVIN-D");
+         AlienNotif.LoadOneSignal("535dc774-9fe3-44ae-839e-09e4133aebe9");
+         AlienOpenAds.LoadOpenAds("ca-app-pub-3940256099942544/3419835294",true);
          AlienOpenAds.AppOpenAdManager.showAdIfAvailable(SplashActivity.this, new AlienOpenAds.OnShowAdCompleteListener() {
              @Override
              public void onShowAdComplete() {

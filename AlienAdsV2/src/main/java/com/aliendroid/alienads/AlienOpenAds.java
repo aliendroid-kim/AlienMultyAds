@@ -43,7 +43,20 @@ public class AlienOpenAds implements LifecycleObserver, Application.ActivityLife
         ProcessLifecycleOwner.get().getLifecycle().addObserver(this);
     }
 
+    public static void LoadOpenAds(String idOpenAds, boolean loadads) {
+        LOADADS = loadads;
+        try {
+            if (LOADADS) {
+                IDOPEN = idOpenAds;
+            } else {
+                IDOPEN = "";
+            }
 
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
     public static void LoadOpenAds(String idOpenAds, boolean loadads, String selectADS) {
         LOADADS = loadads;
         SELECT_ADS = selectADS;
