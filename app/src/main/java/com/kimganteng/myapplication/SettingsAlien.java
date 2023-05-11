@@ -15,19 +15,19 @@ public class SettingsAlien {
     Native Advanced Video 	ca-app-pub-3940256099942544/1044960115
      */
     public static  String Select_Main_Ads ="ADMOB";
-    public static  String Select_Backup_Ads ="FACEBOOK";
+    public static  String Select_Backup_Ads ="ADMOB";
 
-    public static String  MainIntertitial ="ca-app-pub-3940256099942544/1033173712";
-    public static  String BackupIntertitial ="133149992";
+    public static String  MainIntertitial ="ca-app-pub-3940256099942544/1033173712x";
+    public static  String BackupIntertitial ="ca-app-pub-3940256099942544/1033173712";
 
-    public static  String MainBanner="ca-app-pub-3940256099942544/6300978111";
-    public static  String BackupBanner="133149963";
+    public static  String MainBanner="ca-app-pub-3940256099942544/6300978111x";
+    public static  String BackupBanner="ca-app-pub-3940256099942544/6300978111";
 
-    public static String MainNatives ="ca-app-pub-3940256099942544/2247696110";
-    public static String BackupNatives="133149966";
+    public static String MainNatives ="ca-app-pub-3940256099942544/2247696110x";
+    public static String BackupNatives="ca-app-pub-3940256099942544/2247696110";
 
-    public static String MainRewards ="ca-app-pub-3940256099942544/5224354917";
-    public static String BackupReward="133149969";
+    public static String MainRewards ="ca-app-pub-3940256099942544/5224354917x";
+    public static String BackupReward="ca-app-pub-3940256099942544/5224354917";
 
     public static  String Main_Initialize="1100042525";
     public static  String Backup_Initialize="PL610825165122";

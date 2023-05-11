@@ -58,7 +58,7 @@ public class AliendroidReward {
     public static AppLovinIncentivizedInterstitial incentivizedInterstitial;
     public static StartAppAd rewardedVideo;
     private static RewardedAd mRewardedAd;
-
+    private static RewardedAd mRewardedAd2;
     public static OnLoadRewardsAdmob onLoadRewardsAdmob;
     public static OnLoadRewardsStartApp onLoadRewardsStartApp;
     public static OnLoadRewardsGoogle onLoadRewardsGoogle;
@@ -285,6 +285,25 @@ public class AliendroidReward {
                             }
                         }
                     };
+                    break;
+
+                case "ADMOB":
+                    AdRequest adRequest2 = new AdRequest.Builder()
+                            .build();
+                    RewardedAd.load(activity, idBackupReward,
+                            adRequest2, new RewardedAdLoadCallback() {
+                                @Override
+                                public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                                    mRewardedAd2 = null;
+                                }
+
+                                @Override
+                                public void onAdLoaded(@NonNull RewardedAd rewardedAd) {
+
+                                    mRewardedAd2 = rewardedAd;
+
+                                }
+                            });
                     break;
 
 
@@ -2062,6 +2081,18 @@ public class AliendroidReward {
                         break;
                     case "ALIEN-M":
                         AlienMediationAds.ShowReward();
+                        break;
+
+                    case "ADMOB":
+                        if (mRewardedAd2 != null) {
+                            Activity activityContext = activity;
+                            mRewardedAd2.show(activityContext, new OnUserEarnedRewardListener() {
+                                @Override
+                                public void onUserEarnedReward(@NonNull RewardItem rewardItem) {
+                                    unlockreward = true;
+                                }
+                            });
+                        }
                         break;
                 }
 

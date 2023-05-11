@@ -51,6 +51,7 @@ import com.startapp.sdk.ads.banner.Mrec;
 public class AliendroidMediumBanner {
     public static MaxAdView adViewMax;
     public static AdView adViewAdmob;
+    public static AdView adViewAdmob2;
     public static AdManagerAdView bannerGoogleAds;
     public static AppLovinAdView adViewDiscovery;
     public static IronSourceBannerLayout adViewIron;
@@ -361,6 +362,42 @@ public class AliendroidMediumBanner {
                         break;
                     case "ALIEN-M":
                         AlienMediationAds.MediumBanner(activity,layAds,idBannerBackup);
+                        break;
+                    case "ADMOB":
+                        AdRequest request = new AdRequest.Builder()
+                                .build();
+                        adViewAdmob2 = new AdView(activity);
+                        adViewAdmob2.setAdUnitId(idBannerBackup);
+                        layAds.addView(adViewAdmob2);
+                        adViewAdmob2.setAdSize(AdSize.MEDIUM_RECTANGLE);
+                        adViewAdmob2.loadAd(request);
+                        adViewAdmob2.setAdListener(new AdListener() {
+                            @Override
+                            public void onAdLoaded() {
+
+
+                            }
+
+                            @Override
+                            public void onAdFailedToLoad(LoadAdError adError) {
+                                layAds.setVisibility(View.GONE);
+                            }
+
+                            @Override
+                            public void onAdOpened() {
+
+                            }
+
+                            @Override
+                            public void onAdClicked() {
+
+                            }
+
+                            @Override
+                            public void onAdClosed() {
+
+                            }
+                        });
                         break;
                 }
             }

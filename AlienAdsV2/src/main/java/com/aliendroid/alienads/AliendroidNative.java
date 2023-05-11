@@ -72,6 +72,7 @@ public class AliendroidNative {
     public static AppLovinAdView adViewDiscovery;
     public static IronSourceBannerLayout adViewIron;
     private static NativeAd nativeAd;
+    private static NativeAd nativeAd2;
     private static MaxNativeAdLoader nativeAdLoader;
     private static MaxNativeAdView nativeAdView;
     private static MaxAd nativeAdMax;
@@ -311,6 +312,50 @@ public class AliendroidNative {
                                                 break;
                                             case "ALIEN-V":
                                                 AlienViewAds.Banner(activity,layNative,idNativeBackup);
+                                                break;
+                                            case "ADMOB":
+                                                AdLoader.Builder builder2 = new AdLoader.Builder(activity, idNativeBackup);
+                                                builder2.forNativeAd(new NativeAd.OnNativeAdLoadedListener() {
+                                                    @Override
+                                                    public void onNativeAdLoaded(@NonNull NativeAd nativeAds) {
+
+                                                        if (nativeAd2 != null) {
+                                                            nativeAd2.destroy();
+                                                        }
+
+                                                        nativeAd2 = nativeAds;
+                                                        NativeAdView adView = (NativeAdView) activity.getLayoutInflater()
+                                                                .inflate(R.layout.admob_small_native, null);
+                                                        populateNativeAdView(nativeAds, adView);
+                                                        layNative.removeAllViews();
+                                                        layNative.addView(adView);
+                                                    }
+
+                                                });
+                                                VideoOptions videoOptions = new VideoOptions.Builder()
+                                                        .build();
+
+                                                NativeAdOptions adOptions = new NativeAdOptions.Builder()
+                                                        .setVideoOptions(videoOptions)
+                                                        .build();
+
+                                                builder2.withNativeAdOptions(adOptions);
+
+
+
+                                                AdRequest request = new AdRequest.Builder()
+                                                        .build();
+                                                AdLoader adLoader =
+                                                        builder2
+                                                                .withAdListener(
+                                                                        new AdListener() {
+                                                                            @Override
+                                                                            public void onAdFailedToLoad(LoadAdError loadAdError) {
+
+                                                                            }
+                                                                        })
+                                                                .build();
+                                                adLoader.loadAd(request);
                                                 break;
                                         }
                                     }
@@ -1403,6 +1448,50 @@ public class AliendroidNative {
                                             case "ALIEN-M":
                                                 AlienMediationAds.MediumNatives(activity,layNative,idNativeBackup);
                                                 break;
+                                            case "ADMOB":
+                                                AdLoader.Builder builder2 = new AdLoader.Builder(activity,idNativeBackup);
+                                                builder2.forNativeAd(new NativeAd.OnNativeAdLoadedListener() {
+                                                    @Override
+                                                    public void onNativeAdLoaded(@NonNull NativeAd nativeAds) {
+                                                        if (nativeAd2 != null) {
+                                                            nativeAd2.destroy();
+                                                        }
+                                                        nativeAd2 = nativeAds;
+                                                        NativeAdView adView = (NativeAdView) activity.getLayoutInflater()
+                                                                .inflate(R.layout.admob_big_native, null);
+                                                        populateNativeAdView(nativeAds, adView);
+                                                        layNative.removeAllViews();
+                                                        layNative.addView(adView);
+                                                    }
+
+
+                                                });
+
+                                                VideoOptions videoOptions = new VideoOptions.Builder()
+                                                        .build();
+
+                                                NativeAdOptions adOptions = new NativeAdOptions.Builder()
+                                                        .setVideoOptions(videoOptions)
+                                                        .build();
+
+                                                builder2.withNativeAdOptions(adOptions);
+
+
+
+                                                AdRequest request = new AdRequest.Builder()
+                                                        .build();
+                                                AdLoader adLoader =
+                                                        builder2
+                                                                .withAdListener(
+                                                                        new AdListener() {
+                                                                            @Override
+                                                                            public void onAdFailedToLoad(LoadAdError loadAdError) {
+
+                                                                            }
+                                                                        })
+                                                                .build();
+                                                adLoader.loadAd(request);
+                                                break;
                                         }
                                     }
                                 })
@@ -2338,8 +2427,8 @@ public class AliendroidNative {
                     onLoadMediumNativesStartApp.onFailedToReceiveAd("");
                 }
                 switch (selectAdsBackup) {
-                    case "ADMOB": {
-                        AdLoader.Builder builder = new AdLoader.Builder(activity,idNativeBackup);
+                    case "ADMOB":
+                        AdLoader.Builder builder = new AdLoader.Builder(activity, idNativeBackup);
                         builder.forNativeAd(new NativeAd.OnNativeAdLoadedListener() {
                             @Override
                             public void onNativeAdLoaded(@NonNull NativeAd nativeAds) {
@@ -2367,7 +2456,6 @@ public class AliendroidNative {
                         builder.withNativeAdOptions(adOptions);
 
 
-
                         AdRequest request = new AdRequest.Builder()
                                 .build();
                         AdLoader adLoader =
@@ -2382,7 +2470,6 @@ public class AliendroidNative {
                                         .build();
                         adLoader.loadAd(request);
                         break;
-                    }
                     case "MOPUB":
                     case "UNITY":
                         break;
@@ -2706,6 +2793,49 @@ public class AliendroidNative {
                                                 break;
                                             case "ALIEN-M":
                                                 AlienMediationAds.RectangleNatives(activity,layNative,idNativeBackup);
+                                                break;
+                                            case "ADMOB":
+                                                AdLoader.Builder builder = new AdLoader.Builder(activity, idNativeBackup);
+                                                builder.forNativeAd(new NativeAd.OnNativeAdLoadedListener() {
+                                                    @Override
+                                                    public void onNativeAdLoaded(@NonNull NativeAd nativeAds) {
+                                                        if (nativeAd2 != null) {
+                                                            nativeAd2.destroy();
+                                                        }
+                                                        nativeAd2 = nativeAds;
+                                                        NativeAdView adView = (NativeAdView) activity.getLayoutInflater()
+                                                                .inflate(R.layout.admob_small_rectangle_native, null);
+                                                        populateNativeAdView(nativeAds, adView);
+                                                        layNative.removeAllViews();
+                                                        layNative.addView(adView);
+                                                    }
+
+
+                                                });
+
+                                                VideoOptions videoOptions = new VideoOptions.Builder()
+                                                        .build();
+
+                                                NativeAdOptions adOptions = new NativeAdOptions.Builder()
+                                                        .setVideoOptions(videoOptions)
+                                                        .build();
+
+                                                builder.withNativeAdOptions(adOptions);
+
+
+                                                AdRequest request = new AdRequest.Builder()
+                                                        .build();
+                                                AdLoader adLoader =
+                                                        builder
+                                                                .withAdListener(
+                                                                        new AdListener() {
+                                                                            @Override
+                                                                            public void onAdFailedToLoad(LoadAdError loadAdError) {
+
+                                                                            }
+                                                                        })
+                                                                .build();
+                                                adLoader.loadAd(request);
                                                 break;
                                         }
                                     }

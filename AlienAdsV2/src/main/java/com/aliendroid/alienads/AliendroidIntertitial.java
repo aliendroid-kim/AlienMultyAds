@@ -64,6 +64,7 @@ import com.startapp.sdk.adsbase.adlisteners.AdEventListener;
 
 public class AliendroidIntertitial {
     public static InterstitialAd mInterstitialAd;
+    public static InterstitialAd mInterstitialAd2;
     public static AdManagerInterstitialAd mAdManagerInterstitialAd;
     public static MaxInterstitialAd interstitialAd;
     public static com.facebook.ads.InterstitialAd FBinterstitialAd;
@@ -205,6 +206,25 @@ public class AliendroidIntertitial {
                 break;
             case "ALIEN-M":
                 AlienMediationAds.LoadInterstitial(activity, idIntertitialBackup);
+                break;
+            case "ADMOB":
+                AdRequest request2 = new AdRequest.Builder()
+                        .build();
+                InterstitialAd.load(activity, idIntertitialBackup, request2,
+                        new InterstitialAdLoadCallback() {
+                            @Override
+                            public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
+                                mInterstitialAd2 = interstitialAd;
+                                Log.i(TAG, "onAdLoaded");
+                            }
+
+                            @Override
+                            public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                                // Handle the error
+                                Log.i(TAG, loadAdError.getMessage());
+                                mInterstitialAd2 = null;
+                            }
+                        });
                 break;
 
         }
@@ -1578,6 +1598,11 @@ public class AliendroidIntertitial {
                         break;
                     case "ALIEN-M":
                         AlienMediationAds.ShowInterstitial(activity);
+                        break;
+                    case "ADMOB":
+                        if (mInterstitialAd2 != null) {
+                            mInterstitialAd2.show(activity);
+                        }
                         break;
                 }
             }
