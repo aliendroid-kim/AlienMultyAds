@@ -68,6 +68,7 @@ public class AliendroidIntertitial {
     public static AdManagerInterstitialAd mAdManagerInterstitialAd;
     public static MaxInterstitialAd interstitialAd;
     public static com.facebook.ads.InterstitialAd FBinterstitialAd;
+    public static com.facebook.ads.InterstitialAd FBinterstitialAd2;
     public static int counter = 0;
     public static AppLovinInterstitialAdDialog interstitialAdlovin;
     public static AppLovinAd loadedAd;
@@ -425,6 +426,10 @@ public class AliendroidIntertitial {
             case "MOPUB":
             case "UNITY":
 
+                break;
+            case "FACEBOOK":
+                FBinterstitialAd2 = new com.facebook.ads.InterstitialAd(activity, idIntertitialBackup);
+                FBinterstitialAd2.loadAd();
                 break;
             case "IRON":
                 IronSource.isInterstitialPlacementCapped(idIntertitialBackup);
@@ -2083,6 +2088,12 @@ public class AliendroidIntertitial {
                         break;
                     case "ALIEN-M":
                         AlienMediationAds.ShowInterstitial(activity);
+                        break;
+                    case "FACEBOOK":
+                        if (FBinterstitialAd == null || !FBinterstitialAd.isAdLoaded()) {
+                        } else {
+                            FBinterstitialAd.show();
+                        }
                         break;
                 }
                 LoadIntertitialFAN(activity, selectAdsBackup, idIntertitial, idIntertitialBackup);

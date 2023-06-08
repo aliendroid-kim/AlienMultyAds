@@ -58,7 +58,7 @@ public class AliendroidMediumBanner {
     public static Banner startAppBanner;
     public static Mrec startAppMrec;
     public static com.facebook.ads.AdView adViewFAN;
-
+    public static com.facebook.ads.AdView adViewFAN2;
     public static OnLoadBannerAdmob onLoadBannerAdmob;
     public static OnLoadBannerGoogle onLoadBannerGoogle;
     public static OnLoadBannerFacebook onLoadBannerFacebook;
@@ -1098,6 +1098,44 @@ public class AliendroidMediumBanner {
                         break;
                     case "ALIEN-M":
                         AlienMediationAds.MediumBanner(activity,layAds,idBannerBackup);
+                        break;
+                    case "FACEBOOK":
+                        adViewFAN2 = new com.facebook.ads.AdView(activity, idBannerBackup,
+                                com.facebook.ads.AdSize.RECTANGLE_HEIGHT_250);
+                        layAds.addView(adViewFAN2);
+                        com.facebook.ads.AdListener adListener = new com.facebook.ads.AdListener() {
+                            @Override
+                            public void onError(Ad ad, AdError adError) {
+                                if (onLoadBannerFacebook!=null){
+                                    onLoadBannerFacebook.onError();
+                                }
+                                layAds.setVisibility(View.GONE);
+
+                            }
+
+                            @Override
+                            public void onAdLoaded(Ad ad) {
+                                if (onLoadBannerFacebook!=null){
+                                    onLoadBannerFacebook.onAdLoaded();
+                                }
+
+                            }
+
+                            @Override
+                            public void onAdClicked(Ad ad) {
+                                if (onLoadBannerFacebook!=null){
+                                    onLoadBannerFacebook.onAdClicked();
+                                }
+                            }
+
+                            @Override
+                            public void onLoggingImpression(Ad ad) {
+                                if (onLoadBannerFacebook!=null){
+                                    onLoadBannerFacebook.onLoggingImpression();
+                                }
+                            }
+                        };
+                        adViewFAN2.loadAd(adViewFAN2.buildLoadAdConfig().withAdListener(adListener).build());
                         break;
                 }
             }

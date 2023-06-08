@@ -78,7 +78,7 @@
                         android:layout_marginTop="5dp"
                         android:lines="1"
                         android:textColor="@color/native_title"
-                        android:textSize="12sp" />
+                        android:textSize="10sp" />
 
                     <TextView
                         android:id="@+id/ad_body"
@@ -88,7 +88,7 @@
                         android:layout_marginRight="5dp"
                         android:layout_marginBottom="5dp"
                         android:textColor="@color/native_description"
-                        android:textSize="12sp" />
+                        android:textSize="10sp" />
 
                     <RatingBar
                         android:id="@+id/ad_stars"
@@ -107,8 +107,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="35dp"
                     android:layout_gravity="center"
-                    android:layout_marginRight="5dp"
-                    android:background="@drawable/round_black"
+                    android:background="@color/native_button"
                     android:gravity="center"
                     android:text="Install"
                     android:textColor="@color/native_text_button"

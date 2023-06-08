@@ -46,7 +46,8 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:gravity="center"
-                android:textColor="@color/native_title" />
+                android:textColor="@color/native_title"
+                android:textSize="10sp" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -63,7 +64,8 @@
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
                     android:gravity="center"
-                    android:textColor="@color/native_description" />
+                    android:textColor="@color/native_description"
+                    android:textSize="10sp" />
             </RelativeLayout>
 
             <LinearLayout
@@ -97,7 +99,7 @@
             android:layout_width="match_parent"
             android:layout_height="35dp"
             android:layout_gravity="center"
-            android:background="@color/button_install"
+            android:background="@color/native_button"
             android:text="TextView"
             android:textColor="@color/native_text_button"
             android:textSize="10sp"

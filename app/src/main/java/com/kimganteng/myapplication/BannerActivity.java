@@ -41,6 +41,10 @@ public class BannerActivity extends AppCompatActivity {
                 AliendroidBanner.SmallBannerApplovinDis(this, laySmallAds, Select_Backup_Ads, MainBanner, BackupBanner);
                 AliendroidMediumBanner.MediumBannerApplovinDis(this, layMediumAds, Select_Backup_Ads, MainBanner, BackupBanner);
                 break;
+            case "FACEBOOK":
+                AliendroidBanner.SmallBannerFAN(this, laySmallAds, Select_Backup_Ads, MainBanner, BackupBanner);
+                AliendroidMediumBanner.MediumBannerFAN(this, layMediumAds, Select_Backup_Ads, MainBanner, BackupBanner);
+                break;
         }
 
 

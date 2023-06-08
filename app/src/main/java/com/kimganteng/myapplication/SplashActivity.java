@@ -55,6 +55,9 @@ public class SplashActivity extends AppCompatActivity {
             case "APPLOVIN-D":
                 AliendroidInitialize.SelectAdsApplovinDis(this, Select_Backup_Ads, Backup_Initialize);
                 break;
+            case "FACEBOOK":
+                AliendroidInitialize.SelectAdsFAN(this, Select_Backup_Ads, Backup_Initialize);
+                break;
         }
 
 

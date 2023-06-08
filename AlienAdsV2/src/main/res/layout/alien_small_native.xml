@@ -55,7 +55,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:textColor="@color/native_title" />
+                        android:textColor="@color/native_title"
+                        android:textSize="10sp" />
 
                 </LinearLayout>
 
@@ -70,7 +71,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:textColor="@color/native_description" />
+                    android:textColor="@color/native_description"
+                    android:textSize="10sp" />
 
             </LinearLayout>
 
@@ -79,8 +81,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="35dp"
                 android:layout_gravity="center"
-                android:layout_marginRight="5dp"
-                android:background="@drawable/round_black"
+                android:background="@color/native_button"
                 android:text="TextView"
                 android:textColor="@color/native_text_button"
                 android:textSize="10sp"

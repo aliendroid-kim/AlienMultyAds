@@ -81,7 +81,7 @@
                 android:ellipsize="end"
                 android:lines="1"
                 android:textColor="@color/native_description"
-                android:textSize="12sp" />
+                android:textSize="10sp" />
 
             <TextView
                 android:id="@+id/native_ad_body"
@@ -91,7 +91,7 @@
                 android:gravity="center_vertical"
                 android:lines="2"
                 android:textColor="@color/native_description"
-                android:textSize="12sp" />
+                android:textSize="10sp" />
 
         </LinearLayout>
 

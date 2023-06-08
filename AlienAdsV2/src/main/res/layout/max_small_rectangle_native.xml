@@ -78,7 +78,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:textColor="@color/native_description"
-                android:textSize="12sp"
+                android:textSize="10sp"
                 android:textStyle="bold" />
 
             <RelativeLayout
@@ -103,7 +103,7 @@
             android:layout_width="match_parent"
             android:layout_height="30dp"
             android:layout_gravity="center"
-            android:background="@color/button_install"
+            android:background="@color/native_button"
             android:textColor="@color/native_text_button"
             android:textSize="8sp"
             tools:ignore="TouchTargetSizeCheck,TextContrastCheck"

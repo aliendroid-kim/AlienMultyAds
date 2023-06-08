@@ -80,7 +80,9 @@ public class AliendroidNative {
     private static NativeAdLayout nativeAdLayout;
     private static LinearLayout adView;
     private static NativeBannerAd nativeBannerAd;
+    private static NativeBannerAd nativeBannerAd2;
     public static com.facebook.ads.NativeAd nativeAdfan;
+    public static com.facebook.ads.NativeAd nativeAdfan2;
     public static StartAppNativeAd startAppNativeAd;
 
     public static OnLoadSmallNativesAdmob onLoadSmallNativesAdmob;
@@ -610,6 +612,42 @@ public class AliendroidNative {
                     onLoadSmallNativesFacebook.onError("");
                 }
                 switch (selectAdsBackup) {
+                    case "FACEBOOK":
+                        nativeBannerAd2 = new NativeBannerAd(activity, idNativeBackup);
+                        NativeAdListener nativeAdListener = new NativeAdListener() {
+                            @Override
+                            public void onMediaDownloaded(Ad ad) {
+
+                            }
+
+                            @Override
+                            public void onError(Ad ad, AdError adError) {
+
+                            }
+
+                            @Override
+                            public void onAdLoaded(Ad ad) {
+                                if (nativeBannerAd2 == null || nativeBannerAd2 != ad) {
+                                    return;
+                                }
+                                inflateAd(nativeBannerAd2, activity, layNative);
+                            }
+
+                            @Override
+                            public void onAdClicked(Ad ad) {
+
+                            }
+
+                            @Override
+                            public void onLoggingImpression(Ad ad) {
+
+                            }
+                        };
+                        nativeBannerAd2.loadAd(
+                                nativeBannerAd2.buildLoadAdConfig()
+                                        .withAdListener(nativeAdListener)
+                                        .build());
+                        break;
                     case "ADMOB":
                         AdLoader.Builder builder2 = new AdLoader.Builder(activity, idNativeBackup);
                         builder2.forNativeAd(new NativeAd.OnNativeAdLoadedListener() {
@@ -1217,9 +1255,6 @@ public class AliendroidNative {
         layNative.addView(adViewNative);
     }
 
-
-
-
     public static void MediumNativeAdmob(Activity activity, RelativeLayout layNative, String selectAdsBackup, String nativeId, String idNativeBackup, String Hpk1,
                                          String Hpk2, String Hpk3, String Hpk4, String Hpk5) {
 
@@ -1567,7 +1602,7 @@ public class AliendroidNative {
                     onLoadMediumNativesApplovinMax.onNativeAdLoadFailed("");
                 }
                 switch (selectAdsBackup) {
-                    case "ADMOB": {
+                    case "ADMOB":
                         AdLoader.Builder builder = new AdLoader.Builder(activity,idNativeBackup);
                         builder.forNativeAd(new NativeAd.OnNativeAdLoadedListener() {
                             @Override
@@ -1611,7 +1646,7 @@ public class AliendroidNative {
                                         .build();
                         adLoader.loadAd(request);
                         break;
-                    }
+
                     case "MOPUB":
                     case "UNITY":
 
@@ -1661,10 +1696,10 @@ public class AliendroidNative {
                         layNative.addView(adViewNative);
                         break;
                     case "APPLOVIN-D":
-                        AdRequest.Builder builder = new AdRequest.Builder();
+                        AdRequest.Builder builder2 = new AdRequest.Builder();
                         Bundle bannerExtras = new Bundle();
                         bannerExtras.putString("zone_id", idNativeBackup);
-                        builder.addCustomEventExtrasBundle(AppLovinCustomEventBanner.class, bannerExtras);
+                        builder2.addCustomEventExtrasBundle(AppLovinCustomEventBanner.class, bannerExtras);
 
                         adViewDiscovery = new AppLovinAdView(AppLovinAdSize.MREC, activity);
                         layNative.addView(adViewDiscovery);
@@ -1741,6 +1776,43 @@ public class AliendroidNative {
                     onLoadMediumNativesFacebook.onError("");
                 }
                 switch (selectAdsBackup) {
+                    case "FACEBOOK":
+                        nativeAdfan2 = new com.facebook.ads.NativeAd(activity, idNativeBackup);
+                        NativeAdListener nativeAdListener = new NativeAdListener() {
+                            @Override
+                            public void onMediaDownloaded(Ad ad) {
+
+                            }
+
+                            @Override
+                            public void onError(Ad ad, AdError adError) {
+
+                            }
+
+                            @Override
+                            public void onAdLoaded(Ad ad) {
+                                if (nativeAdfan2 == null || nativeAdfan2 != ad) {
+                                    return;
+                                }
+                                inflateAd2(nativeAdfan2, activity, layNative);
+                            }
+
+                            @Override
+                            public void onAdClicked(Ad ad) {
+
+                            }
+
+                            @Override
+                            public void onLoggingImpression(Ad ad) {
+
+                            }
+                        };
+
+                        nativeAdfan2.loadAd(
+                                nativeAdfan2.buildLoadAdConfig()
+                                        .withAdListener(nativeAdListener)
+                                        .build());
+                        break;
                     case "APPLOVIN-M": {
                         MaxNativeAdViewBinder binder = new MaxNativeAdViewBinder.Builder(R.layout.max_big_native)
                                 .setTitleTextViewId(R.id.title_text_view)
@@ -2577,9 +2649,6 @@ public class AliendroidNative {
         layNative.addView(adViewNative);
     }
 
-
-
-
     public static void SmallNativeAdmobRectangle(Activity activity, RelativeLayout layNative, String selectAdsBackup, String nativeId, String idNativeBackup, String Hpk1,
                                          String Hpk2, String Hpk3, String Hpk4, String Hpk5) {
 
@@ -3074,6 +3143,43 @@ public class AliendroidNative {
                     onLoadMediumNativesFacebook.onError("");
                 }
                 switch (selectAdsBackup) {
+                    case "FACEBOOK":
+                        nativeAdfan2 = new com.facebook.ads.NativeAd(activity, idNativeBackup);
+                        NativeAdListener nativeAdListener = new NativeAdListener() {
+                            @Override
+                            public void onMediaDownloaded(Ad ad) {
+
+                            }
+
+                            @Override
+                            public void onError(Ad ad, AdError adError) {
+
+                            }
+
+                            @Override
+                            public void onAdLoaded(Ad ad) {
+                                if (nativeAdfan2 == null || nativeAdfan2 != ad) {
+                                    return;
+                                }
+                                inflateAd3(nativeAdfan2, activity, layNative);
+                            }
+
+                            @Override
+                            public void onAdClicked(Ad ad) {
+
+                            }
+
+                            @Override
+                            public void onLoggingImpression(Ad ad) {
+
+                            }
+                        };
+
+                        nativeAdfan2.loadAd(
+                                nativeAdfan2.buildLoadAdConfig()
+                                        .withAdListener(nativeAdListener)
+                                        .build());
+                        break;
                     case "APPLOVIN-M": {
                         MaxNativeAdViewBinder binder = new MaxNativeAdViewBinder.Builder(R.layout.max_small_rectangle_native)
                                 .setTitleTextViewId(R.id.title_text_view)
@@ -3538,7 +3644,7 @@ public class AliendroidNative {
         } else {
             ((RatingBar) adView.getStarRatingView())
                     .setRating(nativeAd.getStarRating().floatValue());
-            adView.getStarRatingView().setVisibility(View.VISIBLE);
+            adView.getStarRatingView().setVisibility(View.INVISIBLE);
         }
 
         if (nativeAd.getAdvertiser() == null) {

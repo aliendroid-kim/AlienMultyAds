@@ -35,16 +35,16 @@ dependencies {
     implementation "androidx.multidex:multidex:2.0.1"
 
     //Main Sdk Ads
-    implementation 'com.google.android.gms:play-services-ads:22.0.0'
+    implementation 'com.google.android.gms:play-services-ads:22.1.0'
     implementation 'com.facebook.android:audience-network-sdk:6.14.0'
     implementation 'com.applovin:applovin-sdk:11.9.0'
     implementation 'com.ironsource.sdk:mediationsdk:7.3.0'
-    implementation 'com.startapp:inapp-sdk:4.10.12'
+    implementation 'com.startapp:inapp-sdk:4.11.0'
 
     //Applovin
     implementation 'com.applovin.mediation:facebook-adapter:6.14.0.0'
     implementation 'com.applovin.mediation:google-adapter:21.4.0.1'
-    implementation 'com.applovin.mediation:ironsource-adapter:7.2.6.0.1'
+    implementation 'com.applovin.mediation:ironsource-adapter:7.3.0.1.0'
 
     //Iron Source
     implementation 'com.ironsource.adapters:admobadapter:4.3.33'

@@ -79,22 +79,35 @@ public class MainActivity extends AppCompatActivity {
         task.execute();
         AlienGDPR.loadGdpr(this,Select_Main_Ads,true);
 
-        if (Select_Main_Ads.equals("ADMOB")){
-            AliendroidInitialize.SelectAdsAdmob(this,Select_Backup_Ads,Backup_Initialize);
-        } else if (Select_Main_Ads.equals("APPLOVIN-M")){
-            AliendroidInitialize.SelectAdsApplovinMax(this,Select_Backup_Ads,Backup_Initialize);
-        }else if (Select_Main_Ads.equals("APPLOVIN-D")){
-            AliendroidInitialize.SelectAdsApplovinDis(this,Select_Backup_Ads,Backup_Initialize);
+        switch (Select_Main_Ads) {
+            case "ADMOB":
+                AliendroidInitialize.SelectAdsAdmob(this, Select_Backup_Ads, Backup_Initialize);
+                break;
+            case "APPLOVIN-M":
+                AliendroidInitialize.SelectAdsApplovinMax(this, Select_Backup_Ads, Backup_Initialize);
+                break;
+            case "APPLOVIN-D":
+                AliendroidInitialize.SelectAdsApplovinDis(this, Select_Backup_Ads, Backup_Initialize);
+                break;
+            case "FACEBOOK":
+                AliendroidInitialize.SelectAdsFAN(this, Select_Backup_Ads, Backup_Initialize);
+                break;
         }
 
-        if (Select_Main_Ads.equals("ADMOB")) {
-            AliendroidIntertitial.LoadIntertitialAdmob(MainActivity.this,Select_Backup_Ads,MainIntertitial,BackupIntertitial,""
-            ,"","","","");
-
-        } else if (Select_Main_Ads.equals("APPLOVIN-M")){
-            AliendroidIntertitial.LoadIntertitialApplovinMax(MainActivity.this,Select_Backup_Ads,MainIntertitial,BackupIntertitial);
-        }else if (Select_Main_Ads.equals("APPLOVIN-D")){
-            AliendroidIntertitial.LoadIntertitialApplovinDis(MainActivity.this,Select_Backup_Ads,MainIntertitial,BackupIntertitial);
+        switch (Select_Main_Ads) {
+            case "ADMOB":
+                AliendroidIntertitial.LoadIntertitialAdmob(MainActivity.this, Select_Backup_Ads, MainIntertitial, BackupIntertitial, ""
+                        , "", "", "", "");
+                break;
+            case "APPLOVIN-M":
+                AliendroidIntertitial.LoadIntertitialApplovinMax(MainActivity.this, Select_Backup_Ads, MainIntertitial, BackupIntertitial);
+                break;
+            case "APPLOVIN-D":
+                AliendroidIntertitial.LoadIntertitialApplovinDis(MainActivity.this, Select_Backup_Ads, MainIntertitial, BackupIntertitial);
+                break;
+            case "FACEBOOK":
+                AliendroidIntertitial.LoadIntertitialFAN(MainActivity.this, Select_Backup_Ads, MainIntertitial, BackupIntertitial);
+                break;
         }
 
 
@@ -139,15 +152,21 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void INTERSTITIAL(View view){
-        if (Select_Main_Ads.equals("ADMOB")){
-            AliendroidIntertitial.ShowIntertitialAdmob(MainActivity.this,Select_Backup_Ads,MainIntertitial,BackupIntertitial,0,"",
-                    "","","","");
-        } else if (Select_Main_Ads.equals("APPLOVIN-M")){
-            AliendroidIntertitial.ShowIntertitialApplovinMax(MainActivity.this,Select_Backup_Ads,MainIntertitial,BackupIntertitial,0
-                  );
-        }else if (Select_Main_Ads.equals("APPLOVIN-D")){
-            AliendroidIntertitial.ShowIntertitialApplovinDis(MainActivity.this,Select_Backup_Ads,MainIntertitial,BackupIntertitial,0
-            );
+        switch (Select_Main_Ads) {
+            case "ADMOB":
+                AliendroidIntertitial.ShowIntertitialAdmob(MainActivity.this, Select_Backup_Ads, MainIntertitial, BackupIntertitial, 0, "",
+                        "", "", "", "");
+                break;
+            case "APPLOVIN-M":
+                AliendroidIntertitial.ShowIntertitialApplovinMax(MainActivity.this, Select_Backup_Ads, MainIntertitial, BackupIntertitial, 0
+                );
+                break;
+            case "APPLOVIN-D":
+                AliendroidIntertitial.ShowIntertitialApplovinDis(MainActivity.this, Select_Backup_Ads, MainIntertitial, BackupIntertitial, 0);
+                break;
+            case "FACEBOOK":
+                AliendroidIntertitial.ShowIntertitialFAN(MainActivity.this, Select_Backup_Ads, MainIntertitial, BackupIntertitial, 0);
+                break;
         }
 
     }

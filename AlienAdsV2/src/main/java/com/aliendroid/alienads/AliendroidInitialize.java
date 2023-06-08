@@ -524,6 +524,19 @@ public class AliendroidInitialize {
             case "ALIEN-M":
                InitializeAlienAds.LoadSDK();
                 break;
+            case "FACEBOOK":
+                if (!AudienceNetworkAds.isInitialized(activity)) {
+                    if (BuildConfig.DEBUG) {
+                        AdSettings.turnOnSDKDebugger(activity);
+                        AdSettings.setTestMode(true);
+                    }
+
+                    AudienceNetworkAds
+                            .buildInitSettings(activity)
+                            .withInitListener(new AudienceNetworkInitializeHelper())
+                            .initialize();
+                }
+                break;
         }
     }
 
