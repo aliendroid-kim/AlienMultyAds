@@ -24,7 +24,8 @@ public class NativeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_native);
 
         RelativeLayout laySmallAds = findViewById(R.id.laySmallNatives);
-        AliendroidNative.SmallNativeFan(this, laySmallAds,Select_Backup_Ads,MainNatives,BackupNatives);
+        AliendroidNative.SmallNativeAdmob(this, laySmallAds,Select_Backup_Ads,MainNatives,BackupNatives,"",
+        "","","","");
 
         RelativeLayout layMediumAds = findViewById(R.id.layMediumNatives);
         AliendroidNative.MediumNativeFan(this, layMediumAds,Select_Backup_Ads,MainNatives,BackupNatives);

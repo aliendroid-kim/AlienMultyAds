@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 
+import androidx.annotation.NonNull;
+
 import com.aliendroid.alienads.config.AppLovinCustomEventBanner;
 import com.aliendroid.alienads.interfaces.banner.OnLoadBannerAdmob;
 import com.aliendroid.alienads.interfaces.banner.OnLoadBannerAlienMediation;
@@ -19,6 +21,8 @@ import com.aliendroid.alienads.interfaces.banner.OnLoadBannerFacebook;
 import com.aliendroid.alienads.interfaces.banner.OnLoadBannerGoogle;
 import com.aliendroid.alienads.interfaces.banner.OnLoadBannerIronSource;
 import com.aliendroid.alienads.interfaces.banner.OnLoadBannerStartApp;
+import com.aliendroid.alienads.interfaces.banner.OnLoadBannerWortise;
+import com.aliendroid.sdkads.config.InitializeAlienAds;
 import com.aliendroid.sdkads.interfaces.OnLoadBannerMediation;
 import com.aliendroid.sdkads.interfaces.OnLoadBannerView;
 import com.aliendroid.sdkads.type.mediation.AlienMediationAds;
@@ -47,8 +51,10 @@ import com.ironsource.mediationsdk.IronSourceBannerLayout;
 import com.ironsource.mediationsdk.logger.IronSourceError;
 import com.startapp.sdk.ads.banner.Banner;
 import com.startapp.sdk.ads.banner.BannerListener;
+import com.wortise.ads.banner.BannerAd;
 
 public class AliendroidBanner {
+    public static BannerAd wortiseBannerAd;
     public static MaxAdView adViewMax;
     public static AdView adViewAdmob;
     public static AdView adViewAdmob2;
@@ -67,12 +73,12 @@ public class AliendroidBanner {
     public static OnLoadBannerIronSource onLoadBannerIronSource;
     public static OnLoadBannerAlienView onLoadBannerAlienView;
     public static OnLoadBannerAlienMediation onLoadBannerAlienMediation;
+    public static OnLoadBannerWortise onLoadBannerWortise;
 
     public static void SmallBannerAdmob(Activity activity, RelativeLayout layAds, String selectAdsBackup, String idBanner, String idBannerBackup, String Hpk1,
                                         String Hpk2, String Hpk3, String Hpk4, String Hpk5) {
         AdRequest request = new AdRequest.Builder().addKeyword(Hpk1).addKeyword(Hpk2)
                 .addKeyword(Hpk3).addKeyword(Hpk4).addKeyword(Hpk5)
-
                 .build();
         adViewAdmob = new AdView(activity);
         adViewAdmob.setAdUnitId(idBanner);
@@ -83,7 +89,7 @@ public class AliendroidBanner {
         adViewAdmob.setAdListener(new AdListener() {
             @Override
             public void onAdLoaded() {
-                if (onLoadBannerAdmob!=null){
+                if (onLoadBannerAdmob != null) {
                     onLoadBannerAdmob.onAdLoaded();
                 }
                 switch (selectAdsBackup) {
@@ -116,12 +122,17 @@ public class AliendroidBanner {
                             adViewFAN.destroy();
                         }
                         break;
+                    case "WORTISE":
+                        if (wortiseBannerAd != null) {
+                            wortiseBannerAd.destroy();
+                        }
+                        break;
                 }
             }
 
             @Override
             public void onAdFailedToLoad(LoadAdError adError) {
-                if (onLoadBannerAdmob!=null){
+                if (onLoadBannerAdmob != null) {
                     onLoadBannerAdmob.onAdFailedToLoad("");
                 }
                 switch (selectAdsBackup) {
@@ -130,49 +141,49 @@ public class AliendroidBanner {
                         MaxAdViewAdListener listener = new MaxAdViewAdListener() {
                             @Override
                             public void onAdExpanded(MaxAd ad) {
-                                if (onLoadBannerApplovinMax!=null){
+                                if (onLoadBannerApplovinMax != null) {
                                     onLoadBannerApplovinMax.onAdExpanded();
                                 }
                             }
 
                             @Override
                             public void onAdCollapsed(MaxAd ad) {
-                                if (onLoadBannerApplovinMax!=null){
+                                if (onLoadBannerApplovinMax != null) {
                                     onLoadBannerApplovinMax.onAdCollapsed();
                                 }
                             }
 
                             @Override
                             public void onAdLoaded(MaxAd ad) {
-                                if (onLoadBannerApplovinMax!=null){
+                                if (onLoadBannerApplovinMax != null) {
                                     onLoadBannerApplovinMax.onAdLoaded();
                                 }
                             }
 
                             @Override
                             public void onAdDisplayed(MaxAd ad) {
-                                if (onLoadBannerApplovinMax!=null){
+                                if (onLoadBannerApplovinMax != null) {
                                     onLoadBannerApplovinMax.onAdDisplayed();
                                 }
                             }
 
                             @Override
                             public void onAdHidden(MaxAd ad) {
-                                if (onLoadBannerApplovinMax!=null){
+                                if (onLoadBannerApplovinMax != null) {
                                     onLoadBannerApplovinMax.onAdHidden();
                                 }
                             }
 
                             @Override
                             public void onAdClicked(MaxAd ad) {
-                                if (onLoadBannerApplovinMax!=null){
+                                if (onLoadBannerApplovinMax != null) {
                                     onLoadBannerApplovinMax.onAdClicked();
                                 }
                             }
 
                             @Override
                             public void onAdLoadFailed(String adUnitId, MaxError error) {
-                                if (onLoadBannerApplovinMax!=null){
+                                if (onLoadBannerApplovinMax != null) {
                                     onLoadBannerApplovinMax.onAdLoadFailed();
                                 }
                                 layAds.setVisibility(View.GONE);
@@ -180,7 +191,7 @@ public class AliendroidBanner {
 
                             @Override
                             public void onAdDisplayFailed(MaxAd ad, MaxError error) {
-                                if (onLoadBannerApplovinMax!=null){
+                                if (onLoadBannerApplovinMax != null) {
                                     onLoadBannerApplovinMax.onAdDisplayFailed();
                                 }
                                 layAds.setVisibility(View.GONE);
@@ -202,10 +213,10 @@ public class AliendroidBanner {
                         FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT,
                                 FrameLayout.LayoutParams.WRAP_CONTENT);
                         layAds.addView(adViewIron, 0, layoutParams);
-                         com.ironsource.mediationsdk.sdk.BannerListener listenerIron = new com.ironsource.mediationsdk.sdk.BannerListener() {
+                        com.ironsource.mediationsdk.sdk.BannerListener listenerIron = new com.ironsource.mediationsdk.sdk.BannerListener() {
                             @Override
                             public void onBannerAdLoaded() {
-                                if (onLoadBannerIronSource!=null){
+                                if (onLoadBannerIronSource != null) {
                                     onLoadBannerIronSource.onBannerAdLoaded();
                                 }
 
@@ -213,7 +224,7 @@ public class AliendroidBanner {
 
                             @Override
                             public void onBannerAdLoadFailed(IronSourceError ironSourceError) {
-                                if (onLoadBannerIronSource!=null){
+                                if (onLoadBannerIronSource != null) {
                                     onLoadBannerIronSource.onBannerAdLoadFailed();
                                 }
                                 layAds.setVisibility(View.GONE);
@@ -222,28 +233,28 @@ public class AliendroidBanner {
 
                             @Override
                             public void onBannerAdClicked() {
-                                if (onLoadBannerIronSource!=null){
+                                if (onLoadBannerIronSource != null) {
                                     onLoadBannerIronSource.onBannerAdClicked();
                                 }
                             }
 
                             @Override
                             public void onBannerAdScreenPresented() {
-                                if (onLoadBannerIronSource!=null){
+                                if (onLoadBannerIronSource != null) {
                                     onLoadBannerIronSource.onBannerAdScreenPresented();
                                 }
                             }
 
                             @Override
                             public void onBannerAdScreenDismissed() {
-                                if (onLoadBannerIronSource!=null){
+                                if (onLoadBannerIronSource != null) {
                                     onLoadBannerIronSource.onBannerAdScreenDismissed();
                                 }
                             }
 
                             @Override
                             public void onBannerAdLeftApplication() {
-                                if (onLoadBannerIronSource!=null){
+                                if (onLoadBannerIronSource != null) {
                                     onLoadBannerIronSource.onBannerAdLeftApplication();
                                 }
                             }
@@ -257,7 +268,7 @@ public class AliendroidBanner {
                         Banner startAppBanner = new Banner(activity, new BannerListener() {
                             @Override
                             public void onReceiveAd(View view) {
-                                if (onLoadBannerStartApp!=null){
+                                if (onLoadBannerStartApp != null) {
                                     onLoadBannerStartApp.onReceiveAd();
                                 }
 
@@ -265,7 +276,7 @@ public class AliendroidBanner {
 
                             @Override
                             public void onFailedToReceiveAd(View view) {
-                                if (onLoadBannerStartApp!=null){
+                                if (onLoadBannerStartApp != null) {
                                     onLoadBannerStartApp.onFailedToReceiveAd("");
                                 }
                                 layAds.setVisibility(View.GONE);
@@ -273,14 +284,14 @@ public class AliendroidBanner {
 
                             @Override
                             public void onImpression(View view) {
-                                if (onLoadBannerStartApp!=null){
+                                if (onLoadBannerStartApp != null) {
                                     onLoadBannerStartApp.onImpression();
                                 }
                             }
 
                             @Override
                             public void onClick(View view) {
-                                if (onLoadBannerStartApp!=null){
+                                if (onLoadBannerStartApp != null) {
                                     onLoadBannerStartApp.onClick();
                                 }
                             }
@@ -306,7 +317,7 @@ public class AliendroidBanner {
                         AppLovinAdLoadListener loadListener = new AppLovinAdLoadListener() {
                             @Override
                             public void adReceived(AppLovinAd ad) {
-                                if (onLoadBannerApplovinDiscovery!=null){
+                                if (onLoadBannerApplovinDiscovery != null) {
                                     onLoadBannerApplovinDiscovery.adReceived();
                                 }
 
@@ -314,7 +325,7 @@ public class AliendroidBanner {
 
                             @Override
                             public void failedToReceiveAd(int errorCode) {
-                                if (onLoadBannerApplovinDiscovery!=null){
+                                if (onLoadBannerApplovinDiscovery != null) {
                                     onLoadBannerApplovinDiscovery.failedToReceiveAd();
                                 }
                                 layAds.setVisibility(View.GONE);
@@ -332,7 +343,7 @@ public class AliendroidBanner {
                         com.facebook.ads.AdListener adListener = new com.facebook.ads.AdListener() {
                             @Override
                             public void onError(Ad ad, AdError adError) {
-                                if (onLoadBannerFacebook!=null){
+                                if (onLoadBannerFacebook != null) {
                                     onLoadBannerFacebook.onError();
                                 }
                                 layAds.setVisibility(View.GONE);
@@ -341,7 +352,7 @@ public class AliendroidBanner {
 
                             @Override
                             public void onAdLoaded(Ad ad) {
-                                if (onLoadBannerFacebook!=null){
+                                if (onLoadBannerFacebook != null) {
                                     onLoadBannerFacebook.onAdLoaded();
                                 }
 
@@ -349,14 +360,14 @@ public class AliendroidBanner {
 
                             @Override
                             public void onAdClicked(Ad ad) {
-                                if (onLoadBannerFacebook!=null){
+                                if (onLoadBannerFacebook != null) {
                                     onLoadBannerFacebook.onAdClicked();
                                 }
                             }
 
                             @Override
                             public void onLoggingImpression(Ad ad) {
-                                if (onLoadBannerFacebook!=null){
+                                if (onLoadBannerFacebook != null) {
                                     onLoadBannerFacebook.onLoggingImpression();
                                 }
                             }
@@ -365,10 +376,10 @@ public class AliendroidBanner {
                         break;
 
                     case "ALIEN-V":
-                        AlienViewAds.Banner(activity,layAds,idBannerBackup);
+                        AlienViewAds.Banner(activity, layAds, idBannerBackup);
                         break;
                     case "ALIEN-M":
-                        AlienMediationAds.SmallBanner(activity,layAds,idBannerBackup);
+                        AlienMediationAds.SmallBanner(activity, layAds, idBannerBackup);
                         break;
                     case "ADMOB":
                         AdRequest request = new AdRequest.Builder()
@@ -395,15 +406,44 @@ public class AliendroidBanner {
                             public void onAdOpened() {
 
                             }
-
                             @Override
                             public void onAdClicked() {
 
                             }
-
                             @Override
                             public void onAdClosed() {
 
+                            }
+                        });
+                        break;
+                    case "WORTISE":
+                        wortiseBannerAd = new BannerAd(activity);
+                        wortiseBannerAd.setAdSize(com.wortise.ads.AdSize.HEIGHT_50);
+                        wortiseBannerAd.setAdUnitId(idBannerBackup);
+                        layAds.addView(wortiseBannerAd);
+                        wortiseBannerAd.loadAd();
+                        wortiseBannerAd.setListener(new BannerAd.Listener() {
+                            @Override
+                            public void onBannerClicked(@NonNull BannerAd bannerAd) {
+                                if (onLoadBannerWortise!=null){
+                                    onLoadBannerWortise.onBannerClicked();
+                                }
+
+                            }
+
+                            @Override
+                            public void onBannerFailed(@NonNull BannerAd bannerAd, @NonNull com.wortise.ads.AdError adError) {
+                                if (onLoadBannerWortise!=null){
+                                    onLoadBannerWortise.onBannerFailed();
+                                }
+                                layAds.setVisibility(View.GONE);
+                            }
+
+                            @Override
+                            public void onBannerLoaded(@NonNull BannerAd bannerAd) {
+                                if (onLoadBannerWortise!=null){
+                                    onLoadBannerWortise.onBannerLoaded();
+                                }
                             }
                         });
                         break;
@@ -412,21 +452,21 @@ public class AliendroidBanner {
 
             @Override
             public void onAdOpened() {
-                if (onLoadBannerAdmob!=null){
+                if (onLoadBannerAdmob != null) {
                     onLoadBannerAdmob.onAdOpened();
                 }
             }
 
             @Override
             public void onAdClicked() {
-                if (onLoadBannerAdmob!=null){
+                if (onLoadBannerAdmob != null) {
                     onLoadBannerAdmob.onAdClicked();
                 }
             }
 
             @Override
             public void onAdClosed() {
-                if (onLoadBannerAdmob!=null){
+                if (onLoadBannerAdmob != null) {
                     onLoadBannerAdmob.onAdClosed();
                 }
             }
@@ -450,7 +490,7 @@ public class AliendroidBanner {
         bannerGoogleAds.setAdListener(new AdListener() {
             @Override
             public void onAdLoaded() {
-                if (onLoadBannerGoogle!=null){
+                if (onLoadBannerGoogle != null) {
                     onLoadBannerGoogle.onAdLoaded();
                 }
                 switch (selectAdsBackup) {
@@ -483,12 +523,17 @@ public class AliendroidBanner {
                             adViewFAN.destroy();
                         }
                         break;
+                    case "WORTISE":
+                        if (wortiseBannerAd != null) {
+                            wortiseBannerAd.destroy();
+                        }
+                        break;
                 }
             }
 
             @Override
             public void onAdFailedToLoad(LoadAdError adError) {
-                if (onLoadBannerGoogle!=null){
+                if (onLoadBannerGoogle != null) {
                     onLoadBannerGoogle.onAdFailedToLoad("");
                 }
                 switch (selectAdsBackup) {
@@ -497,21 +542,21 @@ public class AliendroidBanner {
                         MaxAdViewAdListener listener = new MaxAdViewAdListener() {
                             @Override
                             public void onAdExpanded(MaxAd ad) {
-                                if (onLoadBannerApplovinMax!=null){
+                                if (onLoadBannerApplovinMax != null) {
                                     onLoadBannerApplovinMax.onAdExpanded();
                                 }
                             }
 
                             @Override
                             public void onAdCollapsed(MaxAd ad) {
-                                if (onLoadBannerApplovinMax!=null){
+                                if (onLoadBannerApplovinMax != null) {
                                     onLoadBannerApplovinMax.onAdCollapsed();
                                 }
                             }
 
                             @Override
                             public void onAdLoaded(MaxAd ad) {
-                                if (onLoadBannerApplovinMax!=null){
+                                if (onLoadBannerApplovinMax != null) {
                                     onLoadBannerApplovinMax.onAdLoaded();
                                 }
 
@@ -519,28 +564,28 @@ public class AliendroidBanner {
 
                             @Override
                             public void onAdDisplayed(MaxAd ad) {
-                                if (onLoadBannerApplovinMax!=null){
+                                if (onLoadBannerApplovinMax != null) {
                                     onLoadBannerApplovinMax.onAdDisplayed();
                                 }
                             }
 
                             @Override
                             public void onAdHidden(MaxAd ad) {
-                                if (onLoadBannerApplovinMax!=null){
+                                if (onLoadBannerApplovinMax != null) {
                                     onLoadBannerApplovinMax.onAdHidden();
                                 }
                             }
 
                             @Override
                             public void onAdClicked(MaxAd ad) {
-                                if (onLoadBannerApplovinMax!=null){
+                                if (onLoadBannerApplovinMax != null) {
                                     onLoadBannerApplovinMax.onAdClicked();
                                 }
                             }
 
                             @Override
                             public void onAdLoadFailed(String adUnitId, MaxError error) {
-                                if (onLoadBannerApplovinMax!=null){
+                                if (onLoadBannerApplovinMax != null) {
                                     onLoadBannerApplovinMax.onAdLoadFailed();
                                 }
                                 layAds.setVisibility(View.GONE);
@@ -548,7 +593,7 @@ public class AliendroidBanner {
 
                             @Override
                             public void onAdDisplayFailed(MaxAd ad, MaxError error) {
-                                if (onLoadBannerApplovinMax!=null){
+                                if (onLoadBannerApplovinMax != null) {
                                     onLoadBannerApplovinMax.onAdDisplayFailed();
                                 }
                                 layAds.setVisibility(View.GONE);
@@ -570,10 +615,10 @@ public class AliendroidBanner {
                         FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT,
                                 FrameLayout.LayoutParams.WRAP_CONTENT);
                         layAds.addView(adViewIron, 0, layoutParams);
-                         com.ironsource.mediationsdk.sdk.BannerListener listenerIron = new com.ironsource.mediationsdk.sdk.BannerListener() {
+                        com.ironsource.mediationsdk.sdk.BannerListener listenerIron = new com.ironsource.mediationsdk.sdk.BannerListener() {
                             @Override
                             public void onBannerAdLoaded() {
-                                if (onLoadBannerIronSource!=null){
+                                if (onLoadBannerIronSource != null) {
                                     onLoadBannerIronSource.onBannerAdLoaded();
                                 }
 
@@ -581,7 +626,7 @@ public class AliendroidBanner {
 
                             @Override
                             public void onBannerAdLoadFailed(IronSourceError ironSourceError) {
-                                if (onLoadBannerIronSource!=null){
+                                if (onLoadBannerIronSource != null) {
                                     onLoadBannerIronSource.onBannerAdLoadFailed();
                                 }
                                 layAds.setVisibility(View.GONE);
@@ -590,28 +635,28 @@ public class AliendroidBanner {
 
                             @Override
                             public void onBannerAdClicked() {
-                                if (onLoadBannerIronSource!=null){
+                                if (onLoadBannerIronSource != null) {
                                     onLoadBannerIronSource.onBannerAdClicked();
                                 }
                             }
 
                             @Override
                             public void onBannerAdScreenPresented() {
-                                if (onLoadBannerIronSource!=null){
+                                if (onLoadBannerIronSource != null) {
                                     onLoadBannerIronSource.onBannerAdScreenPresented();
                                 }
                             }
 
                             @Override
                             public void onBannerAdScreenDismissed() {
-                                if (onLoadBannerIronSource!=null){
+                                if (onLoadBannerIronSource != null) {
                                     onLoadBannerIronSource.onBannerAdScreenDismissed();
                                 }
                             }
 
                             @Override
                             public void onBannerAdLeftApplication() {
-                                if (onLoadBannerIronSource!=null){
+                                if (onLoadBannerIronSource != null) {
                                     onLoadBannerIronSource.onBannerAdLeftApplication();
                                 }
                             }
@@ -623,7 +668,7 @@ public class AliendroidBanner {
                         Banner startAppBanner = new Banner(activity, new BannerListener() {
                             @Override
                             public void onReceiveAd(View view) {
-                                if (onLoadBannerStartApp!=null){
+                                if (onLoadBannerStartApp != null) {
                                     onLoadBannerStartApp.onReceiveAd();
                                 }
 
@@ -631,7 +676,7 @@ public class AliendroidBanner {
 
                             @Override
                             public void onFailedToReceiveAd(View view) {
-                                if (onLoadBannerStartApp!=null){
+                                if (onLoadBannerStartApp != null) {
                                     onLoadBannerStartApp.onFailedToReceiveAd("");
                                 }
                                 layAds.setVisibility(View.GONE);
@@ -639,14 +684,14 @@ public class AliendroidBanner {
 
                             @Override
                             public void onImpression(View view) {
-                                if (onLoadBannerStartApp!=null){
+                                if (onLoadBannerStartApp != null) {
                                     onLoadBannerStartApp.onImpression();
                                 }
                             }
 
                             @Override
                             public void onClick(View view) {
-                                if (onLoadBannerStartApp!=null){
+                                if (onLoadBannerStartApp != null) {
                                     onLoadBannerStartApp.onClick();
                                 }
                             }
@@ -670,7 +715,7 @@ public class AliendroidBanner {
                         AppLovinAdLoadListener loadListener = new AppLovinAdLoadListener() {
                             @Override
                             public void adReceived(AppLovinAd ad) {
-                                if (onLoadBannerApplovinDiscovery!=null){
+                                if (onLoadBannerApplovinDiscovery != null) {
                                     onLoadBannerApplovinDiscovery.adReceived();
                                 }
 
@@ -678,7 +723,7 @@ public class AliendroidBanner {
 
                             @Override
                             public void failedToReceiveAd(int errorCode) {
-                                if (onLoadBannerApplovinDiscovery!=null){
+                                if (onLoadBannerApplovinDiscovery != null) {
                                     onLoadBannerApplovinDiscovery.failedToReceiveAd();
                                 }
                                 layAds.setVisibility(View.GONE);
@@ -693,10 +738,10 @@ public class AliendroidBanner {
                         adViewFAN = new com.facebook.ads.AdView(activity, idBannerBackup,
                                 com.facebook.ads.AdSize.BANNER_HEIGHT_50);
                         layAds.addView(adViewFAN);
-                         com.facebook.ads.AdListener adListener = new com.facebook.ads.AdListener() {
+                        com.facebook.ads.AdListener adListener = new com.facebook.ads.AdListener() {
                             @Override
                             public void onError(Ad ad, AdError adError) {
-                                if (onLoadBannerFacebook!=null){
+                                if (onLoadBannerFacebook != null) {
                                     onLoadBannerFacebook.onError();
                                 }
                                 layAds.setVisibility(View.GONE);
@@ -705,7 +750,7 @@ public class AliendroidBanner {
 
                             @Override
                             public void onAdLoaded(Ad ad) {
-                                if (onLoadBannerFacebook!=null){
+                                if (onLoadBannerFacebook != null) {
                                     onLoadBannerFacebook.onAdLoaded();
                                 }
 
@@ -713,14 +758,14 @@ public class AliendroidBanner {
 
                             @Override
                             public void onAdClicked(Ad ad) {
-                                if (onLoadBannerFacebook!=null){
+                                if (onLoadBannerFacebook != null) {
                                     onLoadBannerFacebook.onAdClicked();
                                 }
                             }
 
                             @Override
                             public void onLoggingImpression(Ad ad) {
-                                if (onLoadBannerFacebook!=null){
+                                if (onLoadBannerFacebook != null) {
                                     onLoadBannerFacebook.onLoggingImpression();
                                 }
                             }
@@ -728,31 +773,62 @@ public class AliendroidBanner {
                         adViewFAN.loadAd(adViewFAN.buildLoadAdConfig().withAdListener(adListener).build());
                         break;
                     case "ALIEN-V":
-                        AlienViewAds.Banner(activity,layAds,idBannerBackup);
+                        AlienViewAds.Banner(activity, layAds, idBannerBackup);
                         break;
                     case "ALIEN-M":
-                        AlienMediationAds.SmallBanner(activity,layAds,idBannerBackup);
+                        AlienMediationAds.SmallBanner(activity, layAds, idBannerBackup);
+                        break;
+                    case "WORTISE":
+                        wortiseBannerAd = new BannerAd(activity);
+                        wortiseBannerAd.setAdSize(com.wortise.ads.AdSize.HEIGHT_50);
+                        wortiseBannerAd.setAdUnitId(idBannerBackup);
+                        layAds.addView(wortiseBannerAd);
+                        wortiseBannerAd.loadAd();
+                        wortiseBannerAd.setListener(new BannerAd.Listener() {
+                            @Override
+                            public void onBannerClicked(@NonNull BannerAd bannerAd) {
+                                if (onLoadBannerWortise!=null){
+                                    onLoadBannerWortise.onBannerClicked();
+                                }
+
+                            }
+
+                            @Override
+                            public void onBannerFailed(@NonNull BannerAd bannerAd, @NonNull com.wortise.ads.AdError adError) {
+                                if (onLoadBannerWortise!=null){
+                                    onLoadBannerWortise.onBannerFailed();
+                                }
+                                layAds.setVisibility(View.GONE);
+                            }
+
+                            @Override
+                            public void onBannerLoaded(@NonNull BannerAd bannerAd) {
+                                if (onLoadBannerWortise!=null){
+                                    onLoadBannerWortise.onBannerLoaded();
+                                }
+                            }
+                        });
                         break;
                 }
             }
 
             @Override
             public void onAdOpened() {
-                if (onLoadBannerGoogle!=null){
+                if (onLoadBannerGoogle != null) {
                     onLoadBannerGoogle.onAdOpened();
                 }
             }
 
             @Override
             public void onAdClicked() {
-                if (onLoadBannerGoogle!=null){
+                if (onLoadBannerGoogle != null) {
                     onLoadBannerGoogle.onAdClicked();
                 }
             }
 
             @Override
             public void onAdClosed() {
-                if (onLoadBannerGoogle!=null){
+                if (onLoadBannerGoogle != null) {
                     onLoadBannerGoogle.onAdClosed();
                 }
             }
@@ -768,7 +844,7 @@ public class AliendroidBanner {
         com.facebook.ads.AdListener adListener = new com.facebook.ads.AdListener() {
             @Override
             public void onError(Ad ad, AdError adError) {
-                if (onLoadBannerFacebook!=null){
+                if (onLoadBannerFacebook != null) {
                     onLoadBannerFacebook.onError();
                 }
                 switch (selectAdsBackup) {
@@ -777,49 +853,49 @@ public class AliendroidBanner {
                         MaxAdViewAdListener listener = new MaxAdViewAdListener() {
                             @Override
                             public void onAdExpanded(MaxAd ad) {
-                                if (onLoadBannerApplovinMax!=null){
+                                if (onLoadBannerApplovinMax != null) {
                                     onLoadBannerApplovinMax.onAdExpanded();
                                 }
                             }
 
                             @Override
                             public void onAdCollapsed(MaxAd ad) {
-                                if (onLoadBannerApplovinMax!=null){
+                                if (onLoadBannerApplovinMax != null) {
                                     onLoadBannerApplovinMax.onAdCollapsed();
                                 }
                             }
 
                             @Override
                             public void onAdLoaded(MaxAd ad) {
-                                if (onLoadBannerApplovinMax!=null){
+                                if (onLoadBannerApplovinMax != null) {
                                     onLoadBannerApplovinMax.onAdLoaded();
                                 }
                             }
 
                             @Override
                             public void onAdDisplayed(MaxAd ad) {
-                                if (onLoadBannerApplovinMax!=null){
+                                if (onLoadBannerApplovinMax != null) {
                                     onLoadBannerApplovinMax.onAdDisplayed();
                                 }
                             }
 
                             @Override
                             public void onAdHidden(MaxAd ad) {
-                                if (onLoadBannerApplovinMax!=null){
+                                if (onLoadBannerApplovinMax != null) {
                                     onLoadBannerApplovinMax.onAdHidden();
                                 }
                             }
 
                             @Override
                             public void onAdClicked(MaxAd ad) {
-                                if (onLoadBannerApplovinMax!=null){
+                                if (onLoadBannerApplovinMax != null) {
                                     onLoadBannerApplovinMax.onAdClicked();
                                 }
                             }
 
                             @Override
                             public void onAdLoadFailed(String adUnitId, MaxError error) {
-                                if (onLoadBannerApplovinMax!=null){
+                                if (onLoadBannerApplovinMax != null) {
                                     onLoadBannerApplovinMax.onAdLoadFailed();
                                 }
                                 layAds.setVisibility(View.GONE);
@@ -827,7 +903,7 @@ public class AliendroidBanner {
 
                             @Override
                             public void onAdDisplayFailed(MaxAd ad, MaxError error) {
-                                if (onLoadBannerApplovinMax!=null){
+                                if (onLoadBannerApplovinMax != null) {
                                     onLoadBannerApplovinMax.onAdDisplayFailed();
                                 }
                                 layAds.setVisibility(View.GONE);
@@ -850,7 +926,7 @@ public class AliendroidBanner {
                         com.facebook.ads.AdListener adListener = new com.facebook.ads.AdListener() {
                             @Override
                             public void onError(Ad ad, AdError adError) {
-                                if (onLoadBannerFacebook!=null){
+                                if (onLoadBannerFacebook != null) {
                                     onLoadBannerFacebook.onError();
                                 }
                                 layAds.setVisibility(View.GONE);
@@ -859,7 +935,7 @@ public class AliendroidBanner {
 
                             @Override
                             public void onAdLoaded(Ad ad) {
-                                if (onLoadBannerFacebook!=null){
+                                if (onLoadBannerFacebook != null) {
                                     onLoadBannerFacebook.onAdLoaded();
                                 }
 
@@ -867,14 +943,14 @@ public class AliendroidBanner {
 
                             @Override
                             public void onAdClicked(Ad ad) {
-                                if (onLoadBannerFacebook!=null){
+                                if (onLoadBannerFacebook != null) {
                                     onLoadBannerFacebook.onAdClicked();
                                 }
                             }
 
                             @Override
                             public void onLoggingImpression(Ad ad) {
-                                if (onLoadBannerFacebook!=null){
+                                if (onLoadBannerFacebook != null) {
                                     onLoadBannerFacebook.onLoggingImpression();
                                 }
                             }
@@ -886,10 +962,10 @@ public class AliendroidBanner {
                         FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT,
                                 FrameLayout.LayoutParams.WRAP_CONTENT);
                         layAds.addView(adViewIron, 0, layoutParams);
-                         com.ironsource.mediationsdk.sdk.BannerListener listenerIron = new com.ironsource.mediationsdk.sdk.BannerListener() {
+                        com.ironsource.mediationsdk.sdk.BannerListener listenerIron = new com.ironsource.mediationsdk.sdk.BannerListener() {
                             @Override
                             public void onBannerAdLoaded() {
-                                if (onLoadBannerIronSource!=null){
+                                if (onLoadBannerIronSource != null) {
                                     onLoadBannerIronSource.onBannerAdLoaded();
                                 }
 
@@ -897,7 +973,7 @@ public class AliendroidBanner {
 
                             @Override
                             public void onBannerAdLoadFailed(IronSourceError ironSourceError) {
-                                if (onLoadBannerIronSource!=null){
+                                if (onLoadBannerIronSource != null) {
                                     onLoadBannerIronSource.onBannerAdLoadFailed();
                                 }
                                 layAds.setVisibility(View.GONE);
@@ -906,28 +982,28 @@ public class AliendroidBanner {
 
                             @Override
                             public void onBannerAdClicked() {
-                                if (onLoadBannerIronSource!=null){
+                                if (onLoadBannerIronSource != null) {
                                     onLoadBannerIronSource.onBannerAdClicked();
                                 }
                             }
 
                             @Override
                             public void onBannerAdScreenPresented() {
-                                if (onLoadBannerIronSource!=null){
+                                if (onLoadBannerIronSource != null) {
                                     onLoadBannerIronSource.onBannerAdScreenPresented();
                                 }
                             }
 
                             @Override
                             public void onBannerAdScreenDismissed() {
-                                if (onLoadBannerIronSource!=null){
+                                if (onLoadBannerIronSource != null) {
                                     onLoadBannerIronSource.onBannerAdScreenDismissed();
                                 }
                             }
 
                             @Override
                             public void onBannerAdLeftApplication() {
-                                if (onLoadBannerIronSource!=null){
+                                if (onLoadBannerIronSource != null) {
                                     onLoadBannerIronSource.onBannerAdLeftApplication();
                                 }
                             }
@@ -939,7 +1015,7 @@ public class AliendroidBanner {
                         Banner startAppBanner = new Banner(activity, new BannerListener() {
                             @Override
                             public void onReceiveAd(View view) {
-                                if (onLoadBannerStartApp!=null){
+                                if (onLoadBannerStartApp != null) {
                                     onLoadBannerStartApp.onReceiveAd();
                                 }
 
@@ -947,7 +1023,7 @@ public class AliendroidBanner {
 
                             @Override
                             public void onFailedToReceiveAd(View view) {
-                                if (onLoadBannerStartApp!=null){
+                                if (onLoadBannerStartApp != null) {
                                     onLoadBannerStartApp.onFailedToReceiveAd("");
                                 }
                                 layAds.setVisibility(View.GONE);
@@ -955,14 +1031,14 @@ public class AliendroidBanner {
 
                             @Override
                             public void onImpression(View view) {
-                                if (onLoadBannerStartApp!=null){
+                                if (onLoadBannerStartApp != null) {
                                     onLoadBannerStartApp.onImpression();
                                 }
                             }
 
                             @Override
                             public void onClick(View view) {
-                                if (onLoadBannerStartApp!=null){
+                                if (onLoadBannerStartApp != null) {
                                     onLoadBannerStartApp.onClick();
                                 }
                             }
@@ -986,7 +1062,7 @@ public class AliendroidBanner {
                         adViewAdmob.setAdListener(new AdListener() {
                             @Override
                             public void onAdLoaded() {
-                                if (onLoadBannerAdmob!=null){
+                                if (onLoadBannerAdmob != null) {
                                     onLoadBannerAdmob.onAdLoaded();
                                 }
 
@@ -994,7 +1070,7 @@ public class AliendroidBanner {
 
                             @Override
                             public void onAdFailedToLoad(LoadAdError adError) {
-                                if (onLoadBannerAdmob!=null){
+                                if (onLoadBannerAdmob != null) {
                                     onLoadBannerAdmob.onAdFailedToLoad("");
                                 }
                                 layAds.setVisibility(View.GONE);
@@ -1003,21 +1079,21 @@ public class AliendroidBanner {
 
                             @Override
                             public void onAdOpened() {
-                                if (onLoadBannerAdmob!=null){
+                                if (onLoadBannerAdmob != null) {
                                     onLoadBannerAdmob.onAdOpened();
                                 }
                             }
 
                             @Override
                             public void onAdClicked() {
-                                if (onLoadBannerAdmob!=null){
+                                if (onLoadBannerAdmob != null) {
                                     onLoadBannerAdmob.onAdClicked();
                                 }
                             }
 
                             @Override
                             public void onAdClosed() {
-                                if (onLoadBannerAdmob!=null){
+                                if (onLoadBannerAdmob != null) {
                                     onLoadBannerAdmob.onAdClosed();
                                 }
                             }
@@ -1037,7 +1113,7 @@ public class AliendroidBanner {
                         bannerGoogleAds.setAdListener(new AdListener() {
                             @Override
                             public void onAdLoaded() {
-                                if (onLoadBannerGoogle!=null){
+                                if (onLoadBannerGoogle != null) {
                                     onLoadBannerGoogle.onAdLoaded();
                                 }
 
@@ -1045,7 +1121,7 @@ public class AliendroidBanner {
 
                             @Override
                             public void onAdFailedToLoad(LoadAdError adError) {
-                                if (onLoadBannerGoogle!=null){
+                                if (onLoadBannerGoogle != null) {
                                     onLoadBannerGoogle.onAdFailedToLoad("");
                                 }
                                 layAds.setVisibility(View.GONE);
@@ -1054,21 +1130,21 @@ public class AliendroidBanner {
 
                             @Override
                             public void onAdOpened() {
-                                if (onLoadBannerGoogle!=null){
+                                if (onLoadBannerGoogle != null) {
                                     onLoadBannerGoogle.onAdOpened();
                                 }
                             }
 
                             @Override
                             public void onAdClicked() {
-                                if (onLoadBannerGoogle!=null){
+                                if (onLoadBannerGoogle != null) {
                                     onLoadBannerGoogle.onAdClicked();
                                 }
                             }
 
                             @Override
                             public void onAdClosed() {
-                                if (onLoadBannerGoogle!=null){
+                                if (onLoadBannerGoogle != null) {
                                     onLoadBannerGoogle.onAdClosed();
                                 }
                             }
@@ -1085,7 +1161,7 @@ public class AliendroidBanner {
                         AppLovinAdLoadListener loadListener = new AppLovinAdLoadListener() {
                             @Override
                             public void adReceived(AppLovinAd ad) {
-                                if (onLoadBannerApplovinDiscovery!=null){
+                                if (onLoadBannerApplovinDiscovery != null) {
                                     onLoadBannerApplovinDiscovery.adReceived();
                                 }
 
@@ -1093,7 +1169,7 @@ public class AliendroidBanner {
 
                             @Override
                             public void failedToReceiveAd(int errorCode) {
-                                if (onLoadBannerApplovinDiscovery!=null){
+                                if (onLoadBannerApplovinDiscovery != null) {
                                     onLoadBannerApplovinDiscovery.failedToReceiveAd();
                                 }
                                 layAds.setVisibility(View.GONE);
@@ -1105,17 +1181,48 @@ public class AliendroidBanner {
                         adViewDiscovery.loadNextAd();
                         break;
                     case "ALIEN-V":
-                        AlienViewAds.Banner(activity,layAds,idBannerBackup);
+                        AlienViewAds.Banner(activity, layAds, idBannerBackup);
                         break;
                     case "ALIEN-M":
-                        AlienMediationAds.SmallBanner(activity,layAds,idBannerBackup);
+                        AlienMediationAds.SmallBanner(activity, layAds, idBannerBackup);
+                        break;
+                    case "WORTISE":
+                        wortiseBannerAd = new BannerAd(activity);
+                        wortiseBannerAd.setAdSize(com.wortise.ads.AdSize.HEIGHT_50);
+                        wortiseBannerAd.setAdUnitId(idBannerBackup);
+                        layAds.addView(wortiseBannerAd);
+                        wortiseBannerAd.loadAd();
+                        wortiseBannerAd.setListener(new BannerAd.Listener() {
+                            @Override
+                            public void onBannerClicked(@NonNull BannerAd bannerAd) {
+                                if (onLoadBannerWortise!=null){
+                                    onLoadBannerWortise.onBannerClicked();
+                                }
+
+                            }
+
+                            @Override
+                            public void onBannerFailed(@NonNull BannerAd bannerAd, @NonNull com.wortise.ads.AdError adError) {
+                                if (onLoadBannerWortise!=null){
+                                    onLoadBannerWortise.onBannerFailed();
+                                }
+                                layAds.setVisibility(View.GONE);
+                            }
+
+                            @Override
+                            public void onBannerLoaded(@NonNull BannerAd bannerAd) {
+                                if (onLoadBannerWortise!=null){
+                                    onLoadBannerWortise.onBannerLoaded();
+                                }
+                            }
+                        });
                         break;
                 }
             }
 
             @Override
             public void onAdLoaded(Ad ad) {
-                if (onLoadBannerFacebook!=null){
+                if (onLoadBannerFacebook != null) {
                     onLoadBannerFacebook.onAdLoaded();
                 }
                 switch (selectAdsBackup) {
@@ -1153,19 +1260,23 @@ public class AliendroidBanner {
                             adViewDiscovery.destroy();
                         }
                         break;
+                    case "WORTISE":
+                        if (wortiseBannerAd !=null){
+                            wortiseBannerAd.destroy();
+                        }
                 }
             }
 
             @Override
             public void onAdClicked(Ad ad) {
-                if (onLoadBannerFacebook!=null){
+                if (onLoadBannerFacebook != null) {
                     onLoadBannerFacebook.onAdClicked();
                 }
             }
 
             @Override
             public void onLoggingImpression(Ad ad) {
-                if (onLoadBannerFacebook!=null){
+                if (onLoadBannerFacebook != null) {
                     onLoadBannerFacebook.onLoggingImpression();
                 }
             }
@@ -1187,7 +1298,7 @@ public class AliendroidBanner {
         AppLovinAdLoadListener loadListener = new AppLovinAdLoadListener() {
             @Override
             public void adReceived(AppLovinAd ad) {
-                if (onLoadBannerApplovinDiscovery!=null){
+                if (onLoadBannerApplovinDiscovery != null) {
                     onLoadBannerApplovinDiscovery.adReceived();
                 }
                 switch (selectAdsBackup) {
@@ -1226,12 +1337,17 @@ public class AliendroidBanner {
                             adViewFAN.destroy();
                         }
                         break;
+                    case "WORTISE":
+                        if (wortiseBannerAd !=null){
+                            wortiseBannerAd.destroy();
+                        }
+                        break;
                 }
             }
 
             @Override
             public void failedToReceiveAd(int errorCode) {
-                if (onLoadBannerApplovinDiscovery!=null){
+                if (onLoadBannerApplovinDiscovery != null) {
                     onLoadBannerApplovinDiscovery.failedToReceiveAd();
                 }
                 switch (selectAdsBackup) {
@@ -1240,49 +1356,49 @@ public class AliendroidBanner {
                         MaxAdViewAdListener listener = new MaxAdViewAdListener() {
                             @Override
                             public void onAdExpanded(MaxAd ad) {
-                                if (onLoadBannerApplovinMax!=null){
+                                if (onLoadBannerApplovinMax != null) {
                                     onLoadBannerApplovinMax.onAdExpanded();
                                 }
                             }
 
                             @Override
                             public void onAdCollapsed(MaxAd ad) {
-                                if (onLoadBannerApplovinMax!=null){
+                                if (onLoadBannerApplovinMax != null) {
                                     onLoadBannerApplovinMax.onAdCollapsed();
                                 }
                             }
 
                             @Override
                             public void onAdLoaded(MaxAd ad) {
-                                if (onLoadBannerApplovinMax!=null){
+                                if (onLoadBannerApplovinMax != null) {
                                     onLoadBannerApplovinMax.onAdLoaded();
                                 }
                             }
 
                             @Override
                             public void onAdDisplayed(MaxAd ad) {
-                                if (onLoadBannerApplovinMax!=null){
+                                if (onLoadBannerApplovinMax != null) {
                                     onLoadBannerApplovinMax.onAdDisplayed();
                                 }
                             }
 
                             @Override
                             public void onAdHidden(MaxAd ad) {
-                                if (onLoadBannerApplovinMax!=null){
+                                if (onLoadBannerApplovinMax != null) {
                                     onLoadBannerApplovinMax.onAdHidden();
                                 }
                             }
 
                             @Override
                             public void onAdClicked(MaxAd ad) {
-                                if (onLoadBannerApplovinMax!=null){
+                                if (onLoadBannerApplovinMax != null) {
                                     onLoadBannerApplovinMax.onAdClicked();
                                 }
                             }
 
                             @Override
                             public void onAdLoadFailed(String adUnitId, MaxError error) {
-                                if (onLoadBannerApplovinMax!=null){
+                                if (onLoadBannerApplovinMax != null) {
                                     onLoadBannerApplovinMax.onAdLoadFailed();
                                 }
                                 layAds.setVisibility(View.GONE);
@@ -1290,7 +1406,7 @@ public class AliendroidBanner {
 
                             @Override
                             public void onAdDisplayFailed(MaxAd ad, MaxError error) {
-                                if (onLoadBannerApplovinMax!=null){
+                                if (onLoadBannerApplovinMax != null) {
                                     onLoadBannerApplovinMax.onAdDisplayFailed();
                                 }
                                 layAds.setVisibility(View.GONE);
@@ -1312,10 +1428,10 @@ public class AliendroidBanner {
                         FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT,
                                 FrameLayout.LayoutParams.WRAP_CONTENT);
                         layAds.addView(adViewIron, 0, layoutParams);
-                         com.ironsource.mediationsdk.sdk.BannerListener listenerIron = new com.ironsource.mediationsdk.sdk.BannerListener() {
+                        com.ironsource.mediationsdk.sdk.BannerListener listenerIron = new com.ironsource.mediationsdk.sdk.BannerListener() {
                             @Override
                             public void onBannerAdLoaded() {
-                                if (onLoadBannerIronSource!=null){
+                                if (onLoadBannerIronSource != null) {
                                     onLoadBannerIronSource.onBannerAdLoaded();
                                 }
 
@@ -1323,7 +1439,7 @@ public class AliendroidBanner {
 
                             @Override
                             public void onBannerAdLoadFailed(IronSourceError ironSourceError) {
-                                if (onLoadBannerIronSource!=null){
+                                if (onLoadBannerIronSource != null) {
                                     onLoadBannerIronSource.onBannerAdLoadFailed();
                                 }
                                 layAds.setVisibility(View.GONE);
@@ -1332,28 +1448,28 @@ public class AliendroidBanner {
 
                             @Override
                             public void onBannerAdClicked() {
-                                if (onLoadBannerIronSource!=null){
+                                if (onLoadBannerIronSource != null) {
                                     onLoadBannerIronSource.onBannerAdClicked();
                                 }
                             }
 
                             @Override
                             public void onBannerAdScreenPresented() {
-                                if (onLoadBannerIronSource!=null){
+                                if (onLoadBannerIronSource != null) {
                                     onLoadBannerIronSource.onBannerAdScreenPresented();
                                 }
                             }
 
                             @Override
                             public void onBannerAdScreenDismissed() {
-                                if (onLoadBannerIronSource!=null){
+                                if (onLoadBannerIronSource != null) {
                                     onLoadBannerIronSource.onBannerAdScreenDismissed();
                                 }
                             }
 
                             @Override
                             public void onBannerAdLeftApplication() {
-                                if (onLoadBannerIronSource!=null){
+                                if (onLoadBannerIronSource != null) {
                                     onLoadBannerIronSource.onBannerAdLeftApplication();
                                 }
                             }
@@ -1365,7 +1481,7 @@ public class AliendroidBanner {
                         Banner startAppBanner = new Banner(activity, new BannerListener() {
                             @Override
                             public void onReceiveAd(View view) {
-                                if (onLoadBannerStartApp!=null){
+                                if (onLoadBannerStartApp != null) {
                                     onLoadBannerStartApp.onReceiveAd();
                                 }
 
@@ -1373,7 +1489,7 @@ public class AliendroidBanner {
 
                             @Override
                             public void onFailedToReceiveAd(View view) {
-                                if (onLoadBannerStartApp!=null){
+                                if (onLoadBannerStartApp != null) {
                                     onLoadBannerStartApp.onFailedToReceiveAd("");
                                 }
                                 layAds.setVisibility(View.GONE);
@@ -1381,14 +1497,14 @@ public class AliendroidBanner {
 
                             @Override
                             public void onImpression(View view) {
-                                if (onLoadBannerStartApp!=null){
+                                if (onLoadBannerStartApp != null) {
                                     onLoadBannerStartApp.onImpression();
                                 }
                             }
 
                             @Override
                             public void onClick(View view) {
-                                if (onLoadBannerStartApp!=null){
+                                if (onLoadBannerStartApp != null) {
                                     onLoadBannerStartApp.onClick();
                                 }
                             }
@@ -1412,7 +1528,7 @@ public class AliendroidBanner {
                         adViewAdmob.setAdListener(new AdListener() {
                             @Override
                             public void onAdLoaded() {
-                                if (onLoadBannerAdmob!=null){
+                                if (onLoadBannerAdmob != null) {
                                     onLoadBannerAdmob.onAdLoaded();
                                 }
 
@@ -1420,7 +1536,7 @@ public class AliendroidBanner {
 
                             @Override
                             public void onAdFailedToLoad(LoadAdError adError) {
-                                if (onLoadBannerAdmob!=null){
+                                if (onLoadBannerAdmob != null) {
                                     onLoadBannerAdmob.onAdFailedToLoad("");
                                 }
                                 layAds.setVisibility(View.GONE);
@@ -1429,21 +1545,21 @@ public class AliendroidBanner {
 
                             @Override
                             public void onAdOpened() {
-                                if (onLoadBannerAdmob!=null){
+                                if (onLoadBannerAdmob != null) {
                                     onLoadBannerAdmob.onAdOpened();
                                 }
                             }
 
                             @Override
                             public void onAdClicked() {
-                                if (onLoadBannerAdmob!=null){
+                                if (onLoadBannerAdmob != null) {
                                     onLoadBannerAdmob.onAdClicked();
                                 }
                             }
 
                             @Override
                             public void onAdClosed() {
-                                if (onLoadBannerAdmob!=null){
+                                if (onLoadBannerAdmob != null) {
                                     onLoadBannerAdmob.onAdClosed();
                                 }
                             }
@@ -1463,7 +1579,7 @@ public class AliendroidBanner {
                         bannerGoogleAds.setAdListener(new AdListener() {
                             @Override
                             public void onAdLoaded() {
-                                if (onLoadBannerGoogle!=null){
+                                if (onLoadBannerGoogle != null) {
                                     onLoadBannerGoogle.onAdLoaded();
                                 }
 
@@ -1471,7 +1587,7 @@ public class AliendroidBanner {
 
                             @Override
                             public void onAdFailedToLoad(LoadAdError adError) {
-                                if (onLoadBannerGoogle!=null){
+                                if (onLoadBannerGoogle != null) {
                                     onLoadBannerGoogle.onAdFailedToLoad("");
                                 }
                                 layAds.setVisibility(View.GONE);
@@ -1480,21 +1596,21 @@ public class AliendroidBanner {
 
                             @Override
                             public void onAdOpened() {
-                                if (onLoadBannerGoogle!=null){
+                                if (onLoadBannerGoogle != null) {
                                     onLoadBannerGoogle.onAdOpened();
                                 }
                             }
 
                             @Override
                             public void onAdClicked() {
-                                if (onLoadBannerGoogle!=null){
+                                if (onLoadBannerGoogle != null) {
                                     onLoadBannerGoogle.onAdClicked();
                                 }
                             }
 
                             @Override
                             public void onAdClosed() {
-                                if (onLoadBannerGoogle!=null){
+                                if (onLoadBannerGoogle != null) {
                                     onLoadBannerGoogle.onAdClosed();
                                 }
                             }
@@ -1504,10 +1620,10 @@ public class AliendroidBanner {
                         adViewFAN = new com.facebook.ads.AdView(activity, idBannerBackup,
                                 com.facebook.ads.AdSize.BANNER_HEIGHT_50);
                         layAds.addView(adViewFAN);
-                         com.facebook.ads.AdListener adListener = new com.facebook.ads.AdListener() {
+                        com.facebook.ads.AdListener adListener = new com.facebook.ads.AdListener() {
                             @Override
                             public void onError(Ad ad, AdError adError) {
-                                if (onLoadBannerFacebook!=null){
+                                if (onLoadBannerFacebook != null) {
                                     onLoadBannerFacebook.onError();
                                 }
                                 layAds.setVisibility(View.GONE);
@@ -1516,7 +1632,7 @@ public class AliendroidBanner {
 
                             @Override
                             public void onAdLoaded(Ad ad) {
-                                if (onLoadBannerFacebook!=null){
+                                if (onLoadBannerFacebook != null) {
                                     onLoadBannerFacebook.onAdLoaded();
                                 }
 
@@ -1524,14 +1640,14 @@ public class AliendroidBanner {
 
                             @Override
                             public void onAdClicked(Ad ad) {
-                                if (onLoadBannerFacebook!=null){
+                                if (onLoadBannerFacebook != null) {
                                     onLoadBannerFacebook.onAdClicked();
                                 }
                             }
 
                             @Override
                             public void onLoggingImpression(Ad ad) {
-                                if (onLoadBannerFacebook!=null){
+                                if (onLoadBannerFacebook != null) {
                                     onLoadBannerFacebook.onLoggingImpression();
                                 }
                             }
@@ -1539,10 +1655,41 @@ public class AliendroidBanner {
                         adViewFAN.loadAd(adViewFAN.buildLoadAdConfig().withAdListener(adListener).build());
                         break;
                     case "ALIEN-V":
-                        AlienViewAds.Banner(activity,layAds,idBannerBackup);
+                        AlienViewAds.Banner(activity, layAds, idBannerBackup);
                         break;
                     case "ALIEN-M":
-                        AlienMediationAds.SmallBanner(activity,layAds,idBannerBackup);
+                        AlienMediationAds.SmallBanner(activity, layAds, idBannerBackup);
+                        break;
+                    case "WORTISE":
+                        wortiseBannerAd = new BannerAd(activity);
+                        wortiseBannerAd.setAdSize(com.wortise.ads.AdSize.HEIGHT_50);
+                        wortiseBannerAd.setAdUnitId(idBannerBackup);
+                        layAds.addView(wortiseBannerAd);
+                        wortiseBannerAd.loadAd();
+                        wortiseBannerAd.setListener(new BannerAd.Listener() {
+                            @Override
+                            public void onBannerClicked(@NonNull BannerAd bannerAd) {
+                                if (onLoadBannerWortise!=null){
+                                    onLoadBannerWortise.onBannerClicked();
+                                }
+
+                            }
+
+                            @Override
+                            public void onBannerFailed(@NonNull BannerAd bannerAd, @NonNull com.wortise.ads.AdError adError) {
+                                if (onLoadBannerWortise!=null){
+                                    onLoadBannerWortise.onBannerFailed();
+                                }
+                                layAds.setVisibility(View.GONE);
+                            }
+
+                            @Override
+                            public void onBannerLoaded(@NonNull BannerAd bannerAd) {
+                                if (onLoadBannerWortise!=null){
+                                    onLoadBannerWortise.onBannerLoaded();
+                                }
+                            }
+                        });
                         break;
                 }
             }
@@ -1564,7 +1711,7 @@ public class AliendroidBanner {
         AppLovinAdLoadListener loadListener = new AppLovinAdLoadListener() {
             @Override
             public void adReceived(AppLovinAd ad) {
-                if (onLoadBannerApplovinDiscovery!=null){
+                if (onLoadBannerApplovinDiscovery != null) {
                     onLoadBannerApplovinDiscovery.adReceived();
                 }
                 switch (selectAdsBackup) {
@@ -1602,12 +1749,17 @@ public class AliendroidBanner {
                             adViewFAN.destroy();
                         }
                         break;
+                    case  "WORTISE" :
+                        if (wortiseBannerAd !=null) {
+                            wortiseBannerAd.destroy();
+                        }
+                        break;
                 }
             }
 
             @Override
             public void failedToReceiveAd(int errorCode) {
-                if (onLoadBannerApplovinDiscovery!=null){
+                if (onLoadBannerApplovinDiscovery != null) {
                     onLoadBannerApplovinDiscovery.failedToReceiveAd();
                 }
                 switch (selectAdsBackup) {
@@ -1616,49 +1768,49 @@ public class AliendroidBanner {
                         MaxAdViewAdListener listener = new MaxAdViewAdListener() {
                             @Override
                             public void onAdExpanded(MaxAd ad) {
-                                if (onLoadBannerApplovinMax!=null){
+                                if (onLoadBannerApplovinMax != null) {
                                     onLoadBannerApplovinMax.onAdExpanded();
                                 }
                             }
 
                             @Override
                             public void onAdCollapsed(MaxAd ad) {
-                                if (onLoadBannerApplovinMax!=null){
+                                if (onLoadBannerApplovinMax != null) {
                                     onLoadBannerApplovinMax.onAdCollapsed();
                                 }
                             }
 
                             @Override
                             public void onAdLoaded(MaxAd ad) {
-                                if (onLoadBannerApplovinMax!=null){
+                                if (onLoadBannerApplovinMax != null) {
                                     onLoadBannerApplovinMax.onAdLoaded();
                                 }
                             }
 
                             @Override
                             public void onAdDisplayed(MaxAd ad) {
-                                if (onLoadBannerApplovinMax!=null){
+                                if (onLoadBannerApplovinMax != null) {
                                     onLoadBannerApplovinMax.onAdDisplayed();
                                 }
                             }
 
                             @Override
                             public void onAdHidden(MaxAd ad) {
-                                if (onLoadBannerApplovinMax!=null){
+                                if (onLoadBannerApplovinMax != null) {
                                     onLoadBannerApplovinMax.onAdHidden();
                                 }
                             }
 
                             @Override
                             public void onAdClicked(MaxAd ad) {
-                                if (onLoadBannerApplovinMax!=null){
+                                if (onLoadBannerApplovinMax != null) {
                                     onLoadBannerApplovinMax.onAdClicked();
                                 }
                             }
 
                             @Override
                             public void onAdLoadFailed(String adUnitId, MaxError error) {
-                                if (onLoadBannerApplovinMax!=null){
+                                if (onLoadBannerApplovinMax != null) {
                                     onLoadBannerApplovinMax.onAdLoadFailed();
                                 }
                                 layAds.setVisibility(View.GONE);
@@ -1666,7 +1818,7 @@ public class AliendroidBanner {
 
                             @Override
                             public void onAdDisplayFailed(MaxAd ad, MaxError error) {
-                                if (onLoadBannerApplovinMax!=null){
+                                if (onLoadBannerApplovinMax != null) {
                                     onLoadBannerApplovinMax.onAdDisplayFailed();
                                 }
                                 layAds.setVisibility(View.GONE);
@@ -1688,10 +1840,10 @@ public class AliendroidBanner {
                         FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT,
                                 FrameLayout.LayoutParams.WRAP_CONTENT);
                         layAds.addView(adViewIron, 0, layoutParams);
-                         com.ironsource.mediationsdk.sdk.BannerListener listenerIron = new com.ironsource.mediationsdk.sdk.BannerListener() {
+                        com.ironsource.mediationsdk.sdk.BannerListener listenerIron = new com.ironsource.mediationsdk.sdk.BannerListener() {
                             @Override
                             public void onBannerAdLoaded() {
-                                if (onLoadBannerIronSource!=null){
+                                if (onLoadBannerIronSource != null) {
                                     onLoadBannerIronSource.onBannerAdLoaded();
                                 }
 
@@ -1699,7 +1851,7 @@ public class AliendroidBanner {
 
                             @Override
                             public void onBannerAdLoadFailed(IronSourceError ironSourceError) {
-                                if (onLoadBannerIronSource!=null){
+                                if (onLoadBannerIronSource != null) {
                                     onLoadBannerIronSource.onBannerAdLoadFailed();
                                 }
                                 layAds.setVisibility(View.GONE);
@@ -1708,28 +1860,28 @@ public class AliendroidBanner {
 
                             @Override
                             public void onBannerAdClicked() {
-                                if (onLoadBannerIronSource!=null){
+                                if (onLoadBannerIronSource != null) {
                                     onLoadBannerIronSource.onBannerAdClicked();
                                 }
                             }
 
                             @Override
                             public void onBannerAdScreenPresented() {
-                                if (onLoadBannerIronSource!=null){
+                                if (onLoadBannerIronSource != null) {
                                     onLoadBannerIronSource.onBannerAdScreenPresented();
                                 }
                             }
 
                             @Override
                             public void onBannerAdScreenDismissed() {
-                                if (onLoadBannerIronSource!=null){
+                                if (onLoadBannerIronSource != null) {
                                     onLoadBannerIronSource.onBannerAdScreenDismissed();
                                 }
                             }
 
                             @Override
                             public void onBannerAdLeftApplication() {
-                                if (onLoadBannerIronSource!=null){
+                                if (onLoadBannerIronSource != null) {
                                     onLoadBannerIronSource.onBannerAdLeftApplication();
                                 }
                             }
@@ -1741,7 +1893,7 @@ public class AliendroidBanner {
                         Banner startAppBanner = new Banner(activity, new BannerListener() {
                             @Override
                             public void onReceiveAd(View view) {
-                                if (onLoadBannerStartApp!=null){
+                                if (onLoadBannerStartApp != null) {
                                     onLoadBannerStartApp.onReceiveAd();
                                 }
 
@@ -1749,7 +1901,7 @@ public class AliendroidBanner {
 
                             @Override
                             public void onFailedToReceiveAd(View view) {
-                                if (onLoadBannerStartApp!=null){
+                                if (onLoadBannerStartApp != null) {
                                     onLoadBannerStartApp.onFailedToReceiveAd("");
                                 }
                                 layAds.setVisibility(View.GONE);
@@ -1757,14 +1909,14 @@ public class AliendroidBanner {
 
                             @Override
                             public void onImpression(View view) {
-                                if (onLoadBannerStartApp!=null){
+                                if (onLoadBannerStartApp != null) {
                                     onLoadBannerStartApp.onImpression();
                                 }
                             }
 
                             @Override
                             public void onClick(View view) {
-                                if (onLoadBannerStartApp!=null){
+                                if (onLoadBannerStartApp != null) {
                                     onLoadBannerStartApp.onClick();
                                 }
                             }
@@ -1788,7 +1940,7 @@ public class AliendroidBanner {
                         adViewAdmob.setAdListener(new AdListener() {
                             @Override
                             public void onAdLoaded() {
-                                if (onLoadBannerAdmob!=null){
+                                if (onLoadBannerAdmob != null) {
                                     onLoadBannerAdmob.onAdLoaded();
                                 }
 
@@ -1796,7 +1948,7 @@ public class AliendroidBanner {
 
                             @Override
                             public void onAdFailedToLoad(LoadAdError adError) {
-                                if (onLoadBannerAdmob!=null){
+                                if (onLoadBannerAdmob != null) {
                                     onLoadBannerAdmob.onAdFailedToLoad("");
                                 }
                                 layAds.setVisibility(View.GONE);
@@ -1805,21 +1957,21 @@ public class AliendroidBanner {
 
                             @Override
                             public void onAdOpened() {
-                                if (onLoadBannerAdmob!=null){
+                                if (onLoadBannerAdmob != null) {
                                     onLoadBannerAdmob.onAdOpened();
                                 }
                             }
 
                             @Override
                             public void onAdClicked() {
-                                if (onLoadBannerAdmob!=null){
+                                if (onLoadBannerAdmob != null) {
                                     onLoadBannerAdmob.onAdClicked();
                                 }
                             }
 
                             @Override
                             public void onAdClosed() {
-                                if (onLoadBannerAdmob!=null){
+                                if (onLoadBannerAdmob != null) {
                                     onLoadBannerAdmob.onAdClosed();
                                 }
                             }
@@ -1839,7 +1991,7 @@ public class AliendroidBanner {
                         bannerGoogleAds.setAdListener(new AdListener() {
                             @Override
                             public void onAdLoaded() {
-                                if (onLoadBannerGoogle!=null){
+                                if (onLoadBannerGoogle != null) {
                                     onLoadBannerGoogle.onAdLoaded();
                                 }
 
@@ -1847,7 +1999,7 @@ public class AliendroidBanner {
 
                             @Override
                             public void onAdFailedToLoad(LoadAdError adError) {
-                                if (onLoadBannerGoogle!=null){
+                                if (onLoadBannerGoogle != null) {
                                     onLoadBannerGoogle.onAdFailedToLoad("");
                                 }
                                 layAds.setVisibility(View.GONE);
@@ -1856,21 +2008,21 @@ public class AliendroidBanner {
 
                             @Override
                             public void onAdOpened() {
-                                if (onLoadBannerGoogle!=null){
+                                if (onLoadBannerGoogle != null) {
                                     onLoadBannerGoogle.onAdOpened();
                                 }
                             }
 
                             @Override
                             public void onAdClicked() {
-                                if (onLoadBannerGoogle!=null){
+                                if (onLoadBannerGoogle != null) {
                                     onLoadBannerGoogle.onAdClicked();
                                 }
                             }
 
                             @Override
                             public void onAdClosed() {
-                                if (onLoadBannerGoogle!=null){
+                                if (onLoadBannerGoogle != null) {
                                     onLoadBannerGoogle.onAdClosed();
                                 }
                             }
@@ -1880,10 +2032,10 @@ public class AliendroidBanner {
                         adViewFAN = new com.facebook.ads.AdView(activity, idBannerBackup,
                                 com.facebook.ads.AdSize.BANNER_HEIGHT_50);
                         layAds.addView(adViewFAN);
-                         com.facebook.ads.AdListener adListener = new com.facebook.ads.AdListener() {
+                        com.facebook.ads.AdListener adListener = new com.facebook.ads.AdListener() {
                             @Override
                             public void onError(Ad ad, AdError adError) {
-                                if (onLoadBannerFacebook!=null){
+                                if (onLoadBannerFacebook != null) {
                                     onLoadBannerFacebook.onError();
                                 }
                                 layAds.setVisibility(View.GONE);
@@ -1892,7 +2044,7 @@ public class AliendroidBanner {
 
                             @Override
                             public void onAdLoaded(Ad ad) {
-                                if (onLoadBannerFacebook!=null){
+                                if (onLoadBannerFacebook != null) {
                                     onLoadBannerFacebook.onAdLoaded();
                                 }
 
@@ -1900,14 +2052,14 @@ public class AliendroidBanner {
 
                             @Override
                             public void onAdClicked(Ad ad) {
-                                if (onLoadBannerFacebook!=null){
+                                if (onLoadBannerFacebook != null) {
                                     onLoadBannerFacebook.onAdClicked();
                                 }
                             }
 
                             @Override
                             public void onLoggingImpression(Ad ad) {
-                                if (onLoadBannerFacebook!=null){
+                                if (onLoadBannerFacebook != null) {
                                     onLoadBannerFacebook.onLoggingImpression();
                                 }
                             }
@@ -1915,10 +2067,41 @@ public class AliendroidBanner {
                         adViewFAN.loadAd(adViewFAN.buildLoadAdConfig().withAdListener(adListener).build());
                         break;
                     case "ALIEN-V":
-                        AlienViewAds.Banner(activity,layAds,idBannerBackup);
+                        AlienViewAds.Banner(activity, layAds, idBannerBackup);
                         break;
                     case "ALIEN-M":
-                        AlienMediationAds.SmallBanner(activity,layAds,idBannerBackup);
+                        AlienMediationAds.SmallBanner(activity, layAds, idBannerBackup);
+                        break;
+                    case "WORTISE":
+                        wortiseBannerAd = new BannerAd(activity);
+                        wortiseBannerAd.setAdSize(com.wortise.ads.AdSize.HEIGHT_50);
+                        wortiseBannerAd.setAdUnitId(idBannerBackup);
+                        layAds.addView(wortiseBannerAd);
+                        wortiseBannerAd.loadAd();
+                        wortiseBannerAd.setListener(new BannerAd.Listener() {
+                            @Override
+                            public void onBannerClicked(@NonNull BannerAd bannerAd) {
+                                if (onLoadBannerWortise!=null){
+                                    onLoadBannerWortise.onBannerClicked();
+                                }
+
+                            }
+
+                            @Override
+                            public void onBannerFailed(@NonNull BannerAd bannerAd, @NonNull com.wortise.ads.AdError adError) {
+                                if (onLoadBannerWortise!=null){
+                                    onLoadBannerWortise.onBannerFailed();
+                                }
+                                layAds.setVisibility(View.GONE);
+                            }
+
+                            @Override
+                            public void onBannerLoaded(@NonNull BannerAd bannerAd) {
+                                if (onLoadBannerWortise!=null){
+                                    onLoadBannerWortise.onBannerLoaded();
+                                }
+                            }
+                        });
                         break;
                 }
             }
@@ -1936,21 +2119,21 @@ public class AliendroidBanner {
         MaxAdViewAdListener listener = new MaxAdViewAdListener() {
             @Override
             public void onAdExpanded(MaxAd ad) {
-            if (onLoadBannerApplovinMax!=null){
-                onLoadBannerApplovinMax.onAdExpanded();
-            }
+                if (onLoadBannerApplovinMax != null) {
+                    onLoadBannerApplovinMax.onAdExpanded();
+                }
             }
 
             @Override
             public void onAdCollapsed(MaxAd ad) {
-                if (onLoadBannerApplovinMax!=null){
+                if (onLoadBannerApplovinMax != null) {
                     onLoadBannerApplovinMax.onAdCollapsed();
                 }
             }
 
             @Override
             public void onAdLoaded(MaxAd ad) {
-                if (onLoadBannerApplovinMax!=null){
+                if (onLoadBannerApplovinMax != null) {
                     onLoadBannerApplovinMax.onAdLoaded();
                 }
                 switch (selectAdsBackup) {
@@ -1988,33 +2171,38 @@ public class AliendroidBanner {
                             adViewFAN.destroy();
                         }
                         break;
+                    case  "WORTISE" :
+                        if (wortiseBannerAd !=null){
+                            wortiseBannerAd.destroy();
+                        }
+                        break;
                 }
             }
 
             @Override
             public void onAdDisplayed(MaxAd ad) {
-                if (onLoadBannerApplovinMax!=null){
+                if (onLoadBannerApplovinMax != null) {
                     onLoadBannerApplovinMax.onAdDisplayed();
                 }
             }
 
             @Override
             public void onAdHidden(MaxAd ad) {
-                if (onLoadBannerApplovinMax!=null){
+                if (onLoadBannerApplovinMax != null) {
                     onLoadBannerApplovinMax.onAdHidden();
                 }
             }
 
             @Override
             public void onAdClicked(MaxAd ad) {
-                if (onLoadBannerApplovinMax!=null){
+                if (onLoadBannerApplovinMax != null) {
                     onLoadBannerApplovinMax.onAdClicked();
                 }
             }
 
             @Override
             public void onAdLoadFailed(String adUnitId, MaxError error) {
-                if (onLoadBannerApplovinMax!=null){
+                if (onLoadBannerApplovinMax != null) {
                     onLoadBannerApplovinMax.onAdLoadFailed();
                 }
                 switch (selectAdsBackup) {
@@ -2029,7 +2217,7 @@ public class AliendroidBanner {
                         AppLovinAdLoadListener loadListener = new AppLovinAdLoadListener() {
                             @Override
                             public void adReceived(AppLovinAd ad) {
-                                if (onLoadBannerApplovinDiscovery!=null){
+                                if (onLoadBannerApplovinDiscovery != null) {
                                     onLoadBannerApplovinDiscovery.adReceived();
                                 }
 
@@ -2037,7 +2225,7 @@ public class AliendroidBanner {
 
                             @Override
                             public void failedToReceiveAd(int errorCode) {
-                                if (onLoadBannerApplovinDiscovery!=null){
+                                if (onLoadBannerApplovinDiscovery != null) {
                                     onLoadBannerApplovinDiscovery.failedToReceiveAd();
                                 }
                                 layAds.setVisibility(View.GONE);
@@ -2057,10 +2245,10 @@ public class AliendroidBanner {
                         FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT,
                                 FrameLayout.LayoutParams.WRAP_CONTENT);
                         layAds.addView(adViewIron, 0, layoutParams);
-                         com.ironsource.mediationsdk.sdk.BannerListener listenerIron = new com.ironsource.mediationsdk.sdk.BannerListener() {
+                        com.ironsource.mediationsdk.sdk.BannerListener listenerIron = new com.ironsource.mediationsdk.sdk.BannerListener() {
                             @Override
                             public void onBannerAdLoaded() {
-                                if (onLoadBannerIronSource!=null){
+                                if (onLoadBannerIronSource != null) {
                                     onLoadBannerIronSource.onBannerAdLoaded();
                                 }
 
@@ -2068,7 +2256,7 @@ public class AliendroidBanner {
 
                             @Override
                             public void onBannerAdLoadFailed(IronSourceError ironSourceError) {
-                                if (onLoadBannerIronSource!=null){
+                                if (onLoadBannerIronSource != null) {
                                     onLoadBannerIronSource.onBannerAdLoadFailed();
                                 }
                                 layAds.setVisibility(View.GONE);
@@ -2077,28 +2265,28 @@ public class AliendroidBanner {
 
                             @Override
                             public void onBannerAdClicked() {
-                                if (onLoadBannerIronSource!=null){
+                                if (onLoadBannerIronSource != null) {
                                     onLoadBannerIronSource.onBannerAdClicked();
                                 }
                             }
 
                             @Override
                             public void onBannerAdScreenPresented() {
-                                if (onLoadBannerIronSource!=null){
+                                if (onLoadBannerIronSource != null) {
                                     onLoadBannerIronSource.onBannerAdScreenPresented();
                                 }
                             }
 
                             @Override
                             public void onBannerAdScreenDismissed() {
-                                if (onLoadBannerIronSource!=null){
+                                if (onLoadBannerIronSource != null) {
                                     onLoadBannerIronSource.onBannerAdScreenDismissed();
                                 }
                             }
 
                             @Override
                             public void onBannerAdLeftApplication() {
-                                if (onLoadBannerIronSource!=null){
+                                if (onLoadBannerIronSource != null) {
                                     onLoadBannerIronSource.onBannerAdLeftApplication();
                                 }
                             }
@@ -2110,7 +2298,7 @@ public class AliendroidBanner {
                         Banner startAppBanner = new Banner(activity, new BannerListener() {
                             @Override
                             public void onReceiveAd(View view) {
-                                if (onLoadBannerStartApp!=null){
+                                if (onLoadBannerStartApp != null) {
                                     onLoadBannerStartApp.onReceiveAd();
                                 }
 
@@ -2118,7 +2306,7 @@ public class AliendroidBanner {
 
                             @Override
                             public void onFailedToReceiveAd(View view) {
-                                if (onLoadBannerStartApp!=null){
+                                if (onLoadBannerStartApp != null) {
                                     onLoadBannerStartApp.onFailedToReceiveAd("");
                                 }
                                 layAds.setVisibility(View.GONE);
@@ -2126,14 +2314,14 @@ public class AliendroidBanner {
 
                             @Override
                             public void onImpression(View view) {
-                                if (onLoadBannerStartApp!=null){
+                                if (onLoadBannerStartApp != null) {
                                     onLoadBannerStartApp.onImpression();
                                 }
                             }
 
                             @Override
                             public void onClick(View view) {
-                                if (onLoadBannerStartApp!=null){
+                                if (onLoadBannerStartApp != null) {
                                     onLoadBannerStartApp.onClick();
                                 }
                             }
@@ -2157,7 +2345,7 @@ public class AliendroidBanner {
                         adViewAdmob.setAdListener(new AdListener() {
                             @Override
                             public void onAdLoaded() {
-                                if (onLoadBannerAdmob!=null){
+                                if (onLoadBannerAdmob != null) {
                                     onLoadBannerAdmob.onAdLoaded();
                                 }
 
@@ -2165,7 +2353,7 @@ public class AliendroidBanner {
 
                             @Override
                             public void onAdFailedToLoad(LoadAdError adError) {
-                                if (onLoadBannerAdmob!=null){
+                                if (onLoadBannerAdmob != null) {
                                     onLoadBannerAdmob.onAdFailedToLoad("");
                                 }
                                 layAds.setVisibility(View.GONE);
@@ -2174,21 +2362,21 @@ public class AliendroidBanner {
 
                             @Override
                             public void onAdOpened() {
-                                if (onLoadBannerAdmob!=null){
+                                if (onLoadBannerAdmob != null) {
                                     onLoadBannerAdmob.onAdOpened();
                                 }
                             }
 
                             @Override
                             public void onAdClicked() {
-                                if (onLoadBannerAdmob!=null){
+                                if (onLoadBannerAdmob != null) {
                                     onLoadBannerAdmob.onAdClicked();
                                 }
                             }
 
                             @Override
                             public void onAdClosed() {
-                                if (onLoadBannerAdmob!=null){
+                                if (onLoadBannerAdmob != null) {
                                     onLoadBannerAdmob.onAdClosed();
                                 }
                             }
@@ -2208,7 +2396,7 @@ public class AliendroidBanner {
                         bannerGoogleAds.setAdListener(new AdListener() {
                             @Override
                             public void onAdLoaded() {
-                                if (onLoadBannerGoogle!=null){
+                                if (onLoadBannerGoogle != null) {
                                     onLoadBannerGoogle.onAdLoaded();
                                 }
 
@@ -2216,7 +2404,7 @@ public class AliendroidBanner {
 
                             @Override
                             public void onAdFailedToLoad(LoadAdError adError) {
-                                if (onLoadBannerGoogle!=null){
+                                if (onLoadBannerGoogle != null) {
                                     onLoadBannerGoogle.onAdFailedToLoad("");
                                 }
                                 layAds.setVisibility(View.GONE);
@@ -2225,21 +2413,21 @@ public class AliendroidBanner {
 
                             @Override
                             public void onAdOpened() {
-                                if (onLoadBannerGoogle!=null){
+                                if (onLoadBannerGoogle != null) {
                                     onLoadBannerGoogle.onAdOpened();
                                 }
                             }
 
                             @Override
                             public void onAdClicked() {
-                                if (onLoadBannerGoogle!=null){
+                                if (onLoadBannerGoogle != null) {
                                     onLoadBannerGoogle.onAdClicked();
                                 }
                             }
 
                             @Override
                             public void onAdClosed() {
-                                if (onLoadBannerGoogle!=null){
+                                if (onLoadBannerGoogle != null) {
                                     onLoadBannerGoogle.onAdClosed();
                                 }
                             }
@@ -2249,10 +2437,10 @@ public class AliendroidBanner {
                         adViewFAN = new com.facebook.ads.AdView(activity, idBannerBackup,
                                 com.facebook.ads.AdSize.BANNER_HEIGHT_50);
                         layAds.addView(adViewFAN);
-                         com.facebook.ads.AdListener adListener = new com.facebook.ads.AdListener() {
+                        com.facebook.ads.AdListener adListener = new com.facebook.ads.AdListener() {
                             @Override
                             public void onError(Ad ad, AdError adError) {
-                                if (onLoadBannerFacebook!=null){
+                                if (onLoadBannerFacebook != null) {
                                     onLoadBannerFacebook.onError();
                                 }
                                 layAds.setVisibility(View.GONE);
@@ -2261,7 +2449,7 @@ public class AliendroidBanner {
 
                             @Override
                             public void onAdLoaded(Ad ad) {
-                                if (onLoadBannerFacebook!=null){
+                                if (onLoadBannerFacebook != null) {
                                     onLoadBannerFacebook.onAdLoaded();
                                 }
 
@@ -2269,14 +2457,14 @@ public class AliendroidBanner {
 
                             @Override
                             public void onAdClicked(Ad ad) {
-                                if (onLoadBannerFacebook!=null){
+                                if (onLoadBannerFacebook != null) {
                                     onLoadBannerFacebook.onAdClicked();
                                 }
                             }
 
                             @Override
                             public void onLoggingImpression(Ad ad) {
-                                if (onLoadBannerFacebook!=null){
+                                if (onLoadBannerFacebook != null) {
                                     onLoadBannerFacebook.onLoggingImpression();
                                 }
                             }
@@ -2284,10 +2472,41 @@ public class AliendroidBanner {
                         adViewFAN.loadAd(adViewFAN.buildLoadAdConfig().withAdListener(adListener).build());
                         break;
                     case "ALIEN-V":
-                        AlienViewAds.Banner(activity,layAds,idBannerBackup);
+                        AlienViewAds.Banner(activity, layAds, idBannerBackup);
                         break;
                     case "ALIEN-M":
-                        AlienMediationAds.SmallBanner(activity,layAds,idBannerBackup);
+                        AlienMediationAds.SmallBanner(activity, layAds, idBannerBackup);
+                        break;
+                    case "WORTISE":
+                        wortiseBannerAd = new BannerAd(activity);
+                        wortiseBannerAd.setAdSize(com.wortise.ads.AdSize.HEIGHT_50);
+                        wortiseBannerAd.setAdUnitId(idBannerBackup);
+                        layAds.addView(wortiseBannerAd);
+                        wortiseBannerAd.loadAd();
+                        wortiseBannerAd.setListener(new BannerAd.Listener() {
+                            @Override
+                            public void onBannerClicked(@NonNull BannerAd bannerAd) {
+                                if (onLoadBannerWortise!=null){
+                                    onLoadBannerWortise.onBannerClicked();
+                                }
+
+                            }
+
+                            @Override
+                            public void onBannerFailed(@NonNull BannerAd bannerAd, @NonNull com.wortise.ads.AdError adError) {
+                                if (onLoadBannerWortise!=null){
+                                    onLoadBannerWortise.onBannerFailed();
+                                }
+                                layAds.setVisibility(View.GONE);
+                            }
+
+                            @Override
+                            public void onBannerLoaded(@NonNull BannerAd bannerAd) {
+                                if (onLoadBannerWortise!=null){
+                                    onLoadBannerWortise.onBannerLoaded();
+                                }
+                            }
+                        });
                         break;
                 }
 
@@ -2295,7 +2514,7 @@ public class AliendroidBanner {
 
             @Override
             public void onAdDisplayFailed(MaxAd ad, MaxError error) {
-                if (onLoadBannerApplovinMax!=null){
+                if (onLoadBannerApplovinMax != null) {
                     onLoadBannerApplovinMax.onAdDisplayFailed();
                 }
             }
@@ -2316,7 +2535,7 @@ public class AliendroidBanner {
         Banner startAppBanner = new Banner(activity, new BannerListener() {
             @Override
             public void onReceiveAd(View view) {
-                if (onLoadBannerStartApp!=null){
+                if (onLoadBannerStartApp != null) {
                     onLoadBannerStartApp.onReceiveAd();
                 }
                 switch (selectAdsBackup) {
@@ -2354,12 +2573,17 @@ public class AliendroidBanner {
                             adViewFAN.destroy();
                         }
                         break;
+                    case "WORTISE":
+                        if (wortiseBannerAd !=null){
+                            wortiseBannerAd.destroy();
+                        }
+                        break;
                 }
             }
 
             @Override
             public void onFailedToReceiveAd(View view) {
-                if (onLoadBannerStartApp!=null){
+                if (onLoadBannerStartApp != null) {
                     onLoadBannerStartApp.onFailedToReceiveAd("");
                 }
                 switch (selectAdsBackup) {
@@ -2374,7 +2598,7 @@ public class AliendroidBanner {
                         AppLovinAdLoadListener loadListener = new AppLovinAdLoadListener() {
                             @Override
                             public void adReceived(AppLovinAd ad) {
-                                if (onLoadBannerApplovinDiscovery!=null){
+                                if (onLoadBannerApplovinDiscovery != null) {
                                     onLoadBannerApplovinDiscovery.adReceived();
                                 }
 
@@ -2382,7 +2606,7 @@ public class AliendroidBanner {
 
                             @Override
                             public void failedToReceiveAd(int errorCode) {
-                                if (onLoadBannerApplovinDiscovery!=null){
+                                if (onLoadBannerApplovinDiscovery != null) {
                                     onLoadBannerApplovinDiscovery.failedToReceiveAd();
                                 }
                                 layAds.setVisibility(View.GONE);
@@ -2398,49 +2622,49 @@ public class AliendroidBanner {
                         MaxAdViewAdListener listener = new MaxAdViewAdListener() {
                             @Override
                             public void onAdExpanded(MaxAd ad) {
-                                if (onLoadBannerApplovinMax!=null){
+                                if (onLoadBannerApplovinMax != null) {
                                     onLoadBannerApplovinMax.onAdExpanded();
                                 }
                             }
 
                             @Override
                             public void onAdCollapsed(MaxAd ad) {
-                                if (onLoadBannerApplovinMax!=null){
+                                if (onLoadBannerApplovinMax != null) {
                                     onLoadBannerApplovinMax.onAdCollapsed();
                                 }
                             }
 
                             @Override
                             public void onAdLoaded(MaxAd ad) {
-                                if (onLoadBannerApplovinMax!=null){
+                                if (onLoadBannerApplovinMax != null) {
                                     onLoadBannerApplovinMax.onAdLoaded();
                                 }
                             }
 
                             @Override
                             public void onAdDisplayed(MaxAd ad) {
-                                if (onLoadBannerApplovinMax!=null){
+                                if (onLoadBannerApplovinMax != null) {
                                     onLoadBannerApplovinMax.onAdDisplayed();
                                 }
                             }
 
                             @Override
                             public void onAdHidden(MaxAd ad) {
-                                if (onLoadBannerApplovinMax!=null){
+                                if (onLoadBannerApplovinMax != null) {
                                     onLoadBannerApplovinMax.onAdHidden();
                                 }
                             }
 
                             @Override
                             public void onAdClicked(MaxAd ad) {
-                                if (onLoadBannerApplovinMax!=null){
+                                if (onLoadBannerApplovinMax != null) {
                                     onLoadBannerApplovinMax.onAdClicked();
                                 }
                             }
 
                             @Override
                             public void onAdLoadFailed(String adUnitId, MaxError error) {
-                                if (onLoadBannerApplovinMax!=null){
+                                if (onLoadBannerApplovinMax != null) {
                                     onLoadBannerApplovinMax.onAdLoadFailed();
                                 }
                                 layAds.setVisibility(View.GONE);
@@ -2448,7 +2672,7 @@ public class AliendroidBanner {
 
                             @Override
                             public void onAdDisplayFailed(MaxAd ad, MaxError error) {
-                                if (onLoadBannerApplovinMax!=null){
+                                if (onLoadBannerApplovinMax != null) {
                                     onLoadBannerApplovinMax.onAdDisplayFailed();
                                 }
                                 layAds.setVisibility(View.GONE);
@@ -2467,10 +2691,10 @@ public class AliendroidBanner {
                         FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT,
                                 FrameLayout.LayoutParams.WRAP_CONTENT);
                         layAds.addView(adViewIron, 0, layoutParams);
-                         com.ironsource.mediationsdk.sdk.BannerListener listenerIron = new com.ironsource.mediationsdk.sdk.BannerListener() {
+                        com.ironsource.mediationsdk.sdk.BannerListener listenerIron = new com.ironsource.mediationsdk.sdk.BannerListener() {
                             @Override
                             public void onBannerAdLoaded() {
-                                if (onLoadBannerIronSource!=null){
+                                if (onLoadBannerIronSource != null) {
                                     onLoadBannerIronSource.onBannerAdLoaded();
                                 }
 
@@ -2478,7 +2702,7 @@ public class AliendroidBanner {
 
                             @Override
                             public void onBannerAdLoadFailed(IronSourceError ironSourceError) {
-                                if (onLoadBannerIronSource!=null){
+                                if (onLoadBannerIronSource != null) {
                                     onLoadBannerIronSource.onBannerAdLoadFailed();
                                 }
                                 layAds.setVisibility(View.GONE);
@@ -2487,28 +2711,28 @@ public class AliendroidBanner {
 
                             @Override
                             public void onBannerAdClicked() {
-                                if (onLoadBannerIronSource!=null){
+                                if (onLoadBannerIronSource != null) {
                                     onLoadBannerIronSource.onBannerAdClicked();
                                 }
                             }
 
                             @Override
                             public void onBannerAdScreenPresented() {
-                                if (onLoadBannerIronSource!=null){
+                                if (onLoadBannerIronSource != null) {
                                     onLoadBannerIronSource.onBannerAdScreenPresented();
                                 }
                             }
 
                             @Override
                             public void onBannerAdScreenDismissed() {
-                                if (onLoadBannerIronSource!=null){
+                                if (onLoadBannerIronSource != null) {
                                     onLoadBannerIronSource.onBannerAdScreenDismissed();
                                 }
                             }
 
                             @Override
                             public void onBannerAdLeftApplication() {
-                                if (onLoadBannerIronSource!=null){
+                                if (onLoadBannerIronSource != null) {
                                     onLoadBannerIronSource.onBannerAdLeftApplication();
                                 }
                             }
@@ -2532,7 +2756,7 @@ public class AliendroidBanner {
                         adViewAdmob.setAdListener(new AdListener() {
                             @Override
                             public void onAdLoaded() {
-                                if (onLoadBannerAdmob!=null){
+                                if (onLoadBannerAdmob != null) {
                                     onLoadBannerAdmob.onAdLoaded();
                                 }
 
@@ -2540,7 +2764,7 @@ public class AliendroidBanner {
 
                             @Override
                             public void onAdFailedToLoad(LoadAdError adError) {
-                                if (onLoadBannerAdmob!=null){
+                                if (onLoadBannerAdmob != null) {
                                     onLoadBannerAdmob.onAdFailedToLoad("");
                                 }
                                 layAds.setVisibility(View.GONE);
@@ -2549,21 +2773,21 @@ public class AliendroidBanner {
 
                             @Override
                             public void onAdOpened() {
-                                if (onLoadBannerAdmob!=null){
+                                if (onLoadBannerAdmob != null) {
                                     onLoadBannerAdmob.onAdOpened();
                                 }
                             }
 
                             @Override
                             public void onAdClicked() {
-                                if (onLoadBannerAdmob!=null){
+                                if (onLoadBannerAdmob != null) {
                                     onLoadBannerAdmob.onAdClicked();
                                 }
                             }
 
                             @Override
                             public void onAdClosed() {
-                                if (onLoadBannerAdmob!=null){
+                                if (onLoadBannerAdmob != null) {
                                     onLoadBannerAdmob.onAdClosed();
                                 }
                             }
@@ -2583,7 +2807,7 @@ public class AliendroidBanner {
                         bannerGoogleAds.setAdListener(new AdListener() {
                             @Override
                             public void onAdLoaded() {
-                                if (onLoadBannerGoogle!=null){
+                                if (onLoadBannerGoogle != null) {
                                     onLoadBannerGoogle.onAdLoaded();
                                 }
 
@@ -2591,7 +2815,7 @@ public class AliendroidBanner {
 
                             @Override
                             public void onAdFailedToLoad(LoadAdError adError) {
-                                if (onLoadBannerGoogle!=null){
+                                if (onLoadBannerGoogle != null) {
                                     onLoadBannerGoogle.onAdFailedToLoad("");
                                 }
                                 layAds.setVisibility(View.GONE);
@@ -2600,21 +2824,21 @@ public class AliendroidBanner {
 
                             @Override
                             public void onAdOpened() {
-                                if (onLoadBannerGoogle!=null){
+                                if (onLoadBannerGoogle != null) {
                                     onLoadBannerGoogle.onAdOpened();
                                 }
                             }
 
                             @Override
                             public void onAdClicked() {
-                                if (onLoadBannerGoogle!=null){
+                                if (onLoadBannerGoogle != null) {
                                     onLoadBannerGoogle.onAdClicked();
                                 }
                             }
 
                             @Override
                             public void onAdClosed() {
-                                if (onLoadBannerGoogle!=null){
+                                if (onLoadBannerGoogle != null) {
                                     onLoadBannerGoogle.onAdClosed();
                                 }
                             }
@@ -2624,10 +2848,10 @@ public class AliendroidBanner {
                         adViewFAN = new com.facebook.ads.AdView(activity, idBannerBackup,
                                 com.facebook.ads.AdSize.BANNER_HEIGHT_50);
                         layAds.addView(adViewFAN);
-                         com.facebook.ads.AdListener adListener = new com.facebook.ads.AdListener() {
+                        com.facebook.ads.AdListener adListener = new com.facebook.ads.AdListener() {
                             @Override
                             public void onError(Ad ad, AdError adError) {
-                                if (onLoadBannerFacebook!=null){
+                                if (onLoadBannerFacebook != null) {
                                     onLoadBannerFacebook.onError();
                                 }
                                 layAds.setVisibility(View.GONE);
@@ -2636,7 +2860,7 @@ public class AliendroidBanner {
 
                             @Override
                             public void onAdLoaded(Ad ad) {
-                                if (onLoadBannerFacebook!=null){
+                                if (onLoadBannerFacebook != null) {
                                     onLoadBannerFacebook.onAdLoaded();
                                 }
 
@@ -2644,14 +2868,14 @@ public class AliendroidBanner {
 
                             @Override
                             public void onAdClicked(Ad ad) {
-                                if (onLoadBannerFacebook!=null){
+                                if (onLoadBannerFacebook != null) {
                                     onLoadBannerFacebook.onAdClicked();
                                 }
                             }
 
                             @Override
                             public void onLoggingImpression(Ad ad) {
-                                if (onLoadBannerFacebook!=null){
+                                if (onLoadBannerFacebook != null) {
                                     onLoadBannerFacebook.onLoggingImpression();
                                 }
                             }
@@ -2659,24 +2883,55 @@ public class AliendroidBanner {
                         adViewFAN.loadAd(adViewFAN.buildLoadAdConfig().withAdListener(adListener).build());
                         break;
                     case "ALIEN-V":
-                        AlienViewAds.Banner(activity,layAds,idBannerBackup);
+                        AlienViewAds.Banner(activity, layAds, idBannerBackup);
                         break;
                     case "ALIEN-M":
-                        AlienMediationAds.SmallBanner(activity,layAds,idBannerBackup);
+                        AlienMediationAds.SmallBanner(activity, layAds, idBannerBackup);
+                        break;
+                    case "WORTISE":
+                        wortiseBannerAd = new BannerAd(activity);
+                        wortiseBannerAd.setAdSize(com.wortise.ads.AdSize.HEIGHT_50);
+                        wortiseBannerAd.setAdUnitId(idBannerBackup);
+                        layAds.addView(wortiseBannerAd);
+                        wortiseBannerAd.loadAd();
+                        wortiseBannerAd.setListener(new BannerAd.Listener() {
+                            @Override
+                            public void onBannerClicked(@NonNull BannerAd bannerAd) {
+                                if (onLoadBannerWortise!=null){
+                                    onLoadBannerWortise.onBannerClicked();
+                                }
+
+                            }
+
+                            @Override
+                            public void onBannerFailed(@NonNull BannerAd bannerAd, @NonNull com.wortise.ads.AdError adError) {
+                                if (onLoadBannerWortise!=null){
+                                    onLoadBannerWortise.onBannerFailed();
+                                }
+                                layAds.setVisibility(View.GONE);
+                            }
+
+                            @Override
+                            public void onBannerLoaded(@NonNull BannerAd bannerAd) {
+                                if (onLoadBannerWortise!=null){
+                                    onLoadBannerWortise.onBannerLoaded();
+                                }
+                            }
+                        });
                         break;
                 }
             }
 
             @Override
             public void onImpression(View view) {
-                if (onLoadBannerStartApp!=null){
+                if (onLoadBannerStartApp != null) {
                     onLoadBannerStartApp.onImpression();
                 }
             }
 
             @Override
             public void onClick(View view) {
-                if (onLoadBannerStartApp!=null){
+                if (onLoadBannerStartApp != null) {
                     onLoadBannerStartApp.onClick();
                 }
             }
@@ -2697,7 +2952,7 @@ public class AliendroidBanner {
         com.ironsource.mediationsdk.sdk.BannerListener listener = new com.ironsource.mediationsdk.sdk.BannerListener() {
             @Override
             public void onBannerAdLoaded() {
-                if (onLoadBannerIronSource!=null){
+                if (onLoadBannerIronSource != null) {
                     onLoadBannerIronSource.onBannerAdLoaded();
                 }
                 switch (selectAdsBackup) {
@@ -2733,12 +2988,17 @@ public class AliendroidBanner {
                             adViewFAN.destroy();
                         }
                         break;
+                    case "WORTISE":
+                        if (wortiseBannerAd !=null){
+                            wortiseBannerAd.destroy();
+                        }
+                        break;
                 }
             }
 
             @Override
             public void onBannerAdLoadFailed(IronSourceError ironSourceError) {
-                if (onLoadBannerIronSource!=null){
+                if (onLoadBannerIronSource != null) {
                     onLoadBannerIronSource.onBannerAdLoadFailed();
                 }
                 switch (selectAdsBackup) {
@@ -2758,49 +3018,49 @@ public class AliendroidBanner {
                         MaxAdViewAdListener listener = new MaxAdViewAdListener() {
                             @Override
                             public void onAdExpanded(MaxAd ad) {
-                                if (onLoadBannerApplovinMax!=null){
+                                if (onLoadBannerApplovinMax != null) {
                                     onLoadBannerApplovinMax.onAdExpanded();
                                 }
                             }
 
                             @Override
                             public void onAdCollapsed(MaxAd ad) {
-                                if (onLoadBannerApplovinMax!=null){
+                                if (onLoadBannerApplovinMax != null) {
                                     onLoadBannerApplovinMax.onAdCollapsed();
                                 }
                             }
 
                             @Override
                             public void onAdLoaded(MaxAd ad) {
-                                if (onLoadBannerApplovinMax!=null){
+                                if (onLoadBannerApplovinMax != null) {
                                     onLoadBannerApplovinMax.onAdLoaded();
                                 }
                             }
 
                             @Override
                             public void onAdDisplayed(MaxAd ad) {
-                                if (onLoadBannerApplovinMax!=null){
+                                if (onLoadBannerApplovinMax != null) {
                                     onLoadBannerApplovinMax.onAdDisplayed();
                                 }
                             }
 
                             @Override
                             public void onAdHidden(MaxAd ad) {
-                                if (onLoadBannerApplovinMax!=null){
+                                if (onLoadBannerApplovinMax != null) {
                                     onLoadBannerApplovinMax.onAdHidden();
                                 }
                             }
 
                             @Override
                             public void onAdClicked(MaxAd ad) {
-                                if (onLoadBannerApplovinMax!=null){
+                                if (onLoadBannerApplovinMax != null) {
                                     onLoadBannerApplovinMax.onAdClicked();
                                 }
                             }
 
                             @Override
                             public void onAdLoadFailed(String adUnitId, MaxError error) {
-                                if (onLoadBannerApplovinMax!=null){
+                                if (onLoadBannerApplovinMax != null) {
                                     onLoadBannerApplovinMax.onAdLoadFailed();
                                 }
                                 layAds.setVisibility(View.GONE);
@@ -2808,7 +3068,7 @@ public class AliendroidBanner {
 
                             @Override
                             public void onAdDisplayFailed(MaxAd ad, MaxError error) {
-                                if (onLoadBannerApplovinMax!=null){
+                                if (onLoadBannerApplovinMax != null) {
                                     onLoadBannerApplovinMax.onAdDisplayFailed();
                                 }
                                 layAds.setVisibility(View.GONE);
@@ -2825,7 +3085,7 @@ public class AliendroidBanner {
                         Banner startAppBanner = new Banner(activity, new BannerListener() {
                             @Override
                             public void onReceiveAd(View view) {
-                                if (onLoadBannerStartApp!=null){
+                                if (onLoadBannerStartApp != null) {
                                     onLoadBannerStartApp.onReceiveAd();
                                 }
 
@@ -2833,7 +3093,7 @@ public class AliendroidBanner {
 
                             @Override
                             public void onFailedToReceiveAd(View view) {
-                                if (onLoadBannerStartApp!=null){
+                                if (onLoadBannerStartApp != null) {
                                     onLoadBannerStartApp.onFailedToReceiveAd("");
                                 }
                                 layAds.setVisibility(View.GONE);
@@ -2841,14 +3101,14 @@ public class AliendroidBanner {
 
                             @Override
                             public void onImpression(View view) {
-                                if (onLoadBannerStartApp!=null){
+                                if (onLoadBannerStartApp != null) {
                                     onLoadBannerStartApp.onImpression();
                                 }
                             }
 
                             @Override
                             public void onClick(View view) {
-                                if (onLoadBannerStartApp!=null){
+                                if (onLoadBannerStartApp != null) {
                                     onLoadBannerStartApp.onClick();
                                 }
                             }
@@ -2876,7 +3136,7 @@ public class AliendroidBanner {
                         adViewAdmob.setAdListener(new AdListener() {
                             @Override
                             public void onAdLoaded() {
-                                if (onLoadBannerAdmob!=null){
+                                if (onLoadBannerAdmob != null) {
                                     onLoadBannerAdmob.onAdLoaded();
                                 }
 
@@ -2884,7 +3144,7 @@ public class AliendroidBanner {
 
                             @Override
                             public void onAdFailedToLoad(LoadAdError adError) {
-                                if (onLoadBannerAdmob!=null){
+                                if (onLoadBannerAdmob != null) {
                                     onLoadBannerAdmob.onAdFailedToLoad("");
                                 }
                                 layAds.setVisibility(View.GONE);
@@ -2893,21 +3153,21 @@ public class AliendroidBanner {
 
                             @Override
                             public void onAdOpened() {
-                                if (onLoadBannerAdmob!=null){
+                                if (onLoadBannerAdmob != null) {
                                     onLoadBannerAdmob.onAdOpened();
                                 }
                             }
 
                             @Override
                             public void onAdClicked() {
-                                if (onLoadBannerAdmob!=null){
+                                if (onLoadBannerAdmob != null) {
                                     onLoadBannerAdmob.onAdClicked();
                                 }
                             }
 
                             @Override
                             public void onAdClosed() {
-                                if (onLoadBannerAdmob!=null){
+                                if (onLoadBannerAdmob != null) {
                                     onLoadBannerAdmob.onAdClosed();
                                 }
                             }
@@ -2926,7 +3186,7 @@ public class AliendroidBanner {
                         bannerGoogleAds.setAdListener(new AdListener() {
                             @Override
                             public void onAdLoaded() {
-                                if (onLoadBannerGoogle!=null){
+                                if (onLoadBannerGoogle != null) {
                                     onLoadBannerGoogle.onAdLoaded();
                                 }
 
@@ -2934,7 +3194,7 @@ public class AliendroidBanner {
 
                             @Override
                             public void onAdFailedToLoad(LoadAdError adError) {
-                                if (onLoadBannerGoogle!=null){
+                                if (onLoadBannerGoogle != null) {
                                     onLoadBannerGoogle.onAdFailedToLoad("");
                                 }
                                 layAds.setVisibility(View.GONE);
@@ -2943,21 +3203,21 @@ public class AliendroidBanner {
 
                             @Override
                             public void onAdOpened() {
-                                if (onLoadBannerGoogle!=null){
+                                if (onLoadBannerGoogle != null) {
                                     onLoadBannerGoogle.onAdOpened();
                                 }
                             }
 
                             @Override
                             public void onAdClicked() {
-                                if (onLoadBannerGoogle!=null){
+                                if (onLoadBannerGoogle != null) {
                                     onLoadBannerGoogle.onAdClicked();
                                 }
                             }
 
                             @Override
                             public void onAdClosed() {
-                                if (onLoadBannerGoogle!=null){
+                                if (onLoadBannerGoogle != null) {
                                     onLoadBannerGoogle.onAdClosed();
                                 }
                             }
@@ -2967,10 +3227,10 @@ public class AliendroidBanner {
                         adViewFAN = new com.facebook.ads.AdView(activity, idBannerBackup,
                                 com.facebook.ads.AdSize.BANNER_HEIGHT_50);
                         layAds.addView(adViewFAN);
-                         com.facebook.ads.AdListener adListener = new com.facebook.ads.AdListener() {
+                        com.facebook.ads.AdListener adListener = new com.facebook.ads.AdListener() {
                             @Override
                             public void onError(Ad ad, AdError adError) {
-                                if (onLoadBannerFacebook!=null){
+                                if (onLoadBannerFacebook != null) {
                                     onLoadBannerFacebook.onError();
                                 }
                                 layAds.setVisibility(View.GONE);
@@ -2979,7 +3239,7 @@ public class AliendroidBanner {
 
                             @Override
                             public void onAdLoaded(Ad ad) {
-                                if (onLoadBannerFacebook!=null){
+                                if (onLoadBannerFacebook != null) {
                                     onLoadBannerFacebook.onAdLoaded();
                                 }
 
@@ -2987,14 +3247,14 @@ public class AliendroidBanner {
 
                             @Override
                             public void onAdClicked(Ad ad) {
-                                if (onLoadBannerFacebook!=null){
+                                if (onLoadBannerFacebook != null) {
                                     onLoadBannerFacebook.onAdClicked();
                                 }
                             }
 
                             @Override
                             public void onLoggingImpression(Ad ad) {
-                                if (onLoadBannerFacebook!=null){
+                                if (onLoadBannerFacebook != null) {
                                     onLoadBannerFacebook.onLoggingImpression();
                                 }
                             }
@@ -3002,38 +3262,69 @@ public class AliendroidBanner {
                         adViewFAN.loadAd(adViewFAN.buildLoadAdConfig().withAdListener(adListener).build());
                         break;
                     case "ALIEN-V":
-                        AlienViewAds.Banner(activity,layAds,idBannerBackup);
+                        AlienViewAds.Banner(activity, layAds, idBannerBackup);
                         break;
                     case "ALIEN-M":
-                        AlienMediationAds.SmallBanner(activity,layAds,idBannerBackup);
+                        AlienMediationAds.SmallBanner(activity, layAds, idBannerBackup);
+                        break;
+                    case "WORTISE":
+                        wortiseBannerAd = new BannerAd(activity);
+                        wortiseBannerAd.setAdSize(com.wortise.ads.AdSize.HEIGHT_50);
+                        wortiseBannerAd.setAdUnitId(idBannerBackup);
+                        layAds.addView(wortiseBannerAd);
+                        wortiseBannerAd.loadAd();
+                        wortiseBannerAd.setListener(new BannerAd.Listener() {
+                            @Override
+                            public void onBannerClicked(@NonNull BannerAd bannerAd) {
+                                if (onLoadBannerWortise!=null){
+                                    onLoadBannerWortise.onBannerClicked();
+                                }
+
+                            }
+
+                            @Override
+                            public void onBannerFailed(@NonNull BannerAd bannerAd, @NonNull com.wortise.ads.AdError adError) {
+                                if (onLoadBannerWortise!=null){
+                                    onLoadBannerWortise.onBannerFailed();
+                                }
+                                layAds.setVisibility(View.GONE);
+                            }
+
+                            @Override
+                            public void onBannerLoaded(@NonNull BannerAd bannerAd) {
+                                if (onLoadBannerWortise!=null){
+                                    onLoadBannerWortise.onBannerLoaded();
+                                }
+                            }
+                        });
                         break;
                 }
             }
 
             @Override
             public void onBannerAdClicked() {
-                if (onLoadBannerIronSource!=null){
+                if (onLoadBannerIronSource != null) {
                     onLoadBannerIronSource.onBannerAdClicked();
                 }
             }
 
             @Override
             public void onBannerAdScreenPresented() {
-                if (onLoadBannerIronSource!=null){
+                if (onLoadBannerIronSource != null) {
                     onLoadBannerIronSource.onBannerAdScreenPresented();
                 }
             }
 
             @Override
             public void onBannerAdScreenDismissed() {
-                if (onLoadBannerIronSource!=null){
+                if (onLoadBannerIronSource != null) {
                     onLoadBannerIronSource.onBannerAdScreenDismissed();
                 }
             }
 
             @Override
             public void onBannerAdLeftApplication() {
-                if (onLoadBannerIronSource!=null){
+                if (onLoadBannerIronSource != null) {
                     onLoadBannerIronSource.onBannerAdLeftApplication();
                 }
             }
@@ -3047,170 +3338,175 @@ public class AliendroidBanner {
     }
 
     public static void SmallBannerAlienView(Activity activity, RelativeLayout layAds, String selectAdsBackup, String idBanner, String idBannerBackup) {
-    AlienViewAds.Banner(activity,layAds,idBanner);
-    AlienViewAds.onLoadBannerView = new OnLoadBannerView() {
-        @Override
-        public void onBannerAdLoaded() {
-            if (onLoadBannerAlienView!=null){
-                onLoadBannerAlienView.onBannerAdLoaded();
+        AlienViewAds.Banner(activity, layAds, idBanner);
+        AlienViewAds.onLoadBannerView = new OnLoadBannerView() {
+            @Override
+            public void onBannerAdLoaded() {
+                if (onLoadBannerAlienView != null) {
+                    onLoadBannerAlienView.onBannerAdLoaded();
+                }
+                switch (selectAdsBackup) {
+                    case "APPLOVIN-D":
+                        if (adViewDiscovery != null) {
+                            adViewDiscovery.destroy();
+                        }
+                        break;
+                    case "APPLOVIN-M":
+                        if (adViewMax != null) {
+                            adViewMax.destroy();
+                        }
+                        break;
+                    case "STARTAPP":
+                        startAppBanner.hideBanner();
+                        break;
+                    case "MOPUB":
+                    case "UNITY":
+
+                        break;
+                    case "ADMOB":
+                        if (adViewAdmob != null) {
+                            adViewAdmob.destroy();
+                        }
+                        break;
+                    case "GOOGLE-ADS":
+                        if (bannerGoogleAds != null) {
+                            bannerGoogleAds.destroy();
+                        }
+                        break;
+                    case "FACEBOOK":
+                        if (adViewFAN != null) {
+                            adViewFAN.destroy();
+                        }
+                        break;
+                    case "IRON":
+                        if (adViewIron != null) {
+                            adViewIron.isDestroyed();
+                        }
+                        break;
+                    case "WORTISE":
+                        if (wortiseBannerAd!=null){
+                            wortiseBannerAd.destroy();
+                        }
+                        break;
+                }
             }
-            switch (selectAdsBackup) {
-                case "APPLOVIN-D":
-                    if (adViewDiscovery != null) {
-                        adViewDiscovery.destroy();
-                    }
-                    break;
-                case "APPLOVIN-M":
-                    if (adViewMax != null) {
-                        adViewMax.destroy();
-                    }
-                    break;
-                case "STARTAPP":
-                    startAppBanner.hideBanner();
-                    break;
-                case "MOPUB":
-                case "UNITY":
 
-                    break;
-                case "ADMOB":
-                    if (adViewAdmob != null) {
-                        adViewAdmob.destroy();
-                    }
-                    break;
-                case "GOOGLE-ADS":
-                    if (bannerGoogleAds != null) {
-                        bannerGoogleAds.destroy();
-                    }
-                    break;
-                case "FACEBOOK":
-                    if (adViewFAN != null) {
-                        adViewFAN.destroy();
-                    }
-                    break;
-                case "IRON":
-                    if (adViewIron != null) {
-                        adViewIron.isDestroyed();
-                    }
-                    break;
+            @Override
+            public void onBannerAdClicked() {
+                if (onLoadBannerAlienView != null) {
+                    onLoadBannerAlienView.onBannerAdClicked();
+                }
             }
-        }
 
-        @Override
-        public void onBannerAdClicked() {
-            if (onLoadBannerAlienView!=null){
-                onLoadBannerAlienView.onBannerAdClicked();
-            }
-        }
+            @Override
+            public void onBannerAdFailedToLoad(String error) {
+                if (onLoadBannerAlienView != null) {
+                    onLoadBannerAlienView.onBannerAdFailedToLoad("");
+                }
+                switch (selectAdsBackup) {
+                    case "APPLOVIN-D":
+                        AdRequest.Builder builder = new AdRequest.Builder();
+                        Bundle bannerExtras = new Bundle();
+                        bannerExtras.putString("zone_id", idBannerBackup);
+                        builder.addCustomEventExtrasBundle(AppLovinCustomEventBanner.class, bannerExtras);
+                        boolean isTablet2 = AppLovinSdkUtils.isTablet(activity);
+                        AppLovinAdSize adSize = isTablet2 ? AppLovinAdSize.LEADER : AppLovinAdSize.BANNER;
+                        adViewDiscovery = new AppLovinAdView(adSize, activity);
+                        AppLovinAdLoadListener loadListener = new AppLovinAdLoadListener() {
+                            @Override
+                            public void adReceived(AppLovinAd ad) {
+                                if (onLoadBannerApplovinDiscovery != null) {
+                                    onLoadBannerApplovinDiscovery.adReceived();
+                                }
 
-        @Override
-        public void onBannerAdFailedToLoad(String error) {
-            if (onLoadBannerAlienView!=null){
-                onLoadBannerAlienView.onBannerAdFailedToLoad("");
-            }
-            switch (selectAdsBackup) {
-                case "APPLOVIN-D":
-                    AdRequest.Builder builder = new AdRequest.Builder();
-                    Bundle bannerExtras = new Bundle();
-                    bannerExtras.putString("zone_id", idBannerBackup);
-                    builder.addCustomEventExtrasBundle(AppLovinCustomEventBanner.class, bannerExtras);
-                    boolean isTablet2 = AppLovinSdkUtils.isTablet(activity);
-                    AppLovinAdSize adSize = isTablet2 ? AppLovinAdSize.LEADER : AppLovinAdSize.BANNER;
-                    adViewDiscovery = new AppLovinAdView(adSize, activity);
-                    AppLovinAdLoadListener loadListener = new AppLovinAdLoadListener() {
-                        @Override
-                        public void adReceived(AppLovinAd ad) {
-                            if (onLoadBannerApplovinDiscovery!=null){
-                                onLoadBannerApplovinDiscovery.adReceived();
                             }
 
-                        }
+                            @Override
+                            public void failedToReceiveAd(int errorCode) {
+                                if (onLoadBannerApplovinDiscovery != null) {
+                                    onLoadBannerApplovinDiscovery.failedToReceiveAd();
+                                }
+                                layAds.setVisibility(View.GONE);
 
-                        @Override
-                        public void failedToReceiveAd(int errorCode) {
-                            if (onLoadBannerApplovinDiscovery!=null){
-                                onLoadBannerApplovinDiscovery.failedToReceiveAd();
                             }
-                            layAds.setVisibility(View.GONE);
+                        };
+                        adViewDiscovery.setAdLoadListener(loadListener);
+                        layAds.addView(adViewDiscovery);
+                        adViewDiscovery.loadNextAd();
+                        break;
+                    case "APPLOVIN-M":
+                        adViewMax = new MaxAdView(idBannerBackup, activity);
+                        MaxAdViewAdListener listener = new MaxAdViewAdListener() {
+                            @Override
+                            public void onAdExpanded(MaxAd ad) {
+                                if (onLoadBannerApplovinMax != null) {
+                                    onLoadBannerApplovinMax.onAdExpanded();
+                                }
+                            }
 
-                        }
-                    };
-                    adViewDiscovery.setAdLoadListener(loadListener);
-                    layAds.addView(adViewDiscovery);
-                    adViewDiscovery.loadNextAd();
-                    break;
-                case "APPLOVIN-M":
-                    adViewMax = new MaxAdView(idBannerBackup, activity);
-                    MaxAdViewAdListener listener = new MaxAdViewAdListener() {
-                        @Override
-                        public void onAdExpanded(MaxAd ad) {
-                            if (onLoadBannerApplovinMax!=null){
-                                onLoadBannerApplovinMax.onAdExpanded();
+                            @Override
+                            public void onAdCollapsed(MaxAd ad) {
+                                if (onLoadBannerApplovinMax != null) {
+                                    onLoadBannerApplovinMax.onAdCollapsed();
+                                }
                             }
-                        }
 
-                        @Override
-                        public void onAdCollapsed(MaxAd ad) {
-                            if (onLoadBannerApplovinMax!=null){
-                                onLoadBannerApplovinMax.onAdCollapsed();
+                            @Override
+                            public void onAdLoaded(MaxAd ad) {
+                                if (onLoadBannerApplovinMax != null) {
+                                    onLoadBannerApplovinMax.onAdLoaded();
+                                }
                             }
-                        }
 
-                        @Override
-                        public void onAdLoaded(MaxAd ad) {
-                            if (onLoadBannerApplovinMax!=null){
-                                onLoadBannerApplovinMax.onAdLoaded();
+                            @Override
+                            public void onAdDisplayed(MaxAd ad) {
+                                if (onLoadBannerApplovinMax != null) {
+                                    onLoadBannerApplovinMax.onAdDisplayed();
+                                }
                             }
-                        }
 
-                        @Override
-                        public void onAdDisplayed(MaxAd ad) {
-                            if (onLoadBannerApplovinMax!=null){
-                                onLoadBannerApplovinMax.onAdDisplayed();
+                            @Override
+                            public void onAdHidden(MaxAd ad) {
+                                if (onLoadBannerApplovinMax != null) {
+                                    onLoadBannerApplovinMax.onAdHidden();
+                                }
                             }
-                        }
 
-                        @Override
-                        public void onAdHidden(MaxAd ad) {
-                            if (onLoadBannerApplovinMax!=null){
-                                onLoadBannerApplovinMax.onAdHidden();
+                            @Override
+                            public void onAdClicked(MaxAd ad) {
+                                if (onLoadBannerApplovinMax != null) {
+                                    onLoadBannerApplovinMax.onAdClicked();
+                                }
                             }
-                        }
 
-                        @Override
-                        public void onAdClicked(MaxAd ad) {
-                            if (onLoadBannerApplovinMax!=null){
-                                onLoadBannerApplovinMax.onAdClicked();
+                            @Override
+                            public void onAdLoadFailed(String adUnitId, MaxError error) {
+                                if (onLoadBannerApplovinMax != null) {
+                                    onLoadBannerApplovinMax.onAdLoadFailed();
+                                }
+                                layAds.setVisibility(View.GONE);
                             }
-                        }
 
-                        @Override
-                        public void onAdLoadFailed(String adUnitId, MaxError error) {
-                            if (onLoadBannerApplovinMax!=null){
-                                onLoadBannerApplovinMax.onAdLoadFailed();
+                            @Override
+                            public void onAdDisplayFailed(MaxAd ad, MaxError error) {
+                                if (onLoadBannerApplovinMax != null) {
+                                    onLoadBannerApplovinMax.onAdDisplayFailed();
+                                }
+                                layAds.setVisibility(View.GONE);
                             }
-                            layAds.setVisibility(View.GONE);
-                        }
-
-                        @Override
-                        public void onAdDisplayFailed(MaxAd ad, MaxError error) {
-                            if (onLoadBannerApplovinMax!=null){
-                                onLoadBannerApplovinMax.onAdDisplayFailed();
-                            }
-                            layAds.setVisibility(View.GONE);
-                        }
-                    };
-                    adViewMax.setListener(listener);
-                    final boolean isTablet = AppLovinSdkUtils.isTablet(activity);
-                    final int heightPx = AppLovinSdkUtils.dpToPx(activity, isTablet ? 90 : 50);
-                    adViewMax.setLayoutParams(new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, heightPx));
-                    layAds.addView(adViewMax);
-                    adViewMax.loadAd();
-                    break;
-                case "STARTAPP":
-                    Banner startAppBanner = new Banner(activity, new BannerListener() {
+                        };
+                        adViewMax.setListener(listener);
+                        final boolean isTablet = AppLovinSdkUtils.isTablet(activity);
+                        final int heightPx = AppLovinSdkUtils.dpToPx(activity, isTablet ? 90 : 50);
+                        adViewMax.setLayoutParams(new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, heightPx));
+                        layAds.addView(adViewMax);
+                        adViewMax.loadAd();
+                        break;
+                    case "STARTAPP":
+                        Banner startAppBanner = new Banner(activity, new BannerListener() {
                             @Override
                             public void onReceiveAd(View view) {
-                                if (onLoadBannerStartApp!=null){
+                                if (onLoadBannerStartApp != null) {
                                     onLoadBannerStartApp.onReceiveAd();
                                 }
 
@@ -3218,7 +3514,7 @@ public class AliendroidBanner {
 
                             @Override
                             public void onFailedToReceiveAd(View view) {
-                                if (onLoadBannerStartApp!=null){
+                                if (onLoadBannerStartApp != null) {
                                     onLoadBannerStartApp.onFailedToReceiveAd("");
                                 }
                                 layAds.setVisibility(View.GONE);
@@ -3226,137 +3522,137 @@ public class AliendroidBanner {
 
                             @Override
                             public void onImpression(View view) {
-                                if (onLoadBannerStartApp!=null){
+                                if (onLoadBannerStartApp != null) {
                                     onLoadBannerStartApp.onImpression();
                                 }
                             }
 
                             @Override
                             public void onClick(View view) {
-                                if (onLoadBannerStartApp!=null){
+                                if (onLoadBannerStartApp != null) {
                                     onLoadBannerStartApp.onClick();
                                 }
                             }
                         });
-                    RelativeLayout.LayoutParams bannerParameters =
-                            new RelativeLayout.LayoutParams(
-                                    RelativeLayout.LayoutParams.WRAP_CONTENT,
-                                    RelativeLayout.LayoutParams.WRAP_CONTENT);
-                    bannerParameters.addRule(RelativeLayout.CENTER_HORIZONTAL);
-                    layAds.addView(startAppBanner, bannerParameters);
-                    break;
-                case "MOPUB":
-                case "UNITY":
+                        RelativeLayout.LayoutParams bannerParameters =
+                                new RelativeLayout.LayoutParams(
+                                        RelativeLayout.LayoutParams.WRAP_CONTENT,
+                                        RelativeLayout.LayoutParams.WRAP_CONTENT);
+                        bannerParameters.addRule(RelativeLayout.CENTER_HORIZONTAL);
+                        layAds.addView(startAppBanner, bannerParameters);
+                        break;
+                    case "MOPUB":
+                    case "UNITY":
 
-                    break;
-                case "ADMOB":
-                    AdRequest request = new AdRequest.Builder()
-                            .build();
-                    adViewAdmob = new AdView(activity);
-                    adViewAdmob.setAdUnitId(idBannerBackup);
-                    layAds.addView(adViewAdmob);
-                    AdSize adSizeAdmob = getAdSize(activity);
-                    adViewAdmob.setAdSize(adSizeAdmob);
-                    adViewAdmob.loadAd(request);
-                    adViewAdmob.setAdListener(new AdListener() {
-                        @Override
-                        public void onAdLoaded() {
-                            if (onLoadBannerAdmob!=null){
-                                onLoadBannerAdmob.onAdLoaded();
+                        break;
+                    case "ADMOB":
+                        AdRequest request = new AdRequest.Builder()
+                                .build();
+                        adViewAdmob = new AdView(activity);
+                        adViewAdmob.setAdUnitId(idBannerBackup);
+                        layAds.addView(adViewAdmob);
+                        AdSize adSizeAdmob = getAdSize(activity);
+                        adViewAdmob.setAdSize(adSizeAdmob);
+                        adViewAdmob.loadAd(request);
+                        adViewAdmob.setAdListener(new AdListener() {
+                            @Override
+                            public void onAdLoaded() {
+                                if (onLoadBannerAdmob != null) {
+                                    onLoadBannerAdmob.onAdLoaded();
+                                }
+
                             }
 
-                        }
+                            @Override
+                            public void onAdFailedToLoad(LoadAdError adError) {
+                                if (onLoadBannerAdmob != null) {
+                                    onLoadBannerAdmob.onAdFailedToLoad("");
+                                }
+                                layAds.setVisibility(View.GONE);
 
-                        @Override
-                        public void onAdFailedToLoad(LoadAdError adError) {
-                            if (onLoadBannerAdmob!=null){
-                                onLoadBannerAdmob.onAdFailedToLoad("");
-                            }
-                            layAds.setVisibility(View.GONE);
-
-                        }
-
-                        @Override
-                        public void onAdOpened() {
-                            if (onLoadBannerAdmob!=null){
-                                onLoadBannerAdmob.onAdOpened();
-                            }
-                        }
-
-                        @Override
-                        public void onAdClicked() {
-                            if (onLoadBannerAdmob!=null){
-                                onLoadBannerAdmob.onAdClicked();
-                            }
-                        }
-
-                        @Override
-                        public void onAdClosed() {
-                            if (onLoadBannerAdmob!=null){
-                                onLoadBannerAdmob.onAdClosed();
-                            }
-                        }
-                    });
-                    break;
-                case "GOOGLE-ADS":
-                    AdManagerAdRequest adRequest =
-                            new AdManagerAdRequest.Builder()
-                                    .build();
-
-                    bannerGoogleAds = new AdManagerAdView(activity);
-                    bannerGoogleAds.setAdUnitId(idBannerBackup);
-                    layAds.addView(bannerGoogleAds);
-                    AdSize adaptiveSize = getAdSize(activity);
-                    bannerGoogleAds.setAdSize(adaptiveSize);
-                    bannerGoogleAds.loadAd(adRequest);
-                    bannerGoogleAds.setAdListener(new AdListener() {
-                        @Override
-                        public void onAdLoaded() {
-                            if (onLoadBannerGoogle!=null){
-                                onLoadBannerGoogle.onAdLoaded();
                             }
 
-                        }
-
-                        @Override
-                        public void onAdFailedToLoad(LoadAdError adError) {
-                            if (onLoadBannerGoogle!=null){
-                                onLoadBannerGoogle.onAdFailedToLoad("");
+                            @Override
+                            public void onAdOpened() {
+                                if (onLoadBannerAdmob != null) {
+                                    onLoadBannerAdmob.onAdOpened();
+                                }
                             }
-                            layAds.setVisibility(View.GONE);
 
-                        }
-
-                        @Override
-                        public void onAdOpened() {
-                            if (onLoadBannerGoogle!=null){
-                                onLoadBannerGoogle.onAdOpened();
+                            @Override
+                            public void onAdClicked() {
+                                if (onLoadBannerAdmob != null) {
+                                    onLoadBannerAdmob.onAdClicked();
+                                }
                             }
-                        }
 
-                        @Override
-                        public void onAdClicked() {
-                            if (onLoadBannerGoogle!=null){
-                                onLoadBannerGoogle.onAdClicked();
+                            @Override
+                            public void onAdClosed() {
+                                if (onLoadBannerAdmob != null) {
+                                    onLoadBannerAdmob.onAdClosed();
+                                }
                             }
-                        }
+                        });
+                        break;
+                    case "GOOGLE-ADS":
+                        AdManagerAdRequest adRequest =
+                                new AdManagerAdRequest.Builder()
+                                        .build();
 
-                        @Override
-                        public void onAdClosed() {
-                            if (onLoadBannerGoogle!=null){
-                                onLoadBannerGoogle.onAdClosed();
+                        bannerGoogleAds = new AdManagerAdView(activity);
+                        bannerGoogleAds.setAdUnitId(idBannerBackup);
+                        layAds.addView(bannerGoogleAds);
+                        AdSize adaptiveSize = getAdSize(activity);
+                        bannerGoogleAds.setAdSize(adaptiveSize);
+                        bannerGoogleAds.loadAd(adRequest);
+                        bannerGoogleAds.setAdListener(new AdListener() {
+                            @Override
+                            public void onAdLoaded() {
+                                if (onLoadBannerGoogle != null) {
+                                    onLoadBannerGoogle.onAdLoaded();
+                                }
+
                             }
-                        }
-                    });
-                    break;
-                case "FACEBOOK":
-                    adViewFAN = new com.facebook.ads.AdView(activity, idBannerBackup,
-                            com.facebook.ads.AdSize.BANNER_HEIGHT_50);
-                    layAds.addView(adViewFAN);
-                     com.facebook.ads.AdListener adListener = new com.facebook.ads.AdListener() {
+
+                            @Override
+                            public void onAdFailedToLoad(LoadAdError adError) {
+                                if (onLoadBannerGoogle != null) {
+                                    onLoadBannerGoogle.onAdFailedToLoad("");
+                                }
+                                layAds.setVisibility(View.GONE);
+
+                            }
+
+                            @Override
+                            public void onAdOpened() {
+                                if (onLoadBannerGoogle != null) {
+                                    onLoadBannerGoogle.onAdOpened();
+                                }
+                            }
+
+                            @Override
+                            public void onAdClicked() {
+                                if (onLoadBannerGoogle != null) {
+                                    onLoadBannerGoogle.onAdClicked();
+                                }
+                            }
+
+                            @Override
+                            public void onAdClosed() {
+                                if (onLoadBannerGoogle != null) {
+                                    onLoadBannerGoogle.onAdClosed();
+                                }
+                            }
+                        });
+                        break;
+                    case "FACEBOOK":
+                        adViewFAN = new com.facebook.ads.AdView(activity, idBannerBackup,
+                                com.facebook.ads.AdSize.BANNER_HEIGHT_50);
+                        layAds.addView(adViewFAN);
+                        com.facebook.ads.AdListener adListener = new com.facebook.ads.AdListener() {
                             @Override
                             public void onError(Ad ad, AdError adError) {
-                                if (onLoadBannerFacebook!=null){
+                                if (onLoadBannerFacebook != null) {
                                     onLoadBannerFacebook.onError();
                                 }
                                 layAds.setVisibility(View.GONE);
@@ -3365,7 +3661,7 @@ public class AliendroidBanner {
 
                             @Override
                             public void onAdLoaded(Ad ad) {
-                                if (onLoadBannerFacebook!=null){
+                                if (onLoadBannerFacebook != null) {
                                     onLoadBannerFacebook.onAdLoaded();
                                 }
 
@@ -3373,29 +3669,29 @@ public class AliendroidBanner {
 
                             @Override
                             public void onAdClicked(Ad ad) {
-                                if (onLoadBannerFacebook!=null){
+                                if (onLoadBannerFacebook != null) {
                                     onLoadBannerFacebook.onAdClicked();
                                 }
                             }
 
                             @Override
                             public void onLoggingImpression(Ad ad) {
-                                if (onLoadBannerFacebook!=null){
+                                if (onLoadBannerFacebook != null) {
                                     onLoadBannerFacebook.onLoggingImpression();
                                 }
                             }
                         };
                         adViewFAN.loadAd(adViewFAN.buildLoadAdConfig().withAdListener(adListener).build());
-                    break;
-                case "IRON":
-                    adViewIron = IronSource.createBanner(activity, ISBannerSize.BANNER);
-                    FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT,
-                            FrameLayout.LayoutParams.WRAP_CONTENT);
-                    layAds.addView(adViewIron, 0, layoutParams);
-                     com.ironsource.mediationsdk.sdk.BannerListener listenerIron = new com.ironsource.mediationsdk.sdk.BannerListener() {
+                        break;
+                    case "IRON":
+                        adViewIron = IronSource.createBanner(activity, ISBannerSize.BANNER);
+                        FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT,
+                                FrameLayout.LayoutParams.WRAP_CONTENT);
+                        layAds.addView(adViewIron, 0, layoutParams);
+                        com.ironsource.mediationsdk.sdk.BannerListener listenerIron = new com.ironsource.mediationsdk.sdk.BannerListener() {
                             @Override
                             public void onBannerAdLoaded() {
-                                if (onLoadBannerIronSource!=null){
+                                if (onLoadBannerIronSource != null) {
                                     onLoadBannerIronSource.onBannerAdLoaded();
                                 }
 
@@ -3403,7 +3699,7 @@ public class AliendroidBanner {
 
                             @Override
                             public void onBannerAdLoadFailed(IronSourceError ironSourceError) {
-                                if (onLoadBannerIronSource!=null){
+                                if (onLoadBannerIronSource != null) {
                                     onLoadBannerIronSource.onBannerAdLoadFailed();
                                 }
                                 layAds.setVisibility(View.GONE);
@@ -3412,49 +3708,80 @@ public class AliendroidBanner {
 
                             @Override
                             public void onBannerAdClicked() {
-                                if (onLoadBannerIronSource!=null){
+                                if (onLoadBannerIronSource != null) {
                                     onLoadBannerIronSource.onBannerAdClicked();
                                 }
                             }
 
                             @Override
                             public void onBannerAdScreenPresented() {
-                                if (onLoadBannerIronSource!=null){
+                                if (onLoadBannerIronSource != null) {
                                     onLoadBannerIronSource.onBannerAdScreenPresented();
                                 }
                             }
 
                             @Override
                             public void onBannerAdScreenDismissed() {
-                                if (onLoadBannerIronSource!=null){
+                                if (onLoadBannerIronSource != null) {
                                     onLoadBannerIronSource.onBannerAdScreenDismissed();
                                 }
                             }
 
                             @Override
                             public void onBannerAdLeftApplication() {
-                                if (onLoadBannerIronSource!=null){
+                                if (onLoadBannerIronSource != null) {
                                     onLoadBannerIronSource.onBannerAdLeftApplication();
                                 }
                             }
                         };
                         adViewIron.setBannerListener(listenerIron);
                         IronSource.loadBanner(adViewIron, idBannerBackup);
-                    break;
-                case "ALIEN-M":
-                    AlienMediationAds.SmallBanner(activity,layAds,idBannerBackup);
-                    break;
+                        break;
+                    case "ALIEN-M":
+                        AlienMediationAds.SmallBanner(activity, layAds, idBannerBackup);
+                        break;
+                    case "WORTISE":
+                        wortiseBannerAd = new BannerAd(activity);
+                        wortiseBannerAd.setAdSize(com.wortise.ads.AdSize.HEIGHT_50);
+                        wortiseBannerAd.setAdUnitId(idBannerBackup);
+                        layAds.addView(wortiseBannerAd);
+                        wortiseBannerAd.loadAd();
+                        wortiseBannerAd.setListener(new BannerAd.Listener() {
+                            @Override
+                            public void onBannerClicked(@NonNull BannerAd bannerAd) {
+                                if (onLoadBannerWortise!=null){
+                                    onLoadBannerWortise.onBannerClicked();
+                                }
+
+                            }
+
+                            @Override
+                            public void onBannerFailed(@NonNull BannerAd bannerAd, @NonNull com.wortise.ads.AdError adError) {
+                                if (onLoadBannerWortise!=null){
+                                    onLoadBannerWortise.onBannerFailed();
+                                }
+                                layAds.setVisibility(View.GONE);
+                            }
+
+                            @Override
+                            public void onBannerLoaded(@NonNull BannerAd bannerAd) {
+                                if (onLoadBannerWortise!=null){
+                                    onLoadBannerWortise.onBannerLoaded();
+                                }
+                            }
+                        });
+                        break;
+                }
             }
-        }
-    };
+        };
     }
 
     public static void SmallBannerAlienMediation(Activity activity, RelativeLayout layAds, String selectAdsBackup, String idBanner, String idBannerBackup) {
-        AlienMediationAds.SmallBanner(activity,layAds,idBannerBackup);
+        AlienMediationAds.SmallBanner(activity, layAds, idBannerBackup);
         AlienMediationAds.onLoadBannerMediation = new OnLoadBannerMediation() {
             @Override
             public void onBannerAdLoaded() {
-                if (onLoadBannerAlienMediation!=null){
+                if (onLoadBannerAlienMediation != null) {
                     onLoadBannerAlienMediation.onBannerAdLoaded();
                 }
                 switch (selectAdsBackup) {
@@ -3495,19 +3822,24 @@ public class AliendroidBanner {
                             adViewIron.isDestroyed();
                         }
                         break;
+                    case "WORTISE" :
+                        if (wortiseBannerAd!=null){
+                            wortiseBannerAd.destroy();
+                        }
+                        break;
                 }
             }
 
             @Override
             public void onBannerAdClicked() {
-                if (onLoadBannerAlienMediation!=null){
+                if (onLoadBannerAlienMediation != null) {
                     onLoadBannerAlienMediation.onBannerAdClicked();
                 }
             }
 
             @Override
             public void onBannerAdFailedToLoad(String error) {
-                if (onLoadBannerAlienMediation!=null){
+                if (onLoadBannerAlienMediation != null) {
                     onLoadBannerAlienMediation.onBannerAdFailedToLoad("");
                 }
                 switch (selectAdsBackup) {
@@ -3522,7 +3854,7 @@ public class AliendroidBanner {
                         AppLovinAdLoadListener loadListener = new AppLovinAdLoadListener() {
                             @Override
                             public void adReceived(AppLovinAd ad) {
-                                if (onLoadBannerApplovinDiscovery!=null){
+                                if (onLoadBannerApplovinDiscovery != null) {
                                     onLoadBannerApplovinDiscovery.adReceived();
                                 }
 
@@ -3530,7 +3862,7 @@ public class AliendroidBanner {
 
                             @Override
                             public void failedToReceiveAd(int errorCode) {
-                                if (onLoadBannerApplovinDiscovery!=null){
+                                if (onLoadBannerApplovinDiscovery != null) {
                                     onLoadBannerApplovinDiscovery.failedToReceiveAd();
                                 }
                                 layAds.setVisibility(View.GONE);
@@ -3546,49 +3878,49 @@ public class AliendroidBanner {
                         MaxAdViewAdListener listener = new MaxAdViewAdListener() {
                             @Override
                             public void onAdExpanded(MaxAd ad) {
-                                if (onLoadBannerApplovinMax!=null){
+                                if (onLoadBannerApplovinMax != null) {
                                     onLoadBannerApplovinMax.onAdExpanded();
                                 }
                             }
 
                             @Override
                             public void onAdCollapsed(MaxAd ad) {
-                                if (onLoadBannerApplovinMax!=null){
+                                if (onLoadBannerApplovinMax != null) {
                                     onLoadBannerApplovinMax.onAdCollapsed();
                                 }
                             }
 
                             @Override
                             public void onAdLoaded(MaxAd ad) {
-                                if (onLoadBannerApplovinMax!=null){
+                                if (onLoadBannerApplovinMax != null) {
                                     onLoadBannerApplovinMax.onAdLoaded();
                                 }
                             }
 
                             @Override
                             public void onAdDisplayed(MaxAd ad) {
-                                if (onLoadBannerApplovinMax!=null){
+                                if (onLoadBannerApplovinMax != null) {
                                     onLoadBannerApplovinMax.onAdDisplayed();
                                 }
                             }
 
                             @Override
                             public void onAdHidden(MaxAd ad) {
-                                if (onLoadBannerApplovinMax!=null){
+                                if (onLoadBannerApplovinMax != null) {
                                     onLoadBannerApplovinMax.onAdHidden();
                                 }
                             }
 
                             @Override
                             public void onAdClicked(MaxAd ad) {
-                                if (onLoadBannerApplovinMax!=null){
+                                if (onLoadBannerApplovinMax != null) {
                                     onLoadBannerApplovinMax.onAdClicked();
                                 }
                             }
 
                             @Override
                             public void onAdLoadFailed(String adUnitId, MaxError error) {
-                                if (onLoadBannerApplovinMax!=null){
+                                if (onLoadBannerApplovinMax != null) {
                                     onLoadBannerApplovinMax.onAdLoadFailed();
                                 }
                                 layAds.setVisibility(View.GONE);
@@ -3596,7 +3928,7 @@ public class AliendroidBanner {
 
                             @Override
                             public void onAdDisplayFailed(MaxAd ad, MaxError error) {
-                                if (onLoadBannerApplovinMax!=null){
+                                if (onLoadBannerApplovinMax != null) {
                                     onLoadBannerApplovinMax.onAdDisplayFailed();
                                 }
                                 layAds.setVisibility(View.GONE);
@@ -3613,7 +3945,7 @@ public class AliendroidBanner {
                         Banner startAppBanner = new Banner(activity, new BannerListener() {
                             @Override
                             public void onReceiveAd(View view) {
-                                if (onLoadBannerStartApp!=null){
+                                if (onLoadBannerStartApp != null) {
                                     onLoadBannerStartApp.onReceiveAd();
                                 }
 
@@ -3621,7 +3953,7 @@ public class AliendroidBanner {
 
                             @Override
                             public void onFailedToReceiveAd(View view) {
-                                if (onLoadBannerStartApp!=null){
+                                if (onLoadBannerStartApp != null) {
                                     onLoadBannerStartApp.onFailedToReceiveAd("");
                                 }
                                 layAds.setVisibility(View.GONE);
@@ -3629,14 +3961,14 @@ public class AliendroidBanner {
 
                             @Override
                             public void onImpression(View view) {
-                                if (onLoadBannerStartApp!=null){
+                                if (onLoadBannerStartApp != null) {
                                     onLoadBannerStartApp.onImpression();
                                 }
                             }
 
                             @Override
                             public void onClick(View view) {
-                                if (onLoadBannerStartApp!=null){
+                                if (onLoadBannerStartApp != null) {
                                     onLoadBannerStartApp.onClick();
                                 }
                             }
@@ -3664,7 +3996,7 @@ public class AliendroidBanner {
                         adViewAdmob.setAdListener(new AdListener() {
                             @Override
                             public void onAdLoaded() {
-                                if (onLoadBannerAdmob!=null){
+                                if (onLoadBannerAdmob != null) {
                                     onLoadBannerAdmob.onAdLoaded();
                                 }
 
@@ -3672,7 +4004,7 @@ public class AliendroidBanner {
 
                             @Override
                             public void onAdFailedToLoad(LoadAdError adError) {
-                                if (onLoadBannerAdmob!=null){
+                                if (onLoadBannerAdmob != null) {
                                     onLoadBannerAdmob.onAdFailedToLoad("");
                                 }
                                 layAds.setVisibility(View.GONE);
@@ -3681,21 +4013,21 @@ public class AliendroidBanner {
 
                             @Override
                             public void onAdOpened() {
-                                if (onLoadBannerAdmob!=null){
+                                if (onLoadBannerAdmob != null) {
                                     onLoadBannerAdmob.onAdOpened();
                                 }
                             }
 
                             @Override
                             public void onAdClicked() {
-                                if (onLoadBannerAdmob!=null){
+                                if (onLoadBannerAdmob != null) {
                                     onLoadBannerAdmob.onAdClicked();
                                 }
                             }
 
                             @Override
                             public void onAdClosed() {
-                                if (onLoadBannerAdmob!=null){
+                                if (onLoadBannerAdmob != null) {
                                     onLoadBannerAdmob.onAdClosed();
                                 }
                             }
@@ -3714,7 +4046,7 @@ public class AliendroidBanner {
                         bannerGoogleAds.setAdListener(new AdListener() {
                             @Override
                             public void onAdLoaded() {
-                                if (onLoadBannerGoogle!=null){
+                                if (onLoadBannerGoogle != null) {
                                     onLoadBannerGoogle.onAdLoaded();
                                 }
 
@@ -3722,7 +4054,7 @@ public class AliendroidBanner {
 
                             @Override
                             public void onAdFailedToLoad(LoadAdError adError) {
-                                if (onLoadBannerGoogle!=null){
+                                if (onLoadBannerGoogle != null) {
                                     onLoadBannerGoogle.onAdFailedToLoad("");
                                 }
                                 layAds.setVisibility(View.GONE);
@@ -3731,21 +4063,21 @@ public class AliendroidBanner {
 
                             @Override
                             public void onAdOpened() {
-                                if (onLoadBannerGoogle!=null){
+                                if (onLoadBannerGoogle != null) {
                                     onLoadBannerGoogle.onAdOpened();
                                 }
                             }
 
                             @Override
                             public void onAdClicked() {
-                                if (onLoadBannerGoogle!=null){
+                                if (onLoadBannerGoogle != null) {
                                     onLoadBannerGoogle.onAdClicked();
                                 }
                             }
 
                             @Override
                             public void onAdClosed() {
-                                if (onLoadBannerGoogle!=null){
+                                if (onLoadBannerGoogle != null) {
                                     onLoadBannerGoogle.onAdClosed();
                                 }
                             }
@@ -3755,10 +4087,10 @@ public class AliendroidBanner {
                         adViewFAN = new com.facebook.ads.AdView(activity, idBannerBackup,
                                 com.facebook.ads.AdSize.BANNER_HEIGHT_50);
                         layAds.addView(adViewFAN);
-                         com.facebook.ads.AdListener adListener = new com.facebook.ads.AdListener() {
+                        com.facebook.ads.AdListener adListener = new com.facebook.ads.AdListener() {
                             @Override
                             public void onError(Ad ad, AdError adError) {
-                                if (onLoadBannerFacebook!=null){
+                                if (onLoadBannerFacebook != null) {
                                     onLoadBannerFacebook.onError();
                                 }
                                 layAds.setVisibility(View.GONE);
@@ -3767,7 +4099,7 @@ public class AliendroidBanner {
 
                             @Override
                             public void onAdLoaded(Ad ad) {
-                                if (onLoadBannerFacebook!=null){
+                                if (onLoadBannerFacebook != null) {
                                     onLoadBannerFacebook.onAdLoaded();
                                 }
 
@@ -3775,14 +4107,14 @@ public class AliendroidBanner {
 
                             @Override
                             public void onAdClicked(Ad ad) {
-                                if (onLoadBannerFacebook!=null){
+                                if (onLoadBannerFacebook != null) {
                                     onLoadBannerFacebook.onAdClicked();
                                 }
                             }
 
                             @Override
                             public void onLoggingImpression(Ad ad) {
-                                if (onLoadBannerFacebook!=null){
+                                if (onLoadBannerFacebook != null) {
                                     onLoadBannerFacebook.onLoggingImpression();
                                 }
                             }
@@ -3794,10 +4126,10 @@ public class AliendroidBanner {
                         FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT,
                                 FrameLayout.LayoutParams.WRAP_CONTENT);
                         layAds.addView(adViewIron, 0, layoutParams);
-                         com.ironsource.mediationsdk.sdk.BannerListener listenerIron = new com.ironsource.mediationsdk.sdk.BannerListener() {
+                        com.ironsource.mediationsdk.sdk.BannerListener listenerIron = new com.ironsource.mediationsdk.sdk.BannerListener() {
                             @Override
                             public void onBannerAdLoaded() {
-                                if (onLoadBannerIronSource!=null){
+                                if (onLoadBannerIronSource != null) {
                                     onLoadBannerIronSource.onBannerAdLoaded();
                                 }
 
@@ -3805,7 +4137,7 @@ public class AliendroidBanner {
 
                             @Override
                             public void onBannerAdLoadFailed(IronSourceError ironSourceError) {
-                                if (onLoadBannerIronSource!=null){
+                                if (onLoadBannerIronSource != null) {
                                     onLoadBannerIronSource.onBannerAdLoadFailed();
                                 }
                                 layAds.setVisibility(View.GONE);
@@ -3814,28 +4146,28 @@ public class AliendroidBanner {
 
                             @Override
                             public void onBannerAdClicked() {
-                                if (onLoadBannerIronSource!=null){
+                                if (onLoadBannerIronSource != null) {
                                     onLoadBannerIronSource.onBannerAdClicked();
                                 }
                             }
 
                             @Override
                             public void onBannerAdScreenPresented() {
-                                if (onLoadBannerIronSource!=null){
+                                if (onLoadBannerIronSource != null) {
                                     onLoadBannerIronSource.onBannerAdScreenPresented();
                                 }
                             }
 
                             @Override
                             public void onBannerAdScreenDismissed() {
-                                if (onLoadBannerIronSource!=null){
+                                if (onLoadBannerIronSource != null) {
                                     onLoadBannerIronSource.onBannerAdScreenDismissed();
                                 }
                             }
 
                             @Override
                             public void onBannerAdLeftApplication() {
-                                if (onLoadBannerIronSource!=null){
+                                if (onLoadBannerIronSource != null) {
                                     onLoadBannerIronSource.onBannerAdLeftApplication();
                                 }
                             }
@@ -3844,11 +4176,392 @@ public class AliendroidBanner {
                         IronSource.loadBanner(adViewIron, idBannerBackup);
                         break;
                     case "ALIEN-V":
-                        AlienViewAds.Banner(activity,layAds,idBannerBackup);
+                        AlienViewAds.Banner(activity, layAds, idBannerBackup);
+                        break;
+                    case "WORTISE":
+                        wortiseBannerAd = new BannerAd(activity);
+                        wortiseBannerAd.setAdSize(com.wortise.ads.AdSize.HEIGHT_50);
+                        wortiseBannerAd.setAdUnitId(idBannerBackup);
+                        layAds.addView(wortiseBannerAd);
+                        wortiseBannerAd.loadAd();
+                        wortiseBannerAd.setListener(new BannerAd.Listener() {
+                            @Override
+                            public void onBannerClicked(@NonNull BannerAd bannerAd) {
+                                if (onLoadBannerWortise!=null){
+                                    onLoadBannerWortise.onBannerClicked();
+                                }
+
+                            }
+
+                            @Override
+                            public void onBannerFailed(@NonNull BannerAd bannerAd, @NonNull com.wortise.ads.AdError adError) {
+                                if (onLoadBannerWortise!=null){
+                                    onLoadBannerWortise.onBannerFailed();
+                                }
+                                layAds.setVisibility(View.GONE);
+                            }
+
+                            @Override
+                            public void onBannerLoaded(@NonNull BannerAd bannerAd) {
+                                if (onLoadBannerWortise!=null){
+                                    onLoadBannerWortise.onBannerLoaded();
+                                }
+                            }
+                        });
                         break;
                 }
             }
         };
+
+    }
+
+    public static void SmallBannerWortise(Activity activity, RelativeLayout layAds, String selectAdsBackup, String idBanner, String idBannerBackup) {
+
+        wortiseBannerAd = new BannerAd(activity);
+        wortiseBannerAd.setAdSize(com.wortise.ads.AdSize.HEIGHT_50);
+        wortiseBannerAd.setAdUnitId(idBanner);
+        layAds.addView(wortiseBannerAd);
+        wortiseBannerAd.loadAd();
+        wortiseBannerAd.setListener(new BannerAd.Listener() {
+            @Override
+            public void onBannerClicked(@NonNull BannerAd bannerAd) {
+                if (onLoadBannerWortise!=null){
+                    onLoadBannerWortise.onBannerClicked();
+                }
+
+            }
+
+            @Override
+            public void onBannerFailed(@NonNull BannerAd bannerAd, @NonNull com.wortise.ads.AdError adError) {
+                if (onLoadBannerWortise!=null){
+                    onLoadBannerWortise.onBannerFailed();
+                }
+                switch (selectAdsBackup) {
+                    case "APPLOVIN-M":
+                        adViewMax = new MaxAdView(idBannerBackup, activity);
+                        MaxAdViewAdListener listener = new MaxAdViewAdListener() {
+                            @Override
+                            public void onAdExpanded(MaxAd ad) {
+                                if (onLoadBannerApplovinMax != null) {
+                                    onLoadBannerApplovinMax.onAdExpanded();
+                                }
+                            }
+
+                            @Override
+                            public void onAdCollapsed(MaxAd ad) {
+                                if (onLoadBannerApplovinMax != null) {
+                                    onLoadBannerApplovinMax.onAdCollapsed();
+                                }
+                            }
+
+                            @Override
+                            public void onAdLoaded(MaxAd ad) {
+                                if (onLoadBannerApplovinMax != null) {
+                                    onLoadBannerApplovinMax.onAdLoaded();
+                                }
+                            }
+
+                            @Override
+                            public void onAdDisplayed(MaxAd ad) {
+                                if (onLoadBannerApplovinMax != null) {
+                                    onLoadBannerApplovinMax.onAdDisplayed();
+                                }
+                            }
+
+                            @Override
+                            public void onAdHidden(MaxAd ad) {
+                                if (onLoadBannerApplovinMax != null) {
+                                    onLoadBannerApplovinMax.onAdHidden();
+                                }
+                            }
+
+                            @Override
+                            public void onAdClicked(MaxAd ad) {
+                                if (onLoadBannerApplovinMax != null) {
+                                    onLoadBannerApplovinMax.onAdClicked();
+                                }
+                            }
+
+                            @Override
+                            public void onAdLoadFailed(String adUnitId, MaxError error) {
+                                if (onLoadBannerApplovinMax != null) {
+                                    onLoadBannerApplovinMax.onAdLoadFailed();
+                                }
+                                layAds.setVisibility(View.GONE);
+                            }
+
+                            @Override
+                            public void onAdDisplayFailed(MaxAd ad, MaxError error) {
+                                if (onLoadBannerApplovinMax != null) {
+                                    onLoadBannerApplovinMax.onAdDisplayFailed();
+                                }
+                                layAds.setVisibility(View.GONE);
+                            }
+                        };
+                        adViewMax.setListener(listener);
+                        final boolean isTablet = AppLovinSdkUtils.isTablet(activity);
+                        final int heightPx = AppLovinSdkUtils.dpToPx(activity, isTablet ? 90 : 50);
+                        adViewMax.setLayoutParams(new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, heightPx));
+                        layAds.addView(adViewMax);
+                        adViewMax.loadAd();
+                        break;
+                    case "MOPUB":
+                    case "UNITY":
+
+                        break;
+                    case "IRON":
+                        adViewIron = IronSource.createBanner(activity, ISBannerSize.BANNER);
+                        FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT,
+                                FrameLayout.LayoutParams.WRAP_CONTENT);
+                        layAds.addView(adViewIron, 0, layoutParams);
+                        com.ironsource.mediationsdk.sdk.BannerListener listenerIron = new com.ironsource.mediationsdk.sdk.BannerListener() {
+                            @Override
+                            public void onBannerAdLoaded() {
+                                if (onLoadBannerIronSource != null) {
+                                    onLoadBannerIronSource.onBannerAdLoaded();
+                                }
+
+                            }
+
+                            @Override
+                            public void onBannerAdLoadFailed(IronSourceError ironSourceError) {
+                                if (onLoadBannerIronSource != null) {
+                                    onLoadBannerIronSource.onBannerAdLoadFailed();
+                                }
+                                layAds.setVisibility(View.GONE);
+
+                            }
+
+                            @Override
+                            public void onBannerAdClicked() {
+                                if (onLoadBannerIronSource != null) {
+                                    onLoadBannerIronSource.onBannerAdClicked();
+                                }
+                            }
+
+                            @Override
+                            public void onBannerAdScreenPresented() {
+                                if (onLoadBannerIronSource != null) {
+                                    onLoadBannerIronSource.onBannerAdScreenPresented();
+                                }
+                            }
+
+                            @Override
+                            public void onBannerAdScreenDismissed() {
+                                if (onLoadBannerIronSource != null) {
+                                    onLoadBannerIronSource.onBannerAdScreenDismissed();
+                                }
+                            }
+
+                            @Override
+                            public void onBannerAdLeftApplication() {
+                                if (onLoadBannerIronSource != null) {
+                                    onLoadBannerIronSource.onBannerAdLeftApplication();
+                                }
+                            }
+                        };
+                        adViewIron.setBannerListener(listenerIron);
+                        IronSource.loadBanner(adViewIron, idBannerBackup);
+
+
+                        break;
+                    case "STARTAPP":
+                        Banner startAppBanner = new Banner(activity, new BannerListener() {
+                            @Override
+                            public void onReceiveAd(View view) {
+                                if (onLoadBannerStartApp != null) {
+                                    onLoadBannerStartApp.onReceiveAd();
+                                }
+
+                            }
+
+                            @Override
+                            public void onFailedToReceiveAd(View view) {
+                                if (onLoadBannerStartApp != null) {
+                                    onLoadBannerStartApp.onFailedToReceiveAd("");
+                                }
+                                layAds.setVisibility(View.GONE);
+                            }
+
+                            @Override
+                            public void onImpression(View view) {
+                                if (onLoadBannerStartApp != null) {
+                                    onLoadBannerStartApp.onImpression();
+                                }
+                            }
+
+                            @Override
+                            public void onClick(View view) {
+                                if (onLoadBannerStartApp != null) {
+                                    onLoadBannerStartApp.onClick();
+                                }
+                            }
+                        });
+
+                        RelativeLayout.LayoutParams bannerParameters =
+                                new RelativeLayout.LayoutParams(
+                                        RelativeLayout.LayoutParams.WRAP_CONTENT,
+                                        RelativeLayout.LayoutParams.WRAP_CONTENT);
+                        bannerParameters.addRule(RelativeLayout.CENTER_HORIZONTAL);
+                        layAds.addView(startAppBanner, bannerParameters);
+                        break;
+                    case "APPLOVIN-D":
+                        AdRequest.Builder builder = new AdRequest.Builder();
+                        Bundle bannerExtras = new Bundle();
+                        bannerExtras.putString("zone_id", idBannerBackup);
+                        builder.addCustomEventExtrasBundle(AppLovinCustomEventBanner.class, bannerExtras);
+
+                        boolean isTablet2 = AppLovinSdkUtils.isTablet(activity);
+                        AppLovinAdSize adSize = isTablet2 ? AppLovinAdSize.LEADER : AppLovinAdSize.BANNER;
+                        adViewDiscovery = new AppLovinAdView(adSize, activity);
+                        AppLovinAdLoadListener loadListener = new AppLovinAdLoadListener() {
+                            @Override
+                            public void adReceived(AppLovinAd ad) {
+                                if (onLoadBannerApplovinDiscovery != null) {
+                                    onLoadBannerApplovinDiscovery.adReceived();
+                                }
+
+                            }
+
+                            @Override
+                            public void failedToReceiveAd(int errorCode) {
+                                if (onLoadBannerApplovinDiscovery != null) {
+                                    onLoadBannerApplovinDiscovery.failedToReceiveAd();
+                                }
+                                layAds.setVisibility(View.GONE);
+
+                            }
+                        };
+                        adViewDiscovery.setAdLoadListener(loadListener);
+                        layAds.addView(adViewDiscovery);
+                        adViewDiscovery.loadNextAd();
+                        break;
+                    case "FACEBOOK":
+                        adViewFAN = new com.facebook.ads.AdView(activity, idBannerBackup,
+                                com.facebook.ads.AdSize.BANNER_HEIGHT_50);
+                        layAds.addView(adViewFAN);
+                        com.facebook.ads.AdListener adListener = new com.facebook.ads.AdListener() {
+                            @Override
+                            public void onError(Ad ad, AdError adError) {
+                                if (onLoadBannerFacebook != null) {
+                                    onLoadBannerFacebook.onError();
+                                }
+                                layAds.setVisibility(View.GONE);
+
+                            }
+
+                            @Override
+                            public void onAdLoaded(Ad ad) {
+                                if (onLoadBannerFacebook != null) {
+                                    onLoadBannerFacebook.onAdLoaded();
+                                }
+
+                            }
+
+                            @Override
+                            public void onAdClicked(Ad ad) {
+                                if (onLoadBannerFacebook != null) {
+                                    onLoadBannerFacebook.onAdClicked();
+                                }
+                            }
+
+                            @Override
+                            public void onLoggingImpression(Ad ad) {
+                                if (onLoadBannerFacebook != null) {
+                                    onLoadBannerFacebook.onLoggingImpression();
+                                }
+                            }
+                        };
+                        adViewFAN.loadAd(adViewFAN.buildLoadAdConfig().withAdListener(adListener).build());
+                        break;
+
+                    case "ALIEN-V":
+                        AlienViewAds.Banner(activity, layAds, idBannerBackup);
+                        break;
+                    case "ALIEN-M":
+                        AlienMediationAds.SmallBanner(activity, layAds, idBannerBackup);
+                        break;
+                    case "ADMOB":
+                        AdRequest request = new AdRequest.Builder()
+                                .build();
+                        adViewAdmob = new AdView(activity);
+                        adViewAdmob.setAdUnitId(idBannerBackup);
+                        layAds.addView(adViewAdmob);
+                        AdSize adSizeAdmob = getAdSize(activity);
+                        adViewAdmob.setAdSize(adSizeAdmob);
+                        adViewAdmob.loadAd(request);
+                        adViewAdmob.setAdListener(new AdListener() {
+                            @Override
+                            public void onAdLoaded() {
+
+                            }
+
+                            @Override
+                            public void onAdFailedToLoad(LoadAdError adError) {
+                                layAds.setVisibility(View.GONE);
+
+                            }
+
+                            @Override
+                            public void onAdOpened() {
+
+                            }
+                            @Override
+                            public void onAdClicked() {
+
+                            }
+                            @Override
+                            public void onAdClosed() {
+
+                            }
+                        });
+                        break;
+                }
+            }
+
+            @Override
+            public void onBannerLoaded(@NonNull BannerAd bannerAd) {
+                if (onLoadBannerWortise!=null){
+                    onLoadBannerWortise.onBannerLoaded();
+                }
+                switch (selectAdsBackup) {
+                    case "APPLOVIN-M":
+                        if (adViewMax != null) {
+                            adViewMax.destroy();
+                        }
+                        break;
+                    case "MOPUB":
+                    case "UNITY":
+
+                        break;
+                    case "IRON":
+                        if (adViewIron != null) {
+                            adViewIron.isDestroyed();
+                        }
+                        break;
+                    case "STARTAPP":
+                        if (startAppBanner != null) {
+                            startAppBanner.hideBanner();
+                        }
+                        break;
+                    case "APPLOVIN-D":
+                        if (adViewDiscovery != null) {
+                            adViewDiscovery.destroy();
+                        }
+                        break;
+                    case "FACEBOOK":
+                        if (adViewFAN != null) {
+                            adViewFAN.destroy();
+                        }
+                        break;
+                    case "ADMOB":
+                        if (adViewAdmob != null) {
+                            adViewAdmob.destroy();
+                        }
+                        break;
+                }
+            }
+        });
 
     }
 

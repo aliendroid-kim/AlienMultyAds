@@ -18,9 +18,9 @@
 
             <RelativeLayout
                 android:id="@+id/lay300x250"
-                android:layout_width="300dp"
-                android:layout_height="250dp"
-                android:layout_alignParentBottom="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="false"
                 android:layout_centerInParent="true"
                 android:background="@color/teal_700">
 
@@ -34,11 +34,11 @@
 
             <RelativeLayout
                 android:id="@+id/lay320x50"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="60dp"
                 android:layout_alignParentBottom="true"
                 android:layout_centerInParent="true"
-                android:background="@color/teal_700">
+                android:gravity="bottom">
 
             </RelativeLayout>
         </RelativeLayout>

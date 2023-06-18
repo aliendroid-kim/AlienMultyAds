@@ -40,6 +40,7 @@ dependencies {
     implementation 'com.applovin:applovin-sdk:11.9.0'
     implementation 'com.ironsource.sdk:mediationsdk:7.3.0'
     implementation 'com.startapp:inapp-sdk:4.11.0'
+    implementation 'com.wortise:android-sdk:1.4.1'
 
     //Applovin
     implementation 'com.applovin.mediation:facebook-adapter:6.14.0.0'
@@ -53,8 +54,8 @@ dependencies {
 
     //Admob
     implementation 'com.google.ads.mediation:facebook:6.14.0.0'
-    implementation 'com.google.ads.mediation:applovin:11.9.0.0'
-    implementation 'com.google.ads.mediation:ironsource:7.3.0.0'
+    implementation 'com.google.ads.mediation:applovin:11.10.1.0'
+    implementation 'com.google.ads.mediation:ironsource:7.3.1.0'
 
     implementation 'com.google.android.ump:user-messaging-platform:2.0.0'
     implementation 'com.flurry.android:analytics:14.0.0'

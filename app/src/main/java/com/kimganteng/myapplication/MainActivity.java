@@ -111,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
-        AliendroidReward.LoadRewardApplovinMax(this,Select_Backup_Ads,MainRewards,BackupReward);
+        AliendroidReward.LoadRewardAdmob(this,Select_Backup_Ads,MainRewards,BackupReward);
         AliendroidReward.onLoadRewardsAdmob = new OnLoadRewardsAdmob() {
             @Override
             public void onAdFailedToLoad() {

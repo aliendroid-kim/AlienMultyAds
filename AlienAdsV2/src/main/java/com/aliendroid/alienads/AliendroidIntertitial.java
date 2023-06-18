@@ -21,6 +21,7 @@ import com.aliendroid.alienads.interfaces.interstitial.load.OnLoadInterstitialFa
 import com.aliendroid.alienads.interfaces.interstitial.load.OnLoadInterstitialGoogle;
 import com.aliendroid.alienads.interfaces.interstitial.load.OnLoadInterstitialIronSource;
 import com.aliendroid.alienads.interfaces.interstitial.load.OnLoadInterstitialStartApp;
+import com.aliendroid.alienads.interfaces.interstitial.load.OnLoadInterstitialWortise;
 import com.aliendroid.alienads.interfaces.interstitial.show.OnShowInterstitialAdmob;
 import com.aliendroid.alienads.interfaces.interstitial.show.OnShowInterstitialAlienMediation;
 import com.aliendroid.alienads.interfaces.interstitial.show.OnShowInterstitialAlienView;
@@ -63,6 +64,7 @@ import com.startapp.sdk.adsbase.adlisteners.AdDisplayListener;
 import com.startapp.sdk.adsbase.adlisteners.AdEventListener;
 
 public class AliendroidIntertitial {
+    public static com.wortise.ads.interstitial.InterstitialAd wortisemInterstitial;
     public static InterstitialAd mInterstitialAd;
     public static InterstitialAd mInterstitialAd2;
     public static AdManagerInterstitialAd mAdManagerInterstitialAd;
@@ -103,6 +105,9 @@ public class AliendroidIntertitial {
     public static OnShowInterstitialAlienView onShowInterstitialAlienView;
 
     public static OnFullScreenContentCallbackAdmob onFullScreenContentCallbackAdmob;
+
+    public static OnLoadInterstitialWortise onLoadInterstitialWortise;
+    //public static OnShowInterstitialStartApp onShowInterstitialStartApp;
 
     public static void LoadIntertitialUnity(Activity activity, String selectAds, String idIntertitial, String idBackupIntertitial) {
 
@@ -226,6 +231,46 @@ public class AliendroidIntertitial {
                                 mInterstitialAd2 = null;
                             }
                         });
+                break;
+            case "WORTISE" :
+                wortisemInterstitial = new com.wortise.ads.interstitial.InterstitialAd(activity, idIntertitialBackup);
+                wortisemInterstitial.loadAd();
+                wortisemInterstitial.setListener(new com.wortise.ads.interstitial.InterstitialAd.Listener() {
+                    @Override
+                    public void onInterstitialClicked(@NonNull com.wortise.ads.interstitial.InterstitialAd interstitialAd) {
+                    if (onLoadInterstitialWortise!=null){
+                        onLoadInterstitialWortise.onInterstitialClicked();
+                    }
+                    }
+
+                    @Override
+                    public void onInterstitialDismissed(@NonNull com.wortise.ads.interstitial.InterstitialAd interstitialAd) {
+                        if (onLoadInterstitialWortise!=null){
+                            onLoadInterstitialWortise.onInterstitialDismissed();
+                        }
+                    }
+
+                    @Override
+                    public void onInterstitialFailed(@NonNull com.wortise.ads.interstitial.InterstitialAd interstitialAd, @NonNull com.wortise.ads.AdError adError) {
+                        if (onLoadInterstitialWortise!=null){
+                            onLoadInterstitialWortise.onInterstitialFailed();
+                        }
+                    }
+
+                    @Override
+                    public void onInterstitialLoaded(@NonNull com.wortise.ads.interstitial.InterstitialAd interstitialAd) {
+                        if (onLoadInterstitialWortise!=null){
+                            onLoadInterstitialWortise.onInterstitialLoaded();
+                        }
+                    }
+
+                    @Override
+                    public void onInterstitialShown(@NonNull com.wortise.ads.interstitial.InterstitialAd interstitialAd) {
+                        if (onLoadInterstitialWortise!=null){
+                            onLoadInterstitialWortise.onInterstitialShown();
+                        }
+                    }
+                });
                 break;
 
         }
@@ -357,7 +402,46 @@ public class AliendroidIntertitial {
             case "ALIEN-M":
                 AlienMediationAds.LoadInterstitial(activity, idIntertitialBackup);
                 break;
+            case "WORTISE" :
+                wortisemInterstitial = new com.wortise.ads.interstitial.InterstitialAd(activity, idIntertitialBackup);
+                wortisemInterstitial.loadAd();
+                wortisemInterstitial.setListener(new com.wortise.ads.interstitial.InterstitialAd.Listener() {
+                    @Override
+                    public void onInterstitialClicked(@NonNull com.wortise.ads.interstitial.InterstitialAd interstitialAd) {
+                        if (onLoadInterstitialWortise!=null){
+                            onLoadInterstitialWortise.onInterstitialClicked();
+                        }
+                    }
 
+                    @Override
+                    public void onInterstitialDismissed(@NonNull com.wortise.ads.interstitial.InterstitialAd interstitialAd) {
+                        if (onLoadInterstitialWortise!=null){
+                            onLoadInterstitialWortise.onInterstitialDismissed();
+                        }
+                    }
+
+                    @Override
+                    public void onInterstitialFailed(@NonNull com.wortise.ads.interstitial.InterstitialAd interstitialAd, @NonNull com.wortise.ads.AdError adError) {
+                        if (onLoadInterstitialWortise!=null){
+                            onLoadInterstitialWortise.onInterstitialFailed();
+                        }
+                    }
+
+                    @Override
+                    public void onInterstitialLoaded(@NonNull com.wortise.ads.interstitial.InterstitialAd interstitialAd) {
+                        if (onLoadInterstitialWortise!=null){
+                            onLoadInterstitialWortise.onInterstitialLoaded();
+                        }
+                    }
+
+                    @Override
+                    public void onInterstitialShown(@NonNull com.wortise.ads.interstitial.InterstitialAd interstitialAd) {
+                        if (onLoadInterstitialWortise!=null){
+                            onLoadInterstitialWortise.onInterstitialShown();
+                        }
+                    }
+                });
+                break;
 
         }
     }
@@ -530,7 +614,46 @@ public class AliendroidIntertitial {
             case "ALIEN-M":
                 AlienMediationAds.LoadInterstitial(activity, idIntertitialBackup);
                 break;
+            case "WORTISE" :
+                wortisemInterstitial = new com.wortise.ads.interstitial.InterstitialAd(activity, idIntertitialBackup);
+                wortisemInterstitial.loadAd();
+                wortisemInterstitial.setListener(new com.wortise.ads.interstitial.InterstitialAd.Listener() {
+                    @Override
+                    public void onInterstitialClicked(@NonNull com.wortise.ads.interstitial.InterstitialAd interstitialAd) {
+                        if (onLoadInterstitialWortise!=null){
+                            onLoadInterstitialWortise.onInterstitialClicked();
+                        }
+                    }
 
+                    @Override
+                    public void onInterstitialDismissed(@NonNull com.wortise.ads.interstitial.InterstitialAd interstitialAd) {
+                        if (onLoadInterstitialWortise!=null){
+                            onLoadInterstitialWortise.onInterstitialDismissed();
+                        }
+                    }
+
+                    @Override
+                    public void onInterstitialFailed(@NonNull com.wortise.ads.interstitial.InterstitialAd interstitialAd, @NonNull com.wortise.ads.AdError adError) {
+                        if (onLoadInterstitialWortise!=null){
+                            onLoadInterstitialWortise.onInterstitialFailed();
+                        }
+                    }
+
+                    @Override
+                    public void onInterstitialLoaded(@NonNull com.wortise.ads.interstitial.InterstitialAd interstitialAd) {
+                        if (onLoadInterstitialWortise!=null){
+                            onLoadInterstitialWortise.onInterstitialLoaded();
+                        }
+                    }
+
+                    @Override
+                    public void onInterstitialShown(@NonNull com.wortise.ads.interstitial.InterstitialAd interstitialAd) {
+                        if (onLoadInterstitialWortise!=null){
+                            onLoadInterstitialWortise.onInterstitialShown();
+                        }
+                    }
+                });
+                break;
         }
     }
 
@@ -652,7 +775,46 @@ public class AliendroidIntertitial {
             case "ALIEN-M":
                 AlienMediationAds.LoadInterstitial(activity, idIntertitialBackup);
                 break;
+            case "WORTISE" :
+                wortisemInterstitial = new com.wortise.ads.interstitial.InterstitialAd(activity, idIntertitialBackup);
+                wortisemInterstitial.loadAd();
+                wortisemInterstitial.setListener(new com.wortise.ads.interstitial.InterstitialAd.Listener() {
+                    @Override
+                    public void onInterstitialClicked(@NonNull com.wortise.ads.interstitial.InterstitialAd interstitialAd) {
+                        if (onLoadInterstitialWortise!=null){
+                            onLoadInterstitialWortise.onInterstitialClicked();
+                        }
+                    }
 
+                    @Override
+                    public void onInterstitialDismissed(@NonNull com.wortise.ads.interstitial.InterstitialAd interstitialAd) {
+                        if (onLoadInterstitialWortise!=null){
+                            onLoadInterstitialWortise.onInterstitialDismissed();
+                        }
+                    }
+
+                    @Override
+                    public void onInterstitialFailed(@NonNull com.wortise.ads.interstitial.InterstitialAd interstitialAd, @NonNull com.wortise.ads.AdError adError) {
+                        if (onLoadInterstitialWortise!=null){
+                            onLoadInterstitialWortise.onInterstitialFailed();
+                        }
+                    }
+
+                    @Override
+                    public void onInterstitialLoaded(@NonNull com.wortise.ads.interstitial.InterstitialAd interstitialAd) {
+                        if (onLoadInterstitialWortise!=null){
+                            onLoadInterstitialWortise.onInterstitialLoaded();
+                        }
+                    }
+
+                    @Override
+                    public void onInterstitialShown(@NonNull com.wortise.ads.interstitial.InterstitialAd interstitialAd) {
+                        if (onLoadInterstitialWortise!=null){
+                            onLoadInterstitialWortise.onInterstitialShown();
+                        }
+                    }
+                });
+                break;
         }
     }
 
@@ -781,7 +943,46 @@ public class AliendroidIntertitial {
             case "ALIEN-M":
                 AlienMediationAds.LoadInterstitial(activity, idIntertitialBackup);
                 break;
+            case "WORTISE" :
+                wortisemInterstitial = new com.wortise.ads.interstitial.InterstitialAd(activity, idIntertitialBackup);
+                wortisemInterstitial.loadAd();
+                wortisemInterstitial.setListener(new com.wortise.ads.interstitial.InterstitialAd.Listener() {
+                    @Override
+                    public void onInterstitialClicked(@NonNull com.wortise.ads.interstitial.InterstitialAd interstitialAd) {
+                        if (onLoadInterstitialWortise!=null){
+                            onLoadInterstitialWortise.onInterstitialClicked();
+                        }
+                    }
 
+                    @Override
+                    public void onInterstitialDismissed(@NonNull com.wortise.ads.interstitial.InterstitialAd interstitialAd) {
+                        if (onLoadInterstitialWortise!=null){
+                            onLoadInterstitialWortise.onInterstitialDismissed();
+                        }
+                    }
+
+                    @Override
+                    public void onInterstitialFailed(@NonNull com.wortise.ads.interstitial.InterstitialAd interstitialAd, @NonNull com.wortise.ads.AdError adError) {
+                        if (onLoadInterstitialWortise!=null){
+                            onLoadInterstitialWortise.onInterstitialFailed();
+                        }
+                    }
+
+                    @Override
+                    public void onInterstitialLoaded(@NonNull com.wortise.ads.interstitial.InterstitialAd interstitialAd) {
+                        if (onLoadInterstitialWortise!=null){
+                            onLoadInterstitialWortise.onInterstitialLoaded();
+                        }
+                    }
+
+                    @Override
+                    public void onInterstitialShown(@NonNull com.wortise.ads.interstitial.InterstitialAd interstitialAd) {
+                        if (onLoadInterstitialWortise!=null){
+                            onLoadInterstitialWortise.onInterstitialShown();
+                        }
+                    }
+                });
+                break;
         }
     }
 
@@ -909,7 +1110,46 @@ public class AliendroidIntertitial {
                 AlienMediationAds.LoadInterstitial(activity, idIntertitialBackup);
                 break;
 
+            case "WORTISE" :
+                wortisemInterstitial = new com.wortise.ads.interstitial.InterstitialAd(activity, idIntertitialBackup);
+                wortisemInterstitial.loadAd();
+                wortisemInterstitial.setListener(new com.wortise.ads.interstitial.InterstitialAd.Listener() {
+                    @Override
+                    public void onInterstitialClicked(@NonNull com.wortise.ads.interstitial.InterstitialAd interstitialAd) {
+                        if (onLoadInterstitialWortise!=null){
+                            onLoadInterstitialWortise.onInterstitialClicked();
+                        }
+                    }
 
+                    @Override
+                    public void onInterstitialDismissed(@NonNull com.wortise.ads.interstitial.InterstitialAd interstitialAd) {
+                        if (onLoadInterstitialWortise!=null){
+                            onLoadInterstitialWortise.onInterstitialDismissed();
+                        }
+                    }
+
+                    @Override
+                    public void onInterstitialFailed(@NonNull com.wortise.ads.interstitial.InterstitialAd interstitialAd, @NonNull com.wortise.ads.AdError adError) {
+                        if (onLoadInterstitialWortise!=null){
+                            onLoadInterstitialWortise.onInterstitialFailed();
+                        }
+                    }
+
+                    @Override
+                    public void onInterstitialLoaded(@NonNull com.wortise.ads.interstitial.InterstitialAd interstitialAd) {
+                        if (onLoadInterstitialWortise!=null){
+                            onLoadInterstitialWortise.onInterstitialLoaded();
+                        }
+                    }
+
+                    @Override
+                    public void onInterstitialShown(@NonNull com.wortise.ads.interstitial.InterstitialAd interstitialAd) {
+                        if (onLoadInterstitialWortise!=null){
+                            onLoadInterstitialWortise.onInterstitialShown();
+                        }
+                    }
+                });
+                break;
         }
     }
 
@@ -1080,7 +1320,46 @@ public class AliendroidIntertitial {
             case "ALIEN-M":
                 AlienMediationAds.LoadInterstitial(activity, idIntertitialBackup);
                 break;
+            case "WORTISE" :
+                wortisemInterstitial = new com.wortise.ads.interstitial.InterstitialAd(activity, idIntertitialBackup);
+                wortisemInterstitial.loadAd();
+                wortisemInterstitial.setListener(new com.wortise.ads.interstitial.InterstitialAd.Listener() {
+                    @Override
+                    public void onInterstitialClicked(@NonNull com.wortise.ads.interstitial.InterstitialAd interstitialAd) {
+                        if (onLoadInterstitialWortise!=null){
+                            onLoadInterstitialWortise.onInterstitialClicked();
+                        }
+                    }
 
+                    @Override
+                    public void onInterstitialDismissed(@NonNull com.wortise.ads.interstitial.InterstitialAd interstitialAd) {
+                        if (onLoadInterstitialWortise!=null){
+                            onLoadInterstitialWortise.onInterstitialDismissed();
+                        }
+                    }
+
+                    @Override
+                    public void onInterstitialFailed(@NonNull com.wortise.ads.interstitial.InterstitialAd interstitialAd, @NonNull com.wortise.ads.AdError adError) {
+                        if (onLoadInterstitialWortise!=null){
+                            onLoadInterstitialWortise.onInterstitialFailed();
+                        }
+                    }
+
+                    @Override
+                    public void onInterstitialLoaded(@NonNull com.wortise.ads.interstitial.InterstitialAd interstitialAd) {
+                        if (onLoadInterstitialWortise!=null){
+                            onLoadInterstitialWortise.onInterstitialLoaded();
+                        }
+                    }
+
+                    @Override
+                    public void onInterstitialShown(@NonNull com.wortise.ads.interstitial.InterstitialAd interstitialAd) {
+                        if (onLoadInterstitialWortise!=null){
+                            onLoadInterstitialWortise.onInterstitialShown();
+                        }
+                    }
+                });
+                break;
         }
     }
 
@@ -1215,7 +1494,46 @@ public class AliendroidIntertitial {
             case "ALIEN-M":
                 AlienMediationAds.LoadInterstitial(activity, idIntertitialBackup);
                 break;
+            case "WORTISE" :
+                wortisemInterstitial = new com.wortise.ads.interstitial.InterstitialAd(activity, idIntertitialBackup);
+                wortisemInterstitial.loadAd();
+                wortisemInterstitial.setListener(new com.wortise.ads.interstitial.InterstitialAd.Listener() {
+                    @Override
+                    public void onInterstitialClicked(@NonNull com.wortise.ads.interstitial.InterstitialAd interstitialAd) {
+                        if (onLoadInterstitialWortise!=null){
+                            onLoadInterstitialWortise.onInterstitialClicked();
+                        }
+                    }
 
+                    @Override
+                    public void onInterstitialDismissed(@NonNull com.wortise.ads.interstitial.InterstitialAd interstitialAd) {
+                        if (onLoadInterstitialWortise!=null){
+                            onLoadInterstitialWortise.onInterstitialDismissed();
+                        }
+                    }
+
+                    @Override
+                    public void onInterstitialFailed(@NonNull com.wortise.ads.interstitial.InterstitialAd interstitialAd, @NonNull com.wortise.ads.AdError adError) {
+                        if (onLoadInterstitialWortise!=null){
+                            onLoadInterstitialWortise.onInterstitialFailed();
+                        }
+                    }
+
+                    @Override
+                    public void onInterstitialLoaded(@NonNull com.wortise.ads.interstitial.InterstitialAd interstitialAd) {
+                        if (onLoadInterstitialWortise!=null){
+                            onLoadInterstitialWortise.onInterstitialLoaded();
+                        }
+                    }
+
+                    @Override
+                    public void onInterstitialShown(@NonNull com.wortise.ads.interstitial.InterstitialAd interstitialAd) {
+                        if (onLoadInterstitialWortise!=null){
+                            onLoadInterstitialWortise.onInterstitialShown();
+                        }
+                    }
+                });
+                break;
         }
     }
 
@@ -1346,7 +1664,46 @@ public class AliendroidIntertitial {
             case "ALIEN-M":
                 AlienMediationAds.LoadInterstitial(activity, idIntertitialBackup);
                 break;
+            case "WORTISE" :
+                wortisemInterstitial = new com.wortise.ads.interstitial.InterstitialAd(activity, idIntertitialBackup);
+                wortisemInterstitial.loadAd();
+                wortisemInterstitial.setListener(new com.wortise.ads.interstitial.InterstitialAd.Listener() {
+                    @Override
+                    public void onInterstitialClicked(@NonNull com.wortise.ads.interstitial.InterstitialAd interstitialAd) {
+                        if (onLoadInterstitialWortise!=null){
+                            onLoadInterstitialWortise.onInterstitialClicked();
+                        }
+                    }
 
+                    @Override
+                    public void onInterstitialDismissed(@NonNull com.wortise.ads.interstitial.InterstitialAd interstitialAd) {
+                        if (onLoadInterstitialWortise!=null){
+                            onLoadInterstitialWortise.onInterstitialDismissed();
+                        }
+                    }
+
+                    @Override
+                    public void onInterstitialFailed(@NonNull com.wortise.ads.interstitial.InterstitialAd interstitialAd, @NonNull com.wortise.ads.AdError adError) {
+                        if (onLoadInterstitialWortise!=null){
+                            onLoadInterstitialWortise.onInterstitialFailed();
+                        }
+                    }
+
+                    @Override
+                    public void onInterstitialLoaded(@NonNull com.wortise.ads.interstitial.InterstitialAd interstitialAd) {
+                        if (onLoadInterstitialWortise!=null){
+                            onLoadInterstitialWortise.onInterstitialLoaded();
+                        }
+                    }
+
+                    @Override
+                    public void onInterstitialShown(@NonNull com.wortise.ads.interstitial.InterstitialAd interstitialAd) {
+                        if (onLoadInterstitialWortise!=null){
+                            onLoadInterstitialWortise.onInterstitialShown();
+                        }
+                    }
+                });
+                break;
         }
     }
 
@@ -1508,9 +1865,182 @@ public class AliendroidIntertitial {
                     }
                 };
                 break;
+            case "WORTISE" :
+                wortisemInterstitial = new com.wortise.ads.interstitial.InterstitialAd(activity, idIntertitialBackup);
+                wortisemInterstitial.loadAd();
+                wortisemInterstitial.setListener(new com.wortise.ads.interstitial.InterstitialAd.Listener() {
+                    @Override
+                    public void onInterstitialClicked(@NonNull com.wortise.ads.interstitial.InterstitialAd interstitialAd) {
+                        if (onLoadInterstitialWortise!=null){
+                            onLoadInterstitialWortise.onInterstitialClicked();
+                        }
+                    }
+
+                    @Override
+                    public void onInterstitialDismissed(@NonNull com.wortise.ads.interstitial.InterstitialAd interstitialAd) {
+                        if (onLoadInterstitialWortise!=null){
+                            onLoadInterstitialWortise.onInterstitialDismissed();
+                        }
+                    }
+
+                    @Override
+                    public void onInterstitialFailed(@NonNull com.wortise.ads.interstitial.InterstitialAd interstitialAd, @NonNull com.wortise.ads.AdError adError) {
+                        if (onLoadInterstitialWortise!=null){
+                            onLoadInterstitialWortise.onInterstitialFailed();
+                        }
+                    }
+
+                    @Override
+                    public void onInterstitialLoaded(@NonNull com.wortise.ads.interstitial.InterstitialAd interstitialAd) {
+                        if (onLoadInterstitialWortise!=null){
+                            onLoadInterstitialWortise.onInterstitialLoaded();
+                        }
+                    }
+
+                    @Override
+                    public void onInterstitialShown(@NonNull com.wortise.ads.interstitial.InterstitialAd interstitialAd) {
+                        if (onLoadInterstitialWortise!=null){
+                            onLoadInterstitialWortise.onInterstitialShown();
+                        }
+                    }
+                });
+                break;
         }
     }
 
+    public static void LoadIntertitialWortise(Activity activity, String selectAdsBackup, String idIntertitial, String idIntertitialBackup) {
+
+        wortisemInterstitial = new com.wortise.ads.interstitial.InterstitialAd(activity, idIntertitial);
+        wortisemInterstitial.loadAd();
+        wortisemInterstitial.setListener(new com.wortise.ads.interstitial.InterstitialAd.Listener() {
+            @Override
+            public void onInterstitialClicked(@NonNull com.wortise.ads.interstitial.InterstitialAd interstitialAd) {
+                if (onLoadInterstitialWortise!=null){
+                    onLoadInterstitialWortise.onInterstitialClicked();
+                }
+            }
+
+            @Override
+            public void onInterstitialDismissed(@NonNull com.wortise.ads.interstitial.InterstitialAd interstitialAd) {
+                if (onLoadInterstitialWortise!=null){
+                    onLoadInterstitialWortise.onInterstitialDismissed();
+                }
+            }
+
+            @Override
+            public void onInterstitialFailed(@NonNull com.wortise.ads.interstitial.InterstitialAd interstitialAd, @NonNull com.wortise.ads.AdError adError) {
+                if (onLoadInterstitialWortise!=null){
+                    onLoadInterstitialWortise.onInterstitialFailed();
+                }
+            }
+
+            @Override
+            public void onInterstitialLoaded(@NonNull com.wortise.ads.interstitial.InterstitialAd interstitialAd) {
+                if (onLoadInterstitialWortise!=null){
+                    onLoadInterstitialWortise.onInterstitialLoaded();
+                }
+            }
+
+            @Override
+            public void onInterstitialShown(@NonNull com.wortise.ads.interstitial.InterstitialAd interstitialAd) {
+                if (onLoadInterstitialWortise!=null){
+                    onLoadInterstitialWortise.onInterstitialShown();
+                }
+            }
+        });
+
+        switch (selectAdsBackup) {
+            case "APPLOVIN-M":
+                interstitialAd = new MaxInterstitialAd(idIntertitialBackup, activity);
+                interstitialAd.loadAd();
+                break;
+            case "MOPUB":
+            case "UNITY":
+
+                break;
+            case "IRON":
+                IronSource.isInterstitialPlacementCapped(idIntertitialBackup);
+                IronSource.loadInterstitial();
+                break;
+            case "APPLOVIN-D":
+                AdRequest.Builder builder = new AdRequest.Builder();
+                Bundle interstitialExtras = new Bundle();
+                interstitialExtras.putString("zone_id", idIntertitialBackup);
+                builder.addCustomEventExtrasBundle(AppLovinCustomEventInterstitial.class, interstitialExtras);
+
+                AppLovinSdk.getInstance(activity).getAdService().loadNextAd(AppLovinAdSize.INTERSTITIAL, new AppLovinAdLoadListener() {
+                    @Override
+                    public void adReceived(AppLovinAd ad) {
+                        loadedAd = ad;
+                    }
+
+                    @Override
+                    public void failedToReceiveAd(int errorCode) {
+                        // Look at AppLovinErrorCodes.java for list of error codes.
+                    }
+                });
+                interstitialAdlovin = AppLovinInterstitialAd.create(AppLovinSdk.getInstance(activity), activity);
+                break;
+            case "FACEBOOK":
+                FBinterstitialAd = new com.facebook.ads.InterstitialAd(activity, idIntertitialBackup);
+                FBinterstitialAd.loadAd();
+                break;
+            case "ALIEN-V":
+                AlienViewAds.Interstitial(activity, idIntertitialBackup);
+                AlienViewAds.onLoadInterstitialView = new OnLoadInterstitialView() {
+                    @Override
+                    public void onInterstitialAdLoaded() {
+                        if (onLoadInterstitialAlienView!=null){
+                            onLoadInterstitialAlienView.onInterstitialAdLoaded();
+                        }
+                    }
+
+                    @Override
+                    public void onInterstitialAdClosed() {
+                        if (onLoadInterstitialAlienView!=null){
+                            onLoadInterstitialAlienView.onInterstitialAdClosed();
+                        }
+                    }
+
+                    @Override
+                    public void onInterstitialAdClicked() {
+                        if (onLoadInterstitialAlienView!=null){
+                            onLoadInterstitialAlienView.onInterstitialAdClicked();
+                        }
+                    }
+
+                    @Override
+                    public void onInterstitialAdFailedToLoad(String error) {
+                        if (onLoadInterstitialAlienView!=null){
+                            onLoadInterstitialAlienView.onInterstitialAdFailedToLoad();
+                        }
+                    }
+                };
+                break;
+            case "ALIEN-M":
+                AlienMediationAds.LoadInterstitial(activity, idIntertitialBackup);
+                break;
+            case "ADMOB":
+                AdRequest request = new AdRequest.Builder()
+                        .build();
+                InterstitialAd.load(activity, idIntertitialBackup, request,
+                        new InterstitialAdLoadCallback() {
+                            @Override
+                            public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
+                                mInterstitialAd = interstitialAd;
+                                Log.i(TAG, "onAdLoaded");
+                            }
+
+                            @Override
+                            public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                                // Handle the error
+                                Log.i(TAG, loadAdError.getMessage());
+                                mInterstitialAd = null;
+                            }
+                        });
+                break;
+        }
+    }
     public static void ShowIntertitialAdmob(Activity activity, String selectAdsBackup, String idIntertitial, String idIntertitialBackup,
                                             int interval, String Hpk1,
                                             String Hpk2, String Hpk3, String Hpk4, String Hpk5) {
@@ -1579,7 +2109,6 @@ public class AliendroidIntertitial {
                         break;
                     case "MOPUB":
                     case "UNITY":
-
                         break;
                     case "IRON":
                         IronSource.showInterstitial(idIntertitialBackup);
@@ -1607,6 +2136,11 @@ public class AliendroidIntertitial {
                     case "ADMOB":
                         if (mInterstitialAd2 != null) {
                             mInterstitialAd2.show(activity);
+                        }
+                        break;
+                    case "WORTISE":
+                        if (wortisemInterstitial.isAvailable()) {
+                            wortisemInterstitial.showAd();
                         }
                         break;
                 }
@@ -1642,8 +2176,6 @@ public class AliendroidIntertitial {
                         break;
                     case "MOPUB":
                     case "UNITY":
-
-
                         break;
                     case "IRON":
                         IronSource.showInterstitial(idIntertitialBackup);
@@ -1667,6 +2199,11 @@ public class AliendroidIntertitial {
                         break;
                     case "ALIEN-M":
                         AlienMediationAds.ShowInterstitial(activity);
+                        break;
+                    case "WORTISE":
+                        if (wortisemInterstitial.isAvailable()) {
+                            wortisemInterstitial.showAd();
+                        }
                         break;
                 }
                 LoadIntertitialGoogleAds(activity, selectAdsBackup, idIntertitial, idIntertitialBackup);
@@ -1734,6 +2271,11 @@ public class AliendroidIntertitial {
                                 break;
                             case "ALIEN-M":
                                 AlienMediationAds.ShowInterstitial(activity);
+                                break;
+                            case "WORTISE":
+                                if (wortisemInterstitial.isAvailable()) {
+                                    wortisemInterstitial.showAd();
+                                }
                                 break;
                         }
                         LoadIntertitialApplovinDis(activity, selectAdsBackup, idIntertitial, idIntertitialBackup);
@@ -1808,6 +2350,11 @@ public class AliendroidIntertitial {
                             case "ALIEN-M":
                                 AlienMediationAds.ShowInterstitial(activity);
                                 break;
+                            case "WORTISE":
+                                if (wortisemInterstitial.isAvailable()) {
+                                    wortisemInterstitial.showAd();
+                                }
+                                break;
                         }
                         LoadIntertitialApplovinDisHPK(activity, selectAdsBackup, idIntertitial, idIntertitialBackup, HPK1,
                                 HPK2, HPK3, HPK4, HPK5);
@@ -1878,6 +2425,11 @@ public class AliendroidIntertitial {
                     case "ALIEN-M":
                         AlienMediationAds.ShowInterstitial(activity);
                         break;
+                    case "WORTISE":
+                        if (wortisemInterstitial.isAvailable()) {
+                            wortisemInterstitial.showAd();
+                        }
+                        break;
                 }
                 interstitialAd.loadAd();
             }
@@ -1937,6 +2489,11 @@ public class AliendroidIntertitial {
                     case "ALIEN-M":
                         AlienMediationAds.ShowInterstitial(activity);
                         break;
+                    case "WORTISE":
+                        if (wortisemInterstitial.isAvailable()) {
+                            wortisemInterstitial.showAd();
+                        }
+                        break;
                 }
             } else {
                 if (onShowInterstitialIronSource != null) {
@@ -1957,7 +2514,6 @@ public class AliendroidIntertitial {
                                             int interval) {
 
     }
-
 
     public static void ShowIntertitialSartApp(Activity activity, String selectAdsBackup, String idIntertitial, String idIntertitialBackup,
                                               int interval) {
@@ -2031,6 +2587,11 @@ public class AliendroidIntertitial {
                         case "ALIEN-M":
                             AlienMediationAds.ShowInterstitial(activity);
                             break;
+                        case "WORTISE":
+                            if (wortisemInterstitial.isAvailable()) {
+                                wortisemInterstitial.showAd();
+                            }
+                            break;
                     }
                 }
             });
@@ -2042,7 +2603,6 @@ public class AliendroidIntertitial {
         }
 
     }
-
 
     public static void ShowIntertitialFAN(Activity activity, String selectAdsBackup, String idIntertitial, String idIntertitialBackup,
                                           int interval) {
@@ -2093,6 +2653,11 @@ public class AliendroidIntertitial {
                         if (FBinterstitialAd == null || !FBinterstitialAd.isAdLoaded()) {
                         } else {
                             FBinterstitialAd.show();
+                        }
+                        break;
+                    case "WORTISE":
+                        if (wortisemInterstitial.isAvailable()) {
+                            wortisemInterstitial.showAd();
                         }
                         break;
                 }
@@ -2177,6 +2742,11 @@ public class AliendroidIntertitial {
                         case "ALIEN-M":
                             AlienMediationAds.ShowInterstitial(activity);
                             break;
+                        case "WORTISE":
+                            if (wortisemInterstitial.isAvailable()) {
+                                wortisemInterstitial.showAd();
+                            }
+                            break;
                     }
                 }
             };
@@ -2246,10 +2816,71 @@ public class AliendroidIntertitial {
                         case "ALIEN-V":
                             SHOW_ALIEN_VIEW = true;
                             break;
+                        case "WORTISE":
+                            if (wortisemInterstitial.isAvailable()) {
+                                wortisemInterstitial.showAd();
+                            }
+                            break;
                     }
                 }
             };
             LoadIntertitialAlienView(activity, selectAdsBackup, idIntertitial, idIntertitialBackup);
+            counter = 0;
+        } else {
+            counter++;
+        }
+    }
+
+    public static void ShowIntertitialWortise(Activity activity, String selectAdsBackup, String idIntertitial, String idIntertitialBackup,
+                                            int interval) {
+        if (counter >= interval) {
+            if (wortisemInterstitial.isAvailable()) {
+                wortisemInterstitial.showAd();
+            } else {
+                switch (selectAdsBackup) {
+                    case "APPLOVIN-M":
+                        if (interstitialAd.isReady()) {
+                            interstitialAd.showAd();
+                            interstitialAd.loadAd();
+                        } else {
+                            interstitialAd.loadAd();
+                        }
+                        break;
+                    case "MOPUB":
+                    case "UNITY":
+                        break;
+                    case "IRON":
+                        IronSource.showInterstitial(idIntertitialBackup);
+                        break;
+                    case "STARTAPP":
+                        StartAppAd.showAd(activity);
+                        break;
+                    case "APPLOVIN-D":
+                        if (interstitialAdlovin != null) {
+                            interstitialAdlovin.showAndRender(loadedAd);
+                        }
+                        break;
+                    case "FACEBOOK":
+                        if (FBinterstitialAd == null || !FBinterstitialAd.isAdLoaded()) {
+                        } else {
+                            FBinterstitialAd.show();
+                        }
+                        break;
+                    case "ALIEN-V":
+                        SHOW_ALIEN_VIEW = true;
+                        break;
+                    case "ALIEN-M":
+                        AlienMediationAds.ShowInterstitial(activity);
+                        break;
+                    case "ADMOB":
+                        if (mInterstitialAd != null) {
+                            mInterstitialAd.show(activity);
+                        }
+                        break;
+                }
+            }
+
+            LoadIntertitialWortise(activity, selectAdsBackup, idIntertitial, idIntertitialBackup);
             counter = 0;
         } else {
             counter++;
