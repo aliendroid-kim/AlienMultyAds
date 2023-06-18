@@ -4667,7 +4667,7 @@ public class AliendroidNative {
 
     }
 
-    public static void SmallNativeAdmobRectangle(Activity activity, RelativeLayout layNative, String selectAdsBackup, String nativeId, String idNativeBackup) {
+    public static void SmallNativeWortiseRectangle(Activity activity, RelativeLayout layNative, String selectAdsBackup, String nativeId, String idNativeBackup) {
 
         GoogleNativeAd.Listener mNativeListener = new GoogleNativeAd.Listener() {
             @Override
