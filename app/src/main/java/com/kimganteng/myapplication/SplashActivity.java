@@ -19,7 +19,9 @@ import com.aliendroid.alienads.AlienOpenAds;
 import com.aliendroid.alienads.AliendroidInitialize;
 import com.aliendroid.alienads.ApplovinOpenAds;
 import com.aliendroid.alienads.MyApplication;
+import com.aliendroid.alienads.WortiseOpenAds;
 import com.aliendroid.alienads.interfaces.open.OnLoadOpenAppAdmob;
+import com.aliendroid.alienads.interfaces.open.OnLoadOpenAppWortise;
 import com.aliendroid.alienads.interfaces.open.OnShowOpenAppAdmob;
 import com.aliendroid.sdkads.config.AppPromote;
 import com.aliendroid.sdkads.config.InitializeAlienAds;
@@ -62,13 +64,17 @@ public class SplashActivity extends AppCompatActivity {
 
 
          AlienNotif.LoadOneSignal("535dc774-9fe3-44ae-839e-09e4133aebe9");
+         /*
          AlienOpenAds.LoadOpenAds("ca-app-pub-3940256099942544/3419835294",true);
-         AlienOpenAds.AppOpenAdManager.showAdIfAvailable(SplashActivity.this, new AlienOpenAds.OnShowAdCompleteListener() {
+                AlienOpenAds.AppOpenAdManager.showAdIfAvailable(SplashActivity.this, new AlienOpenAds.OnShowAdCompleteListener() {
              @Override
              public void onShowAdComplete() {
                  startActivity(true);
              }
          });
+          */
+        WortiseOpenAds.LoadOpenWortise(this,"test-app-open");
+        startActivity(true);
 
     }
 

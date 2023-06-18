@@ -3,7 +3,6 @@ package com.kimganteng.myapplication;
 import java.security.PublicKey;
 
 public class SettingsAlien {
-
     /*
     App Open 	ca-app-pub-3940256099942544/3419835294
     Banner 	ca-app-pub-3940256099942544/6300978111
@@ -36,6 +35,7 @@ public class SettingsAlien {
 
     public static boolean ONLOADOPEN = true ;
 
+    // test-app-open
 
     /*
     Ads for Aliendroid

@@ -24,6 +24,7 @@ import com.aliendroid.alienads.AlienGDPR;
 import com.aliendroid.alienads.AliendroidInitialize;
 import com.aliendroid.alienads.AliendroidIntertitial;
 import com.aliendroid.alienads.AliendroidReward;
+import com.aliendroid.alienads.WortiseOpenAds;
 import com.aliendroid.alienads.interfaces.interstitial.admob.OnFullScreenContentCallbackAdmob;
 import com.aliendroid.alienads.interfaces.interstitial.load.OnLoadInterstitialAdmob;
 import com.aliendroid.alienads.interfaces.interstitial.show.OnShowInterstitialAdmob;
@@ -45,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        WortiseOpenAds.ShowOpenWortise(this);
         AppPromote.initializeAppPromote(this);
         InitializeAlienAds.LoadSDK();
         AsyncTask<Void, Void, String> task = new AsyncTask<Void, Void, String>() {
