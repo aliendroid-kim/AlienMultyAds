@@ -3412,7 +3412,7 @@ public class AliendroidReward {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        LoadRewardAdmob(activity, selecBackuptAds, idReward, idBackupReward);
+        LoadRewardWortise(activity, selecBackuptAds, idReward, idBackupReward);
     }
 
 }
