@@ -3483,7 +3483,7 @@ public class AliendroidNative {
                     case "IRON":
                         break;
                     case "FACEBOOK":
-                        nativeAdfan = new com.facebook.ads.NativeAd(activity, idNativeBackup);
+                        nativeBannerAd = new NativeBannerAd(activity, idNativeBackup);
                         NativeAdListener nativeAdListener = new NativeAdListener() {
                             @Override
                             public void onMediaDownloaded(Ad ad) {
@@ -3497,10 +3497,10 @@ public class AliendroidNative {
 
                             @Override
                             public void onAdLoaded(Ad ad) {
-                                if (nativeAdfan == null || nativeAdfan != ad) {
+                                if (nativeBannerAd == null || nativeBannerAd != ad) {
                                     return;
                                 }
-                                inflateAd3(nativeAdfan, activity, layNative);
+                                inflateAd3(nativeBannerAd, activity, layNative);
                             }
 
                             @Override
@@ -3514,8 +3514,8 @@ public class AliendroidNative {
                             }
                         };
 
-                        nativeAdfan.loadAd(
-                                nativeAdfan.buildLoadAdConfig()
+                        nativeBannerAd.loadAd(
+                                nativeBannerAd.buildLoadAdConfig()
                                         .withAdListener(nativeAdListener)
                                         .build());
                         break;
@@ -3795,7 +3795,7 @@ public class AliendroidNative {
                                             case "APPLOVIN-D":
                                                 break;
                                             case "FACEBOOK":
-                                                nativeAdfan = new com.facebook.ads.NativeAd(activity, idNativeBackup);
+                                                nativeBannerAd = new NativeBannerAd(activity, idNativeBackup);
                                                 NativeAdListener nativeAdListener = new NativeAdListener() {
                                                     @Override
                                                     public void onMediaDownloaded(Ad ad) {
@@ -3809,10 +3809,10 @@ public class AliendroidNative {
 
                                                     @Override
                                                     public void onAdLoaded(Ad ad) {
-                                                        if (nativeAdfan == null || nativeAdfan != ad) {
+                                                        if (nativeBannerAd == null || nativeBannerAd != ad) {
                                                             return;
                                                         }
-                                                        inflateAd3(nativeAdfan, activity, layNative);
+                                                        inflateAd3(nativeBannerAd, activity, layNative);
                                                     }
 
                                                     @Override
@@ -3826,8 +3826,8 @@ public class AliendroidNative {
                                                     }
                                                 };
 
-                                                nativeAdfan.loadAd(
-                                                        nativeAdfan.buildLoadAdConfig()
+                                                nativeBannerAd.loadAd(
+                                                        nativeBannerAd.buildLoadAdConfig()
                                                                 .withAdListener(nativeAdListener)
                                                                 .build());
 
@@ -4085,7 +4085,7 @@ public class AliendroidNative {
                         AlienMediationAds.RectangleNatives(activity, layNative, idNativeBackup);
                         break;
                     case "FACEBOOK":
-                        nativeAdfan = new com.facebook.ads.NativeAd(activity, idNativeBackup);
+                        nativeBannerAd = new NativeBannerAd(activity, idNativeBackup);
                         NativeAdListener nativeAdListener = new NativeAdListener() {
                             @Override
                             public void onMediaDownloaded(Ad ad) {
@@ -4099,10 +4099,10 @@ public class AliendroidNative {
 
                             @Override
                             public void onAdLoaded(Ad ad) {
-                                if (nativeAdfan == null || nativeAdfan != ad) {
+                                if (nativeBannerAd == null || nativeBannerAd != ad) {
                                     return;
                                 }
-                                inflateAd3(nativeAdfan, activity, layNative);
+                                inflateAd3(nativeBannerAd, activity, layNative);
                             }
 
                             @Override
@@ -4116,8 +4116,8 @@ public class AliendroidNative {
                             }
                         };
 
-                        nativeAdfan.loadAd(
-                                nativeAdfan.buildLoadAdConfig()
+                        nativeBannerAd.loadAd(
+                                nativeBannerAd.buildLoadAdConfig()
                                         .withAdListener(nativeAdListener)
                                         .build());
 
@@ -4137,7 +4137,7 @@ public class AliendroidNative {
     }
 
     public static void SmallNativeFanRectangle(Activity activity, RelativeLayout layNative, String selectAdsBackup, String nativeId, String idNativeBackup) {
-        nativeAdfan = new com.facebook.ads.NativeAd(activity, nativeId);
+        nativeBannerAd = new NativeBannerAd(activity, nativeId);
         NativeAdListener nativeAdListener = new NativeAdListener() {
             @Override
             public void onMediaDownloaded(Ad ad) {
@@ -4186,7 +4186,7 @@ public class AliendroidNative {
                         wortiseGoogleNativeAd.withNativeAdOptions(adOptions2);
                         break;
                     case "FACEBOOK":
-                        nativeAdfan2 = new com.facebook.ads.NativeAd(activity, idNativeBackup);
+                        nativeBannerAd2 = new NativeBannerAd(activity, idNativeBackup);
                         NativeAdListener nativeAdListener = new NativeAdListener() {
                             @Override
                             public void onMediaDownloaded(Ad ad) {
@@ -4200,10 +4200,10 @@ public class AliendroidNative {
 
                             @Override
                             public void onAdLoaded(Ad ad) {
-                                if (nativeAdfan2 == null || nativeAdfan2 != ad) {
+                                if (nativeBannerAd2 == null || nativeBannerAd2 != ad) {
                                     return;
                                 }
-                                inflateAd3(nativeAdfan2, activity, layNative);
+                                inflateAd3(nativeBannerAd2, activity, layNative);
                             }
 
                             @Override
@@ -4217,8 +4217,8 @@ public class AliendroidNative {
                             }
                         };
 
-                        nativeAdfan2.loadAd(
-                                nativeAdfan2.buildLoadAdConfig()
+                        nativeBannerAd2.loadAd(
+                                nativeBannerAd2.buildLoadAdConfig()
                                         .withAdListener(nativeAdListener)
                                         .build());
                         break;
@@ -4405,10 +4405,10 @@ public class AliendroidNative {
                         }
                         break;
                 }
-                if (nativeAdfan == null || nativeAdfan != ad) {
+                if (nativeBannerAd == null || nativeBannerAd != ad) {
                     return;
                 }
-                inflateAd3(nativeAdfan, activity, layNative);
+                inflateAd3(nativeBannerAd, activity, layNative);
             }
 
             @Override
@@ -4422,8 +4422,8 @@ public class AliendroidNative {
             }
         };
 
-        nativeAdfan.loadAd(
-                nativeAdfan.buildLoadAdConfig()
+        nativeBannerAd.loadAd(
+                nativeBannerAd.buildLoadAdConfig()
                         .withAdListener(nativeAdListener)
                         .build());
 
@@ -4624,7 +4624,7 @@ public class AliendroidNative {
 
                         break;
                     case "FACEBOOK":
-                        nativeAdfan = new com.facebook.ads.NativeAd(activity, idNativeBackup);
+                        nativeBannerAd = new NativeBannerAd(activity, idNativeBackup);
                         NativeAdListener nativeAdListener = new NativeAdListener() {
                             @Override
                             public void onMediaDownloaded(Ad ad) {
@@ -4638,10 +4638,10 @@ public class AliendroidNative {
 
                             @Override
                             public void onAdLoaded(Ad ad) {
-                                if (nativeAdfan == null || nativeAdfan != ad) {
+                                if (nativeBannerAd == null || nativeBannerAd != ad) {
                                     return;
                                 }
-                                inflateAd3(nativeAdfan, activity, layNative);
+                                inflateAd3(nativeBannerAd, activity, layNative);
                             }
 
                             @Override
@@ -4655,8 +4655,8 @@ public class AliendroidNative {
                             }
                         };
 
-                        nativeAdfan.loadAd(
-                                nativeAdfan.buildLoadAdConfig()
+                        nativeBannerAd.loadAd(
+                                nativeBannerAd.buildLoadAdConfig()
                                         .withAdListener(nativeAdListener)
                                         .build());
                         break;
@@ -4779,7 +4779,7 @@ public class AliendroidNative {
                     case "APPLOVIN-D":
                         break;
                     case "FACEBOOK":
-                        nativeAdfan = new com.facebook.ads.NativeAd(activity, idNativeBackup);
+                        nativeBannerAd = new NativeBannerAd(activity, idNativeBackup);
                         NativeAdListener nativeAdListener = new NativeAdListener() {
                             @Override
                             public void onMediaDownloaded(Ad ad) {
@@ -4793,10 +4793,10 @@ public class AliendroidNative {
 
                             @Override
                             public void onAdLoaded(Ad ad) {
-                                if (nativeAdfan == null || nativeAdfan != ad) {
+                                if (nativeBannerAd == null || nativeBannerAd != ad) {
                                     return;
                                 }
-                                inflateAd3(nativeAdfan, activity, layNative);
+                                inflateAd3(nativeBannerAd, activity, layNative);
                             }
 
                             @Override
@@ -4810,8 +4810,8 @@ public class AliendroidNative {
                             }
                         };
 
-                        nativeAdfan.loadAd(
-                                nativeAdfan.buildLoadAdConfig()
+                        nativeBannerAd.loadAd(
+                                nativeBannerAd.buildLoadAdConfig()
                                         .withAdListener(nativeAdListener)
                                         .build());
 
@@ -5061,40 +5061,36 @@ public class AliendroidNative {
 
     }
 
-    public static void inflateAd3(com.facebook.ads.NativeAd nativeAdfan, Activity activity, RelativeLayout layNative) {
+    public static void inflateAd3(NativeBannerAd nativeBannerAd, Activity activity, RelativeLayout layNative) {
         try {
-            nativeAdfan.unregisterView();
+            nativeBannerAd.unregisterView();
             nativeAdLayout = new NativeAdLayout(activity, null, 1);
             LayoutInflater inflater = LayoutInflater.from(activity);
             adView = (LinearLayout) inflater.inflate(R.layout.fan_small_rectangle_native, nativeAdLayout, false);
             layNative.addView(adView);
 
-            LinearLayout adChoicesContainer = adView.findViewById(R.id.ad_choices_container);
-            AdOptionsView adOptionsView = new AdOptionsView(activity, nativeAdfan, nativeAdLayout);
+            RelativeLayout adChoicesContainer = adView.findViewById(R.id.ad_choices_container);
+            AdOptionsView adOptionsView = new AdOptionsView(activity, nativeBannerAd, nativeAdLayout);
             adChoicesContainer.removeAllViews();
             adChoicesContainer.addView(adOptionsView, 0);
 
-            com.facebook.ads.MediaView nativeAdIcon = adView.findViewById(R.id.native_ad_icon);
             TextView nativeAdTitle = adView.findViewById(R.id.native_ad_title);
-            com.facebook.ads.MediaView nativeAdMedia = adView.findViewById(R.id.native_ad_media);
             TextView nativeAdSocialContext = adView.findViewById(R.id.native_ad_social_context);
-            TextView nativeAdBody = adView.findViewById(R.id.native_ad_body);
             TextView sponsoredLabel = adView.findViewById(R.id.native_ad_sponsored_label);
+            com.facebook.ads.MediaView nativeAdIconView = adView.findViewById(R.id.native_icon_view);
             Button nativeAdCallToAction = adView.findViewById(R.id.native_ad_call_to_action);
 
-            nativeAdTitle.setText(nativeAdfan.getAdvertiserName());
-            nativeAdBody.setText(nativeAdfan.getAdBodyText());
-            nativeAdSocialContext.setText(nativeAdfan.getAdSocialContext());
-            nativeAdCallToAction.setVisibility(nativeAdfan.hasCallToAction() ? View.VISIBLE : View.INVISIBLE);
-            nativeAdCallToAction.setText(nativeAdfan.getAdCallToAction());
-            sponsoredLabel.setText(nativeAdfan.getSponsoredTranslation());
+            nativeAdCallToAction.setText(nativeBannerAd.getAdCallToAction());
+            nativeAdCallToAction.setVisibility(
+                    nativeBannerAd.hasCallToAction() ? View.VISIBLE : View.INVISIBLE);
+            nativeAdTitle.setText(nativeBannerAd.getAdvertiserName());
+            nativeAdSocialContext.setText(nativeBannerAd.getAdSocialContext());
+            sponsoredLabel.setText(nativeBannerAd.getSponsoredTranslation());
 
             List<View> clickableViews = new ArrayList<>();
             clickableViews.add(nativeAdTitle);
             clickableViews.add(nativeAdCallToAction);
-
-            nativeAdfan.registerViewForInteraction(
-                    adView, nativeAdMedia, nativeAdIcon, clickableViews);
+            nativeBannerAd.registerViewForInteraction(adView, nativeAdIconView, clickableViews);
         } catch (Exception e) {
             e.printStackTrace();
         }

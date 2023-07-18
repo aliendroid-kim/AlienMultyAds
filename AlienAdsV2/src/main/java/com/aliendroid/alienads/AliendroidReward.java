@@ -1,7 +1,10 @@
 package com.aliendroid.alienads;
 
+import static android.content.ContentValues.TAG;
+
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 
@@ -35,6 +38,9 @@ import com.applovin.sdk.AppLovinAdDisplayListener;
 import com.applovin.sdk.AppLovinAdLoadListener;
 import com.applovin.sdk.AppLovinAdRewardListener;
 import com.applovin.sdk.AppLovinSdk;
+import com.facebook.ads.Ad;
+import com.facebook.ads.RewardedVideoAd;
+import com.facebook.ads.RewardedVideoAdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.LoadAdError;
 import com.google.android.gms.ads.OnUserEarnedRewardListener;
@@ -55,7 +61,8 @@ import com.wortise.ads.rewarded.models.Reward;
 import java.util.Map;
 
 public class AliendroidReward {
-
+    public static RewardedVideoAd rewardedVideoAdFan;
+    public static RewardedVideoAd rewardedVideoAdFan2;
     public static com.wortise.ads.rewarded.RewardedAd wortiseRewarded;
     public static MaxRewardedAd rewardedAd;
     public static boolean unlockreward = false;
@@ -79,6 +86,358 @@ public class AliendroidReward {
     public static OnShowRewardsAlienView onShowRewardsAlienView;
 
     public static boolean SHOW_ALIEN_VIEW=false;
+
+    public static void LoadRewardFan(Activity activity, String selectBackupAds, String idReward, String idBackupReward) {
+        try {
+
+            rewardedVideoAdFan = new RewardedVideoAd(activity, idReward);
+           com.facebook.ads.RewardedVideoAdListener rewardedVideoAdListener = new  com.facebook.ads.RewardedVideoAdListener() {
+
+               @Override
+               public void onError(Ad ad, com.facebook.ads.AdError adError) {
+
+               }
+
+               @Override
+                public void onAdLoaded(Ad ad) {
+                    // Rewarded video ad is loaded and ready to be displayed
+                    Log.d(TAG, "Rewarded video ad is loaded and ready to be displayed!");
+                }
+
+                @Override
+                public void onAdClicked(Ad ad) {
+                    // Rewarded video ad clicked
+                    Log.d(TAG, "Rewarded video ad clicked!");
+                }
+
+                @Override
+                public void onLoggingImpression(Ad ad) {
+                    // Rewarded Video ad impression - the event will fire when the
+                    // video starts playing
+                    Log.d(TAG, "Rewarded video ad impression logged!");
+                }
+
+                @Override
+                public void onRewardedVideoCompleted() {
+                    // Rewarded Video View Complete - the video has been played to the end.
+                    // You can use this event to initialize your reward
+                    Log.d(TAG, "Rewarded video completed!");
+
+                    // Call method to give reward
+                    // giveReward();
+                }
+
+                @Override
+                public void onRewardedVideoClosed() {
+                    // The Rewarded Video ad was closed - this can occur during the video
+                    // by closing the app, or closing the end card.
+                    Log.d(TAG, "Rewarded video ad closed!");
+                }
+            };
+            rewardedVideoAdFan.loadAd(
+                    rewardedVideoAdFan.buildLoadAdConfig()
+                            .withAdListener(rewardedVideoAdListener)
+                            .build());
+
+            switch (selectBackupAds) {
+                case "APPLOVIN-M":
+                    rewardedAd = MaxRewardedAd.getInstance(idBackupReward, activity);
+                    rewardedAd.loadAd();
+                    MaxRewardedAdListener maxRewardedAdListener = new MaxRewardedAdListener() {
+                        @Override
+                        public void onRewardedVideoStarted(MaxAd ad) {
+
+                        }
+
+                        @Override
+                        public void onRewardedVideoCompleted(MaxAd ad) {
+                            unlockreward = true;
+                        }
+
+                        @Override
+                        public void onUserRewarded(MaxAd ad, MaxReward reward) {
+
+                        }
+
+                        @Override
+                        public void onAdLoaded(MaxAd ad) {
+
+                        }
+
+                        @Override
+                        public void onAdDisplayed(MaxAd ad) {
+
+                        }
+
+                        @Override
+                        public void onAdHidden(MaxAd ad) {
+
+                        }
+
+                        @Override
+                        public void onAdClicked(MaxAd ad) {
+
+                        }
+
+                        @Override
+                        public void onAdLoadFailed(String adUnitId, MaxError error) {
+
+                        }
+
+                        @Override
+                        public void onAdDisplayFailed(MaxAd ad, MaxError error) {
+
+                        }
+                    };
+                    rewardedAd.setListener(maxRewardedAdListener);
+                    break;
+                case "MOPUB":
+                case "UNITY":
+                    break;
+                case "APPLOVIN-D":
+                    incentivizedInterstitial = AppLovinIncentivizedInterstitial.create(idBackupReward, AppLovinSdk.getInstance(activity));
+                    incentivizedInterstitial.preload(new AppLovinAdLoadListener() {
+                        @Override
+                        public void adReceived(AppLovinAd appLovinAd) {
+
+                        }
+
+                        @Override
+                        public void failedToReceiveAd(int errorCode) {
+
+                        }
+                    });
+                    break;
+                case "IRON":
+                    IronSource.setRewardedVideoListener(new RewardedVideoListener() {
+                        @Override
+                        public void onRewardedVideoAdOpened() {
+                        }
+
+                        @Override
+                        public void onRewardedVideoAdClosed() {
+                        }
+
+                        @Override
+                        public void onRewardedVideoAvailabilityChanged(boolean available) {
+                        }
+
+                        @Override
+                        public void onRewardedVideoAdRewarded(Placement placement) {
+                            unlockreward = true;
+                        }
+
+                        @Override
+                        public void onRewardedVideoAdShowFailed(IronSourceError error) {
+                        }
+
+                        @Override
+                        public void onRewardedVideoAdClicked(Placement placement) {
+                        }
+
+                        @Override
+                        public void onRewardedVideoAdStarted() {
+                        }
+
+                        @Override
+                        public void onRewardedVideoAdEnded() {
+                        }
+                    });
+                    break;
+                case "STARTAPP":
+                    rewardedVideo = new StartAppAd(activity);
+                    rewardedVideo.setVideoListener(new VideoListener() {
+                        @Override
+                        public void onVideoCompleted() {
+                            unlockreward = true;
+                        }
+                    });
+
+                    rewardedVideo.loadAd(StartAppAd.AdMode.REWARDED_VIDEO, new AdEventListener() {
+                        @Override
+                        public void onReceiveAd(com.startapp.sdk.adsbase.Ad ad) {
+
+                        }
+                        @Override
+                        public void onFailedToReceiveAd(com.startapp.sdk.adsbase.Ad ad) {
+
+                        }
+                    });
+                    break;
+
+                case "ALIEN-M" :
+                    AlienMediationAds.LoadRewarded(idBackupReward);
+                    AlienMediationAds.onLoadRewardsMediation = new OnLoadRewardsMediation() {
+                        @Override
+                        public void onRewardsAdLoaded() {
+
+                        }
+
+                        @Override
+                        public void onRewardsAdClosed() {
+
+                        }
+
+                        @Override
+                        public void onRewardsAdReward() {
+                            unlockreward = true;
+                        }
+
+                        @Override
+                        public void onRewardsAdClicked() {
+
+                        }
+
+                        @Override
+                        public void onRewardsAdFailedToLoad(String error) {
+
+                        }
+                    };
+                    break;
+                case "ALIEN-V":
+                    AlienViewAds.RewardsAds(activity,idBackupReward);
+                    AlienViewAds.onLoadRewardsView = new OnLoadRewardsView() {
+                        @Override
+                        public void onRewardsAdLoaded() {
+                            if (onLoadRewardsAlienView!=null){
+                                onLoadRewardsAlienView.onRewardsAdLoaded();
+                            }
+                        }
+
+                        @Override
+                        public void onRewardsAdClosed() {
+                            if (onLoadRewardsAlienView!=null){
+                                onLoadRewardsAlienView.onRewardsAdClosed();
+                            }
+                        }
+
+                        @Override
+                        public void onRewardsAdClicked() {
+                            if (onLoadRewardsAlienView!=null){
+                                onLoadRewardsAlienView.onRewardsAdClicked();
+                            }
+                        }
+
+                        @Override
+                        public void onRewardsAdFailedToLoad(String error) {
+                            if (onLoadRewardsAlienView!=null){
+                                onLoadRewardsAlienView.onRewardsAdFailedToLoad("");
+                            }
+                        }
+                    };
+                    break;
+
+                case "ADMOB":
+                    AdRequest adRequest2 = new AdRequest.Builder()
+                            .build();
+                    RewardedAd.load(activity, idBackupReward,
+                            adRequest2, new RewardedAdLoadCallback() {
+                                @Override
+                                public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                                    mRewardedAd2 = null;
+                                }
+
+                                @Override
+                                public void onAdLoaded(@NonNull RewardedAd rewardedAd) {
+
+                                    mRewardedAd2 = rewardedAd;
+
+                                }
+                            });
+                    break;
+                case "WORTISE":
+                    wortiseRewarded = new com.wortise.ads.rewarded.RewardedAd(activity, idBackupReward);
+                    wortiseRewarded.loadAd();
+                    wortiseRewarded.setListener(new com.wortise.ads.rewarded.RewardedAd.Listener() {
+                        @Override
+                        public void onRewardedShown(@NonNull com.wortise.ads.rewarded.RewardedAd rewardedAd) {
+
+                        }
+
+                        @Override
+                        public void onRewardedLoaded(@NonNull com.wortise.ads.rewarded.RewardedAd rewardedAd) {
+
+                        }
+
+                        @Override
+                        public void onRewardedFailed(@NonNull com.wortise.ads.rewarded.RewardedAd rewardedAd, @NonNull AdError adError) {
+
+                        }
+
+                        @Override
+                        public void onRewardedDismissed(@NonNull com.wortise.ads.rewarded.RewardedAd rewardedAd) {
+
+                        }
+
+                        @Override
+                        public void onRewardedCompleted(@NonNull com.wortise.ads.rewarded.RewardedAd rewardedAd, @NonNull Reward reward) {
+                            unlockreward = true;
+                        }
+
+                        @Override
+                        public void onRewardedClicked(@NonNull com.wortise.ads.rewarded.RewardedAd rewardedAd) {
+
+                        }
+
+                    });
+                    break;
+                case "FACEBOOK":
+                    rewardedVideoAdFan2 = new RewardedVideoAd(activity, idReward);
+                    com.facebook.ads.RewardedVideoAdListener rewardedVideoAdListener2 = new  com.facebook.ads.RewardedVideoAdListener() {
+
+                        @Override
+                        public void onError(Ad ad, com.facebook.ads.AdError adError) {
+
+                        }
+
+                        @Override
+                        public void onAdLoaded(Ad ad) {
+                            // Rewarded video ad is loaded and ready to be displayed
+                            Log.d(TAG, "Rewarded video ad is loaded and ready to be displayed!");
+                        }
+
+                        @Override
+                        public void onAdClicked(Ad ad) {
+                            // Rewarded video ad clicked
+                            Log.d(TAG, "Rewarded video ad clicked!");
+                        }
+
+                        @Override
+                        public void onLoggingImpression(Ad ad) {
+                            // Rewarded Video ad impression - the event will fire when the
+                            // video starts playing
+                            Log.d(TAG, "Rewarded video ad impression logged!");
+                        }
+
+                        @Override
+                        public void onRewardedVideoCompleted() {
+                            // Rewarded Video View Complete - the video has been played to the end.
+                            // You can use this event to initialize your reward
+                            Log.d(TAG, "Rewarded video completed!");
+
+                            // Call method to give reward
+                            // giveReward();
+                        }
+
+                        @Override
+                        public void onRewardedVideoClosed() {
+                            // The Rewarded Video ad was closed - this can occur during the video
+                            // by closing the app, or closing the end card.
+                            Log.d(TAG, "Rewarded video ad closed!");
+                        }
+                    };
+                    rewardedVideoAdFan2.loadAd(
+                            rewardedVideoAdFan2.buildLoadAdConfig()
+                                    .withAdListener(rewardedVideoAdListener2)
+                                    .build());
+                    break;
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
     public static void LoadRewardAdmob(Activity activity, String selectBackupAds, String idReward, String idBackupReward) {
         try {
 
