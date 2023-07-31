@@ -85,17 +85,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         AliendroidReward.LoadRewardAdmob(this,Select_Backup_Ads,MainRewards,BackupReward);
-        AliendroidReward.onLoadRewardsAdmob = new OnLoadRewardsAdmob() {
-            @Override
-            public void onAdFailedToLoad() {
 
-            }
-
-            @Override
-            public void onAdLoaded(String error) {
-
-            }
-        };
 
     }
 

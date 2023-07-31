@@ -25,8 +25,8 @@ public class SettingsAlien {
     public static String MainNatives ="IMG_16_9_APP_INSTALL#YOUR_PLACEMENT_ID";
     public static String BackupNatives="test-native";
 
-    public static String MainRewards ="IMG_16_9_APP_INSTALL#YOUR_PLACEMENT_ID";
-    public static String BackupReward="test-rewarded";
+    public static String MainRewards ="YOUR_PLACEMENT_ID";
+    public static String BackupReward="YOUR_PLACEMENT_ID";
 
     public static  String Main_Initialize="1100042525";
     public static  String Backup_Initialize="88bcc479-fbfc-41f2-8ea4-b24d8cec6992";
