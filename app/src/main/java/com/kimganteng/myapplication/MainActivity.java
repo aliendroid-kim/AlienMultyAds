@@ -84,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
-        AliendroidReward.LoadRewardAdmob(this,Select_Backup_Ads,MainRewards,BackupReward);
+        AliendroidReward.LoadRewardFan(this,Select_Backup_Ads,MainRewards,BackupReward);
 
 
     }
@@ -135,7 +135,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void REWARD(View view){
-        AliendroidReward.ShowRewardAdmob(MainActivity.this,Select_Backup_Ads,MainRewards,BackupReward);
+        AliendroidReward.ShowRewardFan(MainActivity.this,Select_Backup_Ads,MainRewards,BackupReward);
 
 
     }

@@ -2399,6 +2399,11 @@ public class AliendroidReward {
                                 wortiseRewarded.showAd();
                             }
                             break;
+                        case "FACEBOOK":
+                            if (rewardedVideoAdFan.isAdLoaded()){
+                                rewardedVideoAdFan.show();
+                            }
+                            break;
                     }
                 }
 
@@ -3392,7 +3397,7 @@ public class AliendroidReward {
                         }
                         break;
                     case "FACEBOOK":
-                        if (rewardedVideoAdFan!=null) {
+                        if (rewardedVideoAdFan.isAdLoaded()) {
                             rewardedVideoAdFan.show();
                         }
                         break;
@@ -3406,12 +3411,12 @@ public class AliendroidReward {
     }
     public static void ShowRewardFan(Activity activity, String selecBackuptAds, String idReward, String idBackupReward) {
         try {
-            if (rewardedVideoAdFan!=null) {
+            if (rewardedVideoAdFan.isAdLoaded()) {
                 rewardedVideoAdFan.show();
             } else {
                 switch (selecBackuptAds) {
                     case "FACEBOOK":
-                        if (rewardedVideoAdFan2!=null) {
+                        if (rewardedVideoAdFan2.isAdLoaded()) {
                             rewardedVideoAdFan2.show();
                         }
                         break;
@@ -3615,7 +3620,7 @@ public class AliendroidReward {
                         }
                         break;
                     case "FACEBOOK":
-                        if (rewardedVideoAdFan!=null) {
+                        if (rewardedVideoAdFan.isAdLoaded()) {
                             rewardedVideoAdFan.show();
                         }
                         break;
@@ -3636,7 +3641,7 @@ public class AliendroidReward {
             } else {
                 switch (selecBackuptAds) {
                     case "FACEBOOK":
-                        if (rewardedVideoAdFan!=null) {
+                        if (rewardedVideoAdFan.isAdLoaded()) {
                             rewardedVideoAdFan.show();
                         }
                         break;
@@ -3787,7 +3792,7 @@ public class AliendroidReward {
             } else {
                 switch (selecBackuptAds) {
                     case "FACEBOOK":
-                        if (rewardedVideoAdFan!=null) {
+                        if (rewardedVideoAdFan.isAdLoaded()) {
                             rewardedVideoAdFan.show();
                         }
                         break;
@@ -3882,7 +3887,7 @@ public class AliendroidReward {
             } else {
                 switch (selecBackuptAds) {
                     case "FACEBOOK":
-                        if (rewardedVideoAdFan!=null) {
+                        if (rewardedVideoAdFan.isAdLoaded()) {
                             rewardedVideoAdFan.show();
                         }
                         break;
@@ -4001,7 +4006,7 @@ public class AliendroidReward {
                     }
                     switch (selecBackuptAds) {
                         case "FACEBOOK":
-                            if (rewardedVideoAdFan!=null) {
+                            if (rewardedVideoAdFan.isAdLoaded()) {
                                 rewardedVideoAdFan.show();
                             }
                             break;
@@ -4108,7 +4113,7 @@ public class AliendroidReward {
                     }
                     switch (selecBackuptAds) {
                         case "FACEBOOK":
-                            if (rewardedVideoAdFan!=null) {
+                            if (rewardedVideoAdFan.isAdLoaded()) {
                                 rewardedVideoAdFan.show();
                             }
                             break;
@@ -4218,7 +4223,7 @@ public class AliendroidReward {
             } else {
                 switch (selecBackuptAds) {
                     case "FACEBOOK":
-                        if (rewardedVideoAdFan!=null) {
+                        if (rewardedVideoAdFan.isAdLoaded()) {
                             rewardedVideoAdFan.show();
                         }
                         break;
