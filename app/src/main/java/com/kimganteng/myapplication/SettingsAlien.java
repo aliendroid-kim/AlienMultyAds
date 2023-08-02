@@ -14,7 +14,7 @@ public class SettingsAlien {
     Native Advanced Video 	ca-app-pub-3940256099942544/1044960115
      */
     public static  String Select_Main_Ads ="FACEBOOK";
-    public static  String Select_Backup_Ads ="APPLOVIN-M";
+    public static  String Select_Backup_Ads ="APPLOVIN-D";
 
     public static String  MainIntertitial ="IMG_16_9_APP_INSTALL#YOUR_PLACEMENT_ID";
     public static  String BackupIntertitial ="test-interstitial";

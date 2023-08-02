@@ -3397,9 +3397,12 @@ public class AliendroidReward {
                         }
                         break;
                     case "FACEBOOK":
-                        if (rewardedVideoAdFan.isAdLoaded()) {
+                        if (rewardedVideoAdFan == null || !rewardedVideoAdFan.isAdLoaded()) {
+
+                        } else {
                             rewardedVideoAdFan.show();
                         }
+
                         break;
                 }
 
@@ -3411,12 +3414,12 @@ public class AliendroidReward {
     }
     public static void ShowRewardFan(Activity activity, String selecBackuptAds, String idReward, String idBackupReward) {
         try {
-            if (rewardedVideoAdFan.isAdLoaded()) {
-                rewardedVideoAdFan.show();
-            } else {
+            if (rewardedVideoAdFan == null || !rewardedVideoAdFan.isAdLoaded()) {
                 switch (selecBackuptAds) {
                     case "FACEBOOK":
-                        if (rewardedVideoAdFan2.isAdLoaded()) {
+                        if (rewardedVideoAdFan2 == null || !rewardedVideoAdFan2.isAdLoaded()) {
+
+                        } else {
                             rewardedVideoAdFan2.show();
                         }
                         break;
@@ -3514,6 +3517,8 @@ public class AliendroidReward {
                         }
                         break;
                 }
+            } else {
+                rewardedVideoAdFan.show();
             }
 
         } catch (Exception e) {
@@ -3620,7 +3625,9 @@ public class AliendroidReward {
                         }
                         break;
                     case "FACEBOOK":
-                        if (rewardedVideoAdFan.isAdLoaded()) {
+                         if (rewardedVideoAdFan == null || !rewardedVideoAdFan.isAdLoaded()) {
+
+                        } else {
                             rewardedVideoAdFan.show();
                         }
                         break;
@@ -3641,7 +3648,9 @@ public class AliendroidReward {
             } else {
                 switch (selecBackuptAds) {
                     case "FACEBOOK":
-                        if (rewardedVideoAdFan.isAdLoaded()) {
+                         if (rewardedVideoAdFan == null || !rewardedVideoAdFan.isAdLoaded()) {
+
+                        } else {
                             rewardedVideoAdFan.show();
                         }
                         break;
@@ -3792,7 +3801,9 @@ public class AliendroidReward {
             } else {
                 switch (selecBackuptAds) {
                     case "FACEBOOK":
-                        if (rewardedVideoAdFan.isAdLoaded()) {
+                         if (rewardedVideoAdFan == null || !rewardedVideoAdFan.isAdLoaded()) {
+
+                        } else {
                             rewardedVideoAdFan.show();
                         }
                         break;
@@ -3887,7 +3898,9 @@ public class AliendroidReward {
             } else {
                 switch (selecBackuptAds) {
                     case "FACEBOOK":
-                        if (rewardedVideoAdFan.isAdLoaded()) {
+                         if (rewardedVideoAdFan == null || !rewardedVideoAdFan.isAdLoaded()) {
+
+                        } else {
                             rewardedVideoAdFan.show();
                         }
                         break;
@@ -4223,7 +4236,9 @@ public class AliendroidReward {
             } else {
                 switch (selecBackuptAds) {
                     case "FACEBOOK":
-                        if (rewardedVideoAdFan.isAdLoaded()) {
+                         if (rewardedVideoAdFan == null || !rewardedVideoAdFan.isAdLoaded()) {
+
+                        } else {
                             rewardedVideoAdFan.show();
                         }
                         break;
