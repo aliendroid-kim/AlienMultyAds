@@ -63,14 +63,13 @@ import com.ironsource.mediationsdk.IronSourceBannerLayout;
 import com.startapp.sdk.ads.nativead.NativeAdDetails;
 import com.startapp.sdk.ads.nativead.StartAppNativeAd;
 import com.startapp.sdk.adsbase.adlisteners.AdEventListener;
-import com.wortise.ads.natives.GoogleNativeAd;
+
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
 public class AliendroidNative {
-    public static GoogleNativeAd wortiseGoogleNativeAd;
 
     public static AppLovinAdView adViewDiscovery;
     public static IronSourceBannerLayout adViewIron;
@@ -140,9 +139,7 @@ public class AliendroidNative {
                         }
                         break;
                     case "WORTISE":
-                        if (wortiseGoogleNativeAd != null) {
-                            wortiseGoogleNativeAd.destroy();
-                        }
+
                         break;
                 }
                 nativeAd = nativeAds;
@@ -367,37 +364,6 @@ public class AliendroidNative {
                                                 adLoader.loadAd(request);
                                                 break;
                                             case "WORTISE":
-                                                GoogleNativeAd.Listener mNativeListener = new GoogleNativeAd.Listener() {
-                                                    @Override
-                                                    public void onNativeClicked(@NonNull GoogleNativeAd googleNativeAd) {
-
-                                                    }
-
-                                                    @Override
-                                                    public void onNativeFailed(@NonNull GoogleNativeAd googleNativeAd, @NonNull com.wortise.ads.AdError adError) {
-
-                                                    }
-
-                                                    @Override
-                                                    public void onNativeImpression(@NonNull GoogleNativeAd googleNativeAd) {
-
-                                                    }
-
-                                                    @Override
-                                                    public void onNativeLoaded(@NonNull GoogleNativeAd googleNativeAd, @NonNull NativeAd nativeAdwortise) {
-                                                        wortiseGoogleNativeAd = googleNativeAd;
-                                                        NativeAdView adView = (NativeAdView) activity.getLayoutInflater()
-                                                                .inflate(R.layout.admob_small_native, null);
-                                                        populateNativeAdView(nativeAdwortise, adView);
-                                                        layNative.removeAllViews();
-                                                        layNative.addView(adView);
-                                                    }
-                                                };
-                                                wortiseGoogleNativeAd = new GoogleNativeAd(
-                                                        activity, idNativeBackup, mNativeListener);
-                                                wortiseGoogleNativeAd.load();
-                                                NativeAdOptions adOptions2 = new NativeAdOptions.Builder().build();
-                                                wortiseGoogleNativeAd.withNativeAdOptions(adOptions2);
                                                 break;
                                         }
                                     }
@@ -462,9 +428,7 @@ public class AliendroidNative {
                         }
                         break;
                     case "WORTISE" :
-                        if (wortiseGoogleNativeAd!=null){
-                            wortiseGoogleNativeAd.destroy();
-                        }
+
                         break;
                 }
 
@@ -483,37 +447,6 @@ public class AliendroidNative {
                 }
                 switch (selectAdsBackup) {
                     case "WORTISE":
-                        GoogleNativeAd.Listener mNativeListener = new GoogleNativeAd.Listener() {
-                            @Override
-                            public void onNativeClicked(@NonNull GoogleNativeAd googleNativeAd) {
-
-                            }
-
-                            @Override
-                            public void onNativeFailed(@NonNull GoogleNativeAd googleNativeAd, @NonNull com.wortise.ads.AdError adError) {
-
-                            }
-
-                            @Override
-                            public void onNativeImpression(@NonNull GoogleNativeAd googleNativeAd) {
-
-                            }
-
-                            @Override
-                            public void onNativeLoaded(@NonNull GoogleNativeAd googleNativeAd, @NonNull NativeAd nativeAdwortise) {
-                                wortiseGoogleNativeAd = googleNativeAd;
-                                NativeAdView adView = (NativeAdView) activity.getLayoutInflater()
-                                        .inflate(R.layout.admob_small_native, null);
-                                populateNativeAdView(nativeAdwortise, adView);
-                                layNative.removeAllViews();
-                                layNative.addView(adView);
-                            }
-                        };
-                        wortiseGoogleNativeAd = new GoogleNativeAd(
-                                activity, idNativeBackup, mNativeListener);
-                        wortiseGoogleNativeAd.load();
-                        NativeAdOptions adOptions2 = new NativeAdOptions.Builder().build();
-                        wortiseGoogleNativeAd.withNativeAdOptions(adOptions2);
                         break;
                     case "ADMOB":
                         AdLoader.Builder builder2 = new AdLoader.Builder(activity, idNativeBackup);
@@ -690,37 +623,7 @@ public class AliendroidNative {
                 }
                 switch (selectAdsBackup) {
                     case "WORTISE":
-                        GoogleNativeAd.Listener mNativeListener = new GoogleNativeAd.Listener() {
-                            @Override
-                            public void onNativeClicked(@NonNull GoogleNativeAd googleNativeAd) {
 
-                            }
-
-                            @Override
-                            public void onNativeFailed(@NonNull GoogleNativeAd googleNativeAd, @NonNull com.wortise.ads.AdError adError) {
-
-                            }
-
-                            @Override
-                            public void onNativeImpression(@NonNull GoogleNativeAd googleNativeAd) {
-
-                            }
-
-                            @Override
-                            public void onNativeLoaded(@NonNull GoogleNativeAd googleNativeAd, @NonNull NativeAd nativeAdwortise) {
-                                wortiseGoogleNativeAd = googleNativeAd;
-                                NativeAdView adView = (NativeAdView) activity.getLayoutInflater()
-                                        .inflate(R.layout.admob_small_native, null);
-                                populateNativeAdView(nativeAdwortise, adView);
-                                layNative.removeAllViews();
-                                layNative.addView(adView);
-                            }
-                        };
-                        wortiseGoogleNativeAd = new GoogleNativeAd(
-                                activity, idNativeBackup, mNativeListener);
-                        wortiseGoogleNativeAd.load();
-                        NativeAdOptions adOptions2 = new NativeAdOptions.Builder().build();
-                        wortiseGoogleNativeAd.withNativeAdOptions(adOptions2);
                         break;
                     case "FACEBOOK":
                         nativeBannerAd2 = new NativeBannerAd(activity, idNativeBackup);
@@ -942,9 +845,7 @@ public class AliendroidNative {
                         }
                         break;
                     case "WORTISE" :
-                        if (wortiseGoogleNativeAd!=null){
-                            wortiseGoogleNativeAd.destroy();
-                        }
+
                         break;
                 }
                 if (nativeBannerAd == null || nativeBannerAd != ad) {
@@ -1005,37 +906,7 @@ public class AliendroidNative {
                 }
                 switch (selectAdsBackup) {
                     case "WORTISE":
-                        GoogleNativeAd.Listener mNativeListener = new GoogleNativeAd.Listener() {
-                            @Override
-                            public void onNativeClicked(@NonNull GoogleNativeAd googleNativeAd) {
 
-                            }
-
-                            @Override
-                            public void onNativeFailed(@NonNull GoogleNativeAd googleNativeAd, @NonNull com.wortise.ads.AdError adError) {
-
-                            }
-
-                            @Override
-                            public void onNativeImpression(@NonNull GoogleNativeAd googleNativeAd) {
-
-                            }
-
-                            @Override
-                            public void onNativeLoaded(@NonNull GoogleNativeAd googleNativeAd, @NonNull NativeAd nativeAdwortise) {
-                                wortiseGoogleNativeAd = googleNativeAd;
-                                NativeAdView adView = (NativeAdView) activity.getLayoutInflater()
-                                        .inflate(R.layout.admob_small_native, null);
-                                populateNativeAdView(nativeAdwortise, adView);
-                                layNative.removeAllViews();
-                                layNative.addView(adView);
-                            }
-                        };
-                        wortiseGoogleNativeAd = new GoogleNativeAd(
-                                activity, idNativeBackup, mNativeListener);
-                        wortiseGoogleNativeAd.load();
-                        NativeAdOptions adOptions2 = new NativeAdOptions.Builder().build();
-                        wortiseGoogleNativeAd.withNativeAdOptions(adOptions2);
                         break;
                     case "ADMOB":
                         AdLoader.Builder builder2 = new AdLoader.Builder(activity, idNativeBackup);
@@ -1197,297 +1068,6 @@ public class AliendroidNative {
 
     public static void SmallNativeWortise(Activity activity, RelativeLayout layNative, String selectAdsBackup, String nativeId, String idNativeBackup
                                        ) {
-        GoogleNativeAd.Listener mNativeListener = new GoogleNativeAd.Listener() {
-            @Override
-            public void onNativeClicked(@NonNull GoogleNativeAd googleNativeAd) {
-
-            }
-
-            @Override
-            public void onNativeFailed(@NonNull GoogleNativeAd googleNativeAd, @NonNull com.wortise.ads.AdError adError) {
-                switch (selectAdsBackup) {
-                    case "WORTISE":
-                        GoogleNativeAd.Listener mNativeListener = new GoogleNativeAd.Listener() {
-                            @Override
-                            public void onNativeClicked(@NonNull GoogleNativeAd googleNativeAd) {
-
-                            }
-
-                            @Override
-                            public void onNativeFailed(@NonNull GoogleNativeAd googleNativeAd, @NonNull com.wortise.ads.AdError adError) {
-
-                            }
-
-                            @Override
-                            public void onNativeImpression(@NonNull GoogleNativeAd googleNativeAd) {
-
-                            }
-
-                            @Override
-                            public void onNativeLoaded(@NonNull GoogleNativeAd googleNativeAd, @NonNull NativeAd nativeAdwortise) {
-                                wortiseGoogleNativeAd = googleNativeAd;
-                                NativeAdView adView = (NativeAdView) activity.getLayoutInflater()
-                                        .inflate(R.layout.admob_small_native, null);
-                                populateNativeAdView(nativeAdwortise, adView);
-                                layNative.removeAllViews();
-                                layNative.addView(adView);
-                            }
-                        };
-                        wortiseGoogleNativeAd = new GoogleNativeAd(
-                                activity, idNativeBackup, mNativeListener);
-                        wortiseGoogleNativeAd.load();
-                        NativeAdOptions adOptions2 = new NativeAdOptions.Builder().build();
-                        wortiseGoogleNativeAd.withNativeAdOptions(adOptions2);
-                        break;
-                    case "APPLOVIN-M":
-                        MaxNativeAdViewBinder binder = new MaxNativeAdViewBinder.Builder(R.layout.max_small_native)
-                                .setTitleTextViewId(R.id.title_text_view)
-                                .setBodyTextViewId(R.id.body_text_view)
-                                .setAdvertiserTextViewId(R.id.advertiser_textView)
-                                .setIconImageViewId(R.id.icon_image_view)
-                                .setMediaContentViewGroupId(R.id.media_view_container)
-                                .setOptionsContentViewGroupId(R.id.ad_options_view)
-                                .setCallToActionButtonId(R.id.cta_button)
-                                .build();
-                        nativeAdView = new MaxNativeAdView(binder, activity);
-
-                        nativeAdLoader = new MaxNativeAdLoader(idNativeBackup, activity);
-                        nativeAdLoader.setRevenueListener(new MaxAdRevenueListener() {
-                            @Override
-                            public void onAdRevenuePaid(MaxAd ad) {
-
-                            }
-                        });
-                        nativeAdLoader.setNativeAdListener(new MaxNativeAdListener() {
-                            @Override
-                            public void onNativeAdLoaded(final MaxNativeAdView nativeAdView, final MaxAd ad) {
-
-                                if (nativeAd != null) {
-                                    nativeAd.destroy();
-                                }
-                                if (nativeAdMax != null) {
-                                    nativeAdLoader.destroy(nativeAdMax);
-                                }
-
-                                nativeAdMax = ad;
-                                layNative.removeAllViews();
-                                layNative.addView(nativeAdView);
-                            }
-
-                            @Override
-                            public void onNativeAdLoadFailed(final String adUnitId, final MaxError error) {
-
-                            }
-
-                            @Override
-                            public void onNativeAdClicked(final MaxAd ad) {
-
-                            }
-                        });
-
-                        nativeAdLoader.loadAd(nativeAdView);
-                        break;
-                    case "MOPUB":
-                    case "UNITY":
-
-                        break;
-                    case "IRON":
-                        adViewIron = IronSource.createBanner(activity, ISBannerSize.BANNER);
-                        FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT,
-                                FrameLayout.LayoutParams.WRAP_CONTENT);
-                        layNative.addView(adViewIron, 0, layoutParams);
-                        IronSource.loadBanner(adViewIron, idNativeBackup);
-                        break;
-                    case "STARTAPP":
-                        startAppNativeAd = new StartAppNativeAd(activity);
-                        View adViewNative = (View) activity.getLayoutInflater()
-                                .inflate(R.layout.startapp_small_native, null);
-                        AdEventListener adListener = new AdEventListener() {
-                            @Override
-                            public void onReceiveAd(@NonNull com.startapp.sdk.adsbase.Ad ad) {
-                                ArrayList ads = startAppNativeAd.getNativeAds();    // get NativeAds list
-                                Iterator iterator = ads.iterator();
-                                while (iterator.hasNext()) {
-                                    Log.d("MyApplication", iterator.next().toString());
-                                }
-                                NativeAdDetails adDetails = (NativeAdDetails) ads.get(0);
-                                if (adDetails != null) {
-                                    TextView title = adViewNative.findViewById(R.id.ad_headline);
-                                    title.setText(adDetails.getTitle());
-                                    ImageView icon = adViewNative.findViewById(R.id.ad_app_icon);
-                                    Glide.with(activity).load(adDetails.getSecondaryImageUrl()).into(icon);
-                                    TextView description = adViewNative.findViewById(R.id.ad_body);
-                                    description.setText(adDetails.getDescription());
-                                    Button open = adViewNative.findViewById(R.id.ad_call_to_action);
-                                    open.setText(adDetails.isApp() ? "Install" : "Open");
-                                    adDetails.registerViewForInteraction(adViewNative);
-                                }
-                            }
-
-                            @Override
-                            public void onFailedToReceiveAd(@Nullable com.startapp.sdk.adsbase.Ad ad) {
-
-                            }
-
-                        };
-                        startAppNativeAd.loadAd(adListener);
-                        layNative.addView(adViewNative);
-                        break;
-                    case "APPLOVIN-D":
-                        AdRequest.Builder builder = new AdRequest.Builder();
-                        Bundle bannerExtras = new Bundle();
-                        bannerExtras.putString("zone_id", idNativeBackup);
-                        builder.addCustomEventExtrasBundle(AppLovinCustomEventBanner.class, bannerExtras);
-
-                        boolean isTablet2 = AppLovinSdkUtils.isTablet(activity);
-                        AppLovinAdSize adSize = isTablet2 ? AppLovinAdSize.LEADER : AppLovinAdSize.BANNER;
-                        adViewDiscovery = new AppLovinAdView(adSize, activity);
-                        layNative.addView(adViewDiscovery);
-                        adViewDiscovery.loadNextAd();
-                        break;
-                    case "FACEBOOK":
-                        nativeBannerAd = new NativeBannerAd(activity, idNativeBackup);
-                        NativeAdListener nativeAdListener = new NativeAdListener() {
-                            @Override
-                            public void onMediaDownloaded(Ad ad) {
-
-                            }
-
-                            @Override
-                            public void onError(Ad ad, AdError adError) {
-
-                            }
-
-                            @Override
-                            public void onAdLoaded(Ad ad) {
-                                if (nativeBannerAd == null || nativeBannerAd != ad) {
-                                    return;
-                                }
-                                inflateAd(nativeBannerAd, activity, layNative);
-                            }
-
-                            @Override
-                            public void onAdClicked(Ad ad) {
-
-                            }
-
-                            @Override
-                            public void onLoggingImpression(Ad ad) {
-
-                            }
-                        };
-                        nativeBannerAd.loadAd(
-                                nativeBannerAd.buildLoadAdConfig()
-                                        .withAdListener(nativeAdListener)
-                                        .build());
-                        break;
-                    case "ALIEN-M":
-                        AlienMediationAds.SmallNatives(activity, layNative, idNativeBackup);
-                        break;
-                    case "ALIEN-V":
-                        AlienViewAds.Banner(activity, layNative, idNativeBackup);
-                        break;
-                    case "ADMOB":
-                        AdLoader.Builder builder2 = new AdLoader.Builder(activity, idNativeBackup);
-                        builder2.forNativeAd(new NativeAd.OnNativeAdLoadedListener() {
-                            @Override
-                            public void onNativeAdLoaded(@NonNull NativeAd nativeAds) {
-
-                                if (nativeAd != null) {
-                                    nativeAd.destroy();
-                                }
-
-                                nativeAd = nativeAds;
-                                NativeAdView adView = (NativeAdView) activity.getLayoutInflater()
-                                        .inflate(R.layout.admob_small_native, null);
-                                populateNativeAdView(nativeAds, adView);
-                                layNative.removeAllViews();
-                                layNative.addView(adView);
-                            }
-
-                        });
-                        VideoOptions videoOptions = new VideoOptions.Builder()
-                                .build();
-
-                        NativeAdOptions adOptions = new NativeAdOptions.Builder()
-                                .setVideoOptions(videoOptions)
-                                .build();
-
-                        builder2.withNativeAdOptions(adOptions);
-
-
-                        AdRequest request = new AdRequest.Builder()
-                                .build();
-                        AdLoader adLoader =
-                                builder2
-                                        .withAdListener(
-                                                new AdListener() {
-                                                    @Override
-                                                    public void onAdFailedToLoad(LoadAdError loadAdError) {
-
-                                                    }
-                                                })
-                                        .build();
-                        adLoader.loadAd(request);
-                        break;
-                }
-            }
-
-            @Override
-            public void onNativeImpression(@NonNull GoogleNativeAd googleNativeAd) {
-
-            }
-
-            @Override
-            public void onNativeLoaded(@NonNull GoogleNativeAd googleNativeAd, @NonNull NativeAd nativeAdwortise) {
-                switch (selectAdsBackup) {
-                    case "APPLOVIN-M":
-                        if (nativeAdMax != null) {
-                            nativeAdLoader.destroy(nativeAdMax);
-                        }
-                        break;
-                    case "MOPUB":
-                    case "UNITY":
-                        break;
-                    case "IRON":
-                        if (adViewIron != null) {
-                            adViewIron.isDestroyed();
-                        }
-                        break;
-                    case "STARTAPP":
-
-                        break;
-                    case "APPLOVIN-D":
-                        if (adViewDiscovery != null) {
-                            adViewDiscovery.destroy();
-                        }
-                        break;
-                    case "FACEBOOK":
-                        if (nativeBannerAd != null) {
-                            nativeBannerAd.destroy();
-                        }
-                        break;
-                    case "ADMOB":
-                        if (nativeId != null) {
-                            nativeAd.destroy();
-                        }
-                        break;
-                }
-
-                wortiseGoogleNativeAd = googleNativeAd;
-                NativeAdView adView = (NativeAdView) activity.getLayoutInflater()
-                        .inflate(R.layout.admob_small_native, null);
-                populateNativeAdView(nativeAdwortise, adView);
-                layNative.removeAllViews();
-                layNative.addView(adView);
-            }
-        };
-        wortiseGoogleNativeAd = new GoogleNativeAd(
-                activity, nativeId, mNativeListener);
-        wortiseGoogleNativeAd.load();
-        NativeAdOptions adOptions2 = new NativeAdOptions.Builder().build();
-        wortiseGoogleNativeAd.withNativeAdOptions(adOptions2);
-
     }
     public static void MediumNativeStartApp(Activity activity, RelativeLayout layNative, String selectAdsBackup, String nativeId, String idNativeBackup) {
         startAppNativeAd = new StartAppNativeAd(activity);
@@ -1528,37 +1108,7 @@ public class AliendroidNative {
                 }
                 switch (selectAdsBackup) {
                     case "WORTISE":
-                        GoogleNativeAd.Listener mNativeListener = new GoogleNativeAd.Listener() {
-                            @Override
-                            public void onNativeClicked(@NonNull GoogleNativeAd googleNativeAd) {
 
-                            }
-
-                            @Override
-                            public void onNativeFailed(@NonNull GoogleNativeAd googleNativeAd, @NonNull com.wortise.ads.AdError adError) {
-
-                            }
-
-                            @Override
-                            public void onNativeImpression(@NonNull GoogleNativeAd googleNativeAd) {
-
-                            }
-
-                            @Override
-                            public void onNativeLoaded(@NonNull GoogleNativeAd googleNativeAd, @NonNull NativeAd nativeAdwortise) {
-                                wortiseGoogleNativeAd = googleNativeAd;
-                                NativeAdView adView = (NativeAdView) activity.getLayoutInflater()
-                                        .inflate(R.layout.admob_big_native, null);
-                                populateNativeAdView(nativeAdwortise, adView);
-                                layNative.removeAllViews();
-                                layNative.addView(adView);
-                            }
-                        };
-                        wortiseGoogleNativeAd = new GoogleNativeAd(
-                                activity, idNativeBackup, mNativeListener);
-                        wortiseGoogleNativeAd.load();
-                        NativeAdOptions adOptions2 = new NativeAdOptions.Builder().build();
-                        wortiseGoogleNativeAd.withNativeAdOptions(adOptions2);
                         break;
                     case "ADMOB": {
                         AdLoader.Builder builder = new AdLoader.Builder(activity, idNativeBackup);
@@ -1766,9 +1316,7 @@ public class AliendroidNative {
                         }
                         break;
                     case "WORTISE":
-                        if (wortiseGoogleNativeAd!=null){
-                            wortiseGoogleNativeAd.destroy();
-                        }
+
                         break;
                 }
                 nativeAd = nativeAds;
@@ -1805,37 +1353,6 @@ public class AliendroidNative {
                                         }
                                         switch (selectAdsBackup) {
                                             case "WORTISE":
-                                                GoogleNativeAd.Listener mNativeListener = new GoogleNativeAd.Listener() {
-                                                    @Override
-                                                    public void onNativeClicked(@NonNull GoogleNativeAd googleNativeAd) {
-
-                                                    }
-
-                                                    @Override
-                                                    public void onNativeFailed(@NonNull GoogleNativeAd googleNativeAd, @NonNull com.wortise.ads.AdError adError) {
-
-                                                    }
-
-                                                    @Override
-                                                    public void onNativeImpression(@NonNull GoogleNativeAd googleNativeAd) {
-
-                                                    }
-
-                                                    @Override
-                                                    public void onNativeLoaded(@NonNull GoogleNativeAd googleNativeAd, @NonNull NativeAd nativeAdwortise) {
-                                                        wortiseGoogleNativeAd = googleNativeAd;
-                                                        NativeAdView adView = (NativeAdView) activity.getLayoutInflater()
-                                                                .inflate(R.layout.admob_big_native, null);
-                                                        populateNativeAdView(nativeAdwortise, adView);
-                                                        layNative.removeAllViews();
-                                                        layNative.addView(adView);
-                                                    }
-                                                };
-                                                wortiseGoogleNativeAd = new GoogleNativeAd(
-                                                        activity, idNativeBackup, mNativeListener);
-                                                wortiseGoogleNativeAd.load();
-                                                NativeAdOptions adOptions2 = new NativeAdOptions.Builder().build();
-                                                wortiseGoogleNativeAd.withNativeAdOptions(adOptions2);
                                                 break;
                                             case "APPLOVIN-M": {
                                                 MaxNativeAdViewBinder binder = new MaxNativeAdViewBinder.Builder(R.layout.max_big_native)
@@ -2095,9 +1612,7 @@ public class AliendroidNative {
                         }
                         break;
                     case "WORTISE" :
-                        if (wortiseGoogleNativeAd!=null){
-                            wortiseGoogleNativeAd.destroy();
-                        }
+
                         break;
                 }
                 if (nativeAdMax != null) {
@@ -2115,37 +1630,7 @@ public class AliendroidNative {
                 }
                 switch (selectAdsBackup) {
                     case "WORTISE":
-                        GoogleNativeAd.Listener mNativeListener = new GoogleNativeAd.Listener() {
-                            @Override
-                            public void onNativeClicked(@NonNull GoogleNativeAd googleNativeAd) {
 
-                            }
-
-                            @Override
-                            public void onNativeFailed(@NonNull GoogleNativeAd googleNativeAd, @NonNull com.wortise.ads.AdError adError) {
-
-                            }
-
-                            @Override
-                            public void onNativeImpression(@NonNull GoogleNativeAd googleNativeAd) {
-
-                            }
-
-                            @Override
-                            public void onNativeLoaded(@NonNull GoogleNativeAd googleNativeAd, @NonNull NativeAd nativeAdwortise) {
-                                wortiseGoogleNativeAd = googleNativeAd;
-                                NativeAdView adView = (NativeAdView) activity.getLayoutInflater()
-                                        .inflate(R.layout.admob_big_native, null);
-                                populateNativeAdView(nativeAdwortise, adView);
-                                layNative.removeAllViews();
-                                layNative.addView(adView);
-                            }
-                        };
-                        wortiseGoogleNativeAd = new GoogleNativeAd(
-                                activity, idNativeBackup, mNativeListener);
-                        wortiseGoogleNativeAd.load();
-                        NativeAdOptions adOptions2 = new NativeAdOptions.Builder().build();
-                        wortiseGoogleNativeAd.withNativeAdOptions(adOptions2);
                         break;
                     case "ADMOB":
                         AdLoader.Builder builder = new AdLoader.Builder(activity, idNativeBackup);
@@ -2321,37 +1806,7 @@ public class AliendroidNative {
                 }
                 switch (selectAdsBackup) {
                     case "WORTISE":
-                        GoogleNativeAd.Listener mNativeListener = new GoogleNativeAd.Listener() {
-                            @Override
-                            public void onNativeClicked(@NonNull GoogleNativeAd googleNativeAd) {
 
-                            }
-
-                            @Override
-                            public void onNativeFailed(@NonNull GoogleNativeAd googleNativeAd, @NonNull com.wortise.ads.AdError adError) {
-
-                            }
-
-                            @Override
-                            public void onNativeImpression(@NonNull GoogleNativeAd googleNativeAd) {
-
-                            }
-
-                            @Override
-                            public void onNativeLoaded(@NonNull GoogleNativeAd googleNativeAd, @NonNull NativeAd nativeAdwortise) {
-                                wortiseGoogleNativeAd = googleNativeAd;
-                                NativeAdView adView = (NativeAdView) activity.getLayoutInflater()
-                                        .inflate(R.layout.admob_big_native, null);
-                                populateNativeAdView(nativeAdwortise, adView);
-                                layNative.removeAllViews();
-                                layNative.addView(adView);
-                            }
-                        };
-                        wortiseGoogleNativeAd = new GoogleNativeAd(
-                                activity, idNativeBackup, mNativeListener);
-                        wortiseGoogleNativeAd.load();
-                        NativeAdOptions adOptions2 = new NativeAdOptions.Builder().build();
-                        wortiseGoogleNativeAd.withNativeAdOptions(adOptions2);
                         break;
                     case "FACEBOOK":
                         nativeAdfan2 = new com.facebook.ads.NativeAd(activity, idNativeBackup);
@@ -2579,9 +2034,7 @@ public class AliendroidNative {
                         }
                         break;
                     case "WORTISE" :
-                        if (wortiseGoogleNativeAd!=null){
-                            wortiseGoogleNativeAd.destroy();
-                        }
+
                         break;
                 }
                 if (nativeAdfan == null || nativeAdfan != ad) {
@@ -2632,37 +2085,7 @@ public class AliendroidNative {
                 }
                 switch (selectAdsBackup) {
                     case "WORTISE":
-                        GoogleNativeAd.Listener mNativeListener = new GoogleNativeAd.Listener() {
-                            @Override
-                            public void onNativeClicked(@NonNull GoogleNativeAd googleNativeAd) {
 
-                            }
-
-                            @Override
-                            public void onNativeFailed(@NonNull GoogleNativeAd googleNativeAd, @NonNull com.wortise.ads.AdError adError) {
-
-                            }
-
-                            @Override
-                            public void onNativeImpression(@NonNull GoogleNativeAd googleNativeAd) {
-
-                            }
-
-                            @Override
-                            public void onNativeLoaded(@NonNull GoogleNativeAd googleNativeAd, @NonNull NativeAd nativeAdwortise) {
-                                wortiseGoogleNativeAd = googleNativeAd;
-                                NativeAdView adView = (NativeAdView) activity.getLayoutInflater()
-                                        .inflate(R.layout.admob_big_native, null);
-                                populateNativeAdView(nativeAdwortise, adView);
-                                layNative.removeAllViews();
-                                layNative.addView(adView);
-                            }
-                        };
-                        wortiseGoogleNativeAd = new GoogleNativeAd(
-                                activity, idNativeBackup, mNativeListener);
-                        wortiseGoogleNativeAd.load();
-                        NativeAdOptions adOptions2 = new NativeAdOptions.Builder().build();
-                        wortiseGoogleNativeAd.withNativeAdOptions(adOptions2);
                         break;
                     case "APPLOVIN-M": {
                         MaxNativeAdViewBinder binder = new MaxNativeAdViewBinder.Builder(R.layout.max_big_native)
@@ -2860,263 +2283,6 @@ public class AliendroidNative {
 
     public static void MediumNativeWortise(Activity activity, RelativeLayout layNative, String selectAdsBackup, String nativeId, String idNativeBackup) {
 
-        GoogleNativeAd.Listener mNativeListener = new GoogleNativeAd.Listener() {
-            @Override
-            public void onNativeClicked(@NonNull GoogleNativeAd googleNativeAd) {
-
-            }
-
-            @Override
-            public void onNativeFailed(@NonNull GoogleNativeAd googleNativeAd, @NonNull com.wortise.ads.AdError adError) {
-                switch (selectAdsBackup) {
-
-                    case "APPLOVIN-M": {
-                        MaxNativeAdViewBinder binder = new MaxNativeAdViewBinder.Builder(R.layout.max_big_native)
-                                .setTitleTextViewId(R.id.title_text_view)
-                                .setBodyTextViewId(R.id.body_text_view)
-                                .setAdvertiserTextViewId(R.id.advertiser_textView)
-                                .setIconImageViewId(R.id.icon_image_view)
-                                .setMediaContentViewGroupId(R.id.media_view_container)
-                                .setOptionsContentViewGroupId(R.id.ad_options_view)
-                                .setCallToActionButtonId(R.id.cta_button)
-                                .build();
-                        nativeAdView = new MaxNativeAdView(binder, activity);
-
-                        nativeAdLoader = new MaxNativeAdLoader(idNativeBackup, activity);
-                        nativeAdLoader.setRevenueListener(new MaxAdRevenueListener() {
-                            @Override
-                            public void onAdRevenuePaid(MaxAd ad) {
-
-                            }
-                        });
-                        nativeAdLoader.setNativeAdListener(new MaxNativeAdListener() {
-                            @Override
-                            public void onNativeAdLoaded(final MaxNativeAdView nativeAdView, final MaxAd ad) {
-
-                                if (nativeAd != null) {
-                                    nativeAd.destroy();
-                                }
-                                // Cleanup any pre-existing native ad to prevent memory leaks.
-                                if (nativeAdMax != null) {
-                                    nativeAdLoader.destroy(nativeAdMax);
-                                }
-
-                                // Save ad for cleanup.
-                                nativeAdMax = ad;
-
-                                // Add ad view to view.
-                                layNative.removeAllViews();
-                                layNative.addView(nativeAdView);
-                            }
-
-                            @Override
-                            public void onNativeAdLoadFailed(final String adUnitId, final MaxError error) {
-
-                            }
-
-                            @Override
-                            public void onNativeAdClicked(final MaxAd ad) {
-
-                            }
-                        });
-
-                        nativeAdLoader.loadAd(nativeAdView);
-                        break;
-                    }
-                    case "MOPUB":
-                    case "UNITY":
-
-                        break;
-                    case "IRON":
-                        adViewIron = IronSource.createBanner(activity, ISBannerSize.RECTANGLE);
-                        FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT,
-                                FrameLayout.LayoutParams.WRAP_CONTENT);
-                        layNative.addView(adViewIron, 0, layoutParams);
-                        IronSource.loadBanner(adViewIron, idNativeBackup);
-                        break;
-                    case "STARTAPP":
-                        startAppNativeAd = new StartAppNativeAd(activity);
-                        View adViewNative = (View) activity.getLayoutInflater()
-                                .inflate(R.layout.startapp_medium_native, null);
-                        AdEventListener adListener = new AdEventListener() {
-                            @Override
-                            public void onReceiveAd(@NonNull com.startapp.sdk.adsbase.Ad ad) {
-                                ArrayList ads = startAppNativeAd.getNativeAds();    // get NativeAds list
-                                Iterator iterator = ads.iterator();
-                                while (iterator.hasNext()) {
-                                    Log.d("MyApplication", iterator.next().toString());
-                                }
-                                NativeAdDetails adDetails = (NativeAdDetails) ads.get(0);
-                                if (adDetails != null) {
-                                    TextView title = adViewNative.findViewById(R.id.ad_headline);
-                                    title.setText(adDetails.getTitle());
-                                    ImageView icon = adViewNative.findViewById(R.id.ad_app_icon);
-                                    Glide.with(activity).load(adDetails.getSecondaryImageUrl()).into(icon);
-                                    ImageView details = adViewNative.findViewById(R.id.imgDetail);
-                                    Glide.with(activity).load(adDetails.getImageUrl()).into(details);
-                                    TextView description = adViewNative.findViewById(R.id.ad_body);
-                                    description.setText(adDetails.getDescription());
-                                    Button open = adViewNative.findViewById(R.id.ad_call_to_action);
-                                    open.setText(adDetails.isApp() ? "Install" : "Open");
-                                    adDetails.registerViewForInteraction(adViewNative);
-                                }
-                            }
-
-                            @Override
-                            public void onFailedToReceiveAd(@Nullable com.startapp.sdk.adsbase.Ad ad) {
-
-                            }
-
-                        };
-                        startAppNativeAd.loadAd(adListener);
-                        layNative.addView(adViewNative);
-                        break;
-                    case "APPLOVIN-D":
-                        AdRequest.Builder builder = new AdRequest.Builder();
-                        Bundle bannerExtras = new Bundle();
-                        bannerExtras.putString("zone_id", idNativeBackup);
-                        builder.addCustomEventExtrasBundle(AppLovinCustomEventBanner.class, bannerExtras);
-
-                        adViewDiscovery = new AppLovinAdView(AppLovinAdSize.MREC, activity);
-                        layNative.addView(adViewDiscovery);
-                        adViewDiscovery.loadNextAd();
-                        break;
-
-                    case "FACEBOOK":
-                        nativeAdfan = new com.facebook.ads.NativeAd(activity, idNativeBackup);
-                        NativeAdListener nativeAdListener = new NativeAdListener() {
-                            @Override
-                            public void onMediaDownloaded(Ad ad) {
-
-                            }
-
-                            @Override
-                            public void onError(Ad ad, AdError adError) {
-
-                            }
-
-                            @Override
-                            public void onAdLoaded(Ad ad) {
-                                if (nativeAdfan == null || nativeAdfan != ad) {
-                                    return;
-                                }
-                                inflateAd2(nativeAdfan, activity, layNative);
-                            }
-
-                            @Override
-                            public void onAdClicked(Ad ad) {
-
-                            }
-
-                            @Override
-                            public void onLoggingImpression(Ad ad) {
-
-                            }
-                        };
-
-                        nativeAdfan.loadAd(
-                                nativeAdfan.buildLoadAdConfig()
-                                        .withAdListener(nativeAdListener)
-                                        .build());
-
-                        break;
-                    case "ALIEN-M":
-                        AlienMediationAds.MediumNatives(activity, layNative, idNativeBackup);
-                        break;
-                    case "ADMOB":
-                        AdLoader.Builder builder2 = new AdLoader.Builder(activity, idNativeBackup);
-                        builder2.forNativeAd(new NativeAd.OnNativeAdLoadedListener() {
-                            @Override
-                            public void onNativeAdLoaded(@NonNull NativeAd nativeAds) {
-                                if (nativeAd2 != null) {
-                                    nativeAd2.destroy();
-                                }
-                                nativeAd2 = nativeAds;
-                                NativeAdView adView = (NativeAdView) activity.getLayoutInflater()
-                                        .inflate(R.layout.admob_big_native, null);
-                                populateNativeAdView(nativeAds, adView);
-                                layNative.removeAllViews();
-                                layNative.addView(adView);
-                            }
-
-
-                        });
-
-                        VideoOptions videoOptions = new VideoOptions.Builder()
-                                .build();
-
-                        NativeAdOptions adOptions = new NativeAdOptions.Builder()
-                                .setVideoOptions(videoOptions)
-                                .build();
-
-                        builder2.withNativeAdOptions(adOptions);
-
-
-                        AdRequest request = new AdRequest.Builder()
-                                .build();
-                        AdLoader adLoader =
-                                builder2
-                                        .withAdListener(
-                                                new AdListener() {
-                                                    @Override
-                                                    public void onAdFailedToLoad(LoadAdError loadAdError) {
-
-                                                    }
-                                                })
-                                        .build();
-                        adLoader.loadAd(request);
-                        break;
-                }
-            }
-
-            @Override
-            public void onNativeImpression(@NonNull GoogleNativeAd googleNativeAd) {
-
-            }
-
-            @Override
-            public void onNativeLoaded(@NonNull GoogleNativeAd googleNativeAd, @NonNull NativeAd nativeAdwortise) {
-                switch (selectAdsBackup) {
-                    case "APPLOVIN-M":
-                        if (nativeAdMax != null) {
-                            nativeAdLoader.destroy(nativeAdMax);
-                        }
-                        break;
-                    case "MOPUB":
-
-                        break;
-                    case "IRON":
-                        if (adViewIron != null) {
-                            adViewIron.isDestroyed();
-                        }
-                        break;
-                    case "STARTAPP":
-                        break;
-                    case "APPLOVIN-D":
-                        if (adViewDiscovery != null) {
-                            adViewDiscovery.destroy();
-                        }
-                        break;
-                    case "FACEBOOK":
-                        if (nativeAdfan != null) {
-                            nativeAdfan.destroy();
-                        }
-                        break;
-                }
-                wortiseGoogleNativeAd = googleNativeAd;
-                NativeAdView adView = (NativeAdView) activity.getLayoutInflater()
-                        .inflate(R.layout.admob_big_native, null);
-                populateNativeAdView(nativeAdwortise, adView);
-                layNative.removeAllViews();
-                layNative.addView(adView);
-            }
-        };
-        wortiseGoogleNativeAd = new GoogleNativeAd(
-                activity, nativeId, mNativeListener);
-        wortiseGoogleNativeAd.load();
-        NativeAdOptions adOptions2 = new NativeAdOptions.Builder().build();
-        wortiseGoogleNativeAd.withNativeAdOptions(adOptions2);
-
     }
     public static void SmallNativeAlien(Activity activity, RelativeLayout layNative, String selectAdsBackup, String nativeId, String idNativeBackup) {
         AlienMediationAds.SmallNatives(activity, layNative, nativeId);
@@ -3142,37 +2308,7 @@ public class AliendroidNative {
                 }
                 switch (selectAdsBackup) {
                     case "WORTISE":
-                        GoogleNativeAd.Listener mNativeListener = new GoogleNativeAd.Listener() {
-                            @Override
-                            public void onNativeClicked(@NonNull GoogleNativeAd googleNativeAd) {
 
-                            }
-
-                            @Override
-                            public void onNativeFailed(@NonNull GoogleNativeAd googleNativeAd, @NonNull com.wortise.ads.AdError adError) {
-
-                            }
-
-                            @Override
-                            public void onNativeImpression(@NonNull GoogleNativeAd googleNativeAd) {
-
-                            }
-
-                            @Override
-                            public void onNativeLoaded(@NonNull GoogleNativeAd googleNativeAd, @NonNull NativeAd nativeAdwortise) {
-                                wortiseGoogleNativeAd = googleNativeAd;
-                                NativeAdView adView = (NativeAdView) activity.getLayoutInflater()
-                                        .inflate(R.layout.admob_small_native, null);
-                                populateNativeAdView(nativeAdwortise, adView);
-                                layNative.removeAllViews();
-                                layNative.addView(adView);
-                            }
-                        };
-                        wortiseGoogleNativeAd = new GoogleNativeAd(
-                                activity, idNativeBackup, mNativeListener);
-                        wortiseGoogleNativeAd.load();
-                        NativeAdOptions adOptions2 = new NativeAdOptions.Builder().build();
-                        wortiseGoogleNativeAd.withNativeAdOptions(adOptions2);
                         break;
                     case "ADMOB":
                         AdLoader.Builder builder2 = new AdLoader.Builder(activity, idNativeBackup);
@@ -3402,37 +2538,6 @@ public class AliendroidNative {
                 }
                 switch (selectAdsBackup) {
                     case "WORTISE":
-                        GoogleNativeAd.Listener mNativeListener = new GoogleNativeAd.Listener() {
-                            @Override
-                            public void onNativeClicked(@NonNull GoogleNativeAd googleNativeAd) {
-
-                            }
-
-                            @Override
-                            public void onNativeFailed(@NonNull GoogleNativeAd googleNativeAd, @NonNull com.wortise.ads.AdError adError) {
-
-                            }
-
-                            @Override
-                            public void onNativeImpression(@NonNull GoogleNativeAd googleNativeAd) {
-
-                            }
-
-                            @Override
-                            public void onNativeLoaded(@NonNull GoogleNativeAd googleNativeAd, @NonNull NativeAd nativeAdwortise) {
-                                wortiseGoogleNativeAd = googleNativeAd;
-                                NativeAdView adView = (NativeAdView) activity.getLayoutInflater()
-                                        .inflate(R.layout.admob_small_rectangle_native, null);
-                                populateNativeAdView(nativeAdwortise, adView);
-                                layNative.removeAllViews();
-                                layNative.addView(adView);
-                            }
-                        };
-                        wortiseGoogleNativeAd = new GoogleNativeAd(
-                                activity, idNativeBackup, mNativeListener);
-                        wortiseGoogleNativeAd.load();
-                        NativeAdOptions adOptions2 = new NativeAdOptions.Builder().build();
-                        wortiseGoogleNativeAd.withNativeAdOptions(adOptions2);
                         break;
                     case "ADMOB":
                         AdLoader.Builder builder = new AdLoader.Builder(activity, idNativeBackup);
@@ -3624,9 +2729,7 @@ public class AliendroidNative {
                         }
                         break;
                     case "WORTISE":
-                        if (wortiseGoogleNativeAd!=null){
-                            wortiseGoogleNativeAd.destroy();
-                        }
+
                         break;
                 }
                 nativeAd = nativeAds;
@@ -3663,37 +2766,6 @@ public class AliendroidNative {
                                         }
                                         switch (selectAdsBackup) {
                                             case "WORTISE":
-                                                GoogleNativeAd.Listener mNativeListener = new GoogleNativeAd.Listener() {
-                                                    @Override
-                                                    public void onNativeClicked(@NonNull GoogleNativeAd googleNativeAd) {
-
-                                                    }
-
-                                                    @Override
-                                                    public void onNativeFailed(@NonNull GoogleNativeAd googleNativeAd, @NonNull com.wortise.ads.AdError adError) {
-
-                                                    }
-
-                                                    @Override
-                                                    public void onNativeImpression(@NonNull GoogleNativeAd googleNativeAd) {
-
-                                                    }
-
-                                                    @Override
-                                                    public void onNativeLoaded(@NonNull GoogleNativeAd googleNativeAd, @NonNull NativeAd nativeAdwortise) {
-                                                        wortiseGoogleNativeAd = googleNativeAd;
-                                                        NativeAdView adView = (NativeAdView) activity.getLayoutInflater()
-                                                                .inflate(R.layout.admob_small_rectangle_native, null);
-                                                        populateNativeAdView(nativeAdwortise, adView);
-                                                        layNative.removeAllViews();
-                                                        layNative.addView(adView);
-                                                    }
-                                                };
-                                                wortiseGoogleNativeAd = new GoogleNativeAd(
-                                                        activity, idNativeBackup, mNativeListener);
-                                                wortiseGoogleNativeAd.load();
-                                                NativeAdOptions adOptions2 = new NativeAdOptions.Builder().build();
-                                                wortiseGoogleNativeAd.withNativeAdOptions(adOptions2);
                                                 break;
                                             case "APPLOVIN-M": {
                                                 MaxNativeAdViewBinder binder = new MaxNativeAdViewBinder.Builder(R.layout.max_small_rectangle_native)
@@ -3939,9 +3011,7 @@ public class AliendroidNative {
                         }
                         break;
                     case "WORTISE":
-                        if (wortiseGoogleNativeAd!=null){
-                            wortiseGoogleNativeAd.destroy();
-                        }
+
                         break;
                 }
                 if (nativeAdMax != null) {
@@ -3959,37 +3029,6 @@ public class AliendroidNative {
                 }
                 switch (selectAdsBackup) {
                     case "WORTISE":
-                        GoogleNativeAd.Listener mNativeListener = new GoogleNativeAd.Listener() {
-                            @Override
-                            public void onNativeClicked(@NonNull GoogleNativeAd googleNativeAd) {
-
-                            }
-
-                            @Override
-                            public void onNativeFailed(@NonNull GoogleNativeAd googleNativeAd, @NonNull com.wortise.ads.AdError adError) {
-
-                            }
-
-                            @Override
-                            public void onNativeImpression(@NonNull GoogleNativeAd googleNativeAd) {
-
-                            }
-
-                            @Override
-                            public void onNativeLoaded(@NonNull GoogleNativeAd googleNativeAd, @NonNull NativeAd nativeAdwortise) {
-                                wortiseGoogleNativeAd = googleNativeAd;
-                                NativeAdView adView = (NativeAdView) activity.getLayoutInflater()
-                                        .inflate(R.layout.admob_small_rectangle_native, null);
-                                populateNativeAdView(nativeAdwortise, adView);
-                                layNative.removeAllViews();
-                                layNative.addView(adView);
-                            }
-                        };
-                        wortiseGoogleNativeAd = new GoogleNativeAd(
-                                activity, idNativeBackup, mNativeListener);
-                        wortiseGoogleNativeAd.load();
-                        NativeAdOptions adOptions2 = new NativeAdOptions.Builder().build();
-                        wortiseGoogleNativeAd.withNativeAdOptions(adOptions2);
                         break;
                     case "ADMOB": {
                         AdLoader.Builder builder = new AdLoader.Builder(activity, idNativeBackup);
@@ -4153,37 +3192,6 @@ public class AliendroidNative {
                 }
                 switch (selectAdsBackup) {
                     case "WORTISE":
-                        GoogleNativeAd.Listener mNativeListener = new GoogleNativeAd.Listener() {
-                            @Override
-                            public void onNativeClicked(@NonNull GoogleNativeAd googleNativeAd) {
-
-                            }
-
-                            @Override
-                            public void onNativeFailed(@NonNull GoogleNativeAd googleNativeAd, @NonNull com.wortise.ads.AdError adError) {
-
-                            }
-
-                            @Override
-                            public void onNativeImpression(@NonNull GoogleNativeAd googleNativeAd) {
-
-                            }
-
-                            @Override
-                            public void onNativeLoaded(@NonNull GoogleNativeAd googleNativeAd, @NonNull NativeAd nativeAdwortise) {
-                                wortiseGoogleNativeAd = googleNativeAd;
-                                NativeAdView adView = (NativeAdView) activity.getLayoutInflater()
-                                        .inflate(R.layout.admob_small_rectangle_native, null);
-                                populateNativeAdView(nativeAdwortise, adView);
-                                layNative.removeAllViews();
-                                layNative.addView(adView);
-                            }
-                        };
-                        wortiseGoogleNativeAd = new GoogleNativeAd(
-                                activity, idNativeBackup, mNativeListener);
-                        wortiseGoogleNativeAd.load();
-                        NativeAdOptions adOptions2 = new NativeAdOptions.Builder().build();
-                        wortiseGoogleNativeAd.withNativeAdOptions(adOptions2);
                         break;
                     case "FACEBOOK":
                         nativeBannerAd2 = new NativeBannerAd(activity, idNativeBackup);
@@ -4400,9 +3408,7 @@ public class AliendroidNative {
                         }
                         break;
                     case "WORTISE" :
-                        if (wortiseGoogleNativeAd!=null){
-                            wortiseGoogleNativeAd.destroy();
-                        }
+
                         break;
                 }
                 if (nativeBannerAd == null || nativeBannerAd != ad) {
@@ -4453,37 +3459,6 @@ public class AliendroidNative {
                 }
                 switch (selectAdsBackup) {
                     case "WORTISE":
-                        GoogleNativeAd.Listener mNativeListener = new GoogleNativeAd.Listener() {
-                            @Override
-                            public void onNativeClicked(@NonNull GoogleNativeAd googleNativeAd) {
-
-                            }
-
-                            @Override
-                            public void onNativeFailed(@NonNull GoogleNativeAd googleNativeAd, @NonNull com.wortise.ads.AdError adError) {
-
-                            }
-
-                            @Override
-                            public void onNativeImpression(@NonNull GoogleNativeAd googleNativeAd) {
-
-                            }
-
-                            @Override
-                            public void onNativeLoaded(@NonNull GoogleNativeAd googleNativeAd, @NonNull NativeAd nativeAdwortise) {
-                                wortiseGoogleNativeAd = googleNativeAd;
-                                NativeAdView adView = (NativeAdView) activity.getLayoutInflater()
-                                        .inflate(R.layout.admob_small_rectangle_native, null);
-                                populateNativeAdView(nativeAdwortise, adView);
-                                layNative.removeAllViews();
-                                layNative.addView(adView);
-                            }
-                        };
-                        wortiseGoogleNativeAd = new GoogleNativeAd(
-                                activity, idNativeBackup, mNativeListener);
-                        wortiseGoogleNativeAd.load();
-                        NativeAdOptions adOptions2 = new NativeAdOptions.Builder().build();
-                        wortiseGoogleNativeAd.withNativeAdOptions(adOptions2);
                         break;
                     case "APPLOVIN-M": {
                         MaxNativeAdViewBinder binder = new MaxNativeAdViewBinder.Builder(R.layout.max_small_rectangle_native)
@@ -4668,255 +3643,6 @@ public class AliendroidNative {
     }
 
     public static void SmallNativeWortiseRectangle(Activity activity, RelativeLayout layNative, String selectAdsBackup, String nativeId, String idNativeBackup) {
-
-        GoogleNativeAd.Listener mNativeListener = new GoogleNativeAd.Listener() {
-            @Override
-            public void onNativeClicked(@NonNull GoogleNativeAd googleNativeAd) {
-
-            }
-
-            @Override
-            public void onNativeFailed(@NonNull GoogleNativeAd googleNativeAd, @NonNull com.wortise.ads.AdError adError) {
-                switch (selectAdsBackup) {
-
-                    case "APPLOVIN-M": {
-                        MaxNativeAdViewBinder binder = new MaxNativeAdViewBinder.Builder(R.layout.max_small_rectangle_native)
-                                .setTitleTextViewId(R.id.title_text_view)
-                                .setBodyTextViewId(R.id.body_text_view)
-                                .setAdvertiserTextViewId(R.id.advertiser_textView)
-                                .setIconImageViewId(R.id.icon_image_view)
-                                .setMediaContentViewGroupId(R.id.media_view_container)
-                                .setOptionsContentViewGroupId(R.id.ad_options_view)
-                                .setCallToActionButtonId(R.id.cta_button)
-                                .build();
-                        nativeAdView = new MaxNativeAdView(binder, activity);
-
-                        nativeAdLoader = new MaxNativeAdLoader(idNativeBackup, activity);
-                        nativeAdLoader.setRevenueListener(new MaxAdRevenueListener() {
-                            @Override
-                            public void onAdRevenuePaid(MaxAd ad) {
-
-                            }
-                        });
-                        nativeAdLoader.setNativeAdListener(new MaxNativeAdListener() {
-                            @Override
-                            public void onNativeAdLoaded(final MaxNativeAdView nativeAdView, final MaxAd ad) {
-
-                                if (nativeAd != null) {
-                                    nativeAd.destroy();
-                                }
-                                // Cleanup any pre-existing native ad to prevent memory leaks.
-                                if (nativeAdMax != null) {
-                                    nativeAdLoader.destroy(nativeAdMax);
-                                }
-
-                                // Save ad for cleanup.
-                                nativeAdMax = ad;
-
-                                // Add ad view to view.
-                                layNative.removeAllViews();
-                                layNative.addView(nativeAdView);
-                            }
-
-                            @Override
-                            public void onNativeAdLoadFailed(final String adUnitId, final MaxError error) {
-
-                            }
-
-                            @Override
-                            public void onNativeAdClicked(final MaxAd ad) {
-
-                            }
-                        });
-
-                        nativeAdLoader.loadAd(nativeAdView);
-                        break;
-                    }
-                    case "MOPUB":
-                    case "UNITY":
-
-                        break;
-                    case "IRON":
-
-                        break;
-                    case "STARTAPP":
-                        startAppNativeAd = new StartAppNativeAd(activity);
-                        View adViewNative = (View) activity.getLayoutInflater()
-                                .inflate(R.layout.startapp_small_rectangle_native, null);
-                        AdEventListener adListener = new AdEventListener() {
-                            @Override
-                            public void onReceiveAd(@NonNull com.startapp.sdk.adsbase.Ad ad) {
-                                ArrayList ads = startAppNativeAd.getNativeAds();    // get NativeAds list
-                                Iterator iterator = ads.iterator();
-                                while (iterator.hasNext()) {
-                                    Log.d("MyApplication", iterator.next().toString());
-                                }
-                                NativeAdDetails adDetails = (NativeAdDetails) ads.get(0);
-                                if (adDetails != null) {
-                                    TextView title = adViewNative.findViewById(R.id.ad_headline);
-                                    title.setText(adDetails.getTitle());
-                                    ImageView icon = adViewNative.findViewById(R.id.ad_app_icon);
-                                    Glide.with(activity).load(adDetails.getSecondaryImageUrl()).into(icon);
-                                    ImageView details = adViewNative.findViewById(R.id.imgDetail);
-                                    Glide.with(activity).load(adDetails.getImageUrl()).into(details);
-                                    TextView description = adViewNative.findViewById(R.id.ad_body);
-                                    description.setText(adDetails.getDescription());
-                                    Button open = adViewNative.findViewById(R.id.ad_call_to_action);
-                                    open.setText(adDetails.isApp() ? "Install" : "Open");
-                                    adDetails.registerViewForInteraction(adViewNative);
-                                }
-                            }
-
-                            @Override
-                            public void onFailedToReceiveAd(@Nullable com.startapp.sdk.adsbase.Ad ad) {
-
-                            }
-
-                        };
-                        startAppNativeAd.loadAd(adListener);
-                        layNative.addView(adViewNative);
-                        break;
-                    case "APPLOVIN-D":
-                        break;
-                    case "FACEBOOK":
-                        nativeBannerAd = new NativeBannerAd(activity, idNativeBackup);
-                        NativeAdListener nativeAdListener = new NativeAdListener() {
-                            @Override
-                            public void onMediaDownloaded(Ad ad) {
-
-                            }
-
-                            @Override
-                            public void onError(Ad ad, AdError adError) {
-
-                            }
-
-                            @Override
-                            public void onAdLoaded(Ad ad) {
-                                if (nativeBannerAd == null || nativeBannerAd != ad) {
-                                    return;
-                                }
-                                inflateAd3(nativeBannerAd, activity, layNative);
-                            }
-
-                            @Override
-                            public void onAdClicked(Ad ad) {
-
-                            }
-
-                            @Override
-                            public void onLoggingImpression(Ad ad) {
-
-                            }
-                        };
-
-                        nativeBannerAd.loadAd(
-                                nativeBannerAd.buildLoadAdConfig()
-                                        .withAdListener(nativeAdListener)
-                                        .build());
-
-                        break;
-                    case "ALIEN-M":
-                        AlienMediationAds.RectangleNatives(activity, layNative, idNativeBackup);
-                        break;
-                    case "ADMOB":
-                        AdLoader.Builder builder = new AdLoader.Builder(activity, idNativeBackup);
-                        builder.forNativeAd(new NativeAd.OnNativeAdLoadedListener() {
-                            @Override
-                            public void onNativeAdLoaded(@NonNull NativeAd nativeAds) {
-                                if (nativeAd2 != null) {
-                                    nativeAd2.destroy();
-                                }
-                                nativeAd2 = nativeAds;
-                                NativeAdView adView = (NativeAdView) activity.getLayoutInflater()
-                                        .inflate(R.layout.admob_small_rectangle_native, null);
-                                populateNativeAdView(nativeAds, adView);
-                                layNative.removeAllViews();
-                                layNative.addView(adView);
-                            }
-
-
-                        });
-
-                        VideoOptions videoOptions = new VideoOptions.Builder()
-                                .build();
-
-                        NativeAdOptions adOptions = new NativeAdOptions.Builder()
-                                .setVideoOptions(videoOptions)
-                                .build();
-
-                        builder.withNativeAdOptions(adOptions);
-
-
-                        AdRequest request = new AdRequest.Builder()
-                                .build();
-                        AdLoader adLoader =
-                                builder
-                                        .withAdListener(
-                                                new AdListener() {
-                                                    @Override
-                                                    public void onAdFailedToLoad(LoadAdError loadAdError) {
-
-                                                    }
-                                                })
-                                        .build();
-                        adLoader.loadAd(request);
-                        break;
-                }
-            }
-
-            @Override
-            public void onNativeImpression(@NonNull GoogleNativeAd googleNativeAd) {
-
-            }
-
-            @Override
-            public void onNativeLoaded(@NonNull GoogleNativeAd googleNativeAd, @NonNull NativeAd nativeAdwortise) {
-                switch (selectAdsBackup) {
-                    case "APPLOVIN-M":
-                        if (nativeAdMax != null) {
-                            nativeAdLoader.destroy(nativeAdMax);
-                        }
-                        break;
-                    case "MOPUB":
-
-                        break;
-                    case "IRON":
-                        if (adViewIron != null) {
-                            adViewIron.isDestroyed();
-                        }
-                        break;
-                    case "STARTAPP":
-                        break;
-                    case "APPLOVIN-D":
-                        if (adViewDiscovery != null) {
-                            adViewDiscovery.destroy();
-                        }
-                        break;
-                    case "FACEBOOK":
-                        if (nativeAdfan != null) {
-                            nativeAdfan.destroy();
-                        }
-                        break;
-                    case "WORTISE":
-                        if (wortiseGoogleNativeAd!=null){
-                            wortiseGoogleNativeAd.destroy();
-                        }
-                        break;
-                }
-                wortiseGoogleNativeAd = googleNativeAd;
-                NativeAdView adView = (NativeAdView) activity.getLayoutInflater()
-                        .inflate(R.layout.admob_small_rectangle_native, null);
-                populateNativeAdView(nativeAdwortise, adView);
-                layNative.removeAllViews();
-                layNative.addView(adView);
-            }
-        };
-        wortiseGoogleNativeAd = new GoogleNativeAd(
-                activity, nativeId, mNativeListener);
-        wortiseGoogleNativeAd.load();
-        NativeAdOptions adOptions2 = new NativeAdOptions.Builder().build();
-        wortiseGoogleNativeAd.withNativeAdOptions(adOptions2);
 
     }
 

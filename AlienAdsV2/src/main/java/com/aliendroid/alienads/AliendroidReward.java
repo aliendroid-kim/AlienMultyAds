@@ -55,15 +55,13 @@ import com.ironsource.mediationsdk.sdk.RewardedVideoListener;
 import com.startapp.sdk.adsbase.StartAppAd;
 import com.startapp.sdk.adsbase.adlisteners.AdEventListener;
 import com.startapp.sdk.adsbase.adlisteners.VideoListener;
-import com.wortise.ads.AdError;
-import com.wortise.ads.rewarded.models.Reward;
+
 
 import java.util.Map;
 
 public class AliendroidReward {
     public static RewardedVideoAd rewardedVideoAdFan;
     public static RewardedVideoAd rewardedVideoAdFan2;
-    public static com.wortise.ads.rewarded.RewardedAd wortiseRewarded;
     public static MaxRewardedAd rewardedAd;
     public static boolean unlockreward = false;
     public static AppLovinIncentivizedInterstitial incentivizedInterstitial;
@@ -341,40 +339,6 @@ public class AliendroidReward {
                             });
                     break;
                 case "WORTISE":
-                    wortiseRewarded = new com.wortise.ads.rewarded.RewardedAd(activity, idBackupReward);
-                    wortiseRewarded.loadAd();
-                    wortiseRewarded.setListener(new com.wortise.ads.rewarded.RewardedAd.Listener() {
-                        @Override
-                        public void onRewardedShown(@NonNull com.wortise.ads.rewarded.RewardedAd rewardedAd) {
-
-                        }
-
-                        @Override
-                        public void onRewardedLoaded(@NonNull com.wortise.ads.rewarded.RewardedAd rewardedAd) {
-
-                        }
-
-                        @Override
-                        public void onRewardedFailed(@NonNull com.wortise.ads.rewarded.RewardedAd rewardedAd, @NonNull AdError adError) {
-
-                        }
-
-                        @Override
-                        public void onRewardedDismissed(@NonNull com.wortise.ads.rewarded.RewardedAd rewardedAd) {
-
-                        }
-
-                        @Override
-                        public void onRewardedCompleted(@NonNull com.wortise.ads.rewarded.RewardedAd rewardedAd, @NonNull Reward reward) {
-                            unlockreward = true;
-                        }
-
-                        @Override
-                        public void onRewardedClicked(@NonNull com.wortise.ads.rewarded.RewardedAd rewardedAd) {
-
-                        }
-
-                    });
                     break;
                 case "FACEBOOK":
                     rewardedVideoAdFan2 = new RewardedVideoAd(activity, idBackupReward);
@@ -659,40 +623,6 @@ public class AliendroidReward {
                             });
                     break;
                 case "WORTISE":
-                    wortiseRewarded = new com.wortise.ads.rewarded.RewardedAd(activity, idBackupReward);
-                    wortiseRewarded.loadAd();
-                    wortiseRewarded.setListener(new com.wortise.ads.rewarded.RewardedAd.Listener() {
-                        @Override
-                        public void onRewardedShown(@NonNull com.wortise.ads.rewarded.RewardedAd rewardedAd) {
-
-                        }
-
-                        @Override
-                        public void onRewardedLoaded(@NonNull com.wortise.ads.rewarded.RewardedAd rewardedAd) {
-
-                        }
-
-                        @Override
-                        public void onRewardedFailed(@NonNull com.wortise.ads.rewarded.RewardedAd rewardedAd, @NonNull AdError adError) {
-
-                        }
-
-                        @Override
-                        public void onRewardedDismissed(@NonNull com.wortise.ads.rewarded.RewardedAd rewardedAd) {
-
-                        }
-
-                        @Override
-                        public void onRewardedCompleted(@NonNull com.wortise.ads.rewarded.RewardedAd rewardedAd, @NonNull Reward reward) {
-                            unlockreward = true;
-                        }
-
-                        @Override
-                        public void onRewardedClicked(@NonNull com.wortise.ads.rewarded.RewardedAd rewardedAd) {
-
-                        }
-
-                    });
                     break;
                 case "FACEBOOK":
                     rewardedVideoAdFan = new RewardedVideoAd(activity, idBackupReward);
@@ -1014,40 +944,6 @@ public class AliendroidReward {
                     };
                     break;
                 case "WORTISE":
-                    wortiseRewarded = new com.wortise.ads.rewarded.RewardedAd(activity, idBackupReward);
-                    wortiseRewarded.loadAd();
-                    wortiseRewarded.setListener(new com.wortise.ads.rewarded.RewardedAd.Listener() {
-                        @Override
-                        public void onRewardedShown(@NonNull com.wortise.ads.rewarded.RewardedAd rewardedAd) {
-
-                        }
-
-                        @Override
-                        public void onRewardedLoaded(@NonNull com.wortise.ads.rewarded.RewardedAd rewardedAd) {
-
-                        }
-
-                        @Override
-                        public void onRewardedFailed(@NonNull com.wortise.ads.rewarded.RewardedAd rewardedAd, @NonNull AdError adError) {
-
-                        }
-
-                        @Override
-                        public void onRewardedDismissed(@NonNull com.wortise.ads.rewarded.RewardedAd rewardedAd) {
-
-                        }
-
-                        @Override
-                        public void onRewardedCompleted(@NonNull com.wortise.ads.rewarded.RewardedAd rewardedAd, @NonNull Reward reward) {
-                            unlockreward = true;
-                        }
-
-                        @Override
-                        public void onRewardedClicked(@NonNull com.wortise.ads.rewarded.RewardedAd rewardedAd) {
-
-                        }
-
-                    });
                     break;
             }
         } catch (Exception e) {
@@ -1312,40 +1208,6 @@ public class AliendroidReward {
                     };
                     break;
                 case "WORTISE":
-                    wortiseRewarded = new com.wortise.ads.rewarded.RewardedAd(activity, idBackupReward);
-                    wortiseRewarded.loadAd();
-                    wortiseRewarded.setListener(new com.wortise.ads.rewarded.RewardedAd.Listener() {
-                        @Override
-                        public void onRewardedShown(@NonNull com.wortise.ads.rewarded.RewardedAd rewardedAd) {
-
-                        }
-
-                        @Override
-                        public void onRewardedLoaded(@NonNull com.wortise.ads.rewarded.RewardedAd rewardedAd) {
-
-                        }
-
-                        @Override
-                        public void onRewardedFailed(@NonNull com.wortise.ads.rewarded.RewardedAd rewardedAd, @NonNull AdError adError) {
-
-                        }
-
-                        @Override
-                        public void onRewardedDismissed(@NonNull com.wortise.ads.rewarded.RewardedAd rewardedAd) {
-
-                        }
-
-                        @Override
-                        public void onRewardedCompleted(@NonNull com.wortise.ads.rewarded.RewardedAd rewardedAd, @NonNull Reward reward) {
-                            unlockreward = true;
-                        }
-
-                        @Override
-                        public void onRewardedClicked(@NonNull com.wortise.ads.rewarded.RewardedAd rewardedAd) {
-
-                        }
-
-                    });
                     break;
             }
         } catch (Exception e) {
@@ -1614,40 +1476,6 @@ public class AliendroidReward {
                     };
                     break;
                 case "WORTISE":
-                    wortiseRewarded = new com.wortise.ads.rewarded.RewardedAd(activity, idBackupReward);
-                    wortiseRewarded.loadAd();
-                    wortiseRewarded.setListener(new com.wortise.ads.rewarded.RewardedAd.Listener() {
-                        @Override
-                        public void onRewardedShown(@NonNull com.wortise.ads.rewarded.RewardedAd rewardedAd) {
-
-                        }
-
-                        @Override
-                        public void onRewardedLoaded(@NonNull com.wortise.ads.rewarded.RewardedAd rewardedAd) {
-
-                        }
-
-                        @Override
-                        public void onRewardedFailed(@NonNull com.wortise.ads.rewarded.RewardedAd rewardedAd, @NonNull AdError adError) {
-
-                        }
-
-                        @Override
-                        public void onRewardedDismissed(@NonNull com.wortise.ads.rewarded.RewardedAd rewardedAd) {
-
-                        }
-
-                        @Override
-                        public void onRewardedCompleted(@NonNull com.wortise.ads.rewarded.RewardedAd rewardedAd, @NonNull Reward reward) {
-                            unlockreward = true;
-                        }
-
-                        @Override
-                        public void onRewardedClicked(@NonNull com.wortise.ads.rewarded.RewardedAd rewardedAd) {
-
-                        }
-
-                    });
                     break;
 
             }
@@ -1930,40 +1758,6 @@ public class AliendroidReward {
                     };
                     break;
                 case "WORTISE":
-                    wortiseRewarded = new com.wortise.ads.rewarded.RewardedAd(activity, idBackupReward);
-                    wortiseRewarded.loadAd();
-                    wortiseRewarded.setListener(new com.wortise.ads.rewarded.RewardedAd.Listener() {
-                        @Override
-                        public void onRewardedShown(@NonNull com.wortise.ads.rewarded.RewardedAd rewardedAd) {
-
-                        }
-
-                        @Override
-                        public void onRewardedLoaded(@NonNull com.wortise.ads.rewarded.RewardedAd rewardedAd) {
-
-                        }
-
-                        @Override
-                        public void onRewardedFailed(@NonNull com.wortise.ads.rewarded.RewardedAd rewardedAd, @NonNull AdError adError) {
-
-                        }
-
-                        @Override
-                        public void onRewardedDismissed(@NonNull com.wortise.ads.rewarded.RewardedAd rewardedAd) {
-
-                        }
-
-                        @Override
-                        public void onRewardedCompleted(@NonNull com.wortise.ads.rewarded.RewardedAd rewardedAd, @NonNull Reward reward) {
-                            unlockreward = true;
-                        }
-
-                        @Override
-                        public void onRewardedClicked(@NonNull com.wortise.ads.rewarded.RewardedAd rewardedAd) {
-
-                        }
-
-                    });
                     break;
 
             }
@@ -2242,40 +2036,6 @@ public class AliendroidReward {
                     };
                     break;
                 case "WORTISE":
-                    wortiseRewarded = new com.wortise.ads.rewarded.RewardedAd(activity, idBackupReward);
-                    wortiseRewarded.loadAd();
-                    wortiseRewarded.setListener(new com.wortise.ads.rewarded.RewardedAd.Listener() {
-                        @Override
-                        public void onRewardedShown(@NonNull com.wortise.ads.rewarded.RewardedAd rewardedAd) {
-
-                        }
-
-                        @Override
-                        public void onRewardedLoaded(@NonNull com.wortise.ads.rewarded.RewardedAd rewardedAd) {
-
-                        }
-
-                        @Override
-                        public void onRewardedFailed(@NonNull com.wortise.ads.rewarded.RewardedAd rewardedAd, @NonNull AdError adError) {
-
-                        }
-
-                        @Override
-                        public void onRewardedDismissed(@NonNull com.wortise.ads.rewarded.RewardedAd rewardedAd) {
-
-                        }
-
-                        @Override
-                        public void onRewardedCompleted(@NonNull com.wortise.ads.rewarded.RewardedAd rewardedAd, @NonNull Reward reward) {
-                            unlockreward = true;
-                        }
-
-                        @Override
-                        public void onRewardedClicked(@NonNull com.wortise.ads.rewarded.RewardedAd rewardedAd) {
-
-                        }
-
-                    });
                     break;
             }
         } catch (Exception e) {
@@ -2395,9 +2155,7 @@ public class AliendroidReward {
                             AlienMediationAds.ShowReward();
                             break;
                         case "WORTISE":
-                            if (wortiseRewarded.isAvailable()) {
-                                wortiseRewarded.showAd();
-                            }
+
                             break;
                         case "FACEBOOK":
                             if (rewardedVideoAdFan.isAdLoaded()){
@@ -2646,40 +2404,6 @@ public class AliendroidReward {
                     };
                     break;
                 case "WORTISE":
-                    wortiseRewarded = new com.wortise.ads.rewarded.RewardedAd(activity, idBackupReward);
-                    wortiseRewarded.loadAd();
-                    wortiseRewarded.setListener(new com.wortise.ads.rewarded.RewardedAd.Listener() {
-                        @Override
-                        public void onRewardedShown(@NonNull com.wortise.ads.rewarded.RewardedAd rewardedAd) {
-
-                        }
-
-                        @Override
-                        public void onRewardedLoaded(@NonNull com.wortise.ads.rewarded.RewardedAd rewardedAd) {
-
-                        }
-
-                        @Override
-                        public void onRewardedFailed(@NonNull com.wortise.ads.rewarded.RewardedAd rewardedAd, @NonNull AdError adError) {
-
-                        }
-
-                        @Override
-                        public void onRewardedDismissed(@NonNull com.wortise.ads.rewarded.RewardedAd rewardedAd) {
-
-                        }
-
-                        @Override
-                        public void onRewardedCompleted(@NonNull com.wortise.ads.rewarded.RewardedAd rewardedAd, @NonNull Reward reward) {
-                            unlockreward = true;
-                        }
-
-                        @Override
-                        public void onRewardedClicked(@NonNull com.wortise.ads.rewarded.RewardedAd rewardedAd) {
-
-                        }
-
-                    });
                     break;
             }
         } catch (Exception e) {
@@ -2951,40 +2675,6 @@ public class AliendroidReward {
                     };
                     break;
                 case "WORTISE":
-                    wortiseRewarded = new com.wortise.ads.rewarded.RewardedAd(activity, idBackupReward);
-                    wortiseRewarded.loadAd();
-                    wortiseRewarded.setListener(new com.wortise.ads.rewarded.RewardedAd.Listener() {
-                        @Override
-                        public void onRewardedShown(@NonNull com.wortise.ads.rewarded.RewardedAd rewardedAd) {
-
-                        }
-
-                        @Override
-                        public void onRewardedLoaded(@NonNull com.wortise.ads.rewarded.RewardedAd rewardedAd) {
-
-                        }
-
-                        @Override
-                        public void onRewardedFailed(@NonNull com.wortise.ads.rewarded.RewardedAd rewardedAd, @NonNull AdError adError) {
-
-                        }
-
-                        @Override
-                        public void onRewardedDismissed(@NonNull com.wortise.ads.rewarded.RewardedAd rewardedAd) {
-
-                        }
-
-                        @Override
-                        public void onRewardedCompleted(@NonNull com.wortise.ads.rewarded.RewardedAd rewardedAd, @NonNull Reward reward) {
-                            unlockreward = true;
-                        }
-
-                        @Override
-                        public void onRewardedClicked(@NonNull com.wortise.ads.rewarded.RewardedAd rewardedAd) {
-
-                        }
-
-                    });
                     break;
             }
         } catch (Exception e) {
@@ -2993,298 +2683,6 @@ public class AliendroidReward {
 
     }
     public static void LoadRewardWortise(Activity activity, String selectBackupAds, String idReward, String idBackupReward) {
-        try {
-
-            wortiseRewarded = new com.wortise.ads.rewarded.RewardedAd(activity, idReward);
-            wortiseRewarded.loadAd();
-            wortiseRewarded.setListener(new com.wortise.ads.rewarded.RewardedAd.Listener() {
-                @Override
-                public void onRewardedShown(@NonNull com.wortise.ads.rewarded.RewardedAd rewardedAd) {
-
-                }
-
-                @Override
-                public void onRewardedLoaded(@NonNull com.wortise.ads.rewarded.RewardedAd rewardedAd) {
-
-                }
-
-                @Override
-                public void onRewardedFailed(@NonNull com.wortise.ads.rewarded.RewardedAd rewardedAd, @NonNull AdError adError) {
-
-                }
-
-                @Override
-                public void onRewardedDismissed(@NonNull com.wortise.ads.rewarded.RewardedAd rewardedAd) {
-
-                }
-
-                @Override
-                public void onRewardedCompleted(@NonNull com.wortise.ads.rewarded.RewardedAd rewardedAd, @NonNull Reward reward) {
-                    unlockreward = true;
-                }
-
-                @Override
-                public void onRewardedClicked(@NonNull com.wortise.ads.rewarded.RewardedAd rewardedAd) {
-
-                }
-
-            });
-
-            switch (selectBackupAds) {
-                case "FACEBOOK":
-                    rewardedVideoAdFan = new RewardedVideoAd(activity, idBackupReward);
-                    com.facebook.ads.RewardedVideoAdListener rewardedVideoAdListener2 = new  com.facebook.ads.RewardedVideoAdListener() {
-
-                        @Override
-                        public void onError(Ad ad, com.facebook.ads.AdError adError) {
-
-                        }
-
-                        @Override
-                        public void onAdLoaded(Ad ad) {
-                            // Rewarded video ad is loaded and ready to be displayed
-                            Log.d(TAG, "Rewarded video ad is loaded and ready to be displayed!");
-                        }
-
-                        @Override
-                        public void onAdClicked(Ad ad) {
-                            // Rewarded video ad clicked
-                            Log.d(TAG, "Rewarded video ad clicked!");
-                        }
-
-                        @Override
-                        public void onLoggingImpression(Ad ad) {
-                            // Rewarded Video ad impression - the event will fire when the
-                            // video starts playing
-                            Log.d(TAG, "Rewarded video ad impression logged!");
-                        }
-
-                        @Override
-                        public void onRewardedVideoCompleted() {
-                            unlockreward = true;
-                        }
-
-                        @Override
-                        public void onRewardedVideoClosed() {
-                            // The Rewarded Video ad was closed - this can occur during the video
-                            // by closing the app, or closing the end card.
-                            Log.d(TAG, "Rewarded video ad closed!");
-                        }
-                    };
-                    rewardedVideoAdFan.loadAd(
-                            rewardedVideoAdFan.buildLoadAdConfig()
-                                    .withAdListener(rewardedVideoAdListener2)
-                                    .build());
-                    break;
-                case "APPLOVIN-M":
-                    rewardedAd = MaxRewardedAd.getInstance(idBackupReward, activity);
-                    rewardedAd.loadAd();
-                    MaxRewardedAdListener maxRewardedAdListener = new MaxRewardedAdListener() {
-                        @Override
-                        public void onRewardedVideoStarted(MaxAd ad) {
-
-                        }
-
-                        @Override
-                        public void onRewardedVideoCompleted(MaxAd ad) {
-                            unlockreward = true;
-                        }
-
-                        @Override
-                        public void onUserRewarded(MaxAd ad, MaxReward reward) {
-
-                        }
-
-                        @Override
-                        public void onAdLoaded(MaxAd ad) {
-
-                        }
-
-                        @Override
-                        public void onAdDisplayed(MaxAd ad) {
-
-                        }
-
-                        @Override
-                        public void onAdHidden(MaxAd ad) {
-
-                        }
-
-                        @Override
-                        public void onAdClicked(MaxAd ad) {
-
-                        }
-
-                        @Override
-                        public void onAdLoadFailed(String adUnitId, MaxError error) {
-
-                        }
-
-                        @Override
-                        public void onAdDisplayFailed(MaxAd ad, MaxError error) {
-
-                        }
-                    };
-                    rewardedAd.setListener(maxRewardedAdListener);
-                    break;
-                case "MOPUB":
-                case "UNITY":
-                    break;
-                case "APPLOVIN-D":
-                    incentivizedInterstitial = AppLovinIncentivizedInterstitial.create(idBackupReward, AppLovinSdk.getInstance(activity));
-                    incentivizedInterstitial.preload(new AppLovinAdLoadListener() {
-                        @Override
-                        public void adReceived(AppLovinAd appLovinAd) {
-
-                        }
-
-                        @Override
-                        public void failedToReceiveAd(int errorCode) {
-
-                        }
-                    });
-                    break;
-                case "IRON":
-                    IronSource.setRewardedVideoListener(new RewardedVideoListener() {
-                        @Override
-                        public void onRewardedVideoAdOpened() {
-                        }
-
-                        @Override
-                        public void onRewardedVideoAdClosed() {
-                        }
-
-                        @Override
-                        public void onRewardedVideoAvailabilityChanged(boolean available) {
-                        }
-
-                        @Override
-                        public void onRewardedVideoAdRewarded(Placement placement) {
-                            unlockreward = true;
-                        }
-
-                        @Override
-                        public void onRewardedVideoAdShowFailed(IronSourceError error) {
-                        }
-
-                        @Override
-                        public void onRewardedVideoAdClicked(Placement placement) {
-                        }
-
-                        @Override
-                        public void onRewardedVideoAdStarted() {
-                        }
-
-                        @Override
-                        public void onRewardedVideoAdEnded() {
-                        }
-                    });
-                    break;
-                case "STARTAPP":
-                    rewardedVideo = new StartAppAd(activity);
-                    rewardedVideo.setVideoListener(new VideoListener() {
-                        @Override
-                        public void onVideoCompleted() {
-                            unlockreward = true;
-                        }
-                    });
-
-                    rewardedVideo.loadAd(StartAppAd.AdMode.REWARDED_VIDEO, new AdEventListener() {
-                        @Override
-                        public void onReceiveAd(com.startapp.sdk.adsbase.Ad ad) {
-
-                        }
-                        @Override
-                        public void onFailedToReceiveAd(com.startapp.sdk.adsbase.Ad ad) {
-
-                        }
-                    });
-                    break;
-
-                case "ALIEN-M" :
-                    AlienMediationAds.LoadRewarded(idBackupReward);
-                    AlienMediationAds.onLoadRewardsMediation = new OnLoadRewardsMediation() {
-                        @Override
-                        public void onRewardsAdLoaded() {
-
-                        }
-
-                        @Override
-                        public void onRewardsAdClosed() {
-
-                        }
-
-                        @Override
-                        public void onRewardsAdReward() {
-                            unlockreward = true;
-                        }
-
-                        @Override
-                        public void onRewardsAdClicked() {
-
-                        }
-
-                        @Override
-                        public void onRewardsAdFailedToLoad(String error) {
-
-                        }
-                    };
-                    break;
-                case "ALIEN-V":
-                    AlienViewAds.RewardsAds(activity,idBackupReward);
-                    AlienViewAds.onLoadRewardsView = new OnLoadRewardsView() {
-                        @Override
-                        public void onRewardsAdLoaded() {
-                            if (onLoadRewardsAlienView!=null){
-                                onLoadRewardsAlienView.onRewardsAdLoaded();
-                            }
-                        }
-
-                        @Override
-                        public void onRewardsAdClosed() {
-                            if (onLoadRewardsAlienView!=null){
-                                onLoadRewardsAlienView.onRewardsAdClosed();
-                            }
-                        }
-
-                        @Override
-                        public void onRewardsAdClicked() {
-                            if (onLoadRewardsAlienView!=null){
-                                onLoadRewardsAlienView.onRewardsAdClicked();
-                            }
-                        }
-
-                        @Override
-                        public void onRewardsAdFailedToLoad(String error) {
-                            if (onLoadRewardsAlienView!=null){
-                                onLoadRewardsAlienView.onRewardsAdFailedToLoad("");
-                            }
-                        }
-                    };
-                    break;
-
-                case "ADMOB":
-                    AdRequest adRequest = new AdRequest.Builder()
-                            .build();
-                    RewardedAd.load(activity, idBackupReward,
-                            adRequest, new RewardedAdLoadCallback() {
-                                @Override
-                                public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
-                                    mRewardedAd = null;
-                                }
-
-                                @Override
-                                public void onAdLoaded(@NonNull RewardedAd rewardedAd) {
-
-                                    mRewardedAd = rewardedAd;
-
-                                }
-                            });
-                    break;
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
 
     }
     public static void ShowRewardAdmob(Activity activity, String selecBackuptAds, String idReward, String idBackupReward) {
@@ -3392,9 +2790,7 @@ public class AliendroidReward {
                         }
                         break;
                     case "WORTISE":
-                        if (wortiseRewarded.isAvailable()) {
-                            wortiseRewarded.showAd();
-                        }
+
                         break;
                     case "FACEBOOK":
                         if (rewardedVideoAdFan == null || !rewardedVideoAdFan.isAdLoaded()) {
@@ -3512,9 +2908,7 @@ public class AliendroidReward {
                         }
                         break;
                     case "WORTISE":
-                        if (wortiseRewarded.isAvailable()) {
-                            wortiseRewarded.showAd();
-                        }
+
                         break;
                 }
             } else {
@@ -3620,9 +3014,7 @@ public class AliendroidReward {
                         AlienMediationAds.ShowReward();
                         break;
                     case "WORTISE":
-                        if (wortiseRewarded.isAvailable()) {
-                            wortiseRewarded.showAd();
-                        }
+
                         break;
                     case "FACEBOOK":
                          if (rewardedVideoAdFan == null || !rewardedVideoAdFan.isAdLoaded()) {
@@ -3739,9 +3131,7 @@ public class AliendroidReward {
                         AlienMediationAds.ShowReward();
                         break;
                     case "WORTISE":
-                        if (wortiseRewarded.isAvailable()) {
-                            wortiseRewarded.showAd();
-                        }
+
                         break;
                 }
 
@@ -3860,9 +3250,7 @@ public class AliendroidReward {
                         AlienMediationAds.ShowReward();
                         break;
                     case "WORTISE":
-                        if (wortiseRewarded.isAvailable()) {
-                            wortiseRewarded.showAd();
-                        }
+
                         break;
                 }
 
@@ -3987,9 +3375,7 @@ public class AliendroidReward {
                         AlienMediationAds.ShowReward();
                         break;
                     case "WORTISE":
-                        if (wortiseRewarded.isAvailable()) {
-                            wortiseRewarded.showAd();
-                        }
+
                         break;
                 }
 
@@ -4093,9 +3479,7 @@ public class AliendroidReward {
                             }
                             break;
                         case "WORTISE":
-                            if (wortiseRewarded.isAvailable()) {
-                                wortiseRewarded.showAd();
-                            }
+
                             break;
                     }
                 }
@@ -4216,9 +3600,7 @@ public class AliendroidReward {
                             }
                             break;
                         case "WORTISE":
-                            if (wortiseRewarded.isAvailable()) {
-                                wortiseRewarded.showAd();
-                            }
+
                             break;
                     }
                 }
@@ -4230,114 +3612,7 @@ public class AliendroidReward {
         LoadRewardAlienMediation(activity, selecBackuptAds, idReward, idBackupReward);
     }
     public static void ShowRewardWortise(Activity activity, String selecBackuptAds, String idReward, String idBackupReward) {
-        try {
-            if (wortiseRewarded.isAvailable()) {
-                wortiseRewarded.showAd();
-            } else {
-                switch (selecBackuptAds) {
-                    case "FACEBOOK":
-                         if (rewardedVideoAdFan == null || !rewardedVideoAdFan.isAdLoaded()) {
 
-                        } else {
-                            rewardedVideoAdFan.show();
-                        }
-                        break;
-                    case "APPLOVIN-M":
-                        if (rewardedAd.isReady()) {
-                            rewardedAd.showAd();
-                        }
-                        break;
-                    case "MOPUB":
-                    case "UNITY":
-                        break;
-                    case "APPLOVIN-D":
-                        if (incentivizedInterstitial != null) {
-                            incentivizedInterstitial.show(activity, new AppLovinAdRewardListener() {
-                                @Override
-                                public void userRewardVerified(AppLovinAd ad, Map<String, String> response) {
-                                    unlockreward = true;
-                                }
-
-                                @Override
-                                public void userOverQuota(AppLovinAd ad, Map<String, String> response) {
-
-                                }
-
-                                @Override
-                                public void userRewardRejected(AppLovinAd ad, Map<String, String> response) {
-
-                                }
-
-                                @Override
-                                public void validationRequestFailed(AppLovinAd ad, int errorCode) {
-
-                                }
-
-
-                            }, null, new AppLovinAdDisplayListener() {
-                                @Override
-                                public void adDisplayed(AppLovinAd appLovinAd) {
-
-                                }
-
-                                @Override
-                                public void adHidden(AppLovinAd appLovinAd) {
-                                    incentivizedInterstitial.preload(null);
-                                }
-                            });
-                        }
-                        break;
-                    case "IRON":
-                        IronSource.showRewardedVideo(idBackupReward);
-                        break;
-                    case "STARTAPP":
-                        if (rewardedVideo.isReady()) {
-                            rewardedVideo.showAd();
-                        }
-                        break;
-                    case "ALIEN-V":
-                        AlienViewAds.ShowRewards();
-                        AlienViewAds.onShowRewardsView = new OnShowRewardsView() {
-                            @Override
-                            public void onAdSuccess() {
-                                if (onShowRewardsAlienView != null) {
-                                    onShowRewardsAlienView.onAdSuccess();
-                                }
-                                unlockreward = true;
-                            }
-
-                            @Override
-                            public void onAdFailedShow() {
-                                if (onShowRewardsAlienView != null) {
-                                    onShowRewardsAlienView.onAdSuccess();
-                                }
-                            }
-                        };
-                        break;
-                    case "ALIEN-M":
-                        AlienMediationAds.ShowReward();
-                        break;
-
-                    case "ADMOB":
-                        if (mRewardedAd != null) {
-                            Activity activityContext = activity;
-                            mRewardedAd.show(activityContext, new OnUserEarnedRewardListener() {
-                                @Override
-                                public void onUserEarnedReward(@NonNull RewardItem rewardItem) {
-                                    unlockreward = true;
-                                }
-                            });
-                        }
-                        break;
-                }
-            }
-
-
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        LoadRewardWortise(activity, selecBackuptAds, idReward, idBackupReward);
     }
 
 }

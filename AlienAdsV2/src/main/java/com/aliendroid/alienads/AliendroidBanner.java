@@ -51,10 +51,10 @@ import com.ironsource.mediationsdk.IronSourceBannerLayout;
 import com.ironsource.mediationsdk.logger.IronSourceError;
 import com.startapp.sdk.ads.banner.Banner;
 import com.startapp.sdk.ads.banner.BannerListener;
-import com.wortise.ads.banner.BannerAd;
+
 
 public class AliendroidBanner {
-    public static BannerAd wortiseBannerAd;
+
     public static MaxAdView adViewMax;
     public static AdView adViewAdmob;
     public static AdView adViewAdmob2;
@@ -123,9 +123,6 @@ public class AliendroidBanner {
                         }
                         break;
                     case "WORTISE":
-                        if (wortiseBannerAd != null) {
-                            wortiseBannerAd.destroy();
-                        }
                         break;
                 }
             }
@@ -417,35 +414,7 @@ public class AliendroidBanner {
                         });
                         break;
                     case "WORTISE":
-                        wortiseBannerAd = new BannerAd(activity);
-                        wortiseBannerAd.setAdSize(com.wortise.ads.AdSize.HEIGHT_50);
-                        wortiseBannerAd.setAdUnitId(idBannerBackup);
-                        layAds.addView(wortiseBannerAd);
-                        wortiseBannerAd.loadAd();
-                        wortiseBannerAd.setListener(new BannerAd.Listener() {
-                            @Override
-                            public void onBannerClicked(@NonNull BannerAd bannerAd) {
-                                if (onLoadBannerWortise!=null){
-                                    onLoadBannerWortise.onBannerClicked();
-                                }
 
-                            }
-
-                            @Override
-                            public void onBannerFailed(@NonNull BannerAd bannerAd, @NonNull com.wortise.ads.AdError adError) {
-                                if (onLoadBannerWortise!=null){
-                                    onLoadBannerWortise.onBannerFailed();
-                                }
-                                layAds.setVisibility(View.GONE);
-                            }
-
-                            @Override
-                            public void onBannerLoaded(@NonNull BannerAd bannerAd) {
-                                if (onLoadBannerWortise!=null){
-                                    onLoadBannerWortise.onBannerLoaded();
-                                }
-                            }
-                        });
                         break;
                 }
             }
@@ -524,9 +493,7 @@ public class AliendroidBanner {
                         }
                         break;
                     case "WORTISE":
-                        if (wortiseBannerAd != null) {
-                            wortiseBannerAd.destroy();
-                        }
+
                         break;
                 }
             }
@@ -779,35 +746,7 @@ public class AliendroidBanner {
                         AlienMediationAds.SmallBanner(activity, layAds, idBannerBackup);
                         break;
                     case "WORTISE":
-                        wortiseBannerAd = new BannerAd(activity);
-                        wortiseBannerAd.setAdSize(com.wortise.ads.AdSize.HEIGHT_50);
-                        wortiseBannerAd.setAdUnitId(idBannerBackup);
-                        layAds.addView(wortiseBannerAd);
-                        wortiseBannerAd.loadAd();
-                        wortiseBannerAd.setListener(new BannerAd.Listener() {
-                            @Override
-                            public void onBannerClicked(@NonNull BannerAd bannerAd) {
-                                if (onLoadBannerWortise!=null){
-                                    onLoadBannerWortise.onBannerClicked();
-                                }
 
-                            }
-
-                            @Override
-                            public void onBannerFailed(@NonNull BannerAd bannerAd, @NonNull com.wortise.ads.AdError adError) {
-                                if (onLoadBannerWortise!=null){
-                                    onLoadBannerWortise.onBannerFailed();
-                                }
-                                layAds.setVisibility(View.GONE);
-                            }
-
-                            @Override
-                            public void onBannerLoaded(@NonNull BannerAd bannerAd) {
-                                if (onLoadBannerWortise!=null){
-                                    onLoadBannerWortise.onBannerLoaded();
-                                }
-                            }
-                        });
                         break;
                 }
             }
@@ -1187,35 +1126,7 @@ public class AliendroidBanner {
                         AlienMediationAds.SmallBanner(activity, layAds, idBannerBackup);
                         break;
                     case "WORTISE":
-                        wortiseBannerAd = new BannerAd(activity);
-                        wortiseBannerAd.setAdSize(com.wortise.ads.AdSize.HEIGHT_50);
-                        wortiseBannerAd.setAdUnitId(idBannerBackup);
-                        layAds.addView(wortiseBannerAd);
-                        wortiseBannerAd.loadAd();
-                        wortiseBannerAd.setListener(new BannerAd.Listener() {
-                            @Override
-                            public void onBannerClicked(@NonNull BannerAd bannerAd) {
-                                if (onLoadBannerWortise!=null){
-                                    onLoadBannerWortise.onBannerClicked();
-                                }
 
-                            }
-
-                            @Override
-                            public void onBannerFailed(@NonNull BannerAd bannerAd, @NonNull com.wortise.ads.AdError adError) {
-                                if (onLoadBannerWortise!=null){
-                                    onLoadBannerWortise.onBannerFailed();
-                                }
-                                layAds.setVisibility(View.GONE);
-                            }
-
-                            @Override
-                            public void onBannerLoaded(@NonNull BannerAd bannerAd) {
-                                if (onLoadBannerWortise!=null){
-                                    onLoadBannerWortise.onBannerLoaded();
-                                }
-                            }
-                        });
                         break;
                 }
             }
@@ -1261,9 +1172,7 @@ public class AliendroidBanner {
                         }
                         break;
                     case "WORTISE":
-                        if (wortiseBannerAd !=null){
-                            wortiseBannerAd.destroy();
-                        }
+
                 }
             }
 
@@ -1338,9 +1247,7 @@ public class AliendroidBanner {
                         }
                         break;
                     case "WORTISE":
-                        if (wortiseBannerAd !=null){
-                            wortiseBannerAd.destroy();
-                        }
+
                         break;
                 }
             }
@@ -1661,35 +1568,7 @@ public class AliendroidBanner {
                         AlienMediationAds.SmallBanner(activity, layAds, idBannerBackup);
                         break;
                     case "WORTISE":
-                        wortiseBannerAd = new BannerAd(activity);
-                        wortiseBannerAd.setAdSize(com.wortise.ads.AdSize.HEIGHT_50);
-                        wortiseBannerAd.setAdUnitId(idBannerBackup);
-                        layAds.addView(wortiseBannerAd);
-                        wortiseBannerAd.loadAd();
-                        wortiseBannerAd.setListener(new BannerAd.Listener() {
-                            @Override
-                            public void onBannerClicked(@NonNull BannerAd bannerAd) {
-                                if (onLoadBannerWortise!=null){
-                                    onLoadBannerWortise.onBannerClicked();
-                                }
 
-                            }
-
-                            @Override
-                            public void onBannerFailed(@NonNull BannerAd bannerAd, @NonNull com.wortise.ads.AdError adError) {
-                                if (onLoadBannerWortise!=null){
-                                    onLoadBannerWortise.onBannerFailed();
-                                }
-                                layAds.setVisibility(View.GONE);
-                            }
-
-                            @Override
-                            public void onBannerLoaded(@NonNull BannerAd bannerAd) {
-                                if (onLoadBannerWortise!=null){
-                                    onLoadBannerWortise.onBannerLoaded();
-                                }
-                            }
-                        });
                         break;
                 }
             }
@@ -1750,9 +1629,7 @@ public class AliendroidBanner {
                         }
                         break;
                     case  "WORTISE" :
-                        if (wortiseBannerAd !=null) {
-                            wortiseBannerAd.destroy();
-                        }
+
                         break;
                 }
             }
@@ -2073,35 +1950,7 @@ public class AliendroidBanner {
                         AlienMediationAds.SmallBanner(activity, layAds, idBannerBackup);
                         break;
                     case "WORTISE":
-                        wortiseBannerAd = new BannerAd(activity);
-                        wortiseBannerAd.setAdSize(com.wortise.ads.AdSize.HEIGHT_50);
-                        wortiseBannerAd.setAdUnitId(idBannerBackup);
-                        layAds.addView(wortiseBannerAd);
-                        wortiseBannerAd.loadAd();
-                        wortiseBannerAd.setListener(new BannerAd.Listener() {
-                            @Override
-                            public void onBannerClicked(@NonNull BannerAd bannerAd) {
-                                if (onLoadBannerWortise!=null){
-                                    onLoadBannerWortise.onBannerClicked();
-                                }
 
-                            }
-
-                            @Override
-                            public void onBannerFailed(@NonNull BannerAd bannerAd, @NonNull com.wortise.ads.AdError adError) {
-                                if (onLoadBannerWortise!=null){
-                                    onLoadBannerWortise.onBannerFailed();
-                                }
-                                layAds.setVisibility(View.GONE);
-                            }
-
-                            @Override
-                            public void onBannerLoaded(@NonNull BannerAd bannerAd) {
-                                if (onLoadBannerWortise!=null){
-                                    onLoadBannerWortise.onBannerLoaded();
-                                }
-                            }
-                        });
                         break;
                 }
             }
@@ -2172,9 +2021,7 @@ public class AliendroidBanner {
                         }
                         break;
                     case  "WORTISE" :
-                        if (wortiseBannerAd !=null){
-                            wortiseBannerAd.destroy();
-                        }
+
                         break;
                 }
             }
@@ -2478,35 +2325,7 @@ public class AliendroidBanner {
                         AlienMediationAds.SmallBanner(activity, layAds, idBannerBackup);
                         break;
                     case "WORTISE":
-                        wortiseBannerAd = new BannerAd(activity);
-                        wortiseBannerAd.setAdSize(com.wortise.ads.AdSize.HEIGHT_50);
-                        wortiseBannerAd.setAdUnitId(idBannerBackup);
-                        layAds.addView(wortiseBannerAd);
-                        wortiseBannerAd.loadAd();
-                        wortiseBannerAd.setListener(new BannerAd.Listener() {
-                            @Override
-                            public void onBannerClicked(@NonNull BannerAd bannerAd) {
-                                if (onLoadBannerWortise!=null){
-                                    onLoadBannerWortise.onBannerClicked();
-                                }
 
-                            }
-
-                            @Override
-                            public void onBannerFailed(@NonNull BannerAd bannerAd, @NonNull com.wortise.ads.AdError adError) {
-                                if (onLoadBannerWortise!=null){
-                                    onLoadBannerWortise.onBannerFailed();
-                                }
-                                layAds.setVisibility(View.GONE);
-                            }
-
-                            @Override
-                            public void onBannerLoaded(@NonNull BannerAd bannerAd) {
-                                if (onLoadBannerWortise!=null){
-                                    onLoadBannerWortise.onBannerLoaded();
-                                }
-                            }
-                        });
                         break;
                 }
 
@@ -2574,9 +2393,7 @@ public class AliendroidBanner {
                         }
                         break;
                     case "WORTISE":
-                        if (wortiseBannerAd !=null){
-                            wortiseBannerAd.destroy();
-                        }
+
                         break;
                 }
             }
@@ -2889,35 +2706,7 @@ public class AliendroidBanner {
                         AlienMediationAds.SmallBanner(activity, layAds, idBannerBackup);
                         break;
                     case "WORTISE":
-                        wortiseBannerAd = new BannerAd(activity);
-                        wortiseBannerAd.setAdSize(com.wortise.ads.AdSize.HEIGHT_50);
-                        wortiseBannerAd.setAdUnitId(idBannerBackup);
-                        layAds.addView(wortiseBannerAd);
-                        wortiseBannerAd.loadAd();
-                        wortiseBannerAd.setListener(new BannerAd.Listener() {
-                            @Override
-                            public void onBannerClicked(@NonNull BannerAd bannerAd) {
-                                if (onLoadBannerWortise!=null){
-                                    onLoadBannerWortise.onBannerClicked();
-                                }
 
-                            }
-
-                            @Override
-                            public void onBannerFailed(@NonNull BannerAd bannerAd, @NonNull com.wortise.ads.AdError adError) {
-                                if (onLoadBannerWortise!=null){
-                                    onLoadBannerWortise.onBannerFailed();
-                                }
-                                layAds.setVisibility(View.GONE);
-                            }
-
-                            @Override
-                            public void onBannerLoaded(@NonNull BannerAd bannerAd) {
-                                if (onLoadBannerWortise!=null){
-                                    onLoadBannerWortise.onBannerLoaded();
-                                }
-                            }
-                        });
                         break;
                 }
             }
@@ -2989,9 +2778,7 @@ public class AliendroidBanner {
                         }
                         break;
                     case "WORTISE":
-                        if (wortiseBannerAd !=null){
-                            wortiseBannerAd.destroy();
-                        }
+
                         break;
                 }
             }
@@ -3268,35 +3055,7 @@ public class AliendroidBanner {
                         AlienMediationAds.SmallBanner(activity, layAds, idBannerBackup);
                         break;
                     case "WORTISE":
-                        wortiseBannerAd = new BannerAd(activity);
-                        wortiseBannerAd.setAdSize(com.wortise.ads.AdSize.HEIGHT_50);
-                        wortiseBannerAd.setAdUnitId(idBannerBackup);
-                        layAds.addView(wortiseBannerAd);
-                        wortiseBannerAd.loadAd();
-                        wortiseBannerAd.setListener(new BannerAd.Listener() {
-                            @Override
-                            public void onBannerClicked(@NonNull BannerAd bannerAd) {
-                                if (onLoadBannerWortise!=null){
-                                    onLoadBannerWortise.onBannerClicked();
-                                }
 
-                            }
-
-                            @Override
-                            public void onBannerFailed(@NonNull BannerAd bannerAd, @NonNull com.wortise.ads.AdError adError) {
-                                if (onLoadBannerWortise!=null){
-                                    onLoadBannerWortise.onBannerFailed();
-                                }
-                                layAds.setVisibility(View.GONE);
-                            }
-
-                            @Override
-                            public void onBannerLoaded(@NonNull BannerAd bannerAd) {
-                                if (onLoadBannerWortise!=null){
-                                    onLoadBannerWortise.onBannerLoaded();
-                                }
-                            }
-                        });
                         break;
                 }
             }
@@ -3384,9 +3143,7 @@ public class AliendroidBanner {
                         }
                         break;
                     case "WORTISE":
-                        if (wortiseBannerAd!=null){
-                            wortiseBannerAd.destroy();
-                        }
+
                         break;
                 }
             }
@@ -3741,35 +3498,7 @@ public class AliendroidBanner {
                         AlienMediationAds.SmallBanner(activity, layAds, idBannerBackup);
                         break;
                     case "WORTISE":
-                        wortiseBannerAd = new BannerAd(activity);
-                        wortiseBannerAd.setAdSize(com.wortise.ads.AdSize.HEIGHT_50);
-                        wortiseBannerAd.setAdUnitId(idBannerBackup);
-                        layAds.addView(wortiseBannerAd);
-                        wortiseBannerAd.loadAd();
-                        wortiseBannerAd.setListener(new BannerAd.Listener() {
-                            @Override
-                            public void onBannerClicked(@NonNull BannerAd bannerAd) {
-                                if (onLoadBannerWortise!=null){
-                                    onLoadBannerWortise.onBannerClicked();
-                                }
 
-                            }
-
-                            @Override
-                            public void onBannerFailed(@NonNull BannerAd bannerAd, @NonNull com.wortise.ads.AdError adError) {
-                                if (onLoadBannerWortise!=null){
-                                    onLoadBannerWortise.onBannerFailed();
-                                }
-                                layAds.setVisibility(View.GONE);
-                            }
-
-                            @Override
-                            public void onBannerLoaded(@NonNull BannerAd bannerAd) {
-                                if (onLoadBannerWortise!=null){
-                                    onLoadBannerWortise.onBannerLoaded();
-                                }
-                            }
-                        });
                         break;
                 }
             }
@@ -3823,9 +3552,7 @@ public class AliendroidBanner {
                         }
                         break;
                     case "WORTISE" :
-                        if (wortiseBannerAd!=null){
-                            wortiseBannerAd.destroy();
-                        }
+
                         break;
                 }
             }
@@ -4179,35 +3906,7 @@ public class AliendroidBanner {
                         AlienViewAds.Banner(activity, layAds, idBannerBackup);
                         break;
                     case "WORTISE":
-                        wortiseBannerAd = new BannerAd(activity);
-                        wortiseBannerAd.setAdSize(com.wortise.ads.AdSize.HEIGHT_50);
-                        wortiseBannerAd.setAdUnitId(idBannerBackup);
-                        layAds.addView(wortiseBannerAd);
-                        wortiseBannerAd.loadAd();
-                        wortiseBannerAd.setListener(new BannerAd.Listener() {
-                            @Override
-                            public void onBannerClicked(@NonNull BannerAd bannerAd) {
-                                if (onLoadBannerWortise!=null){
-                                    onLoadBannerWortise.onBannerClicked();
-                                }
 
-                            }
-
-                            @Override
-                            public void onBannerFailed(@NonNull BannerAd bannerAd, @NonNull com.wortise.ads.AdError adError) {
-                                if (onLoadBannerWortise!=null){
-                                    onLoadBannerWortise.onBannerFailed();
-                                }
-                                layAds.setVisibility(View.GONE);
-                            }
-
-                            @Override
-                            public void onBannerLoaded(@NonNull BannerAd bannerAd) {
-                                if (onLoadBannerWortise!=null){
-                                    onLoadBannerWortise.onBannerLoaded();
-                                }
-                            }
-                        });
                         break;
                 }
             }
@@ -4216,352 +3915,6 @@ public class AliendroidBanner {
     }
 
     public static void SmallBannerWortise(Activity activity, RelativeLayout layAds, String selectAdsBackup, String idBanner, String idBannerBackup) {
-
-        wortiseBannerAd = new BannerAd(activity);
-        wortiseBannerAd.setAdSize(com.wortise.ads.AdSize.HEIGHT_50);
-        wortiseBannerAd.setAdUnitId(idBanner);
-        layAds.addView(wortiseBannerAd);
-        wortiseBannerAd.loadAd();
-        wortiseBannerAd.setListener(new BannerAd.Listener() {
-            @Override
-            public void onBannerClicked(@NonNull BannerAd bannerAd) {
-                if (onLoadBannerWortise!=null){
-                    onLoadBannerWortise.onBannerClicked();
-                }
-
-            }
-
-            @Override
-            public void onBannerFailed(@NonNull BannerAd bannerAd, @NonNull com.wortise.ads.AdError adError) {
-                if (onLoadBannerWortise!=null){
-                    onLoadBannerWortise.onBannerFailed();
-                }
-                switch (selectAdsBackup) {
-                    case "APPLOVIN-M":
-                        adViewMax = new MaxAdView(idBannerBackup, activity);
-                        MaxAdViewAdListener listener = new MaxAdViewAdListener() {
-                            @Override
-                            public void onAdExpanded(MaxAd ad) {
-                                if (onLoadBannerApplovinMax != null) {
-                                    onLoadBannerApplovinMax.onAdExpanded();
-                                }
-                            }
-
-                            @Override
-                            public void onAdCollapsed(MaxAd ad) {
-                                if (onLoadBannerApplovinMax != null) {
-                                    onLoadBannerApplovinMax.onAdCollapsed();
-                                }
-                            }
-
-                            @Override
-                            public void onAdLoaded(MaxAd ad) {
-                                if (onLoadBannerApplovinMax != null) {
-                                    onLoadBannerApplovinMax.onAdLoaded();
-                                }
-                            }
-
-                            @Override
-                            public void onAdDisplayed(MaxAd ad) {
-                                if (onLoadBannerApplovinMax != null) {
-                                    onLoadBannerApplovinMax.onAdDisplayed();
-                                }
-                            }
-
-                            @Override
-                            public void onAdHidden(MaxAd ad) {
-                                if (onLoadBannerApplovinMax != null) {
-                                    onLoadBannerApplovinMax.onAdHidden();
-                                }
-                            }
-
-                            @Override
-                            public void onAdClicked(MaxAd ad) {
-                                if (onLoadBannerApplovinMax != null) {
-                                    onLoadBannerApplovinMax.onAdClicked();
-                                }
-                            }
-
-                            @Override
-                            public void onAdLoadFailed(String adUnitId, MaxError error) {
-                                if (onLoadBannerApplovinMax != null) {
-                                    onLoadBannerApplovinMax.onAdLoadFailed();
-                                }
-                                layAds.setVisibility(View.GONE);
-                            }
-
-                            @Override
-                            public void onAdDisplayFailed(MaxAd ad, MaxError error) {
-                                if (onLoadBannerApplovinMax != null) {
-                                    onLoadBannerApplovinMax.onAdDisplayFailed();
-                                }
-                                layAds.setVisibility(View.GONE);
-                            }
-                        };
-                        adViewMax.setListener(listener);
-                        final boolean isTablet = AppLovinSdkUtils.isTablet(activity);
-                        final int heightPx = AppLovinSdkUtils.dpToPx(activity, isTablet ? 90 : 50);
-                        adViewMax.setLayoutParams(new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, heightPx));
-                        layAds.addView(adViewMax);
-                        adViewMax.loadAd();
-                        break;
-                    case "MOPUB":
-                    case "UNITY":
-
-                        break;
-                    case "IRON":
-                        adViewIron = IronSource.createBanner(activity, ISBannerSize.BANNER);
-                        FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT,
-                                FrameLayout.LayoutParams.WRAP_CONTENT);
-                        layAds.addView(adViewIron, 0, layoutParams);
-                        com.ironsource.mediationsdk.sdk.BannerListener listenerIron = new com.ironsource.mediationsdk.sdk.BannerListener() {
-                            @Override
-                            public void onBannerAdLoaded() {
-                                if (onLoadBannerIronSource != null) {
-                                    onLoadBannerIronSource.onBannerAdLoaded();
-                                }
-
-                            }
-
-                            @Override
-                            public void onBannerAdLoadFailed(IronSourceError ironSourceError) {
-                                if (onLoadBannerIronSource != null) {
-                                    onLoadBannerIronSource.onBannerAdLoadFailed();
-                                }
-                                layAds.setVisibility(View.GONE);
-
-                            }
-
-                            @Override
-                            public void onBannerAdClicked() {
-                                if (onLoadBannerIronSource != null) {
-                                    onLoadBannerIronSource.onBannerAdClicked();
-                                }
-                            }
-
-                            @Override
-                            public void onBannerAdScreenPresented() {
-                                if (onLoadBannerIronSource != null) {
-                                    onLoadBannerIronSource.onBannerAdScreenPresented();
-                                }
-                            }
-
-                            @Override
-                            public void onBannerAdScreenDismissed() {
-                                if (onLoadBannerIronSource != null) {
-                                    onLoadBannerIronSource.onBannerAdScreenDismissed();
-                                }
-                            }
-
-                            @Override
-                            public void onBannerAdLeftApplication() {
-                                if (onLoadBannerIronSource != null) {
-                                    onLoadBannerIronSource.onBannerAdLeftApplication();
-                                }
-                            }
-                        };
-                        adViewIron.setBannerListener(listenerIron);
-                        IronSource.loadBanner(adViewIron, idBannerBackup);
-
-
-                        break;
-                    case "STARTAPP":
-                        Banner startAppBanner = new Banner(activity, new BannerListener() {
-                            @Override
-                            public void onReceiveAd(View view) {
-                                if (onLoadBannerStartApp != null) {
-                                    onLoadBannerStartApp.onReceiveAd();
-                                }
-
-                            }
-
-                            @Override
-                            public void onFailedToReceiveAd(View view) {
-                                if (onLoadBannerStartApp != null) {
-                                    onLoadBannerStartApp.onFailedToReceiveAd("");
-                                }
-                                layAds.setVisibility(View.GONE);
-                            }
-
-                            @Override
-                            public void onImpression(View view) {
-                                if (onLoadBannerStartApp != null) {
-                                    onLoadBannerStartApp.onImpression();
-                                }
-                            }
-
-                            @Override
-                            public void onClick(View view) {
-                                if (onLoadBannerStartApp != null) {
-                                    onLoadBannerStartApp.onClick();
-                                }
-                            }
-                        });
-
-                        RelativeLayout.LayoutParams bannerParameters =
-                                new RelativeLayout.LayoutParams(
-                                        RelativeLayout.LayoutParams.WRAP_CONTENT,
-                                        RelativeLayout.LayoutParams.WRAP_CONTENT);
-                        bannerParameters.addRule(RelativeLayout.CENTER_HORIZONTAL);
-                        layAds.addView(startAppBanner, bannerParameters);
-                        break;
-                    case "APPLOVIN-D":
-                        AdRequest.Builder builder = new AdRequest.Builder();
-                        Bundle bannerExtras = new Bundle();
-                        bannerExtras.putString("zone_id", idBannerBackup);
-                        builder.addCustomEventExtrasBundle(AppLovinCustomEventBanner.class, bannerExtras);
-
-                        boolean isTablet2 = AppLovinSdkUtils.isTablet(activity);
-                        AppLovinAdSize adSize = isTablet2 ? AppLovinAdSize.LEADER : AppLovinAdSize.BANNER;
-                        adViewDiscovery = new AppLovinAdView(adSize, activity);
-                        AppLovinAdLoadListener loadListener = new AppLovinAdLoadListener() {
-                            @Override
-                            public void adReceived(AppLovinAd ad) {
-                                if (onLoadBannerApplovinDiscovery != null) {
-                                    onLoadBannerApplovinDiscovery.adReceived();
-                                }
-
-                            }
-
-                            @Override
-                            public void failedToReceiveAd(int errorCode) {
-                                if (onLoadBannerApplovinDiscovery != null) {
-                                    onLoadBannerApplovinDiscovery.failedToReceiveAd();
-                                }
-                                layAds.setVisibility(View.GONE);
-
-                            }
-                        };
-                        adViewDiscovery.setAdLoadListener(loadListener);
-                        layAds.addView(adViewDiscovery);
-                        adViewDiscovery.loadNextAd();
-                        break;
-                    case "FACEBOOK":
-                        adViewFAN = new com.facebook.ads.AdView(activity, idBannerBackup,
-                                com.facebook.ads.AdSize.BANNER_HEIGHT_50);
-                        layAds.addView(adViewFAN);
-                        com.facebook.ads.AdListener adListener = new com.facebook.ads.AdListener() {
-                            @Override
-                            public void onError(Ad ad, AdError adError) {
-                                if (onLoadBannerFacebook != null) {
-                                    onLoadBannerFacebook.onError();
-                                }
-                                layAds.setVisibility(View.GONE);
-
-                            }
-
-                            @Override
-                            public void onAdLoaded(Ad ad) {
-                                if (onLoadBannerFacebook != null) {
-                                    onLoadBannerFacebook.onAdLoaded();
-                                }
-
-                            }
-
-                            @Override
-                            public void onAdClicked(Ad ad) {
-                                if (onLoadBannerFacebook != null) {
-                                    onLoadBannerFacebook.onAdClicked();
-                                }
-                            }
-
-                            @Override
-                            public void onLoggingImpression(Ad ad) {
-                                if (onLoadBannerFacebook != null) {
-                                    onLoadBannerFacebook.onLoggingImpression();
-                                }
-                            }
-                        };
-                        adViewFAN.loadAd(adViewFAN.buildLoadAdConfig().withAdListener(adListener).build());
-                        break;
-
-                    case "ALIEN-V":
-                        AlienViewAds.Banner(activity, layAds, idBannerBackup);
-                        break;
-                    case "ALIEN-M":
-                        AlienMediationAds.SmallBanner(activity, layAds, idBannerBackup);
-                        break;
-                    case "ADMOB":
-                        AdRequest request = new AdRequest.Builder()
-                                .build();
-                        adViewAdmob = new AdView(activity);
-                        adViewAdmob.setAdUnitId(idBannerBackup);
-                        layAds.addView(adViewAdmob);
-                        AdSize adSizeAdmob = getAdSize(activity);
-                        adViewAdmob.setAdSize(adSizeAdmob);
-                        adViewAdmob.loadAd(request);
-                        adViewAdmob.setAdListener(new AdListener() {
-                            @Override
-                            public void onAdLoaded() {
-
-                            }
-
-                            @Override
-                            public void onAdFailedToLoad(LoadAdError adError) {
-                                layAds.setVisibility(View.GONE);
-
-                            }
-
-                            @Override
-                            public void onAdOpened() {
-
-                            }
-                            @Override
-                            public void onAdClicked() {
-
-                            }
-                            @Override
-                            public void onAdClosed() {
-
-                            }
-                        });
-                        break;
-                }
-            }
-
-            @Override
-            public void onBannerLoaded(@NonNull BannerAd bannerAd) {
-                if (onLoadBannerWortise!=null){
-                    onLoadBannerWortise.onBannerLoaded();
-                }
-                switch (selectAdsBackup) {
-                    case "APPLOVIN-M":
-                        if (adViewMax != null) {
-                            adViewMax.destroy();
-                        }
-                        break;
-                    case "MOPUB":
-                    case "UNITY":
-
-                        break;
-                    case "IRON":
-                        if (adViewIron != null) {
-                            adViewIron.isDestroyed();
-                        }
-                        break;
-                    case "STARTAPP":
-                        if (startAppBanner != null) {
-                            startAppBanner.hideBanner();
-                        }
-                        break;
-                    case "APPLOVIN-D":
-                        if (adViewDiscovery != null) {
-                            adViewDiscovery.destroy();
-                        }
-                        break;
-                    case "FACEBOOK":
-                        if (adViewFAN != null) {
-                            adViewFAN.destroy();
-                        }
-                        break;
-                    case "ADMOB":
-                        if (adViewAdmob != null) {
-                            adViewAdmob.destroy();
-                        }
-                        break;
-                }
-            }
-        });
 
     }
 

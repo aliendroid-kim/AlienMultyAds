@@ -11,9 +11,7 @@ buildscript {
         maven {
             url "https://s3.amazonaws.com/smaato-sdk-releases/"
         }
-        maven {
-            url 'https://maven.wortise.com/artifactory/public'
-        }
+        
         jcenter()
     }
     dependencies {
@@ -33,9 +31,7 @@ allprojects {
         maven {
             url "https://s3.amazonaws.com/smaato-sdk-releases/"
         }
-        maven {
-            url 'https://maven.wortise.com/artifactory/public'
-        }
+
     }
 }
 

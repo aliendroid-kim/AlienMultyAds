@@ -19,7 +19,7 @@ import com.ironsource.mediationsdk.IronSource;
 import com.ironsource.mediationsdk.integration.IntegrationHelper;
 import com.startapp.sdk.adsbase.StartAppAd;
 import com.startapp.sdk.adsbase.StartAppSDK;
-import com.wortise.ads.WortiseSdk;
+
 
 
 import java.util.Map;
@@ -102,7 +102,7 @@ public class AliendroidInitialize {
                 });
                 break;
             case "WORTISE":
-                WortiseSdk.initialize(activity, idInitialize);
+
                 break;
         }
     }
@@ -168,7 +168,7 @@ public class AliendroidInitialize {
                 InitializeAlienAds.LoadSDK();
                 break;
             case "WORTISE":
-                WortiseSdk.initialize(activity, idInitialize);
+
                 break;
         }
     }
@@ -234,7 +234,7 @@ public class AliendroidInitialize {
                 InitializeAlienAds.LoadSDK();
                 break;
             case "WORTISE":
-                WortiseSdk.initialize(activity, idInitialize);
+
                 break;
         }
     }
@@ -300,7 +300,7 @@ public class AliendroidInitialize {
                 InitializeAlienAds.LoadSDK();
                 break;
             case "WORTISE":
-                WortiseSdk.initialize(activity, idInitialize);
+
                 break;
         }
     }
@@ -371,7 +371,7 @@ public class AliendroidInitialize {
                 InitializeAlienAds.LoadSDK();
                 break;
             case "WORTISE":
-                WortiseSdk.initialize(activity, idInitializeBackupAds);
+
                 break;
         }
     }
@@ -438,7 +438,7 @@ public class AliendroidInitialize {
                 InitializeAlienAds.LoadSDK();
                 break;
             case "WORTISE":
-                WortiseSdk.initialize(activity, idInitializeBackupAds);
+
                 break;
         }
     }
@@ -519,7 +519,7 @@ public class AliendroidInitialize {
                 }
                 break;
             case "WORTISE":
-                WortiseSdk.initialize(activity, idInitializeBackupAds);
+
                 break;
         }
     }
@@ -585,7 +585,7 @@ public class AliendroidInitialize {
                 InitializeAlienAds.LoadSDK();
                 break;
             case "WORTISE":
-                WortiseSdk.initialize(activity, idInitializeBackupAds);
+
                 break;
         }
     }
@@ -652,14 +652,14 @@ public class AliendroidInitialize {
                 AppPromote.initializeAppPromote(activity);
                 break;
             case "WORTISE":
-                WortiseSdk.initialize(activity, idInitializeBackupAds);
+
                 break;
         }
 
     }
 
     public static void SelectAdsWortise(Activity activity, String selectAdsBackup, String idInitialize, String idInitializeBackupAds) {
-        WortiseSdk.initialize(activity, idInitialize);
+
         switch (selectAdsBackup) {
             case "APPLOVIN-D":
                 AppLovinSdk.initializeSdk(activity);
