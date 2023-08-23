@@ -8,10 +8,6 @@ buildscript {
         }
         maven { url 'https://jitpack.io' }
 
-        maven {
-            url "https://s3.amazonaws.com/smaato-sdk-releases/"
-        }
-        
         jcenter()
     }
     dependencies {
@@ -28,9 +24,7 @@ allprojects {
             url 'https://android-sdk.is.com/'
         }
         maven { url 'https://jitpack.io' }
-        maven {
-            url "https://s3.amazonaws.com/smaato-sdk-releases/"
-        }
+
 
     }
 }
