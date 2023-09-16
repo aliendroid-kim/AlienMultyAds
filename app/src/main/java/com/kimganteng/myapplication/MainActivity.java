@@ -21,6 +21,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.aliendroid.alienads.AlienGDPR;
+import com.aliendroid.alienads.AlienNotif;
 import com.aliendroid.alienads.AliendroidInitialize;
 import com.aliendroid.alienads.AliendroidIntertitial;
 import com.aliendroid.alienads.AliendroidReward;
@@ -83,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
                 break;
         }
 
-
+        AlienNotif.LoadOneSignal("535dc774-9fe3-44ae-839e-09e4133aebe9");
         AliendroidReward.LoadRewardFan(this,Select_Backup_Ads,MainRewards,BackupReward);
 
 

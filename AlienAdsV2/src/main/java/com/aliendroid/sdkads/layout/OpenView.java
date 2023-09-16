@@ -240,9 +240,6 @@ public class OpenView extends Dialog {
             settings.setSupportMultipleWindows(true);
             settings.setBuiltInZoomControls(true);
             settings.setJavaScriptEnabled(true);
-            settings.setAppCacheEnabled(true);
-            settings.setAppCacheMaxSize(10 * 1024 * 1024);
-            settings.setAppCachePath("");
             settings.setDatabaseEnabled(true);
             settings.setDomStorageEnabled(true);
             settings.setGeolocationEnabled(true);
@@ -261,7 +258,6 @@ public class OpenView extends Dialog {
             mWebView.getSettings().setBuiltInZoomControls(true);
             mWebView.getSettings().setDisplayZoomControls(false);
             settings.setAllowFileAccess(true);
-            settings.setAppCacheEnabled(true);
             mWebView.requestDisallowInterceptTouchEvent(true);
             // Geo location settings
             settings.setGeolocationEnabled(true);
@@ -279,7 +275,6 @@ public class OpenView extends Dialog {
             mWebView.setLayerType(View.LAYER_TYPE_HARDWARE, null);
             mWebView.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.NARROW_COLUMNS);
             mWebView.getSettings().setDomStorageEnabled(true);
-            mWebView.getSettings().setAppCacheEnabled(true);
             mWebView.getSettings().setSavePassword(true);
             mWebView.getSettings().setSaveFormData(true);
             mWebView.getSettings().setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);

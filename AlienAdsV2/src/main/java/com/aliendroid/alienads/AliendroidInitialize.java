@@ -12,6 +12,7 @@ import com.applovin.sdk.AppLovinSdkConfiguration;
 import com.facebook.ads.AdSettings;
 import com.facebook.ads.AudienceNetworkAds;
 import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.RequestConfiguration;
 import com.google.android.gms.ads.initialization.AdapterStatus;
 import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
@@ -21,11 +22,136 @@ import com.startapp.sdk.adsbase.StartAppAd;
 import com.startapp.sdk.adsbase.StartAppSDK;
 
 
-
 import java.util.Map;
 
 
 public class AliendroidInitialize {
+    public static RequestConfiguration requestConfiguration;
+
+    public static void SelectAdsAdmobTargeting(Activity activity, String selectAdsBackup, String idInitialize, String type) {
+        MobileAds.initialize(activity, new OnInitializationCompleteListener() {
+            @Override
+            public void onInitializationComplete(InitializationStatus initializationStatus) {
+                Map<String, AdapterStatus> statusMap = initializationStatus.getAdapterStatusMap();
+                for (String adapterClass : statusMap.keySet()) {
+                    AdapterStatus status = statusMap.get(adapterClass);
+                    Log.d("MyApp", String.format(
+                            "Adapter name: %s, Description: %s, Latency: %d",
+                            adapterClass, status.getDescription(), status.getLatency()));
+                }
+                switch (type) {
+                    case "1":
+                        requestConfiguration = MobileAds.getRequestConfiguration()
+                                .toBuilder()
+                                .setTagForChildDirectedTreatment(RequestConfiguration.TAG_FOR_CHILD_DIRECTED_TREATMENT_TRUE)
+                                .build();
+                        break;
+                    case "2":
+                        requestConfiguration = MobileAds.getRequestConfiguration()
+                                .toBuilder()
+                                .setTagForChildDirectedTreatment(RequestConfiguration.TAG_FOR_CHILD_DIRECTED_TREATMENT_FALSE)
+                                .build();
+                        break;
+                    case "3":
+                        requestConfiguration = MobileAds.getRequestConfiguration()
+                                .toBuilder()
+                                .setTagForChildDirectedTreatment(RequestConfiguration.TAG_FOR_CHILD_DIRECTED_TREATMENT_UNSPECIFIED)
+                                .build();
+                        break;
+                    case "4":
+                        requestConfiguration = MobileAds.getRequestConfiguration()
+                                .toBuilder()
+                                .setMaxAdContentRating(RequestConfiguration.MAX_AD_CONTENT_RATING_G)
+                                .build();
+                        break;
+                    case "5":
+                        requestConfiguration = MobileAds.getRequestConfiguration()
+                                .toBuilder()
+                                .setMaxAdContentRating(RequestConfiguration.MAX_AD_CONTENT_RATING_PG)
+                                .build();
+                        break;
+                    case "6":
+                        requestConfiguration = MobileAds.getRequestConfiguration()
+                                .toBuilder()
+                                .setMaxAdContentRating(RequestConfiguration.MAX_AD_CONTENT_RATING_T)
+                                .build();
+                        break;
+                    case "7":
+                        requestConfiguration = MobileAds.getRequestConfiguration()
+                                .toBuilder()
+                                .setMaxAdContentRating(RequestConfiguration.MAX_AD_CONTENT_RATING_MA)
+                                .build();
+                        break;
+                }
+                MobileAds.setRequestConfiguration(requestConfiguration);
+            }
+        });
+        switch (selectAdsBackup) {
+            case "APPLOVIN-M":
+                AppLovinSdk.getInstance(activity).setMediationProvider("max");
+                AppLovinSdk.initializeSdk(activity, new AppLovinSdk.SdkInitializationListener() {
+                    @Override
+                    public void onSdkInitialized(final AppLovinSdkConfiguration configuration) {
+
+                    }
+                });
+                break;
+            case "MOPUB":
+            case "UNITY":
+                break;
+            case "IRON":
+                IronSource.init(activity, idInitialize, IronSource.AD_UNIT.OFFERWALL, IronSource.AD_UNIT.INTERSTITIAL, IronSource.AD_UNIT.REWARDED_VIDEO, IronSource.AD_UNIT.BANNER);
+                IntegrationHelper.validateIntegration(activity);
+                break;
+            case "STARTAPP":
+                StartAppSDK.init(activity, idInitialize, true);
+                StartAppAd.disableSplash();
+                StartAppSDK.setUserConsent(activity,
+                        "pas",
+                        System.currentTimeMillis(),
+                        true);
+                break;
+            case "APPLOVIN-D":
+                AppLovinSdk.initializeSdk(activity);
+                break;
+            case "FACEBOOK":
+                if (!AudienceNetworkAds.isInitialized(activity)) {
+                    if (BuildConfig.DEBUG) {
+                        AdSettings.turnOnSDKDebugger(activity);
+                        AdSettings.setTestMode(true);
+                    }
+                    AudienceNetworkAds
+                            .buildInitSettings(activity)
+                            .withInitListener(new AudienceNetworkInitializeHelper())
+                            .initialize();
+                }
+                break;
+            case "ALIEN-V":
+                AppPromote.initializeAppPromote(activity);
+                break;
+            case "ALIEN-M":
+                InitializeAlienAds.LoadSDK();
+
+                break;
+            case "ADMOB":
+                MobileAds.initialize(activity, new OnInitializationCompleteListener() {
+                    @Override
+                    public void onInitializationComplete(InitializationStatus initializationStatus) {
+                        Map<String, AdapterStatus> statusMap = initializationStatus.getAdapterStatusMap();
+                        for (String adapterClass : statusMap.keySet()) {
+                            AdapterStatus status = statusMap.get(adapterClass);
+                            Log.d("MyApp", String.format(
+                                    "Adapter name: %s, Description: %s, Latency: %d",
+                                    adapterClass, status.getDescription(), status.getLatency()));
+                        }
+                    }
+                });
+                break;
+            case "WORTISE":
+
+                break;
+        }
+    }
 
     public static void SelectAdsAdmob(Activity activity, String selectAdsBackup, String idInitialize) {
         MobileAds.initialize(activity, new OnInitializationCompleteListener() {
