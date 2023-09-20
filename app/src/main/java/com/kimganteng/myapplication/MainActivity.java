@@ -22,6 +22,7 @@ import android.widget.Toast;
 
 import com.aliendroid.alienads.AlienGDPR;
 import com.aliendroid.alienads.AlienNotif;
+import com.aliendroid.alienads.AlienPopup;
 import com.aliendroid.alienads.AliendroidInitialize;
 import com.aliendroid.alienads.AliendroidIntertitial;
 import com.aliendroid.alienads.AliendroidReward;
@@ -86,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
 
         AlienNotif.LoadOneSignal("535dc774-9fe3-44ae-839e-09e4133aebe9");
         AliendroidReward.LoadRewardFan(this,Select_Backup_Ads,MainRewards,BackupReward);
-
+        AlienPopup.CpaOpenAds_300_250(this, "https://aliendro.id/", "https://aliendro.id/projek/quote/45/1.webp");
 
     }
 
