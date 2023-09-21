@@ -78,6 +78,13 @@
             android:onClick="MEDIATION"
             android:text="Alien Mediation Ads"
             android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/txtCode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="TextView" />
     </LinearLayout>
 
 </RelativeLayout>

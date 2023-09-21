@@ -12,12 +12,23 @@ import static com.kimganteng.myapplication.SettingsAlien.Select_Main_Ads;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Geocoder;
+import android.location.Location;
+import android.location.LocationManager;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
+import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.aliendroid.alienads.AlienGDPR;
@@ -40,10 +51,15 @@ import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.common.GooglePlayServicesRepairableException;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
 
 
 public class MainActivity extends AppCompatActivity {
-
+    public static double longitude, latitude;
+    public static String cityName;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -87,8 +103,12 @@ public class MainActivity extends AppCompatActivity {
 
         AlienNotif.LoadOneSignal("535dc774-9fe3-44ae-839e-09e4133aebe9");
         AliendroidReward.LoadRewardFan(this,Select_Backup_Ads,MainRewards,BackupReward);
-        AlienPopup.CpaOpenAds_300_250(this, "https://aliendro.id/", "https://aliendro.id/projek/quote/45/1.webp");
+        AlienPopup.CpaOpenAds_Json(this, "https://aliendro.id/projek/Ads.json");
+        TextView txtCode = findViewById(R.id.txtCode);
 
+        TelephonyManager tm = (TelephonyManager)this.getSystemService(Context.TELEPHONY_SERVICE);
+        String countryCodeValue = tm.getNetworkCountryIso();
+        txtCode.setText("country = "+countryCodeValue);
     }
 
     public void BANNER(View view){
@@ -98,8 +118,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void VIEWADS(View view){
-        Intent open = new Intent(MainActivity.this,ViewAdsActivity.class);
-        startActivity(open);
+        AlienPopup.CpaOpenAds_Json(this, "https://aliendro.id/projek/Ads.json");
 
     }
 

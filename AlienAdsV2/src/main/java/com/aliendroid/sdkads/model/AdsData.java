@@ -21,7 +21,6 @@ public class AdsData {
         this.name = name;
     }
 
-
     public String getPackageName() {
         return packageName;
     }
