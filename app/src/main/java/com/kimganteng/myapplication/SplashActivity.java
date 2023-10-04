@@ -60,6 +60,9 @@ public class SplashActivity extends AppCompatActivity {
             case "FACEBOOK":
                 AliendroidInitialize.SelectAdsFAN(this, Select_Backup_Ads, Backup_Initialize);
                 break;
+            case "ALIEN-M":
+                AliendroidInitialize.SelectAdsAlienMediation(this, Select_Backup_Ads,Main_Initialize, Backup_Initialize);
+                break;
         }
 
 

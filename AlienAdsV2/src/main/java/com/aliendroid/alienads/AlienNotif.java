@@ -12,7 +12,7 @@ public class AlienNotif {
         application = myApplication;
     }
 
-    public static void LoadOneSignal (String apikey){
+    public static void LoadOneSignal(String apikey) {
         ONESIGNAL_APP_ID = apikey;
         // Enable verbose OneSignal logging to debug issues if needed.
         OneSignal.setLogLevel(OneSignal.LOG_LEVEL.VERBOSE, OneSignal.LOG_LEVEL.NONE);

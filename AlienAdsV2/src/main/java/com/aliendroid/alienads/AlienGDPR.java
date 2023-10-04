@@ -84,31 +84,25 @@ public class AlienGDPR {
                 break;
             case "APPLOVIN-M":
 
-                AppLovinSdk.initializeSdk( activity, new AppLovinSdk.SdkInitializationListener() {
+                AppLovinSdk.initializeSdk(activity, new AppLovinSdk.SdkInitializationListener() {
                     @Override
-                    public void onSdkInitialized(final AppLovinSdkConfiguration configuration)
-                    {
-                        if ( configuration.getConsentDialogState() == AppLovinSdkConfiguration.ConsentDialogState.APPLIES )
-                        {
+                    public void onSdkInitialized(final AppLovinSdkConfiguration configuration) {
+                        if (configuration.getConsentDialogState() == AppLovinSdkConfiguration.ConsentDialogState.APPLIES) {
                             // Show user consent dialog
-                        }
-                        else if ( configuration.getConsentDialogState() == AppLovinSdkConfiguration.ConsentDialogState.DOES_NOT_APPLY )
-                        {
+                        } else if (configuration.getConsentDialogState() == AppLovinSdkConfiguration.ConsentDialogState.DOES_NOT_APPLY) {
                             // No need to show consent dialog, proceed with initialization
-                        }
-                        else
-                        {
+                        } else {
                             // Consent dialog state is unknown. Proceed with initialization, but check if the consent
                             // dialog should be shown on the next application initialization
                         }
                     }
-                } );
-                AppLovinPrivacySettings.setHasUserConsent( true, activity );
-                AppLovinPrivacySettings.setIsAgeRestrictedUser( childDirected, activity );
+                });
+                AppLovinPrivacySettings.setHasUserConsent(true, activity);
+                AppLovinPrivacySettings.setIsAgeRestrictedUser(childDirected, activity);
                 break;
             case "APPLOVIN-D":
-                AppLovinPrivacySettings.setIsAgeRestrictedUser( childDirected, activity );
-                AppLovinPrivacySettings.setHasUserConsent( true, activity );
+                AppLovinPrivacySettings.setIsAgeRestrictedUser(childDirected, activity);
+                AppLovinPrivacySettings.setHasUserConsent(true, activity);
                 break;
             case "ALIEN-M":
 

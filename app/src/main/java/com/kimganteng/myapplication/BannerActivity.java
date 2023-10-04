@@ -20,9 +20,6 @@ public class BannerActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_banner);
-        /*
-        Load Relativelayout from acitivty_banner.xml
-         */
         RelativeLayout laySmallAds = findViewById(R.id.lay320x50);
         RelativeLayout layMediumAds = findViewById(R.id.lay300x250);
 
@@ -44,6 +41,10 @@ public class BannerActivity extends AppCompatActivity {
             case "FACEBOOK":
                 AliendroidBanner.SmallBannerFAN(this, laySmallAds, Select_Backup_Ads, MainBanner, BackupBanner);
                 AliendroidMediumBanner.MediumBannerFAN(this, layMediumAds, Select_Backup_Ads, MainBanner, BackupBanner);
+                break;
+            case "ALIEN-M":
+                AliendroidBanner.SmallBannerAlienMediation(this, laySmallAds, Select_Backup_Ads, MainBanner, BackupBanner);
+                AliendroidMediumBanner.MediumBannerAlienMediation(this, layMediumAds, Select_Backup_Ads, MainBanner, BackupBanner);
                 break;
         }
 

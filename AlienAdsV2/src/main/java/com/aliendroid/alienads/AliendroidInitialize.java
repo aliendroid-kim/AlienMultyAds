@@ -18,6 +18,7 @@ import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 import com.ironsource.mediationsdk.IronSource;
 import com.ironsource.mediationsdk.integration.IntegrationHelper;
+import com.props.adsmanager.PropsAdsManagement;
 import com.startapp.sdk.adsbase.StartAppAd;
 import com.startapp.sdk.adsbase.StartAppSDK;
 
@@ -130,7 +131,7 @@ public class AliendroidInitialize {
                 AppPromote.initializeAppPromote(activity);
                 break;
             case "ALIEN-M":
-                InitializeAlienAds.LoadSDK();
+                PropsAdsManagement.initializeAdsMapping(activity);
 
                 break;
             case "ADMOB":
@@ -147,9 +148,7 @@ public class AliendroidInitialize {
                     }
                 });
                 break;
-            case "WORTISE":
 
-                break;
         }
     }
 
@@ -227,9 +226,7 @@ public class AliendroidInitialize {
                     }
                 });
                 break;
-            case "WORTISE":
 
-                break;
         }
     }
 
@@ -293,9 +290,7 @@ public class AliendroidInitialize {
             case "ALIEN-M":
                 InitializeAlienAds.LoadSDK();
                 break;
-            case "WORTISE":
 
-                break;
         }
     }
 
@@ -359,9 +354,7 @@ public class AliendroidInitialize {
             case "ALIEN-M":
                 InitializeAlienAds.LoadSDK();
                 break;
-            case "WORTISE":
 
-                break;
         }
     }
 
@@ -425,9 +418,7 @@ public class AliendroidInitialize {
             case "ALIEN-M":
                 InitializeAlienAds.LoadSDK();
                 break;
-            case "WORTISE":
 
-                break;
         }
     }
 
@@ -496,9 +487,7 @@ public class AliendroidInitialize {
             case "ALIEN-M":
                 InitializeAlienAds.LoadSDK();
                 break;
-            case "WORTISE":
 
-                break;
         }
     }
 
@@ -563,9 +552,7 @@ public class AliendroidInitialize {
             case "ALIEN-M":
                 InitializeAlienAds.LoadSDK();
                 break;
-            case "WORTISE":
 
-                break;
         }
     }
 
@@ -644,9 +631,7 @@ public class AliendroidInitialize {
                             .initialize();
                 }
                 break;
-            case "WORTISE":
 
-                break;
         }
     }
 
@@ -710,14 +695,12 @@ public class AliendroidInitialize {
             case "ALIEN-M":
                 InitializeAlienAds.LoadSDK();
                 break;
-            case "WORTISE":
 
-                break;
         }
     }
 
     public static void SelectAdsAlienMediation(Activity activity, String selectAdsBackup, String idInitialize, String idInitializeBackupAds) {
-        InitializeAlienAds.LoadSDK();
+        PropsAdsManagement.initializeAdsMapping(activity);
         switch (selectAdsBackup) {
             case "APPLOVIN-D":
                 AppLovinSdk.initializeSdk(activity);
@@ -777,78 +760,12 @@ public class AliendroidInitialize {
             case "ALIEN-V":
                 AppPromote.initializeAppPromote(activity);
                 break;
-            case "WORTISE":
 
-                break;
         }
 
     }
 
     public static void SelectAdsWortise(Activity activity, String selectAdsBackup, String idInitialize, String idInitializeBackupAds) {
-
-        switch (selectAdsBackup) {
-            case "APPLOVIN-D":
-                AppLovinSdk.initializeSdk(activity);
-                break;
-            case "APPLOVIN-M":
-                AppLovinSdk.getInstance(activity).setMediationProvider("max");
-                AppLovinSdk.initializeSdk(activity, new AppLovinSdk.SdkInitializationListener() {
-                    @Override
-                    public void onSdkInitialized(final AppLovinSdkConfiguration configuration) {
-                    }
-                });
-                break;
-            case "STARTAPP":
-                StartAppSDK.init(activity, idInitializeBackupAds, true);
-                StartAppAd.disableSplash();
-                StartAppSDK.setUserConsent(activity,
-                        "pas",
-                        System.currentTimeMillis(),
-                        true);
-                break;
-            case "MOPUB":
-            case "UNITY":
-
-                break;
-            case "ADMOB":
-            case "GOOGLE-ADS":
-                MobileAds.initialize(activity, new OnInitializationCompleteListener() {
-                    @Override
-                    public void onInitializationComplete(InitializationStatus initializationStatus) {
-                        Map<String, AdapterStatus> statusMap = initializationStatus.getAdapterStatusMap();
-                        for (String adapterClass : statusMap.keySet()) {
-                            AdapterStatus status = statusMap.get(adapterClass);
-                            Log.d("MyApp", String.format(
-                                    "Adapter name: %s, Description: %s, Latency: %d",
-                                    adapterClass, status.getDescription(), status.getLatency()));
-                        }
-                    }
-                });
-                break;
-            case "IRON":
-                IronSource.init(activity, idInitializeBackupAds, IronSource.AD_UNIT.OFFERWALL, IronSource.AD_UNIT.INTERSTITIAL, IronSource.AD_UNIT.REWARDED_VIDEO, IronSource.AD_UNIT.BANNER);
-                IntegrationHelper.validateIntegration(activity);
-                break;
-            case "FACEBOOK":
-                if (!AudienceNetworkAds.isInitialized(activity)) {
-                    if (BuildConfig.DEBUG) {
-                        AdSettings.turnOnSDKDebugger(activity);
-                        AdSettings.setTestMode(true);
-                    }
-
-                    AudienceNetworkAds
-                            .buildInitSettings(activity)
-                            .withInitListener(new AudienceNetworkInitializeHelper())
-                            .initialize();
-                }
-                break;
-            case "ALIEN-V":
-                AppPromote.initializeAppPromote(activity);
-                break;
-            case "ALIEN-M":
-                InitializeAlienAds.LoadSDK();
-                break;
-        }
 
     }
 

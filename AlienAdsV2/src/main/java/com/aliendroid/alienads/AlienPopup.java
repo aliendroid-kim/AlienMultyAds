@@ -30,8 +30,8 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class AlienPopup {
-    public static void CpaOpenAds_300_250(Activity activity, String url, String imageUrl){
-        final Dialog dialog = new Dialog(activity,R.style.SheetDialog);
+    public static void CpaOpenAds_300_250(Activity activity, String url, String imageUrl) {
+        final Dialog dialog = new Dialog(activity, R.style.SheetDialog);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(false);
         dialog.setContentView(R.layout.cpa_300_250);
@@ -56,12 +56,14 @@ public class AlienPopup {
         dialog.show();
 
     }
-    public static ArrayList <CPAModel> adsData ;
-    public static void CpaOpenAds_Json(Activity activity, String urlJson){
+
+    public static ArrayList<CPAModel> adsData;
+
+    public static void CpaOpenAds_Json(Activity activity, String urlJson) {
         adsData = new ArrayList<>();
-        TelephonyManager tm = (TelephonyManager)activity.getSystemService(Context.TELEPHONY_SERVICE);
+        TelephonyManager tm = (TelephonyManager) activity.getSystemService(Context.TELEPHONY_SERVICE);
         String countryCodeValue = tm.getNetworkCountryIso();
-        if(countryCodeValue!=null){
+        if (countryCodeValue != null) {
             StringRequest stringRequest = new StringRequest(Request.Method.GET,
                     urlJson, new com.android.volley.Response.Listener<String>() {
                 @Override
@@ -71,14 +73,14 @@ public class AlienPopup {
                         JSONArray array = jsonObject.getJSONArray("Ads");
                         for (int i = 0; i < array.length(); i++) {
                             JSONObject jo = array.getJSONObject(i);
-                            if (jo.getString("country").equals(countryCodeValue.toUpperCase())||
+                            if (jo.getString("country").equals(countryCodeValue.toUpperCase()) ||
                                     jo.getString("country").equals(countryCodeValue.toLowerCase())) {
                                 CPAModel developers = new CPAModel(jo.getString("url")
                                         , jo.getString("image_url"), jo.getString("country"));
                                 adsData.add(developers);
                             }
                         }
-                        final Dialog dialog = new Dialog(activity,R.style.SheetDialog);
+                        final Dialog dialog = new Dialog(activity, R.style.SheetDialog);
                         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                         dialog.setCancelable(false);
                         dialog.setContentView(R.layout.cpa_dynamic);
@@ -88,7 +90,7 @@ public class AlienPopup {
                         cdAds.setVisibility(View.GONE);
                         dialog.show();
                         Random random = new Random();
-                        if (adsData.size()==0){
+                        if (adsData.size() == 0) {
                             dialog.dismiss();
                         } else {
                             int suf = random.nextInt(adsData.size());
@@ -124,7 +126,6 @@ public class AlienPopup {
 
 
         }
-
 
 
     }

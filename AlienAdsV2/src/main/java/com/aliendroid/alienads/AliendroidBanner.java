@@ -49,12 +49,12 @@ import com.ironsource.mediationsdk.ISBannerSize;
 import com.ironsource.mediationsdk.IronSource;
 import com.ironsource.mediationsdk.IronSourceBannerLayout;
 import com.ironsource.mediationsdk.logger.IronSourceError;
+import com.props.adsmanager.PropsAdsManagement;
 import com.startapp.sdk.ads.banner.Banner;
 import com.startapp.sdk.ads.banner.BannerListener;
 
 
 public class AliendroidBanner {
-
     public static MaxAdView adViewMax;
     public static AdView adViewAdmob;
     public static AdView adViewAdmob2;
@@ -376,7 +376,11 @@ public class AliendroidBanner {
                         AlienViewAds.Banner(activity, layAds, idBannerBackup);
                         break;
                     case "ALIEN-M":
-                        AlienMediationAds.SmallBanner(activity, layAds, idBannerBackup);
+                        PropsAdsManagement propsAds = new PropsAdsManagement(activity);
+                        AdView adView = propsAds.createBannerAdview("BANNER", idBannerBackup);
+                        AdRequest adRequest2 = new AdRequest.Builder().build();
+                        layAds.addView(adView);
+                        adView.loadAd(adRequest2);
                         break;
                     case "ADMOB":
                         AdRequest request = new AdRequest.Builder()
@@ -403,10 +407,12 @@ public class AliendroidBanner {
                             public void onAdOpened() {
 
                             }
+
                             @Override
                             public void onAdClicked() {
 
                             }
+
                             @Override
                             public void onAdClosed() {
 
@@ -743,7 +749,11 @@ public class AliendroidBanner {
                         AlienViewAds.Banner(activity, layAds, idBannerBackup);
                         break;
                     case "ALIEN-M":
-                        AlienMediationAds.SmallBanner(activity, layAds, idBannerBackup);
+                        PropsAdsManagement propsAds = new PropsAdsManagement(activity);
+                        AdView adView = propsAds.createBannerAdview("BANNER", idBannerBackup);
+                        AdRequest adRequest2 = new AdRequest.Builder().build();
+                        layAds.addView(adView);
+                        adView.loadAd(adRequest2);
                         break;
                     case "WORTISE":
 
@@ -1123,7 +1133,11 @@ public class AliendroidBanner {
                         AlienViewAds.Banner(activity, layAds, idBannerBackup);
                         break;
                     case "ALIEN-M":
-                        AlienMediationAds.SmallBanner(activity, layAds, idBannerBackup);
+                        PropsAdsManagement propsAds = new PropsAdsManagement(activity);
+                        AdView adView = propsAds.createBannerAdview("BANNER", idBannerBackup);
+                        AdRequest adRequest2 = new AdRequest.Builder().build();
+                        layAds.addView(adView);
+                        adView.loadAd(adRequest2);
                         break;
                     case "WORTISE":
 
@@ -1565,7 +1579,11 @@ public class AliendroidBanner {
                         AlienViewAds.Banner(activity, layAds, idBannerBackup);
                         break;
                     case "ALIEN-M":
-                        AlienMediationAds.SmallBanner(activity, layAds, idBannerBackup);
+                        PropsAdsManagement propsAds = new PropsAdsManagement(activity);
+                        AdView adView = propsAds.createBannerAdview("BANNER", idBannerBackup);
+                        AdRequest adRequest2 = new AdRequest.Builder().build();
+                        layAds.addView(adView);
+                        adView.loadAd(adRequest2);
                         break;
                     case "WORTISE":
 
@@ -1628,7 +1646,7 @@ public class AliendroidBanner {
                             adViewFAN.destroy();
                         }
                         break;
-                    case  "WORTISE" :
+                    case "WORTISE":
 
                         break;
                 }
@@ -1947,7 +1965,11 @@ public class AliendroidBanner {
                         AlienViewAds.Banner(activity, layAds, idBannerBackup);
                         break;
                     case "ALIEN-M":
-                        AlienMediationAds.SmallBanner(activity, layAds, idBannerBackup);
+                        PropsAdsManagement propsAds = new PropsAdsManagement(activity);
+                        AdView adView = propsAds.createBannerAdview("BANNER", idBannerBackup);
+                        AdRequest adRequest2 = new AdRequest.Builder().build();
+                        layAds.addView(adView);
+                        adView.loadAd(adRequest2);
                         break;
                     case "WORTISE":
 
@@ -2020,7 +2042,7 @@ public class AliendroidBanner {
                             adViewFAN.destroy();
                         }
                         break;
-                    case  "WORTISE" :
+                    case "WORTISE":
 
                         break;
                 }
@@ -2322,7 +2344,11 @@ public class AliendroidBanner {
                         AlienViewAds.Banner(activity, layAds, idBannerBackup);
                         break;
                     case "ALIEN-M":
-                        AlienMediationAds.SmallBanner(activity, layAds, idBannerBackup);
+                        PropsAdsManagement propsAds = new PropsAdsManagement(activity);
+                        AdView adView = propsAds.createBannerAdview("BANNER", idBannerBackup);
+                        AdRequest adRequest2 = new AdRequest.Builder().build();
+                        layAds.addView(adView);
+                        adView.loadAd(adRequest2);
                         break;
                     case "WORTISE":
 
@@ -2703,7 +2729,11 @@ public class AliendroidBanner {
                         AlienViewAds.Banner(activity, layAds, idBannerBackup);
                         break;
                     case "ALIEN-M":
-                        AlienMediationAds.SmallBanner(activity, layAds, idBannerBackup);
+                        PropsAdsManagement propsAds = new PropsAdsManagement(activity);
+                        AdView adView = propsAds.createBannerAdview("BANNER", idBannerBackup);
+                        AdRequest adRequest2 = new AdRequest.Builder().build();
+                        layAds.addView(adView);
+                        adView.loadAd(adRequest2);
                         break;
                     case "WORTISE":
 
@@ -3052,7 +3082,11 @@ public class AliendroidBanner {
                         AlienViewAds.Banner(activity, layAds, idBannerBackup);
                         break;
                     case "ALIEN-M":
-                        AlienMediationAds.SmallBanner(activity, layAds, idBannerBackup);
+                        PropsAdsManagement propsAds = new PropsAdsManagement(activity);
+                        AdView adView = propsAds.createBannerAdview("BANNER", idBannerBackup);
+                        AdRequest adRequest2 = new AdRequest.Builder().build();
+                        layAds.addView(adView);
+                        adView.loadAd(adRequest2);
                         break;
                     case "WORTISE":
 
@@ -3495,7 +3529,11 @@ public class AliendroidBanner {
                         IronSource.loadBanner(adViewIron, idBannerBackup);
                         break;
                     case "ALIEN-M":
-                        AlienMediationAds.SmallBanner(activity, layAds, idBannerBackup);
+                        PropsAdsManagement propsAds = new PropsAdsManagement(activity);
+                        AdView adView = propsAds.createBannerAdview("BANNER", idBannerBackup);
+                        AdRequest adRequest2 = new AdRequest.Builder().build();
+                        layAds.addView(adView);
+                        adView.loadAd(adRequest2);
                         break;
                     case "WORTISE":
 
@@ -3506,69 +3544,16 @@ public class AliendroidBanner {
     }
 
     public static void SmallBannerAlienMediation(Activity activity, RelativeLayout layAds, String selectAdsBackup, String idBanner, String idBannerBackup) {
-        AlienMediationAds.SmallBanner(activity, layAds, idBannerBackup);
-        AlienMediationAds.onLoadBannerMediation = new OnLoadBannerMediation() {
+
+        PropsAdsManagement propsAds = new PropsAdsManagement(activity);
+        AdView adView = propsAds.createBannerAdview("BANNER", idBanner);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        layAds.addView(adView);
+        adView.loadAd(adRequest);
+        adView.setAdListener(new AdListener() {
             @Override
-            public void onBannerAdLoaded() {
-                if (onLoadBannerAlienMediation != null) {
-                    onLoadBannerAlienMediation.onBannerAdLoaded();
-                }
-                switch (selectAdsBackup) {
-                    case "APPLOVIN-D":
-                        if (adViewDiscovery != null) {
-                            adViewDiscovery.destroy();
-                        }
-                        break;
-                    case "APPLOVIN-M":
-                        if (adViewMax != null) {
-                            adViewMax.destroy();
-                        }
-                        break;
-                    case "STARTAPP":
-                        startAppBanner.hideBanner();
-                        break;
-                    case "MOPUB":
-                    case "UNITY":
-
-                        break;
-                    case "ADMOB":
-                        if (adViewAdmob != null) {
-                            adViewAdmob.destroy();
-                        }
-                        break;
-                    case "GOOGLE-ADS":
-                        if (bannerGoogleAds != null) {
-                            bannerGoogleAds.destroy();
-                        }
-                        break;
-                    case "FACEBOOK":
-                        if (adViewFAN != null) {
-                            adViewFAN.destroy();
-                        }
-                        break;
-                    case "IRON":
-                        if (adViewIron != null) {
-                            adViewIron.isDestroyed();
-                        }
-                        break;
-                    case "WORTISE" :
-
-                        break;
-                }
-            }
-
-            @Override
-            public void onBannerAdClicked() {
-                if (onLoadBannerAlienMediation != null) {
-                    onLoadBannerAlienMediation.onBannerAdClicked();
-                }
-            }
-
-            @Override
-            public void onBannerAdFailedToLoad(String error) {
-                if (onLoadBannerAlienMediation != null) {
-                    onLoadBannerAlienMediation.onBannerAdFailedToLoad("");
-                }
+            public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                super.onAdFailedToLoad(loadAdError);
                 switch (selectAdsBackup) {
                     case "APPLOVIN-D":
                         AdRequest.Builder builder = new AdRequest.Builder();
@@ -3910,7 +3895,54 @@ public class AliendroidBanner {
                         break;
                 }
             }
-        };
+
+            @Override
+            public void onAdLoaded() {
+                super.onAdLoaded();
+                switch (selectAdsBackup) {
+                    case "APPLOVIN-D":
+                        if (adViewDiscovery != null) {
+                            adViewDiscovery.destroy();
+                        }
+                        break;
+                    case "APPLOVIN-M":
+                        if (adViewMax != null) {
+                            adViewMax.destroy();
+                        }
+                        break;
+                    case "STARTAPP":
+                        startAppBanner.hideBanner();
+                        break;
+                    case "MOPUB":
+                    case "UNITY":
+                        break;
+                    case "ADMOB":
+                        if (adViewAdmob != null) {
+                            adViewAdmob.destroy();
+                        }
+                        break;
+                    case "GOOGLE-ADS":
+                        if (bannerGoogleAds != null) {
+                            bannerGoogleAds.destroy();
+                        }
+                        break;
+                    case "FACEBOOK":
+                        if (adViewFAN != null) {
+                            adViewFAN.destroy();
+                        }
+                        break;
+                    case "IRON":
+                        if (adViewIron != null) {
+                            adViewIron.isDestroyed();
+                        }
+                        break;
+                    case "WORTISE":
+
+                        break;
+                }
+            }
+        });
+
 
     }
 

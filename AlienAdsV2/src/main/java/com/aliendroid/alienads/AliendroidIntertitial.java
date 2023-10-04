@@ -58,12 +58,14 @@ import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
 import com.ironsource.mediationsdk.IronSource;
 import com.ironsource.mediationsdk.logger.IronSourceError;
 import com.ironsource.mediationsdk.sdk.InterstitialListener;
+import com.props.adsmanager.PropsAdsManagement;
 import com.startapp.sdk.adsbase.Ad;
 import com.startapp.sdk.adsbase.StartAppAd;
 import com.startapp.sdk.adsbase.adlisteners.AdDisplayListener;
 import com.startapp.sdk.adsbase.adlisteners.AdEventListener;
 
 public class AliendroidIntertitial {
+
     public static InterstitialAd mInterstitialAd;
     public static InterstitialAd mInterstitialAd2;
     public static AdManagerInterstitialAd mAdManagerInterstitialAd;
@@ -75,10 +77,9 @@ public class AliendroidIntertitial {
     public static AppLovinAd loadedAd;
     public static boolean irininter = false;
     private static StartAppAd startAppAd;
-    public static boolean SHOW_ALIEN_VIEW=false;
+    public static boolean SHOW_ALIEN_VIEW = false;
     public static OnLoadInterstitialAdmob onLoadInterstitialAdmob;
     public static OnShowInterstitialAdmob onShowInterstitialAdmob;
-
     public static OnShowInterstitialGoogle onShowInterstitialGoogle;
     public static OnLoadInterstitialGoogle onLoadInterstitialGoogle;
 
@@ -119,20 +120,21 @@ public class AliendroidIntertitial {
                 .addKeyword(Hpk3).addKeyword(Hpk4).addKeyword(Hpk5)
                 .build();
 
-        InterstitialAd.load(activity,idIntertitial, request,
+        InterstitialAd.load(activity, idIntertitial, request,
                 new InterstitialAdLoadCallback() {
                     @Override
                     public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
-                        if (onLoadInterstitialAdmob!=null) {
+                        if (onLoadInterstitialAdmob != null) {
                             onLoadInterstitialAdmob.onInterstitialAdLoaded();
                         }
                         mInterstitialAd = interstitialAd;
                         Log.i(TAG, "onAdLoaded");
 
                     }
+
                     @Override
                     public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
-                        if (onLoadInterstitialAdmob!=null) {
+                        if (onLoadInterstitialAdmob != null) {
                             onLoadInterstitialAdmob.onInterstitialAdFailedToLoad("");
                         }
                         Log.d(TAG, loadAdError.toString());
@@ -182,28 +184,28 @@ public class AliendroidIntertitial {
                 AlienViewAds.onLoadInterstitialView = new OnLoadInterstitialView() {
                     @Override
                     public void onInterstitialAdLoaded() {
-                        if (onLoadInterstitialAlienView!=null){
+                        if (onLoadInterstitialAlienView != null) {
                             onLoadInterstitialAlienView.onInterstitialAdLoaded();
                         }
                     }
 
                     @Override
                     public void onInterstitialAdClosed() {
-                        if (onLoadInterstitialAlienView!=null){
+                        if (onLoadInterstitialAlienView != null) {
                             onLoadInterstitialAlienView.onInterstitialAdClosed();
                         }
                     }
 
                     @Override
                     public void onInterstitialAdClicked() {
-                        if (onLoadInterstitialAlienView!=null){
+                        if (onLoadInterstitialAlienView != null) {
                             onLoadInterstitialAlienView.onInterstitialAdClicked();
                         }
                     }
 
                     @Override
                     public void onInterstitialAdFailedToLoad(String error) {
-                        if (onLoadInterstitialAlienView!=null){
+                        if (onLoadInterstitialAlienView != null) {
                             onLoadInterstitialAlienView.onInterstitialAdFailedToLoad();
                         }
                     }
@@ -231,7 +233,7 @@ public class AliendroidIntertitial {
                             }
                         });
                 break;
-            case "WORTISE" :
+            case "WORTISE":
                 break;
 
         }
@@ -247,7 +249,7 @@ public class AliendroidIntertitial {
                     @Override
                     public void onAdLoaded(@NonNull AdManagerInterstitialAd interstitialAd) {
                         mAdManagerInterstitialAd = interstitialAd;
-                        mAdManagerInterstitialAd.setFullScreenContentCallback(new FullScreenContentCallback(){
+                        mAdManagerInterstitialAd.setFullScreenContentCallback(new FullScreenContentCallback() {
                             @Override
                             public void onAdClicked() {
                                 Log.d(TAG, "Ad was clicked.");
@@ -333,28 +335,28 @@ public class AliendroidIntertitial {
                 AlienViewAds.onLoadInterstitialView = new OnLoadInterstitialView() {
                     @Override
                     public void onInterstitialAdLoaded() {
-                        if (onLoadInterstitialAlienView!=null){
+                        if (onLoadInterstitialAlienView != null) {
                             onLoadInterstitialAlienView.onInterstitialAdLoaded();
                         }
                     }
 
                     @Override
                     public void onInterstitialAdClosed() {
-                        if (onLoadInterstitialAlienView!=null){
+                        if (onLoadInterstitialAlienView != null) {
                             onLoadInterstitialAlienView.onInterstitialAdClosed();
                         }
                     }
 
                     @Override
                     public void onInterstitialAdClicked() {
-                        if (onLoadInterstitialAlienView!=null){
+                        if (onLoadInterstitialAlienView != null) {
                             onLoadInterstitialAlienView.onInterstitialAdClicked();
                         }
                     }
 
                     @Override
                     public void onInterstitialAdFailedToLoad(String error) {
-                        if (onLoadInterstitialAlienView!=null){
+                        if (onLoadInterstitialAlienView != null) {
                             onLoadInterstitialAlienView.onInterstitialAdFailedToLoad();
                         }
                     }
@@ -363,7 +365,7 @@ public class AliendroidIntertitial {
             case "ALIEN-M":
                 AlienMediationAds.LoadInterstitial(activity, idIntertitialBackup);
                 break;
-            case "WORTISE" :
+            case "WORTISE":
                 break;
 
         }
@@ -507,28 +509,28 @@ public class AliendroidIntertitial {
                 AlienViewAds.onLoadInterstitialView = new OnLoadInterstitialView() {
                     @Override
                     public void onInterstitialAdLoaded() {
-                        if (onLoadInterstitialAlienView!=null){
+                        if (onLoadInterstitialAlienView != null) {
                             onLoadInterstitialAlienView.onInterstitialAdLoaded();
                         }
                     }
 
                     @Override
                     public void onInterstitialAdClosed() {
-                        if (onLoadInterstitialAlienView!=null){
+                        if (onLoadInterstitialAlienView != null) {
                             onLoadInterstitialAlienView.onInterstitialAdClosed();
                         }
                     }
 
                     @Override
                     public void onInterstitialAdClicked() {
-                        if (onLoadInterstitialAlienView!=null){
+                        if (onLoadInterstitialAlienView != null) {
                             onLoadInterstitialAlienView.onInterstitialAdClicked();
                         }
                     }
 
                     @Override
                     public void onInterstitialAdFailedToLoad(String error) {
-                        if (onLoadInterstitialAlienView!=null){
+                        if (onLoadInterstitialAlienView != null) {
                             onLoadInterstitialAlienView.onInterstitialAdFailedToLoad();
                         }
                     }
@@ -537,7 +539,7 @@ public class AliendroidIntertitial {
             case "ALIEN-M":
                 AlienMediationAds.LoadInterstitial(activity, idIntertitialBackup);
                 break;
-            case "WORTISE" :
+            case "WORTISE":
                 break;
         }
     }
@@ -630,28 +632,28 @@ public class AliendroidIntertitial {
                 AlienViewAds.onLoadInterstitialView = new OnLoadInterstitialView() {
                     @Override
                     public void onInterstitialAdLoaded() {
-                        if (onLoadInterstitialAlienView!=null){
+                        if (onLoadInterstitialAlienView != null) {
                             onLoadInterstitialAlienView.onInterstitialAdLoaded();
                         }
                     }
 
                     @Override
                     public void onInterstitialAdClosed() {
-                        if (onLoadInterstitialAlienView!=null){
+                        if (onLoadInterstitialAlienView != null) {
                             onLoadInterstitialAlienView.onInterstitialAdClosed();
                         }
                     }
 
                     @Override
                     public void onInterstitialAdClicked() {
-                        if (onLoadInterstitialAlienView!=null){
+                        if (onLoadInterstitialAlienView != null) {
                             onLoadInterstitialAlienView.onInterstitialAdClicked();
                         }
                     }
 
                     @Override
                     public void onInterstitialAdFailedToLoad(String error) {
-                        if (onLoadInterstitialAlienView!=null){
+                        if (onLoadInterstitialAlienView != null) {
                             onLoadInterstitialAlienView.onInterstitialAdFailedToLoad();
                         }
                     }
@@ -660,7 +662,7 @@ public class AliendroidIntertitial {
             case "ALIEN-M":
                 AlienMediationAds.LoadInterstitial(activity, idIntertitialBackup);
                 break;
-            case "WORTISE" :
+            case "WORTISE":
                 break;
         }
     }
@@ -760,28 +762,28 @@ public class AliendroidIntertitial {
                 AlienViewAds.onLoadInterstitialView = new OnLoadInterstitialView() {
                     @Override
                     public void onInterstitialAdLoaded() {
-                        if (onLoadInterstitialAlienView!=null){
+                        if (onLoadInterstitialAlienView != null) {
                             onLoadInterstitialAlienView.onInterstitialAdLoaded();
                         }
                     }
 
                     @Override
                     public void onInterstitialAdClosed() {
-                        if (onLoadInterstitialAlienView!=null){
+                        if (onLoadInterstitialAlienView != null) {
                             onLoadInterstitialAlienView.onInterstitialAdClosed();
                         }
                     }
 
                     @Override
                     public void onInterstitialAdClicked() {
-                        if (onLoadInterstitialAlienView!=null){
+                        if (onLoadInterstitialAlienView != null) {
                             onLoadInterstitialAlienView.onInterstitialAdClicked();
                         }
                     }
 
                     @Override
                     public void onInterstitialAdFailedToLoad(String error) {
-                        if (onLoadInterstitialAlienView!=null){
+                        if (onLoadInterstitialAlienView != null) {
                             onLoadInterstitialAlienView.onInterstitialAdFailedToLoad();
                         }
                     }
@@ -790,7 +792,7 @@ public class AliendroidIntertitial {
             case "ALIEN-M":
                 AlienMediationAds.LoadInterstitial(activity, idIntertitialBackup);
                 break;
-            case "WORTISE" :
+            case "WORTISE":
                 break;
         }
     }
@@ -888,28 +890,28 @@ public class AliendroidIntertitial {
                 AlienViewAds.onLoadInterstitialView = new OnLoadInterstitialView() {
                     @Override
                     public void onInterstitialAdLoaded() {
-                        if (onLoadInterstitialAlienView!=null){
+                        if (onLoadInterstitialAlienView != null) {
                             onLoadInterstitialAlienView.onInterstitialAdLoaded();
                         }
                     }
 
                     @Override
                     public void onInterstitialAdClosed() {
-                        if (onLoadInterstitialAlienView!=null){
+                        if (onLoadInterstitialAlienView != null) {
                             onLoadInterstitialAlienView.onInterstitialAdClosed();
                         }
                     }
 
                     @Override
                     public void onInterstitialAdClicked() {
-                        if (onLoadInterstitialAlienView!=null){
+                        if (onLoadInterstitialAlienView != null) {
                             onLoadInterstitialAlienView.onInterstitialAdClicked();
                         }
                     }
 
                     @Override
                     public void onInterstitialAdFailedToLoad(String error) {
-                        if (onLoadInterstitialAlienView!=null){
+                        if (onLoadInterstitialAlienView != null) {
                             onLoadInterstitialAlienView.onInterstitialAdFailedToLoad();
                         }
                     }
@@ -919,7 +921,7 @@ public class AliendroidIntertitial {
                 AlienMediationAds.LoadInterstitial(activity, idIntertitialBackup);
                 break;
 
-            case "WORTISE" :
+            case "WORTISE":
                 break;
         }
     }
@@ -1061,28 +1063,28 @@ public class AliendroidIntertitial {
                 AlienViewAds.onLoadInterstitialView = new OnLoadInterstitialView() {
                     @Override
                     public void onInterstitialAdLoaded() {
-                        if (onLoadInterstitialAlienView!=null){
+                        if (onLoadInterstitialAlienView != null) {
                             onLoadInterstitialAlienView.onInterstitialAdLoaded();
                         }
                     }
 
                     @Override
                     public void onInterstitialAdClosed() {
-                        if (onLoadInterstitialAlienView!=null){
+                        if (onLoadInterstitialAlienView != null) {
                             onLoadInterstitialAlienView.onInterstitialAdClosed();
                         }
                     }
 
                     @Override
                     public void onInterstitialAdClicked() {
-                        if (onLoadInterstitialAlienView!=null){
+                        if (onLoadInterstitialAlienView != null) {
                             onLoadInterstitialAlienView.onInterstitialAdClicked();
                         }
                     }
 
                     @Override
                     public void onInterstitialAdFailedToLoad(String error) {
-                        if (onLoadInterstitialAlienView!=null){
+                        if (onLoadInterstitialAlienView != null) {
                             onLoadInterstitialAlienView.onInterstitialAdFailedToLoad();
                         }
                     }
@@ -1091,7 +1093,7 @@ public class AliendroidIntertitial {
             case "ALIEN-M":
                 AlienMediationAds.LoadInterstitial(activity, idIntertitialBackup);
                 break;
-            case "WORTISE" :
+            case "WORTISE":
                 break;
         }
     }
@@ -1197,28 +1199,28 @@ public class AliendroidIntertitial {
                 AlienViewAds.onLoadInterstitialView = new OnLoadInterstitialView() {
                     @Override
                     public void onInterstitialAdLoaded() {
-                        if (onLoadInterstitialAlienView!=null){
+                        if (onLoadInterstitialAlienView != null) {
                             onLoadInterstitialAlienView.onInterstitialAdLoaded();
                         }
                     }
 
                     @Override
                     public void onInterstitialAdClosed() {
-                        if (onLoadInterstitialAlienView!=null){
+                        if (onLoadInterstitialAlienView != null) {
                             onLoadInterstitialAlienView.onInterstitialAdClosed();
                         }
                     }
 
                     @Override
                     public void onInterstitialAdClicked() {
-                        if (onLoadInterstitialAlienView!=null){
+                        if (onLoadInterstitialAlienView != null) {
                             onLoadInterstitialAlienView.onInterstitialAdClicked();
                         }
                     }
 
                     @Override
                     public void onInterstitialAdFailedToLoad(String error) {
-                        if (onLoadInterstitialAlienView!=null){
+                        if (onLoadInterstitialAlienView != null) {
                             onLoadInterstitialAlienView.onInterstitialAdFailedToLoad();
                         }
                     }
@@ -1227,7 +1229,7 @@ public class AliendroidIntertitial {
             case "ALIEN-M":
                 AlienMediationAds.LoadInterstitial(activity, idIntertitialBackup);
                 break;
-            case "WORTISE" :
+            case "WORTISE":
                 break;
         }
     }
@@ -1237,28 +1239,28 @@ public class AliendroidIntertitial {
         AlienViewAds.onLoadInterstitialView = new OnLoadInterstitialView() {
             @Override
             public void onInterstitialAdLoaded() {
-                if (onLoadInterstitialAlienView!=null){
+                if (onLoadInterstitialAlienView != null) {
                     onLoadInterstitialAlienView.onInterstitialAdLoaded();
                 }
             }
 
             @Override
             public void onInterstitialAdClosed() {
-                if (onLoadInterstitialAlienView!=null){
+                if (onLoadInterstitialAlienView != null) {
                     onLoadInterstitialAlienView.onInterstitialAdClosed();
                 }
             }
 
             @Override
             public void onInterstitialAdClicked() {
-                if (onLoadInterstitialAlienView!=null){
+                if (onLoadInterstitialAlienView != null) {
                     onLoadInterstitialAlienView.onInterstitialAdClicked();
                 }
             }
 
             @Override
             public void onInterstitialAdFailedToLoad(String error) {
-                if (onLoadInterstitialAlienView!=null){
+                if (onLoadInterstitialAlienView != null) {
                     onLoadInterstitialAlienView.onInterstitialAdFailedToLoad();
                 }
             }
@@ -1359,42 +1361,25 @@ public class AliendroidIntertitial {
             case "ALIEN-M":
                 AlienMediationAds.LoadInterstitial(activity, idIntertitialBackup);
                 break;
-            case "WORTISE" :
+            case "WORTISE":
                 break;
         }
     }
 
     public static void LoadIntertitialAlienMediation(Activity activity, String selectAdsBackup, String idIntertitial, String idIntertitialBackup) {
-        AlienMediationAds.LoadInterstitial(activity, idIntertitial);
-        AlienMediationAds.onLoadInterstitialMediation = new OnLoadInterstitialMediation() {
-            @Override
-            public void onInterstitialAdLoaded() {
-                if (onLoadInterstitialAlienMediation!=null){
-                    onLoadInterstitialAlienMediation.onInterstitialAdLoaded();
-                }
-            }
 
-            @Override
-            public void onInterstitialAdClosed() {
-                if (onLoadInterstitialAlienMediation!=null){
-                    onLoadInterstitialAlienMediation.onInterstitialAdClosed();
-                }
-            }
 
+        PropsAdsManagement.loadInterstitialAds(activity, idIntertitial, new InterstitialAdLoadCallback() {
             @Override
-            public void onInterstitialAdClicked() {
-                if (onLoadInterstitialAlienMediation!=null){
-                    onLoadInterstitialAlienMediation.onInterstitialAdClicked();
-                }
-            }
+            public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                super.onAdFailedToLoad(loadAdError);
 
-            @Override
-            public void onInterstitialAdFailedToLoad(String error) {
-                if (onLoadInterstitialAlienMediation!=null){
-                    onLoadInterstitialAlienMediation.onInterstitialAdFailedToLoad();
-                }
             }
-        };
+            @Override
+            public void onAdLoaded(@NonNull InterstitialAd interstitialAdProps) {
+                super.onAdLoaded(interstitialAdProps);
+            }
+        });
         switch (selectAdsBackup) {
             case "APPLOVIN-D":
                 AdRequest.Builder builder = new AdRequest.Builder();
@@ -1409,7 +1394,7 @@ public class AliendroidIntertitial {
 
                     @Override
                     public void failedToReceiveAd(int errorCode) {
-                        // Look at AppLovinErrorCodes.java for list of error codes.
+
                     }
                 });
                 interstitialAdlovin = AppLovinInterstitialAd.create(AppLovinSdk.getInstance(activity), activity);
@@ -1423,8 +1408,6 @@ public class AliendroidIntertitial {
                 interstitialAd.loadAd();
                 break;
             case "ADMOB":
-
-
                 AdRequest request = new AdRequest.Builder()
                         .build();
                 InterstitialAd.load(activity, idIntertitialBackup, request,
@@ -1444,7 +1427,6 @@ public class AliendroidIntertitial {
                 break;
             case "MOPUB":
             case "UNITY":
-
                 break;
             case "FACEBOOK":
                 FBinterstitialAd = new com.facebook.ads.InterstitialAd(activity, idIntertitialBackup);
@@ -1495,34 +1477,34 @@ public class AliendroidIntertitial {
                 AlienViewAds.onLoadInterstitialView = new OnLoadInterstitialView() {
                     @Override
                     public void onInterstitialAdLoaded() {
-                        if (onLoadInterstitialAlienView!=null){
+                        if (onLoadInterstitialAlienView != null) {
                             onLoadInterstitialAlienView.onInterstitialAdLoaded();
                         }
                     }
 
                     @Override
                     public void onInterstitialAdClosed() {
-                        if (onLoadInterstitialAlienView!=null){
+                        if (onLoadInterstitialAlienView != null) {
                             onLoadInterstitialAlienView.onInterstitialAdClosed();
                         }
                     }
 
                     @Override
                     public void onInterstitialAdClicked() {
-                        if (onLoadInterstitialAlienView!=null){
+                        if (onLoadInterstitialAlienView != null) {
                             onLoadInterstitialAlienView.onInterstitialAdClicked();
                         }
                     }
 
                     @Override
                     public void onInterstitialAdFailedToLoad(String error) {
-                        if (onLoadInterstitialAlienView!=null){
+                        if (onLoadInterstitialAlienView != null) {
                             onLoadInterstitialAlienView.onInterstitialAdFailedToLoad();
                         }
                     }
                 };
                 break;
-            case "WORTISE" :
+            case "WORTISE":
                 break;
         }
     }
@@ -1530,15 +1512,16 @@ public class AliendroidIntertitial {
     public static void LoadIntertitialWortise(Activity activity, String selectAdsBackup, String idIntertitial, String idIntertitialBackup) {
 
     }
+
     public static void ShowIntertitialAdmob(Activity activity, String selectAdsBackup, String idIntertitial, String idIntertitialBackup,
                                             int interval, String Hpk1,
                                             String Hpk2, String Hpk3, String Hpk4, String Hpk5) {
         if (counter >= interval) {
             if (mInterstitialAd != null) {
-                mInterstitialAd.setFullScreenContentCallback(new FullScreenContentCallback(){
+                mInterstitialAd.setFullScreenContentCallback(new FullScreenContentCallback() {
                     @Override
                     public void onAdClicked() {
-                        if (onFullScreenContentCallbackAdmob!=null){
+                        if (onFullScreenContentCallbackAdmob != null) {
                             onFullScreenContentCallbackAdmob.onAdClicked();
                         }
 
@@ -1546,7 +1529,7 @@ public class AliendroidIntertitial {
 
                     @Override
                     public void onAdDismissedFullScreenContent() {
-                        if (onFullScreenContentCallbackAdmob!=null){
+                        if (onFullScreenContentCallbackAdmob != null) {
                             onFullScreenContentCallbackAdmob.onAdDismissedFullScreenContent();
                         }
                         mInterstitialAd = null;
@@ -1554,7 +1537,7 @@ public class AliendroidIntertitial {
 
                     @Override
                     public void onAdFailedToShowFullScreenContent(com.google.android.gms.ads.AdError adError) {
-                        if (onFullScreenContentCallbackAdmob!=null){
+                        if (onFullScreenContentCallbackAdmob != null) {
                             onFullScreenContentCallbackAdmob.onAdFailedToShowFullScreenContent();
                         }
                         mInterstitialAd = null;
@@ -1563,7 +1546,7 @@ public class AliendroidIntertitial {
                     @Override
                     public void onAdImpression() {
                         // Called when an impression is recorded for an ad.
-                        if (onFullScreenContentCallbackAdmob!=null){
+                        if (onFullScreenContentCallbackAdmob != null) {
                             onFullScreenContentCallbackAdmob.onAdImpression();
                         }
                         Log.d(ContentValues.TAG, "Ad recorded an impression.");
@@ -1573,7 +1556,7 @@ public class AliendroidIntertitial {
                     public void onAdShowedFullScreenContent() {
                         // Called when ad is shown.
                         Log.d(ContentValues.TAG, "Ad showed fullscreen content.");
-                        if (onFullScreenContentCallbackAdmob!=null){
+                        if (onFullScreenContentCallbackAdmob != null) {
                             onFullScreenContentCallbackAdmob.onAdShowedFullScreenContent();
                         }
                     }
@@ -1582,7 +1565,7 @@ public class AliendroidIntertitial {
                 if (onShowInterstitialAdmob != null) {
                     onShowInterstitialAdmob.onAdSuccess();
                 }
-               // LoadIntertitialAdmob(activity, selectAdsBackup, idIntertitial, idIntertitialBackup, Hpk1, Hpk2, Hpk3, Hpk4, Hpk5);
+                // LoadIntertitialAdmob(activity, selectAdsBackup, idIntertitial, idIntertitialBackup, Hpk1, Hpk2, Hpk3, Hpk4, Hpk5);
             } else {
                 if (onShowInterstitialAdmob != null) {
                     onShowInterstitialAdmob.onAdFailedShow();
@@ -1620,7 +1603,9 @@ public class AliendroidIntertitial {
                         SHOW_ALIEN_VIEW = true;
                         break;
                     case "ALIEN-M":
-                        AlienMediationAds.ShowInterstitial(activity);
+                        if (PropsAdsManagement.getInterstitialAds() != null) {
+                            PropsAdsManagement.getInterstitialAds().show(activity);
+                        }
                         break;
                     case "ADMOB":
                         if (mInterstitialAd2 != null) {
@@ -1685,7 +1670,9 @@ public class AliendroidIntertitial {
                         SHOW_ALIEN_VIEW = true;
                         break;
                     case "ALIEN-M":
-                        AlienMediationAds.ShowInterstitial(activity);
+                        if (PropsAdsManagement.getInterstitialAds() != null) {
+                            PropsAdsManagement.getInterstitialAds().show(activity);
+                        }
                         break;
                     case "WORTISE":
 
@@ -1755,7 +1742,9 @@ public class AliendroidIntertitial {
                                 SHOW_ALIEN_VIEW = true;
                                 break;
                             case "ALIEN-M":
-                                AlienMediationAds.ShowInterstitial(activity);
+                                if (PropsAdsManagement.getInterstitialAds() != null) {
+                                    PropsAdsManagement.getInterstitialAds().show(activity);
+                                }
                                 break;
                             case "WORTISE":
 
@@ -1831,7 +1820,9 @@ public class AliendroidIntertitial {
                                 SHOW_ALIEN_VIEW = true;
                                 break;
                             case "ALIEN-M":
-                                AlienMediationAds.ShowInterstitial(activity);
+                                if (PropsAdsManagement.getInterstitialAds() != null) {
+                                    PropsAdsManagement.getInterstitialAds().show(activity);
+                                }
                                 break;
                             case "WORTISE":
 
@@ -1904,7 +1895,9 @@ public class AliendroidIntertitial {
                         SHOW_ALIEN_VIEW = true;
                         break;
                     case "ALIEN-M":
-                        AlienMediationAds.ShowInterstitial(activity);
+                        if (PropsAdsManagement.getInterstitialAds() != null) {
+                            PropsAdsManagement.getInterstitialAds().show(activity);
+                        }
                         break;
                     case "WORTISE":
 
@@ -1966,7 +1959,9 @@ public class AliendroidIntertitial {
                         SHOW_ALIEN_VIEW = true;
                         break;
                     case "ALIEN-M":
-                        AlienMediationAds.ShowInterstitial(activity);
+                        if (PropsAdsManagement.getInterstitialAds() != null) {
+                            PropsAdsManagement.getInterstitialAds().show(activity);
+                        }
                         break;
                     case "WORTISE":
 
@@ -1989,7 +1984,6 @@ public class AliendroidIntertitial {
 
     public static void ShowIntertitialMopub(Activity activity, String selectAdsBackup, String idIntertitial, String idIntertitialBackup,
                                             int interval) {
-
     }
 
     public static void ShowIntertitialSartApp(Activity activity, String selectAdsBackup, String idIntertitial, String idIntertitialBackup,
@@ -2062,7 +2056,9 @@ public class AliendroidIntertitial {
                             SHOW_ALIEN_VIEW = true;
                             break;
                         case "ALIEN-M":
-                            AlienMediationAds.ShowInterstitial(activity);
+                            if (PropsAdsManagement.getInterstitialAds() != null) {
+                                PropsAdsManagement.getInterstitialAds().show(activity);
+                            }
                             break;
                         case "WORTISE":
                             break;
@@ -2121,7 +2117,9 @@ public class AliendroidIntertitial {
                         SHOW_ALIEN_VIEW = true;
                         break;
                     case "ALIEN-M":
-                        AlienMediationAds.ShowInterstitial(activity);
+                        if (PropsAdsManagement.getInterstitialAds() != null) {
+                            PropsAdsManagement.getInterstitialAds().show(activity);
+                        }
                         break;
                     case "FACEBOOK":
                         if (FBinterstitialAd == null || !FBinterstitialAd.isAdLoaded()) {
@@ -2152,7 +2150,6 @@ public class AliendroidIntertitial {
 
     public static void ShowIntertitialUnity(Activity activity, String selectAdsBackup, String idIntertitial, String idIntertitialBackup,
                                             int interval) {
-
     }
 
     public static void ShowIntertitialAlienView(Activity activity, String selectAdsBackup, String idIntertitial, String idIntertitialBackup,
@@ -2162,14 +2159,14 @@ public class AliendroidIntertitial {
             AlienViewAds.onShowInterstitialView = new OnShowInterstitialView() {
                 @Override
                 public void onAdSuccess() {
-                    if (onShowInterstitialAlienMediation!=null){
+                    if (onShowInterstitialAlienMediation != null) {
                         onShowInterstitialAlienMediation.onAdSuccess();
                     }
                 }
 
                 @Override
                 public void onAdFailedShow() {
-                    if (onShowInterstitialAlienMediation!=null){
+                    if (onShowInterstitialAlienMediation != null) {
                         onShowInterstitialAlienMediation.onAdFailedShow();
                     }
                     switch (selectAdsBackup) {
@@ -2212,7 +2209,9 @@ public class AliendroidIntertitial {
                             }
                             break;
                         case "ALIEN-M":
-                            AlienMediationAds.ShowInterstitial(activity);
+                            if (PropsAdsManagement.getInterstitialAds() != null) {
+                                PropsAdsManagement.getInterstitialAds().show(activity);
+                            }
                             break;
                         case "WORTISE":
                             break;
@@ -2229,67 +2228,56 @@ public class AliendroidIntertitial {
     public static void ShowIntertitialAlienMediation(Activity activity, String selectAdsBackup, String idIntertitial, String idIntertitialBackup,
                                                      int interval) {
         if (counter >= interval) {
-            AlienMediationAds.ShowInterstitial(activity);
-            AlienMediationAds.onShowInterstitial = new OnShowInterstitial() {
-                @Override
-                public void onAdSuccess() {
-                    if (onShowInterstitialAlienMediation!=null){
-                        onShowInterstitialAlienMediation.onAdSuccess();
-                    }
+            if (PropsAdsManagement.getInterstitialAds() != null) {
+                PropsAdsManagement.getInterstitialAds().show(activity);
+            } else {
+                switch (selectAdsBackup) {
+                    case "APPLOVIN-M":
+                        if (interstitialAd.isReady()) {
+                            interstitialAd.showAd();
+                            interstitialAd.loadAd();
+                        } else {
+                            interstitialAd.loadAd();
+                        }
+                        break;
+                    case "MOPUB":
+                    case "UNITY":
+                        break;
+                    case "IRON":
+                        IronSource.showInterstitial(idIntertitialBackup);
+                        break;
+                    case "STARTAPP":
+                        StartAppAd.showAd(activity);
+                        break;
+                    case "APPLOVIN-D":
+                        if (interstitialAdlovin != null) {
+                            interstitialAdlovin.showAndRender(loadedAd);
+                        }
+                        break;
+                    case "ADMOB":
+                        if (mInterstitialAd != null) {
+                            mInterstitialAd.show(activity);
+                        }
+                        break;
+                    case "GOOGLE-ADS":
+                        if (mAdManagerInterstitialAd != null) {
+                            mAdManagerInterstitialAd.show(activity);
+                        }
+                        break;
+                    case "FACEBOOK":
+                        if (FBinterstitialAd == null || !FBinterstitialAd.isAdLoaded()) {
+                        } else {
+                            FBinterstitialAd.show();
+                        }
+                        break;
+                    case "ALIEN-V":
+                        SHOW_ALIEN_VIEW = true;
+                        break;
+                    case "WORTISE":
+                        break;
                 }
+            }
 
-                @Override
-                public void onAdFailedShow() {
-                    if (onShowInterstitialAlienMediation!=null){
-                        onShowInterstitialAlienMediation.onAdFailedShow();
-                    }
-                    switch (selectAdsBackup) {
-                        case "APPLOVIN-M":
-                            if (interstitialAd.isReady()) {
-                                interstitialAd.showAd();
-                                interstitialAd.loadAd();
-                            } else {
-                                interstitialAd.loadAd();
-                            }
-                            break;
-                        case "MOPUB":
-                        case "UNITY":
-                            break;
-                        case "IRON":
-                            IronSource.showInterstitial(idIntertitialBackup);
-                            break;
-                        case "STARTAPP":
-                            StartAppAd.showAd(activity);
-                            break;
-                        case "APPLOVIN-D":
-                            if (interstitialAdlovin != null) {
-                                interstitialAdlovin.showAndRender(loadedAd);
-                            }
-                            break;
-                        case "ADMOB":
-                            if (mInterstitialAd != null) {
-                                mInterstitialAd.show(activity);
-                            }
-                            break;
-                        case "GOOGLE-ADS":
-                            if (mAdManagerInterstitialAd != null) {
-                                mAdManagerInterstitialAd.show(activity);
-                            }
-                            break;
-                        case "FACEBOOK":
-                            if (FBinterstitialAd == null || !FBinterstitialAd.isAdLoaded()) {
-                            } else {
-                                FBinterstitialAd.show();
-                            }
-                            break;
-                        case "ALIEN-V":
-                            SHOW_ALIEN_VIEW = true;
-                            break;
-                        case "WORTISE":
-                            break;
-                    }
-                }
-            };
             LoadIntertitialAlienView(activity, selectAdsBackup, idIntertitial, idIntertitialBackup);
             counter = 0;
         } else {
@@ -2298,7 +2286,7 @@ public class AliendroidIntertitial {
     }
 
     public static void ShowIntertitialWortise(Activity activity, String selectAdsBackup, String idIntertitial, String idIntertitialBackup,
-                                            int interval) {
+                                              int interval) {
 
     }
 }

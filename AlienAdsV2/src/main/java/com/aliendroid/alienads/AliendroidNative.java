@@ -427,7 +427,7 @@ public class AliendroidNative {
                             nativeBannerAd.destroy();
                         }
                         break;
-                    case "WORTISE" :
+                    case "WORTISE":
 
                         break;
                 }
@@ -844,7 +844,7 @@ public class AliendroidNative {
                             nativeAd.destroy();
                         }
                         break;
-                    case "WORTISE" :
+                    case "WORTISE":
 
                         break;
                 }
@@ -1067,8 +1067,9 @@ public class AliendroidNative {
     }
 
     public static void SmallNativeWortise(Activity activity, RelativeLayout layNative, String selectAdsBackup, String nativeId, String idNativeBackup
-                                       ) {
+    ) {
     }
+
     public static void MediumNativeStartApp(Activity activity, RelativeLayout layNative, String selectAdsBackup, String nativeId, String idNativeBackup) {
         startAppNativeAd = new StartAppNativeAd(activity);
         View adViewNative = (View) activity.getLayoutInflater()
@@ -1611,7 +1612,7 @@ public class AliendroidNative {
                             nativeAdfan.destroy();
                         }
                         break;
-                    case "WORTISE" :
+                    case "WORTISE":
 
                         break;
                 }
@@ -2033,7 +2034,7 @@ public class AliendroidNative {
                             nativeAdLoader.destroy(nativeAdMax);
                         }
                         break;
-                    case "WORTISE" :
+                    case "WORTISE":
 
                         break;
                 }
@@ -2284,6 +2285,7 @@ public class AliendroidNative {
     public static void MediumNativeWortise(Activity activity, RelativeLayout layNative, String selectAdsBackup, String nativeId, String idNativeBackup) {
 
     }
+
     public static void SmallNativeAlien(Activity activity, RelativeLayout layNative, String selectAdsBackup, String nativeId, String idNativeBackup) {
         AlienMediationAds.SmallNatives(activity, layNative, nativeId);
         AlienMediationAds.onLoadNative = new OnLoadNative() {
@@ -2498,6 +2500,7 @@ public class AliendroidNative {
 
 
     }
+
     //Rectangle
     public static void SmallNativeStartAppRectangle(Activity activity, RelativeLayout layNative, String selectAdsBackup, String nativeId, String idNativeBackup) {
         startAppNativeAd = new StartAppNativeAd(activity);
@@ -3407,7 +3410,7 @@ public class AliendroidNative {
                             nativeAdLoader.destroy(nativeAdMax);
                         }
                         break;
-                    case "WORTISE" :
+                    case "WORTISE":
 
                         break;
                 }

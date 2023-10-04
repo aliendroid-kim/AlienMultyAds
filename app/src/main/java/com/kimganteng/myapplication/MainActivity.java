@@ -7,6 +7,7 @@ import static com.kimganteng.myapplication.SettingsAlien.BackupReward;
 import static com.kimganteng.myapplication.SettingsAlien.Backup_Initialize;
 import static com.kimganteng.myapplication.SettingsAlien.MainIntertitial;
 import static com.kimganteng.myapplication.SettingsAlien.MainRewards;
+import static com.kimganteng.myapplication.SettingsAlien.Main_Initialize;
 import static com.kimganteng.myapplication.SettingsAlien.Select_Backup_Ads;
 import static com.kimganteng.myapplication.SettingsAlien.Select_Main_Ads;
 
@@ -83,6 +84,9 @@ public class MainActivity extends AppCompatActivity {
             case "FACEBOOK":
                 AliendroidInitialize.SelectAdsFAN(this, Select_Backup_Ads, Backup_Initialize);
                 break;
+            case "ALIEN-M":
+                AliendroidInitialize.SelectAdsAlienMediation(this, Select_Backup_Ads,Main_Initialize, Backup_Initialize);
+                break;
         }
 
         switch (Select_Main_Ads) {
@@ -99,10 +103,13 @@ public class MainActivity extends AppCompatActivity {
             case "FACEBOOK":
                 AliendroidIntertitial.LoadIntertitialFAN(MainActivity.this, Select_Backup_Ads, MainIntertitial, BackupIntertitial);
                 break;
+            case "ALIEN-M":
+                AliendroidIntertitial.LoadIntertitialAlienMediation(MainActivity.this, Select_Backup_Ads, MainIntertitial, BackupIntertitial);
+                break;
         }
 
         AlienNotif.LoadOneSignal("535dc774-9fe3-44ae-839e-09e4133aebe9");
-        AliendroidReward.LoadRewardFan(this,Select_Backup_Ads,MainRewards,BackupReward);
+        AliendroidReward.LoadRewardAlienMediation(this,Select_Backup_Ads,MainRewards,BackupReward);
         AlienPopup.CpaOpenAds_Json(this, "https://aliendro.id/projek/Ads.json");
         TextView txtCode = findViewById(R.id.txtCode);
 
@@ -151,16 +158,18 @@ public class MainActivity extends AppCompatActivity {
             case "FACEBOOK":
                 AliendroidIntertitial.ShowIntertitialFAN(MainActivity.this, Select_Backup_Ads, MainIntertitial, BackupIntertitial, 0);
                 break;
+            case "ALIEN-M":
+                AliendroidIntertitial.ShowIntertitialAlienMediation(MainActivity.this, Select_Backup_Ads, MainIntertitial, BackupIntertitial, 0);
+                break;
         }
 
     }
 
     public void REWARD(View view){
-        AliendroidReward.ShowRewardFan(MainActivity.this,Select_Backup_Ads,MainRewards,BackupReward);
+        AliendroidReward.ShowRewardAlienMediation(MainActivity.this,Select_Backup_Ads,MainRewards,BackupReward);
 
 
     }
-
     public void onBackPressed(){
         finishAffinity();
         System.exit(0);

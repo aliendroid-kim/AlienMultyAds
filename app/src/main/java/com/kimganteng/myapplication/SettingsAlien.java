@@ -13,19 +13,19 @@ public class SettingsAlien {
     Native Advanced 	ca-app-pub-3940256099942544/2247696110
     Native Advanced Video 	ca-app-pub-3940256099942544/1044960115
      */
-    public static  String Select_Main_Ads ="FACEBOOK";
-    public static  String Select_Backup_Ads ="APPLOVIN-D";
+    public static  String Select_Main_Ads ="ALIEN-M";
+    public static  String Select_Backup_Ads ="ADMOB";
 
-    public static String  MainIntertitial ="IMG_16_9_APP_INSTALL#YOUR_PLACEMENT_ID";
+    public static String  MainIntertitial ="interstitial_1";
     public static  String BackupIntertitial ="test-interstitial";
 
-    public static  String MainBanner="IMG_16_9_APP_INSTALL#YOUR_PLACEMENT_ID";
+    public static  String MainBanner="banner_1";
     public static  String BackupBanner="test-banner";
 
     public static String MainNatives ="IMG_16_9_APP_INSTALL#YOUR_PLACEMENT_ID";
     public static String BackupNatives="test-native";
 
-    public static String MainRewards ="YOUR_PLACEMENT_ID";
+    public static String MainRewards ="rewarded_1";
     public static String BackupReward="ca-app-pub-3940256099942544/5224354917";
 
     public static  String Main_Initialize="1100042525";

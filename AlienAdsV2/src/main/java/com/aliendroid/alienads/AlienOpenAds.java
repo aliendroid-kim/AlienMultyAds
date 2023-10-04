@@ -57,6 +57,7 @@ public class AlienOpenAds implements LifecycleObserver, Application.ActivityLife
         }
 
     }
+
     public static void LoadOpenAds(String idOpenAds, boolean loadads, String selectADS) {
         LOADADS = loadads;
         SELECT_ADS = selectADS;
@@ -152,7 +153,7 @@ public class AlienOpenAds implements LifecycleObserver, Application.ActivityLife
 
                             }
                         });
-            } else if (SELECT_ADS.equals("APPLOVIN-M")){
+            } else if (SELECT_ADS.equals("APPLOVIN-M")) {
                 // Do not load ad if there is an unused ad or one is already loading.
                 if (isLoadingAd || isAdAvailable()) {
                     return;
@@ -201,8 +202,8 @@ public class AlienOpenAds implements LifecycleObserver, Application.ActivityLife
             if (SELECT_ADS.equals("ADMOB")) {
                 return appOpenAd != null && wasLoadTimeLessThanNHoursAgo(4);
             } else if (SELECT_ADS.equals("APPLOVIN-M")) {
-                return appOpenAdApplovin != null ;
-            }else {
+                return appOpenAdApplovin != null;
+            } else {
                 return appOpenAd != null && wasLoadTimeLessThanNHoursAgo(4);
             }
 
@@ -220,7 +221,7 @@ public class AlienOpenAds implements LifecycleObserver, Application.ActivityLife
         public static void showAdIfAvailable(
                 @NonNull final Activity activity,
                 @NonNull OnShowAdCompleteListener onShowAdCompleteListener) {
-            if (SELECT_ADS.equals("ADMOB")){
+            if (SELECT_ADS.equals("ADMOB")) {
                 if (isShowingAd) {
                     return;
                 }
@@ -248,6 +249,7 @@ public class AlienOpenAds implements LifecycleObserver, Application.ActivityLife
                                 onShowAdCompleteListener.onShowAdComplete();
                                 loadAd(activity);
                             }
+
                             @Override
                             public void onAdShowedFullScreenContent() {
                             }
@@ -255,7 +257,7 @@ public class AlienOpenAds implements LifecycleObserver, Application.ActivityLife
 
                 isShowingAd = true;
                 appOpenAd.show(activity);
-            } else if (SELECT_ADS.equals("APPLOVIN-M")){
+            } else if (SELECT_ADS.equals("APPLOVIN-M")) {
                 if (isShowingAd) {
                     return;
                 }
@@ -348,6 +350,7 @@ public class AlienOpenAds implements LifecycleObserver, Application.ActivityLife
                                 onShowAdCompleteListener.onShowAdComplete();
                                 loadAd(activity);
                             }
+
                             @Override
                             public void onAdShowedFullScreenContent() {
                             }
