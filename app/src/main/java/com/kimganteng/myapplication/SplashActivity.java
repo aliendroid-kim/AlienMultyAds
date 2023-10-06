@@ -19,6 +19,7 @@ import com.aliendroid.alienads.AlienOpenAds;
 import com.aliendroid.alienads.AliendroidInitialize;
 import com.aliendroid.alienads.ApplovinOpenAds;
 import com.aliendroid.alienads.MyApplication;
+import com.aliendroid.alienads.PropsOpenAds;
 import com.aliendroid.alienads.WortiseOpenAds;
 import com.aliendroid.alienads.interfaces.open.OnLoadOpenAppAdmob;
 import com.aliendroid.alienads.interfaces.open.OnLoadOpenAppWortise;
@@ -65,19 +66,15 @@ public class SplashActivity extends AppCompatActivity {
                 break;
         }
 
-
-
-         /*
-         AlienOpenAds.LoadOpenAds("ca-app-pub-3940256099942544/3419835294",true);
-                AlienOpenAds.AppOpenAdManager.showAdIfAvailable(SplashActivity.this, new AlienOpenAds.OnShowAdCompleteListener() {
+        PropsOpenAds.LoadOpenAds("openapp_1",true);
+        PropsOpenAds.AppOpenAdManager.showAdIfAvailable(SplashActivity.this, new PropsOpenAds.OnShowAdCompleteListener() {
              @Override
              public void onShowAdComplete() {
                  startActivity(true);
              }
          });
-          */
-        WortiseOpenAds.LoadOpenWortise(this,"test-app-open");
-        startActivity(true);
+
+
 
     }
 

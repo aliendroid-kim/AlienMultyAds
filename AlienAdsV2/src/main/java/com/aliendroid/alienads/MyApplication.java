@@ -16,6 +16,7 @@ import com.google.android.gms.ads.initialization.OnInitializationCompleteListene
 
 public class MyApplication extends Application {
     private static AlienOpenAds alienOpenAds;
+    private static PropsOpenAds propsOpenAds;
     private static ApplovinOpenAds applovinOpenAds;
     private static InitializeAlienAds sdkads;
     private static AlienNotif notif;
@@ -45,6 +46,7 @@ public class MyApplication extends Application {
 
         sdkads = new InitializeAlienAds(this);
         alienOpenAds = new AlienOpenAds(this);
+        propsOpenAds = new PropsOpenAds(this);
         //applovinOpenAds = new ApplovinOpenAds(this);
         notif = new AlienNotif(this);
 
