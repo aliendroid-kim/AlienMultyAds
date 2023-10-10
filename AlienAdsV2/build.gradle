@@ -33,7 +33,7 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-process:2.5.1'
 
     implementation "androidx.multidex:multidex:2.0.1"
-    implementation fileTree(include: ['*.jar', '*.aar'], dir: 'libs')
+    //implementation fileTree(include: ['*.jar', '*.aar'], dir: 'libs')
     //Main Sdk Ads
     implementation 'com.google.android.gms:play-services-ads:22.4.0'
     implementation 'com.facebook.android:audience-network-sdk:6.16.0'
@@ -73,4 +73,5 @@ dependencies {
     implementation 'com.squareup.okhttp3:okhttp:4.11.0'
     implementation 'com.squareup.okhttp3:logging-interceptor:4.9.2'
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+    implementation 'com.props.adsmanager:props-adsmanager:1'
 }
