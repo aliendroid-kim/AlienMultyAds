@@ -7,10 +7,6 @@ buildscript {
             url 'https://android-sdk.is.com/'
         }
         maven { url 'https://jitpack.io' }
-        maven {
-            url 'https://gitlab.com/api/v4/projects/51100142/packages/maven'
-        }
-
         jcenter()
     }
     dependencies {
@@ -27,11 +23,6 @@ allprojects {
             url 'https://android-sdk.is.com/'
         }
         maven { url 'https://jitpack.io' }
-        maven {
-            url 'https://gitlab.com/api/v4/projects/51100142/packages/maven'
-        }
-
-
     }
 }
 
