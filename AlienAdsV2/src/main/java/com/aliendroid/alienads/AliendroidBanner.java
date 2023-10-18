@@ -38,6 +38,7 @@ import com.applovin.sdk.AppLovinAdSize;
 import com.applovin.sdk.AppLovinSdkUtils;
 import com.facebook.ads.Ad;
 import com.facebook.ads.AdError;
+import com.google.ads.mediation.admob.AdMobAdapter;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdSize;
@@ -52,6 +53,8 @@ import com.ironsource.mediationsdk.logger.IronSourceError;
 import com.props.adsmanager.PropsAdsManagement;
 import com.startapp.sdk.ads.banner.Banner;
 import com.startapp.sdk.ads.banner.BannerListener;
+
+import java.util.UUID;
 
 
 public class AliendroidBanner {
@@ -74,7 +77,766 @@ public class AliendroidBanner {
     public static OnLoadBannerAlienView onLoadBannerAlienView;
     public static OnLoadBannerAlienMediation onLoadBannerAlienMediation;
     public static OnLoadBannerWortise onLoadBannerWortise;
+    public static void SmallCollapsibleAdmobTop(Activity activity, RelativeLayout layAds, String selectAdsBackup, String idBanner, String idBannerBackup, String Hpk1,
+                                                   String Hpk2, String Hpk3, String Hpk4, String Hpk5) {
+        adViewAdmob = new AdView(activity);
+        adViewAdmob.setAdUnitId(idBanner);
+        layAds.addView(adViewAdmob);
+        AdSize adSize = getAdSize(activity);
+        adViewAdmob.setAdSize(adSize);
+        Bundle extras = new Bundle();
+        extras.putString("collapsible", "top");
+        extras.putString("collapsible_request_id", UUID.randomUUID().toString());
 
+        AdRequest adRequest = new AdRequest.Builder()
+                .addNetworkExtrasBundle(AdMobAdapter.class, extras)
+                .addKeyword(Hpk1).addKeyword(Hpk2)
+                .addKeyword(Hpk3).addKeyword(Hpk4).addKeyword(Hpk5)
+                .build();
+        adViewAdmob.loadAd(adRequest);
+        adViewAdmob.setAdListener(new AdListener() {
+            @Override
+            public void onAdLoaded() {
+                if (onLoadBannerAdmob != null) {
+                    onLoadBannerAdmob.onAdLoaded();
+                }
+                switch (selectAdsBackup) {
+                    case "APPLOVIN-M":
+                        if (adViewMax != null) {
+                            adViewMax.destroy();
+                        }
+                        break;
+                    case "MOPUB":
+                    case "UNITY":
+
+                        break;
+                    case "IRON":
+                        if (adViewIron != null) {
+                            adViewIron.isDestroyed();
+                        }
+                        break;
+                    case "STARTAPP":
+                        if (startAppBanner != null) {
+                            startAppBanner.hideBanner();
+                        }
+                        break;
+                    case "APPLOVIN-D":
+                        if (adViewDiscovery != null) {
+                            adViewDiscovery.destroy();
+                        }
+                        break;
+                    case "FACEBOOK":
+                        if (adViewFAN != null) {
+                            adViewFAN.destroy();
+                        }
+                        break;
+                    case "WORTISE":
+                        break;
+                }
+            }
+
+            @Override
+            public void onAdFailedToLoad(LoadAdError adError) {
+                if (onLoadBannerAdmob != null) {
+                    onLoadBannerAdmob.onAdFailedToLoad("");
+                }
+                switch (selectAdsBackup) {
+                    case "APPLOVIN-M":
+                        adViewMax = new MaxAdView(idBannerBackup, activity);
+                        MaxAdViewAdListener listener = new MaxAdViewAdListener() {
+                            @Override
+                            public void onAdExpanded(MaxAd ad) {
+                                if (onLoadBannerApplovinMax != null) {
+                                    onLoadBannerApplovinMax.onAdExpanded();
+                                }
+                            }
+
+                            @Override
+                            public void onAdCollapsed(MaxAd ad) {
+                                if (onLoadBannerApplovinMax != null) {
+                                    onLoadBannerApplovinMax.onAdCollapsed();
+                                }
+                            }
+
+                            @Override
+                            public void onAdLoaded(MaxAd ad) {
+                                if (onLoadBannerApplovinMax != null) {
+                                    onLoadBannerApplovinMax.onAdLoaded();
+                                }
+                            }
+
+                            @Override
+                            public void onAdDisplayed(MaxAd ad) {
+                                if (onLoadBannerApplovinMax != null) {
+                                    onLoadBannerApplovinMax.onAdDisplayed();
+                                }
+                            }
+
+                            @Override
+                            public void onAdHidden(MaxAd ad) {
+                                if (onLoadBannerApplovinMax != null) {
+                                    onLoadBannerApplovinMax.onAdHidden();
+                                }
+                            }
+
+                            @Override
+                            public void onAdClicked(MaxAd ad) {
+                                if (onLoadBannerApplovinMax != null) {
+                                    onLoadBannerApplovinMax.onAdClicked();
+                                }
+                            }
+
+                            @Override
+                            public void onAdLoadFailed(String adUnitId, MaxError error) {
+                                if (onLoadBannerApplovinMax != null) {
+                                    onLoadBannerApplovinMax.onAdLoadFailed();
+                                }
+                                layAds.setVisibility(View.GONE);
+                            }
+
+                            @Override
+                            public void onAdDisplayFailed(MaxAd ad, MaxError error) {
+                                if (onLoadBannerApplovinMax != null) {
+                                    onLoadBannerApplovinMax.onAdDisplayFailed();
+                                }
+                                layAds.setVisibility(View.GONE);
+                            }
+                        };
+                        adViewMax.setListener(listener);
+                        final boolean isTablet = AppLovinSdkUtils.isTablet(activity);
+                        final int heightPx = AppLovinSdkUtils.dpToPx(activity, isTablet ? 90 : 50);
+                        adViewMax.setLayoutParams(new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, heightPx));
+                        layAds.addView(adViewMax);
+                        adViewMax.loadAd();
+                        break;
+                    case "MOPUB":
+                    case "UNITY":
+
+                        break;
+                    case "IRON":
+                        adViewIron = IronSource.createBanner(activity, ISBannerSize.BANNER);
+                        FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT,
+                                FrameLayout.LayoutParams.WRAP_CONTENT);
+                        layAds.addView(adViewIron, 0, layoutParams);
+                        com.ironsource.mediationsdk.sdk.BannerListener listenerIron = new com.ironsource.mediationsdk.sdk.BannerListener() {
+                            @Override
+                            public void onBannerAdLoaded() {
+                                if (onLoadBannerIronSource != null) {
+                                    onLoadBannerIronSource.onBannerAdLoaded();
+                                }
+
+                            }
+
+                            @Override
+                            public void onBannerAdLoadFailed(IronSourceError ironSourceError) {
+                                if (onLoadBannerIronSource != null) {
+                                    onLoadBannerIronSource.onBannerAdLoadFailed();
+                                }
+                                layAds.setVisibility(View.GONE);
+
+                            }
+
+                            @Override
+                            public void onBannerAdClicked() {
+                                if (onLoadBannerIronSource != null) {
+                                    onLoadBannerIronSource.onBannerAdClicked();
+                                }
+                            }
+
+                            @Override
+                            public void onBannerAdScreenPresented() {
+                                if (onLoadBannerIronSource != null) {
+                                    onLoadBannerIronSource.onBannerAdScreenPresented();
+                                }
+                            }
+
+                            @Override
+                            public void onBannerAdScreenDismissed() {
+                                if (onLoadBannerIronSource != null) {
+                                    onLoadBannerIronSource.onBannerAdScreenDismissed();
+                                }
+                            }
+
+                            @Override
+                            public void onBannerAdLeftApplication() {
+                                if (onLoadBannerIronSource != null) {
+                                    onLoadBannerIronSource.onBannerAdLeftApplication();
+                                }
+                            }
+                        };
+                        adViewIron.setBannerListener(listenerIron);
+                        IronSource.loadBanner(adViewIron, idBannerBackup);
+
+
+                        break;
+                    case "STARTAPP":
+                        Banner startAppBanner = new Banner(activity, new BannerListener() {
+                            @Override
+                            public void onReceiveAd(View view) {
+                                if (onLoadBannerStartApp != null) {
+                                    onLoadBannerStartApp.onReceiveAd();
+                                }
+
+                            }
+
+                            @Override
+                            public void onFailedToReceiveAd(View view) {
+                                if (onLoadBannerStartApp != null) {
+                                    onLoadBannerStartApp.onFailedToReceiveAd("");
+                                }
+                                layAds.setVisibility(View.GONE);
+                            }
+
+                            @Override
+                            public void onImpression(View view) {
+                                if (onLoadBannerStartApp != null) {
+                                    onLoadBannerStartApp.onImpression();
+                                }
+                            }
+
+                            @Override
+                            public void onClick(View view) {
+                                if (onLoadBannerStartApp != null) {
+                                    onLoadBannerStartApp.onClick();
+                                }
+                            }
+                        });
+
+                        RelativeLayout.LayoutParams bannerParameters =
+                                new RelativeLayout.LayoutParams(
+                                        RelativeLayout.LayoutParams.WRAP_CONTENT,
+                                        RelativeLayout.LayoutParams.WRAP_CONTENT);
+                        bannerParameters.addRule(RelativeLayout.CENTER_HORIZONTAL);
+                        layAds.addView(startAppBanner, bannerParameters);
+                        break;
+                    case "APPLOVIN-D":
+                        AdRequest.Builder builder = new AdRequest.Builder().addKeyword(Hpk1).addKeyword(Hpk2)
+                                .addKeyword(Hpk3).addKeyword(Hpk4).addKeyword(Hpk5);
+                        Bundle bannerExtras = new Bundle();
+                        bannerExtras.putString("zone_id", idBannerBackup);
+                        builder.addCustomEventExtrasBundle(AppLovinCustomEventBanner.class, bannerExtras);
+
+                        boolean isTablet2 = AppLovinSdkUtils.isTablet(activity);
+                        AppLovinAdSize adSize = isTablet2 ? AppLovinAdSize.LEADER : AppLovinAdSize.BANNER;
+                        adViewDiscovery = new AppLovinAdView(adSize, activity);
+                        AppLovinAdLoadListener loadListener = new AppLovinAdLoadListener() {
+                            @Override
+                            public void adReceived(AppLovinAd ad) {
+                                if (onLoadBannerApplovinDiscovery != null) {
+                                    onLoadBannerApplovinDiscovery.adReceived();
+                                }
+
+                            }
+
+                            @Override
+                            public void failedToReceiveAd(int errorCode) {
+                                if (onLoadBannerApplovinDiscovery != null) {
+                                    onLoadBannerApplovinDiscovery.failedToReceiveAd();
+                                }
+                                layAds.setVisibility(View.GONE);
+
+                            }
+                        };
+                        adViewDiscovery.setAdLoadListener(loadListener);
+                        layAds.addView(adViewDiscovery);
+                        adViewDiscovery.loadNextAd();
+                        break;
+                    case "FACEBOOK":
+                        adViewFAN = new com.facebook.ads.AdView(activity, idBannerBackup,
+                                com.facebook.ads.AdSize.BANNER_HEIGHT_50);
+                        layAds.addView(adViewFAN);
+                        com.facebook.ads.AdListener adListener = new com.facebook.ads.AdListener() {
+                            @Override
+                            public void onError(Ad ad, AdError adError) {
+                                if (onLoadBannerFacebook != null) {
+                                    onLoadBannerFacebook.onError();
+                                }
+                                layAds.setVisibility(View.GONE);
+
+                            }
+
+                            @Override
+                            public void onAdLoaded(Ad ad) {
+                                if (onLoadBannerFacebook != null) {
+                                    onLoadBannerFacebook.onAdLoaded();
+                                }
+
+                            }
+
+                            @Override
+                            public void onAdClicked(Ad ad) {
+                                if (onLoadBannerFacebook != null) {
+                                    onLoadBannerFacebook.onAdClicked();
+                                }
+                            }
+
+                            @Override
+                            public void onLoggingImpression(Ad ad) {
+                                if (onLoadBannerFacebook != null) {
+                                    onLoadBannerFacebook.onLoggingImpression();
+                                }
+                            }
+                        };
+                        adViewFAN.loadAd(adViewFAN.buildLoadAdConfig().withAdListener(adListener).build());
+                        break;
+
+                    case "ALIEN-V":
+                        AlienViewAds.Banner(activity, layAds, idBannerBackup);
+                        break;
+                    case "ALIEN-M":
+                        PropsAdsManagement propsAds = new PropsAdsManagement(activity);
+                        AdView adView = propsAds.createBannerAdview("BANNER", idBannerBackup);
+                        AdRequest adRequest2 = new AdRequest.Builder().build();
+                        layAds.addView(adView);
+                        adView.loadAd(adRequest2);
+                        break;
+                    case "ADMOB":
+                        AdRequest request = new AdRequest.Builder()
+                                .build();
+                        adViewAdmob2 = new AdView(activity);
+                        adViewAdmob2.setAdUnitId(idBannerBackup);
+                        layAds.addView(adViewAdmob2);
+                        AdSize adSizeAdmob = getAdSize(activity);
+                        adViewAdmob2.setAdSize(adSizeAdmob);
+                        adViewAdmob2.loadAd(request);
+                        adViewAdmob2.setAdListener(new AdListener() {
+                            @Override
+                            public void onAdLoaded() {
+
+                            }
+
+                            @Override
+                            public void onAdFailedToLoad(LoadAdError adError) {
+                                layAds.setVisibility(View.GONE);
+
+                            }
+
+                            @Override
+                            public void onAdOpened() {
+
+                            }
+
+                            @Override
+                            public void onAdClicked() {
+
+                            }
+
+                            @Override
+                            public void onAdClosed() {
+
+                            }
+                        });
+                        break;
+                    case "WORTISE":
+
+                        break;
+                }
+            }
+
+            @Override
+            public void onAdOpened() {
+                if (onLoadBannerAdmob != null) {
+                    onLoadBannerAdmob.onAdOpened();
+                }
+            }
+
+            @Override
+            public void onAdClicked() {
+                if (onLoadBannerAdmob != null) {
+                    onLoadBannerAdmob.onAdClicked();
+                }
+            }
+
+            @Override
+            public void onAdClosed() {
+                if (onLoadBannerAdmob != null) {
+                    onLoadBannerAdmob.onAdClosed();
+                }
+            }
+        });
+
+
+    }
+    public static void SmallCollapsibleAdmobBottom(Activity activity, RelativeLayout layAds, String selectAdsBackup, String idBanner, String idBannerBackup, String Hpk1,
+                                        String Hpk2, String Hpk3, String Hpk4, String Hpk5) {
+        adViewAdmob = new AdView(activity);
+        adViewAdmob.setAdUnitId(idBanner);
+        layAds.addView(adViewAdmob);
+        AdSize adSize = getAdSize(activity);
+        adViewAdmob.setAdSize(adSize);
+        Bundle extras = new Bundle();
+        extras.putString("collapsible", "bottom");
+        extras.putString("collapsible_request_id", UUID.randomUUID().toString());
+
+        AdRequest adRequest = new AdRequest.Builder()
+                .addNetworkExtrasBundle(AdMobAdapter.class, extras)
+                .addKeyword(Hpk1).addKeyword(Hpk2)
+                .addKeyword(Hpk3).addKeyword(Hpk4).addKeyword(Hpk5)
+                .build();
+        adViewAdmob.loadAd(adRequest);
+        adViewAdmob.setAdListener(new AdListener() {
+            @Override
+            public void onAdLoaded() {
+                if (onLoadBannerAdmob != null) {
+                    onLoadBannerAdmob.onAdLoaded();
+                }
+                switch (selectAdsBackup) {
+                    case "APPLOVIN-M":
+                        if (adViewMax != null) {
+                            adViewMax.destroy();
+                        }
+                        break;
+                    case "MOPUB":
+                    case "UNITY":
+
+                        break;
+                    case "IRON":
+                        if (adViewIron != null) {
+                            adViewIron.isDestroyed();
+                        }
+                        break;
+                    case "STARTAPP":
+                        if (startAppBanner != null) {
+                            startAppBanner.hideBanner();
+                        }
+                        break;
+                    case "APPLOVIN-D":
+                        if (adViewDiscovery != null) {
+                            adViewDiscovery.destroy();
+                        }
+                        break;
+                    case "FACEBOOK":
+                        if (adViewFAN != null) {
+                            adViewFAN.destroy();
+                        }
+                        break;
+                    case "WORTISE":
+                        break;
+                }
+            }
+
+            @Override
+            public void onAdFailedToLoad(LoadAdError adError) {
+                if (onLoadBannerAdmob != null) {
+                    onLoadBannerAdmob.onAdFailedToLoad("");
+                }
+                switch (selectAdsBackup) {
+                    case "APPLOVIN-M":
+                        adViewMax = new MaxAdView(idBannerBackup, activity);
+                        MaxAdViewAdListener listener = new MaxAdViewAdListener() {
+                            @Override
+                            public void onAdExpanded(MaxAd ad) {
+                                if (onLoadBannerApplovinMax != null) {
+                                    onLoadBannerApplovinMax.onAdExpanded();
+                                }
+                            }
+
+                            @Override
+                            public void onAdCollapsed(MaxAd ad) {
+                                if (onLoadBannerApplovinMax != null) {
+                                    onLoadBannerApplovinMax.onAdCollapsed();
+                                }
+                            }
+
+                            @Override
+                            public void onAdLoaded(MaxAd ad) {
+                                if (onLoadBannerApplovinMax != null) {
+                                    onLoadBannerApplovinMax.onAdLoaded();
+                                }
+                            }
+
+                            @Override
+                            public void onAdDisplayed(MaxAd ad) {
+                                if (onLoadBannerApplovinMax != null) {
+                                    onLoadBannerApplovinMax.onAdDisplayed();
+                                }
+                            }
+
+                            @Override
+                            public void onAdHidden(MaxAd ad) {
+                                if (onLoadBannerApplovinMax != null) {
+                                    onLoadBannerApplovinMax.onAdHidden();
+                                }
+                            }
+
+                            @Override
+                            public void onAdClicked(MaxAd ad) {
+                                if (onLoadBannerApplovinMax != null) {
+                                    onLoadBannerApplovinMax.onAdClicked();
+                                }
+                            }
+
+                            @Override
+                            public void onAdLoadFailed(String adUnitId, MaxError error) {
+                                if (onLoadBannerApplovinMax != null) {
+                                    onLoadBannerApplovinMax.onAdLoadFailed();
+                                }
+                                layAds.setVisibility(View.GONE);
+                            }
+
+                            @Override
+                            public void onAdDisplayFailed(MaxAd ad, MaxError error) {
+                                if (onLoadBannerApplovinMax != null) {
+                                    onLoadBannerApplovinMax.onAdDisplayFailed();
+                                }
+                                layAds.setVisibility(View.GONE);
+                            }
+                        };
+                        adViewMax.setListener(listener);
+                        final boolean isTablet = AppLovinSdkUtils.isTablet(activity);
+                        final int heightPx = AppLovinSdkUtils.dpToPx(activity, isTablet ? 90 : 50);
+                        adViewMax.setLayoutParams(new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, heightPx));
+                        layAds.addView(adViewMax);
+                        adViewMax.loadAd();
+                        break;
+                    case "MOPUB":
+                    case "UNITY":
+
+                        break;
+                    case "IRON":
+                        adViewIron = IronSource.createBanner(activity, ISBannerSize.BANNER);
+                        FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT,
+                                FrameLayout.LayoutParams.WRAP_CONTENT);
+                        layAds.addView(adViewIron, 0, layoutParams);
+                        com.ironsource.mediationsdk.sdk.BannerListener listenerIron = new com.ironsource.mediationsdk.sdk.BannerListener() {
+                            @Override
+                            public void onBannerAdLoaded() {
+                                if (onLoadBannerIronSource != null) {
+                                    onLoadBannerIronSource.onBannerAdLoaded();
+                                }
+
+                            }
+
+                            @Override
+                            public void onBannerAdLoadFailed(IronSourceError ironSourceError) {
+                                if (onLoadBannerIronSource != null) {
+                                    onLoadBannerIronSource.onBannerAdLoadFailed();
+                                }
+                                layAds.setVisibility(View.GONE);
+
+                            }
+
+                            @Override
+                            public void onBannerAdClicked() {
+                                if (onLoadBannerIronSource != null) {
+                                    onLoadBannerIronSource.onBannerAdClicked();
+                                }
+                            }
+
+                            @Override
+                            public void onBannerAdScreenPresented() {
+                                if (onLoadBannerIronSource != null) {
+                                    onLoadBannerIronSource.onBannerAdScreenPresented();
+                                }
+                            }
+
+                            @Override
+                            public void onBannerAdScreenDismissed() {
+                                if (onLoadBannerIronSource != null) {
+                                    onLoadBannerIronSource.onBannerAdScreenDismissed();
+                                }
+                            }
+
+                            @Override
+                            public void onBannerAdLeftApplication() {
+                                if (onLoadBannerIronSource != null) {
+                                    onLoadBannerIronSource.onBannerAdLeftApplication();
+                                }
+                            }
+                        };
+                        adViewIron.setBannerListener(listenerIron);
+                        IronSource.loadBanner(adViewIron, idBannerBackup);
+
+
+                        break;
+                    case "STARTAPP":
+                        Banner startAppBanner = new Banner(activity, new BannerListener() {
+                            @Override
+                            public void onReceiveAd(View view) {
+                                if (onLoadBannerStartApp != null) {
+                                    onLoadBannerStartApp.onReceiveAd();
+                                }
+
+                            }
+
+                            @Override
+                            public void onFailedToReceiveAd(View view) {
+                                if (onLoadBannerStartApp != null) {
+                                    onLoadBannerStartApp.onFailedToReceiveAd("");
+                                }
+                                layAds.setVisibility(View.GONE);
+                            }
+
+                            @Override
+                            public void onImpression(View view) {
+                                if (onLoadBannerStartApp != null) {
+                                    onLoadBannerStartApp.onImpression();
+                                }
+                            }
+
+                            @Override
+                            public void onClick(View view) {
+                                if (onLoadBannerStartApp != null) {
+                                    onLoadBannerStartApp.onClick();
+                                }
+                            }
+                        });
+
+                        RelativeLayout.LayoutParams bannerParameters =
+                                new RelativeLayout.LayoutParams(
+                                        RelativeLayout.LayoutParams.WRAP_CONTENT,
+                                        RelativeLayout.LayoutParams.WRAP_CONTENT);
+                        bannerParameters.addRule(RelativeLayout.CENTER_HORIZONTAL);
+                        layAds.addView(startAppBanner, bannerParameters);
+                        break;
+                    case "APPLOVIN-D":
+                        AdRequest.Builder builder = new AdRequest.Builder().addKeyword(Hpk1).addKeyword(Hpk2)
+                                .addKeyword(Hpk3).addKeyword(Hpk4).addKeyword(Hpk5);
+                        Bundle bannerExtras = new Bundle();
+                        bannerExtras.putString("zone_id", idBannerBackup);
+                        builder.addCustomEventExtrasBundle(AppLovinCustomEventBanner.class, bannerExtras);
+
+                        boolean isTablet2 = AppLovinSdkUtils.isTablet(activity);
+                        AppLovinAdSize adSize = isTablet2 ? AppLovinAdSize.LEADER : AppLovinAdSize.BANNER;
+                        adViewDiscovery = new AppLovinAdView(adSize, activity);
+                        AppLovinAdLoadListener loadListener = new AppLovinAdLoadListener() {
+                            @Override
+                            public void adReceived(AppLovinAd ad) {
+                                if (onLoadBannerApplovinDiscovery != null) {
+                                    onLoadBannerApplovinDiscovery.adReceived();
+                                }
+
+                            }
+
+                            @Override
+                            public void failedToReceiveAd(int errorCode) {
+                                if (onLoadBannerApplovinDiscovery != null) {
+                                    onLoadBannerApplovinDiscovery.failedToReceiveAd();
+                                }
+                                layAds.setVisibility(View.GONE);
+
+                            }
+                        };
+                        adViewDiscovery.setAdLoadListener(loadListener);
+                        layAds.addView(adViewDiscovery);
+                        adViewDiscovery.loadNextAd();
+                        break;
+                    case "FACEBOOK":
+                        adViewFAN = new com.facebook.ads.AdView(activity, idBannerBackup,
+                                com.facebook.ads.AdSize.BANNER_HEIGHT_50);
+                        layAds.addView(adViewFAN);
+                        com.facebook.ads.AdListener adListener = new com.facebook.ads.AdListener() {
+                            @Override
+                            public void onError(Ad ad, AdError adError) {
+                                if (onLoadBannerFacebook != null) {
+                                    onLoadBannerFacebook.onError();
+                                }
+                                layAds.setVisibility(View.GONE);
+
+                            }
+
+                            @Override
+                            public void onAdLoaded(Ad ad) {
+                                if (onLoadBannerFacebook != null) {
+                                    onLoadBannerFacebook.onAdLoaded();
+                                }
+
+                            }
+
+                            @Override
+                            public void onAdClicked(Ad ad) {
+                                if (onLoadBannerFacebook != null) {
+                                    onLoadBannerFacebook.onAdClicked();
+                                }
+                            }
+
+                            @Override
+                            public void onLoggingImpression(Ad ad) {
+                                if (onLoadBannerFacebook != null) {
+                                    onLoadBannerFacebook.onLoggingImpression();
+                                }
+                            }
+                        };
+                        adViewFAN.loadAd(adViewFAN.buildLoadAdConfig().withAdListener(adListener).build());
+                        break;
+
+                    case "ALIEN-V":
+                        AlienViewAds.Banner(activity, layAds, idBannerBackup);
+                        break;
+                    case "ALIEN-M":
+                        PropsAdsManagement propsAds = new PropsAdsManagement(activity);
+                        AdView adView = propsAds.createBannerAdview("BANNER", idBannerBackup);
+                        AdRequest adRequest2 = new AdRequest.Builder().build();
+                        layAds.addView(adView);
+                        adView.loadAd(adRequest2);
+                        break;
+                    case "ADMOB":
+                        AdRequest request = new AdRequest.Builder()
+                                .build();
+                        adViewAdmob2 = new AdView(activity);
+                        adViewAdmob2.setAdUnitId(idBannerBackup);
+                        layAds.addView(adViewAdmob2);
+                        AdSize adSizeAdmob = getAdSize(activity);
+                        adViewAdmob2.setAdSize(adSizeAdmob);
+                        adViewAdmob2.loadAd(request);
+                        adViewAdmob2.setAdListener(new AdListener() {
+                            @Override
+                            public void onAdLoaded() {
+
+                            }
+
+                            @Override
+                            public void onAdFailedToLoad(LoadAdError adError) {
+                                layAds.setVisibility(View.GONE);
+
+                            }
+
+                            @Override
+                            public void onAdOpened() {
+
+                            }
+
+                            @Override
+                            public void onAdClicked() {
+
+                            }
+
+                            @Override
+                            public void onAdClosed() {
+
+                            }
+                        });
+                        break;
+                    case "WORTISE":
+
+                        break;
+                }
+            }
+
+            @Override
+            public void onAdOpened() {
+                if (onLoadBannerAdmob != null) {
+                    onLoadBannerAdmob.onAdOpened();
+                }
+            }
+
+            @Override
+            public void onAdClicked() {
+                if (onLoadBannerAdmob != null) {
+                    onLoadBannerAdmob.onAdClicked();
+                }
+            }
+
+            @Override
+            public void onAdClosed() {
+                if (onLoadBannerAdmob != null) {
+                    onLoadBannerAdmob.onAdClosed();
+                }
+            }
+        });
+
+
+    }
     public static void SmallBannerAdmob(Activity activity, RelativeLayout layAds, String selectAdsBackup, String idBanner, String idBannerBackup, String Hpk1,
                                         String Hpk2, String Hpk3, String Hpk4, String Hpk5) {
         AdRequest request = new AdRequest.Builder().addKeyword(Hpk1).addKeyword(Hpk2)
