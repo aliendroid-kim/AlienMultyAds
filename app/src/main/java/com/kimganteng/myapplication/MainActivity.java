@@ -87,6 +87,9 @@ public class MainActivity extends AppCompatActivity {
             case "ALIEN-M":
                 AliendroidInitialize.SelectAdsAlienMediation(this, Select_Backup_Ads,Main_Initialize, Backup_Initialize);
                 break;
+            case "UNITY":
+                AliendroidInitialize.SelectAdsUnity(this, Select_Backup_Ads,Main_Initialize, Backup_Initialize);
+                break;
         }
 
         switch (Select_Main_Ads) {
@@ -106,10 +109,14 @@ public class MainActivity extends AppCompatActivity {
             case "ALIEN-M":
                 AliendroidIntertitial.LoadIntertitialAlienMediation(MainActivity.this, Select_Backup_Ads, MainIntertitial, BackupIntertitial);
                 break;
+            case "UNITY":
+                AliendroidIntertitial.LoadIntertitialUnity(MainActivity.this, Select_Backup_Ads, MainIntertitial, BackupIntertitial);
+                break;
+
         }
 
         AlienNotif.LoadOneSignal("535dc774-9fe3-44ae-839e-09e4133aebe9");
-        AliendroidReward.LoadRewardAlienMediation(this,Select_Backup_Ads,MainRewards,BackupReward);
+        AliendroidReward.LoadRewardUnity(this,Select_Backup_Ads,MainRewards,BackupReward);
         AlienPopup.CpaOpenAds_Json(this, "https://aliendro.id/projek/Ads.json");
         TextView txtCode = findViewById(R.id.txtCode);
 
@@ -161,12 +168,15 @@ public class MainActivity extends AppCompatActivity {
             case "ALIEN-M":
                 AliendroidIntertitial.ShowIntertitialAlienMediation(MainActivity.this, Select_Backup_Ads, MainIntertitial, BackupIntertitial, 0);
                 break;
+            case "UNITY":
+                AliendroidIntertitial.ShowIntertitialUnity(MainActivity.this, Select_Backup_Ads, MainIntertitial, BackupIntertitial, 0);
+                break;
         }
 
     }
 
     public void REWARD(View view){
-        AliendroidReward.ShowRewardAlienMediation(MainActivity.this,Select_Backup_Ads,MainRewards,BackupReward);
+        AliendroidReward.ShowRewardUnity(MainActivity.this,Select_Backup_Ads,MainRewards,BackupReward);
 
 
     }

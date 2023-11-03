@@ -55,14 +55,15 @@ import com.google.android.gms.ads.admanager.AdManagerInterstitialAd;
 import com.google.android.gms.ads.admanager.AdManagerInterstitialAdLoadCallback;
 import com.google.android.gms.ads.interstitial.InterstitialAd;
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
-import com.ironsource.mediationsdk.IronSource;
-import com.ironsource.mediationsdk.logger.IronSourceError;
-import com.ironsource.mediationsdk.sdk.InterstitialListener;
 import com.props.adsmanager.PropsAdsManagement;
 import com.startapp.sdk.adsbase.Ad;
 import com.startapp.sdk.adsbase.StartAppAd;
 import com.startapp.sdk.adsbase.adlisteners.AdDisplayListener;
 import com.startapp.sdk.adsbase.adlisteners.AdEventListener;
+import com.unity3d.ads.IUnityAdsLoadListener;
+import com.unity3d.ads.IUnityAdsShowListener;
+import com.unity3d.ads.UnityAds;
+import com.unity3d.ads.UnityAdsShowOptions;
 
 public class AliendroidIntertitial {
 
@@ -110,7 +111,114 @@ public class AliendroidIntertitial {
     //public static OnShowInterstitialStartApp onShowInterstitialStartApp;
 
     public static void LoadIntertitialUnity(Activity activity, String selectAds, String idIntertitial, String idBackupIntertitial) {
+        IUnityAdsLoadListener listener = new IUnityAdsLoadListener() {
+            @Override
+            public void onUnityAdsAdLoaded(String placementId) {
 
+            }
+
+            @Override
+            public void onUnityAdsFailedToLoad(String placementId, UnityAds.UnityAdsLoadError error, String message) {
+
+            }
+        };
+        try {
+            UnityAds.load(idIntertitial, listener);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        switch (selectAds) {
+            case "APPLOVIN-M":
+                interstitialAd = new MaxInterstitialAd(idBackupIntertitial, activity);
+                interstitialAd.loadAd();
+                break;
+            case "MOPUB":
+            case "UNITY":
+
+                break;
+            case "IRON":
+                break;
+            case "APPLOVIN-D":
+                AdRequest.Builder builder = new AdRequest.Builder();
+                Bundle interstitialExtras = new Bundle();
+                interstitialExtras.putString("zone_id", idBackupIntertitial);
+                builder.addCustomEventExtrasBundle(AppLovinCustomEventInterstitial.class, interstitialExtras);
+
+                AppLovinSdk.getInstance(activity).getAdService().loadNextAd(AppLovinAdSize.INTERSTITIAL, new AppLovinAdLoadListener() {
+                    @Override
+                    public void adReceived(AppLovinAd ad) {
+                        loadedAd = ad;
+                    }
+
+                    @Override
+                    public void failedToReceiveAd(int errorCode) {
+                        // Look at AppLovinErrorCodes.java for list of error codes.
+                    }
+                });
+                interstitialAdlovin = AppLovinInterstitialAd.create(AppLovinSdk.getInstance(activity), activity);
+                break;
+            case "FACEBOOK":
+                FBinterstitialAd = new com.facebook.ads.InterstitialAd(activity, idBackupIntertitial);
+                FBinterstitialAd.loadAd();
+                break;
+            case "ALIEN-V":
+                AlienViewAds.Interstitial(activity, idBackupIntertitial);
+                AlienViewAds.onLoadInterstitialView = new OnLoadInterstitialView() {
+                    @Override
+                    public void onInterstitialAdLoaded() {
+                        if (onLoadInterstitialAlienView != null) {
+                            onLoadInterstitialAlienView.onInterstitialAdLoaded();
+                        }
+                    }
+
+                    @Override
+                    public void onInterstitialAdClosed() {
+                        if (onLoadInterstitialAlienView != null) {
+                            onLoadInterstitialAlienView.onInterstitialAdClosed();
+                        }
+                    }
+
+                    @Override
+                    public void onInterstitialAdClicked() {
+                        if (onLoadInterstitialAlienView != null) {
+                            onLoadInterstitialAlienView.onInterstitialAdClicked();
+                        }
+                    }
+
+                    @Override
+                    public void onInterstitialAdFailedToLoad(String error) {
+                        if (onLoadInterstitialAlienView != null) {
+                            onLoadInterstitialAlienView.onInterstitialAdFailedToLoad();
+                        }
+                    }
+                };
+                break;
+            case "ALIEN-M":
+                AlienMediationAds.LoadInterstitial(activity, idBackupIntertitial);
+                break;
+            case "ADMOB":
+                AdRequest request = new AdRequest.Builder()
+                        .build();
+                InterstitialAd.load(activity, idBackupIntertitial, request,
+                        new InterstitialAdLoadCallback() {
+                            @Override
+                            public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
+                                mInterstitialAd = interstitialAd;
+                                Log.i(TAG, "onAdLoaded");
+                            }
+
+                            @Override
+                            public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                                // Handle the error
+                                Log.i(TAG, loadAdError.getMessage());
+                                mInterstitialAd = null;
+                            }
+                        });
+                break;
+            case "WORTISE":
+                break;
+
+        }
     }
 
 
@@ -149,11 +257,24 @@ public class AliendroidIntertitial {
                 break;
             case "MOPUB":
             case "UNITY":
+                IUnityAdsLoadListener listener = new IUnityAdsLoadListener() {
+                    @Override
+                    public void onUnityAdsAdLoaded(String placementId) {
 
+                    }
+
+                    @Override
+                    public void onUnityAdsFailedToLoad(String placementId, UnityAds.UnityAdsLoadError error, String message) {
+
+                    }
+                };
+                try {
+                    UnityAds.load(idIntertitialBackup, listener);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
                 break;
             case "IRON":
-                IronSource.isInterstitialPlacementCapped(idIntertitialBackup);
-                IronSource.loadInterstitial();
                 break;
             case "APPLOVIN-D":
                 AdRequest.Builder builder = new AdRequest.Builder().addKeyword(Hpk1).addKeyword(Hpk2)
@@ -301,11 +422,24 @@ public class AliendroidIntertitial {
                 break;
             case "MOPUB":
             case "UNITY":
+                IUnityAdsLoadListener listener = new IUnityAdsLoadListener() {
+                    @Override
+                    public void onUnityAdsAdLoaded(String placementId) {
 
+                    }
+
+                    @Override
+                    public void onUnityAdsFailedToLoad(String placementId, UnityAds.UnityAdsLoadError error, String message) {
+
+                    }
+                };
+                try {
+                    UnityAds.load(idIntertitialBackup, listener);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
                 break;
             case "IRON":
-                IronSource.isInterstitialPlacementCapped(idIntertitialBackup);
-                IronSource.loadInterstitial();
                 break;
             case "APPLOVIN-D":
                 AdRequest.Builder builder = new AdRequest.Builder();
@@ -434,15 +568,28 @@ public class AliendroidIntertitial {
                 break;
             case "MOPUB":
             case "UNITY":
+                IUnityAdsLoadListener listener = new IUnityAdsLoadListener() {
+                    @Override
+                    public void onUnityAdsAdLoaded(String placementId) {
 
+                    }
+
+                    @Override
+                    public void onUnityAdsFailedToLoad(String placementId, UnityAds.UnityAdsLoadError error, String message) {
+
+                    }
+                };
+                try {
+                    UnityAds.load(idIntertitialBackup, listener);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
                 break;
             case "FACEBOOK":
                 FBinterstitialAd2 = new com.facebook.ads.InterstitialAd(activity, idIntertitialBackup);
                 FBinterstitialAd2.loadAd();
                 break;
             case "IRON":
-                IronSource.isInterstitialPlacementCapped(idIntertitialBackup);
-                IronSource.loadInterstitial();
                 break;
             case "APPLOVIN-D":
                 AdRequest.Builder builder = new AdRequest.Builder();
@@ -577,11 +724,24 @@ public class AliendroidIntertitial {
                 break;
             case "MOPUB":
             case "UNITY":
+                IUnityAdsLoadListener listener = new IUnityAdsLoadListener() {
+                    @Override
+                    public void onUnityAdsAdLoaded(String placementId) {
 
+                    }
+
+                    @Override
+                    public void onUnityAdsFailedToLoad(String placementId, UnityAds.UnityAdsLoadError error, String message) {
+
+                    }
+                };
+                try {
+                    UnityAds.load(idIntertitialBackup, listener);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
                 break;
             case "IRON":
-                IronSource.isInterstitialPlacementCapped(idIntertitialBackup);
-                IronSource.loadInterstitial();
                 break;
             case "ADMOB":
                 AdRequest request = new AdRequest.Builder()
@@ -702,11 +862,24 @@ public class AliendroidIntertitial {
                 break;
             case "MOPUB":
             case "UNITY":
+                IUnityAdsLoadListener listener = new IUnityAdsLoadListener() {
+                    @Override
+                    public void onUnityAdsAdLoaded(String placementId) {
 
+                    }
+
+                    @Override
+                    public void onUnityAdsFailedToLoad(String placementId, UnityAds.UnityAdsLoadError error, String message) {
+
+                    }
+                };
+                try {
+                    UnityAds.load(idIntertitialBackup, listener);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
                 break;
             case "IRON":
-                IronSource.isInterstitialPlacementCapped(idIntertitialBackup);
-                IronSource.loadInterstitial();
                 break;
             case "ADMOB":
                 AdRequest request = new AdRequest.Builder()
@@ -828,11 +1001,24 @@ public class AliendroidIntertitial {
                 break;
             case "MOPUB":
             case "UNITY":
+                IUnityAdsLoadListener listener = new IUnityAdsLoadListener() {
+                    @Override
+                    public void onUnityAdsAdLoaded(String placementId) {
 
+                    }
+
+                    @Override
+                    public void onUnityAdsFailedToLoad(String placementId, UnityAds.UnityAdsLoadError error, String message) {
+
+                    }
+                };
+                try {
+                    UnityAds.load(idIntertitialBackup, listener);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
                 break;
             case "IRON":
-                IronSource.isInterstitialPlacementCapped(idIntertitialBackup);
-                IronSource.loadInterstitial();
                 break;
             case "ADMOB":
 
@@ -928,174 +1114,6 @@ public class AliendroidIntertitial {
 
     public static void LoadIntertitialIron(Activity activity, String selectAdsBackup, String idIntertitial, String idIntertitialBackup) {
 
-        IronSource.isInterstitialPlacementCapped(idIntertitial);
-        IronSource.setInterstitialListener(new InterstitialListener() {
-            @Override
-            public void onInterstitialAdReady() {
-                irininter = false;
-                if (onLoadInterstitialIronSource != null) {
-                    onLoadInterstitialIronSource.onInterstitialAdReady();
-                }
-            }
-
-            @Override
-            public void onInterstitialAdLoadFailed(IronSourceError error) {
-                irininter = true;
-                if (onLoadInterstitialIronSource != null) {
-                    onLoadInterstitialIronSource.onInterstitialAdLoadFailed();
-                }
-            }
-
-            @Override
-            public void onInterstitialAdOpened() {
-                if (onLoadInterstitialIronSource != null) {
-                    onLoadInterstitialIronSource.onInterstitialAdOpened();
-                }
-            }
-
-            @Override
-            public void onInterstitialAdClosed() {
-                if (onLoadInterstitialIronSource != null) {
-                    onLoadInterstitialIronSource.onInterstitialAdClosed();
-                }
-            }
-
-            @Override
-            public void onInterstitialAdShowFailed(IronSourceError error) {
-                if (onLoadInterstitialIronSource != null) {
-                    onLoadInterstitialIronSource.onInterstitialAdLoadFailed();
-                }
-            }
-
-            @Override
-            public void onInterstitialAdClicked() {
-                if (onLoadInterstitialIronSource != null) {
-                    onLoadInterstitialIronSource.onInterstitialAdClicked();
-                }
-            }
-
-            @Override
-            public void onInterstitialAdShowSucceeded() {
-                if (onLoadInterstitialIronSource != null) {
-                    onLoadInterstitialIronSource.onInterstitialAdShowSucceeded();
-                }
-            }
-        });
-        IronSource.loadInterstitial();
-        switch (selectAdsBackup) {
-            case "APPLOVIN-D":
-                AdRequest.Builder builder = new AdRequest.Builder();
-                Bundle interstitialExtras = new Bundle();
-                interstitialExtras.putString("zone_id", idIntertitialBackup);
-                builder.addCustomEventExtrasBundle(AppLovinCustomEventInterstitial.class, interstitialExtras);
-                AppLovinSdk.getInstance(activity).getAdService().loadNextAd(AppLovinAdSize.INTERSTITIAL, new AppLovinAdLoadListener() {
-                    @Override
-                    public void adReceived(AppLovinAd ad) {
-                        loadedAd = ad;
-                    }
-
-                    @Override
-                    public void failedToReceiveAd(int errorCode) {
-                        // Look at AppLovinErrorCodes.java for list of error codes.
-                    }
-                });
-                interstitialAdlovin = AppLovinInterstitialAd.create(AppLovinSdk.getInstance(activity), activity);
-                break;
-            case "MOPUB":
-            case "UNITY":
-
-                break;
-            case "APPLOVIN-M":
-                interstitialAd = new MaxInterstitialAd(idIntertitialBackup, activity);
-                interstitialAd.loadAd();
-                break;
-            case "ADMOB":
-                AdRequest request = new AdRequest.Builder()
-                        .build();
-                InterstitialAd.load(activity, idIntertitialBackup, request,
-                        new InterstitialAdLoadCallback() {
-                            @Override
-                            public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
-                                // The mInterstitialAd reference will be null until
-                                // an ad is loaded.
-                                mInterstitialAd = interstitialAd;
-                                Log.i(TAG, "onAdLoaded");
-                            }
-
-                            @Override
-                            public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
-                                // Handle the error
-                                Log.i(TAG, loadAdError.getMessage());
-                                mInterstitialAd = null;
-                            }
-                        });
-                break;
-            case "GOOGLE-ADS":
-                AdManagerAdRequest adRequest =
-                        new AdManagerAdRequest.Builder()
-                                .build();
-
-                AdManagerInterstitialAd.load(activity, idIntertitialBackup, adRequest,
-                        new AdManagerInterstitialAdLoadCallback() {
-                            @Override
-                            public void onAdLoaded(@NonNull AdManagerInterstitialAd interstitialAd) {
-                                // The mAdManagerInterstitialAd reference will be null until
-                                // an ad is loaded.
-                                mAdManagerInterstitialAd = interstitialAd;
-                                Log.i(TAG, "onAdLoaded");
-                            }
-
-                            @Override
-                            public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
-                                // Handle the error
-                                Log.i(TAG, loadAdError.getMessage());
-                                mAdManagerInterstitialAd = null;
-                            }
-                        });
-
-                break;
-            case "FACEBOOK":
-                FBinterstitialAd = new com.facebook.ads.InterstitialAd(activity, idIntertitialBackup);
-                FBinterstitialAd.loadAd();
-                break;
-            case "ALIEN-V":
-                AlienViewAds.Interstitial(activity, idIntertitialBackup);
-                AlienViewAds.onLoadInterstitialView = new OnLoadInterstitialView() {
-                    @Override
-                    public void onInterstitialAdLoaded() {
-                        if (onLoadInterstitialAlienView != null) {
-                            onLoadInterstitialAlienView.onInterstitialAdLoaded();
-                        }
-                    }
-
-                    @Override
-                    public void onInterstitialAdClosed() {
-                        if (onLoadInterstitialAlienView != null) {
-                            onLoadInterstitialAlienView.onInterstitialAdClosed();
-                        }
-                    }
-
-                    @Override
-                    public void onInterstitialAdClicked() {
-                        if (onLoadInterstitialAlienView != null) {
-                            onLoadInterstitialAlienView.onInterstitialAdClicked();
-                        }
-                    }
-
-                    @Override
-                    public void onInterstitialAdFailedToLoad(String error) {
-                        if (onLoadInterstitialAlienView != null) {
-                            onLoadInterstitialAlienView.onInterstitialAdFailedToLoad();
-                        }
-                    }
-                };
-                break;
-            case "ALIEN-M":
-                AlienMediationAds.LoadInterstitial(activity, idIntertitialBackup);
-                break;
-            case "WORTISE":
-                break;
-        }
     }
 
     public static void LoadIntertitialMopub(Activity activity, String selectAdsBackup, String idIntertitial, String idIntertitialBackup) {
@@ -1139,8 +1157,6 @@ public class AliendroidIntertitial {
                 interstitialAdlovin = AppLovinInterstitialAd.create(AppLovinSdk.getInstance(activity), activity);
                 break;
             case "IRON":
-                IronSource.isInterstitialPlacementCapped(idIntertitialBackup);
-                IronSource.loadInterstitial();
                 break;
             case "APPLOVIN-M":
                 interstitialAd = new MaxInterstitialAd(idIntertitialBackup, activity);
@@ -1168,7 +1184,22 @@ public class AliendroidIntertitial {
                 break;
             case "MOPUB":
             case "UNITY":
+                IUnityAdsLoadListener listener = new IUnityAdsLoadListener() {
+                    @Override
+                    public void onUnityAdsAdLoaded(String placementId) {
 
+                    }
+
+                    @Override
+                    public void onUnityAdsFailedToLoad(String placementId, UnityAds.UnityAdsLoadError error, String message) {
+
+                    }
+                };
+                try {
+                    UnityAds.load(idIntertitialBackup, listener);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
                 break;
             case "FACEBOOK":
                 FBinterstitialAd = new com.facebook.ads.InterstitialAd(activity, idIntertitialBackup);
@@ -1285,8 +1316,6 @@ public class AliendroidIntertitial {
                 interstitialAdlovin = AppLovinInterstitialAd.create(AppLovinSdk.getInstance(activity), activity);
                 break;
             case "IRON":
-                IronSource.isInterstitialPlacementCapped(idIntertitialBackup);
-                IronSource.loadInterstitial();
                 break;
             case "APPLOVIN-M":
                 interstitialAd = new MaxInterstitialAd(idIntertitialBackup, activity);
@@ -1312,7 +1341,22 @@ public class AliendroidIntertitial {
                 break;
             case "MOPUB":
             case "UNITY":
+                IUnityAdsLoadListener listener = new IUnityAdsLoadListener() {
+                    @Override
+                    public void onUnityAdsAdLoaded(String placementId) {
 
+                    }
+
+                    @Override
+                    public void onUnityAdsFailedToLoad(String placementId, UnityAds.UnityAdsLoadError error, String message) {
+
+                    }
+                };
+                try {
+                    UnityAds.load(idIntertitialBackup, listener);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
                 break;
             case "FACEBOOK":
                 FBinterstitialAd = new com.facebook.ads.InterstitialAd(activity, idIntertitialBackup);
@@ -1400,8 +1444,6 @@ public class AliendroidIntertitial {
                 interstitialAdlovin = AppLovinInterstitialAd.create(AppLovinSdk.getInstance(activity), activity);
                 break;
             case "IRON":
-                IronSource.isInterstitialPlacementCapped(idIntertitialBackup);
-                IronSource.loadInterstitial();
                 break;
             case "APPLOVIN-M":
                 interstitialAd = new MaxInterstitialAd(idIntertitialBackup, activity);
@@ -1427,6 +1469,22 @@ public class AliendroidIntertitial {
                 break;
             case "MOPUB":
             case "UNITY":
+                IUnityAdsLoadListener listener = new IUnityAdsLoadListener() {
+                    @Override
+                    public void onUnityAdsAdLoaded(String placementId) {
+
+                    }
+
+                    @Override
+                    public void onUnityAdsFailedToLoad(String placementId, UnityAds.UnityAdsLoadError error, String message) {
+
+                    }
+                };
+                try {
+                    UnityAds.load(idIntertitialBackup, listener);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
                 break;
             case "FACEBOOK":
                 FBinterstitialAd = new com.facebook.ads.InterstitialAd(activity, idIntertitialBackup);
@@ -1581,9 +1639,30 @@ public class AliendroidIntertitial {
                         break;
                     case "MOPUB":
                     case "UNITY":
+                        IUnityAdsShowListener showListener = new IUnityAdsShowListener() {
+                            @Override
+                            public void onUnityAdsShowFailure(String placementId, UnityAds.UnityAdsShowError error, String message) {
+
+                            }
+
+                            @Override
+                            public void onUnityAdsShowStart(String placementId) {
+
+                            }
+
+                            @Override
+                            public void onUnityAdsShowClick(String placementId) {
+
+                            }
+
+                            @Override
+                            public void onUnityAdsShowComplete(String placementId, UnityAds.UnityAdsShowCompletionState state) {
+
+                            }
+                        };
+                        UnityAds.show(activity, idIntertitialBackup, new UnityAdsShowOptions(), showListener);
                         break;
                     case "IRON":
-                        IronSource.showInterstitial(idIntertitialBackup);
                         break;
                     case "STARTAPP":
                         StartAppAd.showAd(activity);
@@ -1648,9 +1727,30 @@ public class AliendroidIntertitial {
                         break;
                     case "MOPUB":
                     case "UNITY":
+                        IUnityAdsShowListener showListener = new IUnityAdsShowListener() {
+                            @Override
+                            public void onUnityAdsShowFailure(String placementId, UnityAds.UnityAdsShowError error, String message) {
+
+                            }
+
+                            @Override
+                            public void onUnityAdsShowStart(String placementId) {
+
+                            }
+
+                            @Override
+                            public void onUnityAdsShowClick(String placementId) {
+
+                            }
+
+                            @Override
+                            public void onUnityAdsShowComplete(String placementId, UnityAds.UnityAdsShowCompletionState state) {
+
+                            }
+                        };
+                        UnityAds.show(activity, idIntertitialBackup, new UnityAdsShowOptions(), showListener);
                         break;
                     case "IRON":
-                        IronSource.showInterstitial(idIntertitialBackup);
                         break;
                     case "STARTAPP":
                         StartAppAd.showAd(activity);
@@ -1715,10 +1815,30 @@ public class AliendroidIntertitial {
                                 break;
                             case "MOPUB":
                             case "UNITY":
+                                IUnityAdsShowListener showListener = new IUnityAdsShowListener() {
+                                    @Override
+                                    public void onUnityAdsShowFailure(String placementId, UnityAds.UnityAdsShowError error, String message) {
 
+                                    }
+
+                                    @Override
+                                    public void onUnityAdsShowStart(String placementId) {
+
+                                    }
+
+                                    @Override
+                                    public void onUnityAdsShowClick(String placementId) {
+
+                                    }
+
+                                    @Override
+                                    public void onUnityAdsShowComplete(String placementId, UnityAds.UnityAdsShowCompletionState state) {
+
+                                    }
+                                };
+                                UnityAds.show(activity, idIntertitialBackup, new UnityAdsShowOptions(), showListener);
                                 break;
                             case "IRON":
-                                IronSource.showInterstitial(idIntertitialBackup);
                                 break;
                             case "STARTAPP":
                                 StartAppAd.showAd(activity);
@@ -1793,10 +1913,30 @@ public class AliendroidIntertitial {
                                 break;
                             case "MOPUB":
                             case "UNITY":
+                                IUnityAdsShowListener showListener = new IUnityAdsShowListener() {
+                                    @Override
+                                    public void onUnityAdsShowFailure(String placementId, UnityAds.UnityAdsShowError error, String message) {
 
+                                    }
+
+                                    @Override
+                                    public void onUnityAdsShowStart(String placementId) {
+
+                                    }
+
+                                    @Override
+                                    public void onUnityAdsShowClick(String placementId) {
+
+                                    }
+
+                                    @Override
+                                    public void onUnityAdsShowComplete(String placementId, UnityAds.UnityAdsShowCompletionState state) {
+
+                                    }
+                                };
+                                UnityAds.show(activity, idIntertitialBackup, new UnityAdsShowOptions(), showListener);
                                 break;
                             case "IRON":
-                                IronSource.showInterstitial(idIntertitialBackup);
                                 break;
                             case "STARTAPP":
                                 StartAppAd.showAd(activity);
@@ -1866,11 +2006,31 @@ public class AliendroidIntertitial {
                         break;
                     case "MOPUB":
                     case "UNITY":
+                        IUnityAdsShowListener showListener = new IUnityAdsShowListener() {
+                            @Override
+                            public void onUnityAdsShowFailure(String placementId, UnityAds.UnityAdsShowError error, String message) {
 
+                            }
+
+                            @Override
+                            public void onUnityAdsShowStart(String placementId) {
+
+                            }
+
+                            @Override
+                            public void onUnityAdsShowClick(String placementId) {
+
+                            }
+
+                            @Override
+                            public void onUnityAdsShowComplete(String placementId, UnityAds.UnityAdsShowCompletionState state) {
+
+                            }
+                        };
+                        UnityAds.show(activity, idIntertitialBackup, new UnityAdsShowOptions(), showListener);
 
                         break;
                     case "IRON":
-                        IronSource.showInterstitial(idIntertitialBackup);
                         break;
                     case "STARTAPP":
                         StartAppAd.showAd(activity);
@@ -1928,7 +2088,28 @@ public class AliendroidIntertitial {
                         break;
                     case "MOPUB":
                     case "UNITY":
+                        IUnityAdsShowListener showListener = new IUnityAdsShowListener() {
+                            @Override
+                            public void onUnityAdsShowFailure(String placementId, UnityAds.UnityAdsShowError error, String message) {
 
+                            }
+
+                            @Override
+                            public void onUnityAdsShowStart(String placementId) {
+
+                            }
+
+                            @Override
+                            public void onUnityAdsShowClick(String placementId) {
+
+                            }
+
+                            @Override
+                            public void onUnityAdsShowComplete(String placementId, UnityAds.UnityAdsShowCompletionState state) {
+
+                            }
+                        };
+                        UnityAds.show(activity, idIntertitialBackup, new UnityAdsShowOptions(), showListener);
 
                         break;
                     case "APPLOVIN-M":
@@ -1971,7 +2152,6 @@ public class AliendroidIntertitial {
                 if (onShowInterstitialIronSource != null) {
                     onShowInterstitialIronSource.onAdSuccess();
                 }
-                IronSource.showInterstitial(idIntertitial);
             }
 
             LoadIntertitialIron(activity, selectAdsBackup, idIntertitial, idIntertitialBackup);
@@ -2024,7 +2204,6 @@ public class AliendroidIntertitial {
                             }
                             break;
                         case "IRON":
-                            IronSource.showInterstitial(idIntertitial);
                             break;
                         case "APPLOVIN-M":
                             if (interstitialAd.isReady()) {
@@ -2033,7 +2212,28 @@ public class AliendroidIntertitial {
                             break;
                         case "MOPUB":
                         case "UNITY":
+                            IUnityAdsShowListener showListener = new IUnityAdsShowListener() {
+                                @Override
+                                public void onUnityAdsShowFailure(String placementId, UnityAds.UnityAdsShowError error, String message) {
 
+                                }
+
+                                @Override
+                                public void onUnityAdsShowStart(String placementId) {
+
+                                }
+
+                                @Override
+                                public void onUnityAdsShowClick(String placementId) {
+
+                                }
+
+                                @Override
+                                public void onUnityAdsShowComplete(String placementId, UnityAds.UnityAdsShowCompletionState state) {
+
+                                }
+                            };
+                            UnityAds.show(activity, idIntertitialBackup, new UnityAdsShowOptions(), showListener);
 
                             break;
                         case "ADMOB":
@@ -2089,11 +2289,31 @@ public class AliendroidIntertitial {
                         break;
                     case "MOPUB":
                     case "UNITY":
+                        IUnityAdsShowListener showListener = new IUnityAdsShowListener() {
+                            @Override
+                            public void onUnityAdsShowFailure(String placementId, UnityAds.UnityAdsShowError error, String message) {
 
+                            }
+
+                            @Override
+                            public void onUnityAdsShowStart(String placementId) {
+
+                            }
+
+                            @Override
+                            public void onUnityAdsShowClick(String placementId) {
+
+                            }
+
+                            @Override
+                            public void onUnityAdsShowComplete(String placementId, UnityAds.UnityAdsShowCompletionState state) {
+
+                            }
+                        };
+                        UnityAds.show(activity, idIntertitialBackup, new UnityAdsShowOptions(), showListener);
 
                         break;
                     case "IRON":
-                        IronSource.showInterstitial(idIntertitialBackup);
                         break;
                     case "STARTAPP":
                         StartAppAd.showAd(activity);
@@ -2150,6 +2370,101 @@ public class AliendroidIntertitial {
 
     public static void ShowIntertitialUnity(Activity activity, String selectAdsBackup, String idIntertitial, String idIntertitialBackup,
                                             int interval) {
+        if (counter >= interval) {
+
+            IUnityAdsShowListener showListener = new IUnityAdsShowListener() {
+                @Override
+                public void onUnityAdsShowFailure(String placementId, UnityAds.UnityAdsShowError error, String message) {
+                    switch (selectAdsBackup) {
+                        case "APPLOVIN-M":
+                            if (interstitialAd.isReady()) {
+                                interstitialAd.showAd();
+                                interstitialAd.loadAd();
+                            } else {
+                                interstitialAd.loadAd();
+                            }
+                            break;
+                        case "MOPUB":
+                        case "UNITY":
+                            IUnityAdsShowListener showListener = new IUnityAdsShowListener() {
+                                @Override
+                                public void onUnityAdsShowFailure(String placementId, UnityAds.UnityAdsShowError error, String message) {
+
+                                }
+
+                                @Override
+                                public void onUnityAdsShowStart(String placementId) {
+
+                                }
+
+                                @Override
+                                public void onUnityAdsShowClick(String placementId) {
+
+                                }
+
+                                @Override
+                                public void onUnityAdsShowComplete(String placementId, UnityAds.UnityAdsShowCompletionState state) {
+
+                                }
+                            };
+                            UnityAds.show(activity, idIntertitialBackup, new UnityAdsShowOptions(), showListener);
+                            break;
+                        case "IRON":
+                            break;
+                        case "STARTAPP":
+                            StartAppAd.showAd(activity);
+                            break;
+                        case "APPLOVIN-D":
+                            if (interstitialAdlovin != null) {
+                                interstitialAdlovin.showAndRender(loadedAd);
+                            }
+                            break;
+                        case "FACEBOOK":
+                            if (FBinterstitialAd == null || !FBinterstitialAd.isAdLoaded()) {
+                            } else {
+                                FBinterstitialAd.show();
+                            }
+                            break;
+                        case "ALIEN-V":
+                            SHOW_ALIEN_VIEW = true;
+                            break;
+                        case "ALIEN-M":
+                            if (PropsAdsManagement.getInterstitialAds() != null) {
+                                PropsAdsManagement.getInterstitialAds().show(activity);
+                            }
+                            break;
+                        case "ADMOB":
+                            if (mInterstitialAd != null) {
+                                mInterstitialAd.show(activity);
+                            }
+                            break;
+                        case "WORTISE":
+
+                            break;
+                    }
+                }
+
+                @Override
+                public void onUnityAdsShowStart(String placementId) {
+
+                }
+
+                @Override
+                public void onUnityAdsShowClick(String placementId) {
+
+                }
+
+                @Override
+                public void onUnityAdsShowComplete(String placementId, UnityAds.UnityAdsShowCompletionState state) {
+
+                }
+            };
+            UnityAds.show(activity, idIntertitial, new UnityAdsShowOptions(), showListener);
+            LoadIntertitialUnity(activity, selectAdsBackup, idIntertitial, idIntertitialBackup);
+            counter = 0;
+        } else {
+            counter++;
+        }
     }
 
     public static void ShowIntertitialAlienView(Activity activity, String selectAdsBackup, String idIntertitial, String idIntertitialBackup,
@@ -2180,9 +2495,30 @@ public class AliendroidIntertitial {
                             break;
                         case "MOPUB":
                         case "UNITY":
+                            IUnityAdsShowListener showListener = new IUnityAdsShowListener() {
+                                @Override
+                                public void onUnityAdsShowFailure(String placementId, UnityAds.UnityAdsShowError error, String message) {
+
+                                }
+
+                                @Override
+                                public void onUnityAdsShowStart(String placementId) {
+
+                                }
+
+                                @Override
+                                public void onUnityAdsShowClick(String placementId) {
+
+                                }
+
+                                @Override
+                                public void onUnityAdsShowComplete(String placementId, UnityAds.UnityAdsShowCompletionState state) {
+
+                                }
+                            };
+                            UnityAds.show(activity, idIntertitialBackup, new UnityAdsShowOptions(), showListener);
                             break;
                         case "IRON":
-                            IronSource.showInterstitial(idIntertitialBackup);
                             break;
                         case "STARTAPP":
                             StartAppAd.showAd(activity);
@@ -2242,9 +2578,30 @@ public class AliendroidIntertitial {
                         break;
                     case "MOPUB":
                     case "UNITY":
+                        IUnityAdsShowListener showListener = new IUnityAdsShowListener() {
+                            @Override
+                            public void onUnityAdsShowFailure(String placementId, UnityAds.UnityAdsShowError error, String message) {
+
+                            }
+
+                            @Override
+                            public void onUnityAdsShowStart(String placementId) {
+
+                            }
+
+                            @Override
+                            public void onUnityAdsShowClick(String placementId) {
+
+                            }
+
+                            @Override
+                            public void onUnityAdsShowComplete(String placementId, UnityAds.UnityAdsShowCompletionState state) {
+
+                            }
+                        };
+                        UnityAds.show(activity, idIntertitialBackup, new UnityAdsShowOptions(), showListener);
                         break;
                     case "IRON":
-                        IronSource.showInterstitial(idIntertitialBackup);
                         break;
                     case "STARTAPP":
                         StartAppAd.showAd(activity);

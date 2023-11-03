@@ -46,13 +46,12 @@ import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.LoadAdError;
 import com.google.android.gms.ads.admanager.AdManagerAdRequest;
 import com.google.android.gms.ads.admanager.AdManagerAdView;
-import com.ironsource.mediationsdk.ISBannerSize;
-import com.ironsource.mediationsdk.IronSource;
-import com.ironsource.mediationsdk.IronSourceBannerLayout;
-import com.ironsource.mediationsdk.logger.IronSourceError;
 import com.props.adsmanager.PropsAdsManagement;
 import com.startapp.sdk.ads.banner.Banner;
 import com.startapp.sdk.ads.banner.BannerListener;
+import com.unity3d.services.banners.BannerErrorInfo;
+import com.unity3d.services.banners.BannerView;
+import com.unity3d.services.banners.UnityBannerSize;
 
 import java.util.UUID;
 
@@ -63,10 +62,10 @@ public class AliendroidBanner {
     public static AdView adViewAdmob2;
     public static AdManagerAdView bannerGoogleAds;
     public static AppLovinAdView adViewDiscovery;
-    public static IronSourceBannerLayout adViewIron;
     public static Banner startAppBanner;
     public static com.facebook.ads.AdView adViewFAN;
     public static com.facebook.ads.AdView adViewFAN2;
+    public static BannerView unityBanner;
     public static OnLoadBannerAdmob onLoadBannerAdmob;
     public static OnLoadBannerGoogle onLoadBannerGoogle;
     public static OnLoadBannerFacebook onLoadBannerFacebook;
@@ -108,12 +107,12 @@ public class AliendroidBanner {
                         break;
                     case "MOPUB":
                     case "UNITY":
-
+                        if (unityBanner !=null){
+                            unityBanner.destroy();
+                        }
                         break;
                     case "IRON":
-                        if (adViewIron != null) {
-                            adViewIron.isDestroyed();
-                        }
+
                         break;
                     case "STARTAPP":
                         if (startAppBanner != null) {
@@ -210,64 +209,13 @@ public class AliendroidBanner {
                         adViewMax.loadAd();
                         break;
                     case "MOPUB":
+                        break;
                     case "UNITY":
-
+                        unityBanner = new BannerView(activity, idBannerBackup, new UnityBannerSize(320, 50));
+                        unityBanner.load();
+                        layAds.addView(unityBanner);
                         break;
                     case "IRON":
-                        adViewIron = IronSource.createBanner(activity, ISBannerSize.BANNER);
-                        FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT,
-                                FrameLayout.LayoutParams.WRAP_CONTENT);
-                        layAds.addView(adViewIron, 0, layoutParams);
-                        com.ironsource.mediationsdk.sdk.BannerListener listenerIron = new com.ironsource.mediationsdk.sdk.BannerListener() {
-                            @Override
-                            public void onBannerAdLoaded() {
-                                if (onLoadBannerIronSource != null) {
-                                    onLoadBannerIronSource.onBannerAdLoaded();
-                                }
-
-                            }
-
-                            @Override
-                            public void onBannerAdLoadFailed(IronSourceError ironSourceError) {
-                                if (onLoadBannerIronSource != null) {
-                                    onLoadBannerIronSource.onBannerAdLoadFailed();
-                                }
-                                layAds.setVisibility(View.GONE);
-
-                            }
-
-                            @Override
-                            public void onBannerAdClicked() {
-                                if (onLoadBannerIronSource != null) {
-                                    onLoadBannerIronSource.onBannerAdClicked();
-                                }
-                            }
-
-                            @Override
-                            public void onBannerAdScreenPresented() {
-                                if (onLoadBannerIronSource != null) {
-                                    onLoadBannerIronSource.onBannerAdScreenPresented();
-                                }
-                            }
-
-                            @Override
-                            public void onBannerAdScreenDismissed() {
-                                if (onLoadBannerIronSource != null) {
-                                    onLoadBannerIronSource.onBannerAdScreenDismissed();
-                                }
-                            }
-
-                            @Override
-                            public void onBannerAdLeftApplication() {
-                                if (onLoadBannerIronSource != null) {
-                                    onLoadBannerIronSource.onBannerAdLeftApplication();
-                                }
-                            }
-                        };
-                        adViewIron.setBannerListener(listenerIron);
-                        IronSource.loadBanner(adViewIron, idBannerBackup);
-
-
                         break;
                     case "STARTAPP":
                         Banner startAppBanner = new Banner(activity, new BannerListener() {
@@ -488,12 +436,12 @@ public class AliendroidBanner {
                         break;
                     case "MOPUB":
                     case "UNITY":
-
+                        if (unityBanner !=null){
+                            unityBanner.destroy();
+                        }
                         break;
                     case "IRON":
-                        if (adViewIron != null) {
-                            adViewIron.isDestroyed();
-                        }
+
                         break;
                     case "STARTAPP":
                         if (startAppBanner != null) {
@@ -591,61 +539,12 @@ public class AliendroidBanner {
                         break;
                     case "MOPUB":
                     case "UNITY":
-
+                        unityBanner = new BannerView(activity, idBannerBackup, new UnityBannerSize(320, 50));
+                        unityBanner.load();
+                        layAds.addView(unityBanner);
                         break;
                     case "IRON":
-                        adViewIron = IronSource.createBanner(activity, ISBannerSize.BANNER);
-                        FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT,
-                                FrameLayout.LayoutParams.WRAP_CONTENT);
-                        layAds.addView(adViewIron, 0, layoutParams);
-                        com.ironsource.mediationsdk.sdk.BannerListener listenerIron = new com.ironsource.mediationsdk.sdk.BannerListener() {
-                            @Override
-                            public void onBannerAdLoaded() {
-                                if (onLoadBannerIronSource != null) {
-                                    onLoadBannerIronSource.onBannerAdLoaded();
-                                }
 
-                            }
-
-                            @Override
-                            public void onBannerAdLoadFailed(IronSourceError ironSourceError) {
-                                if (onLoadBannerIronSource != null) {
-                                    onLoadBannerIronSource.onBannerAdLoadFailed();
-                                }
-                                layAds.setVisibility(View.GONE);
-
-                            }
-
-                            @Override
-                            public void onBannerAdClicked() {
-                                if (onLoadBannerIronSource != null) {
-                                    onLoadBannerIronSource.onBannerAdClicked();
-                                }
-                            }
-
-                            @Override
-                            public void onBannerAdScreenPresented() {
-                                if (onLoadBannerIronSource != null) {
-                                    onLoadBannerIronSource.onBannerAdScreenPresented();
-                                }
-                            }
-
-                            @Override
-                            public void onBannerAdScreenDismissed() {
-                                if (onLoadBannerIronSource != null) {
-                                    onLoadBannerIronSource.onBannerAdScreenDismissed();
-                                }
-                            }
-
-                            @Override
-                            public void onBannerAdLeftApplication() {
-                                if (onLoadBannerIronSource != null) {
-                                    onLoadBannerIronSource.onBannerAdLeftApplication();
-                                }
-                            }
-                        };
-                        adViewIron.setBannerListener(listenerIron);
-                        IronSource.loadBanner(adViewIron, idBannerBackup);
 
 
                         break;
@@ -862,12 +761,12 @@ public class AliendroidBanner {
                         break;
                     case "MOPUB":
                     case "UNITY":
-
+                        if (unityBanner !=null){
+                            unityBanner.destroy();
+                        }
                         break;
                     case "IRON":
-                        if (adViewIron != null) {
-                            adViewIron.isDestroyed();
-                        }
+
                         break;
                     case "STARTAPP":
                         if (startAppBanner != null) {
@@ -965,61 +864,12 @@ public class AliendroidBanner {
                         break;
                     case "MOPUB":
                     case "UNITY":
-
+                        unityBanner = new BannerView(activity, idBannerBackup, new UnityBannerSize(320, 50));
+                        unityBanner.load();
+                        layAds.addView(unityBanner);
                         break;
                     case "IRON":
-                        adViewIron = IronSource.createBanner(activity, ISBannerSize.BANNER);
-                        FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT,
-                                FrameLayout.LayoutParams.WRAP_CONTENT);
-                        layAds.addView(adViewIron, 0, layoutParams);
-                        com.ironsource.mediationsdk.sdk.BannerListener listenerIron = new com.ironsource.mediationsdk.sdk.BannerListener() {
-                            @Override
-                            public void onBannerAdLoaded() {
-                                if (onLoadBannerIronSource != null) {
-                                    onLoadBannerIronSource.onBannerAdLoaded();
-                                }
 
-                            }
-
-                            @Override
-                            public void onBannerAdLoadFailed(IronSourceError ironSourceError) {
-                                if (onLoadBannerIronSource != null) {
-                                    onLoadBannerIronSource.onBannerAdLoadFailed();
-                                }
-                                layAds.setVisibility(View.GONE);
-
-                            }
-
-                            @Override
-                            public void onBannerAdClicked() {
-                                if (onLoadBannerIronSource != null) {
-                                    onLoadBannerIronSource.onBannerAdClicked();
-                                }
-                            }
-
-                            @Override
-                            public void onBannerAdScreenPresented() {
-                                if (onLoadBannerIronSource != null) {
-                                    onLoadBannerIronSource.onBannerAdScreenPresented();
-                                }
-                            }
-
-                            @Override
-                            public void onBannerAdScreenDismissed() {
-                                if (onLoadBannerIronSource != null) {
-                                    onLoadBannerIronSource.onBannerAdScreenDismissed();
-                                }
-                            }
-
-                            @Override
-                            public void onBannerAdLeftApplication() {
-                                if (onLoadBannerIronSource != null) {
-                                    onLoadBannerIronSource.onBannerAdLeftApplication();
-                                }
-                            }
-                        };
-                        adViewIron.setBannerListener(listenerIron);
-                        IronSource.loadBanner(adViewIron, idBannerBackup);
 
 
                         break;
@@ -1211,7 +1061,6 @@ public class AliendroidBanner {
 
 
     }
-
     public static void SmallBannerGoogleAds(Activity activity, RelativeLayout layAds, String selectAdsBackup, String idBanner, String idBannerBackup) {
 
         AdManagerAdRequest adRequest =
@@ -1238,12 +1087,12 @@ public class AliendroidBanner {
                         break;
                     case "MOPUB":
                     case "UNITY":
-
+                        if (unityBanner !=null){
+                            unityBanner.destroy();
+                        }
                         break;
                     case "IRON":
-                        if (adViewIron != null) {
-                            adViewIron.isDestroyed();
-                        }
+
                         break;
                     case "STARTAPP":
                         if (startAppBanner != null) {
@@ -1343,61 +1192,12 @@ public class AliendroidBanner {
                         break;
                     case "MOPUB":
                     case "UNITY":
-
+                        unityBanner = new BannerView(activity, idBannerBackup, new UnityBannerSize(320, 50));
+                        unityBanner.load();
+                        layAds.addView(unityBanner);
                         break;
                     case "IRON":
-                        adViewIron = IronSource.createBanner(activity, ISBannerSize.BANNER);
-                        FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT,
-                                FrameLayout.LayoutParams.WRAP_CONTENT);
-                        layAds.addView(adViewIron, 0, layoutParams);
-                        com.ironsource.mediationsdk.sdk.BannerListener listenerIron = new com.ironsource.mediationsdk.sdk.BannerListener() {
-                            @Override
-                            public void onBannerAdLoaded() {
-                                if (onLoadBannerIronSource != null) {
-                                    onLoadBannerIronSource.onBannerAdLoaded();
-                                }
 
-                            }
-
-                            @Override
-                            public void onBannerAdLoadFailed(IronSourceError ironSourceError) {
-                                if (onLoadBannerIronSource != null) {
-                                    onLoadBannerIronSource.onBannerAdLoadFailed();
-                                }
-                                layAds.setVisibility(View.GONE);
-
-                            }
-
-                            @Override
-                            public void onBannerAdClicked() {
-                                if (onLoadBannerIronSource != null) {
-                                    onLoadBannerIronSource.onBannerAdClicked();
-                                }
-                            }
-
-                            @Override
-                            public void onBannerAdScreenPresented() {
-                                if (onLoadBannerIronSource != null) {
-                                    onLoadBannerIronSource.onBannerAdScreenPresented();
-                                }
-                            }
-
-                            @Override
-                            public void onBannerAdScreenDismissed() {
-                                if (onLoadBannerIronSource != null) {
-                                    onLoadBannerIronSource.onBannerAdScreenDismissed();
-                                }
-                            }
-
-                            @Override
-                            public void onBannerAdLeftApplication() {
-                                if (onLoadBannerIronSource != null) {
-                                    onLoadBannerIronSource.onBannerAdLeftApplication();
-                                }
-                            }
-                        };
-                        adViewIron.setBannerListener(listenerIron);
-                        IronSource.loadBanner(adViewIron, idBannerBackup);
                         break;
                     case "STARTAPP":
                         Banner startAppBanner = new Banner(activity, new BannerListener() {
@@ -1547,7 +1347,6 @@ public class AliendroidBanner {
 
 
     }
-
     public static void SmallBannerFAN(Activity activity, RelativeLayout layAds, String selectAdsBackup, String idBanner, String idBannerBackup) {
         adViewFAN = new com.facebook.ads.AdView(activity, idBanner,
                 com.facebook.ads.AdSize.BANNER_HEIGHT_50);
@@ -1629,6 +1428,9 @@ public class AliendroidBanner {
                         break;
                     case "MOPUB":
                     case "UNITY":
+                        unityBanner = new BannerView(activity, idBannerBackup, new UnityBannerSize(320, 50));
+                        unityBanner.load();
+                        layAds.addView(unityBanner);
                         break;
                     case "FACEBOOK":
                         adViewFAN2 = new com.facebook.ads.AdView(activity, idBannerBackup,
@@ -1669,58 +1471,7 @@ public class AliendroidBanner {
                         adViewFAN2.loadAd(adViewFAN2.buildLoadAdConfig().withAdListener(adListener).build());
                         break;
                     case "IRON":
-                        adViewIron = IronSource.createBanner(activity, ISBannerSize.BANNER);
-                        FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT,
-                                FrameLayout.LayoutParams.WRAP_CONTENT);
-                        layAds.addView(adViewIron, 0, layoutParams);
-                        com.ironsource.mediationsdk.sdk.BannerListener listenerIron = new com.ironsource.mediationsdk.sdk.BannerListener() {
-                            @Override
-                            public void onBannerAdLoaded() {
-                                if (onLoadBannerIronSource != null) {
-                                    onLoadBannerIronSource.onBannerAdLoaded();
-                                }
 
-                            }
-
-                            @Override
-                            public void onBannerAdLoadFailed(IronSourceError ironSourceError) {
-                                if (onLoadBannerIronSource != null) {
-                                    onLoadBannerIronSource.onBannerAdLoadFailed();
-                                }
-                                layAds.setVisibility(View.GONE);
-
-                            }
-
-                            @Override
-                            public void onBannerAdClicked() {
-                                if (onLoadBannerIronSource != null) {
-                                    onLoadBannerIronSource.onBannerAdClicked();
-                                }
-                            }
-
-                            @Override
-                            public void onBannerAdScreenPresented() {
-                                if (onLoadBannerIronSource != null) {
-                                    onLoadBannerIronSource.onBannerAdScreenPresented();
-                                }
-                            }
-
-                            @Override
-                            public void onBannerAdScreenDismissed() {
-                                if (onLoadBannerIronSource != null) {
-                                    onLoadBannerIronSource.onBannerAdScreenDismissed();
-                                }
-                            }
-
-                            @Override
-                            public void onBannerAdLeftApplication() {
-                                if (onLoadBannerIronSource != null) {
-                                    onLoadBannerIronSource.onBannerAdLeftApplication();
-                                }
-                            }
-                        };
-                        adViewIron.setBannerListener(listenerIron);
-                        IronSource.loadBanner(adViewIron, idBannerBackup);
                         break;
                     case "STARTAPP":
                         Banner startAppBanner = new Banner(activity, new BannerListener() {
@@ -1920,12 +1671,12 @@ public class AliendroidBanner {
                         break;
                     case "MOPUB":
                     case "UNITY":
-
+                        if (unityBanner !=null){
+                            unityBanner.destroy();
+                        }
                         break;
                     case "IRON":
-                        if (adViewIron != null) {
-                            adViewIron.isDestroyed();
-                        }
+
                         break;
                     case "STARTAPP":
                         if (startAppBanner != null) {
@@ -1969,7 +1720,6 @@ public class AliendroidBanner {
         adViewFAN.loadAd(adViewFAN.buildLoadAdConfig().withAdListener(adListener).build());
 
     }
-
     public static void SmallBannerApplovinDisHPK(Activity activity, RelativeLayout layAds, String selectAdsBackup, String idBanner, String idBannerBackup, String HPK1,
                                                  String HPK2, String HPK3, String HPK4, String HPK5) {
 
@@ -1994,12 +1744,12 @@ public class AliendroidBanner {
                         break;
                     case "MOPUB":
                     case "UNITY":
-
+                        if (unityBanner !=null){
+                            unityBanner.destroy();
+                        }
                         break;
                     case "IRON":
-                        if (adViewIron != null) {
-                            adViewIron.isDestroyed();
-                        }
+
                         break;
                     case "STARTAPP":
                         if (startAppBanner != null) {
@@ -2104,61 +1854,12 @@ public class AliendroidBanner {
                         break;
                     case "MOPUB":
                     case "UNITY":
-
+                        unityBanner = new BannerView(activity, idBannerBackup, new UnityBannerSize(320, 50));
+                        unityBanner.load();
+                        layAds.addView(unityBanner);
                         break;
                     case "IRON":
-                        adViewIron = IronSource.createBanner(activity, ISBannerSize.BANNER);
-                        FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT,
-                                FrameLayout.LayoutParams.WRAP_CONTENT);
-                        layAds.addView(adViewIron, 0, layoutParams);
-                        com.ironsource.mediationsdk.sdk.BannerListener listenerIron = new com.ironsource.mediationsdk.sdk.BannerListener() {
-                            @Override
-                            public void onBannerAdLoaded() {
-                                if (onLoadBannerIronSource != null) {
-                                    onLoadBannerIronSource.onBannerAdLoaded();
-                                }
 
-                            }
-
-                            @Override
-                            public void onBannerAdLoadFailed(IronSourceError ironSourceError) {
-                                if (onLoadBannerIronSource != null) {
-                                    onLoadBannerIronSource.onBannerAdLoadFailed();
-                                }
-                                layAds.setVisibility(View.GONE);
-
-                            }
-
-                            @Override
-                            public void onBannerAdClicked() {
-                                if (onLoadBannerIronSource != null) {
-                                    onLoadBannerIronSource.onBannerAdClicked();
-                                }
-                            }
-
-                            @Override
-                            public void onBannerAdScreenPresented() {
-                                if (onLoadBannerIronSource != null) {
-                                    onLoadBannerIronSource.onBannerAdScreenPresented();
-                                }
-                            }
-
-                            @Override
-                            public void onBannerAdScreenDismissed() {
-                                if (onLoadBannerIronSource != null) {
-                                    onLoadBannerIronSource.onBannerAdScreenDismissed();
-                                }
-                            }
-
-                            @Override
-                            public void onBannerAdLeftApplication() {
-                                if (onLoadBannerIronSource != null) {
-                                    onLoadBannerIronSource.onBannerAdLeftApplication();
-                                }
-                            }
-                        };
-                        adViewIron.setBannerListener(listenerIron);
-                        IronSource.loadBanner(adViewIron, idBannerBackup);
                         break;
                     case "STARTAPP":
                         Banner startAppBanner = new Banner(activity, new BannerListener() {
@@ -2358,7 +2059,6 @@ public class AliendroidBanner {
         adViewDiscovery.loadNextAd();
 
     }
-
     public static void SmallBannerApplovinDis(Activity activity, RelativeLayout layAds, String selectAdsBackup, String idBanner, String idBannerBackup) {
         AdRequest.Builder builder = new AdRequest.Builder();
         Bundle bannerExtras = new Bundle();
@@ -2381,12 +2081,12 @@ public class AliendroidBanner {
                         break;
                     case "MOPUB":
                     case "UNITY":
-
+                        if (unityBanner !=null){
+                            unityBanner.destroy();
+                        }
                         break;
                     case "IRON":
-                        if (adViewIron != null) {
-                            adViewIron.isDestroyed();
-                        }
+
                         break;
                     case "STARTAPP":
                         if (startAppBanner != null) {
@@ -2490,61 +2190,12 @@ public class AliendroidBanner {
                         break;
                     case "MOPUB":
                     case "UNITY":
-
+                        unityBanner = new BannerView(activity, idBannerBackup, new UnityBannerSize(320, 50));
+                        unityBanner.load();
+                        layAds.addView(unityBanner);
                         break;
                     case "IRON":
-                        adViewIron = IronSource.createBanner(activity, ISBannerSize.BANNER);
-                        FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT,
-                                FrameLayout.LayoutParams.WRAP_CONTENT);
-                        layAds.addView(adViewIron, 0, layoutParams);
-                        com.ironsource.mediationsdk.sdk.BannerListener listenerIron = new com.ironsource.mediationsdk.sdk.BannerListener() {
-                            @Override
-                            public void onBannerAdLoaded() {
-                                if (onLoadBannerIronSource != null) {
-                                    onLoadBannerIronSource.onBannerAdLoaded();
-                                }
 
-                            }
-
-                            @Override
-                            public void onBannerAdLoadFailed(IronSourceError ironSourceError) {
-                                if (onLoadBannerIronSource != null) {
-                                    onLoadBannerIronSource.onBannerAdLoadFailed();
-                                }
-                                layAds.setVisibility(View.GONE);
-
-                            }
-
-                            @Override
-                            public void onBannerAdClicked() {
-                                if (onLoadBannerIronSource != null) {
-                                    onLoadBannerIronSource.onBannerAdClicked();
-                                }
-                            }
-
-                            @Override
-                            public void onBannerAdScreenPresented() {
-                                if (onLoadBannerIronSource != null) {
-                                    onLoadBannerIronSource.onBannerAdScreenPresented();
-                                }
-                            }
-
-                            @Override
-                            public void onBannerAdScreenDismissed() {
-                                if (onLoadBannerIronSource != null) {
-                                    onLoadBannerIronSource.onBannerAdScreenDismissed();
-                                }
-                            }
-
-                            @Override
-                            public void onBannerAdLeftApplication() {
-                                if (onLoadBannerIronSource != null) {
-                                    onLoadBannerIronSource.onBannerAdLeftApplication();
-                                }
-                            }
-                        };
-                        adViewIron.setBannerListener(listenerIron);
-                        IronSource.loadBanner(adViewIron, idBannerBackup);
                         break;
                     case "STARTAPP":
                         Banner startAppBanner = new Banner(activity, new BannerListener() {
@@ -2744,7 +2395,6 @@ public class AliendroidBanner {
         adViewDiscovery.loadNextAd();
 
     }
-
     public static void SmallBannerApplovinMax(Activity activity, RelativeLayout layAds, String selectAdsBackup, String idBanner, String idBannerBackup) {
 
         adViewMax = new MaxAdView(idBanner, activity);
@@ -2777,12 +2427,12 @@ public class AliendroidBanner {
                         break;
                     case "MOPUB":
                     case "UNITY":
-
+                        if (unityBanner !=null){
+                            unityBanner.destroy();
+                        }
                         break;
                     case "IRON":
-                        if (adViewIron != null) {
-                            adViewIron.isDestroyed();
-                        }
+
                         break;
                     case "STARTAPP":
                         if (startAppBanner != null) {
@@ -2869,61 +2519,12 @@ public class AliendroidBanner {
                         break;
                     case "MOPUB":
                     case "UNITY":
-
+                        unityBanner = new BannerView(activity, idBannerBackup, new UnityBannerSize(320, 50));
+                        unityBanner.load();
+                        layAds.addView(unityBanner);
                         break;
                     case "IRON":
-                        adViewIron = IronSource.createBanner(activity, ISBannerSize.BANNER);
-                        FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT,
-                                FrameLayout.LayoutParams.WRAP_CONTENT);
-                        layAds.addView(adViewIron, 0, layoutParams);
-                        com.ironsource.mediationsdk.sdk.BannerListener listenerIron = new com.ironsource.mediationsdk.sdk.BannerListener() {
-                            @Override
-                            public void onBannerAdLoaded() {
-                                if (onLoadBannerIronSource != null) {
-                                    onLoadBannerIronSource.onBannerAdLoaded();
-                                }
 
-                            }
-
-                            @Override
-                            public void onBannerAdLoadFailed(IronSourceError ironSourceError) {
-                                if (onLoadBannerIronSource != null) {
-                                    onLoadBannerIronSource.onBannerAdLoadFailed();
-                                }
-                                layAds.setVisibility(View.GONE);
-
-                            }
-
-                            @Override
-                            public void onBannerAdClicked() {
-                                if (onLoadBannerIronSource != null) {
-                                    onLoadBannerIronSource.onBannerAdClicked();
-                                }
-                            }
-
-                            @Override
-                            public void onBannerAdScreenPresented() {
-                                if (onLoadBannerIronSource != null) {
-                                    onLoadBannerIronSource.onBannerAdScreenPresented();
-                                }
-                            }
-
-                            @Override
-                            public void onBannerAdScreenDismissed() {
-                                if (onLoadBannerIronSource != null) {
-                                    onLoadBannerIronSource.onBannerAdScreenDismissed();
-                                }
-                            }
-
-                            @Override
-                            public void onBannerAdLeftApplication() {
-                                if (onLoadBannerIronSource != null) {
-                                    onLoadBannerIronSource.onBannerAdLeftApplication();
-                                }
-                            }
-                        };
-                        adViewIron.setBannerListener(listenerIron);
-                        IronSource.loadBanner(adViewIron, idBannerBackup);
                         break;
                     case "STARTAPP":
                         Banner startAppBanner = new Banner(activity, new BannerListener() {
@@ -3133,11 +2734,9 @@ public class AliendroidBanner {
         layAds.addView(adViewMax);
         adViewMax.loadAd();
     }
-
     public static void SmallBannerMopub(Activity activity, RelativeLayout layAds, String selectAdsBackup, String idBanner, String idBannerBackup) {
 
     }
-
     public static void SmallBannerStartApp(Activity activity, RelativeLayout layAds, String selectAdsBackup, String idBanner, String idBannerBackup) {
         Banner startAppBanner = new Banner(activity, new BannerListener() {
             @Override
@@ -3157,13 +2756,13 @@ public class AliendroidBanner {
                         }
                         break;
                     case "IRON":
-                        if (adViewIron != null) {
-                            adViewIron.isDestroyed();
-                        }
+
                         break;
                     case "MOPUB":
                     case "UNITY":
-
+                        if (unityBanner !=null){
+                            unityBanner.destroy();
+                        }
                         break;
                     case "ADMOB":
                         if (adViewAdmob != null) {
@@ -3292,62 +2891,13 @@ public class AliendroidBanner {
                         adViewMax.loadAd();
                         break;
                     case "IRON":
-                        adViewIron = IronSource.createBanner(activity, ISBannerSize.BANNER);
-                        FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT,
-                                FrameLayout.LayoutParams.WRAP_CONTENT);
-                        layAds.addView(adViewIron, 0, layoutParams);
-                        com.ironsource.mediationsdk.sdk.BannerListener listenerIron = new com.ironsource.mediationsdk.sdk.BannerListener() {
-                            @Override
-                            public void onBannerAdLoaded() {
-                                if (onLoadBannerIronSource != null) {
-                                    onLoadBannerIronSource.onBannerAdLoaded();
-                                }
 
-                            }
-
-                            @Override
-                            public void onBannerAdLoadFailed(IronSourceError ironSourceError) {
-                                if (onLoadBannerIronSource != null) {
-                                    onLoadBannerIronSource.onBannerAdLoadFailed();
-                                }
-                                layAds.setVisibility(View.GONE);
-
-                            }
-
-                            @Override
-                            public void onBannerAdClicked() {
-                                if (onLoadBannerIronSource != null) {
-                                    onLoadBannerIronSource.onBannerAdClicked();
-                                }
-                            }
-
-                            @Override
-                            public void onBannerAdScreenPresented() {
-                                if (onLoadBannerIronSource != null) {
-                                    onLoadBannerIronSource.onBannerAdScreenPresented();
-                                }
-                            }
-
-                            @Override
-                            public void onBannerAdScreenDismissed() {
-                                if (onLoadBannerIronSource != null) {
-                                    onLoadBannerIronSource.onBannerAdScreenDismissed();
-                                }
-                            }
-
-                            @Override
-                            public void onBannerAdLeftApplication() {
-                                if (onLoadBannerIronSource != null) {
-                                    onLoadBannerIronSource.onBannerAdLeftApplication();
-                                }
-                            }
-                        };
-                        adViewIron.setBannerListener(listenerIron);
-                        IronSource.loadBanner(adViewIron, idBannerBackup);
                         break;
                     case "MOPUB":
                     case "UNITY":
-
+                        unityBanner = new BannerView(activity, idBannerBackup, new UnityBannerSize(320, 50));
+                        unityBanner.load();
+                        layAds.addView(unityBanner);
                         break;
                     case "ADMOB":
                         AdRequest request = new AdRequest.Builder()
@@ -3524,44 +3074,35 @@ public class AliendroidBanner {
         bannerParameters.addRule(RelativeLayout.CENTER_HORIZONTAL);
         layAds.addView(startAppBanner, bannerParameters);
     }
-
     public static void SmallBannerIron(Activity activity, RelativeLayout layAds, String selectAdsBackup, String idBanner, String idBannerBackup) {
-        adViewIron = IronSource.createBanner(activity, ISBannerSize.BANNER);
-        FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT,
-                FrameLayout.LayoutParams.WRAP_CONTENT);
-        layAds.addView(adViewIron, 0, layoutParams);
-        com.ironsource.mediationsdk.sdk.BannerListener listener = new com.ironsource.mediationsdk.sdk.BannerListener() {
+    }
+    public static void SmallBannerUnity(Activity activity, RelativeLayout layAds, String selectAdsBackup, String idBanner, String idBannerBackup) {
+        unityBanner = new BannerView(activity, idBanner, new UnityBannerSize(320, 50));
+        unityBanner.load();
+        layAds.addView(unityBanner);
+        unityBanner.setListener(new BannerView.IListener() {
             @Override
-            public void onBannerAdLoaded() {
-                if (onLoadBannerIronSource != null) {
-                    onLoadBannerIronSource.onBannerAdLoaded();
-                }
+            public void onBannerLoaded(BannerView bannerAdView) {
                 switch (selectAdsBackup) {
-                    case "APPLOVIN-D":
-                        if (adViewDiscovery != null) {
-                            adViewDiscovery.destroy();
-                        }
-                        break;
                     case "APPLOVIN-M":
                         if (adViewMax != null) {
                             adViewMax.destroy();
                         }
                         break;
-                    case "STARTAPP":
-                        startAppBanner.hideBanner();
-                        break;
                     case "MOPUB":
                     case "UNITY":
+                        break;
+                    case "IRON":
 
                         break;
-                    case "ADMOB":
-                        if (adViewAdmob != null) {
-                            adViewAdmob.destroy();
+                    case "STARTAPP":
+                        if (startAppBanner != null) {
+                            startAppBanner.hideBanner();
                         }
                         break;
-                    case "GOOGLE-ADS":
-                        if (bannerGoogleAds != null) {
-                            bannerGoogleAds.destroy();
+                    case "APPLOVIN-D":
+                        if (adViewDiscovery != null) {
+                            adViewDiscovery.destroy();
                         }
                         break;
                     case "FACEBOOK":
@@ -3570,28 +3111,23 @@ public class AliendroidBanner {
                         }
                         break;
                     case "WORTISE":
-
+                        break;
+                    case "ADMOB":
+                        if (adViewAdmob != null) {
+                            adViewAdmob.destroy();
+                        }
                         break;
                 }
             }
 
             @Override
-            public void onBannerAdLoadFailed(IronSourceError ironSourceError) {
-                if (onLoadBannerIronSource != null) {
-                    onLoadBannerIronSource.onBannerAdLoadFailed();
-                }
+            public void onBannerClick(BannerView bannerAdView) {
+
+            }
+
+            @Override
+            public void onBannerFailedToLoad(BannerView bannerAdView, BannerErrorInfo errorInfo) {
                 switch (selectAdsBackup) {
-                    case "APPLOVIN-D":
-                        AdRequest.Builder builder = new AdRequest.Builder();
-                        Bundle bannerExtras = new Bundle();
-                        bannerExtras.putString("zone_id", idBannerBackup);
-                        builder.addCustomEventExtrasBundle(AppLovinCustomEventBanner.class, bannerExtras);
-                        boolean isTablet2 = AppLovinSdkUtils.isTablet(activity);
-                        AppLovinAdSize adSize = isTablet2 ? AppLovinAdSize.LEADER : AppLovinAdSize.BANNER;
-                        adViewDiscovery = new AppLovinAdView(adSize, activity);
-                        layAds.addView(adViewDiscovery);
-                        adViewDiscovery.loadNextAd();
-                        break;
                     case "APPLOVIN-M":
                         adViewMax = new MaxAdView(idBannerBackup, activity);
                         MaxAdViewAdListener listener = new MaxAdViewAdListener() {
@@ -3660,6 +3196,14 @@ public class AliendroidBanner {
                         layAds.addView(adViewMax);
                         adViewMax.loadAd();
                         break;
+                    case "MOPUB":
+                    case "UNITY":
+                        unityBanner = new BannerView(activity, idBannerBackup, new UnityBannerSize(320, 50));
+                        unityBanner.load();
+                        layAds.addView(unityBanner);
+                        break;
+                    case "IRON":
+                        break;
                     case "STARTAPP":
                         Banner startAppBanner = new Banner(activity, new BannerListener() {
                             @Override
@@ -3692,6 +3236,7 @@ public class AliendroidBanner {
                                 }
                             }
                         });
+
                         RelativeLayout.LayoutParams bannerParameters =
                                 new RelativeLayout.LayoutParams(
                                         RelativeLayout.LayoutParams.WRAP_CONTENT,
@@ -3699,108 +3244,36 @@ public class AliendroidBanner {
                         bannerParameters.addRule(RelativeLayout.CENTER_HORIZONTAL);
                         layAds.addView(startAppBanner, bannerParameters);
                         break;
-                    case "MOPUB":
-                    case "UNITY":
+                    case "APPLOVIN-D":
+                        AdRequest.Builder builder = new AdRequest.Builder();
+                        Bundle bannerExtras = new Bundle();
+                        bannerExtras.putString("zone_id", idBannerBackup);
+                        builder.addCustomEventExtrasBundle(AppLovinCustomEventBanner.class, bannerExtras);
 
-                        break;
-                    case "ADMOB":
-                        AdRequest request = new AdRequest.Builder()
-                                .build();
-                        adViewAdmob = new AdView(activity);
-                        adViewAdmob.setAdUnitId(idBannerBackup);
-                        layAds.addView(adViewAdmob);
-                        AdSize adSizeAdmob = getAdSize(activity);
-                        adViewAdmob.setAdSize(adSizeAdmob);
-                        adViewAdmob.loadAd(request);
-                        adViewAdmob.setAdListener(new AdListener() {
+                        boolean isTablet2 = AppLovinSdkUtils.isTablet(activity);
+                        AppLovinAdSize adSize = isTablet2 ? AppLovinAdSize.LEADER : AppLovinAdSize.BANNER;
+                        adViewDiscovery = new AppLovinAdView(adSize, activity);
+                        AppLovinAdLoadListener loadListener = new AppLovinAdLoadListener() {
                             @Override
-                            public void onAdLoaded() {
-                                if (onLoadBannerAdmob != null) {
-                                    onLoadBannerAdmob.onAdLoaded();
+                            public void adReceived(AppLovinAd ad) {
+                                if (onLoadBannerApplovinDiscovery != null) {
+                                    onLoadBannerApplovinDiscovery.adReceived();
                                 }
 
                             }
 
                             @Override
-                            public void onAdFailedToLoad(LoadAdError adError) {
-                                if (onLoadBannerAdmob != null) {
-                                    onLoadBannerAdmob.onAdFailedToLoad("");
+                            public void failedToReceiveAd(int errorCode) {
+                                if (onLoadBannerApplovinDiscovery != null) {
+                                    onLoadBannerApplovinDiscovery.failedToReceiveAd();
                                 }
                                 layAds.setVisibility(View.GONE);
 
                             }
-
-                            @Override
-                            public void onAdOpened() {
-                                if (onLoadBannerAdmob != null) {
-                                    onLoadBannerAdmob.onAdOpened();
-                                }
-                            }
-
-                            @Override
-                            public void onAdClicked() {
-                                if (onLoadBannerAdmob != null) {
-                                    onLoadBannerAdmob.onAdClicked();
-                                }
-                            }
-
-                            @Override
-                            public void onAdClosed() {
-                                if (onLoadBannerAdmob != null) {
-                                    onLoadBannerAdmob.onAdClosed();
-                                }
-                            }
-                        });
-                        break;
-                    case "GOOGLE-ADS":
-                        AdManagerAdRequest adRequest =
-                                new AdManagerAdRequest.Builder()
-                                        .build();
-                        bannerGoogleAds = new AdManagerAdView(activity);
-                        bannerGoogleAds.setAdUnitId(idBannerBackup);
-                        layAds.addView(bannerGoogleAds);
-                        AdSize adaptiveSize = getAdSize(activity);
-                        bannerGoogleAds.setAdSize(adaptiveSize);
-                        bannerGoogleAds.loadAd(adRequest);
-                        bannerGoogleAds.setAdListener(new AdListener() {
-                            @Override
-                            public void onAdLoaded() {
-                                if (onLoadBannerGoogle != null) {
-                                    onLoadBannerGoogle.onAdLoaded();
-                                }
-
-                            }
-
-                            @Override
-                            public void onAdFailedToLoad(LoadAdError adError) {
-                                if (onLoadBannerGoogle != null) {
-                                    onLoadBannerGoogle.onAdFailedToLoad("");
-                                }
-                                layAds.setVisibility(View.GONE);
-
-                            }
-
-                            @Override
-                            public void onAdOpened() {
-                                if (onLoadBannerGoogle != null) {
-                                    onLoadBannerGoogle.onAdOpened();
-                                }
-                            }
-
-                            @Override
-                            public void onAdClicked() {
-                                if (onLoadBannerGoogle != null) {
-                                    onLoadBannerGoogle.onAdClicked();
-                                }
-                            }
-
-                            @Override
-                            public void onAdClosed() {
-                                if (onLoadBannerGoogle != null) {
-                                    onLoadBannerGoogle.onAdClosed();
-                                }
-                            }
-                        });
+                        };
+                        adViewDiscovery.setAdLoadListener(loadListener);
+                        layAds.addView(adViewDiscovery);
+                        adViewDiscovery.loadNextAd();
                         break;
                     case "FACEBOOK":
                         adViewFAN = new com.facebook.ads.AdView(activity, idBannerBackup,
@@ -3840,6 +3313,7 @@ public class AliendroidBanner {
                         };
                         adViewFAN.loadAd(adViewFAN.buildLoadAdConfig().withAdListener(adListener).build());
                         break;
+
                     case "ALIEN-V":
                         AlienViewAds.Banner(activity, layAds, idBannerBackup);
                         break;
@@ -3850,6 +3324,43 @@ public class AliendroidBanner {
                         layAds.addView(adView);
                         adView.loadAd(adRequest2);
                         break;
+                    case "ADMOB":
+                        AdRequest request = new AdRequest.Builder()
+                                .build();
+                        adViewAdmob = new AdView(activity);
+                        adViewAdmob.setAdUnitId(idBannerBackup);
+                        layAds.addView(adViewAdmob);
+                        AdSize adSizeAdmob = getAdSize(activity);
+                        adViewAdmob.setAdSize(adSizeAdmob);
+                        adViewAdmob.loadAd(request);
+                        adViewAdmob.setAdListener(new AdListener() {
+                            @Override
+                            public void onAdLoaded() {
+
+                            }
+
+                            @Override
+                            public void onAdFailedToLoad(LoadAdError adError) {
+                                layAds.setVisibility(View.GONE);
+
+                            }
+
+                            @Override
+                            public void onAdOpened() {
+
+                            }
+
+                            @Override
+                            public void onAdClicked() {
+
+                            }
+
+                            @Override
+                            public void onAdClosed() {
+
+                            }
+                        });
+                        break;
                     case "WORTISE":
 
                         break;
@@ -3857,38 +3368,10 @@ public class AliendroidBanner {
             }
 
             @Override
-            public void onBannerAdClicked() {
-                if (onLoadBannerIronSource != null) {
-                    onLoadBannerIronSource.onBannerAdClicked();
-                }
-            }
+            public void onBannerLeftApplication(BannerView bannerView) {
 
-            @Override
-            public void onBannerAdScreenPresented() {
-                if (onLoadBannerIronSource != null) {
-                    onLoadBannerIronSource.onBannerAdScreenPresented();
-                }
             }
-
-            @Override
-            public void onBannerAdScreenDismissed() {
-                if (onLoadBannerIronSource != null) {
-                    onLoadBannerIronSource.onBannerAdScreenDismissed();
-                }
-            }
-
-            @Override
-            public void onBannerAdLeftApplication() {
-                if (onLoadBannerIronSource != null) {
-                    onLoadBannerIronSource.onBannerAdLeftApplication();
-                }
-            }
-        };
-        adViewIron.setBannerListener(listener);
-        IronSource.loadBanner(adViewIron, idBanner);
-    }
-
-    public static void SmallBannerUnity(Activity activity, RelativeLayout layAds, String selectAdsBackup, String idBanner, String idBannerBackup) {
+        });
 
     }
 
@@ -3916,7 +3399,9 @@ public class AliendroidBanner {
                         break;
                     case "MOPUB":
                     case "UNITY":
-
+                        if (unityBanner !=null){
+                            unityBanner.destroy();
+                        }
                         break;
                     case "ADMOB":
                         if (adViewAdmob != null) {
@@ -3934,9 +3419,7 @@ public class AliendroidBanner {
                         }
                         break;
                     case "IRON":
-                        if (adViewIron != null) {
-                            adViewIron.isDestroyed();
-                        }
+
                         break;
                     case "WORTISE":
 
@@ -4096,7 +3579,9 @@ public class AliendroidBanner {
                         break;
                     case "MOPUB":
                     case "UNITY":
-
+                        unityBanner = new BannerView(activity, idBannerBackup, new UnityBannerSize(320, 50));
+                        unityBanner.load();
+                        layAds.addView(unityBanner);
                         break;
                     case "ADMOB":
                         AdRequest request = new AdRequest.Builder()
@@ -4237,58 +3722,7 @@ public class AliendroidBanner {
                         adViewFAN.loadAd(adViewFAN.buildLoadAdConfig().withAdListener(adListener).build());
                         break;
                     case "IRON":
-                        adViewIron = IronSource.createBanner(activity, ISBannerSize.BANNER);
-                        FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT,
-                                FrameLayout.LayoutParams.WRAP_CONTENT);
-                        layAds.addView(adViewIron, 0, layoutParams);
-                        com.ironsource.mediationsdk.sdk.BannerListener listenerIron = new com.ironsource.mediationsdk.sdk.BannerListener() {
-                            @Override
-                            public void onBannerAdLoaded() {
-                                if (onLoadBannerIronSource != null) {
-                                    onLoadBannerIronSource.onBannerAdLoaded();
-                                }
 
-                            }
-
-                            @Override
-                            public void onBannerAdLoadFailed(IronSourceError ironSourceError) {
-                                if (onLoadBannerIronSource != null) {
-                                    onLoadBannerIronSource.onBannerAdLoadFailed();
-                                }
-                                layAds.setVisibility(View.GONE);
-
-                            }
-
-                            @Override
-                            public void onBannerAdClicked() {
-                                if (onLoadBannerIronSource != null) {
-                                    onLoadBannerIronSource.onBannerAdClicked();
-                                }
-                            }
-
-                            @Override
-                            public void onBannerAdScreenPresented() {
-                                if (onLoadBannerIronSource != null) {
-                                    onLoadBannerIronSource.onBannerAdScreenPresented();
-                                }
-                            }
-
-                            @Override
-                            public void onBannerAdScreenDismissed() {
-                                if (onLoadBannerIronSource != null) {
-                                    onLoadBannerIronSource.onBannerAdScreenDismissed();
-                                }
-                            }
-
-                            @Override
-                            public void onBannerAdLeftApplication() {
-                                if (onLoadBannerIronSource != null) {
-                                    onLoadBannerIronSource.onBannerAdLeftApplication();
-                                }
-                            }
-                        };
-                        adViewIron.setBannerListener(listenerIron);
-                        IronSource.loadBanner(adViewIron, idBannerBackup);
                         break;
                     case "ALIEN-M":
                         PropsAdsManagement propsAds = new PropsAdsManagement(activity);
@@ -4456,7 +3890,9 @@ public class AliendroidBanner {
                         break;
                     case "MOPUB":
                     case "UNITY":
-
+                        unityBanner = new BannerView(activity, idBannerBackup, new UnityBannerSize(320, 50));
+                        unityBanner.load();
+                        layAds.addView(unityBanner);
                         break;
                     case "ADMOB":
                         AdRequest request = new AdRequest.Builder()
@@ -4596,58 +4032,7 @@ public class AliendroidBanner {
                         adViewFAN.loadAd(adViewFAN.buildLoadAdConfig().withAdListener(adListener).build());
                         break;
                     case "IRON":
-                        adViewIron = IronSource.createBanner(activity, ISBannerSize.BANNER);
-                        FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT,
-                                FrameLayout.LayoutParams.WRAP_CONTENT);
-                        layAds.addView(adViewIron, 0, layoutParams);
-                        com.ironsource.mediationsdk.sdk.BannerListener listenerIron = new com.ironsource.mediationsdk.sdk.BannerListener() {
-                            @Override
-                            public void onBannerAdLoaded() {
-                                if (onLoadBannerIronSource != null) {
-                                    onLoadBannerIronSource.onBannerAdLoaded();
-                                }
 
-                            }
-
-                            @Override
-                            public void onBannerAdLoadFailed(IronSourceError ironSourceError) {
-                                if (onLoadBannerIronSource != null) {
-                                    onLoadBannerIronSource.onBannerAdLoadFailed();
-                                }
-                                layAds.setVisibility(View.GONE);
-
-                            }
-
-                            @Override
-                            public void onBannerAdClicked() {
-                                if (onLoadBannerIronSource != null) {
-                                    onLoadBannerIronSource.onBannerAdClicked();
-                                }
-                            }
-
-                            @Override
-                            public void onBannerAdScreenPresented() {
-                                if (onLoadBannerIronSource != null) {
-                                    onLoadBannerIronSource.onBannerAdScreenPresented();
-                                }
-                            }
-
-                            @Override
-                            public void onBannerAdScreenDismissed() {
-                                if (onLoadBannerIronSource != null) {
-                                    onLoadBannerIronSource.onBannerAdScreenDismissed();
-                                }
-                            }
-
-                            @Override
-                            public void onBannerAdLeftApplication() {
-                                if (onLoadBannerIronSource != null) {
-                                    onLoadBannerIronSource.onBannerAdLeftApplication();
-                                }
-                            }
-                        };
-                        adViewIron.setBannerListener(listenerIron);
-                        IronSource.loadBanner(adViewIron, idBannerBackup);
                         break;
                     case "ALIEN-V":
                         AlienViewAds.Banner(activity, layAds, idBannerBackup);
@@ -4677,6 +4062,9 @@ public class AliendroidBanner {
                         break;
                     case "MOPUB":
                     case "UNITY":
+                        if (unityBanner !=null){
+                            unityBanner.destroy();
+                        }
                         break;
                     case "ADMOB":
                         if (adViewAdmob != null) {
@@ -4694,9 +4082,7 @@ public class AliendroidBanner {
                         }
                         break;
                     case "IRON":
-                        if (adViewIron != null) {
-                            adViewIron.isDestroyed();
-                        }
+
                         break;
                     case "WORTISE":
 

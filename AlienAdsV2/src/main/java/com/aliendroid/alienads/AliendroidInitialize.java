@@ -16,11 +16,11 @@ import com.google.android.gms.ads.RequestConfiguration;
 import com.google.android.gms.ads.initialization.AdapterStatus;
 import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
-import com.ironsource.mediationsdk.IronSource;
-import com.ironsource.mediationsdk.integration.IntegrationHelper;
 import com.props.adsmanager.PropsAdsManagement;
 import com.startapp.sdk.adsbase.StartAppAd;
 import com.startapp.sdk.adsbase.StartAppSDK;
+import com.unity3d.ads.IUnityAdsInitializationListener;
+import com.unity3d.ads.UnityAds;
 
 
 import java.util.Map;
@@ -28,7 +28,7 @@ import java.util.Map;
 
 public class AliendroidInitialize {
     public static RequestConfiguration requestConfiguration;
-
+    public static boolean tesMode;
     public static void SelectAdsAdmobTargeting(Activity activity, String selectAdsBackup, String idInitialize, String type) {
         MobileAds.initialize(activity, new OnInitializationCompleteListener() {
             @Override
@@ -99,10 +99,27 @@ public class AliendroidInitialize {
                 break;
             case "MOPUB":
             case "UNITY":
+                if (BuildConfig.DEBUG) {
+                    tesMode = true;
+                } else {
+                    tesMode = false;
+                }
+
+                IUnityAdsInitializationListener listener = new IUnityAdsInitializationListener() {
+                    @Override
+                    public void onInitializationComplete() {
+
+                    }
+
+                    @Override
+                    public void onInitializationFailed(UnityAds.UnityAdsInitializationError error, String message) {
+
+                    }
+                };
+                UnityAds.initialize(activity, idInitialize, tesMode, listener);
                 break;
             case "IRON":
-                IronSource.init(activity, idInitialize, IronSource.AD_UNIT.OFFERWALL, IronSource.AD_UNIT.INTERSTITIAL, IronSource.AD_UNIT.REWARDED_VIDEO, IronSource.AD_UNIT.BANNER);
-                IntegrationHelper.validateIntegration(activity);
+
                 break;
             case "STARTAPP":
                 StartAppSDK.init(activity, idInitialize, true);
@@ -177,10 +194,26 @@ public class AliendroidInitialize {
                 break;
             case "MOPUB":
             case "UNITY":
+                if (BuildConfig.DEBUG) {
+                    tesMode = true;
+                } else {
+                    tesMode = false;
+                }
+
+                IUnityAdsInitializationListener listener = new IUnityAdsInitializationListener() {
+                    @Override
+                    public void onInitializationComplete() {
+
+                    }
+
+                    @Override
+                    public void onInitializationFailed(UnityAds.UnityAdsInitializationError error, String message) {
+
+                    }
+                };
+                UnityAds.initialize(activity, idInitialize, tesMode, listener);
                 break;
             case "IRON":
-                IronSource.init(activity, idInitialize, IronSource.AD_UNIT.OFFERWALL, IronSource.AD_UNIT.INTERSTITIAL, IronSource.AD_UNIT.REWARDED_VIDEO, IronSource.AD_UNIT.BANNER);
-                IntegrationHelper.validateIntegration(activity);
                 break;
             case "STARTAPP":
                 StartAppSDK.init(activity, idInitialize, true);
@@ -254,11 +287,26 @@ public class AliendroidInitialize {
                 break;
             case "MOPUB":
             case "UNITY":
+                if (BuildConfig.DEBUG) {
+                    tesMode = true;
+                } else {
+                    tesMode = false;
+                }
 
+                IUnityAdsInitializationListener listener = new IUnityAdsInitializationListener() {
+                    @Override
+                    public void onInitializationComplete() {
+
+                    }
+
+                    @Override
+                    public void onInitializationFailed(UnityAds.UnityAdsInitializationError error, String message) {
+
+                    }
+                };
+                UnityAds.initialize(activity, idInitialize, tesMode, listener);
                 break;
             case "IRON":
-                IronSource.init(activity, idInitialize, IronSource.AD_UNIT.OFFERWALL, IronSource.AD_UNIT.INTERSTITIAL, IronSource.AD_UNIT.REWARDED_VIDEO, IronSource.AD_UNIT.BANNER);
-                IntegrationHelper.validateIntegration(activity);
                 break;
             case "STARTAPP":
                 StartAppSDK.init(activity, idInitialize, true);
@@ -307,11 +355,26 @@ public class AliendroidInitialize {
                 break;
             case "MOPUB":
             case "UNITY":
+                if (BuildConfig.DEBUG) {
+                    tesMode = true;
+                } else {
+                    tesMode = false;
+                }
 
+                IUnityAdsInitializationListener listener = new IUnityAdsInitializationListener() {
+                    @Override
+                    public void onInitializationComplete() {
+
+                    }
+
+                    @Override
+                    public void onInitializationFailed(UnityAds.UnityAdsInitializationError error, String message) {
+
+                    }
+                };
+                UnityAds.initialize(activity, idInitialize, tesMode, listener);
                 break;
             case "IRON":
-                IronSource.init(activity, idInitialize, IronSource.AD_UNIT.OFFERWALL, IronSource.AD_UNIT.INTERSTITIAL, IronSource.AD_UNIT.REWARDED_VIDEO, IronSource.AD_UNIT.BANNER);
-                IntegrationHelper.validateIntegration(activity);
                 break;
             case "STARTAPP":
                 StartAppSDK.init(activity, idInitialize, true);
@@ -371,11 +434,26 @@ public class AliendroidInitialize {
                 break;
             case "MOPUB":
             case "UNITY":
+                if (BuildConfig.DEBUG) {
+                    tesMode = true;
+                } else {
+                    tesMode = false;
+                }
 
+                IUnityAdsInitializationListener listener = new IUnityAdsInitializationListener() {
+                    @Override
+                    public void onInitializationComplete() {
+
+                    }
+
+                    @Override
+                    public void onInitializationFailed(UnityAds.UnityAdsInitializationError error, String message) {
+
+                    }
+                };
+                UnityAds.initialize(activity, idInitialize, tesMode, listener);
                 break;
             case "IRON":
-                IronSource.init(activity, idInitialize, IronSource.AD_UNIT.OFFERWALL, IronSource.AD_UNIT.INTERSTITIAL, IronSource.AD_UNIT.REWARDED_VIDEO, IronSource.AD_UNIT.BANNER);
-                IntegrationHelper.validateIntegration(activity);
                 break;
             case "STARTAPP":
                 StartAppSDK.init(activity, idInitialize, true);
@@ -446,12 +524,27 @@ public class AliendroidInitialize {
                 });
                 break;
             case "IRON":
-                IronSource.init(activity, idInitializeBackupAds, IronSource.AD_UNIT.OFFERWALL, IronSource.AD_UNIT.INTERSTITIAL, IronSource.AD_UNIT.REWARDED_VIDEO, IronSource.AD_UNIT.BANNER);
-                IntegrationHelper.validateIntegration(activity);
                 break;
             case "MOPUB":
             case "UNITY":
+                if (BuildConfig.DEBUG) {
+                    tesMode = true;
+                } else {
+                    tesMode = false;
+                }
 
+                IUnityAdsInitializationListener listener = new IUnityAdsInitializationListener() {
+                    @Override
+                    public void onInitializationComplete() {
+
+                    }
+
+                    @Override
+                    public void onInitializationFailed(UnityAds.UnityAdsInitializationError error, String message) {
+
+                    }
+                };
+                UnityAds.initialize(activity, idInitializeBackupAds, tesMode, listener);
                 break;
             case "ADMOB":
             case "GOOGLE-ADS":
@@ -492,8 +585,27 @@ public class AliendroidInitialize {
     }
 
     public static void SelectAdsIron(Activity activity, String selectAdsBackup, String idInitialize, String idInitializeBackupAds) {
-        IronSource.init(activity, idInitialize, IronSource.AD_UNIT.OFFERWALL, IronSource.AD_UNIT.INTERSTITIAL, IronSource.AD_UNIT.REWARDED_VIDEO, IronSource.AD_UNIT.BANNER);
-        IntegrationHelper.validateIntegration(activity);
+    }
+
+    public static void SelectAdsUnity(Activity activity, String selectAdsBackup, String idInitialize, String idInitializeBackupAds) {
+        if (BuildConfig.DEBUG) {
+            tesMode = true;
+        } else {
+            tesMode = false;
+        }
+
+        IUnityAdsInitializationListener listener = new IUnityAdsInitializationListener() {
+            @Override
+            public void onInitializationComplete() {
+
+            }
+
+            @Override
+            public void onInitializationFailed(UnityAds.UnityAdsInitializationError error, String message) {
+
+            }
+        };
+        UnityAds.initialize(activity, idInitialize, tesMode, listener);
         switch (selectAdsBackup) {
             case "APPLOVIN-D":
                 AppLovinSdk.initializeSdk(activity);
@@ -506,6 +618,8 @@ public class AliendroidInitialize {
                     }
                 });
                 break;
+            case "IRON":
+                break;
             case "STARTAPP":
                 StartAppSDK.init(activity, idInitializeBackupAds, true);
                 StartAppAd.disableSplash();
@@ -514,7 +628,6 @@ public class AliendroidInitialize {
                         System.currentTimeMillis(),
                         true);
                 break;
-            case "MOPUB":
             case "UNITY":
 
                 break;
@@ -556,10 +669,6 @@ public class AliendroidInitialize {
         }
     }
 
-    public static void SelectAdsUnity(Activity activity, String selectAdsBackup, String idInitialize, String idInitializeBackupAds) {
-
-    }
-
     public static void SelectAdsFAN(Activity activity, String selectAdsBackup, String idInitializeBackupAds) {
         if (!AudienceNetworkAds.isInitialized(activity)) {
             if (BuildConfig.DEBUG) {
@@ -593,6 +702,24 @@ public class AliendroidInitialize {
                 break;
             case "MOPUB":
             case "UNITY":
+                if (BuildConfig.DEBUG) {
+                    tesMode = true;
+                } else {
+                    tesMode = false;
+                }
+
+                IUnityAdsInitializationListener listener = new IUnityAdsInitializationListener() {
+                    @Override
+                    public void onInitializationComplete() {
+
+                    }
+
+                    @Override
+                    public void onInitializationFailed(UnityAds.UnityAdsInitializationError error, String message) {
+
+                    }
+                };
+                UnityAds.initialize(activity, idInitializeBackupAds, tesMode, listener);
                 break;
             case "ADMOB":
             case "GOOGLE-ADS":
@@ -610,8 +737,6 @@ public class AliendroidInitialize {
                 });
                 break;
             case "IRON":
-                IronSource.init(activity, idInitializeBackupAds, IronSource.AD_UNIT.OFFERWALL, IronSource.AD_UNIT.INTERSTITIAL, IronSource.AD_UNIT.REWARDED_VIDEO, IronSource.AD_UNIT.BANNER);
-                IntegrationHelper.validateIntegration(activity);
                 break;
             case "ALIEN-V":
                 AppPromote.initializeAppPromote(activity);
@@ -659,7 +784,24 @@ public class AliendroidInitialize {
                 break;
             case "MOPUB":
             case "UNITY":
+                if (BuildConfig.DEBUG) {
+                    tesMode = true;
+                } else {
+                    tesMode = false;
+                }
 
+                IUnityAdsInitializationListener listener = new IUnityAdsInitializationListener() {
+                    @Override
+                    public void onInitializationComplete() {
+
+                    }
+
+                    @Override
+                    public void onInitializationFailed(UnityAds.UnityAdsInitializationError error, String message) {
+
+                    }
+                };
+                UnityAds.initialize(activity, idInitializeBackupAds, tesMode, listener);
                 break;
             case "ADMOB":
             case "GOOGLE-ADS":
@@ -677,8 +819,6 @@ public class AliendroidInitialize {
                 });
                 break;
             case "IRON":
-                IronSource.init(activity, idInitializeBackupAds, IronSource.AD_UNIT.OFFERWALL, IronSource.AD_UNIT.INTERSTITIAL, IronSource.AD_UNIT.REWARDED_VIDEO, IronSource.AD_UNIT.BANNER);
-                IntegrationHelper.validateIntegration(activity);
                 break;
             case "FACEBOOK":
                 if (!AudienceNetworkAds.isInitialized(activity)) {
@@ -723,7 +863,24 @@ public class AliendroidInitialize {
                 break;
             case "MOPUB":
             case "UNITY":
+                if (BuildConfig.DEBUG) {
+                    tesMode = true;
+                } else {
+                    tesMode = false;
+                }
 
+                IUnityAdsInitializationListener listener = new IUnityAdsInitializationListener() {
+                    @Override
+                    public void onInitializationComplete() {
+
+                    }
+
+                    @Override
+                    public void onInitializationFailed(UnityAds.UnityAdsInitializationError error, String message) {
+
+                    }
+                };
+                UnityAds.initialize(activity, idInitializeBackupAds, tesMode, listener);
                 break;
             case "ADMOB":
             case "GOOGLE-ADS":
@@ -741,8 +898,6 @@ public class AliendroidInitialize {
                 });
                 break;
             case "IRON":
-                IronSource.init(activity, idInitializeBackupAds, IronSource.AD_UNIT.OFFERWALL, IronSource.AD_UNIT.INTERSTITIAL, IronSource.AD_UNIT.REWARDED_VIDEO, IronSource.AD_UNIT.BANNER);
-                IntegrationHelper.validateIntegration(activity);
                 break;
             case "FACEBOOK":
                 if (!AudienceNetworkAds.isInitialized(activity)) {

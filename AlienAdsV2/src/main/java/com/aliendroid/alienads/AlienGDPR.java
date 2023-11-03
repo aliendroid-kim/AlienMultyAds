@@ -14,7 +14,7 @@ import com.google.android.ump.ConsentInformation;
 import com.google.android.ump.ConsentRequestParameters;
 import com.google.android.ump.FormError;
 import com.google.android.ump.UserMessagingPlatform;
-import com.ironsource.mediationsdk.IronSource;
+
 
 import com.startapp.sdk.adsbase.StartAppSDK;
 
@@ -78,9 +78,6 @@ public class AlienGDPR {
                         true);
                 break;
             case "IRON":
-                IronSource.setConsent(true);
-                IronSource.setMetaData("do_not_sell", "false");
-                IronSource.setMetaData("is_child_directed", String.valueOf(childDirected));
                 break;
             case "APPLOVIN-M":
 

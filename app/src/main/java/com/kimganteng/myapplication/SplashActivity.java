@@ -64,6 +64,9 @@ public class SplashActivity extends AppCompatActivity {
             case "ALIEN-M":
                 AliendroidInitialize.SelectAdsAlienMediation(this, Select_Backup_Ads,Main_Initialize, Backup_Initialize);
                 break;
+            case "UNITY":
+                AliendroidInitialize.SelectAdsUnity(this, Select_Backup_Ads,Main_Initialize, Backup_Initialize);
+                break;
         }
 
         PropsOpenAds.LoadOpenAds("openapp_1",true);

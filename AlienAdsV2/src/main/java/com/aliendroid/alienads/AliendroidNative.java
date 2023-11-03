@@ -56,14 +56,13 @@ import com.google.android.gms.ads.nativead.MediaView;
 import com.google.android.gms.ads.nativead.NativeAd;
 import com.google.android.gms.ads.nativead.NativeAdOptions;
 import com.google.android.gms.ads.nativead.NativeAdView;
-import com.ironsource.mediationsdk.ISBannerSize;
-import com.ironsource.mediationsdk.IronSource;
-import com.ironsource.mediationsdk.IronSourceBannerLayout;
 
 import com.props.adsmanager.PropsAdsManagement;
 import com.startapp.sdk.ads.nativead.NativeAdDetails;
 import com.startapp.sdk.ads.nativead.StartAppNativeAd;
 import com.startapp.sdk.adsbase.adlisteners.AdEventListener;
+import com.unity3d.services.banners.BannerView;
+import com.unity3d.services.banners.UnityBannerSize;
 
 
 import java.util.ArrayList;
@@ -71,9 +70,8 @@ import java.util.Iterator;
 import java.util.List;
 
 public class AliendroidNative {
-
+    public static BannerView unityBanner;
     public static AppLovinAdView adViewDiscovery;
-    public static IronSourceBannerLayout adViewIron;
     private static NativeAd nativeAd;
     private static NativeAd nativeAd2;
     private static MaxNativeAdLoader nativeAdLoader;
@@ -120,11 +118,11 @@ public class AliendroidNative {
                         break;
                     case "MOPUB":
                     case "UNITY":
+                        if (unityBanner !=null){
+                            unityBanner.destroy();
+                        }
                         break;
                     case "IRON":
-                        if (adViewIron != null) {
-                            adViewIron.isDestroyed();
-                        }
                         break;
                     case "STARTAPP":
 
@@ -222,14 +220,11 @@ public class AliendroidNative {
                                                 break;
                                             case "MOPUB":
                                             case "UNITY":
-
+                                                unityBanner = new BannerView(activity, idNativeBackup, new UnityBannerSize(320, 50));
+                                                unityBanner.load();
+                                                layNative.addView(unityBanner);
                                                 break;
                                             case "IRON":
-                                                adViewIron = IronSource.createBanner(activity, ISBannerSize.BANNER);
-                                                FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT,
-                                                        FrameLayout.LayoutParams.WRAP_CONTENT);
-                                                layNative.addView(adViewIron, 0, layoutParams);
-                                                IronSource.loadBanner(adViewIron, idNativeBackup);
                                                 break;
                                             case "STARTAPP":
                                                 startAppNativeAd = new StartAppNativeAd(activity);
@@ -488,14 +483,11 @@ public class AliendroidNative {
                                                 break;
                                             case "MOPUB":
                                             case "UNITY":
-
+                                                unityBanner = new BannerView(activity, idNativeBackup, new UnityBannerSize(320, 50));
+                                                unityBanner.load();
+                                                layNative.addView(unityBanner);
                                                 break;
                                             case "IRON":
-                                                adViewIron = IronSource.createBanner(activity, ISBannerSize.BANNER);
-                                                FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT,
-                                                        FrameLayout.LayoutParams.WRAP_CONTENT);
-                                                layNative.addView(adViewIron, 0, layoutParams);
-                                                IronSource.loadBanner(adViewIron, idNativeBackup);
                                                 break;
                                             case "FACEBOOK":
                                                 nativeBannerAd = new NativeBannerAd(activity, idNativeBackup);
@@ -667,12 +659,11 @@ public class AliendroidNative {
                         break;
                     case "MOPUB":
                     case "UNITY":
-
+                        if (unityBanner !=null){
+                            unityBanner.destroy();
+                        }
                         break;
                     case "IRON":
-                        if (adViewIron != null) {
-                            adViewIron.isDestroyed();
-                        }
                         break;
                     case "STARTAPP":
 
@@ -753,14 +744,11 @@ public class AliendroidNative {
                         break;
                     case "MOPUB":
                     case "UNITY":
-
+                        unityBanner = new BannerView(activity, idNativeBackup, new UnityBannerSize(320, 50));
+                        unityBanner.load();
+                        layNative.addView(unityBanner);
                         break;
                     case "IRON":
-                        adViewIron = IronSource.createBanner(activity, ISBannerSize.BANNER);
-                        FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT,
-                                FrameLayout.LayoutParams.WRAP_CONTENT);
-                        layNative.addView(adViewIron, 0, layoutParams);
-                        IronSource.loadBanner(adViewIron, idNativeBackup);
                         break;
                     case "STARTAPP":
                         startAppNativeAd = new StartAppNativeAd(activity);
@@ -999,14 +987,11 @@ public class AliendroidNative {
                         break;
                     case "MOPUB":
                     case "UNITY":
-
+                        unityBanner = new BannerView(activity, idNativeBackup, new UnityBannerSize(320, 50));
+                        unityBanner.load();
+                        layNative.addView(unityBanner);
                         break;
                     case "IRON":
-                        adViewIron = IronSource.createBanner(activity, ISBannerSize.BANNER);
-                        FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT,
-                                FrameLayout.LayoutParams.WRAP_CONTENT);
-                        layNative.addView(adViewIron, 0, layoutParams);
-                        IronSource.loadBanner(adViewIron, idNativeBackup);
                         break;
                     case "STARTAPP":
                         startAppNativeAd = new StartAppNativeAd(activity);
@@ -1153,11 +1138,11 @@ public class AliendroidNative {
                         break;
                     case "MOPUB":
                     case "UNITY":
+                        if (unityBanner !=null){
+                            unityBanner.destroy();
+                        }
                         break;
                     case "IRON":
-                        if (adViewIron != null) {
-                            adViewIron.isDestroyed();
-                        }
                         break;
                     case "STARTAPP":
                         break;
@@ -1280,14 +1265,11 @@ public class AliendroidNative {
                         break;
                     case "MOPUB":
                     case "UNITY":
-
+                        unityBanner = new BannerView(activity, idNativeBackup, new UnityBannerSize(320, 50));
+                        unityBanner.load();
+                        layNative.addView(unityBanner);
                         break;
                     case "IRON":
-                        adViewIron = IronSource.createBanner(activity, ISBannerSize.BANNER);
-                        FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT,
-                                FrameLayout.LayoutParams.WRAP_CONTENT);
-                        layNative.addView(adViewIron, 0, layoutParams);
-                        IronSource.loadBanner(adViewIron, idNativeBackup);
                         break;
                     case "FACEBOOK":
                         nativeBannerAd = new NativeBannerAd(activity, idNativeBackup);
@@ -1518,14 +1500,11 @@ public class AliendroidNative {
                     }
                     case "MOPUB":
                     case "UNITY":
-
+                        unityBanner = new BannerView(activity, idNativeBackup, new UnityBannerSize(300, 250));
+                        unityBanner.load();
+                        layNative.addView(unityBanner);
                         break;
                     case "IRON":
-                        adViewIron = IronSource.createBanner(activity, ISBannerSize.RECTANGLE);
-                        FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT,
-                                FrameLayout.LayoutParams.WRAP_CONTENT);
-                        layNative.addView(adViewIron, 0, layoutParams);
-                        IronSource.loadBanner(adViewIron, idNativeBackup);
                         break;
                     case "FACEBOOK":
                         nativeAdfan = new com.facebook.ads.NativeAd(activity, idNativeBackup);
@@ -1695,9 +1674,6 @@ public class AliendroidNative {
 
                         break;
                     case "IRON":
-                        if (adViewIron != null) {
-                            adViewIron.isDestroyed();
-                        }
                         break;
                     case "STARTAPP":
                         break;
@@ -1805,14 +1781,11 @@ public class AliendroidNative {
                                             }
                                             case "MOPUB":
                                             case "UNITY":
-
+                                                unityBanner = new BannerView(activity, idNativeBackup, new UnityBannerSize(300, 250));
+                                                unityBanner.load();
+                                                layNative.addView(unityBanner);
                                                 break;
                                             case "IRON":
-                                                adViewIron = IronSource.createBanner(activity, ISBannerSize.RECTANGLE);
-                                                FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT,
-                                                        FrameLayout.LayoutParams.WRAP_CONTENT);
-                                                layNative.addView(adViewIron, 0, layoutParams);
-                                                IronSource.loadBanner(adViewIron, idNativeBackup);
                                                 break;
                                             case "STARTAPP":
                                                 startAppNativeAd = new StartAppNativeAd(activity);
@@ -2023,9 +1996,6 @@ public class AliendroidNative {
 
                         break;
                     case "IRON":
-                        if (adViewIron != null) {
-                            adViewIron.isDestroyed();
-                        }
                         break;
                     case "STARTAPP":
 
@@ -2107,14 +2077,11 @@ public class AliendroidNative {
 
                     case "MOPUB":
                     case "UNITY":
-
+                        unityBanner = new BannerView(activity, idNativeBackup, new UnityBannerSize(300, 250));
+                        unityBanner.load();
+                        layNative.addView(unityBanner);
                         break;
                     case "IRON":
-                        adViewIron = IronSource.createBanner(activity, ISBannerSize.RECTANGLE);
-                        FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT,
-                                FrameLayout.LayoutParams.WRAP_CONTENT);
-                        layNative.addView(adViewIron, 0, layoutParams);
-                        IronSource.loadBanner(adViewIron, idNativeBackup);
                         break;
                     case "STARTAPP":
                         startAppNativeAd = new StartAppNativeAd(activity);
@@ -2356,14 +2323,11 @@ public class AliendroidNative {
                     }
                     case "MOPUB":
                     case "UNITY":
-
+                        unityBanner = new BannerView(activity, idNativeBackup, new UnityBannerSize(300, 250));
+                        unityBanner.load();
+                        layNative.addView(unityBanner);
                         break;
                     case "IRON":
-                        adViewIron = IronSource.createBanner(activity, ISBannerSize.RECTANGLE);
-                        FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT,
-                                FrameLayout.LayoutParams.WRAP_CONTENT);
-                        layNative.addView(adViewIron, 0, layoutParams);
-                        IronSource.loadBanner(adViewIron, idNativeBackup);
                         break;
                     case "STARTAPP":
                         startAppNativeAd = new StartAppNativeAd(activity);
@@ -2511,9 +2475,6 @@ public class AliendroidNative {
 
                         break;
                     case "IRON":
-                        if (adViewIron != null) {
-                            adViewIron.isDestroyed();
-                        }
                         break;
                     case "STARTAPP":
 
@@ -2641,14 +2602,11 @@ public class AliendroidNative {
                                             }
                                             case "MOPUB":
                                             case "UNITY":
-
+                                                unityBanner = new BannerView(activity, idNativeBackup, new UnityBannerSize(300, 250));
+                                                unityBanner.load();
+                                                layNative.addView(unityBanner);
                                                 break;
                                             case "IRON":
-                                                adViewIron = IronSource.createBanner(activity, ISBannerSize.RECTANGLE);
-                                                FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT,
-                                                        FrameLayout.LayoutParams.WRAP_CONTENT);
-                                                layNative.addView(adViewIron, 0, layoutParams);
-                                                IronSource.loadBanner(adViewIron, idNativeBackup);
                                                 break;
                                             case "STARTAPP":
                                                 startAppNativeAd = new StartAppNativeAd(activity);
@@ -2876,6 +2834,9 @@ public class AliendroidNative {
                         break;
                     case "MOPUB":
                     case "UNITY":
+                        unityBanner = new BannerView(activity, idNativeBackup, new UnityBannerSize(320, 50));
+                        unityBanner.load();
+                        layNative.addView(unityBanner);
                         break;
                     case "IRON":
                         break;
@@ -3037,9 +2998,6 @@ public class AliendroidNative {
 
                         break;
                     case "IRON":
-                        if (adViewIron != null) {
-                            adViewIron.isDestroyed();
-                        }
                         break;
                     case "STARTAPP":
                         break;
@@ -3147,7 +3105,9 @@ public class AliendroidNative {
                                             }
                                             case "MOPUB":
                                             case "UNITY":
-
+                                                unityBanner = new BannerView(activity, idNativeBackup, new UnityBannerSize(320, 50));
+                                                unityBanner.load();
+                                                layNative.addView(unityBanner);
                                                 break;
                                             case "IRON":
 
@@ -3351,9 +3311,6 @@ public class AliendroidNative {
 
                         break;
                     case "IRON":
-                        if (adViewIron != null) {
-                            adViewIron.isDestroyed();
-                        }
                         break;
                     case "STARTAPP":
 
@@ -3434,7 +3391,9 @@ public class AliendroidNative {
                     }
                     case "MOPUB":
                     case "UNITY":
-
+                        unityBanner = new BannerView(activity, idNativeBackup, new UnityBannerSize(320, 50));
+                        unityBanner.load();
+                        layNative.addView(unityBanner);
                         break;
                     case "IRON":
                         break;
@@ -3670,7 +3629,9 @@ public class AliendroidNative {
                     }
                     case "MOPUB":
                     case "UNITY":
-
+                        unityBanner = new BannerView(activity, idNativeBackup, new UnityBannerSize(320, 50));
+                        unityBanner.load();
+                        layNative.addView(unityBanner);
                         break;
                     case "IRON":
 
@@ -3815,9 +3776,6 @@ public class AliendroidNative {
 
                         break;
                     case "IRON":
-                        if (adViewIron != null) {
-                            adViewIron.isDestroyed();
-                        }
                         break;
                     case "STARTAPP":
 
@@ -3944,7 +3902,9 @@ public class AliendroidNative {
                                             }
                                             case "MOPUB":
                                             case "UNITY":
-
+                                                unityBanner = new BannerView(activity, idNativeBackup, new UnityBannerSize(320, 50));
+                                                unityBanner.load();
+                                                layNative.addView(unityBanner);
                                                 break;
                                             case "IRON":
                                                 break;

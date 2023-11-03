@@ -30,10 +30,6 @@
 -keep public class com.google.android.gms.ads.** {
    public *;
 }
--keep class com.ironsource.adapters.** { *;
-}
--dontwarn com.ironsource.mediationsdk.**
--dontwarn com.ironsource.adapters.**
 -keepattributes JavascriptInterface
 -keepclassmembers class * {
     @android.webkit.JavascriptInterface <methods>;

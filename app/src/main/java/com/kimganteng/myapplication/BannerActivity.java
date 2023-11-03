@@ -46,6 +46,10 @@ public class BannerActivity extends AppCompatActivity {
                 AliendroidBanner.SmallBannerAlienMediation(this, laySmallAds, Select_Backup_Ads, MainBanner, BackupBanner);
                 AliendroidMediumBanner.MediumBannerAlienMediation(this, layMediumAds, Select_Backup_Ads, MainBanner, BackupBanner);
                 break;
+            case "UNITY":
+                AliendroidBanner.SmallBannerUnity(this, laySmallAds, Select_Backup_Ads, MainBanner, BackupBanner);
+                AliendroidMediumBanner.MediumBannerUnity(this, layMediumAds, Select_Backup_Ads, MainBanner, BackupBanner);
+                break;
         }
 
 
