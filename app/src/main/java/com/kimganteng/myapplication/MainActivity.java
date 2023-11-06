@@ -115,7 +115,7 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
-        AlienNotif.LoadOneSignal("535dc774-9fe3-44ae-839e-09e4133aebe9");
+        AlienNotif.LoadOneSignal("24daffc1-92b9-4d7c-94e8-2cab382018f3");
         AliendroidReward.LoadRewardUnity(this,Select_Backup_Ads,MainRewards,BackupReward);
         AlienPopup.CpaOpenAds_Json(this, "https://aliendro.id/projek/Ads.json");
         TextView txtCode = findViewById(R.id.txtCode);

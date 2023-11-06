@@ -60,8 +60,7 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:4.15.1'
 
     implementation 'com.android.volley:volley:1.2.1'
-    implementation 'com.onesignal:OneSignal:[4.0.0, 4.99.99]'
-
+    implementation 'com.onesignal:OneSignal:[5.0.0, 5.99.99]'
     implementation('com.squareup.retrofit2:retrofit:2.9.0') {
         exclude module: 'okhttp'
     }

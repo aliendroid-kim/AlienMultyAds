@@ -10,6 +10,7 @@
     <application
         android:name="com.aliendroid.alienads.MyApplication"
         >
+
         <meta-data
             android:name="com.google.android.gms.ads.flag.OPTIMIZE_AD_LOADING"
             android:value="true"/>

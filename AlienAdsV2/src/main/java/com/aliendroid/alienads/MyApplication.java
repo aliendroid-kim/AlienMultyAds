@@ -1,6 +1,7 @@
 package com.aliendroid.alienads;
 
 import android.app.Application;
+import android.content.Context;
 import android.util.Log;
 
 import com.aliendroid.sdkads.config.AppsConfig;
@@ -20,12 +21,12 @@ public class MyApplication extends Application {
     private static ApplovinOpenAds applovinOpenAds;
     private static InitializeAlienAds sdkads;
     private static AlienNotif notif;
-
+    Context context;
     //Neptunus
     @Override
     public void onCreate() {
         super.onCreate();
-
+        context = this;
         MobileAds.initialize(
                 this,
                 new OnInitializationCompleteListener() {
@@ -48,7 +49,7 @@ public class MyApplication extends Application {
         alienOpenAds = new AlienOpenAds(this);
         propsOpenAds = new PropsOpenAds(this);
         //applovinOpenAds = new ApplovinOpenAds(this);
-        notif = new AlienNotif(this);
+        notif = new AlienNotif(context,this);
 
     }
 }
