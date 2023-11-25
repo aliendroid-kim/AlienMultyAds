@@ -3121,6 +3121,11 @@ public class AliendroidBanner {
             }
 
             @Override
+            public void onBannerShown(BannerView bannerAdView) {
+
+            }
+
+            @Override
             public void onBannerClick(BannerView bannerAdView) {
 
             }
@@ -3372,7 +3377,6 @@ public class AliendroidBanner {
 
             }
         });
-
     }
 
     public static void SmallBannerAlienView(Activity activity, RelativeLayout layAds, String selectAdsBackup, String idBanner, String idBannerBackup) {

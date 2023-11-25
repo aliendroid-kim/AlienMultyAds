@@ -69,8 +69,8 @@ public class SplashActivity extends AppCompatActivity {
                 break;
         }
 
-        PropsOpenAds.LoadOpenAds("openapp_1",true);
-        PropsOpenAds.AppOpenAdManager.showAdIfAvailable(SplashActivity.this, new PropsOpenAds.OnShowAdCompleteListener() {
+        AlienOpenAds.LoadOpenAds("ca-app-pub-3940256099942544/9257395921",true);
+        AlienOpenAds.AppOpenAdManager.showAdIfAvailable(SplashActivity.this, new AlienOpenAds.OnShowAdCompleteListener() {
              @Override
              public void onShowAdComplete() {
                  startActivity(true);
