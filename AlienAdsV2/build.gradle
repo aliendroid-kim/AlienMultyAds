@@ -47,8 +47,8 @@ dependencies {
     //Admob
     implementation 'com.google.ads.mediation:facebook:6.16.0.0'
     implementation 'com.google.ads.mediation:applovin:11.11.3.0'
-
-    implementation 'com.google.android.ump:user-messaging-platform:2.1.0'
+    
+    implementation("com.google.android.ump:user-messaging-platform:2.1.0")
 
     //Unity
     implementation 'com.unity3d.ads:unity-ads:4.9.2'

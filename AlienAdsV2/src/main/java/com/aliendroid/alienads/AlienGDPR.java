@@ -1,6 +1,8 @@
 package com.aliendroid.alienads;
 
 import android.app.Activity;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.provider.Settings;
 
 import androidx.annotation.Nullable;
@@ -8,6 +10,7 @@ import androidx.annotation.Nullable;
 import com.applovin.sdk.AppLovinPrivacySettings;
 import com.applovin.sdk.AppLovinSdk;
 import com.applovin.sdk.AppLovinSdkConfiguration;
+import com.google.android.gms.ads.MobileAds;
 import com.google.android.ump.ConsentDebugSettings;
 import com.google.android.ump.ConsentForm;
 import com.google.android.ump.ConsentInformation;
@@ -15,16 +18,17 @@ import com.google.android.ump.ConsentRequestParameters;
 import com.google.android.ump.FormError;
 import com.google.android.ump.UserMessagingPlatform;
 
-
 import com.startapp.sdk.adsbase.StartAppSDK;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class AlienGDPR {
     public static ConsentInformation consentInformation;
     public static ConsentDebugSettings debugSettings;
     public static ConsentRequestParameters params;
+    private static final AtomicBoolean isMobileAdsInitializeCalled = new AtomicBoolean(false);
 
     public static void loadGdpr(Activity activity, String selectAds, boolean childDirected) {
         switch (selectAds) {
@@ -49,27 +53,33 @@ public class AlienGDPR {
                             .setTagForUnderAgeOfConsent(childDirected)
                             .build();
                 }
+
                 consentInformation = UserMessagingPlatform.getConsentInformation(activity);
                 consentInformation.requestConsentInfoUpdate(
                         activity,
                         params,
-                        new ConsentInformation.OnConsentInfoUpdateSuccessListener() {
-                            @Override
-                            public void onConsentInfoUpdateSuccess() {
-                                if (consentInformation.isConsentFormAvailable()) {
-                                    loadForm(activity);
-                                }
+                        (ConsentInformation.OnConsentInfoUpdateSuccessListener) () -> {
+                            UserMessagingPlatform.loadAndShowConsentFormIfRequired(
+                                    activity,
+                                    (ConsentForm.OnConsentFormDismissedListener) loadAndShowError -> {
+                                        if (loadAndShowError != null) {
 
-                            }
+                                        }
+                                        // Consent has been gathered.
+                                        if (consentInformation.canRequestAds()) {
+                                            initializeMobileAdsSdk(activity);
+                                        }
+
+                                    }
+                            );
+
                         },
-                        new ConsentInformation.OnConsentInfoUpdateFailureListener() {
-                            @Override
-                            public void onConsentInfoUpdateFailure(FormError formError) {
-                                // Handle the error.
-                            }
+                        (ConsentInformation.OnConsentInfoUpdateFailureListener) requestConsentError -> {
+                            // Consent gathering failed.
                         });
-
-
+                if (consentInformation.canRequestAds()) {
+                    initializeMobileAdsSdk(activity);
+                }
                 break;
             case "STARTAPP":
                 StartAppSDK.setUserConsent(activity,
@@ -106,6 +116,13 @@ public class AlienGDPR {
                 break;
 
         }
+    }
+
+    private static void initializeMobileAdsSdk(Activity activity) {
+        if (isMobileAdsInitializeCalled.getAndSet(true)) {
+            return;
+        }
+        MobileAds.initialize(activity);
     }
 
     public static void loadForm(Activity activity) {

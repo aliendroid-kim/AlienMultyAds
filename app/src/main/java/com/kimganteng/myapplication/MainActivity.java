@@ -68,7 +68,6 @@ public class MainActivity extends AppCompatActivity {
         WortiseOpenAds.ShowOpenWortise(this);
         AppPromote.initializeAppPromote(this);
         InitializeAlienAds.LoadSDK();
-
         AlienGDPR.loadGdpr(this,Select_Main_Ads,false);
 
         switch (Select_Main_Ads) {
