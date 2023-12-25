@@ -1,6 +1,7 @@
 package com.aliendroid.sdkads.type.mediation;
 
 import android.app.Activity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RelativeLayout;
@@ -15,6 +16,10 @@ import com.aliendroid.sdkads.interfaces.OnLoadRewardsMediation;
 import com.aliendroid.sdkads.interfaces.OnShowInterstitial;
 import com.aliendroid.sdkads.interfaces.OnShowRewards;
 import com.aliendroid.sdkads.layout.NativeMediation;
+import com.google.android.gms.ads.LoadAdError;
+import com.google.android.gms.ads.interstitial.InterstitialAd;
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
+import com.props.adsmanager.PropsAdsManagement;
 
 public class AlienMediationAds {
     public static OnLoadInterstitialMediation onLoadInterstitialMediation;
@@ -40,10 +45,20 @@ public class AlienMediationAds {
 
     public static void ScraperBanner(Activity activity, RelativeLayout layAds, String PlacementID){
 
-
     }
 
     public static void LoadInterstitial (Activity activity, String PlacementID) {
+        PropsAdsManagement.loadInterstitialAds(activity, PlacementID, new InterstitialAdLoadCallback() {
+            @Override
+            public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                super.onAdFailedToLoad(loadAdError);
+
+            }
+            @Override
+            public void onAdLoaded(@NonNull InterstitialAd interstitialAdProps) {
+                super.onAdLoaded(interstitialAdProps);
+            }
+        });
 
 
     }
