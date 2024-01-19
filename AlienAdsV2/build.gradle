@@ -39,14 +39,14 @@ dependencies {
     implementation 'com.google.android.gms:play-services-ads:22.6.0'
     implementation 'com.facebook.android:audience-network-sdk:6.16.0'
     implementation 'com.applovin:applovin-sdk:12.1.0'
-    implementation 'com.startapp:inapp-sdk:4.11.3'
+    implementation 'com.startapp:inapp-sdk:4.11.4'
     //Applovin
     implementation 'com.applovin.mediation:facebook-adapter:6.16.0.2'
     implementation 'com.applovin.mediation:google-adapter:22.6.0.0'
 
     //Admob
     implementation 'com.google.ads.mediation:facebook:6.16.0.0'
-    implementation 'com.google.ads.mediation:applovin:11.11.3.0'
+    implementation 'com.google.ads.mediation:applovin:12.1.0.0'
     
     implementation("com.google.android.ump:user-messaging-platform:2.1.0")
 

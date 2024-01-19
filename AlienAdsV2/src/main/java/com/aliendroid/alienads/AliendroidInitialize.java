@@ -242,7 +242,7 @@ public class AliendroidInitialize {
                 AppPromote.initializeAppPromote(activity);
                 break;
             case "ALIEN-M":
-                InitializeAlienAds.LoadSDK();
+                PropsAdsManagement.initializeAdsMapping(activity);
 
                 break;
             case "ADMOB":
@@ -336,7 +336,7 @@ public class AliendroidInitialize {
                 AppPromote.initializeAppPromote(activity);
                 break;
             case "ALIEN-M":
-                InitializeAlienAds.LoadSDK();
+                PropsAdsManagement.initializeAdsMapping(activity);
                 break;
 
         }
@@ -415,7 +415,7 @@ public class AliendroidInitialize {
                 AppPromote.initializeAppPromote(activity);
                 break;
             case "ALIEN-M":
-                InitializeAlienAds.LoadSDK();
+                PropsAdsManagement.initializeAdsMapping(activity);
                 break;
 
         }
@@ -494,7 +494,7 @@ public class AliendroidInitialize {
                 AppPromote.initializeAppPromote(activity);
                 break;
             case "ALIEN-M":
-                InitializeAlienAds.LoadSDK();
+                PropsAdsManagement.initializeAdsMapping(activity);
                 break;
 
         }
@@ -578,7 +578,7 @@ public class AliendroidInitialize {
                 AppPromote.initializeAppPromote(activity);
                 break;
             case "ALIEN-M":
-                InitializeAlienAds.LoadSDK();
+                PropsAdsManagement.initializeAdsMapping(activity);
                 break;
 
         }
@@ -663,7 +663,7 @@ public class AliendroidInitialize {
                 AppPromote.initializeAppPromote(activity);
                 break;
             case "ALIEN-M":
-                InitializeAlienAds.LoadSDK();
+                PropsAdsManagement.initializeAdsMapping(activity);
                 break;
 
         }
@@ -742,7 +742,7 @@ public class AliendroidInitialize {
                 AppPromote.initializeAppPromote(activity);
                 break;
             case "ALIEN-M":
-                InitializeAlienAds.LoadSDK();
+                PropsAdsManagement.initializeAdsMapping(activity);
                 break;
             case "FACEBOOK":
                 if (!AudienceNetworkAds.isInitialized(activity)) {
@@ -833,7 +833,7 @@ public class AliendroidInitialize {
                 }
                 break;
             case "ALIEN-M":
-                InitializeAlienAds.LoadSDK();
+                PropsAdsManagement.initializeAdsMapping(activity);
                 break;
 
         }
