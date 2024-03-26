@@ -19,7 +19,7 @@ public class AppsConfig {
     public static String appName = "title";
     public static String appPackage = "ad_id";
     public static String appPreview = "preview";
-    public static String ANALYSKEY = QWERTY.ZXC("/qd8TRV+1xOf3CyHtfJFpZAodC+Gp73g6jqJrEFKF0c=");
+    public static String ALIENSDKKEY = "2a6665a4-e02a-42d4-84f5-5d3d8d4d3362";
     public static String APPKEY = QWERTY.ZXC("X471j9zpGaArbahsSTLZZQ==");
 
     public static void openAdLink(Context context, String link) {
