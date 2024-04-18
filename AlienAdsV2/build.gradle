@@ -6,7 +6,7 @@ android {
     compileSdkVersion 33
     defaultConfig {
         minSdkVersion 21
-        targetSdkVersion 32
+        targetSdkVersion 33
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
@@ -37,8 +37,8 @@ dependencies {
     //implementation fileTree(include: ['*.jar', '*.aar'], dir: 'libs')
     //Main Sdk Ads
     implementation 'com.google.android.gms:play-services-ads:23.0.0'
-    implementation 'com.facebook.android:audience-network-sdk:6.16.0'
-    implementation 'com.applovin:applovin-sdk:12.3.0'
+    implementation 'com.facebook.android:audience-network-sdk:6.17.0'
+    implementation 'com.applovin:applovin-sdk:12.4.2'
     implementation 'com.startapp:inapp-sdk:4.11.5'
     implementation 'com.unity3d.ads:unity-ads:4.10.0'
 
@@ -48,9 +48,9 @@ dependencies {
     implementation 'com.applovin.mediation:unityads-adapter:4.9.3.0'
 
     //Admob
-    implementation 'com.google.ads.mediation:facebook:6.16.0.0'
-    implementation 'com.google.ads.mediation:applovin:12.3.0.0'
-    implementation 'com.google.ads.mediation:unity:4.9.3.0'
+    implementation 'com.google.ads.mediation:facebook:6.17.0.0'
+    implementation 'com.google.ads.mediation:applovin:12.4.2.0'
+    implementation 'com.google.ads.mediation:unity:4.10.0.0'
 
 
     implementation("com.google.android.ump:user-messaging-platform:2.2.0")
