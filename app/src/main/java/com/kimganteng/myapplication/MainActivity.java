@@ -19,6 +19,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.aliendroid.alienads.AlienGDPR;
+import com.aliendroid.alienads.AlienGame;
 import com.aliendroid.alienads.AlienNotif;
 import com.aliendroid.alienads.AliendroidInitialize;
 import com.aliendroid.alienads.AliendroidIntertitial;
@@ -94,16 +95,17 @@ public class MainActivity extends AppCompatActivity {
         TelephonyManager tm = (TelephonyManager)this.getSystemService(Context.TELEPHONY_SERVICE);
         String countryCodeValue = tm.getNetworkCountryIso();
         txtCode.setText("country = "+countryCodeValue);
+        AlienGame.LoadGame(MainActivity.this, "tes","tes","tes");
+    }
+
+    public void VIEWADS(View view){
+        AlienGame.ShowGame(MainActivity.this, "9285717016");
+
     }
 
     public void BANNER(View view){
         Intent open = new Intent(MainActivity.this,BannerActivity.class);
         startActivity(open);
-
-    }
-
-    public void VIEWADS(View view){
-
 
     }
 
