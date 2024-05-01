@@ -13,14 +13,10 @@ import androidx.lifecycle.LifecycleObserver;
 import androidx.lifecycle.OnLifecycleEvent;
 import androidx.lifecycle.ProcessLifecycleOwner;
 
-import com.aliendroid.sdkads.interfaces.OnShowAdCompleteListener;
 import com.applovin.mediation.MaxAd;
 import com.applovin.mediation.MaxAdListener;
 import com.applovin.mediation.MaxError;
 import com.applovin.mediation.ads.MaxAppOpenAd;
-
-
-import java.util.Date;
 
 public class ApplovinOpenAds implements LifecycleObserver, Application.ActivityLifecycleCallbacks {
     public static MyApplication myApplication;
@@ -97,7 +93,7 @@ public class ApplovinOpenAds implements LifecycleObserver, Application.ActivityL
          * @param activity                 the activity that shows the app open ad
          * @param onShowAdCompleteListener the listener to be notified when an app open ad is complete
          */
-        public static void showAdIfAvailable(@NonNull final Activity activity, @NonNull OnShowAdCompleteListener onShowAdCompleteListener) {
+        public static void showAdIfAvailable(@NonNull final Activity activity, @NonNull AlienOpenAds.OnShowAdCompleteListener onShowAdCompleteListener) {
             if (isShowingAd) {
                 return;
             }

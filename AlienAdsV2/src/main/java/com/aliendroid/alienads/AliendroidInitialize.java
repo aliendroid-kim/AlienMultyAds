@@ -5,8 +5,6 @@ import android.util.Log;
 
 import com.aliendroid.alienads.config.AudienceNetworkInitializeHelper;
 import com.aliendroid.sdkads.config.AppPromote;
-import com.aliendroid.sdkads.config.InitializeAlienAds;
-import com.applovin.sdk.AppLovinMediationProvider;
 import com.applovin.sdk.AppLovinSdk;
 import com.applovin.sdk.AppLovinSdkConfiguration;
 import com.facebook.ads.AdSettings;
@@ -89,6 +87,7 @@ public class AliendroidInitialize {
         });
         switch (selectAdsBackup) {
             case "APPLOVIN-M":
+            case "ALIEN-V":
                 AppLovinSdk.getInstance(activity).setMediationProvider("max");
                 AppLovinSdk.initializeSdk(activity, new AppLovinSdk.SdkInitializationListener() {
                     @Override
@@ -97,14 +96,12 @@ public class AliendroidInitialize {
                     }
                 });
                 break;
-            case "MOPUB":
             case "UNITY":
                 if (BuildConfig.DEBUG) {
                     tesMode = true;
                 } else {
                     tesMode = false;
                 }
-
                 IUnityAdsInitializationListener listener = new IUnityAdsInitializationListener() {
                     @Override
                     public void onInitializationComplete() {
@@ -117,9 +114,6 @@ public class AliendroidInitialize {
                     }
                 };
                 UnityAds.initialize(activity, idInitialize, tesMode, listener);
-                break;
-            case "IRON":
-
                 break;
             case "STARTAPP":
                 StartAppSDK.init(activity, idInitialize, true);
@@ -144,12 +138,8 @@ public class AliendroidInitialize {
                             .initialize();
                 }
                 break;
-            case "ALIEN-V":
-                AppPromote.initializeAppPromote(activity);
-                break;
             case "ALIEN-M":
                 PropsAdsManagement.initializeAdsMapping(activity);
-
                 break;
             case "ADMOB":
                 MobileAds.initialize(activity, new OnInitializationCompleteListener() {
@@ -184,6 +174,7 @@ public class AliendroidInitialize {
         });
         switch (selectAdsBackup) {
             case "APPLOVIN-M":
+            case "ALIEN-V":
                 AppLovinSdk.getInstance(activity).setMediationProvider("max");
                 AppLovinSdk.initializeSdk(activity, new AppLovinSdk.SdkInitializationListener() {
                     @Override
@@ -192,7 +183,6 @@ public class AliendroidInitialize {
                     }
                 });
                 break;
-            case "MOPUB":
             case "UNITY":
                 if (BuildConfig.DEBUG) {
                     tesMode = true;
@@ -212,8 +202,6 @@ public class AliendroidInitialize {
                     }
                 };
                 UnityAds.initialize(activity, idInitialize, tesMode, listener);
-                break;
-            case "IRON":
                 break;
             case "STARTAPP":
                 StartAppSDK.init(activity, idInitialize, true);
@@ -237,9 +225,6 @@ public class AliendroidInitialize {
                             .withInitListener(new AudienceNetworkInitializeHelper())
                             .initialize();
                 }
-                break;
-            case "ALIEN-V":
-                AppPromote.initializeAppPromote(activity);
                 break;
             case "ALIEN-M":
                 PropsAdsManagement.initializeAdsMapping(activity);
@@ -278,6 +263,7 @@ public class AliendroidInitialize {
         });
         switch (selectAdsBackup) {
             case "APPLOVIN-M":
+            case "ALIEN-V":
                 AppLovinSdk.getInstance(activity).setMediationProvider("max");
                 AppLovinSdk.initializeSdk(activity, new AppLovinSdk.SdkInitializationListener() {
                     @Override
@@ -285,7 +271,6 @@ public class AliendroidInitialize {
                     }
                 });
                 break;
-            case "MOPUB":
             case "UNITY":
                 if (BuildConfig.DEBUG) {
                     tesMode = true;
@@ -305,8 +290,6 @@ public class AliendroidInitialize {
                     }
                 };
                 UnityAds.initialize(activity, idInitialize, tesMode, listener);
-                break;
-            case "IRON":
                 break;
             case "STARTAPP":
                 StartAppSDK.init(activity, idInitialize, true);
@@ -332,9 +315,6 @@ public class AliendroidInitialize {
                             .initialize();
                 }
                 break;
-            case "ALIEN-V":
-                AppPromote.initializeAppPromote(activity);
-                break;
             case "ALIEN-M":
                 PropsAdsManagement.initializeAdsMapping(activity);
                 break;
@@ -346,6 +326,7 @@ public class AliendroidInitialize {
         AppLovinSdk.initializeSdk(activity);
         switch (selectAdsBackup) {
             case "APPLOVIN-M":
+            case "ALIEN-V":
                 AppLovinSdk.getInstance(activity).setMediationProvider("max");
                 AppLovinSdk.initializeSdk(activity, new AppLovinSdk.SdkInitializationListener() {
                     @Override
@@ -353,7 +334,6 @@ public class AliendroidInitialize {
                     }
                 });
                 break;
-            case "MOPUB":
             case "UNITY":
                 if (BuildConfig.DEBUG) {
                     tesMode = true;
@@ -373,8 +353,6 @@ public class AliendroidInitialize {
                     }
                 };
                 UnityAds.initialize(activity, idInitialize, tesMode, listener);
-                break;
-            case "IRON":
                 break;
             case "STARTAPP":
                 StartAppSDK.init(activity, idInitialize, true);
@@ -410,9 +388,6 @@ public class AliendroidInitialize {
                             .withInitListener(new AudienceNetworkInitializeHelper())
                             .initialize();
                 }
-                break;
-            case "ALIEN-V":
-                AppPromote.initializeAppPromote(activity);
                 break;
             case "ALIEN-M":
                 PropsAdsManagement.initializeAdsMapping(activity);
@@ -432,7 +407,6 @@ public class AliendroidInitialize {
             case "APPLOVIN-D":
                 AppLovinSdk.initializeSdk(activity);
                 break;
-            case "MOPUB":
             case "UNITY":
                 if (BuildConfig.DEBUG) {
                     tesMode = true;
@@ -452,8 +426,6 @@ public class AliendroidInitialize {
                     }
                 };
                 UnityAds.initialize(activity, idInitialize, tesMode, listener);
-                break;
-            case "IRON":
                 break;
             case "STARTAPP":
                 StartAppSDK.init(activity, idInitialize, true);
@@ -491,7 +463,13 @@ public class AliendroidInitialize {
                 }
                 break;
             case "ALIEN-V":
-                AppPromote.initializeAppPromote(activity);
+                AppLovinSdk.getInstance(activity).setMediationProvider("max");
+                AppLovinSdk.initializeSdk(activity, new AppLovinSdk.SdkInitializationListener() {
+                    @Override
+                    public void onSdkInitialized(final AppLovinSdkConfiguration configuration) {
+
+                    }
+                });
                 break;
             case "ALIEN-M":
                 PropsAdsManagement.initializeAdsMapping(activity);
@@ -516,6 +494,7 @@ public class AliendroidInitialize {
                 AppLovinSdk.initializeSdk(activity);
                 break;
             case "APPLOVIN-M":
+            case "ALIEN-V":
                 AppLovinSdk.getInstance(activity).setMediationProvider("max");
                 AppLovinSdk.initializeSdk(activity, new AppLovinSdk.SdkInitializationListener() {
                     @Override
@@ -523,9 +502,6 @@ public class AliendroidInitialize {
                     }
                 });
                 break;
-            case "IRON":
-                break;
-            case "MOPUB":
             case "UNITY":
                 if (BuildConfig.DEBUG) {
                     tesMode = true;
@@ -573,9 +549,6 @@ public class AliendroidInitialize {
                             .withInitListener(new AudienceNetworkInitializeHelper())
                             .initialize();
                 }
-                break;
-            case "ALIEN-V":
-                AppPromote.initializeAppPromote(activity);
                 break;
             case "ALIEN-M":
                 PropsAdsManagement.initializeAdsMapping(activity);
@@ -611,14 +584,13 @@ public class AliendroidInitialize {
                 AppLovinSdk.initializeSdk(activity);
                 break;
             case "APPLOVIN-M":
+            case "ALIEN-V":
                 AppLovinSdk.getInstance(activity).setMediationProvider("max");
                 AppLovinSdk.initializeSdk(activity, new AppLovinSdk.SdkInitializationListener() {
                     @Override
                     public void onSdkInitialized(final AppLovinSdkConfiguration configuration) {
                     }
                 });
-                break;
-            case "IRON":
                 break;
             case "STARTAPP":
                 StartAppSDK.init(activity, idInitializeBackupAds, true);
@@ -627,9 +599,6 @@ public class AliendroidInitialize {
                         "pas",
                         System.currentTimeMillis(),
                         true);
-                break;
-            case "UNITY":
-
                 break;
             case "ADMOB":
             case "GOOGLE-ADS":
@@ -658,9 +627,6 @@ public class AliendroidInitialize {
                             .withInitListener(new AudienceNetworkInitializeHelper())
                             .initialize();
                 }
-                break;
-            case "ALIEN-V":
-                AppPromote.initializeAppPromote(activity);
                 break;
             case "ALIEN-M":
                 PropsAdsManagement.initializeAdsMapping(activity);
@@ -685,6 +651,7 @@ public class AliendroidInitialize {
                 AppLovinSdk.initializeSdk(activity);
                 break;
             case "APPLOVIN-M":
+            case "ALIEN-V":
                 AppLovinSdk.getInstance(activity).setMediationProvider("max");
                 AppLovinSdk.initializeSdk(activity, new AppLovinSdk.SdkInitializationListener() {
                     @Override
@@ -700,7 +667,6 @@ public class AliendroidInitialize {
                         System.currentTimeMillis(),
                         true);
                 break;
-            case "MOPUB":
             case "UNITY":
                 if (BuildConfig.DEBUG) {
                     tesMode = true;
@@ -736,11 +702,7 @@ public class AliendroidInitialize {
                     }
                 });
                 break;
-            case "IRON":
-                break;
-            case "ALIEN-V":
-                AppPromote.initializeAppPromote(activity);
-                break;
+
             case "ALIEN-M":
                 PropsAdsManagement.initializeAdsMapping(activity);
                 break;
@@ -761,7 +723,13 @@ public class AliendroidInitialize {
     }
 
     public static void SelectAdsAlienView(Activity activity, String selectAdsBackup, String idInitializeBackupAds) {
-        AppPromote.initializeAppPromote(activity);
+        AppLovinSdk.getInstance(activity).setMediationProvider("max");
+        AppLovinSdk.initializeSdk(activity, new AppLovinSdk.SdkInitializationListener() {
+            @Override
+            public void onSdkInitialized(final AppLovinSdkConfiguration configuration) {
+
+            }
+        });
         switch (selectAdsBackup) {
             case "APPLOVIN-D":
                 AppLovinSdk.initializeSdk(activity);
@@ -782,7 +750,6 @@ public class AliendroidInitialize {
                         System.currentTimeMillis(),
                         true);
                 break;
-            case "MOPUB":
             case "UNITY":
                 if (BuildConfig.DEBUG) {
                     tesMode = true;
@@ -817,8 +784,6 @@ public class AliendroidInitialize {
                         }
                     }
                 });
-                break;
-            case "IRON":
                 break;
             case "FACEBOOK":
                 if (!AudienceNetworkAds.isInitialized(activity)) {
@@ -846,6 +811,7 @@ public class AliendroidInitialize {
                 AppLovinSdk.initializeSdk(activity);
                 break;
             case "APPLOVIN-M":
+            case "ALIEN-V":
                 AppLovinSdk.getInstance(activity).setMediationProvider("max");
                 AppLovinSdk.initializeSdk(activity, new AppLovinSdk.SdkInitializationListener() {
                     @Override
@@ -861,7 +827,6 @@ public class AliendroidInitialize {
                         System.currentTimeMillis(),
                         true);
                 break;
-            case "MOPUB":
             case "UNITY":
                 if (BuildConfig.DEBUG) {
                     tesMode = true;
@@ -897,8 +862,6 @@ public class AliendroidInitialize {
                     }
                 });
                 break;
-            case "IRON":
-                break;
             case "FACEBOOK":
                 if (!AudienceNetworkAds.isInitialized(activity)) {
                     if (BuildConfig.DEBUG) {
@@ -911,9 +874,6 @@ public class AliendroidInitialize {
                             .withInitListener(new AudienceNetworkInitializeHelper())
                             .initialize();
                 }
-                break;
-            case "ALIEN-V":
-                AppPromote.initializeAppPromote(activity);
                 break;
 
         }

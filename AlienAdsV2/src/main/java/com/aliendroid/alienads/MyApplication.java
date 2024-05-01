@@ -2,17 +2,10 @@ package com.aliendroid.alienads;
 
 import static com.aliendroid.sdkads.config.AppsConfig.ALIENSDKKEY;
 
+import android.annotation.SuppressLint;
 import android.app.Application;
 import android.content.Context;
-import android.util.Log;
 
-import com.aliendroid.sdkads.config.AppsConfig;
-import com.aliendroid.sdkads.config.InitializeAlienAds;
-import com.applovin.sdk.AppLovinMediationProvider;
-import com.applovin.sdk.AppLovinSdk;
-import com.applovin.sdk.AppLovinSdkConfiguration;
-//import com.flurry.android.FlurryAgent;
-//import com.flurry.android.FlurryPerformance;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
@@ -21,13 +14,17 @@ import io.appmetrica.analytics.AppMetrica;
 import io.appmetrica.analytics.AppMetricaConfig;
 
 public class MyApplication extends Application {
+    @SuppressLint("StaticFieldLeak")
     private static AlienOpenAds alienOpenAds;
+    @SuppressLint("StaticFieldLeak")
+    private static JamboxOpenAds jsmboxOpenAds;
+    @SuppressLint("StaticFieldLeak")
     private static PropsOpenAds propsOpenAds;
+    @SuppressLint("StaticFieldLeak")
     private static ApplovinOpenAds applovinOpenAds;
-    private static InitializeAlienAds sdkads;
+    @SuppressLint("StaticFieldLeak")
     private static AlienNotif notif;
     Context context;
-    //Neptunus
     @Override
     public void onCreate() {
         super.onCreate();
@@ -46,11 +43,9 @@ public class MyApplication extends Application {
                 .build();
         AppMetrica.activate(this, config);
         AppMetrica.enableActivityAutoTracking(this);
-
-        sdkads = new InitializeAlienAds(this);
         alienOpenAds = new AlienOpenAds(this);
         propsOpenAds = new PropsOpenAds(this);
-        //applovinOpenAds = new ApplovinOpenAds(this);
+        jsmboxOpenAds = new JamboxOpenAds(this);
         notif = new AlienNotif(context,this);
 
     }

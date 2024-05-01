@@ -1,7 +1,5 @@
 package com.kimganteng.myapplication;
 
-import static android.content.ContentValues.TAG;
-import static com.kimganteng.myapplication.SettingsAlien.AppIDViewAds;
 import static com.kimganteng.myapplication.SettingsAlien.BackupIntertitial;
 import static com.kimganteng.myapplication.SettingsAlien.BackupReward;
 import static com.kimganteng.myapplication.SettingsAlien.Backup_Initialize;
@@ -11,51 +9,22 @@ import static com.kimganteng.myapplication.SettingsAlien.Main_Initialize;
 import static com.kimganteng.myapplication.SettingsAlien.Select_Backup_Ads;
 import static com.kimganteng.myapplication.SettingsAlien.Select_Main_Ads;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.location.Address;
-import android.location.Geocoder;
-import android.location.Location;
-import android.location.LocationManager;
-import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
 import android.telephony.TelephonyManager;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.aliendroid.alienads.AlienGDPR;
 import com.aliendroid.alienads.AlienNotif;
-import com.aliendroid.alienads.AlienPopup;
 import com.aliendroid.alienads.AliendroidInitialize;
 import com.aliendroid.alienads.AliendroidIntertitial;
 import com.aliendroid.alienads.AliendroidReward;
 import com.aliendroid.alienads.WortiseOpenAds;
-import com.aliendroid.alienads.interfaces.interstitial.admob.OnFullScreenContentCallbackAdmob;
-import com.aliendroid.alienads.interfaces.interstitial.load.OnLoadInterstitialAdmob;
-import com.aliendroid.alienads.interfaces.interstitial.show.OnShowInterstitialAdmob;
-import com.aliendroid.alienads.interfaces.rewards.load.OnLoadRewardsAdmob;
-import com.aliendroid.alienads.interfaces.rewards.load.OnLoadRewardsApplovinMax;
 import com.aliendroid.sdkads.config.AppPromote;
-import com.aliendroid.sdkads.config.InitializeAlienAds;
-import com.aliendroid.sdkads.config.QWERTY;
-import com.google.android.gms.ads.identifier.AdvertisingIdClient;
-import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
-import com.google.android.gms.common.GooglePlayServicesRepairableException;
-
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -67,9 +36,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         WortiseOpenAds.ShowOpenWortise(this);
         AppPromote.initializeAppPromote(this);
-        InitializeAlienAds.LoadSDK();
         AlienGDPR.loadGdpr(this,Select_Main_Ads,false);
-
         switch (Select_Main_Ads) {
             case "ADMOB":
                 AliendroidInitialize.SelectAdsAdmob(this, Select_Backup_Ads, Backup_Initialize);
@@ -85,6 +52,9 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case "ALIEN-M":
                 AliendroidInitialize.SelectAdsAlienMediation(this, Select_Backup_Ads,Main_Initialize, Backup_Initialize);
+                break;
+            case "ALIEN-V":
+                AliendroidInitialize.SelectAdsAlienView(this, Select_Backup_Ads, Backup_Initialize);
                 break;
             case "UNITY":
                 AliendroidInitialize.SelectAdsUnity(this, Select_Backup_Ads,Main_Initialize, Backup_Initialize);
@@ -108,6 +78,9 @@ public class MainActivity extends AppCompatActivity {
             case "ALIEN-M":
                 AliendroidIntertitial.LoadIntertitialAlienMediation(MainActivity.this, Select_Backup_Ads, MainIntertitial, BackupIntertitial);
                 break;
+            case "ALIEN-V":
+                AliendroidIntertitial.LoadIntertitialAlienView(MainActivity.this, Select_Backup_Ads, MainIntertitial, BackupIntertitial);
+                break;
             case "UNITY":
                 AliendroidIntertitial.LoadIntertitialUnity(MainActivity.this, Select_Backup_Ads, MainIntertitial, BackupIntertitial);
                 break;
@@ -115,8 +88,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         AlienNotif.LoadOneSignal("24daffc1-92b9-4d7c-94e8-2cab382018f3");
-        AliendroidReward.LoadRewardUnity(this,Select_Backup_Ads,MainRewards,BackupReward);
-        AlienPopup.CpaOpenAds_Json(this, "https://aliendro.id/projek/Ads.json");
+        AliendroidReward.LoadRewardAlienView(this,Select_Backup_Ads,MainRewards,BackupReward);
         TextView txtCode = findViewById(R.id.txtCode);
 
         TelephonyManager tm = (TelephonyManager)this.getSystemService(Context.TELEPHONY_SERVICE);
@@ -131,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void VIEWADS(View view){
-        AlienPopup.CpaOpenAds_Json(this, "https://aliendro.id/projek/Ads.json");
+
 
     }
 
@@ -167,6 +139,9 @@ public class MainActivity extends AppCompatActivity {
             case "ALIEN-M":
                 AliendroidIntertitial.ShowIntertitialAlienMediation(MainActivity.this, Select_Backup_Ads, MainIntertitial, BackupIntertitial, 0);
                 break;
+            case "ALIEN-V":
+                AliendroidIntertitial.ShowIntertitialAlienView(MainActivity.this, Select_Backup_Ads, MainIntertitial, BackupIntertitial, 0);
+                break;
             case "UNITY":
                 AliendroidIntertitial.ShowIntertitialUnity(MainActivity.this, Select_Backup_Ads, MainIntertitial, BackupIntertitial, 0);
                 break;
@@ -175,9 +150,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void REWARD(View view){
-        AliendroidReward.ShowRewardUnity(MainActivity.this,Select_Backup_Ads,MainRewards,BackupReward);
-
-
+        AliendroidReward.ShowRewardAlienView(MainActivity.this,Select_Backup_Ads,MainRewards,BackupReward);
     }
     public void onBackPressed(){
         finishAffinity();

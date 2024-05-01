@@ -3,7 +3,6 @@ package com.aliendroid.alienads;
 import static android.content.ContentValues.TAG;
 
 import android.app.Activity;
-import android.os.Bundle;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
@@ -20,13 +19,6 @@ import com.aliendroid.alienads.interfaces.rewards.show.OnShowRewardsAlienMeditio
 import com.aliendroid.alienads.interfaces.rewards.show.OnShowRewardsAlienView;
 import com.aliendroid.alienads.interfaces.rewards.show.OnShowRewardsApplovinDiscovery;
 import com.aliendroid.alienads.interfaces.rewards.show.OnShowRewardsGoogle;
-import com.aliendroid.sdkads.interfaces.OnLoadRewardsMediation;
-import com.aliendroid.sdkads.interfaces.OnLoadRewardsView;
-import com.aliendroid.sdkads.interfaces.OnShowInterstitialView;
-import com.aliendroid.sdkads.interfaces.OnShowRewards;
-import com.aliendroid.sdkads.interfaces.OnShowRewardsView;
-import com.aliendroid.sdkads.type.mediation.AlienMediationAds;
-import com.aliendroid.sdkads.type.view.AlienViewAds;
 import com.applovin.adview.AppLovinIncentivizedInterstitial;
 import com.applovin.mediation.MaxAd;
 import com.applovin.mediation.MaxError;
@@ -40,7 +32,6 @@ import com.applovin.sdk.AppLovinAdRewardListener;
 import com.applovin.sdk.AppLovinSdk;
 import com.facebook.ads.Ad;
 import com.facebook.ads.RewardedVideoAd;
-import com.facebook.ads.RewardedVideoAdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.LoadAdError;
 import com.google.android.gms.ads.OnUserEarnedRewardListener;
@@ -65,6 +56,7 @@ public class AliendroidReward {
     public static RewardedVideoAd rewardedVideoAdFan;
     public static RewardedVideoAd rewardedVideoAdFan2;
     public static MaxRewardedAd rewardedAd;
+    public static MaxRewardedAd jamboxRewardedAd;
     public static boolean unlockreward = false;
     public static AppLovinIncentivizedInterstitial incentivizedInterstitial;
     public static StartAppAd rewardedVideo;
@@ -75,8 +67,7 @@ public class AliendroidReward {
     public static OnLoadRewardsGoogle onLoadRewardsGoogle;
     public static OnLoadRewardsApplovinDiscovery onLoadRewardsApplovinDiscovery;
     public static OnLoadRewardsApplovinMax onLoadRewardsApplovinMax;
-    public static OnLoadRewardsIronSource onLoadRewardsIronSource;
-    public static OnLoadRewardsMediation onLoadRewardsMediation;
+
     public static OnLoadRewardsAlienView onLoadRewardsAlienView;
 
     public static OnShowRewardsAdmob onShowRewardsAdmob;
@@ -135,6 +126,7 @@ public class AliendroidReward {
                             .build());
 
             switch (selectBackupAds) {
+
                 case "APPLOVIN-M":
                     rewardedAd = MaxRewardedAd.getInstance(idBackupReward, activity);
                     rewardedAd.loadAd();
@@ -186,7 +178,7 @@ public class AliendroidReward {
                     };
                     rewardedAd.setListener(maxRewardedAdListener);
                     break;
-                case "MOPUB":
+
                 case "UNITY":
                     IUnityAdsLoadListener loadListener = new IUnityAdsLoadListener() {
                         @Override
@@ -219,8 +211,6 @@ public class AliendroidReward {
 
                         }
                     });
-                    break;
-                case "IRON":
                     break;
                 case "STARTAPP":
                     rewardedVideo = new StartAppAd(activity);
@@ -258,36 +248,55 @@ public class AliendroidReward {
                     });
                     break;
                 case "ALIEN-V":
-                    AlienViewAds.RewardsAds(activity, idBackupReward);
-                    AlienViewAds.onLoadRewardsView = new OnLoadRewardsView() {
+                    jamboxRewardedAd= MaxRewardedAd.getInstance(idBackupReward, activity);
+                    jamboxRewardedAd.loadAd();
+                    MaxRewardedAdListener jamboxRewardedAdListener = new MaxRewardedAdListener() {
                         @Override
-                        public void onRewardsAdLoaded() {
-                            if (onLoadRewardsAlienView != null) {
-                                onLoadRewardsAlienView.onRewardsAdLoaded();
-                            }
+                        public void onRewardedVideoStarted(MaxAd ad) {
+
                         }
 
                         @Override
-                        public void onRewardsAdClosed() {
-                            if (onLoadRewardsAlienView != null) {
-                                onLoadRewardsAlienView.onRewardsAdClosed();
-                            }
+                        public void onRewardedVideoCompleted(MaxAd ad) {
+                            unlockreward = true;
                         }
 
                         @Override
-                        public void onRewardsAdClicked() {
-                            if (onLoadRewardsAlienView != null) {
-                                onLoadRewardsAlienView.onRewardsAdClicked();
-                            }
+                        public void onUserRewarded(MaxAd ad, MaxReward reward) {
+
                         }
 
                         @Override
-                        public void onRewardsAdFailedToLoad(String error) {
-                            if (onLoadRewardsAlienView != null) {
-                                onLoadRewardsAlienView.onRewardsAdFailedToLoad("");
-                            }
+                        public void onAdLoaded(MaxAd ad) {
+
+                        }
+
+                        @Override
+                        public void onAdDisplayed(MaxAd ad) {
+
+                        }
+
+                        @Override
+                        public void onAdHidden(MaxAd ad) {
+
+                        }
+
+                        @Override
+                        public void onAdClicked(MaxAd ad) {
+
+                        }
+
+                        @Override
+                        public void onAdLoadFailed(String adUnitId, MaxError error) {
+
+                        }
+
+                        @Override
+                        public void onAdDisplayFailed(MaxAd ad, MaxError error) {
+
                         }
                     };
+                    jamboxRewardedAd.setListener(jamboxRewardedAdListener);
                     break;
 
                 case "ADMOB":
@@ -307,8 +316,6 @@ public class AliendroidReward {
 
                                 }
                             });
-                    break;
-                case "WORTISE":
                     break;
                 case "FACEBOOK":
                     rewardedVideoAdFan2 = new RewardedVideoAd(activity, idBackupReward);
@@ -439,7 +446,6 @@ public class AliendroidReward {
                     };
                     rewardedAd.setListener(maxRewardedAdListener);
                     break;
-                case "MOPUB":
                 case "UNITY":
                     IUnityAdsLoadListener loadListener = new IUnityAdsLoadListener() {
                         @Override
@@ -473,8 +479,6 @@ public class AliendroidReward {
 
                         }
                     });
-                    break;
-                case "IRON":
                     break;
                 case "STARTAPP":
                     rewardedVideo = new StartAppAd(activity);
@@ -512,36 +516,55 @@ public class AliendroidReward {
                     });
                     break;
                 case "ALIEN-V":
-                    AlienViewAds.RewardsAds(activity, idBackupReward);
-                    AlienViewAds.onLoadRewardsView = new OnLoadRewardsView() {
+                     jamboxRewardedAd= MaxRewardedAd.getInstance(idBackupReward, activity);
+                    jamboxRewardedAd.loadAd();
+                    MaxRewardedAdListener jamboxRewardedAdListener = new MaxRewardedAdListener() {
                         @Override
-                        public void onRewardsAdLoaded() {
-                            if (onLoadRewardsAlienView != null) {
-                                onLoadRewardsAlienView.onRewardsAdLoaded();
-                            }
+                        public void onRewardedVideoStarted(MaxAd ad) {
+
                         }
 
                         @Override
-                        public void onRewardsAdClosed() {
-                            if (onLoadRewardsAlienView != null) {
-                                onLoadRewardsAlienView.onRewardsAdClosed();
-                            }
+                        public void onRewardedVideoCompleted(MaxAd ad) {
+                            unlockreward = true;
                         }
 
                         @Override
-                        public void onRewardsAdClicked() {
-                            if (onLoadRewardsAlienView != null) {
-                                onLoadRewardsAlienView.onRewardsAdClicked();
-                            }
+                        public void onUserRewarded(MaxAd ad, MaxReward reward) {
+
                         }
 
                         @Override
-                        public void onRewardsAdFailedToLoad(String error) {
-                            if (onLoadRewardsAlienView != null) {
-                                onLoadRewardsAlienView.onRewardsAdFailedToLoad("");
-                            }
+                        public void onAdLoaded(MaxAd ad) {
+
+                        }
+
+                        @Override
+                        public void onAdDisplayed(MaxAd ad) {
+
+                        }
+
+                        @Override
+                        public void onAdHidden(MaxAd ad) {
+
+                        }
+
+                        @Override
+                        public void onAdClicked(MaxAd ad) {
+
+                        }
+
+                        @Override
+                        public void onAdLoadFailed(String adUnitId, MaxError error) {
+
+                        }
+
+                        @Override
+                        public void onAdDisplayFailed(MaxAd ad, MaxError error) {
+
                         }
                     };
+                    jamboxRewardedAd.setListener(jamboxRewardedAdListener);
                     break;
 
                 case "ADMOB":
@@ -561,8 +584,6 @@ public class AliendroidReward {
 
                                 }
                             });
-                    break;
-                case "WORTISE":
                     break;
                 case "FACEBOOK":
                     rewardedVideoAdFan = new RewardedVideoAd(activity, idBackupReward);
@@ -727,7 +748,8 @@ public class AliendroidReward {
                     };
                     rewardedAd.setListener(maxRewardedAdListener);
                     break;
-                case "MOPUB":
+
+
                 case "UNITY":
                     IUnityAdsLoadListener loadListener = new IUnityAdsLoadListener() {
                         @Override
@@ -760,8 +782,6 @@ public class AliendroidReward {
 
                         }
                     });
-                    break;
-                case "IRON":
                     break;
                 case "STARTAPP":
                     rewardedVideo = new StartAppAd(activity);
@@ -809,38 +829,55 @@ public class AliendroidReward {
                             });
                     break;
                 case "ALIEN-V":
-                    AlienViewAds.RewardsAds(activity, idBackupReward);
-                    AlienViewAds.onLoadRewardsView = new OnLoadRewardsView() {
+                     jamboxRewardedAd= MaxRewardedAd.getInstance(idBackupReward, activity);
+                    jamboxRewardedAd.loadAd();
+                    MaxRewardedAdListener jamboxRewardedAdListener = new MaxRewardedAdListener() {
                         @Override
-                        public void onRewardsAdLoaded() {
-                            if (onLoadRewardsAlienView != null) {
-                                onLoadRewardsAlienView.onRewardsAdLoaded();
-                            }
+                        public void onRewardedVideoStarted(MaxAd ad) {
+
                         }
 
                         @Override
-                        public void onRewardsAdClosed() {
-                            if (onLoadRewardsAlienView != null) {
-                                onLoadRewardsAlienView.onRewardsAdClosed();
-                            }
+                        public void onRewardedVideoCompleted(MaxAd ad) {
+                            unlockreward = true;
                         }
 
                         @Override
-                        public void onRewardsAdClicked() {
-                            if (onLoadRewardsAlienView != null) {
-                                onLoadRewardsAlienView.onRewardsAdClicked();
-                            }
+                        public void onUserRewarded(MaxAd ad, MaxReward reward) {
+
                         }
 
                         @Override
-                        public void onRewardsAdFailedToLoad(String error) {
-                            if (onLoadRewardsAlienView != null) {
-                                onLoadRewardsAlienView.onRewardsAdFailedToLoad("");
-                            }
+                        public void onAdLoaded(MaxAd ad) {
+
+                        }
+
+                        @Override
+                        public void onAdDisplayed(MaxAd ad) {
+
+                        }
+
+                        @Override
+                        public void onAdHidden(MaxAd ad) {
+
+                        }
+
+                        @Override
+                        public void onAdClicked(MaxAd ad) {
+
+                        }
+
+                        @Override
+                        public void onAdLoadFailed(String adUnitId, MaxError error) {
+
+                        }
+
+                        @Override
+                        public void onAdDisplayFailed(MaxAd ad, MaxError error) {
+
                         }
                     };
-                    break;
-                case "WORTISE":
+                    jamboxRewardedAd.setListener(jamboxRewardedAdListener);
                     break;
             }
 
@@ -852,36 +889,55 @@ public class AliendroidReward {
 
     public static void LoadRewardAlienView(Activity activity, String selectBackupAds, String idReward, String idBackupReward) {
         try {
-            AlienViewAds.RewardsAds(activity, idReward);
-            AlienViewAds.onLoadRewardsView = new OnLoadRewardsView() {
+            jamboxRewardedAd= MaxRewardedAd.getInstance(idReward, activity);
+            jamboxRewardedAd.loadAd();
+            MaxRewardedAdListener jamboxRewardedAdListener = new MaxRewardedAdListener() {
                 @Override
-                public void onRewardsAdLoaded() {
-                    if (onLoadRewardsAlienView != null) {
-                        onLoadRewardsAlienView.onRewardsAdLoaded();
-                    }
+                public void onRewardedVideoStarted(MaxAd ad) {
+
                 }
 
                 @Override
-                public void onRewardsAdClosed() {
-                    if (onLoadRewardsAlienView != null) {
-                        onLoadRewardsAlienView.onRewardsAdClosed();
-                    }
+                public void onRewardedVideoCompleted(MaxAd ad) {
+                    unlockreward = true;
                 }
 
                 @Override
-                public void onRewardsAdClicked() {
-                    if (onLoadRewardsAlienView != null) {
-                        onLoadRewardsAlienView.onRewardsAdClicked();
-                    }
+                public void onUserRewarded(MaxAd ad, MaxReward reward) {
+
                 }
 
                 @Override
-                public void onRewardsAdFailedToLoad(String error) {
-                    if (onLoadRewardsAlienView != null) {
-                        onLoadRewardsAlienView.onRewardsAdFailedToLoad("");
-                    }
+                public void onAdLoaded(MaxAd ad) {
+
+                }
+
+                @Override
+                public void onAdDisplayed(MaxAd ad) {
+
+                }
+
+                @Override
+                public void onAdHidden(MaxAd ad) {
+
+                }
+
+                @Override
+                public void onAdClicked(MaxAd ad) {
+
+                }
+
+                @Override
+                public void onAdLoadFailed(String adUnitId, MaxError error) {
+
+                }
+
+                @Override
+                public void onAdDisplayFailed(MaxAd ad, MaxError error) {
+
                 }
             };
+            jamboxRewardedAd.setListener(jamboxRewardedAdListener);
             switch (selectBackupAds) {
                 case "FACEBOOK":
                     rewardedVideoAdFan = new RewardedVideoAd(activity, idBackupReward);
@@ -979,7 +1035,6 @@ public class AliendroidReward {
                     };
                     rewardedAd.setListener(maxRewardedAdListener);
                     break;
-                case "MOPUB":
                 case "UNITY":
                     IUnityAdsLoadListener loadListener = new IUnityAdsLoadListener() {
                         @Override
@@ -1012,8 +1067,6 @@ public class AliendroidReward {
 
                         }
                     });
-                    break;
-                case "IRON":
                     break;
                 case "STARTAPP":
                     rewardedVideo = new StartAppAd(activity);
@@ -1072,8 +1125,6 @@ public class AliendroidReward {
                             // Handle the error
                         }
                     });
-                    break;
-                case "WORTISE":
                     break;
             }
         } catch (Exception e) {
@@ -1220,7 +1271,6 @@ public class AliendroidReward {
                 };
                 rewardedAd.setListener(maxRewardedAdListener);
                 break;
-            case "MOPUB":
             case "UNITY":
                 IUnityAdsLoadListener loadListener2 = new IUnityAdsLoadListener() {
                     @Override
@@ -1253,8 +1303,6 @@ public class AliendroidReward {
                         // A rewarded video failed to load.
                     }
                 });
-                break;
-            case "IRON":
                 break;
             case "STARTAPP":
                 rewardedVideo = new StartAppAd(activity);
@@ -1291,38 +1339,55 @@ public class AliendroidReward {
                 });
                 break;
             case "ALIEN-V":
-                AlienViewAds.RewardsAds(activity, idBackupReward);
-                AlienViewAds.onLoadRewardsView = new OnLoadRewardsView() {
+                jamboxRewardedAd= MaxRewardedAd.getInstance(idBackupReward, activity);
+                jamboxRewardedAd.loadAd();
+                MaxRewardedAdListener jamboxRewardedAdListener = new MaxRewardedAdListener() {
                     @Override
-                    public void onRewardsAdLoaded() {
-                        if (onLoadRewardsAlienView != null) {
-                            onLoadRewardsAlienView.onRewardsAdLoaded();
-                        }
+                    public void onRewardedVideoStarted(MaxAd ad) {
+
                     }
 
                     @Override
-                    public void onRewardsAdClosed() {
-                        if (onLoadRewardsAlienView != null) {
-                            onLoadRewardsAlienView.onRewardsAdClosed();
-                        }
+                    public void onRewardedVideoCompleted(MaxAd ad) {
+                        unlockreward = true;
                     }
 
                     @Override
-                    public void onRewardsAdClicked() {
-                        if (onLoadRewardsAlienView != null) {
-                            onLoadRewardsAlienView.onRewardsAdClicked();
-                        }
+                    public void onUserRewarded(MaxAd ad, MaxReward reward) {
+
                     }
 
                     @Override
-                    public void onRewardsAdFailedToLoad(String error) {
-                        if (onLoadRewardsAlienView != null) {
-                            onLoadRewardsAlienView.onRewardsAdFailedToLoad("");
-                        }
+                    public void onAdLoaded(MaxAd ad) {
+
+                    }
+
+                    @Override
+                    public void onAdDisplayed(MaxAd ad) {
+
+                    }
+
+                    @Override
+                    public void onAdHidden(MaxAd ad) {
+
+                    }
+
+                    @Override
+                    public void onAdClicked(MaxAd ad) {
+
+                    }
+
+                    @Override
+                    public void onAdLoadFailed(String adUnitId, MaxError error) {
+
+                    }
+
+                    @Override
+                    public void onAdDisplayFailed(MaxAd ad, MaxError error) {
+
                     }
                 };
-                break;
-            case "WORTISE":
+                jamboxRewardedAd.setListener(jamboxRewardedAdListener);
                 break;
 
         }
@@ -1447,7 +1512,6 @@ public class AliendroidReward {
                     };
                     rewardedAd.setListener(maxRewardedAdListener);
                     break;
-                case "MOPUB":
                 case "UNITY":
                     IUnityAdsLoadListener loadListener = new IUnityAdsLoadListener() {
                         @Override
@@ -1480,8 +1544,6 @@ public class AliendroidReward {
                             // A rewarded video failed to load.
                         }
                     });
-                    break;
-                case "IRON":
                     break;
                 case "STARTAPP":
                     rewardedVideo = new StartAppAd(activity);
@@ -1518,38 +1580,55 @@ public class AliendroidReward {
                     });
                     break;
                 case "ALIEN-V":
-                    AlienViewAds.RewardsAds(activity, idBackupReward);
-                    AlienViewAds.onLoadRewardsView = new OnLoadRewardsView() {
+                     jamboxRewardedAd= MaxRewardedAd.getInstance(idBackupReward, activity);
+                    jamboxRewardedAd.loadAd();
+                    MaxRewardedAdListener jamboxRewardedAdListener = new MaxRewardedAdListener() {
                         @Override
-                        public void onRewardsAdLoaded() {
-                            if (onLoadRewardsAlienView != null) {
-                                onLoadRewardsAlienView.onRewardsAdLoaded();
-                            }
+                        public void onRewardedVideoStarted(MaxAd ad) {
+
                         }
 
                         @Override
-                        public void onRewardsAdClosed() {
-                            if (onLoadRewardsAlienView != null) {
-                                onLoadRewardsAlienView.onRewardsAdClosed();
-                            }
+                        public void onRewardedVideoCompleted(MaxAd ad) {
+                            unlockreward = true;
                         }
 
                         @Override
-                        public void onRewardsAdClicked() {
-                            if (onLoadRewardsAlienView != null) {
-                                onLoadRewardsAlienView.onRewardsAdClicked();
-                            }
+                        public void onUserRewarded(MaxAd ad, MaxReward reward) {
+
                         }
 
                         @Override
-                        public void onRewardsAdFailedToLoad(String error) {
-                            if (onLoadRewardsAlienView != null) {
-                                onLoadRewardsAlienView.onRewardsAdFailedToLoad("");
-                            }
+                        public void onAdLoaded(MaxAd ad) {
+
+                        }
+
+                        @Override
+                        public void onAdDisplayed(MaxAd ad) {
+
+                        }
+
+                        @Override
+                        public void onAdHidden(MaxAd ad) {
+
+                        }
+
+                        @Override
+                        public void onAdClicked(MaxAd ad) {
+
+                        }
+
+                        @Override
+                        public void onAdLoadFailed(String adUnitId, MaxError error) {
+
+                        }
+
+                        @Override
+                        public void onAdDisplayFailed(MaxAd ad, MaxError error) {
+
                         }
                     };
-                    break;
-                case "WORTISE":
+                    jamboxRewardedAd.setListener(jamboxRewardedAdListener);
                     break;
 
             }
@@ -1695,7 +1774,6 @@ public class AliendroidReward {
                                 }
                             });
                     break;
-                case "MOPUB":
                 case "UNITY":
                     IUnityAdsLoadListener loadListener = new IUnityAdsLoadListener() {
                         @Override
@@ -1728,8 +1806,6 @@ public class AliendroidReward {
                             // A rewarded video failed to load.
                         }
                     });
-                    break;
-                case "IRON":
                     break;
                 case "STARTAPP":
                     rewardedVideo = new StartAppAd(activity);
@@ -1766,38 +1842,55 @@ public class AliendroidReward {
                     });
                     break;
                 case "ALIEN-V":
-                    AlienViewAds.RewardsAds(activity, idBackupReward);
-                    AlienViewAds.onLoadRewardsView = new OnLoadRewardsView() {
+                     jamboxRewardedAd= MaxRewardedAd.getInstance(idBackupReward, activity);
+                    jamboxRewardedAd.loadAd();
+                    MaxRewardedAdListener jamboxRewardedAdListener = new MaxRewardedAdListener() {
                         @Override
-                        public void onRewardsAdLoaded() {
-                            if (onLoadRewardsAlienView != null) {
-                                onLoadRewardsAlienView.onRewardsAdLoaded();
-                            }
+                        public void onRewardedVideoStarted(MaxAd ad) {
+
                         }
 
                         @Override
-                        public void onRewardsAdClosed() {
-                            if (onLoadRewardsAlienView != null) {
-                                onLoadRewardsAlienView.onRewardsAdClosed();
-                            }
+                        public void onRewardedVideoCompleted(MaxAd ad) {
+                            unlockreward = true;
                         }
 
                         @Override
-                        public void onRewardsAdClicked() {
-                            if (onLoadRewardsAlienView != null) {
-                                onLoadRewardsAlienView.onRewardsAdClicked();
-                            }
+                        public void onUserRewarded(MaxAd ad, MaxReward reward) {
+
                         }
 
                         @Override
-                        public void onRewardsAdFailedToLoad(String error) {
-                            if (onLoadRewardsAlienView != null) {
-                                onLoadRewardsAlienView.onRewardsAdFailedToLoad("");
-                            }
+                        public void onAdLoaded(MaxAd ad) {
+
+                        }
+
+                        @Override
+                        public void onAdDisplayed(MaxAd ad) {
+
+                        }
+
+                        @Override
+                        public void onAdHidden(MaxAd ad) {
+
+                        }
+
+                        @Override
+                        public void onAdClicked(MaxAd ad) {
+
+                        }
+
+                        @Override
+                        public void onAdLoadFailed(String adUnitId, MaxError error) {
+
+                        }
+
+                        @Override
+                        public void onAdDisplayFailed(MaxAd ad, MaxError error) {
+
                         }
                     };
-                    break;
-                case "WORTISE":
+                    jamboxRewardedAd.setListener(jamboxRewardedAdListener);
                     break;
 
             }
@@ -1890,7 +1983,6 @@ public class AliendroidReward {
                                 }
                             });
                     break;
-                case "MOPUB":
                 case "UNITY":
                     IUnityAdsLoadListener loadListener = new IUnityAdsLoadListener() {
                         @Override
@@ -1962,8 +2054,6 @@ public class AliendroidReward {
                     rewardedAd.setListener(maxRewardedAdListener);
 
                     break;
-                case "IRON":
-                    break;
                 case "STARTAPP":
                     rewardedVideo = new StartAppAd(activity);
                     rewardedVideo.setVideoListener(new VideoListener() {
@@ -1999,50 +2089,57 @@ public class AliendroidReward {
                     });
                     break;
                 case "ALIEN-V":
-                    AlienViewAds.RewardsAds(activity, idBackupReward);
-                    AlienViewAds.onLoadRewardsView = new OnLoadRewardsView() {
+                    jamboxRewardedAd= MaxRewardedAd.getInstance(idBackupReward, activity);
+                    jamboxRewardedAd.loadAd();
+                    MaxRewardedAdListener jamboxRewardedAdListener = new MaxRewardedAdListener() {
                         @Override
-                        public void onRewardsAdLoaded() {
-                            if (onLoadRewardsAlienView != null) {
-                                onLoadRewardsAlienView.onRewardsAdLoaded();
-                            }
+                        public void onRewardedVideoStarted(MaxAd ad) {
+
                         }
 
                         @Override
-                        public void onRewardsAdClosed() {
-                            if (onLoadRewardsAlienView != null) {
-                                onLoadRewardsAlienView.onRewardsAdClosed();
-                            }
-                        }
-
-                        @Override
-                        public void onRewardsAdClicked() {
-                            if (onLoadRewardsAlienView != null) {
-                                onLoadRewardsAlienView.onRewardsAdClicked();
-                            }
-                        }
-
-                        @Override
-                        public void onRewardsAdFailedToLoad(String error) {
-                            if (onLoadRewardsAlienView != null) {
-                                onLoadRewardsAlienView.onRewardsAdFailedToLoad("");
-                            }
-                        }
-                    };
-                    AlienViewAds.onShowInterstitialView = new OnShowInterstitialView() {
-                        @Override
-                        public void onAdSuccess() {
+                        public void onRewardedVideoCompleted(MaxAd ad) {
                             unlockreward = true;
                         }
 
                         @Override
-                        public void onAdFailedShow() {
+                        public void onUserRewarded(MaxAd ad, MaxReward reward) {
+
+                        }
+
+                        @Override
+                        public void onAdLoaded(MaxAd ad) {
+
+                        }
+
+                        @Override
+                        public void onAdDisplayed(MaxAd ad) {
+
+                        }
+
+                        @Override
+                        public void onAdHidden(MaxAd ad) {
+
+                        }
+
+                        @Override
+                        public void onAdClicked(MaxAd ad) {
+
+                        }
+
+                        @Override
+                        public void onAdLoadFailed(String adUnitId, MaxError error) {
+
+                        }
+
+                        @Override
+                        public void onAdDisplayFailed(MaxAd ad, MaxError error) {
 
                         }
                     };
+                    jamboxRewardedAd.setListener(jamboxRewardedAdListener);
                     break;
-                case "WORTISE":
-                    break;
+
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -2217,7 +2314,6 @@ public class AliendroidReward {
                     rewardedAd.setListener(maxRewardedAdListener);
 
                     break;
-                case "MOPUB":
 
                 case "UNITY":
                     IUnityAdsLoadListener loadListener = new IUnityAdsLoadListener() {
@@ -2238,8 +2334,6 @@ public class AliendroidReward {
                     }
 
                     break;
-                case "IRON":
-                    break;
                 case "ALIEN-M":
                     PropsAdsManagement.loadRewardedAds(activity, idBackupReward, new RewardedAdLoadCallback() {
                         @Override
@@ -2254,38 +2348,55 @@ public class AliendroidReward {
                     });
                     break;
                 case "ALIEN-V":
-                    AlienViewAds.RewardsAds(activity, idBackupReward);
-                    AlienViewAds.onLoadRewardsView = new OnLoadRewardsView() {
+                     jamboxRewardedAd= MaxRewardedAd.getInstance(idBackupReward, activity);
+                    jamboxRewardedAd.loadAd();
+                    MaxRewardedAdListener jamboxRewardedAdListener = new MaxRewardedAdListener() {
                         @Override
-                        public void onRewardsAdLoaded() {
-                            if (onLoadRewardsAlienView != null) {
-                                onLoadRewardsAlienView.onRewardsAdLoaded();
-                            }
+                        public void onRewardedVideoStarted(MaxAd ad) {
+
                         }
 
                         @Override
-                        public void onRewardsAdClosed() {
-                            if (onLoadRewardsAlienView != null) {
-                                onLoadRewardsAlienView.onRewardsAdClosed();
-                            }
+                        public void onRewardedVideoCompleted(MaxAd ad) {
+                            unlockreward = true;
                         }
 
                         @Override
-                        public void onRewardsAdClicked() {
-                            if (onLoadRewardsAlienView != null) {
-                                onLoadRewardsAlienView.onRewardsAdClicked();
-                            }
+                        public void onUserRewarded(MaxAd ad, MaxReward reward) {
+
                         }
 
                         @Override
-                        public void onRewardsAdFailedToLoad(String error) {
-                            if (onLoadRewardsAlienView != null) {
-                                onLoadRewardsAlienView.onRewardsAdFailedToLoad("");
-                            }
+                        public void onAdLoaded(MaxAd ad) {
+
+                        }
+
+                        @Override
+                        public void onAdDisplayed(MaxAd ad) {
+
+                        }
+
+                        @Override
+                        public void onAdHidden(MaxAd ad) {
+
+                        }
+
+                        @Override
+                        public void onAdClicked(MaxAd ad) {
+
+                        }
+
+                        @Override
+                        public void onAdLoadFailed(String adUnitId, MaxError error) {
+
+                        }
+
+                        @Override
+                        public void onAdDisplayFailed(MaxAd ad, MaxError error) {
+
                         }
                     };
-                    break;
-                case "WORTISE":
+                    jamboxRewardedAd.setListener(jamboxRewardedAdListener);
                     break;
             }
         } catch (Exception e) {
@@ -2319,7 +2430,6 @@ public class AliendroidReward {
                             rewardedAd.showAd();
                         }
                         break;
-                    case "MOPUB":
                     case "UNITY":
                         IUnityAdsShowListener showListener = new IUnityAdsShowListener() {
                             @Override
@@ -2382,31 +2492,15 @@ public class AliendroidReward {
                             });
                         }
                         break;
-                    case "IRON":
-                        break;
                     case "STARTAPP":
                         if (rewardedVideo.isReady()) {
                             rewardedVideo.showAd();
                         }
                         break;
                     case "ALIEN-V":
-                        AlienViewAds.ShowRewards();
-                        AlienViewAds.onShowRewardsView = new OnShowRewardsView() {
-                            @Override
-                            public void onAdSuccess() {
-                                if (onShowRewardsAlienView != null) {
-                                    onShowRewardsAlienView.onAdSuccess();
-                                }
-                                unlockreward = true;
-                            }
-
-                            @Override
-                            public void onAdFailedShow() {
-                                if (onShowRewardsAlienView != null) {
-                                    onShowRewardsAlienView.onAdSuccess();
-                                }
-                            }
-                        };
+                        if (jamboxRewardedAd.isReady()) {
+                            jamboxRewardedAd.showAd();
+                        }
                         break;
                     case "ALIEN-M":
                         if (PropsAdsManagement.getRewardedAds() != null) {
@@ -2429,9 +2523,6 @@ public class AliendroidReward {
                                 }
                             });
                         }
-                        break;
-                    case "WORTISE":
-
                         break;
                     case "FACEBOOK":
                         if (rewardedVideoAdFan == null || !rewardedVideoAdFan.isAdLoaded()) {
@@ -2466,7 +2557,6 @@ public class AliendroidReward {
                             rewardedAd.showAd();
                         }
                         break;
-                    case "MOPUB":
                     case "UNITY":
                         IUnityAdsShowListener showListener = new IUnityAdsShowListener() {
                             @Override
@@ -2529,31 +2619,15 @@ public class AliendroidReward {
                             });
                         }
                         break;
-                    case "IRON":
-                        break;
                     case "STARTAPP":
                         if (rewardedVideo.isReady()) {
                             rewardedVideo.showAd();
                         }
                         break;
                     case "ALIEN-V":
-                        AlienViewAds.ShowRewards();
-                        AlienViewAds.onShowRewardsView = new OnShowRewardsView() {
-                            @Override
-                            public void onAdSuccess() {
-                                if (onShowRewardsAlienView != null) {
-                                    onShowRewardsAlienView.onAdSuccess();
-                                }
-                                unlockreward = true;
-                            }
-
-                            @Override
-                            public void onAdFailedShow() {
-                                if (onShowRewardsAlienView != null) {
-                                    onShowRewardsAlienView.onAdSuccess();
-                                }
-                            }
-                        };
+                        if (jamboxRewardedAd.isReady()) {
+                            jamboxRewardedAd.showAd();
+                        }
                         break;
                     case "ALIEN-M":
                         if (PropsAdsManagement.getRewardedAds() != null) {
@@ -2576,9 +2650,6 @@ public class AliendroidReward {
                                 }
                             });
                         }
-                        break;
-                    case "WORTISE":
-
                         break;
                 }
             } else {
@@ -2612,7 +2683,6 @@ public class AliendroidReward {
                             rewardedAd.showAd();
                         }
                         break;
-                    case "MOPUB":
                     case "UNITY":
                         IUnityAdsShowListener showListener = new IUnityAdsShowListener() {
                             @Override
@@ -2675,31 +2745,15 @@ public class AliendroidReward {
                             });
                         }
                         break;
-                    case "IRON":
-                        break;
                     case "STARTAPP":
                         if (rewardedVideo.isReady()) {
                             rewardedVideo.showAd();
                         }
                         break;
                     case "ALIEN-V":
-                        AlienViewAds.ShowRewards();
-                        AlienViewAds.onShowRewardsView = new OnShowRewardsView() {
-                            @Override
-                            public void onAdSuccess() {
-                                if (onShowRewardsAlienView != null) {
-                                    onShowRewardsAlienView.onAdSuccess();
-                                }
-                                unlockreward = true;
-                            }
-
-                            @Override
-                            public void onAdFailedShow() {
-                                if (onShowRewardsAlienView != null) {
-                                    onShowRewardsAlienView.onAdSuccess();
-                                }
-                            }
-                        };
+                        if (jamboxRewardedAd.isReady()) {
+                            jamboxRewardedAd.showAd();
+                        }
                         break;
                     case "ALIEN-M":
                         if (PropsAdsManagement.getRewardedAds() != null) {
@@ -2710,9 +2764,6 @@ public class AliendroidReward {
                                 }
                             });
                         }
-                        break;
-                    case "WORTISE":
-
                         break;
                     case "FACEBOOK":
                         if (rewardedVideoAdFan == null || !rewardedVideoAdFan.isAdLoaded()) {
@@ -2756,7 +2807,6 @@ public class AliendroidReward {
                             });
                         }
                         break;
-                    case "MOPUB":
                     case "UNITY":
                         IUnityAdsShowListener showListener = new IUnityAdsShowListener() {
                             @Override
@@ -2819,32 +2869,15 @@ public class AliendroidReward {
                             });
                         }
                         break;
-                    case "IRON":
-                        break;
                     case "STARTAPP":
                         if (rewardedVideo.isReady()) {
                             rewardedVideo.showAd();
                         }
                         break;
                     case "ALIEN-V":
-                        AlienViewAds.ShowRewards();
-                        AlienViewAds.onShowRewardsView = new OnShowRewardsView() {
-                            @Override
-                            public void onAdSuccess() {
-                                if (onShowRewardsAlienView != null) {
-                                    onShowRewardsAlienView.onAdSuccess();
-                                }
-                                unlockreward = true;
-                            }
-
-                            @Override
-                            public void onAdFailedShow() {
-                                if (onShowRewardsAlienView != null) {
-                                    onShowRewardsAlienView.onAdSuccess();
-                                }
-                            }
-                        };
-                        unlockreward = true;
+                        if (jamboxRewardedAd.isReady()) {
+                            jamboxRewardedAd.showAd();
+                        }
                         break;
                     case "ALIEN-M":
                         if (PropsAdsManagement.getRewardedAds() != null) {
@@ -2855,9 +2888,6 @@ public class AliendroidReward {
                                 }
                             });
                         }
-                        break;
-                    case "WORTISE":
-
                         break;
                 }
 
@@ -2935,7 +2965,6 @@ public class AliendroidReward {
                             });
                         }
                         break;
-                    case "MOPUB":
                     case "UNITY":
                         IUnityAdsShowListener showListener = new IUnityAdsShowListener() {
                             @Override
@@ -2966,32 +2995,15 @@ public class AliendroidReward {
                             rewardedAd.showAd();
                         }
                         break;
-                    case "IRON":
-                        break;
                     case "STARTAPP":
                         if (rewardedVideo.isReady()) {
                             rewardedVideo.showAd();
                         }
                         break;
                     case "ALIEN-V":
-                        AlienViewAds.ShowRewards();
-                        AlienViewAds.onShowRewardsView = new OnShowRewardsView() {
-                            @Override
-                            public void onAdSuccess() {
-                                if (onShowRewardsAlienView != null) {
-                                    onShowRewardsAlienView.onAdSuccess();
-                                }
-                                unlockreward = true;
-                            }
-
-                            @Override
-                            public void onAdFailedShow() {
-                                if (onShowRewardsAlienView != null) {
-                                    onShowRewardsAlienView.onAdSuccess();
-                                }
-                            }
-                        };
-                        unlockreward = true;
+                        if (jamboxRewardedAd.isReady()) {
+                            jamboxRewardedAd.showAd();
+                        }
                         break;
                     case "ALIEN-M":
                         if (PropsAdsManagement.getRewardedAds() != null) {
@@ -3002,9 +3014,6 @@ public class AliendroidReward {
                                 }
                             });
                         }
-                        break;
-                    case "WORTISE":
-
                         break;
                 }
 
@@ -3046,7 +3055,6 @@ public class AliendroidReward {
                             rewardedAd.showAd();
                         }
                         break;
-                    case "MOPUB":
                     case "UNITY":
                         IUnityAdsShowListener showListener = new IUnityAdsShowListener() {
                             @Override
@@ -3109,31 +3117,15 @@ public class AliendroidReward {
                             });
                         }
                         break;
-                    case "IRON":
-                        break;
                     case "STARTAPP":
                         if (rewardedVideo.isReady()) {
                             rewardedVideo.showAd();
                         }
                         break;
                     case "ALIEN-V":
-                        AlienViewAds.ShowRewards();
-                        AlienViewAds.onShowRewardsView = new OnShowRewardsView() {
-                            @Override
-                            public void onAdSuccess() {
-                                if (onShowRewardsAlienView != null) {
-                                    onShowRewardsAlienView.onAdSuccess();
-                                }
-                                unlockreward = true;
-                            }
-
-                            @Override
-                            public void onAdFailedShow() {
-                                if (onShowRewardsAlienView != null) {
-                                    onShowRewardsAlienView.onAdSuccess();
-                                }
-                            }
-                        };
+                        if (jamboxRewardedAd.isReady()) {
+                            jamboxRewardedAd.showAd();
+                        }
                         break;
                     case "ALIEN-M":
                         if (PropsAdsManagement.getRewardedAds() != null) {
@@ -3156,9 +3148,6 @@ public class AliendroidReward {
                                 }
                             });
                         }
-                        break;
-                    case "WORTISE":
-
                         break;
                 }
             }
@@ -3201,7 +3190,6 @@ public class AliendroidReward {
                             rewardedAd.showAd();
                         }
                         break;
-                    case "MOPUB":
                     case "UNITY":
                         IUnityAdsShowListener showListener = new IUnityAdsShowListener() {
                             @Override
@@ -3264,8 +3252,6 @@ public class AliendroidReward {
                             });
                         }
                         break;
-                    case "IRON":
-                        break;
                     case "GOOGLE-ADS":
                     case "ADMOB":
                         if (mRewardedAd != null) {
@@ -3279,23 +3265,9 @@ public class AliendroidReward {
                         }
                         break;
                     case "ALIEN-V":
-                        AlienViewAds.ShowRewards();
-                        AlienViewAds.onShowRewardsView = new OnShowRewardsView() {
-                            @Override
-                            public void onAdSuccess() {
-                                if (onShowRewardsAlienView != null) {
-                                    onShowRewardsAlienView.onAdSuccess();
-                                }
-                                unlockreward = true;
-                            }
-
-                            @Override
-                            public void onAdFailedShow() {
-                                if (onShowRewardsAlienView != null) {
-                                    onShowRewardsAlienView.onAdSuccess();
-                                }
-                            }
-                        };
+                        if (jamboxRewardedAd.isReady()) {
+                            jamboxRewardedAd.showAd();
+                        }
                         break;
                     case "ALIEN-M":
                         if (PropsAdsManagement.getRewardedAds() != null) {
@@ -3306,9 +3278,6 @@ public class AliendroidReward {
                                 }
                             });
                         }
-                        break;
-                    case "WORTISE":
-
                         break;
                 }
 
@@ -3321,130 +3290,112 @@ public class AliendroidReward {
 
     public static void ShowRewardAlienView(Activity activity, String selecBackuptAds, String idReward, String idBackupReward) {
         try {
-            AlienViewAds.ShowRewards();
-            AlienViewAds.onShowRewardsView = new OnShowRewardsView() {
-                @Override
-                public void onAdSuccess() {
-                    if (onShowRewardsAlienView != null) {
-                        onShowRewardsAlienView.onAdSuccess();
-                    }
-                    unlockreward = true;
-                }
 
-                @Override
-                public void onAdFailedShow() {
-                    if (onShowRewardsAlienView != null) {
-                        onShowRewardsAlienView.onAdSuccess();
-                    }
-                    switch (selecBackuptAds) {
-                        case "FACEBOOK":
-                            if (rewardedVideoAdFan.isAdLoaded()) {
-                                rewardedVideoAdFan.show();
+            if (jamboxRewardedAd.isReady()) {
+                jamboxRewardedAd.showAd();
+            } else {
+                switch (selecBackuptAds) {
+                    case "FACEBOOK":
+                        if (rewardedVideoAdFan.isAdLoaded()) {
+                            rewardedVideoAdFan.show();
+                        }
+                        break;
+                    case "APPLOVIN-M":
+                        if (rewardedAd.isReady()) {
+                            rewardedAd.showAd();
+                        }
+                        break;
+                    case "UNITY":
+                        IUnityAdsShowListener showListener = new IUnityAdsShowListener() {
+                            @Override
+                            public void onUnityAdsShowFailure(String placementId, UnityAds.UnityAdsShowError error, String message) {
+                                LoadRewardUnity(activity, selecBackuptAds, idBackupReward, idBackupReward);
                             }
-                            break;
-                        case "APPLOVIN-M":
-                            if (rewardedAd.isReady()) {
-                                rewardedAd.showAd();
+
+                            @Override
+                            public void onUnityAdsShowStart(String placementId) {
+
                             }
-                            break;
-                        case "MOPUB":
-                        case "UNITY":
-                            IUnityAdsShowListener showListener = new IUnityAdsShowListener() {
+
+                            @Override
+                            public void onUnityAdsShowClick(String placementId) {
+
+                            }
+
+                            @Override
+                            public void onUnityAdsShowComplete(String placementId, UnityAds.UnityAdsShowCompletionState state) {
+                                unlockreward = true;
+                                LoadRewardUnity(activity, selecBackuptAds, idReward, idBackupReward);
+                            }
+                        };
+                        UnityAds.show(activity, idReward, new UnityAdsShowOptions(), showListener);
+                        break;
+                    case "APPLOVIN-D":
+                        if (incentivizedInterstitial != null) {
+                            incentivizedInterstitial.show(activity, new AppLovinAdRewardListener() {
                                 @Override
-                                public void onUnityAdsShowFailure(String placementId, UnityAds.UnityAdsShowError error, String message) {
-                                    LoadRewardUnity(activity, selecBackuptAds, idBackupReward, idBackupReward);
-                                }
-
-                                @Override
-                                public void onUnityAdsShowStart(String placementId) {
-
-                                }
-
-                                @Override
-                                public void onUnityAdsShowClick(String placementId) {
-
-                                }
-
-                                @Override
-                                public void onUnityAdsShowComplete(String placementId, UnityAds.UnityAdsShowCompletionState state) {
+                                public void userRewardVerified(AppLovinAd ad, Map<String, String> response) {
                                     unlockreward = true;
-                                    LoadRewardUnity(activity, selecBackuptAds, idReward, idBackupReward);
                                 }
-                            };
-                            UnityAds.show(activity, idReward, new UnityAdsShowOptions(), showListener);
-                            break;
-                        case "APPLOVIN-D":
-                            if (incentivizedInterstitial != null) {
-                                incentivizedInterstitial.show(activity, new AppLovinAdRewardListener() {
-                                    @Override
-                                    public void userRewardVerified(AppLovinAd ad, Map<String, String> response) {
-                                        unlockreward = true;
-                                    }
 
-                                    @Override
-                                    public void userOverQuota(AppLovinAd ad, Map<String, String> response) {
+                                @Override
+                                public void userOverQuota(AppLovinAd ad, Map<String, String> response) {
 
-                                    }
+                                }
 
-                                    @Override
-                                    public void userRewardRejected(AppLovinAd ad, Map<String, String> response) {
+                                @Override
+                                public void userRewardRejected(AppLovinAd ad, Map<String, String> response) {
 
-                                    }
+                                }
 
-                                    @Override
-                                    public void validationRequestFailed(AppLovinAd ad, int errorCode) {
+                                @Override
+                                public void validationRequestFailed(AppLovinAd ad, int errorCode) {
 
-                                    }
+                                }
 
 
-                                }, null, new AppLovinAdDisplayListener() {
-                                    @Override
-                                    public void adDisplayed(AppLovinAd appLovinAd) {
+                            }, null, new AppLovinAdDisplayListener() {
+                                @Override
+                                public void adDisplayed(AppLovinAd appLovinAd) {
 
-                                    }
+                                }
 
-                                    @Override
-                                    public void adHidden(AppLovinAd appLovinAd) {
-                                        incentivizedInterstitial.preload(null);
-                                    }
-                                });
-                            }
-                            break;
-                        case "IRON":
-                            break;
-                        case "GOOGLE-ADS":
-                        case "ADMOB":
-                            if (mRewardedAd != null) {
-                                Activity activityContext = activity;
-                                mRewardedAd.show(activityContext, new OnUserEarnedRewardListener() {
-                                    @Override
-                                    public void onUserEarnedReward(@NonNull RewardItem rewardItem) {
-                                        unlockreward = true;
-                                    }
-                                });
-                            }
-                            break;
-                        case "ALIEN-M":
-                            if (PropsAdsManagement.getRewardedAds() != null) {
-                                PropsAdsManagement.triggerRewardedAds(activity, new OnUserEarnedRewardListener() {
-                                    @Override
-                                    public void onUserEarnedReward(@NonNull RewardItem rewardItem) {
-                                        unlockreward = true;
-                                    }
-                                });
-                            }
-                            break;
-                        case "STARTAPP":
-                            if (rewardedVideo.isReady()) {
-                                rewardedVideo.showAd();
-                            }
-                            break;
-                        case "WORTISE":
-
-                            break;
-                    }
+                                @Override
+                                public void adHidden(AppLovinAd appLovinAd) {
+                                    incentivizedInterstitial.preload(null);
+                                }
+                            });
+                        }
+                        break;
+                    case "GOOGLE-ADS":
+                    case "ADMOB":
+                        if (mRewardedAd != null) {
+                            Activity activityContext = activity;
+                            mRewardedAd.show(activityContext, new OnUserEarnedRewardListener() {
+                                @Override
+                                public void onUserEarnedReward(@NonNull RewardItem rewardItem) {
+                                    unlockreward = true;
+                                }
+                            });
+                        }
+                        break;
+                    case "ALIEN-M":
+                        if (PropsAdsManagement.getRewardedAds() != null) {
+                            PropsAdsManagement.triggerRewardedAds(activity, new OnUserEarnedRewardListener() {
+                                @Override
+                                public void onUserEarnedReward(@NonNull RewardItem rewardItem) {
+                                    unlockreward = true;
+                                }
+                            });
+                        }
+                        break;
+                    case "STARTAPP":
+                        if (rewardedVideo.isReady()) {
+                            rewardedVideo.showAd();
+                        }
+                        break;
                 }
-            };
+            }
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -3473,7 +3424,6 @@ public class AliendroidReward {
                             rewardedAd.showAd();
                         }
                         break;
-                    case "MOPUB":
                     case "UNITY":
                         IUnityAdsShowListener showListener = new IUnityAdsShowListener() {
                             @Override
@@ -3536,8 +3486,6 @@ public class AliendroidReward {
                             });
                         }
                         break;
-                    case "IRON":
-                        break;
                     case "GOOGLE-ADS":
                     case "ADMOB":
                         if (mRewardedAd != null) {
@@ -3551,31 +3499,14 @@ public class AliendroidReward {
                         }
                         break;
                     case "ALIEN-V":
-                        AlienViewAds.ShowRewards();
-                        AlienViewAds.onShowRewardsView = new OnShowRewardsView() {
-                            @Override
-                            public void onAdSuccess() {
-                                if (onShowRewardsAlienView != null) {
-                                    onShowRewardsAlienView.onAdSuccess();
-                                }
-                                unlockreward = true;
-                            }
-
-                            @Override
-                            public void onAdFailedShow() {
-                                if (onShowRewardsAlienView != null) {
-                                    onShowRewardsAlienView.onAdSuccess();
-                                }
-                            }
-                        };
+                        if (jamboxRewardedAd.isReady()) {
+                            jamboxRewardedAd.showAd();
+                        }
                         break;
                     case "STARTAPP":
                         if (rewardedVideo.isReady()) {
                             rewardedVideo.showAd();
                         }
-                        break;
-                    case "WORTISE":
-
                         break;
                 }
             }

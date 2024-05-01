@@ -1,10 +1,7 @@
 package com.kimganteng.myapplication;
 
-import static com.kimganteng.myapplication.SettingsAlien.AppIDMediationAds;
-import static com.kimganteng.myapplication.SettingsAlien.AppIDViewAds;
 import static com.kimganteng.myapplication.SettingsAlien.Backup_Initialize;
 import static com.kimganteng.myapplication.SettingsAlien.Main_Initialize;
-import static com.kimganteng.myapplication.SettingsAlien.ONLOADOPEN;
 import static com.kimganteng.myapplication.SettingsAlien.Select_Backup_Ads;
 
 import android.annotation.SuppressLint;
@@ -14,21 +11,9 @@ import android.os.Handler;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.aliendroid.alienads.AlienNotif;
 import com.aliendroid.alienads.AlienOpenAds;
 import com.aliendroid.alienads.AliendroidInitialize;
-import com.aliendroid.alienads.ApplovinOpenAds;
-import com.aliendroid.alienads.MyApplication;
-import com.aliendroid.alienads.PropsOpenAds;
-import com.aliendroid.alienads.WortiseOpenAds;
-import com.aliendroid.alienads.interfaces.open.OnLoadOpenAppAdmob;
-import com.aliendroid.alienads.interfaces.open.OnLoadOpenAppWortise;
-import com.aliendroid.alienads.interfaces.open.OnShowOpenAppAdmob;
-import com.aliendroid.sdkads.config.AppPromote;
-import com.aliendroid.sdkads.config.InitializeAlienAds;
-import com.aliendroid.sdkads.interfaces.OnOpenViewAdListener;
-import com.aliendroid.sdkads.interfaces.OnShowAdCompleteListener;
-import com.aliendroid.sdkads.type.view.AlienViewAds;
+import com.aliendroid.alienads.JamboxOpenAds;
 
 
 @SuppressLint("CustomSplashScreen")
@@ -39,15 +24,6 @@ public class SplashActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-        /*
-        Aliendroid have 2 ads (view and mediation)
-        type view ads = Banner, Interstitial and Open Ads
-        type mediation Ads = Banner, Interstitial, Rewards and Natives
-         */
-        /*
-        Initilize for Alien Mediation Ads
-         */
-        InitializeAlienAds.LoadSDK();
         switch (SettingsAlien.Select_Main_Ads) {
             case "ADMOB":
                 AliendroidInitialize.SelectAdsAdmob(this, Select_Backup_Ads, Backup_Initialize);
@@ -69,8 +45,8 @@ public class SplashActivity extends AppCompatActivity {
                 break;
         }
 
-        AlienOpenAds.LoadOpenAds("ca-app-pub-3940256099942544/9257395921",true);
-        AlienOpenAds.AppOpenAdManager.showAdIfAvailable(SplashActivity.this, new AlienOpenAds.OnShowAdCompleteListener() {
+        JamboxOpenAds.LoadOpenAds("test",true, "ALIEN-V");
+        JamboxOpenAds.AppOpenAdManager.showAdIfAvailable(SplashActivity.this, new JamboxOpenAds.OnShowAdCompleteListener() {
              @Override
              public void onShowAdComplete() {
                  startActivity(true);

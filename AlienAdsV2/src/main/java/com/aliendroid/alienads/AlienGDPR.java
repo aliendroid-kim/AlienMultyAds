@@ -90,7 +90,6 @@ public class AlienGDPR {
             case "IRON":
                 break;
             case "APPLOVIN-M":
-
                 AppLovinSdk.initializeSdk(activity, new AppLovinSdk.SdkInitializationListener() {
                     @Override
                     public void onSdkInitialized(final AppLovinSdkConfiguration configuration) {

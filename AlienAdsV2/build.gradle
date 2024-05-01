@@ -5,7 +5,7 @@ plugins {
 android {
     compileSdkVersion 33
     defaultConfig {
-        minSdkVersion 21
+        minSdkVersion 24
         targetSdkVersion 32
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -66,16 +66,9 @@ dependencies {
     implementation 'com.startapp:admob-mediation:2.8.2'
     implementation 'com.startapp:applovin-mediation:1.1.7'
 
+    implementation 'com.github.ronaldwm2:alienads_propssdk:1.0.0'
+    implementation 'com.github.jamboxgames:monetise-sdk:1.0'
+    implementation 'io.appmetrica.analytics:analytics:6.2.1'
     implementation 'com.github.bumptech.glide:glide:4.15.1'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.15.1'
-
-    implementation 'com.android.volley:volley:1.2.1'
-    implementation('com.squareup.retrofit2:retrofit:2.9.0') {
-        exclude module: 'okhttp'
-    }
-    implementation 'com.squareup.okhttp3:okhttp:4.11.0'
-    implementation 'com.squareup.okhttp3:logging-interceptor:4.9.2'
-    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
-    implementation 'com.github.ronaldwm2:alienads_propssdk:1.0.0'
-    implementation 'io.appmetrica.analytics:analytics:6.2.1'
 }

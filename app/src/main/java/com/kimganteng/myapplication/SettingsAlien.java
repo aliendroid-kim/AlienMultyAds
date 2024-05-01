@@ -16,7 +16,7 @@ public class SettingsAlien {
     Unity
     Banner_Android
      */
-    public static  String Select_Main_Ads ="ADMOB";
+    public static  String Select_Main_Ads ="ALIEN-V";
     public static  String Select_Backup_Ads ="ADMOB";
 
     public static String  MainIntertitial ="Interstitial_Androids";
