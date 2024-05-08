@@ -6,7 +6,7 @@ android {
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.test.tes"
+        applicationId "com.frame.twibbon"
         minSdk 24
         targetSdk 33
         versionCode 1

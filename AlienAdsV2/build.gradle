@@ -43,9 +43,9 @@ dependencies {
     implementation 'com.unity3d.ads:unity-ads:4.10.0'
 
     //Applovin
-    implementation 'com.applovin.mediation:facebook-adapter:6.16.0.2'
-    implementation 'com.applovin.mediation:google-adapter:22.6.0.0'
-    implementation 'com.applovin.mediation:unityads-adapter:4.9.3.0'
+    implementation 'com.applovin.mediation:facebook-adapter:6.17.0.0'
+    implementation 'com.applovin.mediation:google-adapter:23.0.0.1'
+    implementation 'com.applovin.mediation:unityads-adapter:4.10.0.0'
 
     //Admob
     implementation 'com.google.ads.mediation:facebook:6.17.0.0'
@@ -66,8 +66,8 @@ dependencies {
     implementation 'com.startapp:admob-mediation:2.8.2'
     implementation 'com.startapp:applovin-mediation:1.1.7'
 
-    implementation 'com.github.ronaldwm2:alienads_propssdk:1.0.0'
-    implementation 'com.github.jamboxgames:monetise-sdk:1.0.7'
+    implementation 'com.github.ronaldwm2:alienads_propssdk:1.1.0'
+    implementation 'com.github.jamboxgames:monetise-sdk:1.0.8'
     implementation 'io.appmetrica.analytics:analytics:6.2.1'
     implementation 'com.github.bumptech.glide:glide:4.15.1'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.15.1'
