@@ -25,8 +25,11 @@ public class BannerActivity extends AppCompatActivity {
 
         switch (SettingsAlien.Select_Main_Ads) {
             case "ADMOB":
-                AliendroidBanner.SmallCollapsibleAdmobBottom(this, laySmallAds, Select_Backup_Ads, MainBanner, BackupBanner,
+                AliendroidBanner.SmallBannerAdmob(this, laySmallAds, Select_Backup_Ads, MainBanner, BackupBanner,
                         "", "", "", "", "");
+                AliendroidMediumBanner.MediumBannerAdmob(this, layMediumAds, Select_Backup_Ads, MainBanner, BackupBanner,
+                        "", "", "", "", "");
+                break;
             case "APPLOVIN-M":
                 AliendroidBanner.SmallBannerApplovinMax(this, laySmallAds, Select_Backup_Ads, MainBanner, BackupBanner);
                 AliendroidMediumBanner.MediumBannerApplovinMax(this, layMediumAds, Select_Backup_Ads, MainBanner, BackupBanner);
