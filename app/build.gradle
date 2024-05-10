@@ -6,7 +6,7 @@ android {
     compileSdk 34
 
     defaultConfig {
-        applicationId "com.frame.twibbon"
+        applicationId "com.test.tes"
         minSdk 21
         targetSdk 34
         versionCode 1
@@ -30,10 +30,10 @@ android {
 
 dependencies {
     implementation project(':AlienAdsV2')
+    implementation 'androidx.appcompat:appcompat:1.4.1'
     implementation 'androidx.work:work-runtime:2.7.1'
     implementation 'androidx.multidex:multidex:2.0.1'
-    implementation 'androidx.appcompat:appcompat:1.4.1'
-    implementation 'com.google.android.material:material:1.6.0'
+    implementation 'com.google.android.material:material:1.6.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
 
 

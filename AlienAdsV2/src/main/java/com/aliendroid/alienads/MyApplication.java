@@ -22,7 +22,8 @@ public class MyApplication extends Application {
     private static PropsOpenAds propsOpenAds;
     @SuppressLint("StaticFieldLeak")
     private static ApplovinOpenAds applovinOpenAds;
-
+    @SuppressLint("StaticFieldLeak")
+    private static AlienNotif notif;
     Context context;
     @Override
     public void onCreate() {
@@ -42,11 +43,10 @@ public class MyApplication extends Application {
                 .build();
         AppMetrica.activate(this, config);
         AppMetrica.enableActivityAutoTracking(this);
-
         alienOpenAds = new AlienOpenAds(this);
         propsOpenAds = new PropsOpenAds(this);
         jsmboxOpenAds = new JamboxOpenAds(this);
-
+        notif = new AlienNotif(context,this);
 
     }
 }

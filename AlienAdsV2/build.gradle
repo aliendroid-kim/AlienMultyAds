@@ -3,10 +3,10 @@ plugins {
 }
 
 android {
-    compileSdkVersion 33
+    compileSdkVersion 34
     defaultConfig {
         minSdkVersion 21
-        targetSdkVersion 33
+        targetSdkVersion 34
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
@@ -57,10 +57,11 @@ dependencies {
     implementation("com.google.android.ump:user-messaging-platform:2.2.0")
 
     //Unity
+
+
     implementation 'com.google.android.gms:play-services-appset:16.0.2'
     implementation 'com.google.android.gms:play-services-ads-identifier:18.0.1'
     implementation 'com.google.android.gms:play-services-basement:18.3.0'
-
 
     //startapp
     implementation 'com.startapp:admob-mediation:2.9.1'

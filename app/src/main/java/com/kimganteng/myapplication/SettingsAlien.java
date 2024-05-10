@@ -16,19 +16,19 @@ public class SettingsAlien {
     Unity
     Banner_Android
      */
-    public static  String Select_Main_Ads ="ADMOB";
-    public static  String Select_Backup_Ads ="ALIEN-V";
+    public static  String Select_Main_Ads ="ALIEN-V";
+    public static  String Select_Backup_Ads ="ADMOB";
 
-    public static String  MainIntertitial ="ca-app-pub-3940256099942544/1033173712";
-    public static  String BackupIntertitial ="c06832345da7d7a6";
+    public static String  MainIntertitial ="Interstitial_Androids";
+    public static  String BackupIntertitial ="ca-app-pub-3940256099942544/1033173712";
 
-    public static  String MainBanner="ca-app-pub-3940256099942544/6300978111";
-    public static  String BackupBanner="e78fd6378687f382";
+    public static  String MainBanner="Banner_Androidx";
+    public static  String BackupBanner="ca-app-pub-3940256099942544/6300978111";
 
     public static String MainNatives ="native_1";
     public static String BackupNatives="ca-app-pub-3940256099942544/6300978111";
 
-    public static String MainRewards ="105384986faf9e83";
+    public static String MainRewards ="Rewarded_Androids";
     public static String BackupReward="ca-app-pub-3940256099942544/5224354917";
 
     public static  String Main_Initialize="5099441";
