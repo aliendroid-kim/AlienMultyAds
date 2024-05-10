@@ -5,8 +5,8 @@ plugins {
 android {
     compileSdkVersion 33
     defaultConfig {
-        minSdkVersion 24
-        targetSdkVersion 32
+        minSdkVersion 21
+        targetSdkVersion 33
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
@@ -22,6 +22,7 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    namespace 'com.aliendroid.alienads'
 
 
 }
@@ -30,27 +31,27 @@ dependencies {
 
     implementation 'androidx.appcompat:appcompat:1.4.1'
     implementation 'com.google.android.material:material:1.6.0'
-    implementation 'androidx.lifecycle:lifecycle-process:2.6.2'
+    implementation 'androidx.lifecycle:lifecycle-process:2.7.0'
 
 
     implementation "androidx.multidex:multidex:2.0.1"
     //implementation fileTree(include: ['*.jar', '*.aar'], dir: 'libs')
     //Main Sdk Ads
-    implementation 'com.google.android.gms:play-services-ads:23.0.0'
+    implementation 'com.google.android.gms:play-services-ads:23.1.0'
     implementation 'com.facebook.android:audience-network-sdk:6.17.0'
     implementation 'com.applovin:applovin-sdk:12.4.3'
-    implementation 'com.startapp:inapp-sdk:4.11.5'
-    implementation 'com.unity3d.ads:unity-ads:4.10.0'
+    implementation 'com.startapp:inapp-sdk:5.0.0'
+    implementation 'com.unity3d.ads:unity-ads:4.11.2'
 
     //Applovin
     implementation 'com.applovin.mediation:facebook-adapter:6.17.0.0'
-    implementation 'com.applovin.mediation:google-adapter:23.0.0.1'
+    implementation 'com.applovin.mediation:google-adapter:23.1.0.0'
     implementation 'com.applovin.mediation:unityads-adapter:4.10.0.0'
 
     //Admob
     implementation 'com.google.ads.mediation:facebook:6.17.0.0'
     implementation 'com.google.ads.mediation:applovin:12.4.3.0'
-    implementation 'com.google.ads.mediation:unity:4.10.0.0'
+    implementation 'com.google.ads.mediation:unity:4.11.2.0'
 
 
     implementation("com.google.android.ump:user-messaging-platform:2.2.0")
@@ -60,13 +61,14 @@ dependencies {
     implementation 'com.google.android.gms:play-services-ads-identifier:18.0.1'
     implementation 'com.google.android.gms:play-services-basement:18.3.0'
 
+
     //startapp
     implementation 'com.startapp:admob-mediation:2.9.1'
     implementation 'com.startapp:applovin-mediation:1.1.7'
 
     implementation 'com.github.ronaldwm2:alienads_propssdk:1.1.0'
     implementation 'com.github.jamboxgames:monetise-sdk:1.0.8'
-    //implementation 'io.appmetrica.analytics:analytics:6.2.1'
+    implementation 'io.appmetrica.analytics:analytics:6.2.1'
     implementation 'com.github.bumptech.glide:glide:4.15.1'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.15.1'
 }
