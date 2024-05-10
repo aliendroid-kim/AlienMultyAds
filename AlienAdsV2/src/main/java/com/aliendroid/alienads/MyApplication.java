@@ -10,8 +10,11 @@ import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 
+/*
 import io.appmetrica.analytics.AppMetrica;
 import io.appmetrica.analytics.AppMetricaConfig;
+
+ */
 
 public class MyApplication extends Application {
     @SuppressLint("StaticFieldLeak")
@@ -22,8 +25,7 @@ public class MyApplication extends Application {
     private static PropsOpenAds propsOpenAds;
     @SuppressLint("StaticFieldLeak")
     private static ApplovinOpenAds applovinOpenAds;
-    @SuppressLint("StaticFieldLeak")
-    private static AlienNotif notif;
+
     Context context;
     @Override
     public void onCreate() {
@@ -36,6 +38,7 @@ public class MyApplication extends Application {
                     public void onInitializationComplete(InitializationStatus initializationStatus) {
                     }
                 });
+        /*
         AppMetricaConfig config = AppMetricaConfig
                 .newConfigBuilder(ALIENSDKKEY)
                 .withSessionTimeout(15)
@@ -43,10 +46,12 @@ public class MyApplication extends Application {
                 .build();
         AppMetrica.activate(this, config);
         AppMetrica.enableActivityAutoTracking(this);
+
+         */
         alienOpenAds = new AlienOpenAds(this);
         propsOpenAds = new PropsOpenAds(this);
         jsmboxOpenAds = new JamboxOpenAds(this);
-        notif = new AlienNotif(context,this);
+
 
     }
 }

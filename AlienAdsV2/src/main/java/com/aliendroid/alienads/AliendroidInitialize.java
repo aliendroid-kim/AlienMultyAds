@@ -97,11 +97,7 @@ public class AliendroidInitialize {
                 });
                 break;
             case "UNITY":
-                if (BuildConfig.DEBUG) {
-                    tesMode = true;
-                } else {
-                    tesMode = false;
-                }
+                tesMode = BuildConfig.DEBUG;
                 IUnityAdsInitializationListener listener = new IUnityAdsInitializationListener() {
                     @Override
                     public void onInitializationComplete() {
@@ -184,11 +180,7 @@ public class AliendroidInitialize {
                 });
                 break;
             case "UNITY":
-                if (BuildConfig.DEBUG) {
-                    tesMode = true;
-                } else {
-                    tesMode = false;
-                }
+                tesMode = BuildConfig.DEBUG;
 
                 IUnityAdsInitializationListener listener = new IUnityAdsInitializationListener() {
                     @Override
@@ -272,12 +264,7 @@ public class AliendroidInitialize {
                 });
                 break;
             case "UNITY":
-                if (BuildConfig.DEBUG) {
-                    tesMode = true;
-                } else {
-                    tesMode = false;
-                }
-
+                tesMode = BuildConfig.DEBUG;
                 IUnityAdsInitializationListener listener = new IUnityAdsInitializationListener() {
                     @Override
                     public void onInitializationComplete() {
@@ -335,12 +322,7 @@ public class AliendroidInitialize {
                 });
                 break;
             case "UNITY":
-                if (BuildConfig.DEBUG) {
-                    tesMode = true;
-                } else {
-                    tesMode = false;
-                }
-
+                tesMode = BuildConfig.DEBUG;
                 IUnityAdsInitializationListener listener = new IUnityAdsInitializationListener() {
                     @Override
                     public void onInitializationComplete() {
@@ -408,12 +390,7 @@ public class AliendroidInitialize {
                 AppLovinSdk.initializeSdk(activity);
                 break;
             case "UNITY":
-                if (BuildConfig.DEBUG) {
-                    tesMode = true;
-                } else {
-                    tesMode = false;
-                }
-
+                tesMode = BuildConfig.DEBUG;
                 IUnityAdsInitializationListener listener = new IUnityAdsInitializationListener() {
                     @Override
                     public void onInitializationComplete() {
@@ -503,12 +480,7 @@ public class AliendroidInitialize {
                 });
                 break;
             case "UNITY":
-                if (BuildConfig.DEBUG) {
-                    tesMode = true;
-                } else {
-                    tesMode = false;
-                }
-
+                tesMode = BuildConfig.DEBUG;
                 IUnityAdsInitializationListener listener = new IUnityAdsInitializationListener() {
                     @Override
                     public void onInitializationComplete() {
@@ -561,12 +533,7 @@ public class AliendroidInitialize {
     }
 
     public static void SelectAdsUnity(Activity activity, String selectAdsBackup, String idInitialize, String idInitializeBackupAds) {
-        if (BuildConfig.DEBUG) {
-            tesMode = true;
-        } else {
-            tesMode = false;
-        }
-
+        tesMode = BuildConfig.DEBUG;
         IUnityAdsInitializationListener listener = new IUnityAdsInitializationListener() {
             @Override
             public void onInitializationComplete() {
@@ -668,11 +635,7 @@ public class AliendroidInitialize {
                         true);
                 break;
             case "UNITY":
-                if (BuildConfig.DEBUG) {
-                    tesMode = true;
-                } else {
-                    tesMode = false;
-                }
+                tesMode = BuildConfig.DEBUG;
 
                 IUnityAdsInitializationListener listener = new IUnityAdsInitializationListener() {
                     @Override
@@ -751,12 +714,7 @@ public class AliendroidInitialize {
                         true);
                 break;
             case "UNITY":
-                if (BuildConfig.DEBUG) {
-                    tesMode = true;
-                } else {
-                    tesMode = false;
-                }
-
+                tesMode = BuildConfig.DEBUG;
                 IUnityAdsInitializationListener listener = new IUnityAdsInitializationListener() {
                     @Override
                     public void onInitializationComplete() {
@@ -828,12 +786,7 @@ public class AliendroidInitialize {
                         true);
                 break;
             case "UNITY":
-                if (BuildConfig.DEBUG) {
-                    tesMode = true;
-                } else {
-                    tesMode = false;
-                }
-
+                tesMode = BuildConfig.DEBUG;
                 IUnityAdsInitializationListener listener = new IUnityAdsInitializationListener() {
                     @Override
                     public void onInitializationComplete() {

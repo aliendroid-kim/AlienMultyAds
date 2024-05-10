@@ -66,7 +66,7 @@ dependencies {
 
     implementation 'com.github.ronaldwm2:alienads_propssdk:1.1.0'
     implementation 'com.github.jamboxgames:monetise-sdk:1.0.8'
-    implementation 'io.appmetrica.analytics:analytics:6.2.1'
+    //implementation 'io.appmetrica.analytics:analytics:6.2.1'
     implementation 'com.github.bumptech.glide:glide:4.15.1'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.15.1'
 }
