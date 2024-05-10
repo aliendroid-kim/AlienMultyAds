@@ -3,12 +3,12 @@ plugins {
 }
 
 android {
-    compileSdk 34
+    compileSdk 33
 
     defaultConfig {
         applicationId "com.test.tes"
-        minSdk 21
-        targetSdk 34
+        minSdk 24
+        targetSdk 33
         versionCode 1
         versionName "1.0"
         multiDexEnabled true
@@ -22,10 +22,9 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility 11
-        targetCompatibility 11
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
-    namespace 'com.kimganteng.myapplication'
 }
 
 dependencies {
@@ -35,7 +34,7 @@ dependencies {
     implementation 'androidx.multidex:multidex:2.0.1'
     implementation 'com.google.android.material:material:1.6.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-
+    implementation 'com.google.android.gms:play-services-ads:22.5.0'
 
 
 }
