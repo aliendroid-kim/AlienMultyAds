@@ -1,6 +1,5 @@
 <resources>
-    <string name="app_name">Alien Multy Ads - Proxima</string>
+    <string name="app_name">Sample App</string>
     <string name="admobappid">ca-app-pub-6025205972807799~8933163801</string>
     <string name="sdk_key_applovin">T7PPns0K6JV00uGv0ZAEKsTWrpwA-N4Hchi_KKecaqTa_U5zQcyyoI_pTcC5TM1OgfrLz5dWGdASKWgK6l5Sks</string>
-
 </resources>
