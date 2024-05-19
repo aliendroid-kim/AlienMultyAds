@@ -15,8 +15,8 @@ import com.google.android.gms.ads.initialization.OnInitializationCompleteListene
 
 import java.util.List;
 
-import io.appmetrica.analytics.AppMetrica;
-import io.appmetrica.analytics.AppMetricaConfig;
+//import io.appmetrica.analytics.AppMetrica;
+//import io.appmetrica.analytics.AppMetricaConfig;
 
 public class MyApplication extends Application {
     @SuppressLint("StaticFieldLeak")
@@ -57,6 +57,7 @@ public class MyApplication extends Application {
                         public void onInitializationComplete(InitializationStatus initializationStatus) {
                         }
                     });
+            /*
             AppMetricaConfig config = AppMetricaConfig
                     .newConfigBuilder(ALIENSDKKEY)
                     .withSessionTimeout(15)
@@ -64,10 +65,9 @@ public class MyApplication extends Application {
                     .build();
             AppMetrica.activate(this, config);
             AppMetrica.enableActivityAutoTracking(this);
+
+             */
         }
-
-
-
     }
     private boolean isMainProcess() {
         return getPackageName().equals(getProcessName());
