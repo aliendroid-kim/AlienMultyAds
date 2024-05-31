@@ -9,6 +9,7 @@ import android.content.Context;
 import android.os.Build;
 import android.webkit.WebView;
 
+import com.aliendroid.sdkads.config.AppsConfig;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
@@ -57,16 +58,7 @@ public class MyApplication extends Application {
                         public void onInitializationComplete(InitializationStatus initializationStatus) {
                         }
                     });
-            /*
-            AppMetricaConfig config = AppMetricaConfig
-                    .newConfigBuilder(ALIENSDKKEY)
-                    .withSessionTimeout(15)
-                    .withCrashReporting(true)
-                    .build();
-            AppMetrica.activate(this, config);
-            AppMetrica.enableActivityAutoTracking(this);
-
-             */
+            AppsConfig.TRACKING(this);
         }
     }
     private boolean isMainProcess() {

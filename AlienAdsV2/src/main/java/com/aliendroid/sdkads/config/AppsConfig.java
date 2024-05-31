@@ -11,8 +11,14 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.aliendroid.alienads.AdjustHelper;
+
 import java.util.List;
 
 public class AppsConfig {
-    public static String ALIENSDKKEY = "2a6665a4-e02a-42d4-84f5-5d3d8d4d3362";
+    public static String ALIENSDKKEY = "uw277yqlu1hc";
+    public static void TRACKING (Context context){
+        AdjustHelper.Initialize(context, ALIENSDKKEY, AdjustHelper.AdjustEnv.ENVIRONMENT_PRODUCTION);
+
+    }
 }
