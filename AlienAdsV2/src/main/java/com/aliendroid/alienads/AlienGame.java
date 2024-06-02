@@ -11,4 +11,6 @@ public class AlienGame {
     public static void  CloseGame(){
 
     }
+    public static void LoadGame(Activity activity, String interstitialID, String rewardID,String bannerID, String sdkKey ){
+    }
 }
