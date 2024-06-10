@@ -38,7 +38,7 @@ dependencies {
     //Main Sdk Ads
     implementation 'com.google.android.gms:play-services-ads:23.1.0'
     implementation 'com.facebook.android:audience-network-sdk:6.17.0'
-    implementation 'com.applovin:applovin-sdk:12.4.3'
+    implementation 'com.applovin:applovin-sdk:12.5.0'
     implementation 'com.startapp:inapp-sdk:5.0.0'
     implementation 'com.unity3d.ads:unity-ads:4.11.3'
 
