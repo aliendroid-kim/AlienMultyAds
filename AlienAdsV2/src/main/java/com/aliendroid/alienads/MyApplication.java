@@ -1,6 +1,5 @@
 package com.aliendroid.alienads;
 
-import static com.aliendroid.sdkads.config.AppsConfig.ALIENSDKKEY;
 
 import android.annotation.SuppressLint;
 import android.app.ActivityManager;
@@ -15,9 +14,6 @@ import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 
 import java.util.List;
-
-//import io.appmetrica.analytics.AppMetrica;
-//import io.appmetrica.analytics.AppMetricaConfig;
 
 public class MyApplication extends Application {
     @SuppressLint("StaticFieldLeak")
@@ -41,7 +37,6 @@ public class MyApplication extends Application {
             propsOpenAds = new PropsOpenAds(this);
             jsmboxOpenAds = new JamboxOpenAds(this);
             notif = new AlienNotif(context,this);
-
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
                 String processName = getProcessName();
                 try {
@@ -58,7 +53,7 @@ public class MyApplication extends Application {
                         public void onInitializationComplete(InitializationStatus initializationStatus) {
                         }
                     });
-            AppsConfig.TRACKING(this);
+
         }
     }
     private boolean isMainProcess() {
