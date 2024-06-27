@@ -95,6 +95,10 @@ public class AliendroidInitialize {
 
                     }
                 });
+
+                if(BuildConfig.DEBUG){
+                    AppLovinSdk.getInstance(activity).showMediationDebugger();
+                }
                 break;
             case "UNITY":
                 if (BuildConfig.DEBUG) {
@@ -182,6 +186,9 @@ public class AliendroidInitialize {
 
                     }
                 });
+                if(BuildConfig.DEBUG){
+                    AppLovinSdk.getInstance(activity).showMediationDebugger();
+                }
                 break;
             case "UNITY":
                 if (BuildConfig.DEBUG) {
@@ -270,6 +277,9 @@ public class AliendroidInitialize {
                     public void onSdkInitialized(final AppLovinSdkConfiguration configuration) {
                     }
                 });
+                if(BuildConfig.DEBUG){
+                    AppLovinSdk.getInstance(activity).showMediationDebugger();
+                }
                 break;
             case "UNITY":
                 if (BuildConfig.DEBUG) {
@@ -301,6 +311,7 @@ public class AliendroidInitialize {
                 break;
             case "APPLOVIN-D":
                 AppLovinSdk.initializeSdk(activity);
+
                 break;
             case "FACEBOOK":
                 if (!AudienceNetworkAds.isInitialized(activity)) {
@@ -333,6 +344,9 @@ public class AliendroidInitialize {
                     public void onSdkInitialized(final AppLovinSdkConfiguration configuration) {
                     }
                 });
+                if(BuildConfig.DEBUG){
+                    AppLovinSdk.getInstance(activity).showMediationDebugger();
+                }
                 break;
             case "UNITY":
                 if (BuildConfig.DEBUG) {
@@ -403,6 +417,9 @@ public class AliendroidInitialize {
             public void onSdkInitialized(final AppLovinSdkConfiguration configuration) {
             }
         });
+        if(BuildConfig.DEBUG){
+            AppLovinSdk.getInstance(activity).showMediationDebugger();
+        }
         switch (selectAdsBackup) {
             case "APPLOVIN-D":
                 AppLovinSdk.initializeSdk(activity);
@@ -470,6 +487,9 @@ public class AliendroidInitialize {
 
                     }
                 });
+                if(BuildConfig.DEBUG){
+                    AppLovinSdk.getInstance(activity).showMediationDebugger();
+                }
                 break;
             case "ALIEN-M":
                 PropsAdsManagement.initializeAdsMapping(activity);
@@ -501,6 +521,9 @@ public class AliendroidInitialize {
                     public void onSdkInitialized(final AppLovinSdkConfiguration configuration) {
                     }
                 });
+                if(BuildConfig.DEBUG){
+                    AppLovinSdk.getInstance(activity).showMediationDebugger();
+                }
                 break;
             case "UNITY":
                 if (BuildConfig.DEBUG) {
@@ -591,6 +614,9 @@ public class AliendroidInitialize {
                     public void onSdkInitialized(final AppLovinSdkConfiguration configuration) {
                     }
                 });
+                if(BuildConfig.DEBUG){
+                    AppLovinSdk.getInstance(activity).showMediationDebugger();
+                }
                 break;
             case "STARTAPP":
                 StartAppSDK.init(activity, idInitializeBackupAds, true);
@@ -658,6 +684,9 @@ public class AliendroidInitialize {
                     public void onSdkInitialized(final AppLovinSdkConfiguration configuration) {
                     }
                 });
+                if(BuildConfig.DEBUG){
+                    AppLovinSdk.getInstance(activity).showMediationDebugger();
+                }
                 break;
             case "STARTAPP":
                 StartAppSDK.init(activity, idInitializeBackupAds, true);
@@ -730,6 +759,9 @@ public class AliendroidInitialize {
 
             }
         });
+        if(BuildConfig.DEBUG){
+            AppLovinSdk.getInstance(activity).showMediationDebugger();
+        }
         switch (selectAdsBackup) {
             case "APPLOVIN-D":
                 AppLovinSdk.initializeSdk(activity);
@@ -741,6 +773,9 @@ public class AliendroidInitialize {
                     public void onSdkInitialized(final AppLovinSdkConfiguration configuration) {
                     }
                 });
+                if(BuildConfig.DEBUG){
+                    AppLovinSdk.getInstance(activity).showMediationDebugger();
+                }
                 break;
             case "STARTAPP":
                 StartAppSDK.init(activity, idInitializeBackupAds, true);
@@ -818,6 +853,9 @@ public class AliendroidInitialize {
                     public void onSdkInitialized(final AppLovinSdkConfiguration configuration) {
                     }
                 });
+                if(BuildConfig.DEBUG){
+                    AppLovinSdk.getInstance(activity).showMediationDebugger();
+                }
                 break;
             case "STARTAPP":
                 StartAppSDK.init(activity, idInitializeBackupAds, true);
