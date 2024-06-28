@@ -36,7 +36,7 @@ dependencies {
     implementation "androidx.multidex:multidex:2.0.1"
     //implementation fileTree(include: ['*.jar', '*.aar'], dir: 'libs')
     //Main Sdk Ads
-    implementation 'com.google.android.gms:play-services-ads:23.1.0'
+    implementation 'com.google.android.gms:play-services-ads:23.2.0'
     implementation 'com.facebook.android:audience-network-sdk:6.17.0'
     implementation 'com.applovin:applovin-sdk:12.5.0'
     implementation 'com.startapp:inapp-sdk:5.0.0'
@@ -44,7 +44,7 @@ dependencies {
 
     //Applovin
     implementation 'com.applovin.mediation:facebook-adapter:6.17.0.0'
-    implementation 'com.applovin.mediation:google-adapter:23.1.0.0'
+    implementation 'com.applovin.mediation:google-adapter:23.2.0.0'
     implementation 'com.applovin.mediation:unityads-adapter:4.12.0.0'
 
     //Admob
