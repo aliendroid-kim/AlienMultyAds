@@ -13,11 +13,6 @@ import androidx.lifecycle.LifecycleObserver;
 import androidx.lifecycle.OnLifecycleEvent;
 import androidx.lifecycle.ProcessLifecycleOwner;
 
-import com.applovin.mediation.MaxAd;
-import com.applovin.mediation.MaxAdListener;
-import com.applovin.mediation.MaxError;
-import com.applovin.mediation.ads.MaxAppOpenAd;
-
 public class ApplovinOpenAds implements LifecycleObserver, Application.ActivityLifecycleCallbacks {
     public static MyApplication myApplication;
     public static Activity currentActivity;
@@ -48,7 +43,6 @@ public class ApplovinOpenAds implements LifecycleObserver, Application.ActivityL
 
     public static class AppOpenAdManager {
         private static final String LOG_TAG = "AppOpenAdManager";
-        public static MaxAppOpenAd appOpenAdApplovin = null;
         private static boolean isLoadingAd = false;
         private static boolean isShowingAd = false;
 
@@ -70,14 +64,11 @@ public class ApplovinOpenAds implements LifecycleObserver, Application.ActivityL
             }
 
             isLoadingAd = true;
-            appOpenAdApplovin = new MaxAppOpenAd(IDOPEN, context);
-            appOpenAdApplovin.loadAd();
-
 
         }
 
         public static boolean isAdAvailable() {
-            return appOpenAdApplovin != null;
+            return false;
         }
 
 
@@ -105,59 +96,8 @@ public class ApplovinOpenAds implements LifecycleObserver, Application.ActivityL
                 return;
             }
 
-            Log.d(LOG_TAG, "Will show ad.");
-            appOpenAdApplovin.setListener(new MaxAdListener() {
-                @Override
-                public void onAdLoaded(MaxAd ad) {
-                    isLoadingAd = true;
-                    Log.d(LOG_TAG, "onAdLoaded.");
-                }
-
-                @Override
-                public void onAdDisplayed(MaxAd ad) {
-                    isLoadingAd = false;
-                    appOpenAdApplovin = null;
-                    isShowingAd = false;
-                    loadAd(activity);
-                }
-
-                @Override
-                public void onAdHidden(MaxAd ad) {
-                    isShowingAd = false;
-                    onShowAdCompleteListener.onShowAdComplete();
-                    loadAd(activity);
-                    Log.d(LOG_TAG, "onAdDismissedFullScreenContent.");
-                }
-
-                @Override
-                public void onAdClicked(MaxAd ad) {
-                    isLoadingAd = false;
-                    appOpenAdApplovin = null;
-                    isShowingAd = false;
-                    loadAd(activity);
-                }
-
-                @Override
-                public void onAdLoadFailed(String adUnitId, MaxError error) {
-                    isLoadingAd = false;
-                    appOpenAdApplovin = null;
-                    isShowingAd = false;
-                    onShowAdCompleteListener.onShowAdComplete();
-                    loadAd(activity);
-                }
-
-                @Override
-                public void onAdDisplayFailed(MaxAd ad, MaxError error) {
-                    isLoadingAd = false;
-                    appOpenAdApplovin = null;
-                    isShowingAd = false;
-                    onShowAdCompleteListener.onShowAdComplete();
-                    loadAd(activity);
-                }
-            });
-
-            isShowingAd = true;
-            appOpenAdApplovin.showAd();
+            isLoadingAd = false;
+            onShowAdCompleteListener.onShowAdComplete();
 
         }
 

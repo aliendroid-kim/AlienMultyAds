@@ -19,8 +19,6 @@ public class MyApplication extends Application {
     @SuppressLint("StaticFieldLeak")
     private static AlienOpenAds alienOpenAds;
     @SuppressLint("StaticFieldLeak")
-    private static JamboxOpenAds jsmboxOpenAds;
-    @SuppressLint("StaticFieldLeak")
     private static PropsOpenAds propsOpenAds;
     @SuppressLint("StaticFieldLeak")
     private static ApplovinOpenAds applovinOpenAds;
@@ -35,7 +33,6 @@ public class MyApplication extends Application {
         if (isMainProcess()) {
             alienOpenAds = new AlienOpenAds(this);
             propsOpenAds = new PropsOpenAds(this);
-            jsmboxOpenAds = new JamboxOpenAds(this);
             notif = new AlienNotif(context,this);
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
                 String processName = getProcessName();

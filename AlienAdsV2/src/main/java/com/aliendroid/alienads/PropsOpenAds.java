@@ -12,11 +12,6 @@ import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleObserver;
 import androidx.lifecycle.OnLifecycleEvent;
 import androidx.lifecycle.ProcessLifecycleOwner;
-
-import com.applovin.mediation.MaxAd;
-import com.applovin.mediation.MaxAdListener;
-import com.applovin.mediation.MaxError;
-import com.applovin.mediation.ads.MaxAppOpenAd;
 import com.google.android.gms.ads.AdError;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.FullScreenContentCallback;
@@ -116,7 +111,6 @@ public class PropsOpenAds implements LifecycleObserver, Application.ActivityLife
     public static class AppOpenAdManager {
         private static final String LOG_TAG = "AppOpenAdManager";
         public static AppOpenAd appOpenAd = null;
-        public static MaxAppOpenAd appOpenAdApplovin = null;
         private static boolean isLoadingAd = false;
         static boolean isShowingAd = false;
         private static long loadTime = 0;
@@ -155,11 +149,7 @@ public class PropsOpenAds implements LifecycleObserver, Application.ActivityLife
                 if (isLoadingAd || isAdAvailable()) {
                     return;
                 }
-
                 isLoadingAd = true;
-                appOpenAdApplovin = new MaxAppOpenAd(IDOPEN, context);
-                appOpenAdApplovin.loadAd();
-
             } else {
                 if (isLoadingAd || isAdAvailable()) {
                     return;
@@ -196,14 +186,7 @@ public class PropsOpenAds implements LifecycleObserver, Application.ActivityLife
         }
 
         private static boolean isAdAvailable() {
-            if (SELECT_ADS.equals("ALIEN-M")) {
                 return appOpenAd != null && wasLoadTimeLessThanNHoursAgo(4);
-            } else if (SELECT_ADS.equals("APPLOVIN-M")) {
-                return appOpenAdApplovin != null;
-            } else {
-                return appOpenAd != null && wasLoadTimeLessThanNHoursAgo(4);
-            }
-
         }
         public static void showAdIfAvailable(@NonNull final Activity activity) {
             showAdIfAvailable(activity, new OnShowAdCompleteListener() {
@@ -263,60 +246,9 @@ public class PropsOpenAds implements LifecycleObserver, Application.ActivityLife
                     loadAd(activity);
                     return;
                 }
-
-                Log.d(LOG_TAG, "Will show ad.");
-                appOpenAdApplovin.setListener(new MaxAdListener() {
-                    @Override
-                    public void onAdLoaded(MaxAd ad) {
-                        isLoadingAd = true;
-                        Log.d(LOG_TAG, "onAdLoaded.");
-                    }
-
-                    @Override
-                    public void onAdDisplayed(MaxAd ad) {
-                        isLoadingAd = false;
-                        appOpenAdApplovin = null;
-                        isShowingAd = false;
-                        loadAd(activity);
-                    }
-
-                    @Override
-                    public void onAdHidden(MaxAd ad) {
-                        isShowingAd = false;
-                        onShowAdCompleteListener.onShowAdComplete();
-                        loadAd(activity);
-                        Log.d(LOG_TAG, "onAdDismissedFullScreenContent.");
-                    }
-
-                    @Override
-                    public void onAdClicked(MaxAd ad) {
-                        isLoadingAd = false;
-                        appOpenAdApplovin = null;
-                        isShowingAd = false;
-                        loadAd(activity);
-                    }
-
-                    @Override
-                    public void onAdLoadFailed(String adUnitId, MaxError error) {
-                        isLoadingAd = false;
-                        appOpenAdApplovin = null;
-                        isShowingAd = false;
-                        onShowAdCompleteListener.onShowAdComplete();
-                        loadAd(activity);
-                    }
-
-                    @Override
-                    public void onAdDisplayFailed(MaxAd ad, MaxError error) {
-                        isLoadingAd = false;
-                        appOpenAdApplovin = null;
-                        isShowingAd = false;
-                        onShowAdCompleteListener.onShowAdComplete();
-                        loadAd(activity);
-                    }
-                });
-
-                isShowingAd = true;
-                appOpenAdApplovin.showAd();
+                isLoadingAd = false;
+                isShowingAd = false;
+                loadAd(activity);
             } else {
                 if (isShowingAd) {
                     return;

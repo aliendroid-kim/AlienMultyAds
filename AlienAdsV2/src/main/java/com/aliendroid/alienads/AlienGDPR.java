@@ -1,23 +1,14 @@
 package com.aliendroid.alienads;
 
 import android.app.Activity;
-import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
 import android.provider.Settings;
 
-import androidx.annotation.Nullable;
-
-import com.applovin.sdk.AppLovinPrivacySettings;
-import com.applovin.sdk.AppLovinSdk;
-import com.applovin.sdk.AppLovinSdkConfiguration;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.ump.ConsentDebugSettings;
 import com.google.android.ump.ConsentForm;
 import com.google.android.ump.ConsentInformation;
 import com.google.android.ump.ConsentRequestParameters;
-import com.google.android.ump.FormError;
 import com.google.android.ump.UserMessagingPlatform;
-
 import com.startapp.sdk.adsbase.StartAppSDK;
 
 import java.security.MessageDigest;
@@ -87,33 +78,6 @@ public class AlienGDPR {
                         System.currentTimeMillis(),
                         true);
                 break;
-            case "IRON":
-                break;
-            case "APPLOVIN-M":
-                AppLovinSdk.initializeSdk(activity, new AppLovinSdk.SdkInitializationListener() {
-                    @Override
-                    public void onSdkInitialized(final AppLovinSdkConfiguration configuration) {
-                        if (configuration.getConsentDialogState() == AppLovinSdkConfiguration.ConsentDialogState.APPLIES) {
-                            // Show user consent dialog
-                        } else if (configuration.getConsentDialogState() == AppLovinSdkConfiguration.ConsentDialogState.DOES_NOT_APPLY) {
-                            // No need to show consent dialog, proceed with initialization
-                        } else {
-                            // Consent dialog state is unknown. Proceed with initialization, but check if the consent
-                            // dialog should be shown on the next application initialization
-                        }
-                    }
-                });
-                AppLovinPrivacySettings.setHasUserConsent(true, activity);
-                AppLovinPrivacySettings.setIsAgeRestrictedUser(childDirected, activity);
-                break;
-            case "APPLOVIN-D":
-                AppLovinPrivacySettings.setIsAgeRestrictedUser(childDirected, activity);
-                AppLovinPrivacySettings.setHasUserConsent(true, activity);
-                break;
-            case "ALIEN-M":
-
-                break;
-
         }
     }
 
@@ -123,40 +87,12 @@ public class AlienGDPR {
         }
         MobileAds.initialize(activity);
     }
-
-    public static void loadForm(Activity activity) {
-        UserMessagingPlatform.loadConsentForm(
-                activity,
-                consentForm -> {
-                    if (consentInformation.getConsentStatus() == ConsentInformation.ConsentStatus.REQUIRED) {
-                        consentForm.show(
-                                activity,
-                                new ConsentForm.OnConsentFormDismissedListener() {
-                                    @Override
-                                    public void onConsentFormDismissed(@Nullable FormError formError) {
-                                        // Handle dismissal by reloading form.
-                                        loadForm(activity);
-                                    }
-                                });
-
-                    }
-
-                },
-                formError -> {
-                    /// Handle Error.
-                }
-        );
-    }
-
     public static final String md5(final String s) {
         try {
-            // Create MD5 Hash
             MessageDigest digest = MessageDigest
                     .getInstance("MD5");
             digest.update(s.getBytes());
             byte[] messageDigest = digest.digest();
-
-            // Create Hex String
             StringBuffer hexString = new StringBuffer();
             for (int i = 0; i < messageDigest.length; i++) {
                 String h = Integer.toHexString(0xFF & messageDigest[i]);
@@ -165,9 +101,7 @@ public class AlienGDPR {
                 hexString.append(h);
             }
             return hexString.toString();
-
         } catch (NoSuchAlgorithmException e) {
-            //Logger.logStackTrace(TAG,e);
         }
         return "";
     }
