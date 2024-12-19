@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:ns1="urn:oasis:names:tc:xliff:document:1.2">
+    <plurals name="mtrl_badge_content_description">
+    <item quantity="one">%d नई सूचनाएं</item>
+    <item quantity="other">%d नई सूचनाएं</item>
+  </plurals>
+    <string msgid="5976598919945601918" name="abc_action_bar_home_description">"होम पेज पर जाएं"</string>
+    <string msgid="8388173803310557296" name="abc_action_bar_up_description">"वापस जाएं"</string>
+    <string msgid="3937310113216875497" name="abc_action_menu_overflow_description">"ज़्यादा विकल्प"</string>
+    <string msgid="4692188335987374352" name="abc_action_mode_done">"हो गया"</string>
+    <string msgid="1189761859438369441" name="abc_activity_chooser_view_see_all">"सभी देखें"</string>
+    <string msgid="2165779757652331008" name="abc_activitychooserview_choose_application">"कोई ऐप्लिकेशन चुनें"</string>
+    <string msgid="4215997306490295099" name="abc_capital_off">"बंद"</string>
+    <string msgid="884982626291842264" name="abc_capital_on">"चालू"</string>
+    <string msgid="8833365367933412986" name="abc_menu_alt_shortcut_label">"Alt+"</string>
+    <string msgid="2223301931652355242" name="abc_menu_ctrl_shortcut_label">"Ctrl+"</string>
+    <string msgid="838001238306846836" name="abc_menu_delete_shortcut_label">"delete"</string>
+    <string msgid="7986526966204849475" name="abc_menu_enter_shortcut_label">"enter"</string>
+    <string msgid="375214403600139847" name="abc_menu_function_shortcut_label">"Function+"</string>
+    <string msgid="4192209724446364286" name="abc_menu_meta_shortcut_label">"Meta+"</string>
+    <string msgid="4741552369836443843" name="abc_menu_shift_shortcut_label">"Shift+"</string>
+    <string msgid="5473865519181928982" name="abc_menu_space_shortcut_label">"space"</string>
+    <string msgid="6180552449598693998" name="abc_menu_sym_shortcut_label">"Sym+"</string>
+    <string msgid="5520303668377388990" name="abc_prepend_shortcut_label">"Menu+"</string>
+    <string msgid="7208076849092622260" name="abc_search_hint">"खोजें…"</string>
+    <string msgid="3741173234950517107" name="abc_searchview_description_clear">"क्‍वेरी हटाएं"</string>
+    <string msgid="693312494995508443" name="abc_searchview_description_query">"सर्च क्वेरी"</string>
+    <string msgid="3417662926640357176" name="abc_searchview_description_search">"खोजें"</string>
+    <string msgid="1486535517437947103" name="abc_searchview_description_submit">"क्वेरी सबमिट करें"</string>
+    <string msgid="2293578557972875415" name="abc_searchview_description_voice">"बोलकर खोजें"</string>
+    <string msgid="8875138169939072951" name="abc_shareactionprovider_share_with">"इससे शेयर करें:"</string>
+    <string msgid="9055268688411532828" name="abc_shareactionprovider_share_with_application">"<ns1:g id="APPLICATION_NAME">%s</ns1:g> से शेयर करें"</string>
+    <string msgid="1656852541809559762" name="abc_toolbar_collapse_description">"छोटा करें"</string>
+    <string name="bottomsheet_action_expand_halfway">पूरी तरह बड़ा करें</string>
+    <string name="character_counter_content_description">%2$d वर्णों में से %1$d वर्ण दर्ज किए गए</string>
+    <string name="character_counter_overflowed_content_description">अभी %1$d वर्ण हैं जबकि %2$d से ज़्यादा नहीं होने चाहिए</string>
+    <string name="clear_text_end_icon_content_description">टेक्स्ट मिटाएं</string>
+    <string msgid="2523291102206661146" name="common_google_play_services_enable_button">चालू करें</string>
+    <string msgid="227660514972886228" name="common_google_play_services_enable_text">जब तक आप Google Play सेवाएं चालू नहीं करते, %1$s काम नहीं करेगा.</string>
+    <string msgid="5122002158466380389" name="common_google_play_services_enable_title">Google Play सेवाएं चालू करें</string>
+    <string msgid="7153882981874058840" name="common_google_play_services_install_button">इंस्टॉल करें</string>
+    <string name="common_google_play_services_install_text">%1$s उन Google Play सेवाओं के बिना नहीं चलेगा जो आपके डिवाइस में उपलब्ध नहीं हैं.</string>
+    <string msgid="7215213145546190223" name="common_google_play_services_install_title">Google Play सेवाएं इंस्टॉल करें</string>
+    <string name="common_google_play_services_notification_channel_name">Google Play सेवाएं उपलब्ध हैं</string>
+    <string name="common_google_play_services_notification_ticker">Google Play सेवाओं से जुड़ी गड़बड़ी</string>
+    <string name="common_google_play_services_unknown_issue">%1$s को Google Play सेवाओं के साथ समस्या आ रही है. कृपया फिर से कोशिश करें.</string>
+    <string name="common_google_play_services_unsupported_text">%1$s उन Google Play सेवाओं के बिना नहीं चलेगा, जो आपके डिवाइस पर काम नहीं करती हैं.</string>
+    <string msgid="6556509956452265614" name="common_google_play_services_update_button">अपडेट करें</string>
+    <string msgid="9053896323427875356" name="common_google_play_services_update_text">%1$s तब तक नहीं चलेगा जब तक आप Google Play सेवाओं को अपडेट नहीं करते.</string>
+    <string msgid="6006316683626838685" name="common_google_play_services_update_title">Google Play सेवाओं को अपडेट करें</string>
+    <string name="common_google_play_services_updating_text">%1$s उन Google Play सेवाओं के बिना नहीं चलेगा जो अभी अपडेट हो रही हैं.</string>
+    <string name="common_google_play_services_wear_update_text">Google Play सेवाओं के नए वर्शन की ज़रूरत है. यह जल्द ही अपने आप अपडेट हो जाएगा.</string>
+    <string name="common_open_on_phone">फ़ोन पर खोलें</string>
+    <string name="common_signin_button_text">साइन इन करें</string>
+    <string name="common_signin_button_text_long">Google के ज़रिए साइन इन करें</string>
+    <string msgid="3260749812566568062" name="copy_toast_msg">"लिंक क्लिपबोर्ड पर कॉपी किया गया"</string>
+    <string name="error_icon_content_description">गड़बड़ी</string>
+    <string name="exposed_dropdown_menu_content_description">ड्रॉपडाउन मेन्यू दिखाएं</string>
+    <string msgid="4566929209979330987" name="fallback_menu_item_copy_link">"लिंक कॉपी करें"</string>
+    <string msgid="3413186855122069269" name="fallback_menu_item_open_in_browser">"ब्राउज़र में खोलें"</string>
+    <string msgid="7145444925855055364" name="fallback_menu_item_share_link">"लिंक शेयर करें"</string>
+    <string name="icon_content_description">डायलॉग का आइकॉन</string>
+    <string name="item_view_role_description">टैब</string>
+    <string name="material_clock_toggle_content_description">AM या PM चुनें</string>
+    <string name="material_hour_selection">घंटा चुनें</string>
+    <string name="material_hour_suffix">%1$s बजे</string>
+    <string name="material_minute_selection">मिनट चुनें</string>
+    <string name="material_minute_suffix">%1$s मिनट</string>
+    <string name="material_timepicker_am">पूर्वाह्न</string>
+    <string name="material_timepicker_clock_mode_description">समय इनपुट के लिए घड़ी मोड पर जाएं.</string>
+    <string name="material_timepicker_hour">घंटा</string>
+    <string name="material_timepicker_minute">मिनट</string>
+    <string name="material_timepicker_pm">अपराह्न</string>
+    <string name="material_timepicker_select_time">समय चुनें</string>
+    <string name="material_timepicker_text_input_mode_description">समय इनपुट के लिए लेख इनपुट मोड पर जाएं.</string>
+    <string name="mtrl_badge_numberless_content_description">नई सूचना</string>
+    <string name="mtrl_chip_close_icon_content_description">%1$s हटाएं</string>
+    <string name="mtrl_exceed_max_badge_number_content_description">%1$d से ज़्यादा नई सूचनाएं</string>
+    <string name="mtrl_picker_a11y_next_month">अगले महीने पर जाएं</string>
+    <string name="mtrl_picker_a11y_prev_month">पिछले महीने पर जाएं</string>
+    <string name="mtrl_picker_announce_current_selection">फ़िलहाल, यह चुना गया है: %1$s</string>
+    <string name="mtrl_picker_confirm">@android:string/ok</string>
+    <string name="mtrl_picker_date_header_selected">%1$s</string>
+    <string name="mtrl_picker_date_header_title">तारीख चुनें</string>
+    <string name="mtrl_picker_date_header_unselected">चुनी गई तारीख</string>
+    <string name="mtrl_picker_day_of_week_column_header">दिनों का कॉलम: %1$s</string>
+    <string name="mtrl_picker_invalid_format">गलत फ़ॉर्मैट.</string>
+    <string name="mtrl_picker_invalid_format_example">उदाहरण: %1$s</string>
+    <string name="mtrl_picker_invalid_format_use">%1$s का इस्तेमाल करें</string>
+    <string name="mtrl_picker_invalid_range">तारीखों की अमान्य सीमा.</string>
+    <string name="mtrl_picker_navigate_to_year_description">साल %1$s पर जाएं</string>
+    <string name="mtrl_picker_out_of_range">तारीख की मान्य सीमा से बाहर: %1$s</string>
+    <string name="mtrl_picker_range_header_only_end_selected">शुरू होने की तारीख – %1$s</string>
+    <string name="mtrl_picker_range_header_only_start_selected">%1$s – खत्म होने की तारीख</string>
+    <string name="mtrl_picker_range_header_selected">%1$s – %2$s</string>
+    <string name="mtrl_picker_range_header_title">रेंज चुनें</string>
+    <string name="mtrl_picker_range_header_unselected">शुरू होने की तारीख – खत्म होने की तारीख</string>
+    <string name="mtrl_picker_save">सेव करें</string>
+    <string name="mtrl_picker_text_input_date_hint">तारीख</string>
+    <string name="mtrl_picker_text_input_date_range_end_hint">खत्म होने की तारीख</string>
+    <string name="mtrl_picker_text_input_date_range_start_hint">शुरू होने की तारीख</string>
+    <string name="mtrl_picker_text_input_day_abbr">d</string>
+    <string name="mtrl_picker_text_input_month_abbr">m</string>
+    <string name="mtrl_picker_text_input_year_abbr">y</string>
+    <string name="mtrl_picker_toggle_to_calendar_input_mode">कैलेंडर के इनपुट मोड पर स्विच करें</string>
+    <string name="mtrl_picker_toggle_to_day_selection">\'दिन चुनना\' पर स्विच करने के लिए टैप करें</string>
+    <string name="mtrl_picker_toggle_to_text_input_mode">टेक्स्ट के इनपुट मोड पर स्विच करें</string>
+    <string name="mtrl_picker_toggle_to_year_selection">\'साल चुनना\' पर स्विच करने के लिए टैप करें</string>
+    <string name="native_body">मुख्य हिस्सा</string>
+    <string name="native_headline">हेडलाइन</string>
+    <string name="native_media_view">मीडिया व्यू</string>
+    <string name="notifications_permission_confirm">अनुमति दें</string>
+    <string name="notifications_permission_decline">अनुमति न दें</string>
+    <string name="notifications_permission_title">ऐप्लिकेशन को सूचनाएं भेजने की अनुमति देनी है?</string>
+    <string name="offline_dialog_image_description">आइकॉन</string>
+    <string name="offline_dialog_text">दिलचस्पी दिखाने के लिए धन्यवाद.\nआपके फिर से ऑनलाइन आने पर, हम और जानकारी शेयर करेंगे.</string>
+    <string name="offline_notification_title">आप फिर से ऑनलाइन हैं! चलिए, बातचीत वहीं से शुरू करते हैं जहां हमने पिछली बार छोड़ी थी</string>
+    <string name="offline_notification_title_with_advertiser">आप फिर से ऑनलाइन हैं! %s के बारे में ज़्यादा जानें</string>
+    <string name="offline_opt_in_confirm">ठीक है</string>
+    <string name="offline_opt_in_decline">रहने दें</string>
+    <string name="offline_opt_in_message">हम आपको एक सूचना भेजेंगे जिसमें विज्ञापन देने वाले की साइट का लिंक होगा.</string>
+    <string name="offline_opt_in_title">वापस ऑनलाइन आने पर, विज्ञापन खोलें.</string>
+    <string name="password_toggle_content_description">पासवर्ड दिखाएं</string>
+    <string name="s1">इमेज सेव करें</string>
+    <string name="s2">विज्ञापन को तस्वीर गैलरी में इमेज सेव करने का अनुमति देना चाहते हैं?</string>
+    <string name="s3">मंज़ूरी दें</string>
+    <string name="s4">खारिज करें</string>
+    <string name="s5">कैलेंडर इवेंट बनाएं</string>
+    <string name="s6">विज्ञापन को कैलेंडर इवेंट बनाने दें?</string>
+    <string name="s7">जाँच विज्ञापन</string>
+    <string msgid="6264217191555673260" name="search_menu_title">"खोजें"</string>
+    <string msgid="6277540029070332960" name="status_bar_notification_info_overflow">"999+"</string>
+    <string name="tt_00_00">00:00</string>
+    <string name="tt_ad_clicked_text">विज्ञापन पर क्लिक किया गया</string>
+    <string name="tt_ad_close_text">विज्ञापन बंद किया गया</string>
+    <string name="tt_ad_data_error">Response data error</string>
+    <string name="tt_ad_is_closed">विज्ञापन बंद</string>
+    <string name="tt_ad_logo_txt">AD</string>
+    <string name="tt_ad_showed_text">विज्ञापन दिखाया गया</string>
+    <string name="tt_adslot_empty">No request ad slot</string>
+    <string name="tt_adslot_id_error">Illegal ad slot id</string>
+    <string name="tt_adslot_size_empty">Empty ad slot size</string>
+    <string name="tt_adtype_not_match_rit">Ad slot id error</string>
+    <string name="tt_app_empty">No request app</string>
+    <string name="tt_app_name">tt_open_ad_sdk</string>
+    <string name="tt_auto_play_cancel_text">रद्द करें</string>
+    <string name="tt_banner_ad_load_image_error">Banner loading failed</string>
+    <string name="tt_cancel">रद्द करें</string>
+    <string name="tt_choose_language">hi</string>
+    <string name="tt_click_to_replay">फिर से प्ले करने के लिए टैप करें</string>
+    <string name="tt_comment_num">%1$s समीक्षाएं</string>
+    <string name="tt_comment_num_backup">%1$s समीक्षाएं</string>
+    <string name="tt_comment_score">मूल्यांकन</string>
+    <string name="tt_confirm_download">आप वाई-फ़ाई नेटवर्क से कनेक्ट नहीं है. क्या आप वाकई डाउनलोड करना चाहते हैं?</string>
+    <string name="tt_confirm_download_have_app_name">%s ऐप डाउनलोड करने की तैयारी की जा रही है</string>
+    <string name="tt_content_type">Http content type error</string>
+    <string name="tt_count_down_view">छोड़ें</string>
+    <string name="tt_dislike_header_tv_back">वापस जाएँ</string>
+    <string name="tt_dislike_header_tv_title">चुनें</string>
+    <string name="tt_display_error">डिस्प्ले त्रुटि</string>
+    <string name="tt_error_access_method_pass">Illegal access method</string>
+    <string name="tt_error_ad_type">Illegal ad type</string>
+    <string name="tt_error_adtype_differ">Ad type error</string>
+    <string name="tt_error_apk_sign_check_error">Illegal apk sha1 value</string>
+    <string name="tt_error_code_adcount_error">Incorrect number of ad</string>
+    <string name="tt_error_code_click_event_error">Click event error</string>
+    <string name="tt_error_image_size">Illegal image size</string>
+    <string name="tt_error_media_id">Illegal media id</string>
+    <string name="tt_error_media_type">Illegal media type</string>
+    <string name="tt_error_new_register_limit">New ad slot exceeded daily request limit</string>
+    <string name="tt_error_origin_ad_error">Origin type error</string>
+    <string name="tt_error_package_name">Package name error</string>
+    <string name="tt_error_redirect">Redirect error</string>
+    <string name="tt_error_request_invalid">Invalid request</string>
+    <string name="tt_error_slot_id_app_id_differ">SlotId and AppId match error</string>
+    <string name="tt_error_splash_ad_type">Splash ad type error</string>
+    <string name="tt_error_union_os_error">Os type error</string>
+    <string name="tt_error_union_sdk_too_old">Sdk version too low</string>
+    <string name="tt_error_unknow">Unknown error</string>
+    <string name="tt_error_verify_reward">Reward verify error</string>
+    <string name="tt_feedback_experience_text">हम अपनी सेवा में सुधार करना जारी रखेंगे.</string>
+    <string name="tt_feedback_submit_text">आप फ़ीडबैक सबमिट कर चुके हैं! कृपया फिर से सबमिट न करें.</string>
+    <string name="tt_feedback_thank_text">अपना फ़ीडबैक देने के लिए धन्यवाद!</string>
+    <string name="tt_frequent_call_erroe">Ad requests are too frequent</string>
+    <string name="tt_full_screen_skip_tx">छोड़ें</string>
+    <string name="tt_get_reward">रिवॉर्ड दिया गया</string>
+    <string name="tt_insert_ad_load_image_error">Interstitial loading failed</string>
+    <string name="tt_label_cancel">रद्द करें</string>
+    <string name="tt_label_ok">ठीक</string>
+    <string name="tt_load_creative_icon_error">Icon loading failed</string>
+    <string name="tt_load_creative_icon_response_error">Icon loading error</string>
+    <string name="tt_load_failed_text">विज्ञापन लोड नहीं किया जा सका</string>
+    <string name="tt_load_success_text">विज्ञापन सफलतापूर्वक लोड किया गया</string>
+    <string name="tt_logo_en">विज्ञापन</string>
+    <string name="tt_msgPlayable">रिवॉर्ड्स का दावा करने के लिए पूरा देखें</string>
+    <string name="tt_negtiveBtnBtnText">छोड़ दें</string>
+    <string name="tt_negtive_txt">रद्द करें</string>
+    <string name="tt_net_error">Network error</string>
+    <string name="tt_no_ad">No ad</string>
+    <string name="tt_no_ad_parse">Parsing data without ad</string>
+    <string name="tt_no_network">नेटवर्क कनेक्शन मौजूद नहीं, कृपया बाद में फिर से कोशिश करें.</string>
+    <string name="tt_no_thank_you">नहीं, धन्यवाद</string>
+    <string name="tt_parse_fail">Parsing error</string>
+    <string name="tt_permission_denied">आपने आवश्यक अनुमतियाँ अक्षम कर दी हैं. कृपया उन्हें सक्षम करें.</string>
+    <string name="tt_postiveBtnText">फिर से चलाएँ</string>
+    <string name="tt_postiveBtnTextPlayable">देखना जारी रखें</string>
+    <string name="tt_postive_txt">ठीक</string>
+    <string name="tt_privacy_title">प्राइवेसी पालिसी</string>
+    <string name="tt_reder_ad_load_timeout">Template loading timeout</string>
+    <string name="tt_render_diff_template_invalid">Template diff invalid</string>
+    <string name="tt_render_fail_meta_invalid">Template invalid</string>
+    <string name="tt_render_fail_template_parse_error">Template parsing error</string>
+    <string name="tt_render_fail_timeout">Render timeout</string>
+    <string name="tt_render_fail_unknown">Render failed unknown</string>
+    <string name="tt_render_main_template_invalid">Main template invalid</string>
+    <string name="tt_render_render_parse_error">Render parsing failed</string>
+    <string name="tt_request_body_error">Request entity is empty</string>
+    <string name="tt_request_pb_error">Http request pb error</string>
+    <string name="tt_request_permission_descript_external_storage">स्टोरेज़</string>
+    <string name="tt_request_permission_descript_location">स्थान</string>
+    <string name="tt_request_permission_descript_read_phone_state">फ़ोन</string>
+    <string name="tt_reward_feedback">फ़ीडबैक</string>
+    <string name="tt_reward_msg">अपना रिवॉर्ड क्लेम करने के लिए पूरी वीडियो देखें</string>
+    <string name="tt_reward_screen_skip_tx">छोड़ें</string>
+    <string name="tt_reward_video_show_error">रिवॉर्ड वीडियो डिस्प्ले गड़बड़ी</string>
+    <string name="tt_ror_code_show_event_error">Show event error</string>
+    <string name="tt_skip_ad_time_text">%ds सेकंड के बाद छोड़ दें</string>
+    <string name="tt_splash_ad_load_image_error">Splash loading failed</string>
+    <string name="tt_splash_cache_expired_error">Cache expired</string>
+    <string name="tt_splash_cache_parse_error">Cache parsing failed</string>
+    <string name="tt_splash_not_have_cache_error">No splash cache</string>
+    <string name="tt_splash_skip_tv">3 सेकंड | छोड़ें</string>
+    <string name="tt_suggestion_commit">सबमिट करें</string>
+    <string name="tt_suggestion_description">डिस्प्ले त्रुटि का विवरण दर्ज करें और \'सबमिट करें \' बटन पर क्लिक करें. समस्या का निवारण करने में मदद करने के लिए विज्ञापन क्रिएटिव को भी Pangle पर वापस भेजा जाएगा.</string>
+    <string name="tt_sys_error">System error</string>
+    <string name="tt_tip">प्रॉम्प्ट</string>
+    <string name="tt_toast_ad_on_rewarded">Ad on rewarded</string>
+    <string name="tt_toast_later_download">Download later</string>
+    <string name="tt_toast_no_ad">No Ad to Show, Please Load Ad</string>
+    <string name="tt_toast_start_loading">Start Loading</string>
+    <string name="tt_toast_tiktok_ad_failed">TikTok Ad Failed to load, error code is:</string>
+    <string name="tt_try_now">अब कोशिश करो</string>
+    <string name="tt_txt_skip">छोड़ें</string>
+    <string name="tt_unlike">रुचि नहीं</string>
+    <string name="tt_video_bytesize">डेटा</string>
+    <string name="tt_video_bytesize_M">M</string>
+    <string name="tt_video_bytesize_MB">MB</string>
+    <string name="tt_video_continue_play">देखना जारी रखें</string>
+    <string name="tt_video_dial_phone">अभी कॉल करें</string>
+    <string name="tt_video_download_apk">डाउनलोड करें</string>
+    <string name="tt_video_mobile_go_detail">अभी देखें</string>
+    <string name="tt_video_retry_des">लोड नहीं किया जा सका. फिर से कोशिश करने के लिए क्लिक करें</string>
+    <string name="tt_video_retry_des_txt">लोड नहीं किया जा सका. कृपया फिर से कोशिश करें.</string>
+    <string name="tt_video_without_wifi_tips">इस सामग्री को चलाने पर %.2f MB डेटा का इस्तेमाल होगा</string>
+    <string name="tt_wap_empty">No request wap</string>
+    <string name="tt_web_title_default">विज्ञापन</string>
+    <string name="tt_will_play">वीडियो चलाया जाने वाला है</string>
+    <string name="tt_yes_i_agree">हाँ, मैं सहमत हूँ</string>
+    <string name="watermark_label_prefix">AdMob - </string>
+</resources>

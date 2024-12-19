@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="MobileFuseFullscreenActivity" parent="android:Theme.Black.NoTitleBar.Fullscreen">
+        <item name="android:windowLayoutInDisplayCutoutMode">never</item>
+    </style>
+    <style name="MobileFuseFullscreenActivityTranslucent" parent="android:Theme.Translucent.NoTitleBar.Fullscreen">
+        <item name="android:windowLayoutInDisplayCutoutMode">never</item>
+    </style>
+</resources>

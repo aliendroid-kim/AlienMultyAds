@@ -1,0 +1,19 @@
+{
+    "logs": [
+        {
+            "outputFile": "/media/bekah-jaya/Master Alien/Libs Alien 2025/AlienMultyAds/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-en/values-en.xml",
+            "map": [
+                {
+                    "source": "/home/bekah-jaya/.gradle/caches/transforms-3/7d74971e247c11d541ae904b52f7508e/transformed/jetified-ads-sdk-5.8.0.9/res/values-en/values-en.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,120,162,204,260,311,413,493,580,674,750,847,918,1014,1080",
+                        "endColumns": "64,41,41,55,50,101,79,86,93,75,96,70,95,65,66",
+                        "endOffsets": "115,157,199,255,306,408,488,575,669,745,842,913,1009,1075,1142"
+                    }
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,79 @@
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, user-scalable=no" />
+    <style>
+    html, body {
+        margin: 0;
+        padding: 0;
+    }
+    .initially-invisible {
+        visibility: hidden;
+        opacity: 0;
+        transition: opacity 1s;
+    }
+    .close {
+        font-family: monospace;
+        padding: 0;
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        width: 30px;
+        height: 30px;
+        color: #FFF;
+        border-radius: 50%;
+        background-color: rgba(128,128,128,0.5);
+        box-sizing: border-box;
+        line-height: 29px;
+        text-align: center;
+    }
+    .close svg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 30px;
+        height: 30px;
+    }
+
+    * {
+        -webkit-touch-callout: none;
+        user-select: none;
+    }
+
+    .pc {
+        stroke: rgba(20,20,20,0.6);
+        fill: transparent;
+        stroke-width: 2px;
+    }
+
+    .pc-prog {
+        fill: transparent;
+        transform-origin: center;
+        transform: rotate(-90deg);
+        stroke: #59b45c;
+        stroke-width: 2px;
+        stroke-dasharray: 0 88;
+    }
+
+    .close-border {
+        fill: transparent;
+        stroke: #59b45c;
+        stroke-width: 24px;
+    }
+  </style>
+</head>
+<body>
+<div id="closeButtonContainer">
+    <div id="close_button" class="close initially-invisible">
+        <svg id="c_p" class="progress-circle" width="30px" height="30px" xmlns="http://www.w3.org/2000/svg"><circle class="pc" cx="15" cy="15" r="14"></circle><circle class="pc-prog" cx="15" cy="15" r="14"></circle></svg>
+        <svg id="c_x" height="512pt" viewBox="0 0 512 512" width="512pt" xmlns="http://www.w3.org/2000/svg"><circle class="close-border" cx="256" cy="256" r="244"></circle><path d="m350.273438 320.105469c8.339843 8.34375 8.339843 21.824219 0 30.167969-4.160157 4.160156-9.621094 6.25-15.085938 6.25-5.460938 0-10.921875-2.089844-15.082031-6.25l-64.105469-64.109376-64.105469 64.109376c-4.160156 4.160156-9.621093 6.25-15.082031 6.25-5.464844 0-10.925781-2.089844-15.085938-6.25-8.339843-8.34375-8.339843-21.824219 0-30.167969l64.109376-64.105469-64.109376-64.105469c-8.339843-8.34375-8.339843-21.824219 0-30.167969 8.34375-8.339843 21.824219-8.339843 30.167969 0l64.105469 64.109376 64.105469-64.109376c8.34375-8.339843 21.824219-8.339843 30.167969 0 8.339843 8.34375 8.339843 21.824219 0 30.167969l-64.109376 64.105469zm0 0" fill="#fafafa"/></svg>
+    </div>
+</div>
+<script src="close_button.js"></script>
+<script src="ad_close_controls.js"></script>
+<script>
+    const closeControls = new AdCloseControls({
+        closeButton:         document.getElementById('close_button')
+    });
+  </script>
+</body>
+</html>

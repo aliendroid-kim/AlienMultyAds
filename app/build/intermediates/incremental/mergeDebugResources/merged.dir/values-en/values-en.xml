@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="tt_full_screen_skip_tx">Skip after 5S</string>
+    <string name="tt_logo_cn">AD</string>
+    <string name="tt_logo_en">AD</string>
+    <string name="tt_reward_feedback">feedback</string>
+    <string name="tt_slide_up_3d">wipe up</string>
+    <string name="tt_splash_brush_mask_hint">Jump to details page or third party application</string>
+    <string name="tt_splash_brush_mask_title">Slide or click to Polish</string>
+    <string name="tt_splash_default_click_shake">Shake or click to learn more</string>
+    <string name="tt_splash_rock_text">Go to details page or third-party application</string>
+    <string name="tt_splash_rock_top_text">Shake or click the icon</string>
+    <string name="tt_splash_wriggle_text">Go to details page or third-party application</string>
+    <string name="tt_splash_wriggle_top_text">Twist the phone</string>
+    <string name="tt_splash_wriggle_top_text_style_17">Twist the phone or tap the icon</string>
+    <string name="tt_text_privacy_app_version">Version：V</string>
+    <string name="tt_text_privacy_development">Developer：</string>
+</resources>

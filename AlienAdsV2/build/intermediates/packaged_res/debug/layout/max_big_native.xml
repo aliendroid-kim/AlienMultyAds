@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/native_background">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/round_black">
+
+                <TextView
+                    android:id="@+id/txtTitle"
+                    android:layout_width="24dp"
+                    android:layout_height="wrap_content"
+                    android:background="@color/color_youtube_grayb"
+                    android:gravity="center"
+                    android:text="Ad"
+                    android:textAlignment="center"
+                    android:textColor="@color/native_text_button"
+                    android:textSize="10sp"
+                    tools:ignore="TextContrastCheck" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+            </RelativeLayout>
+
+            <FrameLayout
+                android:id="@+id/ad_options_view"
+                android:layout_width="14dp"
+                android:layout_height="14dp"
+                android:layout_marginTop="2dp"
+                android:layout_marginRight="5dp"
+                android:orientation="horizontal" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="75dp"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:layout_width="75dp"
+                android:layout_height="75dp">
+
+                <ImageView
+                    android:id="@+id/icon_image_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginBottom="5dp" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/title_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/native_title"
+                    android:textSize="10sp" />
+
+                <TextView
+                    android:id="@+id/body_text_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:lines="2"
+                    android:textColor="@color/native_description"
+                    android:textSize="10sp" />
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/cta_button"
+                android:layout_width="80dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:background="@color/native_button"
+                android:textColor="@color/native_text_button"
+                android:textSize="8sp"
+                tools:ignore="TouchTargetSizeCheck"
+                tools:text="Install" />
+
+        </LinearLayout>
+
+        <FrameLayout
+            android:id="@+id/media_view_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="4dp"
+            android:layout_weight="1"
+            android:maxHeight="150dp"
+            android:visibility="visible"
+            app:layout_constraintDimensionRatio="W,16:9"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/advertiser_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginRight="8dp"
+
+            android:gravity="center"
+            android:lines="2"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textColor="@color/native_title"
+            android:visibility="visible"
+            tools:text="Advertiser" />
+
+    </LinearLayout>
+
+</RelativeLayout>

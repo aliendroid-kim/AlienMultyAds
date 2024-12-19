@@ -1,0 +1,39 @@
+{
+    "logs": [
+        {
+            "outputFile": "/media/bekah-jaya/Master Alien/Libs Alien 2025/AlienMultyAds/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-v27/values-v27.xml",
+            "map": [
+                {
+                    "source": "/home/bekah-jaya/.gradle/caches/transforms-3/9669af7ae2b049c7139b2d9c03cf55b7/transformed/jetified-mobilefuse-sdk-core-1.7.1/res/values-v27/values-v27.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endLines": "4",
+                        "endColumns": "12",
+                        "endOffsets": "236"
+                    }
+                },
+                {
+                    "source": "/home/bekah-jaya/.gradle/caches/transforms-3/411ad29fd37191d8e20cb48d5b6437ab/transformed/jetified-mobilefuse-sdk-common-1.7.1/res/values-v27/values-v27.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endLines": "4",
+                        "endColumns": "12",
+                        "endOffsets": "253"
+                    },
+                    "to": {
+                        "startLines": "5",
+                        "startColumns": "4",
+                        "startOffsets": "241",
+                        "endLines": "7",
+                        "endColumns": "12",
+                        "endOffsets": "439"
+                    }
+                }
+            ]
+        }
+    ]
+}

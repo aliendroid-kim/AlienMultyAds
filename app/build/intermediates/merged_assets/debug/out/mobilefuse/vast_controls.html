@@ -1,0 +1,268 @@
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, user-scalable=no" />
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+        }
+        .progress-bar-container {
+            background-color: rgba(128,128,128,0.2);
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+        }
+        .progress-bar {
+            background-color: #59b45c;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            width: 0%;
+        }
+        .skip-marker {
+            background-color: #59b45c;
+            position: absolute;
+            border-radius: 50%;
+            top: 0;
+            bottom: 0;
+            left: -100%;
+            width: 6px;
+        }
+        .cta {
+            position: fixed;
+            bottom: 50px;
+            right: 0;
+            color: #FFF;
+            background-color: rgba(0,0,0,0.6);
+            border: 1px solid #59b45c;
+            border-right: 0;
+            padding: 15px 30px;
+            font-size: 22px;
+            border-radius: 5px 0 0 5px;
+        }
+        .close {
+            padding: 0;
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 30px;
+            height: 30px;
+            line-height: 30px;
+            color: #FFF;
+            background-color: rgba(128,128,128,0.5);
+            border-radius: 50%;
+            border: 1px solid #59b45c;
+            box-sizing: border-box;
+        }
+        .close svg {
+            width: 28px;
+            height: 28px;
+        }
+
+        .mute {
+            padding: 0;
+            position: fixed;
+            top: 20px;
+            right: 60px;
+            width: 30px;
+            height: 30px;
+            line-height: 30px;
+            color: #FFF;
+            background-color: rgba(128,128,128,0.5);
+            border-radius: 50%;
+            border: 1px solid #59b45c;
+            box-sizing: border-box;
+        }
+        .mute svg {
+            width: 20px;
+            height: 20px;
+        }
+        .mute .toggle_off {
+            display: none;
+        }
+
+        .fullscreen {
+            padding: 0;
+            position: fixed;
+            top: 20px;
+            right: 100px;
+            width: 30px;
+            height: 30px;
+            line-height: 30px;
+            color: #FFF;
+            background-color: rgba(128,128,128,0.5);
+            border-radius: 50%;
+            border: 1px solid #59b45c;
+            box-sizing: border-box;
+        }
+        .fullscreen svg {
+            width: 20px;
+            height: 20px;
+        }
+        .fullscreen .toggle_off {
+            display: none;
+        }
+
+        .full-cover {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+        }
+
+        .initially-invisible {
+            visibility: hidden;
+            opacity: 0;
+            transition: opacity 1s;
+        }
+
+        .icon-container {
+            display: block;
+            position: absolute;
+            top: 8px;
+            left: 8px;
+        }
+
+        .icon-container .icon {
+            opacity: 0;
+            transition: opacity 1s ease;
+            display: inline-block;
+            width: 32px;
+            height: 32px;
+            margin: 5px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .icon iframe {
+            display: block;
+            width: 100%;
+            height: 100%;
+            border: 0;
+            overflow: hidden;
+            margin: 0;
+            padding: 0;
+        }
+
+        .icon .image {
+            overflow: hidden;
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            border: 0;
+            margin: 0;
+            padding: 0;
+        }
+
+        * {
+            -webkit-touch-callout: none;
+            user-select: none;
+        }
+
+        /* Responsive - small designs */
+        @media (max-height: 250px), (max-width: 250px) {
+            .close {
+                top: 0;
+                right: 0;
+                background: rgba(0,0,0,0.2);
+                border: 0 none;
+            }
+            .mute {
+                top: 0;
+                right: 30px;
+                background: rgba(0,0,0,0.2);
+                border: 0 none;
+            }
+            .fullscreen {
+                top: 0;
+                right: 60px;
+                background: rgba(0,0,0,0.2);
+                border: 0 none;
+            }
+            .enter-fullscreen-on-video-tap {
+            }
+            .cta {
+                bottom: 20px;
+                border: 0;
+                padding: 6px 10px;
+                font-size: 14px;
+            }
+            .progress-bar-container {
+                height: 4px;
+            }
+            .skip-marker {
+                width: 4px;
+            }
+            .icon-container {
+                transform-origin: top left;
+                transform: scale(0.6);
+            }
+        }
+
+        /* Responsive - thumbnail */
+        @media (max-height: 150px), (max-width: 200px)  {
+            .cta {
+                display: none;
+            }
+            .progress-bar-container {
+                height: 2px;
+            }
+            .skip-marker {
+                width: 2px;
+            }
+            .icon-container {
+                display: none;
+            }
+            .enter-fullscreen-on-video-tap {
+                display: none;
+            }
+        }
+
+    </style>
+</head>
+<body>
+<div class="full-cover" id="overlay_ui">
+    <div id="video_cover" class="full-cover"></div>
+    <button id="close_button" class="close initially-invisible"><svg height="512pt" viewBox="0 0 512 512" width="512pt" xmlns="http://www.w3.org/2000/svg"><path d="m350.273438 320.105469c8.339843 8.34375 8.339843 21.824219 0 30.167969-4.160157 4.160156-9.621094 6.25-15.085938 6.25-5.460938 0-10.921875-2.089844-15.082031-6.25l-64.105469-64.109376-64.105469 64.109376c-4.160156 4.160156-9.621093 6.25-15.082031 6.25-5.464844 0-10.925781-2.089844-15.085938-6.25-8.339843-8.34375-8.339843-21.824219 0-30.167969l64.109376-64.105469-64.109376-64.105469c-8.339843-8.34375-8.339843-21.824219 0-30.167969 8.34375-8.339843 21.824219-8.339843 30.167969 0l64.105469 64.109376 64.105469-64.109376c8.34375-8.339843 21.824219-8.339843 30.167969 0 8.339843 8.34375 8.339843 21.824219 0 30.167969l-64.109376 64.105469zm0 0" fill="#fafafa"/></svg></button>
+    <button id="mute_button" class="mute initially-invisible">
+        <svg class="toggle_off" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26 26"><defs><style>.cls-1{fill:#fff;}</style></defs><path id="volume-off" class="cls-1" d="M11.09,20.72l2.83-2.83v3.4a.8.8,0,0,1-1.29.63ZM21.34,10.47A9.15,9.15,0,0,1,22,13.92,9,9,0,0,1,20,19.7,1,1,0,0,0,20,21l.56.56a1,1,0,0,0,1.49-.06A11.9,11.9,0,0,0,23.44,8.37Zm-1.75,1.75-2.7,2.7a4,4,0,0,1-.54,1.25,1,1,0,0,0,.11,1.29L17,18a1,1,0,0,0,1.52-.11,6.82,6.82,0,0,0,1.27-4A6.9,6.9,0,0,0,19.59,12.22ZM25.14.86A1.51,1.51,0,0,0,23,.86L13.92,10V6.56a.8.8,0,0,0-1.29-.63l-5.13,4H2.92a1,1,0,0,0-1,1v6a1,1,0,0,0,1,1H6L.86,23a1.51,1.51,0,0,0,0,2.12,1.53,1.53,0,0,0,1.06.44A1.49,1.49,0,0,0,3,25.14L25.14,3A1.51,1.51,0,0,0,25.14.86Z"/></svg>
+        <svg class="toggle_on" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26 26"><defs><style>.cls-1{fill:#fff;}</style></defs><path id="volume-up" class="cls-1" d="M13.91,6.55V21.28a.8.8,0,0,1-1.29.63l-5.13-4H2.91a1,1,0,0,1-1-1v-6a1,1,0,0,1,1-1H7.49l5.13-4A.8.8,0,0,1,13.91,6.55Zm4.62,3.36A1,1,0,0,0,17,9.81l-.57.57a1,1,0,0,0-.11,1.28A4.07,4.07,0,0,1,17,13.91a4,4,0,0,1-.67,2.25,1,1,0,0,0,.11,1.29L17,18a1,1,0,0,0,1.51-.1,6.91,6.91,0,0,0,0-8Zm3.54-3.6a1,1,0,0,0-1.49-.07L20,6.81a1,1,0,0,0-.08,1.32,9.1,9.1,0,0,1,0,11.56A1,1,0,0,0,20,21l.56.57a1,1,0,0,0,1.49-.07,11.92,11.92,0,0,0,0-15.21Z"/></svg>
+    </button>
+    <button id="fullscreen_button" class="fullscreen initially-invisible">
+        <svg class="toggle_off" version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 32 32" xml:space="preserve"><style type="text/css">polyline{fill:none;stroke:#FFFFFF;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}</style><polyline points="3.91,10.47 10.47,10.47 10.47,3.91 	"/><polyline points="21.59,3.91 21.59,10.44 28.15,10.44 	"/><polyline points="28.15,21.56 21.59,21.56 21.59,28.15 	"/><polyline points="10.47,28.15 10.47,21.59 3.91,21.59 	"/></svg>
+        <svg class="toggle_on" version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 32 32" xml:space="preserve"><style type="text/css">polyline{fill:none;stroke:#FFFFFF;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}</style><polyline points="10.47,3.91 3.91,3.91 3.91,10.47 	"/><polyline points="28.15,10.44 28.15,3.91 21.59,3.91 	"/><polyline points="21.59,28.15 28.15,28.15 28.15,21.56 	"/><polyline points="3.91,21.59 3.91,28.15 10.47,28.15 	"/></svg>
+    </button>
+    <button id="clickthrough_button" class="cta initially-invisible">Learn More</button>
+    <div class="icon-container" id="icon_container"></div>
+</div>
+<div class="progress-bar-container">
+    <div class="skip-marker" id="skip_marker"></div>
+    <div class="progress-bar" id="progress_bar"></div>
+</div>
+<script src="vast.js"></script>
+<script>
+    const vast = new Vast({
+        overlayUi:           document.getElementById('overlay_ui'),
+        ctaButton:           document.getElementById('clickthrough_button'),
+        closeButton:         document.getElementById('close_button'),
+        muteButton:          document.getElementById('mute_button'),
+        fullscreenButton:    document.getElementById('fullscreen_button'),
+        videoCover:          document.getElementById('video_cover'),
+        skipMarker:          document.getElementById('skip_marker'),
+        progressBar:         document.getElementById('progress_bar'),
+        iconContainer:       document.getElementById('icon_container'),
+        DEBUG:               true
+    });
+</script>
+</body>
+</html>

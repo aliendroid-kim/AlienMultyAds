@@ -1,0 +1,20 @@
+{
+    "logs": [
+        {
+            "outputFile": "/media/bekah-jaya/Master Alien/Libs Alien 2025/AlienMultyAds/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-watch-v20/values-watch-v20.xml",
+            "map": [
+                {
+                    "source": "/home/bekah-jaya/.gradle/caches/transforms-3/2214f4f5205ac4d20333dc6d8ef39738/transformed/appcompat-1.4.1/res/values-watch-v20/values-watch-v20.xml",
+                    "from": {
+                        "startLines": "2,5,8",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "55,214,385",
+                        "endLines": "4,7,10",
+                        "endColumns": "12,12,12",
+                        "endOffsets": "209,380,553"
+                    }
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,54 @@
+[
+    {
+        "merged": "/media/bekah-jaya/Master Alien/Libs Alien 2025/AlienMultyAds/app/build/intermediates/merged_res/debug/mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "/media/bekah-jaya/Master Alien/Libs Alien 2025/AlienMultyAds/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml"
+    },
+    {
+        "merged": "/media/bekah-jaya/Master Alien/Libs Alien 2025/AlienMultyAds/app/build/intermediates/merged_res/debug/drawable-anydpi-v24_ic_launcher_foreground.xml.flat",
+        "source": "/media/bekah-jaya/Master Alien/Libs Alien 2025/AlienMultyAds/app/build/generated/res/pngs/debug/drawable-anydpi-v24/ic_launcher_foreground.xml"
+    },
+    {
+        "merged": "/media/bekah-jaya/Master Alien/Libs Alien 2025/AlienMultyAds/app/build/intermediates/merged_res/debug/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "/media/bekah-jaya/Master Alien/Libs Alien 2025/AlienMultyAds/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml"
+    },
+    {
+        "merged": "/media/bekah-jaya/Master Alien/Libs Alien 2025/AlienMultyAds/app/build/intermediates/merged_res/debug/drawable_alien2.webp.flat",
+        "source": "/media/bekah-jaya/Master Alien/Libs Alien 2025/AlienMultyAds/app/src/main/res/drawable/alien2.webp"
+    },
+    {
+        "merged": "/media/bekah-jaya/Master Alien/Libs Alien 2025/AlienMultyAds/app/build/intermediates/merged_res/debug/drawable_ic_launcher_background.xml.flat",
+        "source": "/media/bekah-jaya/Master Alien/Libs Alien 2025/AlienMultyAds/app/src/main/res/drawable/ic_launcher_background.xml"
+    },
+    {
+        "merged": "/media/bekah-jaya/Master Alien/Libs Alien 2025/AlienMultyAds/app/build/intermediates/merged_res/debug/layout_activity_banner.xml.flat",
+        "source": "/media/bekah-jaya/Master Alien/Libs Alien 2025/AlienMultyAds/app/src/main/res/layout/activity_banner.xml"
+    },
+    {
+        "merged": "/media/bekah-jaya/Master Alien/Libs Alien 2025/AlienMultyAds/app/build/intermediates/merged_res/debug/layout_activity_view_ads.xml.flat",
+        "source": "/media/bekah-jaya/Master Alien/Libs Alien 2025/AlienMultyAds/app/src/main/res/layout/activity_view_ads.xml"
+    },
+    {
+        "merged": "/media/bekah-jaya/Master Alien/Libs Alien 2025/AlienMultyAds/app/build/intermediates/merged_res/debug/layout_activity_native.xml.flat",
+        "source": "/media/bekah-jaya/Master Alien/Libs Alien 2025/AlienMultyAds/app/src/main/res/layout/activity_native.xml"
+    },
+    {
+        "merged": "/media/bekah-jaya/Master Alien/Libs Alien 2025/AlienMultyAds/app/build/intermediates/merged_res/debug/layout_activity_mediation_ads.xml.flat",
+        "source": "/media/bekah-jaya/Master Alien/Libs Alien 2025/AlienMultyAds/app/src/main/res/layout/activity_mediation_ads.xml"
+    },
+    {
+        "merged": "/media/bekah-jaya/Master Alien/Libs Alien 2025/AlienMultyAds/app/build/intermediates/merged_res/debug/xml_network_config.xml.flat",
+        "source": "/media/bekah-jaya/Master Alien/Libs Alien 2025/AlienMultyAds/app/src/main/res/xml/network_config.xml"
+    },
+    {
+        "merged": "/media/bekah-jaya/Master Alien/Libs Alien 2025/AlienMultyAds/app/build/intermediates/merged_res/debug/drawable_ic_android_black_24dp.xml.flat",
+        "source": "/media/bekah-jaya/Master Alien/Libs Alien 2025/AlienMultyAds/app/src/main/res/drawable/ic_android_black_24dp.xml"
+    },
+    {
+        "merged": "/media/bekah-jaya/Master Alien/Libs Alien 2025/AlienMultyAds/app/build/intermediates/merged_res/debug/layout_activity_main.xml.flat",
+        "source": "/media/bekah-jaya/Master Alien/Libs Alien 2025/AlienMultyAds/app/src/main/res/layout/activity_main.xml"
+    },
+    {
+        "merged": "/media/bekah-jaya/Master Alien/Libs Alien 2025/AlienMultyAds/app/build/intermediates/merged_res/debug/layout_activity_splash.xml.flat",
+        "source": "/media/bekah-jaya/Master Alien/Libs Alien 2025/AlienMultyAds/app/src/main/res/layout/activity_splash.xml"
+    }
+]

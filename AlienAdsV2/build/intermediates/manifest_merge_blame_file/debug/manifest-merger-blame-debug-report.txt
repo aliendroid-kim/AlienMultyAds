@@ -1,0 +1,58 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.aliendroid.alienads" >
+4
+5    <uses-sdk
+6        android:minSdkVersion="21"
+6-->/media/bekah-jaya/Master Alien/Libs Alien 2025/AlienMultyAds/AlienAdsV2/src/main/AndroidManifest.xml
+7        android:targetSdkVersion="34" />
+7-->/media/bekah-jaya/Master Alien/Libs Alien 2025/AlienMultyAds/AlienAdsV2/src/main/AndroidManifest.xml
+8
+9    <uses-permission android:name="android.permission.INTERNET" />
+9-->/media/bekah-jaya/Master Alien/Libs Alien 2025/AlienMultyAds/AlienAdsV2/src/main/AndroidManifest.xml:4:5-67
+9-->/media/bekah-jaya/Master Alien/Libs Alien 2025/AlienMultyAds/AlienAdsV2/src/main/AndroidManifest.xml:4:22-64
+10    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+10-->/media/bekah-jaya/Master Alien/Libs Alien 2025/AlienMultyAds/AlienAdsV2/src/main/AndroidManifest.xml:5:5-79
+10-->/media/bekah-jaya/Master Alien/Libs Alien 2025/AlienMultyAds/AlienAdsV2/src/main/AndroidManifest.xml:5:22-76
+11    <uses-permission android:name="com.google.android.gms.permission.AD_ID" />
+11-->/media/bekah-jaya/Master Alien/Libs Alien 2025/AlienMultyAds/AlienAdsV2/src/main/AndroidManifest.xml:6:5-78
+11-->/media/bekah-jaya/Master Alien/Libs Alien 2025/AlienMultyAds/AlienAdsV2/src/main/AndroidManifest.xml:6:22-76
+12    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+12-->/media/bekah-jaya/Master Alien/Libs Alien 2025/AlienMultyAds/AlienAdsV2/src/main/AndroidManifest.xml:7:5-79
+12-->/media/bekah-jaya/Master Alien/Libs Alien 2025/AlienMultyAds/AlienAdsV2/src/main/AndroidManifest.xml:7:22-76
+13    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+13-->/media/bekah-jaya/Master Alien/Libs Alien 2025/AlienMultyAds/AlienAdsV2/src/main/AndroidManifest.xml:8:5-81
+13-->/media/bekah-jaya/Master Alien/Libs Alien 2025/AlienMultyAds/AlienAdsV2/src/main/AndroidManifest.xml:8:22-78
+14
+15    <application android:name="com.aliendroid.alienads.MyApplication" >
+15-->/media/bekah-jaya/Master Alien/Libs Alien 2025/AlienMultyAds/AlienAdsV2/src/main/AndroidManifest.xml:10:5-30:19
+15-->/media/bekah-jaya/Master Alien/Libs Alien 2025/AlienMultyAds/AlienAdsV2/src/main/AndroidManifest.xml:11:9-61
+16        <meta-data
+16-->/media/bekah-jaya/Master Alien/Libs Alien 2025/AlienMultyAds/AlienAdsV2/src/main/AndroidManifest.xml:14:9-16:35
+17            android:name="com.google.android.gms.ads.flag.OPTIMIZE_AD_LOADING"
+17-->/media/bekah-jaya/Master Alien/Libs Alien 2025/AlienMultyAds/AlienAdsV2/src/main/AndroidManifest.xml:15:13-79
+18            android:value="true" />
+18-->/media/bekah-jaya/Master Alien/Libs Alien 2025/AlienMultyAds/AlienAdsV2/src/main/AndroidManifest.xml:16:13-33
+19        <meta-data
+19-->/media/bekah-jaya/Master Alien/Libs Alien 2025/AlienMultyAds/AlienAdsV2/src/main/AndroidManifest.xml:18:9-20:69
+20            android:name="com.google.android.gms.version"
+20-->/media/bekah-jaya/Master Alien/Libs Alien 2025/AlienMultyAds/AlienAdsV2/src/main/AndroidManifest.xml:19:13-58
+21            android:value="@integer/google_play_services_version" />
+21-->/media/bekah-jaya/Master Alien/Libs Alien 2025/AlienMultyAds/AlienAdsV2/src/main/AndroidManifest.xml:20:13-66
+22
+23        <activity
+23-->/media/bekah-jaya/Master Alien/Libs Alien 2025/AlienMultyAds/AlienAdsV2/src/main/AndroidManifest.xml:22:9-24:125
+24            android:name="com.google.android.gms.ads.AdActivity"
+24-->/media/bekah-jaya/Master Alien/Libs Alien 2025/AlienMultyAds/AlienAdsV2/src/main/AndroidManifest.xml:23:13-65
+25            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize" />
+25-->/media/bekah-jaya/Master Alien/Libs Alien 2025/AlienMultyAds/AlienAdsV2/src/main/AndroidManifest.xml:24:13-122
+26
+27        <meta-data
+27-->/media/bekah-jaya/Master Alien/Libs Alien 2025/AlienMultyAds/AlienAdsV2/src/main/AndroidManifest.xml:25:9-27:35
+28            android:name="com.google.android.gms.ads.DELAY_APP_MEASUREMENT_INIT"
+28-->/media/bekah-jaya/Master Alien/Libs Alien 2025/AlienMultyAds/AlienAdsV2/src/main/AndroidManifest.xml:26:13-81
+29            android:value="true" />
+29-->/media/bekah-jaya/Master Alien/Libs Alien 2025/AlienMultyAds/AlienAdsV2/src/main/AndroidManifest.xml:27:13-33
+30    </application>
+31
+32</manifest>
